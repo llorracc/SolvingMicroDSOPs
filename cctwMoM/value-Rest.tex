@@ -1,0 +1,69 @@
+\MPCMatch{with derivative
+\begin{eqnarray*}
+  \bar{\vInv}_{t}^{m} & = & (\mathbb{C}_{t}^{T})^{1/(1-\CRRA)}\MinMPC_{t},
+\\ & = & \MinMPC_{t}^{-\CRRA/(1-\CRRA)} % 20190820
+\end{eqnarray*}}{}
+and since $\mathbb{C}_{t}^{T}$ is a constant while the consumption
+function is linear, $\bar{\vInv}_{t}$ will also be linear.
+
+We apply the same transformation to the value function for the problem with uncertainty (the ``realist's'' problem)\MPCMatch{ and differentiate}:
+\begin{eqnarray*}
+  \bar{\vInv}_{t} & = & \left((1-\CRRA)\bar{\vFunc}_{t}({m}_{t})\right)^{1/(1-\CRRA)}
+\MPCMatch{\\ \bar{\vInv}^{m}_{t} & = & \left((1-\CRRA)\bar{\vFunc}_{t}({m}_{t})\right)^{-1+1/(1-\CRRA)}\bar{\vFunc}_{t}^{m}({m}_{t})}{}
+\end{eqnarray*}
+and an excellent approximation to the value function can be obtained by
+calculating the values of $\bar{\vInv}$ at the same gridpoints used by the
+consumption function approximation, and interpolating among those points.
+
+However, as with the consumption approximation, we can do even better if we
+realize that the $\bar{\vInv}$ function for the optimist's problem is
+an upper bound for the ${\vInv}$ function in the presence of uncertainty, and the value function
+for the pessimist is a lower bound. Analogously to \eqref{eq:koppa}, define an upper-case
+\begin{eqnarray}
+\hat{\Koppa}_{t}(\mu_{t})  & = & \left(\frac{\bar{\vInv}_{t}(\ushort{m}_{t}+e^{\mu_{t}})-\vInv_{t}(\ushort{m}_{t}+e^{\mu_{t}})}{\aboveMin \hEnd_{t} \MinMPC_{t} (\mathbb{C}_{t}^{T})^{1/(1-\CRRA)}}\right) \label{eq:Koppa}
+\end{eqnarray}
+\MPCMatch{with derivative (dropping arguments)
+\begin{eqnarray}
+ \hat{\Koppa}_{t}^{\mu}  & = & (\aboveMin \hEnd_{t} \MinMPC_{t} (\mathbb{C}_{t}^{T})^{1/(1-\CRRA)})^{-1}e^{\mu_{t}}\left(\bar{\vInv}^{m}_{t}-\vInv^{m}_{t}\right) \label{eq:KoppaPrime}
+%\\ & = &  (\aboveMin \hEnd_{t} \MinMPC_{t})^{-1}e^{\mu_{t}}\left((\mathbb{C}_{t}^{T})^{1/(1-\CRRA)}\MinMPC_{t}-\left((1-\CRRA)\vFunc_{t}({m}_{t})\right)^{-1+1/(1-\CRRA)}\vFunc_{t}^{m}({m}_{t})\right)  \notag
+\end{eqnarray}}{}
+and an upper-case version of the $\chiFunc$ equation in \eqref{eq:chi}:
+\begin{eqnarray}
+  \hat{\Chi}_{t}(\mu_{t}) & = & \log \left(\frac{1-\hat{\Koppa}_{t}(\mu_{t})}{\hat{\Koppa}_{t}(\mu_{t})}\right)
+\\ & = & \log \left(1/\hat{\Koppa}_{t}(\mu_{t})-1\right) \label{eq:Chi}
+\end{eqnarray}
+\MPCMatch{with corresponding derivative
+\begin{eqnarray}
+ \hat{\Chi}_{t}^{\mu} & = & \left(\frac{-\hat{\Koppa}_{t}^{\mu}/\hat{\Koppa}_{t}^{2}}{1/\hat{\Koppa}_{t}-1}\right)
+\end{eqnarray}}{}
+and if we approximate these objects then invert them (as above with
+the $\Hi{\koppa}$ and $\Hi{\chiFunc}$ functions) we obtain a very high-quality
+approximation to our inverted value function at the same points for
+which we have our approximated value function:
+\begin{eqnarray}
+  \hat{\vInv}_{t} & = & \bar{\vInv}_{t}-\overbrace{\left(\frac{1}{1+\exp(\hat{\Chi}_{t})}\right)}^{=\hat{\Koppa}_{t}} \aboveMin \hEnd_{t} \MinMPC_{t} (\mathbb{C}_{t}^{T})^{1/(1-\CRRA) }
+\end{eqnarray}
+from which we obtain our approximation to the value function\MPCMatch{ and its derivatives~}~as \hypertarget{vHatFunc}{}
+\begin{eqnarray*}
+    \hat{\vFunc}_{t} & = & \util(\hat{\vInv}_{t})
+\\  \hat{\vFunc}^{m}_{t} & = & \util^{\prime}(\hat{\vInv}_{t}) \hat{\vInv}^{m}
+\MPCMatch{\\  \hat{\vFunc}^{mm}_{t} & = & \util^{\prime\prime}(\hat{\vInv}_{t}) (\hat{\vInv}^{m})^{2} + \util^{\prime}(\hat{\vInv}_{t})\hat{\vInv}^{mm}}{}
+.
+\end{eqnarray*}
+
+Although a linear interpolation that matches the level of $\vInv$ at
+the gridpoints is simple, a Hermite interpolation that matches both
+the level and the derivative of the $\bar{\vInv}_{t}$ function at the
+gridpoints has the considerable virtue that the $\bar{\vFunc}_{t}$ derived from it numerically satisfies
+the envelope theorem at each of the gridpoints for which the problem
+has been solved.
+
+\MPCMatch{If we use the double-derivative calculated above to produce a higher-order Hermite polynomial, our approximation will also match
+  marginal propensity to consume at the gridpoints; this would
+  guarantee that the consumption function generated from the value
+  function would match both the level of consumption and the
+  marginal propensity to consume at the gridpoints; the numerical
+  differences between the newly constructed consumption function and
+  the highly accurate one constructed earlier would be negligible
+  within the grid.}{}
+

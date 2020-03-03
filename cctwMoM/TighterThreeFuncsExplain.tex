@@ -1,0 +1,47 @@
+
+This just says that, for each interval, we use the approximation that
+is most appropriate.  The function is continuous and
+once-differentiable everywhere, and is therefore well behaved for
+computational purposes.
+
+\begin{comment}
+In practice, in our problem the difference due to this refinement is displayed in Figure \ref{fig:IntExpFOCInvPesReaOpt45GapPlot}.
+\hypertarget{IntExpFOCInvPesReaOpt45GapPlot}{}
+\begin{figure}
+        \includegraphics{./Figures/IntExpFOCInvPesReaOpt45GapPlot}
+        \caption{Difference Between $\Alt{\Hi{\cFunc}}_{L, T-1}$ and $\Alt{\Hi{\cFunc}}_{H,T-1}$ is Small}
+        \label{fig:IntExpFOCInvPesReaOpt45GapPlot}
+\end{figure}
+\end{comment}
+
+We now construct an upper-bound value function implied for a consumer whose spending behavior
+is consistent with the refined upper-bound consumption rule.
+
+For $\mRat_{t} \geq \mRat_{t}^{\#}$, this consumption rule is the same as before,
+so the constructed upper-bound value function is also the same.  However, for
+values $\mRat_{t} < \mRat_{t}^{\#}$ matters are slightly more complicated.
+
+Start with the fact that at the cusp point,
+\begin{eqnarray*}
+  \bar{\vFunc}_{t}(\mtCusp) & = & \util(\bar{\cRat}_{t}(\mtCusp))\mathbb{C}_{t}^{T} \\
+  &=& \util(\aboveMin \mtCusp  \MaxMPC_{t})\mathbb{C}_{t}^{T}
+.
+\end{eqnarray*}
+
+But for \textit{all} $\mRat_{t}$,
+\begin{eqnarray*}
+  \bar{\vFunc}_{t}(\mRat) & = & \util(\bar{\cRat}_{t}(\mRat))+ \bar{\vEnd}_{t}(\mRat-\bar{\cRat}_{t}(\mRat)),
+\end{eqnarray*}
+and we assume that for the consumer below the cusp point consumption is given by $\MaxMPC \aboveMin \mRat_{t}$ so for $\mRat_{t}< \mtCusp$
+\begin{eqnarray*}
+  \bar{\vFunc}_{t}(\mRat) & = & \util( \MaxMPC_{t} \aboveMin \mRat)+ \bar{\vEnd}_{t}((1-\MaxMPC_{t})\aboveMin \mRat),
+\end{eqnarray*}
+which is easy to compute because $\bar{\vEnd}_{t}(\aRat_{t}) = \Discount \bar{\vFunc}_{t+1}(\aRat_{t}\Rnorm+1)$
+where $\bar{\vFunc}_{t}$ is as defined above because a consumer who ends the current period with assets exceeding
+the lower bound will not expect to be constrained next period.  (Recall again that we are merely constructing an object that is guaranteed to be an \textit{upper bound} for the value that the `realist' consumer will experience.)  At the gridpoints defined by the solution of the
+consumption problem can then construct
+\begin{eqnarray*}
+  \bar{\vInv}_{t}(\mRat) & = & ((1-\CRRA)\bar{\vFunc}_{t}(\mRat))^{1/(1-\CRRA)}
+\end{eqnarray*}
+\MPCMatch{and its derivatives}{} which yields the appropriate vector for constructing $\check{\Chi}$ and $\check{\Koppa}$.  The rest of the procedure is analogous to that performed for the consumption rule and is thus omitted for brevity.
+

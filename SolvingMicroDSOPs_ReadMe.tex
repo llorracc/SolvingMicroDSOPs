@@ -1,0 +1,532 @@
+\input{./econtexRoot.tex}\input{./econtexPaths.tex}\documentclass[titlepage,abstract]{\econtex}
+\usepackage{\econtexSetup}\usepackage{\econtexShortcuts}
+\providecommand{\textname}{SolvingMicroDSOPs}
+
+
+\providecommand{\Mma}{\textit{Mathematica}}
+
+\providecommand{\thetaMin}{\underline{\theta}}
+
+\providecommand{\lambdaMax}{\lambda\text{Max}}
+\providecommand{\lambdaMin}{\lambda\text{Min}}
+\providecommand{\lambdaSup}{\lambda\text{Sup}}
+
+\providecommand{\kappaMax}{\kappa\text{Max}}
+\providecommand{\kappaMin}{\kappa\text{Min}}
+\providecommand{\kappaInf}{\kappa\text{Inf}}
+
+\providecommand{\vSum}{\vFunc\text{Sum}}
+\providecommand{\pUnem}{\wp}
+
+\providecommand{\vFuncOpt}{\vFunc\text{Opt}}
+\providecommand{\vFuncPes}{\vFunc\text{Pes}}
+\providecommand{\vEndFuncOpt}{\vEndFunc\text{Opt}}
+\providecommand{\vEndFuncPes}{\vEndFunc\text{Pes}}
+
+\providecommand{\cFuncOpt}{\cFunc\text{Opt}}
+\providecommand{\cFuncPes}{\cFunc\text{Pes}}
+\providecommand{\cEndFuncOpt}{\cEndFunc\text{Opt}}
+\providecommand{\cEndFuncPes}{\cEndFunc\text{Pes}}
+\providecommand{\kappaOpt}{\kappa\text{Opt}}
+
+
+\providecommand{\mFunc}{\ensuremath{\mathrm{m}}}
+\providecommand{\aFunc}{\ensuremath{\mathrm{a}}}
+\providecommand{\mEndFunc}{\ensuremath{\mathfrak{m}}}
+\providecommand{\aEndFunc}{\ensuremath{\mathfrak{a}}}
+
+\providecommand{\aEndLowerBoundLife}{\ensuremath{\mathfrak{a}}\text{LowerBoundLife}}
+\providecommand{\aEndLowerBound}{\ensuremath{\mathfrak{a}}\text{LowerBound}}
+\providecommand{\mEndLowerBoundLife}{\ensuremath{\mathfrak{m}}\text{LowerBoundLife}}
+\providecommand{\mEndLowerBound}{\ensuremath{\mathfrak{m}}\text{LowerBound}}
+
+\providecommand{\hExpLife}{\mathrm{h}\text{ExpLife}}
+\providecommand{\hMinLife}{\mathrm{h}\text{MinLife}}
+\providecommand{\hBorrowableLife}{\mathrm{h}\text{BorrowableLife}}
+\providecommand{\hAccessibleLife}{\mathrm{h}\text{AccessibleLife}}
+\providecommand{\DeltahLife}{\blacktriangle \mathrm{h}\text{Life}}
+\providecommand{\DeltahBorrowableLife}{\blacktriangle \mathrm{h}\text{BorrowableLife}}
+
+\providecommand{\hExp}{\mathrm{h}\text{Exp}}
+\providecommand{\hMin}{\mathrm{h}\text{Min}}
+\providecommand{\hBorrowable}{\mathrm{h}\text{Borrowable}}
+
+\providecommand{\Deltah}{\blacktriangle \mathrm{h}}
+\providecommand{\DeltahBorrowable}{\blacktriangle \mathrm{h}\text{Borrowable}}
+
+\providecommand{\hEndExpLife}{\mathfrak{h}\text{ExpLife}}
+\providecommand{\hEndMinLife}{\mathfrak{h}\text{MinLife}}
+\providecommand{\hEndBorrowableLife}{\mathfrak{h}\text{BorrowableLife}}
+\providecommand{\hEndAccessibleLife}{\mathfrak{h}\text{AccessibleLife}}
+\providecommand{\DeltahEndMinLife}{\blacktriangle \mathfrak{h}\text{MinLife}}
+\providecommand{\DeltahEndBorrowableLife}{\blacktriangle \mathfrak{h}\text{BorrowableLife}}
+\providecommand{\DeltahEndAccessibleLife}{\blacktriangle \mathfrak{h}\text{AccessibleLife}}
+
+\providecommand{\hEndExp}{\mathfrak{h}\text{Exp}}
+\providecommand{\hEndMin}{\mathfrak{h}\text{Min}}
+\providecommand{\hEndBorrowable}{\mathfrak{h}\text{Borrowable}}
+\providecommand{\DeltahEndMin}{\blacktriangle \mathfrak{h}\text{Min}}
+\providecommand{\DeltahEndBorrowable}{\blacktriangle \mathfrak{h}\text{Borrowable}}
+\providecommand{\DeltahEndAccessible}{\blacktriangle \mathfrak{h}\text{Accessible}}
+
+\providecommand{\yMinLife}{y\text{MinLife}}
+\providecommand{\yBorrowableLife}{y\text{BorrowableLife}}
+\providecommand{\yAccessibleLife}{y\text{AccessibeLife}}
+\providecommand{\yExpLife}{y\text{ExpLife}}
+
+\providecommand{\yMin}{y\text{Min}}
+\providecommand{\yBorrowable}{y\text{Borrowable}}
+\providecommand{\yAccessible}{y\text{Accessible}}
+\providecommand{\yExp}{y\text{Exp}}
+
+
+\providecommand{\yExpPDV}{y\text{ExpPDV}}
+\providecommand{\yMinPDV}{y\text{MinPDV}}
+
+
+\providecommand{\Deltam}{\blacktriangle \mathfrak{m}}
+
+\providecommand{\uP}{u\text{P}}
+\providecommand{\uPP}{u\text{PP}}
+%\providecommand{\n}{\text{n}}
+%\providecommand{\nP}{\text{nP}}
+%\providecommand{\nPP}{\text{nPP}}
+
+\providecommand{\vInv}{\ensuremath{\scriptstyle \Lambda \displaystyle}}
+
+
+\provideboolean{MyNotes}\setboolean{MyNotes}{true}\setboolean{MyNotes}{false}
+
+\begin{document}
+%\begin{titlepage}
+\centerline{{\Large Deciphering the \texttt{Mathematica} Code for ``MicroDSOP''\footnote{This deciphering is based on the archive file dated August 19, 2012.}}}
+\centerline{Weifeng Wu}
+\centerline{\today}
+\medskip
+\tableofcontents
+\newpage
+
+\section{Intro}
+\subsection{Simple Organization Principles}
+Here are several rules to streamline the \texttt{Mathematica} code:
+\begin{itemize}
+\item There are three big parts: \texttt{2period}, \texttt{multiperiod} and \texttt{multicontrol}.
+\item For each main file like \texttt{2period.m}, there is a corresponding file with the post-fix \texttt{``!plot''}, which is to call the associated file (without the post-fix) and plot the associated figures.
+\item For each main file, it will
+\begin{itemize}
+\item load a bunch of files with \texttt{setup} as prefix, which set up the environment for solution;
+\item load a file with \texttt{prepare} as prefix, which defines the \texttt{SolveAnotherPeriod} function;
+\item run the \texttt{SolveAnotherPeriod} function.
+\end{itemize}
+
+\item For each \texttt{prepare} file, for most parts it will do three major things:
+\begin{itemize}
+\item define a function called \texttt{functions\_stable}, i.e. the Gothic V functions that take end-of-period asset as an input and produces the end-of-period value and its derivatives;
+\item define a function called \texttt{SolveAnotherPeriod} which constructs the grid of cash-on-hand and the corresponding grid of optimal consumptions, and interpolates along the grid pairs;
+\item derive the consumption function from the interpolated functions.
+\end{itemize}
+\end{itemize}
+
+\subsection{Solution Progression Map}
+The central problem we are solving is the optimal consumption function at period $T-1$. The above statement about \texttt{prepare} is a slight simplification. In fact the various ways we have tried to find the solution, differ on the number of necessary steps.
+
+\begin{itemize}
+\item Two-step (\texttt{2period}): (1) to construct the end of period expected value function $\vEndFunc_{t}(a_{t})$ from the value function next period $\vFunc_{t+1}(m_{t+1})$; (2) to find the optimal consumption function at time $t$, by calling the direct brute-force \texttt{FindMaximum} (i.e. for each and every possible cash-on-hand, we need to call the time-consuming \texttt{FindMaximum} routine).
+\item Three-step using exogenous grid points
+    \begin{itemize}
+    \item \texttt{2periodInt}: the second step above is decomposed to (2) for a number of grid points, to find the optimal consumption grid which involves the direct brute-force \texttt{FindMaximum}, and (3) for any arbitrary cash-on-hand value, the corresponding consumption is derived from using the interpolated function, instead from the brute-force \texttt{FindMaximum}.
+    \item \texttt{2periodIntExp}: we rely on an interpolated end-of-period value function in step (2) above.
+    \item \texttt{2periodIntExpFOC}: we rely on an interpolated end-of-period marginal value function in step (2) above, and instead of using \texttt{FindMaximum}, we use the brute-force \texttt{FindRoot} which is not as slow.
+    \end{itemize}
+\item Three-step using endogenous grid points
+    \begin{itemize}
+    \item \texttt{2periodIntExpFOCInv}: in solving for the optimal consumption grids, we no longer start with a given grid of cash-on-hand and look for the corresponding consumption grid. Instead, we start with a given grid of end-of-period asset, compute their end-of-period marginal value, derive the corresponding consumption and back out the associated cash-on-hand grid. Everything done here is all algebraic calculation, without any involvement on numeric optimizer or root finding. This greatly improves the computational efficiency.
+    \item \texttt{2periodIntExpFOCInvEEE}: we slightly refine the given grid of end-of-period asset, so as to improve the precision of the interpolation-based approximation.
+    \end{itemize}
+\item Five-step (\texttt{2periodIntExpFOCInvPesReaOpt}): when we apply the method of moments, after finding the optimal cash-on-hand and consumption grids in \texttt{AddNewPeriodToSolvedLifeDates}, we will add a transformation, i.e. defining two grids ($\mu$ and $\chi$), which are where the interpolation actually takes place in \texttt{AddNewPeriodToSolvedLifeDatesPesReaOpt}. Due to this transformation, we need to derive the $\chi$ function from the interpolation and then further back out the optimal consumption function from the $\chi$ function.
+
+\item Seven-step (\texttt{2PeriodIntExpFOCInvPesReaOptTighterUpBd}): when we add the tighter upper bound, we will have a point below which we will utilize the tighter upper bound in defining the $\chi$ grid; and correspondingly we will have two $\chi$ interpolation functions, and our final reconciled consumption function will be actually be a piecewise function defined on three segments of cash-on-hand.
+
+\item Eight-step (\texttt{2PeriodIntExpFOCInvPesReaOptTighterUpBdCon}): when we have a liquidity constraint, what we first do is to derive the consumption function assuming the constraint is nonexistent for this period, and then apply the constraint manually in an ad hoc way.
+\end{itemize}
+
+\subsection{\texttt{Setup}}
+The core file that executes everything is called \texttt{doAll.nb}\footnote{There is a corresponding \texttt{doAll.m}, which contains the code only, not the output.}; and our deciphering effort will move along the line in this file.
+
+At the beginning it clears everything in the memory, and sets the present working directory as where the \texttt{doAll.nb} file is located. Then it loads various \texttt{setup} files:
+\begin{itemize}
+      \item \texttt{setup\_workspace.m} defines a function that does the discrete approximation to a mean-one lognormal distribution; sets options for plotting figures; and defines a function that exports the figures to a given location.
+      \item \texttt{setup\_params.m} defines values for various parameters.
+      \item \texttt{setup\_params\_2period.m} revises the value for the standard error of the log-normal distribution from $0.1$ to $1.0$, which the transitory income shock is assumed to follow. This unrealistic exaggeration is used to make the following illustration more vivid.
+      \item \texttt{setup\_shocks.m} invokes the previously-defined discrete approximation function and generates the discrete points with associated probabilities, which approximates the lognormal-distributed shock to the transitory income.
+      \item \texttt{setup\_shocks\_Unem.m} adjusts the discretized transitory shock to incorporate the scenario of unemployment risk $\pZero>0$ and benefit $\thetaMin>0$: suppose $\log \tShkEmp_{s}\thicksim \mathcal{N}(-\sigma_{\tShkEmp}^{2}/2, \sigma_{\tShkEmp}^{2})$, then taking into account of the unemployment scenario, we assume the new transitory shock is
+          \begin{eqnarray}
+          \epsilon_{s} &=& 
+          \begin{cases}
+            \thetaMin_{s} & \text{with probability $\pZero_{s}>0$} \\
+            \thetaMin_{s} + \tShkEmp_{s}\frac{1-\thetaMin_{s}}{1-\pZero_{s}}  & \text{with probability $(1-\pZero_{s})$}
+          \end{cases}
+          \end{eqnarray}
+      \item \texttt{setup\_grids.m} constructs the grids for the cash-on-hand $m_{t}$ (in case of exogenous grid points) and end-of-period asset $a_{t}$ (in case of endogenous grid points).
+      \item \texttt{setup\_lastperiod.m} initializes various lists by defining their elements in the last period of life. In particular, the first element in $a\text{LowerBoundLife}$ is assigned to be 0, implying a liquidity constraint in time $T$, and we set the first element of \texttt{ConstrainedLife}\footnote{This term, along with those human-wealth-related terms with a \texttt{Borrowable} or \texttt{Accessible} keyword, will only be useful when we proceed to the problem with an artificial liquidity constraint.} as \texttt{``Yes''}. It is worthy explaining several human-wealth-related terms:
+          \begin{itemize}
+          \item $\hEndExpLife_{t}$ is the human wealth at the end of time $t$, assuming every period onwards the labor income shock will be at its expected level (i.e. $\yExp_{s}$);
+          \item $\hEndMinLife_{t}$ is the human wealth at the end of time $t$, assuming every period onwards the individual will be unemployed and receive the unemployment benefit only (i.e. $\yMin_{s}$);
+          \item $\hEndBorrowableLife_{t}$ is the human wealth at the end of time $t$ that can be borrowed against (in the natural liquidity constraint, we have this term equal to $\hEndMinLife$, but in other cases, it will be smaller than $\hEndMinLife$ due to the can-not-die-in-debt condition);   
+          \item $\hEndAccessibleLife_{t}$ is the human wealth at the end of time $t$ that can be borrowed for a consumer who is not constrained at period $t$ only (s/he will be subject to the same constraint for period $t+1$ onwards just as in $\hEndBorrowableLife_{t}$)\footnote{If there is no constraint at period $t$, then it is the same as $\hEndBorrowableLife_{t}$; and if there is, then it differs from $\hEndBorrowableLife_{t}$ only by $\yMin_{t+1}-\yBorrowable_{t+1}$ discounted back to period $t$.};
+          \item $\DeltahEndMinLife_{t}$ is the difference between $\hEndExpLife_{t}$ and $\hEndMinLife_{t}$;
+           \item $\DeltahEndBorrowableLife_{t}$ is the difference between $\hEndExpLife_{t}$ and $\hEndBorrowableLife_{t}$;
+           \item $\DeltahEndAccessibleLife_{t}$ is the difference between $\hEndExpLife_{t}$ and $\hEndAccessibleLife_{t}$;
+           \item $\yExpLife_{t}$ is the collection of expected level of income since period $t$;
+           \item $\yMinLife_{t}$ is the collection of minimum level of income since period $t$;
+           \item $\yBorrowableLife_{t}$ is the period-by-period collection of borrowable level of income since period $t$;
+           \item $\yAccessibleLife_{t}$ is the period-by-period collection of accessible level of income (which is the maximum of $\yMinLife_{t}$ and $\yBorrowableLife_{t}$) since period $t$;
+           \item $\hExpLife_{t}$ is the human wealth at the beginning of time $t$, assuming every period onwards including time $t$, the labor income shock will be at its expected level;
+          \item $\hMinLife_{t}$ is the human wealth at the beginning of time $t$, assuming every period onwards including time $t$, the labor income shock will be at its lowest possible level, i.e. the unemployment benefit.
+          \item $\hBorrowableLife_{t}$ is the human wealth that can be borrowed against\footnote{One might wonder if one should also define $\hAccessibleLife_{t}$, and the answer is no. Basically we define the beginning of period human wealth, as an aid to derive the end of period human wealth one period before. However $\hEndAccessibleLife_{t}$ is derived from $\hEndBorrowableLife_{t+1}$ and so there is no need to do so. Even if we define it, it is not clear what it means.} at the beginning of time $t$.
+          \end{itemize}
+      \item \texttt{setup\_definitions.m}, which defines various terms:
+      \begin{eqnarray}
+      \lambdaSup &=& (R \beta)^{1/\rho}/R \\
+      \kappaInf  &=& 1-\lambdaSup \\
+      \textbf{\TH} &=& (R \beta)^{1/\rho} \\
+      \textbf{\TH}_{R} &=& \textbf{\TH}/R
+      \end{eqnarray}
+      and various functions:
+      \begin{eqnarray}
+      u(c) &=& c^{1-\rho}/(1-\rho) \\
+      \uP(c) &=&
+      \begin{cases}
+      c^{-\rho} & \forall c>0 \\
+      \infty & \forall c \leq 0
+      \end{cases} \\
+      \uPP(c) &=& -\rho c^{-\rho-1} \\
+      n(z) &=& (z(1-\rho))^{1/(1-\rho)} \\
+      nP(z) &=& z^{-1/\rho} \\
+      nPP(z) &=& (-z/\rho)^{-1/(\rho+1)}
+      \end{eqnarray}
+      \item \texttt{setup\_PerfectForesightSolution.m} defines the consumption functions in the perfect foresight scenario, where there do exist analytical solutions\footnote{
+          The derivation for $\cEndFuncOpt_{t}(a)$ is as follows:
+          \begin{eqnarray}
+          a_{t}(m) &=& m-\cFuncOpt_{t}(m) \\
+          &=& (1-\kappaMin_{t}) m -\kappaMin_{t} \hEndExpLife_{t} \\
+          m_{t} (a) &=& \frac{a_{t}+ \kappaMin_{t}\hEndExpLife_{t}}{1-\kappaMin_{t}} \\
+          \cEndFuncOpt_{t} (a) &=& \cFuncOpt_{t}(m_{t}(a)) \\
+          &=& \kappaMin_{t} \big(\frac{a+ \kappaMin_{t}\hEndExpLife_{t}}{1-\kappaMin_{t}} + \hEndExpLife_{t}\big) \\
+          &=& \kappaMin_{t} (a+ \hEndExpLife_{t})/(1-\kappaMin_{t})
+          \end{eqnarray}
+          }:
+          \begin{eqnarray}
+          \cFuncOpt_{t}(m) &=& \kappaMin (m+\hEndExpLife_{t}) \\
+          \cFuncPes_{t}(m) &=& \kappaMin (m+\hEndMinLife_{t}) \\
+          \kappaOpt_{t}(m) &=& \kappaMin_{t} \\
+          \cEndFuncOpt_{t}(a) &=& \cFuncOpt_{t}(a+\hEndExpLife_{t})/(1-\kappaMin_{t}) \\
+          \cEndFuncOpt_{t}'(a) &=& \kappaMin_{t}/(1-\kappaMin_{t})
+          \end{eqnarray}
+          and value function:
+          \begin{eqnarray}
+          \vFuncOpt_{t} (m) &=& u(\cFuncOpt_{t} (m)) \vSum_{t} \\
+          \vFuncPes_{t} (m) &=& u(\cFuncPes_{t} (m)) \vSum_{t} \\
+          \vFuncOpt_{t}'(m) &=& \uP(\cFuncOpt_{t} (m))\kappaMin_{t} \vSum_{t} \\
+          \vFuncOpt_{t}''(m) &=& \uPP(\cFuncOpt_{t} (m))(\kappaMin_{t})^{2} \vSum_{t} \\
+          \vEndFuncOpt_{t}(a) &=& u(\cEndFuncOpt_{t} (a)) (\vSum_{t}-1) \\
+          \vEndFuncOpt_{t}'(a) &=& \uP(\cEndFuncOpt_{t} (a))\cEndFuncOpt_{t}'(a) (\vSum_{t}-1) \\
+          \vEndFuncOpt_{t}''(a) &=& \uPP(\cEndFuncOpt_{t} (a))(\cEndFuncOpt_{t}'(a))^{2} (\vSum_{t}-1)
+          \end{eqnarray}
+      \item \texttt{setup\_everything.m} loads all the above \texttt{setup} files.
+\end{itemize}
+
+\subsection{\texttt{AddNewPeriodToParamLifeDates}}
+
+Suppose we have solved the problem at period $t+1$, and now we proceed one period backwards. Before we could actually solve anything, we know there is a not-so-trivial routine\footnote{This is one of the core files, as it updates the various seemingly confusing human wealth terms that are critical for thinking about the liquidity constrained scenarios.} on between-period parameter updating, to accommodate the potential time-varying parameter values like in a typical life-cycle framework. This is accomplished by a function in \texttt{AddNewPeriodToParamLifeDates.m}: its basic role is to augment various lists as defined in \texttt{setup\_lastperiod.m} one period ahead.
+
+The most puzzling parts are the liquidity constraints and several human-wealth-related terms. Basically we solve the problem backwards, and at the end of period $t$ we first need to identify whether this period is liquidity constrained (i.e. whether the consumer is able to borrow against next period's minimally guaranteed income\footnote{Here we do not consider the time-varying $\yBorrowable$, but it is possible that $\yBorrowable_{t} > \yMin_{t}$ for some periods of life and otherwise for some other periods. For example, suppose a person lives for two periods, with $\yMin_{1}=10$ and $\yMin_{2}=20$. If we have $\yBorrowable_{1}=15$, $\yBorrowable_{2}=10$
+, then in the second period he is constrained but in the first period he is not. A real life example of $\yBorrowable>\yMin$ is in some cases one could borrow up to 110\% of the housing value when applying for the mortgage.
+The only constraint that is brought by can-not-die-in-debt is $\hEndBorrowableLife_{t} \leq \hEndMinLife_{t}$
+, i.e. the accumulated over period. It is not necessarily that we need to have $\yBorrowable_{t} \leq \yMin_{t}$ every period, except for the last period.}): yes if next period's $\yBorrowable$ is smaller than next period's $\yMin$, and no if otherwise.
+
+Independently whether there is a constraint or not this period, we need to first solve the unconstrained problem, which requires us to define the maximum amount that is accessible to an unconstrained consumer at the beginning of the period:
+\begin{itemize}
+\item if there is no constraint this period (i.e. $\text{Last}[\yBorrowableLife] \geq \text{Last}[\yMinLife]$), then the maximum accessible is defined on $\yBorrowable$, and we can simply solve the problem knowing comfortably that $\text{Last}[\yBorrowableLife]$ can be borrowed against.
+\item if there is a constraint this period, (i.e. $\text{Last}[\yBorrowableLife]<\text{Last}[\yMinLife]$), then the maximum amount that is accessible to the unconstrained consumer is defined on $\yMin$. And we can then apply the constraint to the unconstrained solution in an ad hoc way.
+\end{itemize}
+
+Hence we can define a list called $\yAccessibleLife$ that returns the maximum of $\text{Last}[\yBorrowableLife]$ and $\text{Last}[\yMinLife]$, and $\hEndAccessibleLife$ that collects the amount of human wealth accessible to an unconstrained consumer at the beginning of this period. And only after this can we identify the lowest possible value for the end-of-period asset (or equivalently for the beginning-of-period cash): effectively it is the negation of $\hEndAccessibleLife$.
+
+With this in-mind, we can update the end-of-period human wealth terms:
+\begin{eqnarray}
+          \hEndExpLife_{t} &=& \sum_{s=t+1}^{T} (\prod_{\tau=t+1}^{s}\Gamma_{\tau} /R_{\tau}) \yExp_{s} \\
+          \hEndBorrowableLife_{t} &=& \sum_{s=t+1}^{T} (\prod_{\tau=t+1}^{s}\Gamma_{\tau}/R_{\tau}) \yBorrowable_{s} \\
+          \hEndMinLife_{t} &=& \sum_{s=t+1}^{T} (\prod_{\tau=t+1}^{s}\Gamma_{\tau}/R_{\tau}) \yMin_{s} \\
+          \DeltahEndMinLife_{t} &=& \hEndExpLife_{t} -  \hEndMinLife_{t}\\
+                          &=& \sum_{s=t+1}^{T} (\prod_{\tau=t+1}^{s}\Gamma_{\tau}/R_{\tau}) (\yExp_{s}-\yMin_{s}) \\
+          \DeltahEndBorrowableLife_{t} &=& \hEndExpLife_{t} -  \hEndBorrowableLife_{t}\\
+                          &=& \sum_{s=t+1}^{T} (\prod_{\tau=t+1}^{s}\Gamma_{\tau}/R_{\tau}) (\yExp_{s}-\yBorrowable_{s}) \\
+          \DeltahEndAccessibleLife_{t} &=& \hEndExpLife_{t} -  \hEndAccessibleLife_{t}\\
+                          &=& (\Gamma_{t+1}/R_{t+1}) (\yExp_{t+1}-\yAccessible_{t+1}) \\
+                          & & +\sum_{s=t+2}^{T} (\prod_{\tau=t+1}^{s}\Gamma_{\tau}/R_{\tau}) (\yExp_{s}-\yBorrowable_{s})
+\end{eqnarray}
+And in the middle of period we can update the elements of $\yExpLife$, $\yMinLife$, $\yBorrowableLife$. Then we go back to the beginning of period and define the beginning-of-period human wealth terms:
+\begin{eqnarray}
+          \hExpLife_{t} &=& \yExp_{t} + \sum_{s=t+1}^{T} (\prod_{\tau=t+1}^{s}\Gamma_{\tau} /R_{\tau}) \yExp_{s} \\
+          \hBorrowableLife_{t} &=& \yBorrowable_{t} + \sum_{s=t+1}^{T} (\prod_{\tau=t+1}^{s}\Gamma_{\tau}/R_{\tau}) \yBorrowable_{s} \\
+          \hMinLife_{t} &=& \yExp_{t} +\sum_{s=t+1}^{T} (\prod_{\tau=t+1}^{s}\Gamma_{\tau}/R_{\tau}) \yMin_{s}
+\end{eqnarray}
+Therefore when we view things using this three-sub-period angle, we see a clear recursion:
+\begin{eqnarray}
+          \hEndExpLife_{t} &=& (\Gamma_{t+1}/R_{t+1}) \hExpLife_{t+1} \\
+          \hEndMinLife_{t} &=& (\Gamma_{t+1}/R_{t+1}) \hMinLife_{t+1} \\
+          \hEndBorrowableLife_{t} &=& (\Gamma_{t+1}/R_{t+1}) \hBorrowableLife_{t+1} \\
+          \hExpLife_{t} &=& \yExp_{t} +\hEndExpLife_{t} \\
+          \hMinLife_{t} &=& \yMin_{t} +\hEndMinLife_{t} \\
+          \hBorrowableLife_{t} &=& \yBorrowable_{t} +\hEndBorrowableLife_{t}
+\end{eqnarray}
+
+We also have several time-varying parameters used in solving the perfect-foresight problems:
+          \begin{eqnarray}
+          \lambdaMax_{t} &=& R_{t+1}^{1/\rho-1}\beta_{t+1}^{1/\rho} \\
+          \vSum_{t} &=& 1+ \lambdaMax_{t} \vSum_{t+1} \\
+          \kappaMin_{t} &=& (1+\lambdaMax_{t}/\kappaMin_{t+1})^{-1} \\
+          \kappaMax_{t} &=& (1+\pUnem^{1/\rho}\lambdaMax_{t}/\kappaMax_{t+1})^{-1}
+          \end{eqnarray}
+
+Having updated these, we can proceed to actually solve the problem at period $t$.
+          
+\section{2-Period Problem}
+\subsection{\texttt{discreteApprox!Plot}}
+The first step in solving any problem involving computing the expectation of a function of a continuously distibuted random variable is to discretize the continuous distribution. \texttt{discreteApprox!Plot.m} shows an example on how the discrete approximation function works intuitively, where an equiprobable discretization is plotted for the case of $\sigma= 0.1$ as shown in Figure $1$.
+
+Note that the execution of this file only requires loading three files: (a) \texttt{setup\_workspace.m} defines the approximation function and location to export the figures; (b) \texttt{setup\_params.m} gives the value of $\sigma$, the standard error of the mean-one log-normal distribution; and (c) \texttt{setup\_shocks.m} executes the approximation function. Hence we do not load other \texttt{setup} files, which are not necessary at this moment.
+
+\subsection{\texttt{2Period}}
+Now we are in a position to look at Section 5.2. Here the two-period problem is solved by \texttt{2Period.m} and the solid line in Figure 2 and 3 are plotted by \texttt{2period!Plot.m}. In \texttt{2Period.m}, we first load the master \texttt{setup\_everything.m}, then load \texttt{prepare.m}, which defines a two-step process to solve for the optimal consumption function at period $T-1$, and lastly run the solution process which is defined by a function called \texttt{SolveAnotherPeriod}. Details on the two-step process are as below:
+\begin{itemize}
+     \item first, \texttt{functions\_stable.m} defines five functions, which is to relate the consumption and value functions at the end of time $t$ ($\ensuremath{\mathfrak{v}}(a_{t})$, $\ensuremath{\mathfrak{v}}'(a_{t})$,
+            $\ensuremath{\mathfrak{v}}''(a_{t})$, $\ensuremath{\mathfrak{c}}(a_{t})$ and $\ensuremath{\mathfrak{c}}'(a_{t})$) to the corresponding counterparts at the beginning of time $t+1$. The detailed derivations are as follows:
+            \begin{eqnarray}
+            m_{t+1, i} &=& \frac{R}{\Gamma} {a}_{t} + \theta_{t+1, i} \\
+            \ensuremath{\mathfrak{v}}_{t}(a_{t}) & = & \beta \Gamma^{1-\rho} \left(\frac{1}{n}\right)\sum_{i=1}^{n} \ensuremath{\mathrm{v}}_{t+1}(m_{t+1, i}) \\
+            \ensuremath{\mathrm{v}}_{t+1}'(m_{t+1, i}) &=& u\text{P}(\ensuremath{\mathrm{c}}_{t+1}(m_{t+1, i})\big) \\
+            \ensuremath{\mathfrak{v}}_{t}'(a_{t}) & = & \beta \Gamma^{1-\rho} \left(\frac{1}{n}\right)\sum_{i=1}^{n} \ensuremath{\mathrm{v}}_{t+1}'(m_{t+1, i}) R/\Gamma\\
+            &=& \beta R \Gamma^{-\rho} \left(\frac{1}{n}\right)\sum_{i=1}^{n}
+            u\text{P}(\ensuremath{\mathrm{c}}_{t+1}(m_{t+1, i})\big) \\
+            \ensuremath{\mathrm{v}}_{t+1}''(m_{t+1, i}) &=& u\text{PP}\big(\ensuremath{\mathrm{c}}_{t+1}(m_{t+1, i})\big) \kappa_{t+1}(m_{t+1, i}) \\
+            \ensuremath{\mathfrak{v}}_{t}''(a_{t}) & = & \beta R^{2} \Gamma^{-\rho-1} \left(\frac{1}{n}\right)\sum_{i=1}^{n} \ensuremath{\mathrm{v}}_{t+1}''(m_{t+1, i}) \\
+            &=& \beta R^{2} \Gamma^{-\rho-1} \left(\frac{1}{n}\right)\sum_{i=1}^{n}
+              u\text{PP}\big(\ensuremath{\mathrm{c}}_{t+1}(m_{t+1, i})\big) \ensuremath{\kappa}_{t+1}(m_{t+1, i}) \\
+              \ensuremath{\mathfrak{c}}(a_{t}) &=& n\text{P}\big(\ensuremath{\mathfrak{v}}_{t}'(a_{t})\big) \\
+              \ensuremath{\mathfrak{c}}'(a_{t}) &=&-1/\rho \big(\ensuremath{\mathfrak{v}}_{t}'(a_{t})\big)^{-1/\rho-1} \ensuremath{\mathfrak{v}}_{t}''(a_{t}) \\
+              &=& \frac{\ensuremath{\mathfrak{v}}_{t}''(a_{t})}{u\text{PP}\Big(\big(\ensuremath{\mathfrak{v}}_{t}'(a_{t})\big)^{-1/\rho}\Big)}
+            \end{eqnarray}
+      \item second, with these end-of-period functions, we can define the optimal consumption function: (1) realize the lower bound of end-of-period asset is in $\mEndLowerBoundLife$, (2) notice that the maximal resource available for consumption is $\blacktriangle m_{t}=m_{t}- \mEndLowerBound_{t}$, (3) search for the optimal consumption between a lower and an upper bound\footnote{Here we use a very arbitrary search range. Actually we could use the consumption function for a pessimist and for an optimist, and hence have a narrower and more efficient range than $[0, \blacktriangle m_{t}]$.} by calling \texttt{FindMaximum} algorithm. After this we define the value function, which is trivial by substituting the optimal consumption into the Bellman equation (the summation of current period utility from $c_{t}$ and the end-of period value from $a_{t}$).
+\end{itemize}
+
+This is the flow of thought for the two-step solution process. Each time when asked about for the optimal consumption at an arbitrary level of cash-on-hand, the computer must start the \texttt{FindMaximum} process, which is time consuming, albeit mostly accurately. Hence there is a huge amount of inefficiencies here. Moreover when consumption functions are defined this way, it is almost impossible to solve for the optimal consumption at period $T-2$, not even to mention periods further forward.
+
+Of course in between the above two steps, we need to update various lists, which is done in a \texttt{SolveAnotherPeriod} function\footnote{In essence \texttt{SolveAnotherPeriod} here does not materially solve any optimization problem; it simply updates the problem backward another period.}, and which in turn calls the \texttt{AddNewPeriodToParamLifeDates} function and also increases the iterator \texttt{PeriodsSolved} by one, i.e. updates the solution one period forward.
+
+So here is the structure of the \texttt{prepare.m}: we load (1) \texttt{functions\_stable.m}, (2) define the consumption and value function, which details the procedure to solve the problem via the \texttt{FindMaximum} algorithm, (3) define a \texttt{SolveAnotherPeriod} function.
+
+In the end, \texttt{2Period!Plot.m} loads \texttt{2Period.m} and plots the value and consumption for $T-1$, as reflected in the solid line in Figure 2 and 3.
+
+\subsection{\texttt{2PeriodInt}}
+We proceed to Section 5.3, where the two-period problem is solved by \texttt{2PeriodInt.m} and the dashed line in Figure 2 and 3 are plotted by \texttt{2periodInt!Plot.m}. The \texttt{Int} is used as a postfix because here the consumption and value functions are \texttt{InterpolatingFunction} objects in the language of \texttt{Mathematica}: they are derived by connecting a small number of grid points, as compared to the one in \texttt{2Period.m} (which needs to call brute-force \texttt{FindMaximum} algorithm every time). The program structure resembles that of \texttt{2Period.m}, with the following two differences:
+\begin{itemize}
+      \item First in \texttt{SolveAnotherPeriod} function, we solve for the optimal consumptions at a number of given grid points of cash-on-hand, by involving the \texttt{FindMaximum} algorithm, and then do an interpolation along the grid points;
+      \item Second in \texttt{functions\_Interpolate.m}, when asked about the optimal consumption at an arbitrary point, the computer will not start the time-consuming \texttt{FindMaximum} process again; instead, it will look for the answer based on the interpolation function which is generated in \texttt{SolveAnotherPeriod} and which is much faster, although less accurate.
+\end{itemize}
+
+Here is the point: we essentially separate the previous definition of consumption function into two steps: first do the \texttt{FindMaximum} for a number of grid points, and second for any other points we will rely on the interpolation-based functions. This is an approximation, and it saves tremendous amount of computing time while reduces the accuracy. As we see, this raw interpolation is pretty inaccurate, and the ensuing programs are designed to improve the accuracy of the interpolation, while not sacrificing the huge efficiency gain associated.
+
+\subsection{\texttt{2PeriodIntExp}}
+We look at Section 5.4, where the two-period problem is solved by \texttt{2PeriodIntExp.m} and Figure 4, 5 and 6 are plotted by \texttt{2periodIntExp!Plot.m}. The \texttt{Exp}\footnote{I think the \texttt{Exp} is somewhat confusing. Is is better if we use \texttt{EndV} (end of period value function)?} is used as a postfix because here we solve for optimal consumption by interpolating the $\vEndFunc_{t}(a_{t})$ first. Several changes are listed below:
+\begin{itemize}
+\item The \texttt{2PeriodIntExp.m} adds the initialization of a new list $\vEndFunc\text{FuncLife}$, since we will append our interpolation function to it.
+\item Within the \texttt{SolveAnotherPeriod} function, we first do an interpolation, append it to $\vEndFunc\texttt{FuncLife}$, and replace the true end-of-period function with the interpolated one $\vEndFunc\text{Hat}$ when we do \texttt{FindMaximum}.
+\item How $\vEndFunc\text{Hat}$ is derived from $\vEndFunc\texttt{FuncLife}$, is defined in \texttt{functions\_IntExpGothicV.m}.
+\end{itemize}
+
+\subsection{\texttt{2PeriodIntExpFOC}}
+In Section 5.5, the two-period problem is solved by \texttt{2PeriodIntExpFOC.m} and Figure 7 and 8 are plotted by \texttt{2periodIntExpFOC!Plot.m}. The \texttt{FOC} is used as a postfix because here we solve for optimal consumption by utilizing the first order conditions, where we approximate the marginal value function. The changes are:
+
+\begin{itemize}
+\item The \texttt{2PeriodIntExpFOC.m} adds the initialization of a new list $\vEndFunc\text{aFuncLife}$, from which we can derive $\vEndFunc\text{aHat}$ as the interpolated marginal end-of-period value function.
+\item Within the \texttt{SolveAnotherPeriod} function, we first do an interpolation to be appended to $\vEndFunc\texttt{aFuncLife}$, and use $\vEndFunc\text{aHat}$ in the root-finding process. Note that the algorithm is to use \texttt{FindRoot} to find the solution to the first-order-condition, as opposed to use the \texttt{FindMaximum} to find the arg-max to the optimization problem. This saves much computational time.
+\end{itemize}
+
+\subsection{\texttt{2PeriodIntExpFOCInv}}
+
+In section 5.6 we approximate the marginal value of asset at the end of period by linearly interpolating between the asset grid and $\cEndFunc_{t}(a_{t})=[\vEndFunc_{t}'(a_{t})]^{-1/\rho}$ (i.e. an inverted version of $\vEndFunc_{t}'(a_{t})$). In Section 5.7 the self-imposed liquidity constraint implies that we need to augment the vectors by including the lower bound of asset and zero consumption. In Section 5.9 we realize for a given end-of-period asset, the optimal consumption is given by $\cFunc_{t}=\cEndFunc_{t}(a_{t})$, and we can recover the cash-on-hand by $m_{t}=\cEndFunc_{t} + a_{t}$. The two-period problem is solved by \texttt{2PeriodIntExpFOCInv.m} and Figure 9 and 10 are plotted by \texttt{2periodIntExpFOCInv!Plot.m}. The \texttt{Inv} is used as a postfix because here we solve for optimal consumption by utilizing the endogenous gridpoint method, i.e. instead of calling the \texttt{FindMaximun} or \texttt{FindRoot} function, we invert the marginal value of asset at the end of period, to arrive at the optimal consumption.
+The changes are
+\begin{itemize}
+\item The \texttt{2PeriodIntExpFocInv.m} adds the initialization of a new list $\cEndFunc\text{FuncLife}$, since we will append our interpolated consumption as a function of the end-of-period asset to it.
+\item Within the \texttt{SolveAnotherPeriod} function, the only change is to (1) start with a list of end-of-period grid point $\alpha\texttt{Vec}$, (2) generate the corresponding $\vEndFunc\texttt{aVect}$, (3) recover the optimal consumption vector by inverting $\vEndFunc\texttt{aVect}$, (4) augment the asset and consumption vector by including the lowest possible asset value and zero consumption, (5) recover the cash-on-hand grid by the simple accounting rule, and (6) construct two functions $\cFunc_{t}(m_{t})$ (the consumption function) and $\cEndFunc_{t}(a_{t})$ (the consumed function) by linear interpolation. Note this endogenous grid point method does not involve any root-finding process and thus is more efficient.
+\end{itemize}
+
+\subsection{\texttt{2PeriodIntExpFOCInvEEE}}
+We come to Section 5.8 where we construct an asset grid that is more densely spaced at lower values, as opposed to an even distribution previously. Here we use the pragmatic choice of a \textit{multi-exponential} growth rate. The two-period problem is solved by \texttt{2PeriodIntExpFOCInvEEE.m} and Figure 11 and 12 are plotted by \texttt{2periodIntExpFOCInvEEE!Plot.m}. The \texttt{EEE} is used as a postfix because here we construct the asset and cash grid by a triple-exponential growth pattern; and the details are shown in \texttt{setup\_grids\_eee.m}, which is the only change we make over the previous version.
+
+\subsection{\texttt{ExtrapProblem!Plot}}
+
+There is also a \texttt{ExtrapProblem!Plot.m}, which is to draw Figure 13. This is done by loading \texttt{2periodIntExpFOCInv.m}\footnote{The most natural way is to load \texttt{2periodIntExpFOCInvEEE.m}, which will show that the extrapolation problem becomes serious when $m$ exceeds to 100. While here we load \texttt{2periodIntExpFOCInv.m}, and show that the extrapolation problem becomes serious as long as $m$ is larger than 10. This conveys the same message more vividly, yet under a parsimonious choice.} and \texttt{DefinecTm1Raw.m}. The second file in turn defines several functions, among which we will use is $\cFunc_{T-1}^{\text{Raw}} (m_{t})$ (through calling \texttt{FindRoot} function to solve the first-order condition, and specifying appropriate upper and lower bounds for solution searching). Several other associated functions are defined, but not used currently, like $\koppa_{T-1}^{\text{Raw}} (\mu_{t})$ and $\chi_{T-1}^{\text{Raw}} (\mu_{t})$.
+
+\subsection{\texttt{2PeriodIntExpFOCInvPesReaOpt}}
+We come to Section 5.10 and 5.11 where we approximate the precautionary saving instead of optimal consumption, and apply a similar trick to the value function. The two-period problem is solved by \texttt{2PeriodIntExpFOCInvPesReaOpt.m} and Figure 14 and 15 are plotted by \texttt{2periodIntExpFOCInvPesReaOpt!Plot.m}. The \texttt{PesReaOpt} is used as a postfix because here when we construct the precautionary saving, we rely on the solution to the problem of a pessimist, a realist and an optimist. 
+
+In the \texttt{setup} part, we improve the asset grid a little bit further using a multi-exponential growth pattern in  \texttt{setup\_grids\_expMult.m}, and load \texttt{setup\_lastperiod\_PesReaOpt.m} which initializes various lists for the method of moderation step. There is a setup of four parameters like $\mu\text{SmallGapLeft}$, which are used as a small trick, to expediate a linear extrapolation outside the interpolation grid range\footnote{Basically we would like to have linear (as opposed to the default spline) extrapolation below the smallest and above the highest grid points; and this is done by augment the pair of grid points by a small step below the smallest and above the highest points.}.
+
+The big change is in the definition of \texttt{SolveAnotherPeriod} function, which replies on two files. First we look at the \texttt{AddNewPeriodToSolvedLifeDates.m}:
+      \begin{itemize}
+        \item It loads the lower bound of the cash-on-hand and end-of-period asset vectors;
+        \item It defines the $\ensuremath{\mathfrak{a}}\text{Vect}$ through augmenting the $\ensuremath{\mathfrak{a}}\text{Vec}$ with a point very close to its lower bound, which makes sure that the asset grid is very dense near the lower bound;
+        \item If there is an artificial constraint, then it adds the point where the constraint will be binding to the $\ensuremath{\mathfrak{a}}\text{Vect}$.
+        \item It calculates the corresponding vectors of $\vEndFunc$, $\vEndFunc^{a}$ and $\vEndFunc^{aa}$;
+        \item It calculates the following:
+        \begin{eqnarray}
+        \cFunc &=& \cEndFunc(a) \\
+        &=& n\text{P}(\vEndFunc^{a}) \\
+        \cEndFunc^{a} &=&\frac{\partial (\vEndFunc^{a})^{-1/\rho}}{\partial a} \\
+        &=& -\rho^{-1} (\vEndFunc^{a})^{-1/\rho-1} \vEndFunc^{aa} \\
+        &=& \frac{\vEndFunc^{aa} }{u\text{PP}\big(
+        n\text{P}(\vEndFunc^{a})\big)} \\
+        &=& \frac{\vEndFunc^{aa} }{u\text{PP}(\cFunc)} \\
+        \mFunc &=& \cFunc + \aEndFunc \\
+        \mFunc^{a} &=& \cEndFunc^{a} + 1 \\
+        \mFunc^{a} &=& \kappa_{m}\mFunc^{a} + 1 \\
+        \kappa_{m} &=& \frac{\mFunc^{a}-1}{\mFunc^{a}} \\
+        &=& \frac{\cEndFunc^{a}}{\cEndFunc^{a}+1}
+        \end{eqnarray}
+        \item It defines $\ensuremath{\blacktriangle {m}}$, $\mu$ and $\ensuremath{\ushort{\mathrm{c}}}$;
+        \item It generates the value vector and augments various vectors by including their lower bound value;
+        \item It does linear interpolation to generate the value function, the consumption function and the consumed function.
+        \end{itemize}
+
+Second we look at \texttt{AddNewPeriodToSolvedLifeDatesPesReaOpt.m}, which is as follows:
+        \begin{itemize}
+        \item It loads $\Deltah_{t}$, $\underline{\kappa}_{t}$;
+        \item It defines the consumption vector for a realist and for an optimist;
+        \item It defines $\ensuremath{\koppa}$, $\ensuremath{\koppa}^{\mu}$, $\chi$ and $\chi^{\mu}$:
+            \begin{eqnarray}
+            \koppa_{t} (\mu_{t}) &=& \koppa_{t} (\Deltam_{t}) \\
+            &=& \frac{\ushort{c}_{t}(\Deltam_{t} + \Deltah_{t})-c_{t}(\Deltam_{t} + \Deltah _{t})}{\underline{\kappa}_{t} \Deltah_{t}} \\
+            \koppa_{t}^{\mu} (\mu_{t}) &=& \frac{(\underline{\kappa}_{t}-\kappa_{t}) \Deltam_{t}}{\underline{\kappa}_{t} \Deltah_{t}} \\
+            \chi_{t} (\mu_{t}) &=& \log\Big(\frac{1-\koppa_{t} (\mu_{t})}{\koppa_{t} (\mu_{t}) }\Big) \\
+            \chi_{t}^{\mu} (\mu_{t}) &=& -\frac{\koppa_{t}^{\mu}(\mu_{t})}{\koppa_{t} (\mu_{t})\big(1-\koppa_{t} (\mu_{t})\big)}
+            \end{eqnarray}
+        \item It interpolates to generate the $\ensuremath{\koppa}(\mu)$ and $\chi(\mu)$ functions;
+        \item It define $\vSum_{t}$, $\bar{\vInv}$ and $\bar{\vInv}^{m}$, $\vInv$ and $\vInv^{m}$:
+            \begin{eqnarray}
+            \bar{\vFunc}_{t} (m) &=& u\big(\bar{c}_{t}(m)\big) \vSum_{t} \\
+            \bar{\vInv}_{t} (m) &\equiv&
+            \big((1-\rho)\bar{\vFunc}_{t} (m)\big)^{1/(1-\rho)} \\
+            &=&\bar{c}_{t}(m) (\vSum_{t}^{T})^{1/(1-\rho)} \\
+            \bar{\vInv}_{t}^{m} (m) &=&
+            \kappaMin_{t} (\vSum_{t}^{T})^{1/(1-\rho)} \\
+            \vInv_{t} (m) &\equiv&
+            \big((1-\rho)\vFunc_{t} (m)\big)^{1/(1-\rho)} \\
+            \vInv_{t}^{m} (m) &=&
+            \big((1-\rho)\vFunc_{t} (m)\big)^{1/(1-\rho)-1} \vFunc_{t}^{m} (m)\\
+            &=&
+            \big((1-\rho)\vFunc_{t} (m)\big)^{1/(1-\rho)-1} u\text{P}\big(c_{t}(m)\big) \\
+            \end{eqnarray}
+
+        \item It defines $\ensuremath{\Koppa}_{t}(\mu)$, $\ensuremath{\Koppa}_{t}^{\mu}(\mu)$, $\Chi_{t}(\mu)$ and $\Chi_{t}^{\mu}(\mu)$:
+            \begin{eqnarray}
+            \Koppa_{t} (\mu) &=& \frac{\bar{\VInv}_{t} (e^{\mu}) -\VInv_{t} (e^{\mu})}{\underline{\kappa}_{t} \Deltah_{t} (\vSum_{t}^{T})^{1/(1-\rho)}} \\
+            \Koppa_{t}^{\mu} (\mu) &=& e^{\mu} \frac{\bar{\VInv}_{t}^{m} (m)- \VInv_{t}^{m} (m)}{\underline{\kappa}_{t} \Deltah_{t} (\vSum_{t})^{1/(1-\rho)}} \\
+            \Chi_{t} (\mu) &=& \log\Big(\frac{1-\Koppa_{t} (\mu)}{\Koppa_{t} (\mu) }\Big) \\
+            \Chi_{t}^{\mu} (\mu) &=& -\frac{\Koppa_{t}^{\mu}(\mu)}{\Koppa_{t} (\mu)\big(1-\koppa_{t} (\mu)\big)}
+            \end{eqnarray}
+        \item It interpolates to create the $\VInv(m)$, $\ensuremath{\Koppa}_{t}(\mu)$, and $\Chi_{t}(\mu)$ functions.
+        \end{itemize}
+
+Third \texttt{functionsIntExpFOCInvPesReaOpt.m}, which is an overhaul of the definition of consumption function in \texttt{functions\_Interpolate.m}, generates various functions:
+\begin{itemize}
+        \item given the interpolated function $\hat{\chi}_{t}(\mu_{t})$, we need to derive the consumption function and its first derivative\footnote{For various transformations between the consumption and value functions, and $\chi$ and $\Chi$, there is a \texttt{Derivations.nb} to serve as a symbolic check-up.}:
+            \begin{eqnarray}
+            \hat{\chi}^{\mu}_{t}(\mu) &=& \frac{\partial \hat{\chi}_{t}(\mu)}{\partial \mu} \\
+            \hat{\koppa}_{t} (\mu) &=&\frac{1}{1+e^{\hat{\chi}_{t}(\mu)}} \\
+            \hat{\koppa}^{\mu}_{t} (\mu) &=& \frac{\partial \hat{\koppa}_{t} (\mu)}{\partial \mu} \\
+            &=& -\frac{e^{\hat{\chi}_{t}(\mu)} \hat{\chi}^{\mu}_{t}(\mu)}{\big(1+e^{\hat{\chi}_{t}(\mu)}\big)^{2}} \\
+            &=& \big(\hat{\koppa}_{t} (\mu)-1\big)\hat{\koppa}_{t} (\mu) \hat{\chi}^{\mu}_{t}(\mu_{t}) \\
+            \blacktriangle m_{t} &=& m_{t} + \ushort{\mathfrak{h}}_{t} \\
+            \mu_{t} &=& \log(\blacktriangle m_{t}) \\
+            \hat{c}_{t}(m_{t}) &=& \ushort{c}_{t}(m_{t})-\hat{\koppa}_{t}(\mu_{t}) \ushort{\kappa}_{t} \blacktriangle \mathfrak{h}_{t} \\
+            \hat{\kappa}_{t}(m_{t}) &=& \frac{\partial \hat{c}_{t}(m_{t})}{\partial m_{t}} \\
+            &=& \ushort{\kappa}_{t}-\frac{\hat{\koppa}^{\mu}_{t}(\mu_{t})}{\blacktriangle m_{t}} \ushort{\kappa}_{t} \blacktriangle \mathfrak{h}_{t} \\
+            \end{eqnarray}
+        \item given the interpolated function $\hat{\Chi}_{t}(\mu_{t})$, we derive the value function and its first derivatives\footnote{In deriving the marginal value function, we use the Envelope Theorem directly. A more intuitive but cumbersome way will be $\hat{\vFunc}_{t}^{m} (m_{t}) = u\text{P}\big(\hat{\vInv}_{t}(m_{t})\big) \hat{\vInv}_{t}^{m} (m_{t})$.}:
+            \begin{eqnarray}
+            \hat{\Chi}^{\mu}_{t}(\mu) &=& \frac{\partial \hat{\Chi}_{t}(\mu)}{\partial \mu} \\
+            \hat{\Koppa}_{t} (\mu) &=& \frac{1}{1+e^{\hat{\Chi}_{t}(\mu)}} \\
+            \hat{\Koppa}^{\mu}_{t} (\mu) &=& \frac{\partial \hat{\Koppa}_{t} (\mu)}{\partial \mu} \\
+            &=& -\frac{e^{\hat{\Chi}_{t}(\mu)} \hat{\Chi}^{\mu}_{t}(\mu)}{\big(1+e^{\hat{\Chi}_{t}(\mu)}\big)^{2}} \\
+            &=& \big(\hat{\Koppa}_{t} (\mu)-1\big)\hat{\Koppa}_{t} (\mu) \hat{\Chi}^{\mu}_{t}(\mu) \\
+            \blacktriangle m_{t} &=& m_{t} + \ushort{\mathfrak{h}}_{t} \\
+            \mu_{t} &=& \log(\blacktriangle m_{t}) \\
+            \hat{\vInv}_{t} (m_{t}) &=& \bar{\vInv}_{t}(m_{t})-\hat{\Koppa}_{t} (\mu_{t}) \ushort{\kappa}_{t} \blacktriangle \mathfrak{h}_{t} (\cPDVFunc_{t}^{T})^{1/(1-\rho)} \\
+            \hat{\vInv}_{t}^{m} (m_{t}) &=& \ushort{\kappa}_{t} (\cPDVFunc_{t}^{T})^{1/(1-\rho)}-\frac{\hat{\Koppa}_{t}^{\mu}(\mu_{t})}{\blacktriangle m_{t}} \ushort{\kappa}_{t} \blacktriangle \mathfrak{h}_{t} (\cPDVFunc_{t}^{T})^{1/(1-\rho)} \\
+            \hat{\vFunc}_{t} (m_{t}) &=& u\big(\hat{\vInv}_{t}(m_{t})\big) \\
+            \hat{\vFunc}_{t}^{m} (m_{t}) &=& u\text{P}\big(\hat{c}_{t}(m_{t})\big)
+            \end{eqnarray}
+\end{itemize}
+
+\subsection{\texttt{ExtrapProblemSolved!Plot}}
+
+When we finish with the method of moderation, we would like to see whether the extrapolation problem, which is the motive behind this transformation, is solved or not. \texttt{ExtrapProblemSolved!Plot.m} is designed to draw Figure 14, as a comparison to Figure 13. This is done by loading \texttt{2periodIntExpFOCInvPesReaOpt.m} and \texttt{DefinecTm1Raw.m}, and by plotting their difference with the perfect-foresight solution.
+
+\subsection{\texttt{2PeriodIntExpFOCInvPesReaOptTighterUpBd}}
+In the above method of moderation, we treat the optimist's consumption rule as the upper bound. But in fact, there is another upper bound which is determined by the existence of natural borrowing constraint. This is explicitly dealt with in \texttt{2PeriodIntExpFOCInvPesReaOptTighterUpBd.m}.
+
+First we have a \texttt{setup\_lastperiod\_PesReaOptTighterUpBd.m}, which is to initialize various lists, which we will append to during the solution process.
+
+Second we have a \texttt{setup\_PerfectForesightSolutionTighterUpBd.m}, which is to define the consumption and value functions for a consumer who faces the same income environment as the perfect-foresight optimist, but chooses to spend according to the consumption rule in the tighter upper bound. While the consumption function is very straightforward, we have to define the end-of-period value function in a similarly recursive way, and derive the start-of-period value function through the interpolation. The big challenge is that, although we do have the analytical consumption function, we do not have an analytical solution for the value function.
+
+Third we have a \texttt{AddNewPeriodToParamLifeDatesTighterUpBd.m}, which updates several lists related to the \texttt{TighterUpBd} process.
+
+Fourth we have a \texttt{AddNewPeriodToSolvedLifePesReaOptTighterUpBd.m}, which (1) renames the those previous defined
+functions using a postfix \texttt{Hi}, (2) separates the grids around the cusp point to three parts, (3) defines the corresponding functions using a postfix {Lo} and {Md}, and (4) approximates the value function for those behaving according to the Tighter Upper Bound rules.
+
+\subsection{\texttt{2PeriodIntExpFOCInvPesReaOptTighterUpBdCon}}
+All the above are assuming that the only constraint is the natural borrowing constraint. Now if we impose an artificial constraint, which means the borrowable income next period is smaller than the minimum income like the unemployment benefits. Then we need to consider the constrained case. A common case is any borrowing from the future is not allowed at all, and hence the end-of-period asset can not be smaller than zero, even if the worst case scenario is agent will still have employment benefit payments from now on.
+
+This is where the distinction between $\hEndAccessibleLife$ and $\hEndBorrowableLife$ makes sense: the former defines the maximal accessible amount to an unconstrained consumer this period (which is the lower bound for his/her end-of-period asset) and the later defines the maximal borrowable amount to a constrained consumer (if cash-on-hand is below which, the liquidity constraint will become binding).
+
+Compared to the unconstrained case, several changes are:
+\begin{itemize}
+\item In the \texttt{2PeriodIntExpFOCInvPesReaOptTighterUpBdCon.m}, we redefine $\yBorrowable$ to be zero\footnote{This is an extreme. With $\yMin=0.05$ as we assume, any $\yBorrowable$ that is less than $0.05$ constitutes an artificial liquidity constraint, and we can deal with that, by just change this parameter value.}.
+\item We also define a \texttt{setup\_lastperiod\_PesReaOptTighterUpBdCon.m}, which initializes various lists that are related to capture the star point, at which the artificial liquidity constraint becomes exactly binding. 
+\item We load an additional \texttt{AddNewPeriodToSolvedLifeDatesPesReaOptTighterUpBdCon.m} which is to compute the consumption, asset, cash, value etc. at the point where the artificial liquidity constraint becomes exactly binding.
+\item We also revise the definition of consumption functions etc in \texttt{functions\_PesReaOptTighterUpBdCon.m}, and the central revision is on \texttt{cBeforeT} which is piecewise below and above the star point.
+\end{itemize}
+
+So what does an artificial liquidity constraint bring about? Essentially it only adds one additional step: after deriving the consumption function for a period-$t$-unconstrained consumer who is the same as the constrainted consumer except that s/he can borrow against next period's minimum income, then the consumption function for the period-t-constrained consumer will be a piecewise one, below which the constraint becomes binding; and the particularly nice thing is we can pinpoint the exact point where this happens.
+
+
+%
+%We come to Section 5.12, which is done by \texttt{2periodIntExpFOCInvPesReaOptCon.m}. Here \texttt{Con} serves as a postfix because now we are solving a problem with liquidity constraint. We first look at the \texttt{functionsIntExpFOCInvPesReaOptCon.m}: (1) On \texttt{SolveAnotherPeriod}, the difference with the version without constraint, is that the lower bound of asset is zero\footnote{The current version may be wrong, since it says the lower bound of asset is tomorrow's minimal labor income discounted to today. }, as opposed to minimal human wealth from the future in the unconstrained scenario; (2) the revision to the consumption and MPC function is easy to understand; (3) The revision to $\ensuremath{\scriptstyle \Lambda \displaystyle}(m, T-t)$ is not that clear, especially in the third from last line. Second the \texttt{2periodIntExpFOCInvPesReaOptCon.m} is similar to the previous one. Third in \texttt{2periodIntExpFOCInvPesReaOptConPlot.m} we compare the solution to the unconstrained and the constrained scenarios, which is shown in Figure 16.
+
+\section{Other Files}
+
+\subsection{\texttt{multiperiod}}
+This file is the same as \texttt{2periodIntExpFOCInvPesReaOptTighterUpBd.m}, except that we load \texttt{setup\_params\_multiperiod.m}, which is to redefine the variance of transitory shock to be a lower and more realistic value. And \texttt{multiperiod!Plot.m} executes \texttt{SolveAnotherPeriod} many times, and plots the convergence of consumption series.
+
+\subsection{\texttt{multiperiodCon}}
+This file is the multiperiod version of \texttt{2periodIntExpFOCInvPesReaOptTighterUpBdCon.m}, except that the \texttt{setup\_params\_multiperiod.m}. And \texttt{multiperiodCon!Plot.m} plots the convergence of consumption series as in Figure 17.
+
+\subsection{\texttt{multicontrol}}
+This is to solve for an optimal choice of consumption and risky asset allocation. The current version utilizes the above 2-period techniques up to \texttt{2periodIntExpFOCInv} (i.e. no method of moderation is used).
+
+\subsection{\texttt{Notation}}
+This explains various naming conventions, like the human wealth, perfect-foresight marker, MPC, etc.
+
+%
+%done by \texttt{multicontrol.m}. Compared to the \texttt{multiperiod.m}, the first difference is \texttt{setup\_params\_multicontrol.m}: , except for ;
+%
+%\subsection{Structural Estimation}
+%
+%Here we have a finite horizon problem: the consumer starts life at age 25, and dies for sure at age 91. So given that at age $T=90$, the optimal plan is to consume everything, we need to solve for the consumption functions between age 26 and 89. \texttt{DCancel} is a list on conditional survival probability: for example, its last element is the probability of survival at age 90, provided that the consumer is alive at age 89. \texttt{$\Gamma$Vect} is a list on permanent income growth, whose last element is the growth from age 89 to 90; and \texttt{$\beta$hat} collects the corrections to discount factor: for example, its last element is the correction for discounting utility at age 90 back to age 89.
+
+%We define a variable \texttt{PeriodsUntilT} which equals $T-t$ at period t. With this and cash-on-hand as two arguments, we could define the consumption and value functions of an optimist and of a pessimist at a given period t. The starting point of the life-cycle iteration are three functions at period T ($\cFunc_{T}, \kappa_{T}, \vFunc_{T}$); with this we could define three end-of-period functions at one period earlier ($\vEndFunc_{T-1}, \vEndFunc'_{T}, \vEndFunc''_{T},$), we have
+
+\end{document} 

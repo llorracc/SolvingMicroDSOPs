@@ -24,3 +24,4 @@ Other notes:
 2. Whatever standalone tools can be built that make it easier to use the MoM to solve existing
 3. If you need to add bibliographical entries, do NOT edit the SolvingMicroDSOPs.bib or cctwMoM.bib files because they are automatically generated and will be wiped out the next time I compile the document and push it.  Instead, edit the SolvingMicroDSOPs-Add.bib or cctwMoM-Add.bib files, and the next time I compile, I will add your new references (or updates to outdated references) to my master database of references, and then will regenerate the bib files in the repo.
 # SolvingMicroDSOPs
+# SolvingMicroDSOPs

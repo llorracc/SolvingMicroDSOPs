@@ -1,0 +1,15 @@
+\begin{eqnarray}
+  \bar{\vFunc}_{t}({m}_{t}) & = & \util(\bar{\cRat}_{t})\mathbb{C}_{t}^{T}\label{eq:vFuncPF}
+  \\ & = & \util(\bar{c}_{t}) \MinMPC_{t}^{-1} % 20190820
+  \\ & = & \util((\aboveMin \mRat_{t}+\aboveMin \hEnd_{t})\MinMPC_{t}) \MinMPC_{t}^{-1} % 20190820
+  \\ & = & \util(\aboveMin \mRat_{t}+\aboveMin \hEnd_{t})\MinMPC_{t}^{1-\CRRA} \MinMPC_{t}^{-1} % 20190820
+  \\ & = & \util(\aboveMin \mRat_{t}+\aboveMin \hEnd_{t})\MinMPC_{t}^{-\CRRA}  % 20190820
+\end{eqnarray}
+where the second line uses the fact demonstrated in \cite{BufferStockTheory} that $\mathbb{C}_{t}=\MPC^{-1}_{t}$. % 20190820
+
+This can be transformed as
+\begin{eqnarray*}
+  \bar{\vInv}_{t} & \equiv & \left((1-\CRRA)\bar{\vFunc}_{t}\right)^{1/(1-\CRRA)}
+\\ & = & \cRat_{t}(\mathbb{C}_{t}^{T})^{1/(1-\CRRA)}
+\\ & = & (\aboveMin \mRat_{t}+\aboveMin \hEnd_{t})\MinMPC_{t}^{-\CRRA/(1-\CRRA)}   % 20190820
+\end{eqnarray*}

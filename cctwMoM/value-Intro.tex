@@ -1,0 +1,19 @@
+
+  Although section~\ref{subsec:vVsuP} argued that our problem is more
+  efficiently solved by constructing the consumption rule than by
+  approximating the value function, often it is useful to know the
+  value function as well as the consumption rule.  Fortunately, many
+  of the tricks used when solving for the consumption rule have a
+  direct analogue in approximation of the value function.
+
+Consider the perfect foresight (or ``optimist's'') problem in period $T-1$:
+\begin{eqnarray*}
+  \bar{\vFunc}_{T-1}({m}_{T-1}) & \equiv & \util(\cRat_{T-1})+\Discount \util(\cRat_{T})
+\\ & = & \util(\cRat_{T-1})\left(1+\Discount ((\Discount_{T}\Rfree)^{1/\CRRA})^{1-\CRRA}\right)
+\\ & = & \util(\cRat_{T-1})\left(1+\Discount (\Discount_{T}\Rfree)^{1/\CRRA-1}\right)
+\\ & = & \util(\cRat_{T-1})\left(1+(\Discount_{T}\Rfree)^{1/\CRRA}/\Rfree\right)
+\\ & = & \util(\cRat_{T-1})\underbrace{\mbox{PDV}_{t}^{T}(\cRat)/\cRat_{T-1}}_{\equiv \mathbb{C}_{t}^{T}}
+\end{eqnarray*}
+where $\mathbb{C}_{t}^{T}=\mbox{PDV}_{t}^{T}(\cRat)$ is the present discounted value of consumption.
+A similar function can be constructed recursively for earlier periods, yielding
+the general expression \hypertarget{vFuncPF}{}

@@ -1,0 +1,1039 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     32628,       1030]
+NotebookOptionsPosition[     29850,        928]
+NotebookOutlinePosition[     30212,        944]
+CellTagsIndexPosition[     30169,        941]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[" "], "Input",
+ CellChangeTimes->{3.5300627117052517`*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"\[Chi]", "[", "\[Mu]t", "]"}], " ", "=", " ", 
+    RowBox[{"Log", "[", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "/", 
+        RowBox[{"\[Koppa]", "[", "\[Mu]t", "]"}]}], ")"}], "-", "1"}], 
+     "]"}]}], ";"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"eq", ":", "chi"}], " ", "*)"}]}], "\n", 
+ RowBox[{"Simplify", "[", 
+  RowBox[{"\[Chi]\[Mu]", "=", 
+   RowBox[{"D", "[", 
+    RowBox[{
+     RowBox[{"\[Chi]", "[", "\[Mu]t", "]"}], ",", "\[Mu]t"}], "]"}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.514716355911627*^9, 3.5147163659362373`*^9}}],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{
+   SuperscriptBox["\[Koppa]", "\[Prime]",
+    MultilineFunction->None], "[", "\[Mu]t", "]"}], 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"-", "1"}], "+", 
+     RowBox[{"\[Koppa]", "[", "\[Mu]t", "]"}]}], ")"}], " ", 
+   RowBox[{"\[Koppa]", "[", "\[Mu]t", "]"}]}]]], "Output",
+ CellChangeTimes->{3.5147160067225933`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\[Chi]\[Mu]tExpr", " ", "=", " ", 
+  RowBox[{"Simplify", "[", 
+   RowBox[{
+    RowBox[{"\[Chi]\[Mu]", " ", "/.", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"\[Koppa]", "'"}], "[", "\[Mu]t", "]"}], "->", " ", 
+      "\[Koppa]\[Mu]t"}]}], "/.", 
+    RowBox[{
+     RowBox[{"\[Koppa]", "[", "\[Mu]t", "]"}], "->", " ", "\[Koppa]t"}]}], 
+   "]"}]}]], "Input"],
+
+Cell[BoxData[
+ FractionBox["\[Koppa]\[Mu]t", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"-", "1"}], "+", "\[Koppa]t"}], ")"}], " ", 
+   "\[Koppa]t"}]]], "Output",
+ CellChangeTimes->{3.514716128034965*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\[Koppa]\[Mu]tFrom\[Chi]\[Mu]t", " ", "=", " ", 
+  RowBox[{"\[Koppa]\[Mu]t", " ", "/.", " ", 
+   RowBox[{
+    RowBox[{"Solve", "[", 
+     RowBox[{
+      RowBox[{"\[Chi]\[Mu]tExpr", " ", "\[Equal]", " ", "\[Chi]\[Mu]t"}], ",",
+       "\[Koppa]\[Mu]t"}], "]"}], "[", 
+    RowBox[{"[", "1", "]"}], "]"}]}]}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"\[Chi]\[Mu]t", " ", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"-", "1"}], "+", "\[Koppa]t"}], ")"}], " ", 
+  "\[Koppa]t"}]], "Output"]
+}, Open  ]],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"\[FilledUpTriangle]mt", "=", 
+   RowBox[{"mt", "-", "mLowerBoundt"}]}], " ", ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[ScriptC]Optmst", "[", "mt", "]"}], " ", "=", " ", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"\[FilledUpTriangle]mt", "+", "\[FilledUpTriangle]\[GothicH]t"}],
+      ")"}], "\[Kappa]t"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[ScriptC]Pesmst", "[", "mt", "]"}], " ", "=", " ", 
+   RowBox[{
+    RowBox[{"(", "\[FilledUpTriangle]mt", "          ", ")"}], 
+    "\[Kappa]t"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[Koppa]", "[", "\[Mu]t", "]"}], " ", "=", " ", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"\[ScriptC]Optmst", "[", 
+       RowBox[{"Exp", "[", "\[Mu]t", "]"}], "]"}], "-", 
+      RowBox[{"\[ScriptC]Realst", "[", 
+       RowBox[{"Exp", "[", "\[Mu]t", "]"}], "]"}]}], ")"}], "/", 
+    RowBox[{"(", 
+     RowBox[{"\[FilledUpTriangle]\[GothicH]t", " ", "\[Kappa]t"}], ")"}]}]}], 
+  ";"}]}], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\[Koppa]\[Mu]", " ", "=", " ", 
+  RowBox[{"D", "[", 
+   RowBox[{
+    RowBox[{"\[Koppa]", "[", "\[Mu]t", "]"}], ",", "\[Mu]t"}], 
+   "]"}]}]], "Input"],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{
+   RowBox[{
+    SuperscriptBox["\[ExponentialE]", "\[Mu]t"], " ", 
+    RowBox[{
+     SuperscriptBox["\[ScriptC]Optmst", "\[Prime]",
+      MultilineFunction->None], "[", 
+     SuperscriptBox["\[ExponentialE]", "\[Mu]t"], "]"}]}], "-", 
+   RowBox[{
+    SuperscriptBox["\[ExponentialE]", "\[Mu]t"], " ", 
+    RowBox[{
+     SuperscriptBox["\[ScriptC]Realst", "\[Prime]",
+      MultilineFunction->None], "[", 
+     SuperscriptBox["\[ExponentialE]", "\[Mu]t"], "]"}]}]}], 
+  RowBox[{"\[Kappa]t", " ", "\[FilledUpTriangle]\[GothicH]t"}]]], "Output"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"(*", " ", 
+  RowBox[{
+  "Verify", " ", "the", " ", "formula", " ", "in", " ", 
+   "\[ScriptC]From\[Chi]", " ", "for", " ", "the", " ", 
+   RowBox[{"realist", "'"}], "s", " ", "consumption", " ", 
+   "\[ScriptC]Realst"}], " ", "*)"}]], "Input",
+ CellChangeTimes->{3.510834586024446*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"\[ScriptC]Optmst", "[", 
+   SuperscriptBox["\[ExponentialE]", "\[Mu]t"], "]"}], "-", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{"1", "/", 
+     RowBox[{"(", 
+      RowBox[{"1", "+", 
+       RowBox[{"Exp", "[", 
+        RowBox[{"\[Chi]", "[", "\[Mu]t", "]"}], "]"}]}], ")"}]}], ")"}], " ", 
+   
+   RowBox[{"(", 
+    RowBox[{"\[Kappa]t", " ", "\[FilledUpTriangle]\[GothicH]t"}], 
+    ")"}]}]}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"\[ScriptC]Realst", "[", 
+  SuperscriptBox["\[ExponentialE]", "\[Mu]t"], "]"}]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[Koppa]\[Mu]", " ", "/.", " ", 
+    RowBox[{
+     SuperscriptBox["\[ExponentialE]", "\[Mu]t"], " ", "\[Rule]", " ", 
+     "\[FilledUpTriangle]mVect"}]}], " ", "/.", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"\[ScriptC]Optmst", "'"}], "[", "\[FilledUpTriangle]mVect", 
+     "]"}], " ", "\[Rule]", " ", "\[Kappa]t"}]}], " ", "/.", " ", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"\[ScriptC]Realst", "'"}], "[", "\[FilledUpTriangle]mVect", "]"}],
+    " ", "\[Rule]", " ", "\[Kappa]Vect"}]}]], "Input"],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{
+   RowBox[{"\[Kappa]t", " ", "\[FilledUpTriangle]mVect"}], "-", 
+   RowBox[{"\[Kappa]Vect", " ", "\[FilledUpTriangle]mVect"}]}], 
+  RowBox[{"\[Kappa]t", " ", "\[FilledUpTriangle]\[GothicH]t"}]]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\[Koppa]\[Mu]t", " ", "=", " ", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"\[Koppa]\[Mu]", " ", "/.", " ", 
+     RowBox[{
+      SuperscriptBox["\[ExponentialE]", "\[Mu]t"], " ", "\[Rule]", " ", 
+      "\[FilledUpTriangle]mt"}]}], " ", "/.", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"\[ScriptC]Optmst", "'"}], "[", "\[FilledUpTriangle]mt", "]"}], 
+     " ", "\[Rule]", " ", "\[Kappa]t"}]}], " ", "/.", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"\[ScriptC]Realst", "'"}], "[", "\[FilledUpTriangle]mt", "]"}], 
+    " ", "\[Rule]", " ", 
+    RowBox[{"\[Kappa]", "[", "mt", "]"}]}]}]}]], "Input"],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"-", "mLowerBoundt"}], "+", "mt"}], ")"}], " ", "\[Kappa]t"}], 
+   "-", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"-", "mLowerBoundt"}], "+", "mt"}], ")"}], " ", 
+    RowBox[{"\[Kappa]", "[", "mt", "]"}]}]}], 
+  RowBox[{"\[Kappa]t", " ", "\[FilledUpTriangle]\[GothicH]t"}]]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Verify", " ", "formula", " ", "for", " ", 
+    RowBox[{"\[Kappa]", "[", "mt", "]"}], " ", "in", " ", 
+    RowBox[{"functionsIntExpFOCInvPesReaOpt", ".", "m"}]}], " ", "*)"}], "\n", 
+  RowBox[{"Simplify", "[", 
+   RowBox[{"\[Kappa]t", " ", "-", " ", 
+    RowBox[{"\[Koppa]\[Mu]t", " ", "\[Kappa]t", " ", 
+     RowBox[{
+     "\[FilledUpTriangle]\[GothicH]t", " ", "/", " ", 
+      "\[FilledUpTriangle]mt"}]}]}], " ", "]"}]}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"\[Kappa]", "[", "mt", "]"}]], "Output"]
+}, Open  ]],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{
+   RowBox[{"\[Kappa]t", " ", "\[FilledUpTriangle]mVect"}], "-", 
+   RowBox[{"\[Kappa]Vect", " ", "\[FilledUpTriangle]mVect"}]}], 
+  RowBox[{"\[Kappa]t", " ", "\[FilledUpTriangle]\[GothicH]t"}]]], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"\[GothicN]From\[GothicV]", " ", "=", " ", 
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "-", "\[Rho]"}], ")"}], 
+      RowBox[{"\[GothicV]", "[", "\[FilledUpTriangle]a", "]"}]}], ")"}], 
+    RowBox[{"(", 
+     RowBox[{"1", "/", 
+      RowBox[{"(", 
+       RowBox[{"1", "-", "\[Rho]"}], ")"}]}], ")"}]]}], ";"}], "\n", 
+ RowBox[{"\[GothicN]From\[GothicV]", " ", "/.", " ", 
+  RowBox[{
+   RowBox[{"\[GothicV]", "[", "\[FilledUpTriangle]a", "]"}], " ", "\[Rule]", 
+   " ", "\[GothicV]Vec"}]}]}], "Input"],
+
+Cell[BoxData[
+ SuperscriptBox[
+  RowBox[{"(", 
+   RowBox[{"\[GothicV]Vec", " ", 
+    RowBox[{"(", 
+     RowBox[{"1", "-", "\[Rho]"}], ")"}]}], ")"}], 
+  FractionBox["1", 
+   RowBox[{"1", "-", "\[Rho]"}]]]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\[GothicN]From\[GothicV]a", " ", "=", " ", 
+  RowBox[{"D", "[", 
+   RowBox[{"\[GothicN]From\[GothicV]", ",", "\[FilledUpTriangle]a"}], 
+   "]"}]}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{
+  SuperscriptBox[
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"1", "-", "\[Rho]"}], ")"}], " ", 
+     RowBox[{"\[GothicV]", "[", "\[FilledUpTriangle]a", "]"}]}], ")"}], 
+   RowBox[{
+    RowBox[{"-", "1"}], "+", 
+    FractionBox["1", 
+     RowBox[{"1", "-", "\[Rho]"}]]}]], " ", 
+  RowBox[{
+   SuperscriptBox["\[GothicV]", "\[Prime]",
+    MultilineFunction->None], "[", "\[FilledUpTriangle]a", "]"}]}]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"\[GothicN]From\[GothicV]a", " ", "/.", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"\[GothicV]", "'"}], "[", "\[FilledUpTriangle]a", "]"}], " ", 
+    "\[Rule]", " ", "\[GothicV]aVec"}]}], " ", "/.", " ", 
+  RowBox[{
+   RowBox[{"\[GothicV]", "[", "\[FilledUpTriangle]a", "]"}], " ", "\[Rule]", 
+   " ", "\[GothicV]Vec"}]}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"\[GothicV]aVec", " ", 
+  SuperscriptBox[
+   RowBox[{"(", 
+    RowBox[{"\[GothicV]Vec", " ", 
+     RowBox[{"(", 
+      RowBox[{"1", "-", "\[Rho]"}], ")"}]}], ")"}], 
+   RowBox[{
+    RowBox[{"-", "1"}], "+", 
+    FractionBox["1", 
+     RowBox[{"1", "-", "\[Rho]"}]]}]]}]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\[GothicN]From\[GothicV]aa", "=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"D", "[", 
+     RowBox[{"\[GothicN]From\[GothicV]a", ",", "\[FilledUpTriangle]a"}], 
+     "]"}], " ", "/.", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"\[GothicV]", "'"}], "[", "\[FilledUpTriangle]a", "]"}], " ", 
+     "\[Rule]", " ", 
+     RowBox[{"\[GothicV]a", "[", "\[FilledUpTriangle]a", "]"}]}]}], "/.", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"\[GothicV]", "''"}], "[", "\[FilledUpTriangle]a", "]"}], " ", 
+    "\[Rule]", " ", 
+    RowBox[{"\[GothicV]aa", "[", "\[FilledUpTriangle]a", "]"}]}]}]}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"-", "1"}], "+", 
+     FractionBox["1", 
+      RowBox[{"1", "-", "\[Rho]"}]]}], ")"}], " ", 
+   RowBox[{"(", 
+    RowBox[{"1", "-", "\[Rho]"}], ")"}], " ", 
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "-", "\[Rho]"}], ")"}], " ", 
+      RowBox[{"\[GothicV]", "[", "\[FilledUpTriangle]a", "]"}]}], ")"}], 
+    RowBox[{
+     RowBox[{"-", "2"}], "+", 
+     FractionBox["1", 
+      RowBox[{"1", "-", "\[Rho]"}]]}]], " ", 
+   SuperscriptBox[
+    RowBox[{"\[GothicV]a", "[", "\[FilledUpTriangle]a", "]"}], "2"]}], "+", 
+  RowBox[{
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "-", "\[Rho]"}], ")"}], " ", 
+      RowBox[{"\[GothicV]", "[", "\[FilledUpTriangle]a", "]"}]}], ")"}], 
+    RowBox[{
+     RowBox[{"-", "1"}], "+", 
+     FractionBox["1", 
+      RowBox[{"1", "-", "\[Rho]"}]]}]], " ", 
+   RowBox[{"\[GothicV]aa", "[", "\[FilledUpTriangle]a", "]"}]}]}]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[GothicN]From\[GothicV]aa", " ", "/.", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"\[GothicV]", "''"}], "[", "\[FilledUpTriangle]a", "]"}], " ", 
+     "\[Rule]", " ", "\[GothicV]aaVec"}]}], " ", "/.", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"\[GothicV]", "'"}], "[", "\[FilledUpTriangle]a", "]"}], " ", 
+    "\[Rule]", " ", "\[GothicV]aVec"}]}], " ", "/.", " ", 
+  RowBox[{
+   RowBox[{"\[GothicV]", "[", "\[FilledUpTriangle]a", "]"}], " ", "\[Rule]", 
+   " ", "\[GothicV]Vec"}]}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"-", "1"}], "+", 
+     FractionBox["1", 
+      RowBox[{"1", "-", "\[Rho]"}]]}], ")"}], " ", 
+   RowBox[{"(", 
+    RowBox[{"1", "-", "\[Rho]"}], ")"}], " ", 
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{"\[GothicV]Vec", " ", 
+      RowBox[{"(", 
+       RowBox[{"1", "-", "\[Rho]"}], ")"}]}], ")"}], 
+    RowBox[{
+     RowBox[{"-", "2"}], "+", 
+     FractionBox["1", 
+      RowBox[{"1", "-", "\[Rho]"}]]}]], " ", 
+   SuperscriptBox[
+    RowBox[{"\[GothicV]a", "[", "\[FilledUpTriangle]a", "]"}], "2"]}], "+", 
+  RowBox[{
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{"\[GothicV]Vec", " ", 
+      RowBox[{"(", 
+       RowBox[{"1", "-", "\[Rho]"}], ")"}]}], ")"}], 
+    RowBox[{
+     RowBox[{"-", "1"}], "+", 
+     FractionBox["1", 
+      RowBox[{"1", "-", "\[Rho]"}]]}]], " ", 
+   RowBox[{"\[GothicV]aa", "[", "\[FilledUpTriangle]a", "]"}]}]}]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\[GothicCapitalW]", " ", "=", " ", 
+  RowBox[{"Log", "[", 
+   RowBox[{"1", "-", 
+    RowBox[{
+     RowBox[{"\[GothicN]", "[", 
+      RowBox[{"Exp", "[", "\[Aleph]", "]"}], "]"}], "/", 
+     RowBox[{"\[GothicN]\[Digamma]", "[", 
+      RowBox[{"Exp", "[", "\[Aleph]", "]"}], "]"}]}]}], "]"}]}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"Log", "[", 
+  RowBox[{"1", "-", 
+   FractionBox[
+    RowBox[{"\[GothicN]", "[", 
+     SuperscriptBox["\[ExponentialE]", "\[Aleph]"], "]"}], 
+    RowBox[{"\[GothicN]\[Digamma]", "[", 
+     SuperscriptBox["\[ExponentialE]", "\[Aleph]"], "]"}]]}], "]"}]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"d\[GothicCapitalW]d\[Aleph]", " ", "=", " ", 
+  RowBox[{"D", "[", 
+   RowBox[{"\[GothicCapitalW]", ",", "\[Aleph]"}], "]"}]}]], "Input"],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{
+   RowBox[{"-", 
+    FractionBox[
+     RowBox[{
+      SuperscriptBox["\[ExponentialE]", "\[Aleph]"], " ", 
+      RowBox[{
+       SuperscriptBox["\[GothicN]", "\[Prime]",
+        MultilineFunction->None], "[", 
+       SuperscriptBox["\[ExponentialE]", "\[Aleph]"], "]"}]}], 
+     RowBox[{"\[GothicN]\[Digamma]", "[", 
+      SuperscriptBox["\[ExponentialE]", "\[Aleph]"], "]"}]]}], "+", 
+   FractionBox[
+    RowBox[{
+     SuperscriptBox["\[ExponentialE]", "\[Aleph]"], " ", 
+     RowBox[{"\[GothicN]", "[", 
+      SuperscriptBox["\[ExponentialE]", "\[Aleph]"], "]"}], " ", 
+     RowBox[{
+      SuperscriptBox["\[GothicN]\[Digamma]", "\[Prime]",
+       MultilineFunction->None], "[", 
+      SuperscriptBox["\[ExponentialE]", "\[Aleph]"], "]"}]}], 
+    SuperscriptBox[
+     RowBox[{"\[GothicN]\[Digamma]", "[", 
+      SuperscriptBox["\[ExponentialE]", "\[Aleph]"], "]"}], "2"]]}], 
+  RowBox[{"1", "-", 
+   FractionBox[
+    RowBox[{"\[GothicN]", "[", 
+     SuperscriptBox["\[ExponentialE]", "\[Aleph]"], "]"}], 
+    RowBox[{"\[GothicN]\[Digamma]", "[", 
+     SuperscriptBox["\[ExponentialE]", "\[Aleph]"], "]"}]]}]]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"d\[GothicCapitalW]d\[Aleph]CodeForm", " ", "=", " ", 
+   RowBox[{"Simplify", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"d\[GothicCapitalW]d\[Aleph]", " ", "/.", " ", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "\[Aleph]"], " ", "\[Rule]", " ",
+            "\[FilledUpTriangle]a"}]}], ")"}], " ", "/.", " ", "\n", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"\[GothicN]", "'"}], "[", "\[FilledUpTriangle]a", "]"}], 
+         " ", "\[Rule]", " ", "\[GothicN]aVec"}]}], "/.", " ", "\n", 
+       RowBox[{
+        RowBox[{"\[GothicN]", "[", "\[FilledUpTriangle]a", "]"}], " ", 
+        "\[Rule]", " ", "\[GothicN]Vec"}]}], "  ", "/.", " ", "\n", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"\[GothicN]\[Digamma]", "'"}], "[", "\[FilledUpTriangle]a", 
+        "]"}], " ", "\[Rule]", " ", "\[GothicN]\[Digamma]aVec"}]}], "/.", " ",
+      "\n", 
+     RowBox[{
+      RowBox[{"\[GothicN]\[Digamma]", "[", "\[FilledUpTriangle]a", "]"}], " ",
+       "\[Rule]", " ", "\[GothicN]\[Digamma]Vec"}]}], "]"}]}], 
+  "\n"}]], "Input"],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{
+   RowBox[{
+    RowBox[{"-", "\[GothicN]Vec"}], " ", "\[GothicN]\[Digamma]aVec", " ", 
+    "\[FilledUpTriangle]a"}], "+", 
+   RowBox[{
+   "\[GothicN]aVec", " ", "\[GothicN]\[Digamma]Vec", " ", 
+    "\[FilledUpTriangle]a"}]}], 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{"\[GothicN]Vec", "-", "\[GothicN]\[Digamma]Vec"}], ")"}], " ", 
+   "\[GothicN]\[Digamma]Vec"}]]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"d\[GothicCapitalW]d\[Aleph]SolveForm", " ", "=", " ", 
+   RowBox[{"Simplify", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"d\[GothicCapitalW]d\[Aleph]", " ", "/.", " ", 
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", "\[Aleph]"], " ", "\[Rule]", " ",
+            "\[FilledUpTriangle]a"}]}], ")"}], " ", "/.", " ", "\n", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"\[GothicN]", "'"}], "[", "\[FilledUpTriangle]a", "]"}], 
+         " ", "\[Rule]", " ", "\[GothicN]a"}]}], "/.", " ", "\n", 
+       RowBox[{
+        RowBox[{"\[GothicN]", "[", "\[FilledUpTriangle]a", "]"}], " ", 
+        "\[Rule]", " ", "\[GothicN]Val"}]}], "  ", "/.", " ", "\n", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"\[GothicN]\[Digamma]", "'"}], "[", "\[FilledUpTriangle]a", 
+        "]"}], " ", "\[Rule]", " ", "\[GothicN]\[Digamma]aVal"}]}], "/.", " ",
+      "\n", 
+     RowBox[{
+      RowBox[{"\[GothicN]\[Digamma]", "[", "\[FilledUpTriangle]a", "]"}], " ",
+       "\[Rule]", " ", "\[GothicN]\[Digamma]Val"}]}], "]"}]}], 
+  "\n"}]], "Input"],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{
+   RowBox[{
+    RowBox[{"-", "\[GothicN]Val"}], " ", "\[GothicN]\[Digamma]aVal", " ", 
+    "\[FilledUpTriangle]a"}], "+", 
+   RowBox[{
+   "\[GothicN]a", " ", "\[GothicN]\[Digamma]Val", " ", 
+    "\[FilledUpTriangle]a"}]}], 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{"\[GothicN]Val", "-", "\[GothicN]\[Digamma]Val"}], ")"}], " ", 
+   "\[GothicN]\[Digamma]Val"}]]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Simplify", "[", 
+  RowBox[{"\[GothicN]a", " ", "/.", " ", 
+   RowBox[{
+    RowBox[{"Solve", "[", 
+     RowBox[{
+      RowBox[{
+      "d\[GothicCapitalW]d\[Aleph]SolveForm", " ", "\[Equal]", " ", 
+       "d\[GothicCapitalW]d\[Aleph]Val"}], ",", "\[GothicN]a"}], "]"}], "[", 
+    RowBox[{"[", "1", "]"}], "]"}]}], "]"}]], "Input"],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{
+   RowBox[{"d\[GothicCapitalW]d\[Aleph]Val", " ", 
+    RowBox[{"(", 
+     RowBox[{"\[GothicN]Val", "-", "\[GothicN]\[Digamma]Val"}], ")"}], " ", 
+    "\[GothicN]\[Digamma]Val"}], "+", 
+   RowBox[{
+   "\[GothicN]Val", " ", "\[GothicN]\[Digamma]aVal", " ", 
+    "\[FilledUpTriangle]a"}]}], 
+  RowBox[{"\[GothicN]\[Digamma]Val", " ", "\[FilledUpTriangle]a"}]]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Simplify", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"d\[GothicCapitalW]d\[Aleph]", " ", "/.", " ", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "\[Aleph]"], " ", "\[Rule]", " ", 
+         "\[FilledUpTriangle]a"}]}], ")"}], " ", "/.", " ", "\n", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"\[GothicN]", "'"}], "[", "\[FilledUpTriangle]a", "]"}], " ", 
+       "\[Rule]", " ", "\[GothicN]aVec"}]}], "/.", " ", "\n", 
+     RowBox[{
+      RowBox[{"\[GothicN]", "[", "\[FilledUpTriangle]a", "]"}], " ", 
+      "\[Rule]", " ", "\[GothicN]Vec"}]}], "  ", "/.", " ", "\n", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"\[GothicN]\[Digamma]", "'"}], "[", "\[FilledUpTriangle]a", 
+      "]"}], " ", "\[Rule]", " ", "\[GothicN]\[Digamma]aVec"}]}], "/.", " ", 
+   "\n", 
+   RowBox[{
+    RowBox[{"\[GothicN]\[Digamma]", "[", "\[FilledUpTriangle]a", "]"}], " ", 
+    "\[Rule]", " ", "\[GothicN]\[Digamma]Vec"}]}], "]"}]], "Input"],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{
+   RowBox[{
+    RowBox[{"-", "\[GothicN]Vec"}], " ", "\[GothicN]\[Digamma]aVec", " ", 
+    "\[FilledUpTriangle]a"}], "+", 
+   RowBox[{
+   "\[GothicN]aVec", " ", "\[GothicN]\[Digamma]Vec", " ", 
+    "\[FilledUpTriangle]a"}]}], 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{"\[GothicN]Vec", "-", "\[GothicN]\[Digamma]Vec"}], ")"}], " ", 
+   "\[GothicN]\[Digamma]Vec"}]]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"d2\[GothicCapitalW]d\[Aleph]2", " ", "=", " ", 
+  RowBox[{"D", "[", 
+   RowBox[{"d\[GothicCapitalW]d\[Aleph]", ",", "\[Aleph]"}], "]"}]}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"-", 
+   FractionBox[
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"-", 
+        FractionBox[
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", "\[Aleph]"], " ", 
+          RowBox[{
+           SuperscriptBox["\[GothicN]", "\[Prime]",
+            MultilineFunction->None], "[", 
+           SuperscriptBox["\[ExponentialE]", "\[Aleph]"], "]"}]}], 
+         RowBox[{"\[GothicN]\[Digamma]", "[", 
+          SuperscriptBox["\[ExponentialE]", "\[Aleph]"], "]"}]]}], "+", 
+       FractionBox[
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", "\[Aleph]"], " ", 
+         RowBox[{"\[GothicN]", "[", 
+          SuperscriptBox["\[ExponentialE]", "\[Aleph]"], "]"}], " ", 
+         RowBox[{
+          SuperscriptBox["\[GothicN]\[Digamma]", "\[Prime]",
+           MultilineFunction->None], "[", 
+          SuperscriptBox["\[ExponentialE]", "\[Aleph]"], "]"}]}], 
+        SuperscriptBox[
+         RowBox[{"\[GothicN]\[Digamma]", "[", 
+          SuperscriptBox["\[ExponentialE]", "\[Aleph]"], "]"}], "2"]]}], 
+      ")"}], "2"], 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"1", "-", 
+       FractionBox[
+        RowBox[{"\[GothicN]", "[", 
+         SuperscriptBox["\[ExponentialE]", "\[Aleph]"], "]"}], 
+        RowBox[{"\[GothicN]\[Digamma]", "[", 
+         SuperscriptBox["\[ExponentialE]", "\[Aleph]"], "]"}]]}], ")"}], 
+     "2"]]}], "+", 
+  FractionBox[
+   RowBox[{
+    RowBox[{"-", 
+     FractionBox[
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", "\[Aleph]"], " ", 
+       RowBox[{
+        SuperscriptBox["\[GothicN]", "\[Prime]",
+         MultilineFunction->None], "[", 
+        SuperscriptBox["\[ExponentialE]", "\[Aleph]"], "]"}]}], 
+      RowBox[{"\[GothicN]\[Digamma]", "[", 
+       SuperscriptBox["\[ExponentialE]", "\[Aleph]"], "]"}]]}], "+", 
+    FractionBox[
+     RowBox[{
+      SuperscriptBox["\[ExponentialE]", "\[Aleph]"], " ", 
+      RowBox[{"\[GothicN]", "[", 
+       SuperscriptBox["\[ExponentialE]", "\[Aleph]"], "]"}], " ", 
+      RowBox[{
+       SuperscriptBox["\[GothicN]\[Digamma]", "\[Prime]",
+        MultilineFunction->None], "[", 
+       SuperscriptBox["\[ExponentialE]", "\[Aleph]"], "]"}]}], 
+     SuperscriptBox[
+      RowBox[{"\[GothicN]\[Digamma]", "[", 
+       SuperscriptBox["\[ExponentialE]", "\[Aleph]"], "]"}], "2"]], "+", 
+    FractionBox[
+     RowBox[{"2", " ", 
+      SuperscriptBox["\[ExponentialE]", 
+       RowBox[{"2", " ", "\[Aleph]"}]], " ", 
+      RowBox[{
+       SuperscriptBox["\[GothicN]", "\[Prime]",
+        MultilineFunction->None], "[", 
+       SuperscriptBox["\[ExponentialE]", "\[Aleph]"], "]"}], " ", 
+      RowBox[{
+       SuperscriptBox["\[GothicN]\[Digamma]", "\[Prime]",
+        MultilineFunction->None], "[", 
+       SuperscriptBox["\[ExponentialE]", "\[Aleph]"], "]"}]}], 
+     SuperscriptBox[
+      RowBox[{"\[GothicN]\[Digamma]", "[", 
+       SuperscriptBox["\[ExponentialE]", "\[Aleph]"], "]"}], "2"]], "-", 
+    FractionBox[
+     RowBox[{"2", " ", 
+      SuperscriptBox["\[ExponentialE]", 
+       RowBox[{"2", " ", "\[Aleph]"}]], " ", 
+      RowBox[{"\[GothicN]", "[", 
+       SuperscriptBox["\[ExponentialE]", "\[Aleph]"], "]"}], " ", 
+      SuperscriptBox[
+       RowBox[{
+        SuperscriptBox["\[GothicN]\[Digamma]", "\[Prime]",
+         MultilineFunction->None], "[", 
+        SuperscriptBox["\[ExponentialE]", "\[Aleph]"], "]"}], "2"]}], 
+     SuperscriptBox[
+      RowBox[{"\[GothicN]\[Digamma]", "[", 
+       SuperscriptBox["\[ExponentialE]", "\[Aleph]"], "]"}], "3"]], "-", 
+    FractionBox[
+     RowBox[{
+      SuperscriptBox["\[ExponentialE]", 
+       RowBox[{"2", " ", "\[Aleph]"}]], " ", 
+      RowBox[{
+       SuperscriptBox["\[GothicN]", "\[Prime]\[Prime]",
+        MultilineFunction->None], "[", 
+       SuperscriptBox["\[ExponentialE]", "\[Aleph]"], "]"}]}], 
+     RowBox[{"\[GothicN]\[Digamma]", "[", 
+      SuperscriptBox["\[ExponentialE]", "\[Aleph]"], "]"}]], "+", 
+    FractionBox[
+     RowBox[{
+      SuperscriptBox["\[ExponentialE]", 
+       RowBox[{"2", " ", "\[Aleph]"}]], " ", 
+      RowBox[{"\[GothicN]", "[", 
+       SuperscriptBox["\[ExponentialE]", "\[Aleph]"], "]"}], " ", 
+      RowBox[{
+       SuperscriptBox["\[GothicN]\[Digamma]", "\[Prime]\[Prime]",
+        MultilineFunction->None], "[", 
+       SuperscriptBox["\[ExponentialE]", "\[Aleph]"], "]"}]}], 
+     SuperscriptBox[
+      RowBox[{"\[GothicN]\[Digamma]", "[", 
+       SuperscriptBox["\[ExponentialE]", "\[Aleph]"], "]"}], "2"]]}], 
+   RowBox[{"1", "-", 
+    FractionBox[
+     RowBox[{"\[GothicN]", "[", 
+      SuperscriptBox["\[ExponentialE]", "\[Aleph]"], "]"}], 
+     RowBox[{"\[GothicN]\[Digamma]", "[", 
+      SuperscriptBox["\[ExponentialE]", "\[Aleph]"], "]"}]]}]]}]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"d2\[GothicCapitalW]d\[Aleph]2", " ", "/.", " ", 
+            RowBox[{
+             SuperscriptBox["\[ExponentialE]", "\[Aleph]"], " ", "\[Rule]", 
+             " ", "\[FilledUpTriangle]a"}]}], ")"}], " ", "/.", " ", "\n", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"\[GothicN]", "'"}], "[", "\[FilledUpTriangle]a", "]"}], 
+           " ", "\[Rule]", " ", "\[GothicN]aVec"}]}], "/.", " ", "\n", 
+         RowBox[{
+          RowBox[{"\[GothicN]", "[", "\[FilledUpTriangle]a", "]"}], " ", 
+          "\[Rule]", " ", "\[GothicN]Vec"}]}], "  ", "/.", " ", "\n", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"\[GothicN]\[Digamma]", "'"}], "[", "\[FilledUpTriangle]a", 
+          "]"}], " ", "\[Rule]", " ", "\[GothicN]\[Digamma]aVec"}]}], "/.", 
+       " ", "\n", 
+       RowBox[{
+        RowBox[{"\[GothicN]\[Digamma]", "[", "\[FilledUpTriangle]a", "]"}], 
+        " ", "\[Rule]", " ", "\[GothicN]\[Digamma]Vec"}]}], " ", "/.", " ", 
+      "\n", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"\[GothicN]\[Digamma]", "''"}], "[", "\[FilledUpTriangle]a", 
+        "]"}], " ", "\[Rule]", " ", "\[GothicN]\[Digamma]aaVec"}]}], " ", "/.",
+      " ", "\n", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"\[GothicN]", "''"}], "[", "\[FilledUpTriangle]a", "]"}], " ", 
+      "\[Rule]", " ", "\[GothicN]aaVec"}]}], "  ", "/.", " ", "\n", 
+    RowBox[{"\[Aleph]", " ", "\[Rule]", " ", 
+     RowBox[{"Log", "[", "\[FilledUpTriangle]a", "]"}]}]}], " ", "/.", " ", 
+   RowBox[{
+    RowBox[{"1", "-", 
+     FractionBox["\[GothicN]Vec", "\[GothicN]\[Digamma]Vec"]}], " ", 
+    "\[Rule]", " ", "\[GothicCapitalW]Vec"}]}], "\n"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"-", 
+   FractionBox[
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{
+       FractionBox[
+        RowBox[{
+        "\[GothicN]Vec", " ", "\[GothicN]\[Digamma]aVec", " ", 
+         "\[FilledUpTriangle]a"}], 
+        SuperscriptBox["\[GothicN]\[Digamma]Vec", "2"]], "-", 
+       FractionBox[
+        RowBox[{"\[GothicN]aVec", " ", "\[FilledUpTriangle]a"}], 
+        "\[GothicN]\[Digamma]Vec"]}], ")"}], "2"], 
+    SuperscriptBox["\[GothicCapitalW]Vec", "2"]]}], "+", 
+  FractionBox[
+   RowBox[{
+    FractionBox[
+     RowBox[{
+     "\[GothicN]Vec", " ", "\[GothicN]\[Digamma]aVec", " ", 
+      "\[FilledUpTriangle]a"}], 
+     SuperscriptBox["\[GothicN]\[Digamma]Vec", "2"]], "-", 
+    FractionBox[
+     RowBox[{"\[GothicN]aVec", " ", "\[FilledUpTriangle]a"}], 
+     "\[GothicN]\[Digamma]Vec"], "-", 
+    FractionBox[
+     RowBox[{"2", " ", "\[GothicN]Vec", " ", 
+      SuperscriptBox["\[GothicN]\[Digamma]aVec", "2"], " ", 
+      SuperscriptBox["\[FilledUpTriangle]a", "2"]}], 
+     SuperscriptBox["\[GothicN]\[Digamma]Vec", "3"]], "+", 
+    FractionBox[
+     RowBox[{"\[GothicN]Vec", " ", "\[GothicN]\[Digamma]aaVec", " ", 
+      SuperscriptBox["\[FilledUpTriangle]a", "2"]}], 
+     SuperscriptBox["\[GothicN]\[Digamma]Vec", "2"]], "+", 
+    FractionBox[
+     RowBox[{"2", " ", "\[GothicN]aVec", " ", "\[GothicN]\[Digamma]aVec", " ", 
+      SuperscriptBox["\[FilledUpTriangle]a", "2"]}], 
+     SuperscriptBox["\[GothicN]\[Digamma]Vec", "2"]], "-", 
+    FractionBox[
+     RowBox[{"\[GothicN]aaVec", " ", 
+      SuperscriptBox["\[FilledUpTriangle]a", "2"]}], 
+     "\[GothicN]\[Digamma]Vec"]}], "\[GothicCapitalW]Vec"]}]], "Output",
+ PageWidth->WindowWidth]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.5108436951380377`*^9, 3.510843700838554*^9}}]
+},
+WindowSize->{1059, 956},
+WindowMargins->{{-1883, Automatic}, {Automatic, -28}},
+FrontEndVersion->"8.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (February 23, \
+2011)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 71, 1, 40, "Input"],
+Cell[CellGroupData[{
+Cell[653, 25, 697, 21, 87, "Input"],
+Cell[1353, 48, 370, 11, 66, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1760, 64, 380, 11, 40, "Input"],
+Cell[2143, 77, 216, 7, 65, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2396, 89, 339, 8, 40, "Input"],
+Cell[2738, 99, 157, 5, 40, "Output"]
+}, Open  ]],
+Cell[2910, 107, 1008, 29, 110, "Input"],
+Cell[CellGroupData[{
+Cell[3943, 140, 174, 5, 40, "Input"],
+Cell[4120, 147, 581, 15, 70, "Output"]
+}, Open  ]],
+Cell[4716, 165, 309, 7, 40, "Input"],
+Cell[CellGroupData[{
+Cell[5050, 176, 435, 14, 48, "Input"],
+Cell[5488, 192, 113, 2, 48, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5638, 199, 541, 14, 43, "Input"],
+Cell[6182, 215, 244, 5, 63, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6463, 225, 617, 16, 43, "Input"],
+Cell[7083, 243, 399, 13, 64, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7519, 261, 491, 11, 64, "Input"],
+Cell[8013, 274, 63, 1, 40, "Output"]
+}, Open  ]],
+Cell[8091, 278, 243, 5, 67, "Input"],
+Cell[CellGroupData[{
+Cell[8359, 287, 583, 16, 68, "Input"],
+Cell[8945, 305, 216, 7, 55, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9198, 317, 181, 4, 40, "Input"],
+Cell[9382, 323, 455, 14, 55, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9874, 342, 367, 9, 40, "Input"],
+Cell[10244, 353, 304, 10, 55, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10585, 368, 616, 16, 40, "Input"],
+Cell[11204, 386, 1035, 33, 69, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[12276, 424, 546, 14, 40, "Input"],
+Cell[12825, 440, 939, 31, 69, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[13801, 476, 326, 8, 40, "Input"],
+Cell[14130, 486, 286, 7, 78, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[14453, 498, 160, 3, 40, "Input"],
+Cell[14616, 503, 1161, 30, 113, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[15814, 538, 1145, 28, 169, "Input"],
+Cell[16962, 568, 413, 12, 65, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[17412, 585, 1143, 28, 169, "Input"],
+Cell[18558, 615, 410, 12, 66, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[19005, 632, 352, 9, 40, "Input"],
+Cell[19360, 643, 407, 10, 66, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[19804, 658, 1007, 25, 146, "Input"],
+Cell[20814, 685, 413, 12, 65, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[21264, 702, 172, 3, 40, "Input"],
+Cell[21439, 707, 4736, 120, 228, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[26212, 832, 1829, 45, 264, "Input"],
+Cell[28044, 879, 1693, 43, 156, "Output"]
+}, Open  ]],
+Cell[29752, 925, 94, 1, 40, "Input"]
+}
+]
+*)
+
+(* End of internal cache information *)

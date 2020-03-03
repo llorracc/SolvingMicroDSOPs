@@ -1,0 +1,59 @@
+We similarly define $\hEndMin_{t}$ as `minimal human wealth,' the
+present discounted value of labor income if the shocks were to take on
+their worst possible value in every future period \pShkOn
+{$\tShkEmp_{t+n} = \tShkEmpMin ~\forall~n>0$ and $\pShk_{t+n} =
+  \pShkMin ~\forall~n>0$} {$\tShkEmp_{t+n} = \tShkEmpMin
+  ~\forall~n>0$} (which we define as corresponding to the beliefs of a
+`pessimist').
+
+\ctw{}{We will call a `realist' the consumer who correctly perceives the true
+probabilities of the future risks and optimizes accordingly.}
+
+A first useful point is that, for the realist, a lower bound for the
+level of market resources is $\ushort{m}_{t} = -\hEndMin_{t}$, because
+if ${m}_{t}$ equalled this value then there would be a positive finite
+chance (however small) of receiving \pShkOn
+{$\tShkEmp_{t+n}=\tShkEmpMin$ and $\pShk_{t+n}=\pShkMin$}
+{$\tShkEmp_{t+n}=\tShkEmpMin$}
+in
+every future period, which would require the consumer to set ${c}_{t}$
+to zero in order to guarantee that the intertemporal budget constraint
+holds\ctw{.}{~(this is the multiperiod generalization of the discussion in
+section \ref{subsec:LiqConstrSelfImposed} about
+$\ushort{a}_{T-1}$).}  Since consumption of zero yields negative
+infinite utility, the solution to realist consumer's problem is not well
+defined for values of ${m}_{t} < \ushort{m}_{t}$, and the limiting
+value of the realist's ${c}_t$ is zero as ${m}_{t} \downarrow \ushort{m}_{t}$.
+
+Given this result, it will be convenient to define `excess' market
+resources as the amount by which actual resources exceed the lower
+bound, and `excess' human wealth as the amount by which mean expected human wealth
+exceeds guaranteed minimum human wealth:
+\begin{eqnarray*}
+    \aboveMin \mRat_{t} & = & {m}_{t}+\overbrace{\hEndMin_{t}}^{=-\ushort{m}_{t}}
+\\  \aboveMin \hEnd_{t} & = & \hEnd_{t}-\hEndMin_{t}.
+\end{eqnarray*}
+
+We can now transparently define the optimal
+consumption rules for the two perfect foresight problems, those of the
+`optimist' and the `pessimist.'  The `pessimist' perceives human
+wealth to be equal to its minimum feasible value $\hEndMin_{t}$ with certainty, so
+consumption is given by the perfect foresight solution
+\begin{eqnarray*}
+  \cFuncBelow_{t}(m_{t}) & = & ({m}_{t}+\hEndMin_{t})\MinMPC_{t}
+\\ & = & \aboveMin \mRat_{t}\MinMPC_{t}
+.
+\end{eqnarray*}
+
+The `optimist,' on the other hand, pretends that there is no uncertainty
+about future income, and therefore consumes
+\begin{eqnarray*}
+    \cFuncAbove_{t}(m_{t}) & = & ({m}_{t} +\hEndMin_{t} - \hEndMin_{t} + \hEnd_{t} )\MinMPC_{t}
+\\   & = & (\aboveMin \mRat_{t} + \aboveMin \hEnd_{t})\MinMPC_{t}
+\\     & = & \cFuncBelow_{t}(m_{t})+\aboveMin \hEnd_{t} \MinMPC_{t}
+.
+\end{eqnarray*}
+
+It seems obvious that the spending of the realist will be strictly greater
+than that of the pessimist and strictly less than that of the
+optimist.  Figure~\ref{fig:IntExpFOCInvPesReaOptNeedHiPlot} illustrates the proposition for the consumption rule in period $T-1$.

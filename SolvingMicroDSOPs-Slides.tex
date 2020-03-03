@@ -1,0 +1,719 @@
+\input{./econtexRoot.tex}\input{\econtexRoot/econtexPaths.tex}\documentclass{beamer}
+\usepackage{import}
+\usepackage{ulem}
+\usepackage[Overlays]{optional}
+\usepackage{ifthen}
+\usepackage{econtexShortcuts}
+\usepackage{bbm}
+\providecommand{\Ex}{\ensuremath{\mathbb{E}}} % Expectations operator defined in econtex.cls
+
+% if this is uncommented, bullets are shown step by step; comment out to make printable version
+\beamerdefaultoverlayspecification{<+->}
+
+% MPCMatch
+\provideboolean{MPCMatchVersion}
+\setboolean{MPCMatchVersion}{true}
+\setboolean{MPCMatchVersion}{false}
+\newcommand{\MPCMatch}{\ifthenelse{\boolean{MPCMatchVersion}}}
+
+\newboolean{DiscountSubOn}
+\setboolean{DiscountSubOn}{false}
+\providecommand{\TimeFactor}{\Discount}
+\ifthenelse{\boolean{DiscountSubOn}}{\Discount_{t+1}}{}
+\newcommand{\ifTimeSubT}{}
+\ifthenelse{\boolean{DiscountSubOn}}{\renewcommand{\ifTimeSubT}{_{T}}}{}
+\newcommand{\ifTimeSubNext}{}
+\ifthenelse{\boolean{DiscountSubOn}}{\renewcommand{\ifTimeSubNext}{_{t+1}}}{}
+
+\newboolean{RfreeSubOn}
+\setboolean{RfreeSubOn}{false}
+\providecommand{\R}{\Rfree}
+\ifthenelse{\boolean{RfreeSubOn}}{\Rfree_{t+1}}{}
+
+\usepackage{ifthen}
+\newboolean{WithOverlays}
+\setboolean{WithOverlays}{true}
+\usepackage{optional}
+\opt{NoOverlays}{\setboolean{WithOverlays}{false}\beamerdefaultoverlayspecification{}}
+\usepackage{moreverb}
+
+\usepackage{cancel}
+\usepackage{econtexShortcuts}
+\usepackage{wasysym}
+%\usepackage{dcolumn}
+% \usepackage[notocbib]{apacite}
+%\renewcommand{\frametitle}{\textbf\frametitle}
+
+
+% Jirka's definitions
+\usepackage[authoryear]{natbib}
+\definecolor{jirkasred}{rgb}{0.9,0,0}
+\newcommand{\jemph}[1]{{\color{jirkasred}#1}}
+\def\newblock{\hskip .11em plus .33em minus .07em}
+
+\mode<presentation>
+{
+  \usetheme{default}
+  % or ...
+  \setbeamercovered{transparent}
+}
+
+% if this is on, bullets are shown step by step
+% \beamerdefaultoverlayspecification{<+->}
+
+%\setbeamertemplate{navigation symbols}{}  % Take away navigation symbols
+
+\usetheme{Frankfurt}
+
+%_____________ Opening slide _______________________
+
+\begin{document}
+
+%\begin{verbatimwrite}{./SolvingMicroDSOPs-Slides-body.tex}
+
+\title[SolvingMicroDSOPs]{\textbf{Structural Estimation of Dynamic Stochastic\\ Optimizing Models of Intertemporal Choice \\ \LARGE{For Dummies!}}}
+\author[Carroll]{Christopher Carroll\inst{1}}
+
+\institute{
+  \inst{1} Johns Hopkins University and NBER\\   \texttt{ccarroll@jhu.edu} \and
+    }
+\date{June 2012 \\ {\tiny \url{http://www.econ2.jhu.edu/people/ccarroll/SolvingMicroDSOPs-Slides.pdf}}
+}
+
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+\section{Introduction}
+
+\begin{frame}
+\begin{itemize}
+\item Efficient Solution Methods for Canonical $C$ problem
+\begin{itemize}
+\item CRRA utility
+\item Plausible (microeconomically calibrated) uncertainty
+\item Life cycle or infinite horizon
+\end{itemize}
+\item How To Add a Second Choice Variable
+\item Method of Simulated Moments Estimation of Parameters
+\end{itemize}
+\end{frame}
+
+\section{The Problem}
+
+\begin{frame}[label=MaxProb]
+\frametitle{\large\textbf{The Basic Problem at Date $t$}}
+
+\input{./Equations/MaxProb.tex}
+\begin{eqnarray}
+{\yLev}_{t} & = & {\pLev}_{t}\tShkEmp_{t}
+\end{eqnarray}
+\input{./Equations/ExogVars.tex}
+\end{frame}
+
+\begin{frame}[label=vrecurse]
+\frametitle{\large\textbf{Bellman Equation}}
+
+\input{./Equations/vrecurse.tex}
+
+\begin{eqnarray*}
+   \mLev & - & \text{ `market resources' (net worth plus current income)}
+\\ \pLev & - & \text{ permanent labor income }
+\end{eqnarray*}
+
+\end{frame}
+
+\section{Tricks}
+\subsection{Normalization}
+\begin{frame}[label=Normalize]
+\frametitle{\large\textbf{Trick: Normalize the Problem}}
+
+\input{./Equations/vNormed.tex}
+
+where nonbold variables are bold ones normalized by $\pLev$:
+\begin{eqnarray}
+\mRat_{t} & = & \mLev_{t}/\pLev_{t}
+\end{eqnarray}
+
+Yields $\cFunc_{t}(m)$ from which we can obtain
+\begin{eqnarray}
+  \cLev_{t}(\mLev_{t},\pLev_{t}) & = & \cFunc_{t}(\mLev_{t}/\pLev_{t})\pLev_{t}
+\end{eqnarray}
+
+\end{frame}
+
+\begin{frame}[label=Normalize]
+\frametitle{\large\textbf{When Doesn't Normalization Work?}}
+
+\begin{itemize}
+\item Non-CRRA utility
+\item Non-Friedman (transitory/permanent) income process
+\begin{itemize}
+\item e.g., AR(1)
+\item But micro evidence is consistent with Friedman
+\end{itemize}
+\end{itemize}
+
+\end{frame}
+\subsection{View Problem from End of Period}
+
+\begin{frame}[label=Normalize]
+\frametitle{Trick: View Everything from End of Period}
+
+Define 
+\input{./Equations/vEndtdefn.tex}
+so 
+\begin{eqnarray}
+  \vFunc_{t}(\mRat_{t}) & = & \max_{\cRat_{t}}~~ \util(\cRat_{t}) + \vEnd_{t}(\mRat_{t}-\cRat_{t})
+\end{eqnarray}
+with FOC
+\input{./Equations/upEqbetaOp.tex}
+and Envelope relation
+\input{./Equations/Envelope.tex}
+
+\end{frame}
+
+
+\subsection{Discretization of Risks}
+\begin{frame}[label=DiscretizeFig]
+\frametitle{Trick: Discretize the Risks}
+
+E.g.\ use an equiprobable 7-point distribution:\medskip\medskip
+
+\includegraphics[width=4in]{./Figures/discreteApprox.pdf}
+
+\end{frame}
+
+\begin{frame}[label=DiscretizeEqn]
+\frametitle{Trick: Discretize the Risks}
+
+\begin{eqnarray}
+        \vEnd_{t}^{\prime}({a}_{t}) & = &  \Discount \Rfree \PGro_{t+1}^{-\CRRA} \left(\frac{1}{n}\right) \sum_{i=1}^{n} \util^{\prime}\left(\cFunc_{t+1}(\Rnorm_{t+1} {a}_{t} + \tShkEmp_{i})\right)
+\end{eqnarray}
+
+%\input{./Equations/vDiscrete.tex}
+
+\pause 
+So for any particular $\mRat_{T-1}$ the corresponding $\cRat_{T-1}$ can be found
+using the FOC:
+\input{./Equations/upEqbetaOp.tex}
+
+
+\end{frame}
+\subsection{Interpolate a Consumption Rule}
+\begin{frame}
+\frametitle{Trick: Interpolate a Consumption Rule}
+
+\begin{enumerate}
+\item Define a grid of points $\vec{\mRat}$ (indexed $\mRat[i]$)
+\item Use numerical rootfinder to solve 
+$\util^{\prime}(\cRat) = \vEnd^{\prime}_{t}(\mRat[i]-\cRat)$
+\begin{itemize}
+\item The $\cRat$ that solves this becomes $\cRat[i]$
+\end{itemize}
+\item Construct interpolating function $\grave{\cFunc}$ by linear interpolation
+\begin{itemize}
+\item `Connect-the-dots'
+\end{itemize}
+\end{enumerate}
+
+\end{frame}
+
+
+
+
+
+
+\begin{frame}[label=DiscretizeEqn]
+\frametitle{Trick: Interpolate a Consumption Rule}
+
+Example: $\vec{\mRat}_{T-1} = \{0.,1.,2.,3.,4.\}$ (solid is `correct' soln)
+
+\includegraphics[width=4.0in]{./Figures/PlotcTm1Simple.pdf}
+
+\end{frame}
+
+\begin{frame}[label=vEndtSlow]
+\frametitle{Problem: Numerical Rootfinding is {\it Slow}}
+
+Numerical search for values of $\cRat_{T-1}$ satisfying
+$\util^{\prime}(\cRat) = \vEnd^{\prime}_{t}(\mRat[i]-\cRat)$ at, say,
+6 gridpoints of $\vec{\mRat}_{T-1}$ may require hundreds or even thousands of
+evaluations of
+\begin{eqnarray}
+        \vEnd^{\prime}_{T-1}(\overbrace{{m}_{T-1}-{\cRat}_{T-1}}^{\aRat_{T-1}}) & = &   \Discount_{T} \PGro_{T}^{1-\CRRA}\left(\frac{1}{n}\right)\sum_{i=1}^{n}   \frac{\left( \Rnorm_{T} {a}_{T-1} + \tShkEmp_{i}\right)^{1-\CRRA}}{1-\CRRA} \notag
+\end{eqnarray}
+
+\end{frame}
+
+
+
+
+\begin{comment}
+
+\begin{frame}[label=vApprox]
+\frametitle{Solution: Approximate $\vEnd$?}
+
+\pause Given $\{\vec{\aRat}_{T-1},\vec{\vEnd}_{T-1}\}$, an approximate function $\grave{\vEnd}_{T-1}$ 
+can be constructed by linear interpolation among the points:
+
+\includegraphics[width=4in]{./Figures/PlotOTm1RawVsInt.pdf}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Using $\grave{\vEnd}_{T-1}$ In Optimization}
+\begin{eqnarray*}
+  \vFunc_{t}(\mRat_{t}) & = & \max_{\cRat_{t}}~~ \util(\cRat_{t}) + \grave{\vEnd}_{t}(\mRat_{t}-\cRat_{t})
+\end{eqnarray*}
+is {\it much} faster,  but result is bad:
+\begin{center}
+\includegraphics[width=3in]{./Figures/PlotComparecTm1AB}
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Approximate $\vEnd_{t}^{\prime}(\aRat)$?}
+
+Better ... but still violates first two principles:
+\includegraphics[width=4in]{./Figures/PlotOPRawVSFOC.pdf}
+
+\end{frame}
+
+
+\end{comment}
+
+\subsection{The Method of Endogenous Gridpoints}
+\begin{frame}
+\frametitle{Solution: The Method of Endogenous Gridpoints}
+
+\pause 
+
+\begin{itemize}
+\item Define vector of {\it end-of-period} asset values $\vec{\aRat}$
+\item For each $\aRat[j]$ compute $\vEnd_{t}^{\prime}(\aRat[j])$
+\end{itemize}
+
+\pause 
+
+Each of these $\vEnd_{t}^{\prime}[j]$ corresponds to a unique
+$\cRat[j]$ via FOC:
+\begin{eqnarray}
+  \cRat[j]^{-\CRRA} & = & \vEnd_{t}^{\prime}(\aRat[j])
+\\ \cRat[j] & = & \left(\vEnd_{t}^{\prime}(\aRat[j])\right)^{-1/\CRRA}
+\end{eqnarray}
+
+\pause 
+
+But the DBC says
+\begin{eqnarray}
+  \aRat_{t} & = & \mRat_{t} - \cRat_{t}
+\\ \mRat[j] & = & \aRat[j]+\cRat[j]
+\end{eqnarray}
+
+\pause 
+So computing $\vEnd_{t}^{\prime}$ at a vector of $\vec{\aRat}$ values has produced for us the corresponding $\vec{\cRat}$ and $\vec{\mRat}$ 
+values at virtually no cost!  
+
+\pause 
+\medskip 
+From these we can interpolate as before to construct $\grave{\cFunc}_{t}(\mRat)$.
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Why Directly Approximating $\vFunc_{t}$ is a Bad Idea}
+
+Principles of Approximation
+
+\begin{itemize}
+\item Hard to approximate things that approach $\infty$ for relevant $\mRat$
+\begin{itemize}
+\item Not a prob for Rep Agent models: `relevant' $\mRat$'s are $\approx$ SS
+\end{itemize}
+\item Hard to approximate things that are highly nonlinear 
+%\item Best to approximate things that directly govern behavior
+\end{itemize}
+
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Approximate Something That Would Be Linear in PF Case}
+
+\medskip
+
+Perfect Foresight Theory:
+\begin{eqnarray}
+  \cFunc_{t}(\mRat) & = & (\mRat+\hEnd_{t})\MinMPC_{t} 
+\end{eqnarray}
+for market resources $\mRat$ and end-of-period human wealth $\hEnd$.
+
+
+\medskip\medskip
+\pause 
+
+This is why it's a good idea to approximate $\cFunc_{t}$ 
+
+\pause \medskip\medskip
+
+Bonus: Easy to debug programs by setting $\sigma^{2} = 0$ and
+testing whether numerical solution matches analytical!
+
+\end{frame}
+
+\subsection{Approximate Inverted Functions}
+\begin{frame}%[ValFnApprox]
+\frametitle{But What if You {\it Need} the Value Function?}
+
+Perfect foresight value function:
+\input{./Equations/vFuncPF.tex}
+which is linear.  
+
+\medskip\medskip
+\pause If you need the value function, approximate the {\it inverted} value function to generate $\grave{\vInv}_{t}$ 
+and then obtain your approximation from 
+\begin{eqnarray}
+  \grave{\vFunc}_{t} & = & \util(\grave{\vInv}_{t})
+\end{eqnarray}
+
+
+\end{frame}
+
+\subsection{Derivatives}
+\begin{frame}
+\frametitle{Approximate Slope Too}
+
+\cite{BufferStockTheory} shows that $\cFunc^{\mRat}_{t}$ exists everywhere.
+\medskip
+
+\pause 
+Define {\it consumed} function and its derivative as 
+\begin{eqnarray}
+  \cEndFunc_{t}(\aRat) & = & (\vEnd^{\prime}_{t}(\aRat))^{-1/\CRRA}
+\\ \cEndFunc_{t}^{\aRat}(\aRat) & = & -(1/\CRRA)\left(\vEnd_{t}^{\prime}({a})\right)^{-1-1/\CRRA} \vEnd_{t}^{\prime\prime}(\aRat) 
+\end{eqnarray}
+
+\pause 
+and using chain rule it is easy to show that
+\begin{eqnarray}
+ \cFunc^{\mRat}_{t} & = & \cEndFunc^{\aRat}_{t}/(1+\cEndFunc^{\aRat}_{t})
+\end{eqnarray}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{To Implement: Modify Prior Procedures in Two Ways}
+\begin{enumerate}
+\item Construct $\vec{\cFunc}^{\mRat}_{t}$ along with $\vec{\cFunc}_{t}$ in EGM algorithm
+\item Approximate $\cFunc_{t}(m)$ using piecewise Hermite polynomial
+\begin{itemize}
+\item Exact match to both level and derivative at set of points
+\end{itemize}
+\end{enumerate}
+\end{frame}
+
+
+\subsection{Improving the $\aRat$ Grid}
+
+\begin{frame}
+\frametitle{Problem: $\Alt{\cFunc}$ Below Bottom $\mRat$ Gridpoint and Extrapolation}
+
+Consider what happens as ${a}_{T-1}$ approaches $\underline{a}_{T-1}\equiv-\underline{\tShkEmp}\Rnorm_{T}^{-1}$,
+\begin{eqnarray*}
+        \lim_{{\aRat} \downarrow \underline{a}_{T-1}} \vEnd_{T-1}^{\prime}({\aRat}) & = &
+        \lim_{{\aRat} \downarrow \underline{a}_{T-1}} \Discount \Rfree \PGro_{T}^{-\CRRA} \left(\frac{1}{n}\right) \sum_{i=1}^{n} \left( {\aRat} \Rnorm_{T}+ \tShkEmp_{i}\right)^{-\CRRA}
+\\ & = & \infty
+\end{eqnarray*}
+
+This means our lowest value in $\vec{\aRat}_{T-1}$ should be $> \underline{\aRat}_{T-1}$.  
+
+\medskip
+Suppose we construct $\Alt{\cFunc}$ by linear interpolation:
+\begin{eqnarray*}
+  \Alt{\cFunc}_{T-1}(\mRat) &  = & \Alt{\cFunc}_{T-1}(\vec{\mRat}_{T-1}[1])+\Alt{\cFunc}_{T-1}^{\prime}(\vec{\mRat}_{T-1}[1])({\mRat}-\vec{\mRat}_{T-1}[1]) \label{eq:ExtrapLin}
+\end{eqnarray*}
+
+True $\cFunc$ is strictly concave 
+$\Rightarrow \exists \mRat^{-} > \underline{\mRat}_{T-1}$  for which $\mRat^{-}-\Alt{\cFunc}_{T-1}(\mRat^{-}) < \underline{\aRat}_{T-1}$
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Solution: Hard-Code the Bottom Point}
+
+Theory says that
+\begin{eqnarray}
+  \lim_{\mRat \downarrow \underline{\mRat}_{T-1}} \cFunc_{T-1}(\mRat) & = & 0
+\\ \lim_{\mRat \downarrow \underline{\mRat}_{T-1}} \cFunc_{T-1}^{\mRat}(\mRat) & = & \MaxMPC_{T-1}
+\end{eqnarray}
+
+\medskip 
+
+\begin{enumerate}
+\item Redefine $\vec{\aRat}$ {\it relative} to $\uline{\aRat}_{T-1}$
+\item Construct corresponding $\vec{\mRat}_{T-1}$ and $\vec{\cRat}_{T-1}$
+\item Prepend $\uline{\mRat}_{T-1}$ to $\vec{\mRat}_{T-1}$
+\item Prepend $0.$ to $\vec{\cRat}_{T-1}$
+\item Prepend $\MaxMPC_{T-1}$ to $\vec{\MPC}_{T-1}$
+\end{enumerate}
+then proceed as before.
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Trick: Improving the $\aRat$ Grid}
+Grid Spacing: Uniform
+
+\includegraphics[width=4in]{./Figures/GothVInvVSGothC.pdf}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Trick: Improving the $\aRat$ Grid}
+Grid Spacing: Same $\{\uline{\aRat},\bar{\aRat}\}$ But Triple Exponential $e^{e^{e^{...}}}$ Growth
+
+\includegraphics[width=4in]{./Figures/GothVInvVSGothCEEE.pdf}
+
+\end{frame}
+
+
+\subsection{The Method of Moderation}
+
+\begin{frame}[label=MoM]
+\frametitle{The Method of Moderation}
+
+\begin{itemize}
+\item Further improves speed and accuracy of solution
+\item See my talk at the conference!
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Imposing `Artificial' Borrowing Constraints}
+\input{./Equations/ConstrArt.tex}
+
+\pause 
+
+Define $\grave{\cFunc}^{*}_{t}$ as soln to unconstrained problem.  Then
+\input{./Equations/LiqCons.tex}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Imposing `Artificial' Borrowing Constraints}
+
+Point where constraint makes transition from binding to not is
+\begin{eqnarray*}
+    \util^{\prime}(\mRat_{T-1}^{\#}) & = & \vEnd^{\prime}_{T-1}(0.)
+\\  \mRat_{T-1}^{\#} & = & \left(\vEnd^{\prime}_{T-1}(0.)\right)^{-1/\CRRA}
+\end{eqnarray*}
+\pause\medskip
+
+Procedure is very easy:
+\begin{itemize}
+\item Add $0.$ as first point in $\vec{\aRat}$
+\item $\Rightarrow \vec{\mRat}[1] = \mRat_{T-1}^{\#}$
+\item Above $\mRat_{T-1}^{\#}$, $\grave{\cFunc}_{T-1}(\mRat)$ obtained as before
+\item Below $\mRat_{T-1}^{\#}$, $\grave{\cFunc}_{T-1}(\mRat)=\mRat$
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Imposing `Artificial' Borrowing Constraints}
+\begin{figure}
+\includegraphics[width=4in]{./Figures/cVScCon.pdf}
+        \caption{Constrained (solid) and Unconstrained (dashed) Consumption}
+        \label{fig:cVScCon}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}%[Recursion]
+\frametitle{Recursion: Period $t$ Solution Given Period $t+1$}
+\begin{enumerate}
+\item Construct 
+\input{./Equations/vEndeq.tex}
+\item Call the result $\vec{\cRat}_{t}$ and generate the corresponding $\vec{\mRat}_{t}=\vec{\cRat}_{t}+\vec{\aRat}_{t}$
+\item Interpolate to create $\grave{\cRat}_{t}(\mRat)$
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}%[Convergence]
+\frametitle{Consumption Rules $\grave{\cFunc}_{T-n}$ Converge}
+
+\begin{figure}
+        \includegraphics[width=4in]{./Figures/PlotCFuncsConverge.pdf}
+        \caption{Converging $\grave{\cFunc}_{T-n}({\mRat})$ Functions for $n=\{1,5,10,15,20\}$}
+        \label{fig:PlotCFuncsConverge}
+\end{figure}
+
+\end{frame}
+
+
+\section{Multiple Control Variables}
+\begin{frame}
+\frametitle{Portfolio Choice}
+
+Now the consumer has a choice between a risky and a safe asset.  \pause The portfolio
+return is
+\input{./Equations/Rport.tex}
+\pause so (setting $\PGro=1$) the maximization problem is \pause 
+\input{./Equations/PortProb.tex}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Portfolio Choice}
+
+The FOC with respect to $\cRat_{t}$ now yields an Euler equation
+\input{./Equations/EulercRiskyR.tex}
+\pause
+while the FOC with respect to the portfolio share yields
+\input{./Equations/FOCw.tex}
+
+\end{frame}
+
+\section{The Infinite Horizon}
+\subsection{Convergence}
+\begin{frame}
+\frametitle{Convergence}
+
+When the problem satisfies certain conditions~(\cite{BufferStockTheory}),
+it defines a `converged' consumption rule with a `target' ratio $\check{\mRat}$
+that satisfies:
+\begin{eqnarray}
+  \Ex_{t}[\mRat_{t+1}/\mRat_{t}] & = & 1 \text{~if $\mRat_{t} = \check{\mRat}$}
+\end{eqnarray}
+
+\pause 
+
+Define the target $\mRat$ implied by the consumption rule $\cFunc_{t}$ as $\check{\mRat}_{t}$.
+
+\medskip\pause
+Then a plausible metric for convergence is to define some value $\epsilon$ and to declare
+the solution to have converged when
+\begin{eqnarray}
+  |\check{\mRat}_{t+1}-\check{\mRat}_{t}| & < & \epsilon
+\end{eqnarray}
+
+\end{frame}
+
+\subsection{Tricks}
+\begin{frame}
+\frametitle{Trick: Coarse then Fine $\tShkEmp$}
+
+\begin{enumerate}
+\item Start with coarse grid for $\tShkEmp$ (say, 3 points)
+\item Solve to convergence; call period of convergence $n$
+\item Construct finer grid for $\tShkEmp$ (say, 7 points)
+\item Solve for period $T-n-1$ assuming $\Alt{\cFunc}_{T-n}$ 
+\item Continue to convergence
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Trick: Coarse then Fine $\vec{\aRat}_{T-1}$}
+
+\begin{enumerate}
+\item Start with coarse grid for $\vec{\aRat}$ (say, 5 gridpoints)
+\item Solve to convergence; call period of convergence $n$
+\item Construct finer grid for $\vec{\aRat}$ (say, 20 points)
+\item Solve for period $T-n-1$ assuming $\Alt{\cFunc}_{T-n}$ 
+\item Continue to convergence
+\end{enumerate}
+
+\end{frame}
+
+\section{Structural Estimation}
+\subsection{Life Cycle Model}
+
+\begin{frame}
+\frametitle{Life Cycle Maximization Problem}
+\input{./Equations/LifeCycleMaxNormed.tex}
+\input{./Equations/subjectTo.tex}
+\end{frame}
+
+\begin{frame}
+\frametitle{Details follow~\cite{cagettiWprofiles}}
+\begin{itemize}
+\item Parameterization of Uncertainty
+\item Probability of Death
+\item Demographic Adjustments to $\Discount$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Empirical Wealth Profiles}
+\begin{figure}
+    \includegraphics[width=3.5in]{./Figures/PlotMeanMedianSCFcollegeGrads.pdf}
+    \caption{$\mRat$ from SCF (means (dashed) and medians (solid))}
+    \label{fig:MeanMedianSCF}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Simulated Moments}
+
+Given a set of parameter values $\{\CRRA,\beth\}$:
+\begin{itemize}
+\item Start at age 25 with empirical $\mRat$ data
+\item Draw shocks using calibrated $\sigma^{2}_{\pShk}$,$\sigma^{2}_{\tShkEmp}$
+\item Consume according to solved $\cFunc_{t}$
+\end{itemize}
+\pause 
+$\Rightarrow \mRat$ distribution by age
+\end{frame}
+
+\begin{frame}
+\frametitle{Choose What to Simulate}
+\input{./Equations/GapEmpiricalSimulatedMedians.tex}
+\end{frame}
+
+\begin{frame}
+\frametitle{Calculate Match Between Theory and Data}
+\begin{eqnarray}
+\xi & = & \{\CRRA,\beth\}
+\end{eqnarray}
+solve
+\input{./Equations/StructEstim.tex}
+
+\end{frame}
+\begin{frame}
+\frametitle{Bootstrap Standard Errors (\cite{horowitzBootstrap})}
+
+Yields estimates of 
+\input{./Tables/EstResults.tex}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Contour Plot}
+\begin{figure}
+     \includegraphics[width=2.5in]{./Figures/PlotContourMedianStrEst.pdf}
+    \caption{Point Estimate and Height of Minimized Function}
+    \label{fig:PlotContourMedianStrEst}
+\end{figure}
+
+\end{frame}
+
+\beamerdefaultoverlayspecification{<*>}
+
+\begin{frame}[allowframebreaks]
+\frametitle{\textbf{References}}
+\tiny
+\input handoutBibMake
+\end{frame}
+
+
+\end{document}

@@ -1,0 +1,32 @@
+\input{./econtexPaths.tex}\newcommand{\textname}{./Appendices/Limits}\documentclass{\econtex} \newcommand{\Mma}{{\it Mathematica}}
+%\usepackage{txfonts}
+
+\usepackage{\econtexSetup}\usepackage{\econtexShortcuts}
+
+ 
+
+\bibliographystyle{\econtexBibStyle}\begin{document} \large 
+\begin{verbatimwrite}{./LimitsBody.tex}
+\newcommand{\vPF}{\bar{\vInv}}
+\newcommand{\cPF}{\bar{\cFunc}}
+\newcommand{\W}{\mathfrak{W}}
+\newcommand{\at}{a_{t}}
+\newcommand{\atDown}{\lim_{\at \downarrow \underline{\at}}}
+  \begin{eqnarray}
+    \W(m) & = & \log \left(1-\vInv(\at)/\vPF(\at)\right) 
+\\ \W^{\prime}(m) & = & \left(\frac{\vPF^{\prime}(\at)\vInv(\at)/\vPF(m)^2-\vInv^{\prime}(\at)/\vPF(\at)}{\left(1-\vInv(\at)/\vPF(\at)\right) }\right)
+  \end{eqnarray}
+but $\atDown \{\vPF,\vPF^{\prime}\}$ are finite numbers, while $\atDown \vInv = 0$ and $\atDown \vInv^{\prime}$ is finite, so
+  \begin{eqnarray}
+   \atDown \W^{\prime}(\at) & = & -\vInv^{\prime}(\at)/\vPF(\at)
+\\ \atDown \W^{\prime\prime}(\at) & = & \vPF^{\prime}(\at)\vInv^{\prime}(\at)/\vPF(\at)^{2}-\vInv^{\prime\prime}(\at)/\vPF(\at  )
+  \end{eqnarray}
+
+
+\end{verbatimwrite}
+\input ./LimitsBody.tex
+
+\input econtexBibMake
+
+
+\end{document}
