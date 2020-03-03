@@ -1,14 +1,7 @@
-\input{./econtexRoot.tex}\input{./econtexPaths.tex}\documentclass[titlepage,abstract]{\econtex}
+\input{./econtexRoot}\input{\econtexRoot/econtexPaths.tex}\documentclass[titlepage]{\econtex}
 \usepackage{\econtexSetup}\usepackage{\econtexShortcuts}
 \providecommand{\textname}{SolvingMicroDSOPs}
 \providecommand{\texname}{SolvingMicroDSOPs}
-
-
-
-
-
-
-
 
 \newcommand{\Mma}{\textit{Mathematica}}
 
@@ -63,7 +56,8 @@ Solution Methods for Microeconomic Dynamic Stochastic Optimization Problems
 \keywords{Dynamic Stochastic Optimization, Method of Simulated Moments, Structural Estimation}
 \jelclass{E21, F41}
 
-\maketitleWithForcedDate{\today}
+\maketitle
+\hypertarget{abstract}{}
 \begin{abstract}
   These notes describe tools for solving microeconomic dynamic
   stochastic optimization problems, and show how to use those tools
@@ -99,7 +93,7 @@ Solution Methods for Microeconomic Dynamic Stochastic Optimization Problems
 \thanksFooter{The notes were originally written for my
   Advanced Topics in Macroeconomic Theory class at Johns Hopkins
   University; instructors elsewhere are welcome to use them for
-  teaching purposes.  This draft incorporates several improvements related to new
+  teaching purposes.  Relative to earlier drafts, this version incorporates several improvements related to new
   results in the paper
   \href{http://www.econ2.jhu.edu/people/ccarroll/papers/BufferStockTheory.pdf}{``Theoretical
     Foundations of Buffer Stock Saving''} (especially tools for
@@ -143,7 +137,7 @@ Solution Methods for Microeconomic Dynamic Stochastic Optimization Problems
 
 Calculating the mathematically optimal amount to save is a remarkably difficult
 problem.  Under well-founded assumptions about the nature of
-risk (and attitudes toward risk), the problem cannot be solved
+risk (and attitudes toward risk), the problem cannot be solved analytically; computational solutions are the only option. 
   To avoid having to solve
 this hard problem, past generations of economists showed impressive ingenuity in
 reformulating the question.  Budding graduate students are still
@@ -168,7 +162,7 @@ The temptation to use such tricks (and the tolerance for them in
 leading academic journals) is palpably lessening, thanks to advances in
 mathematical analysis, increasing computing power, and the growing
 capabilities of numerical computation software.  Together, such tools
-permit today's laptop computers to solve problems that required
+npermit today's laptop computers to solve problems that required
 supercomputers a decade ago (and, before that, could not be solved at
 all).
 
