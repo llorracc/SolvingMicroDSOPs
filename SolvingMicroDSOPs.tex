@@ -61,6 +61,10 @@ Solution Methods for Microeconomic Dynamic Stochastic Optimization Problems
 \date{\today}
 \maketitle
 
+\centerline{\emph{Note: The code associated with this document should work, but has been superceded}}
+\centerline{\emph{by the set of tools at \href{https://github.com/econ-ark/HARK}{https://econ-ark.org}}}
+\centerline{\emph{and content in the SMM code at the end has specifically been superceded by https://github.com/econ-ark/REMARK/tree/master/REMARKs/SolvingMicroDSOPs}}
+
 \hypertarget{Abstract}{}
 \begin{abstract}
   These notes describe tools for solving microeconomic dynamic
@@ -78,11 +82,12 @@ Solution Methods for Microeconomic Dynamic Stochastic Optimization Problems
 \parbox{\textwidth}{
 \begin{center}
 \begin{tabbing}
-\texttt{Archive:~} \= \= \url{http://www.econ2.jhu.edu/people/ccarroll/SolvingMicroDSOPs.pdf} \kill \\  % This line establishes the locations of the tabs, but is not printed because of the \kill directive
-\texttt{~~~~PDF:~} \> \> \url{http://www.econ2.jhu.edu/people/ccarroll/SolvingMicroDSOPs.pdf} \\
-\texttt{~Slides:~} \> \> \url{http://www.econ2.jhu.edu/people/ccarroll/SolvingMicroDSOPs-Slides.pdf} \\
-\texttt{~~~~Web:~} \> \> \url{http://www.econ2.jhu.edu/people/ccarroll/SolvingMicroDSOPs/} \\
-\texttt{Archive:~} \> \> \url{http://www.econ2.jhu.edu/people/ccarroll/SolvingMicroDSOPs.zip} \\
+  \texttt{Archive:~} \= \= \url{https://github.com/llorracc/SolvingMicroDSOPs/blob/master/SolvingMicroDSOPs.pdf}  \kill \\  % This line establishes the locations of the tabs, but is not printed because of the \kill directive
+\texttt{~~~~PDF:~} \> \> \url{https://github.com/llorracc/SolvingMicroDSOPs/blob/master/SolvingMicroDSOPs.pdf} \\
+\texttt{~Slides:~} \> \> \url{https://github.com/llorracc/SolvingMicroDSOPs/blob/master/SolvingMicroDSOPs-Slides.pdf} \\
+\texttt{~~~~Web:~} \> \> \url{https://llorracc.github.io/SolvingMicroDSOPs} \\
+\texttt{~~~Code:~} \> \> \url{https://github.com/llorracc/SolvingMicroDSOPs/tree/master/Code} \\
+\texttt{Archive:~} \> \> \url{https://github.com/llorracc/SolvingMicroDSOPs}\\ 
 \texttt{~~~~~~~~~} \> \> \textit{(Contains LaTeX code for this document and software producing figures and results)}
 \end{tabbing}
 \end{center}
@@ -1737,7 +1742,7 @@ As $m_{t}$ approaches
 $-\ushort{m}_{t}$, $\Lo{\koppa}_{t}(\mu_{t})$ converges to zero, while as $m_{t}$
 approaches $+\infty$, $\Lo{\koppa}_{t}(\mu_{t})$ approaches $1$.  
 
-As before, we can derive an approximated consumption function; call it
+As before (in equation \eqref{eq:vEndtdefn}), we can derive an approximated consumption function; call it
 $\Alt{\Lo{\cFunc}}_{t}$.  This function will clearly do a better job approximating the consumption
 function for low values of $\mRat_{t}$ while the previous approximation will perform better
 for high values of $\mRat_{t}$.  
@@ -2712,7 +2717,7 @@ and the maximization problem is
 \end{eqnarray*}
 \end{verbatimwrite}
 \input{./Equations/PortProb.tex}
-or
+or, more compactly,
 \begin{eqnarray*}
         {\vFunc}_{t}({m}_{t}) & = & \max_{\{\cFunc_{t},\varsigma_{t}\}} ~~  \util({c}_{t}) +  \Ex_{t}[\Discount {\vFunc}_{t+1}(({m}_{t}-{c}_{t}){\Rport}_{t+1} +        {\tShkEmp}_{t+1})]
 \\                       & \text{s.t.} & \nonumber

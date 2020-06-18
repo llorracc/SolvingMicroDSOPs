@@ -9,6 +9,7 @@
 %
 openout_any = a
 shell_escape = t
+max_print_line = 255
 
 % TEXMFHOME is for any user-specific customizations
 % -- This is NOT the place for Methods customizations
