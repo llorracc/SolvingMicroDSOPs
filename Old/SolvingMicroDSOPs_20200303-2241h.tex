@@ -260,9 +260,9 @@ where the variables are\ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Note mult
 For now, we will assume that the exogenous variables evolve as follows: \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Subscript on permanent income allows pattern of income growth over the lifetime.}}{}
 \begin{verbatimwrite}{./Equations/ExogVars.tex}
 \begin{eqnarray}
-   \Rfree_{t}   = & \Rfree~\forall~t & \text{- constant interest factor = $1+\rfree$}  \notag
+   \Rfree_{t}   = & \Rfree~\forall~t & \text{- constant interest factor = $1+\rfree$}   
 \\ \pLev_{t+1}  = & \PGro_{t+1}\pLev_{t} &   \text{- permanent labor income dynamics} \label{eq:permincgrow} 
-\\ \log ~ \tShkEmp_{t+n} \sim &  ~\mathcal{N}(-\sigma_{\tShkEmp}^{2}/2,\sigma_{\tShkEmp}^{2}) & \text{- lognormal transitory shocks}~\forall~n>0 \notag
+\\ \log ~ \tShkEmp_{t+n} \sim &  ~\mathcal{N}(-\sigma_{\tShkEmp}^{2}/2,\sigma_{\tShkEmp}^{2}) & \text{- lognormal transitory shocks}~\forall~n>0  
 \label{eq:epsdist}
 .
 \end{eqnarray}
@@ -345,9 +345,9 @@ Now define a new optimization problem:\ifthenelse{\boolean{MyNotes}}{\marginpar{
 \begin{eqnarray}
         \null{\vFunc}_{t}({m}_{t}) & = & \max_{{c}_{t}} ~~ \util({c}_{t})+
         \Ex_{t}[{\Discount} \PGro_{t+1}^{1-\CRRA}\null{\vFunc}_{t+1}({m}_{t+1})] \label{vtNorm}
-\\         & \text{s.t.} &   \nonumber \\
-    {a}_{t}   & = & {m}_{t}-{c}_{t} \nonumber
-\\      {m}_{t+1} & = & \underbrace{\left(\Rfree/\PGro_{t+1}\right)}_{\equiv \Rnorm_{t+1}}{a}_{t}+\tShkEmp_{t+1} \nonumber
+\\         & \text{s.t.} &     \\
+    {a}_{t}   & = & {m}_{t}-{c}_{t}  
+\\      {m}_{t+1} & = & \underbrace{\left(\Rfree/\PGro_{t+1}\right)}_{\equiv \Rnorm_{t+1}}{a}_{t}+\tShkEmp_{t+1}  
 \end{eqnarray}
 \end{verbatimwrite}
 \input ./Equations/vNormed.tex
@@ -387,7 +387,7 @@ Geiregat normalized banking problem by size of capital.}}{}
 
 The first order condition for \eqref{vtNorm} with respect to ${c}_{t}$ is
 \begin{eqnarray}
-        \util^{\prime}({c}_{t}) & = & \Ex_{t}[\Discount \Rnorm_{t+1}\PGro_{t+1}^{1-\CRRA}\null{\vFunc}^{\prime}_{t+1}({m}_{t+1})]  \nonumber 
+        \util^{\prime}({c}_{t}) & = & \Ex_{t}[\Discount \Rnorm_{t+1}\PGro_{t+1}^{1-\CRRA}\null{\vFunc}^{\prime}_{t+1}({m}_{t+1})]    
 \\  & = &  \Ex_{t}[\Discount\Rfree\phantom{_{t+1}}\PGro_{t+1}^{\phantom{1}-\CRRA}\null{\vFunc}^{\prime}_{t+1}({m}_{t+1})] \label{eq:upceqEvtp1}
 \end{eqnarray}
 and because the \handoutC{Envelope} theorem tells us that
@@ -1612,7 +1612,7 @@ for the pessimist is a lower bound. Analogously to \eqref{eq:koppa}, define an u
 \MPCMatch{with derivative (dropping arguments)
 \begin{eqnarray}
  \hat{\Koppa}_{t}^{\mu}  & = & (\aboveMin \hEnd_{t} \MinMPC_{t} (\mathbb{C}_{t}^{T})^{1/(1-\CRRA)})^{-1}e^{\mu_{t}}\left(\bar{\vInv}^{m}_{t}-\vInv^{m}_{t}\right) \label{eq:KoppaPrime}
-%\\ & = &  (\aboveMin \hEnd_{t} \MinMPC_{t})^{-1}e^{\mu_{t}}\left((\mathbb{C}_{t}^{T})^{1/(1-\CRRA)}\MinMPC_{t}-\left((1-\CRRA)\vFunc_{t}({m}_{t})\right)^{-1+1/(1-\CRRA)}\vFunc_{t}^{m}({m}_{t})\right)  \notag
+%\\ & = &  (\aboveMin \hEnd_{t} \MinMPC_{t})^{-1}e^{\mu_{t}}\left((\mathbb{C}_{t}^{T})^{1/(1-\CRRA)}\MinMPC_{t}-\left((1-\CRRA)\vFunc_{t}({m}_{t})\right)^{-1+1/(1-\CRRA)}\vFunc_{t}^{m}({m}_{t})\right)   
 \end{eqnarray}}{}
 and an upper-case version of the $\chiFunc$ equation in \eqref{eq:chi}:
 \begin{eqnarray}
@@ -1866,11 +1866,11 @@ is described by
 \begin{eqnarray}
         \null{\vFunc}_{t}({m}_{t},\risky_{t}) & = & \max_{{c}_{t}} ~ \util({c}_{t})+
         \Ex_{t}[{\Discount}_{t+1}\PGro_{t+1}^{1-\CRRA}\null{\vFunc}_{t+1}({m}_{t+1},\risky_{t+1})] \label{vtNormRisky}
-\\         & \text{s.t.} &   \nonumber \\
-    {a}_{t}   & = & {m}_{t}-{c}_{t} \nonumber
-\\      \risky_{t+1}-\risky & = & (\risky_{t}-\risky)\gamma + \epsilon_{t+1} \notag
-\\      \Risky_{t+1} & = & \exp(\risky_{t+1}) \notag
-\\      {m}_{t+1} & = & \underbrace{\left(\Risky_{t+1}/\PGro_{t+1}\right)}_{\equiv \Rprod_{t+1}}{a}_{t}+\tShkEmp_{t+1} \nonumber.
+\\         & \text{s.t.} &     \\
+    {a}_{t}   & = & {m}_{t}-{c}_{t}  
+\\      \risky_{t+1}-\risky & = & (\risky_{t}-\risky)\gamma + \epsilon_{t+1}  
+\\      \Risky_{t+1} & = & \exp(\risky_{t+1})  
+\\      {m}_{t+1} & = & \underbrace{\left(\Risky_{t+1}/\PGro_{t+1}\right)}_{\equiv \Rprod_{t+1}}{a}_{t}+\tShkEmp_{t+1}  .
 \end{eqnarray}
 
 % Kiichi: I will need you to read the literature and figure out how exactly we want to choose the Markov points and transition probabilities.
@@ -1899,7 +1899,7 @@ this from the case of the `natural' borrowing constraint examined above; no dero
 intended -- constraints of this kind certainly exist in the real world.}  The problem then becomes
 \begin{eqnarray*}
 {\vFunc}_{T-1}({m}_{T-1}) & = & \max_{\cRat_{T-1}} ~~ \util({c}_{T-1}) + \Ex_{T-1} [\Discount \PGro_{T}^{1-\CRRA}{\vFunc}_{T}({m}_{T})] \label{eq:ConstrArt}
-\\ & \mbox{s.t.}&  \nonumber
+\\ & \mbox{s.t.}&   
 \\ {a}_{T-1} & = & {m}_{T-1} - {c}_{T-1}
 \\ {m}_{T} & = & \Rnorm_{T} {a}_{T-1} + \tShkEmp_{T}
 \\ {a}_{T-1} & \geq & 0 .
@@ -1949,8 +1949,8 @@ consumer would engage in positive saving and the constraint would no
 longer be binding.  Thus the level of ${m}_{T-1}$ at which the
 lconstraint stops binding is:\footnote{The logic here repeats an insight from \cite{deatonLiqConstr}.}
 \begin{eqnarray}
-        \util^{\prime}({m}_{T-1}) & = & \vEnd_{T-1}^{\prime}(0)  \nonumber \\
-        {m}_{T-1} & = & (\vEnd_{T-1}^{\prime}(0))^{(-1/\CRRA)}  \nonumber
+        \util^{\prime}({m}_{T-1}) & = & \vEnd_{T-1}^{\prime}(0)    \\
+        {m}_{T-1} & = & (\vEnd_{T-1}^{\prime}(0))^{(-1/\CRRA)}   
 \\       & = & \cEndFunc_{T-1}(0). \label{eq:LCbindsTm1}
 \end{eqnarray}
 
@@ -2216,7 +2216,7 @@ Bellman's equation for this problem (imposing liquidity constraints again) is
 \begin{eqnarray}
 {\vFunc}_{t}({m}_{t},h_{t-1}) & = & \max_{\{{c}_{t}\}}  \{\util({c}_{t},h_{t-1}) +
 \Ex_{t}[\Discount  {\vFunc}_{t+1}({m}_{t+1},h_{t}) ]\}
-\\ & \text{s.t.} & \nonumber \\
+\\ & \text{s.t.} &   \\
 {m}_{t+1} & = & [{m}_{t}-{c}_{t}]\Rnorm_{t+1} + \tShkEmp_{t+1}\\
 h_{t} &  = & h_{t-1} + \MPS ({c}_{t} - h_{t-1} ) \\
 {c}_{t} & \leq & {m}_{t} .
@@ -2244,7 +2244,7 @@ and the maximization problem can be rewritten
 \util({c}_{t},h_{t-1})  +  \Discount
   \vEnd_{t}({m}_{t}-{c}_{t},h_{t-1}+\MPS({c}_{t}-h_{t-1}))
 %\}
-\\        & \text{s.t.} & \nonumber
+\\        & \text{s.t.} &  
 \\  {c}_{t} & \leq & {m}_{t}.
 \end{eqnarray}
 
@@ -2299,7 +2299,7 @@ and $h_{t-1}$ that
   {c}_{t} & = & \left[h_{t-1}^{\gamma-\CRRA\gamma}
   \left(\vEnd_{t}^{{a}}({m}_{t}-{c}_{t},h_{t-1}+\MPS({c}_{t}-h_{t-1}))
   -\MPS \vEnd_{t}^{h}({m}_{t}-{c}_{t},h_{t-1}+\MPS({c}_{t}-h_{t-1})\right)
-  \right]^{-1/\CRRA}. \nonumber
+  \right]^{-1/\CRRA}.  
 \end{eqnarray}
 
 This equation could be solved for a given grid of ${m}_{t}$ and
@@ -2340,7 +2340,7 @@ we find the set of values of ${\cRat}_{i}$ that satisfy
   +\MPS({\cRat}_{k}^{\ell}-h_{k}^{\ell}))
   -\MPS
   \vEnd_{t}^{h}({a}_{k}^{\ell},h_{k}^{\ell}+\MPS({\cRat}_{k}^{\ell}-h_{k}^{\ell})\right)
-  \right]^{-1/\CRRA}. \nonumber
+  \right]^{-1/\CRRA}.  
 \end{eqnarray}
 and the budget constraint again gives us the ${m}_{k}^{\ell}$
 associated with the given $\{{a}_{t},h_{t-1}\}$ pair.
@@ -2412,13 +2412,13 @@ rewrite Bellman's equation:
 \begin{eqnarray}
 {\vFunc}_{t}({m}_{t},h_{t-1}) & = & \util({c}_{t},h_{t-1}) +  \Discount \Ex_{t}
 \left[{\vFunc}_{t+1}(({m}_{t}-{c}_{t})\Rnorm_{t+1}+{\tShkEmp}_{t+1},h_{t-1}+\MPS({c}_{t}-h_{t-1}))
-\right] \nonumber
+\right]  
 \end{eqnarray}
 Substituting in the fact that ${c}_{t}={m}_{t}$ (because the consumer is constrained)
 \begin{eqnarray}
 {\vFunc}_{t}({m}_{t},h_{t-1}) & = & \util({c}_{t},h_{t-1}) +  \Ex_{t}\left[\Discount
 {\vFunc}_{t+1}({\tShkEmp}_{t+1},h_{t-1}+\MPS({c}_{t}-h_{t-1}))\right]
-\nonumber
+ 
 \end{eqnarray}
 Thus $\partial {\vFunc}_{t}/\partial {m}_{t} = 0$, and because the liquidity
 constraint implies that $\partial {c}_{t}/\partial {m}_{t} = 1$,
@@ -2432,9 +2432,9 @@ for the unconstrained consumer.
 
 The Envelope theorem for $h_{t-1}$ says:
 \begin{eqnarray}
-{\vFunc}_{t}^{h} & = & \frac{\partial {\vFunc}_{t}}{\partial h_{t-1}} + \overbrace{\frac{\partial {\vFunc}_{t}}{\partial {c}_{t}}}^{=0}\frac{\partial {c}_{t}}{\partial h_{t-1}} \nonumber
-\\ & = & \util^{h}_{t} + \Discount \Ex_{t} \left[{\vFunc}_{t+1}^{h}\frac{\partial h_{t}}{\partial h_{t-1}} \right]\nonumber
-\\ & = & \util^{h}_{t} + \Discount \Ex_{t} [(1-\MPS) {\vFunc}_{t+1}^{h}] \nonumber
+{\vFunc}_{t}^{h} & = & \frac{\partial {\vFunc}_{t}}{\partial h_{t-1}} + \overbrace{\frac{\partial {\vFunc}_{t}}{\partial {c}_{t}}}^{=0}\frac{\partial {c}_{t}}{\partial h_{t-1}}  
+\\ & = & \util^{h}_{t} + \Discount \Ex_{t} \left[{\vFunc}_{t+1}^{h}\frac{\partial h_{t}}{\partial h_{t-1}} \right] 
+\\ & = & \util^{h}_{t} + \Discount \Ex_{t} [(1-\MPS) {\vFunc}_{t+1}^{h}]  
 \\ & = & \util^{h}_{t} + (1-\MPS) \vEnd_{t}^{h} \label{eq:vhtformula}
 \end{eqnarray}
 %& = & -\gamma {c}_{t}^{1-\CRRA} h_{t-1}^{\gamma \CRRA - \gamma -1} + (1-\MPS) \Discount \Ex_{t} {\vFunc}_{t+1}^{h} \label{eq:vhtfoc}
@@ -2511,7 +2511,7 @@ away uncertainty for transparency):
 \\      1 & = &
         \left(\frac{{m}_{T-1}-{c}_{T-1}}{{c}_{T-1}}\right)\left(\frac{(1-\MPS)h_{T-2}+\MPS {c}_{T-1}}{h_{T-2}}\right)^{\gamma(1/\CRRA-1)}\left(1 +
         \gamma \MPS \left[\frac{{m}_{T-1}-{c}_{T-1}}{(1-\MPS)h_{T-2}+\MPS
-        {c}_{T-1}}\right]\right)^{-1/\CRRA} \nonumber
+        {c}_{T-1}}\right]\right)^{-1/\CRRA}  
 \\ \label{eq:oneeq}
 \end{eqnarray}
 
@@ -2653,7 +2653,7 @@ by $j$; for each $j$:
                 {\cRat}_{i} = \left[h_{j}^{\gamma-\CRRA \gamma}
                 (\vEnd_{t}^{{a}}({a}_{i},(1-\MPS) h_{j}+ {\cRat}_{i})
                 -\MPS \vEnd_{t}^{h}({a}_{i},(1-\MPS)
-                h_{j}+{\cRat}_{i}))\right]^{-1/\CRRA} \nonumber
+                h_{j}+{\cRat}_{i}))\right]^{-1/\CRRA}  
         \end{equation}
 
         \item Construct ${m}_{i} = {\cRat}_{i}+{a}_{i}$
@@ -2711,7 +2711,7 @@ and the maximization problem is
 \begin{eqnarray*}
         {\vFunc}_{t}({m}_{t}) & = & \max_{\{{c}_{t},\varsigma_{t}\}}   ~~ \util({c}_{t}) +  \Discount
         \Ex_{t}[{\vFunc}_{t+1}({m}_{t+1})]
-\\      & \text{s.t.} & \nonumber
+\\      & \text{s.t.} &  
 \\      \Rport_{t+1} & = & \Rfree + (\Risky_{t+1}-\Rfree) \varsigma_{t}
 \\      {m}_{t+1} & = & ({m}_{t}-{c}_{t})\Rport_{t+1} + \tShkEmp_{t+1}
 \\  0       \leq & \varsigma_{t} & \leq 1, \label{eq:noshorts}
@@ -2721,7 +2721,7 @@ and the maximization problem is
 or
 \begin{eqnarray*}
         {\vFunc}_{t}({m}_{t}) & = & \max_{\{\cFunc_{t},\varsigma_{t}\}} ~~  \util({c}_{t}) +  \Ex_{t}[\Discount {\vFunc}_{t+1}(({m}_{t}-{c}_{t}){\Rport}_{t+1} +        {\tShkEmp}_{t+1})]
-\\                       & \text{s.t.} & \nonumber
+\\                       & \text{s.t.} &  
 \\ 0 \leq & \varsigma_{t} & \leq 1
 .
 \end{eqnarray*}
@@ -2747,7 +2747,7 @@ yielding the Euler equation for consumption
 The first order condition with respect to the risky portfolio share is
 \begin{verbatimwrite}{./Equations/FOCw.tex}
 \begin{eqnarray}
-        0 & = & \Ex_{t}[{\vFunc}_{t+1}^{\prime}({m}_{t+1})(\Risky_{t+1}-\Rfree){a}_{t}] \notag
+        0 & = & \Ex_{t}[{\vFunc}_{t+1}^{\prime}({m}_{t+1})(\Risky_{t+1}-\Rfree){a}_{t}]  
 \\        & = & {a}_{t}\Ex_{t}\left[\util^{\prime}\left(\cFunc_{t+1}({m}_{t+1})\right)(\Risky_{t+1}-\Rfree)\right] \label{eq:FOCw}.
 \end{eqnarray}
 \end{verbatimwrite}
@@ -2827,7 +2827,7 @@ maximization problems are difficult and sometimes quite slow to
 solve.  There is a better way.  Define the problem
 \begin{eqnarray}
         \vOpt_{t}({a}_{t}) & = & \max_{\varsigma_{t}} ~~  \vEnd_{t}({a}_{t},\varsigma_{t})
-\\      & \text{s.t.} & \nonumber
+\\      & \text{s.t.} &  
 \\      0 \leq & \varsigma_{t} & \leq 1
 \end{eqnarray}
 where the typographical difference between $\vOpt$ and $\vEnd$
@@ -2932,7 +2932,7 @@ used instead. However, the results obtained (especially
 $\hat{\varsigma}_{t}({a}_{t})$) are much less satisfactory.}
 \begin{eqnarray}
 0 & = & \vEnd^{\varsigma}_{t}({a}_{t},\varsigma_{t})
-\\      & \text{s.t.} & \nonumber
+\\      & \text{s.t.} &  
 \\      0 \leq & \varsigma_{t} & \leq 1
 \end{eqnarray}
 and generates the corresponding optimal portfolio share
@@ -3234,8 +3234,8 @@ As explained in section \ref{sec:normalization}, it is convenient to work with t
 \begin{eqnarray*}
     {\vFunc}_{t}({m}_{t}) & = & \max_{{c}_{t}} \left\{\util({c}_{t})+\beth\Alive_{t+1}\hat{\Discount}_{t+1}
     \Ex_{t}[(\pShk_{t+1}\PGro_{t+1})^{1-\CRRA}{\vFunc}_{t+1}({m}_{t+1})] \right\}   \\
-         & \text{s.t.} &   \nonumber \\
-    {a}_{t}   & = & {m}_{t}-{c}_{t} \nonumber
+         & \text{s.t.} &     \\
+    {a}_{t}   & = & {m}_{t}-{c}_{t}  
 \\      {m}_{t+1} & = & {a}_{t}\underbrace{\left(\frac{\Rfree}{\pShk_{t+1}\PGro_{t+1}}\right)}_{\equiv \Rnorm_{t+1}}+\tShkEmp_{t+1}
 \end{eqnarray*}
 \end{verbatimwrite}
@@ -3342,11 +3342,11 @@ The actual data are taken from several waves of the SCF and the medians and mean
 The key function to perform structural estimation is defined in the \texttt{setup\_Estimation.m} file as follows:
 \begin{verbatimwrite}{./Equations/GapEmpiricalSimulatedMedians.tex}
 \begin{eqnarray}
-\lefteqn{    \texttt{GapEmpiricalSimulatedMedians$[\CRRA,\beth]$:=}} & &  \nonumber \\
-&[&\texttt{ConstructcFuncLife$[\CRRA,\beth]$;}\nonumber\\
-    &&\texttt{Simulate;}\nonumber\\
-    &&\sum\limits_{i}^{N}\weight _{i}\left|\varsigma_{i}^{\tau }-\mathbf{s}^{\tau}(\xi )\right| \nonumber\\
-    &];&\nonumber
+\lefteqn{    \texttt{GapEmpiricalSimulatedMedians$[\CRRA,\beth]$:=}} & &    \\
+&[&\texttt{ConstructcFuncLife$[\CRRA,\beth]$;} \\
+    &&\texttt{Simulate;} \\
+    &&\sum\limits_{i}^{N}\weight _{i}\left|\varsigma_{i}^{\tau }-\mathbf{s}^{\tau}(\xi )\right|  \\
+    &];& 
 \end{eqnarray}
 \end{verbatimwrite}
 \input{./Equations/GapEmpiricalSimulatedMedians.tex}
