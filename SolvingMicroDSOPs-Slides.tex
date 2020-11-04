@@ -44,7 +44,6 @@
 % \usepackage[notocbib]{apacite}
 %\renewcommand{\frametitle}{\textbf\frametitle}
 
-
 % Jirka's definitions
 \usepackage[authoryear]{natbib}
 \definecolor{jirkasred}{rgb}{0.9,0,0}
@@ -79,7 +78,6 @@
     }
 \date{June 2012 \\ {\tiny \url{http://www.econ2.jhu.edu/people/ccarroll/SolvingMicroDSOPs-Slides.pdf}}
 }
-
 
 \begin{frame}[plain]
   \titlepage
@@ -174,7 +172,6 @@ and Envelope relation
 
 \end{frame}
 
-
 \subsection{Discretization of Risks}
 \begin{frame}[label=DiscretizeFig]
 \frametitle{Trick: Discretize the Risks}
@@ -199,7 +196,6 @@ So for any particular $\mRat_{T-1}$ the corresponding $\cRat_{T-1}$ can be found
 using the FOC:
 \input{./Equations/upEqbetaOp.tex}
 
-
 \end{frame}
 \subsection{Interpolate a Consumption Rule}
 \begin{frame}
@@ -219,11 +215,6 @@ $\util^{\prime}(\cRat) = \vEnd^{\prime}_{t}(\mRat[i]-\cRat)$
 \end{enumerate}
 
 \end{frame}
-
-
-
-
-
 
 \begin{frame}[label=DiscretizeEqn]
 \frametitle{Trick: Interpolate a Consumption Rule}
@@ -246,9 +237,6 @@ evaluations of
 \end{eqnarray}
 
 \end{frame}
-
-
-
 
 \begin{comment}
 
@@ -274,7 +262,6 @@ is {\it much} faster,  but result is bad:
 
 \end{frame}
 
-
 \begin{frame}
 \frametitle{Approximate $\vEnd_{t}^{\prime}(\aRat)$?}
 
@@ -282,7 +269,6 @@ Better ... but still violates first two principles:
 \includegraphics[width=4in]{./Figures/PlotOPRawVSFOC.pdf}
 
 \end{frame}
-
 
 \end{comment}
 
@@ -324,7 +310,6 @@ From these we can interpolate as before to construct $\grave{\cFunc}_{t}(\mRat)$
 
 \end{frame}
 
-
 \begin{frame}
 \frametitle{Why Directly Approximating $\vFunc_{t}$ is a Bad Idea}
 
@@ -339,9 +324,7 @@ Principles of Approximation
 %\item Best to approximate things that directly govern behavior
 \end{itemize}
 
-
 \end{frame}
-
 
 \begin{frame}
 \frametitle{Approximate Something That Would Be Linear in PF Case}
@@ -353,7 +336,6 @@ Perfect Foresight Theory:
   \cFunc_{t}(\mRat) & = & (\mRat+\hEnd_{t})\MinMPC_{t} 
 \end{eqnarray}
 for market resources $\mRat$ and end-of-period human wealth $\hEnd$.
-
 
 \medskip\medskip
 \pause 
@@ -381,7 +363,6 @@ and then obtain your approximation from
 \begin{eqnarray}
   \grave{\vFunc}_{t} & = & \util(\grave{\vInv}_{t})
 \end{eqnarray}
-
 
 \end{frame}
 
@@ -417,7 +398,6 @@ and using chain rule it is easy to show that
 \end{itemize}
 \end{enumerate}
 \end{frame}
-
 
 \subsection{Improving the $\aRat$ Grid}
 
@@ -474,7 +454,6 @@ Grid Spacing: Uniform
 
 \end{frame}
 
-
 \begin{frame}
 \frametitle{Trick: Improving the $\aRat$ Grid}
 Grid Spacing: Same $\{\uline{\aRat},\bar{\aRat}\}$ But Triple Exponential $e^{e^{e^{...}}}$ Growth
@@ -482,7 +461,6 @@ Grid Spacing: Same $\{\uline{\aRat},\bar{\aRat}\}$ But Triple Exponential $e^{e^
 \includegraphics[width=4in]{./Figures/GothVInvVSGothCEEE.pdf}
 
 \end{frame}
-
 
 \subsection{The Method of Moderation}
 
@@ -558,7 +536,6 @@ Procedure is very easy:
 \end{figure}
 
 \end{frame}
-
 
 \section{Multiple Control Variables}
 \begin{frame}
@@ -714,6 +691,5 @@ Yields estimates of
 \tiny
 \input handoutBibMake
 \end{frame}
-
 
 \end{document}

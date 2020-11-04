@@ -2,7 +2,6 @@
 \usepackage{\econtexSetup}\usepackage{\econtexShortcuts}
 \providecommand{\textname}{SolvingMicroDSOPs}
 
-
 \providecommand{\Mma}{\textit{Mathematica}}
 
 \providecommand{\thetaMin}{\underline{\theta}}
@@ -28,7 +27,6 @@
 \providecommand{\cEndFuncOpt}{\cEndFunc\text{Opt}}
 \providecommand{\cEndFuncPes}{\cEndFunc\text{Pes}}
 \providecommand{\kappaOpt}{\kappa\text{Opt}}
-
 
 \providecommand{\mFunc}{\ensuremath{\mathrm{m}}}
 \providecommand{\aFunc}{\ensuremath{\mathrm{a}}}
@@ -79,10 +77,8 @@
 \providecommand{\yAccessible}{y\text{Accessible}}
 \providecommand{\yExp}{y\text{Exp}}
 
-
 \providecommand{\yExpPDV}{y\text{ExpPDV}}
 \providecommand{\yMinPDV}{y\text{MinPDV}}
-
 
 \providecommand{\Deltam}{\blacktriangle \mathfrak{m}}
 
@@ -93,7 +89,6 @@
 %\providecommand{\nPP}{\text{nPP}}
 
 \providecommand{\vInv}{\ensuremath{\scriptstyle \Lambda \displaystyle}}
-
 
 \provideboolean{MyNotes}\setboolean{MyNotes}{true}\setboolean{MyNotes}{false}
 
@@ -501,7 +496,6 @@ Compared to the unconstrained case, several changes are:
 \end{itemize}
 
 So what does an artificial liquidity constraint bring about? Essentially it only adds one additional step: after deriving the consumption function for a period-$t$-unconstrained consumer who is the same as the constrainted consumer except that s/he can borrow against next period's minimum income, then the consumption function for the period-t-constrained consumer will be a piecewise one, below which the constraint becomes binding; and the particularly nice thing is we can pinpoint the exact point where this happens.
-
 
 %
 %We come to Section 5.12, which is done by \texttt{2periodIntExpFOCInvPesReaOptCon.m}. Here \texttt{Con} serves as a postfix because now we are solving a problem with liquidity constraint. We first look at the \texttt{functionsIntExpFOCInvPesReaOptCon.m}: (1) On \texttt{SolveAnotherPeriod}, the difference with the version without constraint, is that the lower bound of asset is zero\footnote{The current version may be wrong, since it says the lower bound of asset is tomorrow's minimal labor income discounted to today. }, as opposed to minimal human wealth from the future in the unconstrained scenario; (2) the revision to the consumption and MPC function is easy to understand; (3) The revision to $\ensuremath{\scriptstyle \Lambda \displaystyle}(m, T-t)$ is not that clear, especially in the third from last line. Second the \texttt{2periodIntExpFOCInvPesReaOptCon.m} is similar to the previous one. Third in \texttt{2periodIntExpFOCInvPesReaOptConPlot.m} we compare the solution to the unconstrained and the constrained scenarios, which is shown in Figure 16.
