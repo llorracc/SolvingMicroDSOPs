@@ -1,0 +1,765 @@
+November 4, 2020
+
+Christopher D. Carroll1
+
+Karsten Chipeniuk
+
+Kiichi Tokuoka2
+
+JHU
+
+RBNZ
+
+ECB
+
+Weifeng Wu3
+Fannie Mae
+
+Abstract
+In a risky world, a pessimist assumes the worst will happen. Someone who ignores risk
+altogether is an optimist. Consumption decisions are mathematically simple for both the
+pessimist and the optimist because both behave as if they live in a riskless world. A realist
+(that is, someone who wants to respond optimally to risk) faces a much more difficult problem,
+but (under standard conditions) will choose a spending somewhere between pessimist’s and
+the optimist’s. We use this fact to redefine the space in which the realist searches for optimal
+consumption rules. The resulting solution accurately represents the numerical consumption
+rule over the entire interval of feasible wealth values with remarkably few computations.
+
+Keywords
+
+Dynamic Stochastic Optimization
+
+JEL codes
+
+FillInLater
+
+1 Carroll: Department of Economics, Johns Hopkins University, Baltimore, MD, http://econ.jhu.edu/people/ccarroll/,
+2 Tokuoka: International Monetary Fund, Washington, DC, ktokuoka@imf.org
+3 Wu: Weifeng
+ccarroll@jhu.edu
+Wu, Fanie Mae, Washington DC, .
+
+The views presented in this paper are those of the authors, and should not be attributed to the International
+Monetary Fund, its Executive Board, or management, or to the European Central Bank.
+
+1 Introduction
+Solving a consumption, investment, portfolio choice, or similar intertemporal optimization problem using numerical methods generally requires the modeler to choose how to
+represent a policy or value function. In the stochastic case, where analytical solutions are
+generally not available, a common approach is to use low-order polynominal splines that
+exactly match the function (and maybe some derivatives) at a finite set of gridpoints,
+and then to assume that interpolated or extrapolated versions of that spline represent
+the function well at the continuous infinity of unmatched points.
+This paper argues that a better approach in the standard consumption problem is
+to rely upon the fact that without uncertainty, the optimal consumption function has
+a simple analytical solution. The key insight is that, under standard assumptions, the
+consumer who faces an uninsurable labor income risk will consume less than a consumer
+with the same path for expected income but who does not perceive any uncertainty
+as being attached to that future income. The ‘realistic’ consumer, who does perceive
+the risks, will engage in ‘precautionary saving,’ so the perfect foresight riskless solution
+provides an upper bound to the solution that will actually be optimal. A lower bound
+is provided by the behavior of a consumer who has the subjective belief that the future
+level of income will be the worst that it can possibly be. This consumer, too, behaves
+according to the convenient analytical perfect foresight solution, but his certainty is that
+of a pessimist perfectly confident in his pessimism.
+Using results from Carroll (Forthcoming), we show how to use these upper and lower
+bounds to tightly constrain the shape and characteristics of the solution to problem of
+the ‘realist.’ Imposition of these constraints can clarify and speed the solution of the
+realist’s problem.
+After showing how to use the method in the baseline case, we show how refine it to
+encompass an even tighter theoretical bound.
+
+2 The Realist’s Problem
+We assume that truly optimal behavior in the problem facing the consumer who understands all his risks is captured by
+" T −t
+#
+X
+max Et
+β nθ u(ct+n ) ,
+(1)
+nθ =0
+
+subject to
+at =
+bt+1 =
+yt+1 =
+mt+1 =
+
+mt − ct
+at Rt+1
+p t+1 θt+1
+bt+1 + yt+1
+
+2
+
+(2)
+(3)
+(4)
+(5)
+
+where
+β − pure time discount factor
+at − assets after all actions have been accomplished in period t
+bt+1 − ‘bank balances’ (nonhuman wealth) at the beginning of t + 1
+ct − consumption in period t
+mt − ‘market resources’ available for consumption (‘cash-on-hand’)
+p t+1 − ‘permanent labor income’ in period t + 1
+Rt+1 − interest factor (1 + rt+1 ) from period t to t + 1
+yt+1 − noncapital income in period t + 1.
+and the exogenous variables evolve according to
+Rt =
+p t+1 =
+log θt+n ∼
+
+R∀t
+- constant interest factor = 1 + r
+Γt+1p t
+- permanent labor income dynamics
+2
+2
+N (−σθ /2, σθ ) - lognormal transitory shocks ∀ n > 0.
+
+(6)
+
+It turns out (see Carroll (2014) for a proof) that this problem can be rewritten in a
+more convenient form in which choice and state variables are normalized by the level
+of permanent income, e.g., using nonbold font for normalized variables, mt = ct /ppt .
+When that is done, the Bellman equation for the transformed version of the consumer’s
+problem is
+vt (mt )
+at
+mt+1
+
+=
+
+max u(ct ) + Et [βΓ1−ρ
+t+1 vt+1 (mt+1 )]
+ct
+
+(7)
+
+s.t.
+= mt − ct
+= (R/Γt+1 ) at + θt+1
+| {z }
+≡Rt+1
+
+and because we have not imposed a liquidity constraint, the solution satisfies the Euler
+equation
+0
+u0 (ct ) = Et [βRΓ−ρ
+t+1 u (ct+1 )].
+
+(8)
+
+For the remainder of the paper we will assume that permanent income p t grows by
+a constant factor Γ and is not subject to stochastic shocks. (The generalization to the
+case with permanent shocks is straightforward.)
+
+3 Benchmark: The Method of Endogenous Gridpoints
+For comparison to our new solution method, we use the endogenous gridpoints solution
+to the microeconomic problem presented in Carroll (2006). That method computes the
+level of consumption at a set of gridpoints for market resources m that are determined
+
+3
+
+cT-1 -c T-1
+0.3
+0.2
+0.1
+0.0
+-0.1
+-0.2
+
+5
+
+10
+
+15
+
+20
+
+25
+
+30
+
+mT-1
+
+Truth
+Approximation
+
+-0.3
+Figure 1 For Large Enough mT −1 , Predicted Precautionary Saving is Negative
+(Oops!)
+endogenously using the Euler equation. The consumption function is then constructed
+by linear interpolation among the gridpoints thus found.
+Carroll (2014) describes a specific calibration of the model and constructs a solution
+using five gridpoints chosen to capture the structure of the consumption function reasonably well at values of m near the infinite-horizon target value. (See those notes for
+details).
+Unfortunately, this endogenous gridpoints solution is not very well-behaved outside
+the original range of gridpoints targeted by the solution method. (Though other common solution methods are no better outside their own predefined ranges). Figure 1
+demonstrates the point by plotting the amount of precautionary saving implied by a
+linear extrapolation of our approximated consumption rule (the consumption of the
+perfect foresight consumer c̄T −1 minus our approximation to optimal consumption under uncertainty, c̀T −1 ). Although theory proves that precautionary saving is always
+positive, the linearly extrapolated numerical approximation eventually predicts negative
+precautionary saving (at the point in the figure where the extrapolated locus crosses the
+horizontal axis).
+This error cannot be fixed by extending the upper gridpoint; in the presence of serious
+uncertainty, the consumption rule will need to be evaluated outside of any prespecified
+grid (because starting from the top gridpoint, a large enough realization of the uncertain
+variable will push next period’s realization of assets above that top; a similar argument
+applies below the bottom gridpoint). While a judicious extrapolation technique can
+
+4
+
+prevent this problem from being fatal (for example by carefully excluding negative
+precautionary saving), the problem is often dealt with using inelegant methods whose
+implications for the accuracy of the solution are difficult to gauge.
+
+4 The Method of Moderation
+4.1 The Optimist, the Pessimist, and the Realist
+4.1.1 The Consumption Function
+As a preliminary to our solution, define ht as end-of-period human wealth (the present
+discounted value of future labor income) for a perfect foresight version of the problem of
+a ‘risk optimist:’ a consumer who believes with perfect confidence that the shocks will
+always take the value 1, θt+n = E[θ] = 1 ∀ n > 0. The solution to a perfect foresight
+problem of this kind takes the form1
+c̄t (mt ) = (mt + ht )κt
+
+(9)
+
+for a constant minimal marginal propensity to consume κt given below. We similarly
+define ht as ‘minimal human wealth,’ the present discounted value of labor income if the
+shocks were to take on their worst possible value in every future period θt+n = θ ∀ n > 0
+(which we define as corresponding to the beliefs of a ‘pessimist’).
+A first useful point is that, for the realist, a lower bound for the level of market
+resources is mt = −ht , because if mt equalled this value then there would be a positive
+finite chance (however small) of receiving θt+n = θ in every future period, which would
+require the consumer to set ct to zero in order to guarantee that the intertemporal budget
+constraint holds. Since consumption of zero yields negative infinite utility, the solution
+to realist consumer’s problem is not well defined for values of mt < mt , and the limiting
+value of the realist’s ct is zero as mt ↓ mt .
+Given this result, it will be convenient to define ‘excess’ market resources as the
+amount by which actual resources exceed the lower bound, and ‘excess’ human wealth
+as the amount by which mean expected human wealth exceeds guaranteed minimum
+human wealth:
+=−mt
+
+z}|{
+Nmt = mt + ht
+Nht = ht − ht .
+We can now transparently define the optimal consumption rules for the two perfect
+foresight problems, those of the ‘optimist’ and the ‘pessimist.’ The ‘pessimist’ perceives
+human wealth to be equal to its minimum feasible value ht with certainty, so consumption
+is given by the perfect foresight solution
+ct (mt ) = (mt + ht )κt
+1 For a derivation, see Carroll (Forthcoming); κ is defined therein as the MPC of the perfect foresight consumer with
+t
+horizon T − t.
+
+5
+
+cT-1
+5
+
+
+c
+
+4
+3
+
+c=Hòm+òhLΚ 
+c=HòmL Κ
+
+2
+1
+
+0
+
+2
+
+4
+
+6
+
+8
+
+mT-1
+
+Figure 2 Moderation Illustrated: cT −1 < c̀T −1 < c̄T −1
+= Nmt κt .
+The ‘optimist,’ on the other hand, pretends that there is no uncertainty about future
+income, and therefore consumes
+c̄t (mt ) = (mt + ht − ht + ht )κt
+= (Nmt + Nht )κt
+= ct (mt ) + Nht κt .
+It seems obvious that the spending of the realist will be strictly greater than that of the
+pessimist and strictly less than that of the optimist. Figure 2 illustrates the proposition
+for the consumption rule in period T − 1.
+Proof is more difficult than might be imagined, but the necessary work is done
+in Carroll (Forthcoming) so we will take the proposition as a fact and proceed by
+manipulating the inequality:
+ct (mt + Nmt )
+Nmt κt <
+−Nmt κt >
+−ct (mt + Nmt )
+Nht κt >  c̄t (mt + Nmt ) − ct (mt + Nmt ) 
+c̄t (mt + Nmt ) − ct (mt + Nmt )
+1>
+Nht κt
+|
+{z
+}
+
+< (Nmt + Nht )κt
+> −(Nmt + Nht )κt
+>0
+>0
+
+≡ˆ
+t
+
+where the fraction in the middle of the last inequality is the ratio of actual precautionary
+
+6
+
+saving (the numerator is the difference between perfect-foresight consumption and optimal consumption in the presence of uncertainty) to the maximum conceivable amount
+of precautionary saving (the amount that would be undertaken by the pessimist who
+consumes nothing out of any future income beyond the perfectly certain component).
+Defining µt = log Nmt (which can range from −∞ to ∞), the object in the middle of
+the last inequality is
+
+
+c̄t (mt + eµt ) − ct (mt + eµt )
+,
+(10)
+
+ˆt (µt ) ≡
+Nht κt
+and we now define
+
+
+
+1−
+ˆt (µt )
+χt (µt ) = log
+χ̂
+
+ˆt (µt )
+= log (1/ˆ
+t (µt ) − 1)
+
+(11)
+(12)
+
+which has the virtue that it is linear in the limit as µt approaches +∞.
+χ, the consumption function can be recovered from
+Given χ̂
+=ˆ
+t
+
+z
+ĉt = c̄t −
+
+}|
+{
+1
+Nht κt .
+χt )
+1 + exp(χ̂
+
+(13)
+
+χt at the points µ
+Thus, the procedure is to calculate χ̂
+~ t corresponding to the log
+of the Nm
+~ t points defined above, and then using these to construct an interpolating
+` from which we indirectly obtain our approximated consumption rule
+χ
+approximation χ̂
+t
+` for χ̂
+`ĉt by substituting χ̂
+χ
+χ in equation (13).
+t
+Because this method relies upon the fact that the problem is easy to solve if the decision maker has unreasonable views (either in the optimistic or the pessimistic direction),
+and because the correct solution is always between these immoderate extremes, we call
+our solution procedure the ‘method of moderation.’
+Results are shown in Figure 3; a reader with very good eyesight might be able to
+detect the barest hint of a discrepancy between the Truth and the Approximation at the
+far righthand edge of the figure.
+4.1.2 The Value Function
+Although section ?? argued that our problem is more efficiently solved by constructing
+the consumption rule than by approximating the value function, often it is useful to know
+the value function as well as the consumption rule. Fortunately, many of the tricks used
+when solving for the consumption rule have a direct analogue in approximation of the
+value function.
+Consider the perfect foresight (or “optimist’s”) problem in period T − 1:
+v̄T −1 (mT −1 ) ≡ u(cT −1 ) + βu(cT )
+
+= u(cT −1 ) 1 + β((βT R)1/ρ )1−ρ
+
+= u(cT −1 ) 1 + β(βT R)1/ρ−1
+
+7
+
+cT-1 -c T-1
+0.3
+0.2
+0.1
+0.0
+-0.1
+-0.2
+
+5
+
+10
+
+15
+
+20
+
+25
+
+30
+
+mT-1
+
+Truth
+Approximation
+
+-0.3
+Figure 3 Extrapolated `ĉT −1 Constructed Using the Method of Moderation
+
+= u(cT −1 ) 1 + (βT R)1/ρ /R
+= u(cT −1 ) PDVTt (c)/cT −1
+|
+{z
+}
+≡CT
+t
+
+where CTt = PDVTt (c) is the present discounted value of consumption. A similar function
+can be constructed recursively for earlier periods, yielding the general expression
+v̄t (mt ) =
+=
+=
+=
+=
+
+u(c̄t )CTt
+u(c̄t )κ−1
+t
+u((Nmt + Nht )κt )κ−1
+t
+−1
+u(Nmt + Nht )κ1−ρ
+κ
+t
+t
+−ρ
+u(Nmt + Nht )κt
+
+(14)
+(15)
+(16)
+(17)
+(18)
+
+where the second line uses the fact demonstrated in Carroll (Forthcoming) that Ct = κ−1
+t .
+This can be transformed as
+Λ̄t
+
+≡ ((1 − ρ)v̄t )1/(1−ρ)
+= ct (CTt )1/(1−ρ)
+−ρ/(1−ρ)
+
+= (Nmt + Nht )κt
+
+and since CTt is a constant while the consumption function is linear, Λ̄t will also be
+linear.
+We apply the same transformation to the value function for the problem with uncer-
+
+8
+
+tainty (the “realist’s” problem):
+= ((1 − ρ)v̄t (mt ))1/(1−ρ)
+
+Λ̄t
+
+and an excellent approximation to the value function can be obtained by calculating the
+values of Λ̄ at the same gridpoints used by the consumption function approximation, and
+interpolating among those points.
+However, as with the consumption approximation, we can do even better if we realize
+that the Λ̄ function for the optimist’s problem is an upper bound for the Λ function in
+the presence of uncertainty, and the value function for the pessimist is a lower bound.
+Analogously to (10), define an upper-case
+
+µ 
+µ
+Λ̄t (mt + e t ) −Λt (mt + e t )
+ˆ
+(19)
+t (µt ) =
+Nht κt (CTt )1/(1−ρ)
+and an upper-case version of the χ equation in (12):
+X̂t (µt ) = log
+
+ˆ t (µt )
+1−
+ˆ t (µt )
+
+
+!
+
+
+
+ˆ
+= log 1/t (µt ) − 1
+
+(20)
+(21)
+
+χ
+and if we approximate these objects then invert them (as above with the 
+ˆ and χ̂
+functions) we obtain a very high-quality approximation to our inverted value function
+at the same points for which we have our approximated value function:
+ˆt
+=
+
+z
+Λ̂t
+
+=
+
+Λ̄t
+
+−
+
+}|
+1
+
+!{
+
+1 + exp(X̂t )
+
+Nht κt (CTt )1/(1−ρ)
+
+(22)
+
+from which we obtain our approximation to the value function as
+v̂t = u(Λ̂t )
+v̂tm = u0 (Λ̂t )Λ̂m .
+Although a linear interpolation that matches the level of Λ at the gridpoints is simple,
+a Hermite interpolation that matches both the level and the derivative of the Λ̄t function
+at the gridpoints has the considerable virtue that the v̄t derived from it numerically
+satisfies the envelope theorem at each of the gridpoints for which the problem has been
+solved.
+
+5 Extensions
+5.1 A Tighter Upper Bound
+Carroll (Forthcoming) derives an upper limit κ̄t for the MPC as mt approaches its lower
+bound. Using this fact plus the strict concavity of the consumption function yields the
+
+9
+
+proposition that
+ct (mt + Nmt ) < κ̄t Nmt .
+
+(23)
+
+The solution method described above does not guarantee that approximated consumption will respect this constraint between gridpoints, and a failure to respect the
+constraint can occasionally cause computational problems in solving or simulating the
+model. Here, we describe a method for constructing an approximation that always
+satisfies the constraint.
+Defining m#
+t as the ‘cusp’ point where the two upper bounds intersect:
+
+
+#
+Nm#
++
+Nh
+t κt = κ̄t Nmt
+t
+Nm#
+=
+t
+m#
+=
+t
+
+κt Nht
+(1 − κt )κ̄t
+κt ht − ht
+(1 − κt )κ̄t
+
+,
+
+we want to construct a consumption function for mt ∈ (mt , m#
+t ] that respects the tighter
+upper bound:
+ct (mt + Nmt )
+< κ̄t Nmt
+Nmt κt <
+Nmt (κ̄t − κt ) > κ̄t
+Nmt − ct (mt + Nm
+ t) > 0
+κ̄t Nmt −ct (mt +Nmt )
+1>
+> 0.
+Nmt (κ̄t −κ )
+t
+
+Again defining µt = log Nmt , the object in the middle of the inequality is
+
+ˇt (µt ) ≡
+
+κ̄t − ct (mt + eµt )e−µt
+.
+κ̄t − κt
+
+ˇt (µt ) converges to zero, while as mt approaches +∞, 
+ˇt (µt )
+As mt approaches −mt , 
+approaches 1.
+As before (in equation (??)), we can derive an approximated consumption function;
+call it `čt . This function will clearly do a better job approximating the consumption
+function for low values of mt while the previous approximation will perform better for
+high values of mt .
+For middling values of m it is not clear which of these functions will perform better.
+However, an alternative is available which performs well. Define the highest gridpoint
+#
+#
+¯#
+below m#
+t as m̌t and the lowest gridpoint above mt as m̂t . Then there will be a unique
+interpolating polynomial that matches the level and slope of the consumption function
+at these two points. Call this function c̃t (m).
+Using indicator functions that are zero everywhere except for specified intervals,
+¯#
+1 Lo (m) = 1 if m ≤ m̌
+t
+#
+¯
+1 Mid (m) = 1 if
+m̌#
+t < m < m̂t
+1 Hi (m) = 1 if
+m̂#
+t ≤ m
+
+10
+
+we can define a well-behaved approximating consumption function
+c̀t = 1 Lo`čt + 1 Mid`c̃t + 1 Hi`ĉt .
+
+(24)
+
+This just says that, for each interval, we use the approximation that is most appropriate. The function is continuous and once-differentiable everywhere, and is therefore
+well behaved for computational purposes.
+We now construct an upper-bound value function implied for a consumer whose
+spending behavior is consistent with the refined upper-bound consumption rule.
+For mt ≥ m#
+t , this consumption rule is the same as before, so the constructed upperbound value function is also the same. However, for values mt < m#
+t matters are slightly
+more complicated.
+Start with the fact that at the cusp point,
+#
+T
+v̄t (m#
+t ) = u(c̄t (mt ))Ct
+T
+= u(Nm#
+t κ̄t )Ct .
+
+But for all mt ,
+v̄t (m) = u(c̄t (m)) + v̄t (m − c̄t (m)),
+and we assume that for the consumer below the cusp point consumption is given by
+κ̄Nmt so for mt < m#
+t
+v̄t (m) = u(κ̄t Nm) + v̄t ((1 − κ̄t )Nm),
+which is easy to compute because v̄t (at ) = βv̄t+1 (at R + 1) where v̄t is as defined
+above because a consumer who ends the current period with assets exceeding the lower
+bound will not expect to be constrained next period. (Recall again that we are merely
+constructing an object that is guaranteed to be an upper bound for the value that the
+‘realist’ consumer will experience.) At the gridpoints defined by the solution of the
+consumption problem can then construct
+= ((1 − ρ)v̄t (m))1/(1−ρ)
+ˇ The rest of the procedure
+which yields the appropriate vector for constructing X̌ and .
+is analogous to that performed for the consumption rule and is thus omitted for brevity.
+Λ̄t (m)
+
+6 Conclusion
+The method proposed here is not universally applicable. For example, the method
+cannot be used for problems for which upper and lower bounds to the ‘true’ solution
+are not known. But many problems do have obvious upper and lower bounds, and in
+those cases (as in the consumption example used in the paper), the method may result
+in substantial improvements in accuracy and stability of solutions.
+
+11
+
+cT-1
+2.5
+2.0
+
+c=Κòm ®
+
+1.5
+1.0
+
+¬c
+¬c=Κòm
+
+0.5
+
+0.0
+
+ë
+
+c=ΚHòm+òhL ®
+
+0.5
+
+1.0
+
+mÛ
+2.0
+
+1.5
+
+12
+
+2.5
+
+mT-1
+3.0
+
+References
+Carroll, Christopher D. (2006): “The Method of Endogenous Gridpoints for
+Solving Dynamic Stochastic Optimization Problems,” Economics Letters, 91(3), 312–
+320, http://econ.jhu.edu/people/ccarroll/EndogenousGridpoints.pdf.
+(2014):
+“Solving
+Microeconomic
+Dynamic
+Optimization
+Problems,”
+Archive,
+Johns
+Hopkins
+http://econ.jhu.edu/people/ccarroll/SolvingMicroDSOPs/.
+
+Stochastic
+University,
+
+(Forthcoming): “Theoretical Foundations of Buffer Stock Saving,” Quantitative
+Economics.
+
+13
+
+

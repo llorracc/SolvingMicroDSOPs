@@ -1,0 +1,3405 @@
+
+Solution Methods for Microeconomic
+Dynamic Stochastic Optimization Problems
+November 3, 2020
+
+Christopher D. Carroll1
+Note: The code associated with this document should work (though the Matlab code
+may be out of date), but has been superceded by the set of tools available in the EconARK toolkit, more specifically the HARK Framework. The SMM estination code at the
+end has specifically been superceded by the SolvingMicroDSOPs REMARK
+
+Abstract
+These notes describe tools for solving microeconomic dynamic stochastic optimization
+problems, and show how to use those tools for efficiently estimating a standard life cycle
+consumption/saving model using microeconomic data. No attempt is made at a systematic
+overview of the many possible technical choices; instead, I present a specific set of methods
+that have proven useful in my own work (and explain why other popular methods, such as
+value function iteration, are a bad idea). Paired with these notes is Mathematica and Matlab
+software that solves the problems described in the text.
+
+Keywords
+
+Dynamic Stochastic Optimization, Method of Simulated Moments, Structural Estimation
+
+JEL codes
+
+E21, F41
+
+PDF:
+Slides:
+Web:
+Code:
+Archive:
+
+https://github.com/llorracc/SolvingMicroDSOPs/blob/master/SolvingMicroDSOPs.pdf
+https://github.com/llorracc/SolvingMicroDSOPs/blob/master/SolvingMicroDSOPs-Slides.pdf
+https://llorracc.github.io/SolvingMicroDSOPs
+https://github.com/llorracc/SolvingMicroDSOPs/tree/master/Code
+https://github.com/llorracc/SolvingMicroDSOPs
+(Contains LaTeX code for this document and software producing figures and results)
+
+1 Carroll: Department of Economics, Johns Hopkins University, Baltimore, MD, http://www.econ2.jhu.edu/people/ccarroll/,
+ccarroll@jhu.edu, Phone: (410) 516-7602
+
+The notes were originally written for my Advanced Topics in Macroeconomic Theory class at Johns Hopkins
+University; instructors elsewhere are welcome to use them for teaching purposes. Relative to earlier drafts, this version
+incorporates several improvements related to new results in the paper “Theoretical Foundations of Buffer Stock Saving”
+(especially tools for approximating the consumption and value functions). Like the last major draft, it also builds on
+material in “The Method of Endogenous Gridpoints for Solving Dynamic Stochastic Optimization Problems” published in
+Economics Letters, available at http://www.econ2.jhu.edu/people/ccarroll/EndogenousArchive.zip, and by including
+sample code for a method of simulated moments estimation of the life cycle model a la Gourinchas and Parker (2002)
+and Cagetti (2003). Background derivations, notation, and related subjects are treated in my class notes for first year
+
+Contents
+1 Introduction
+
+3
+
+2 The Problem
+
+4
+
+3 Normalization
+
+5
+
+4 The Usual Theory, and A Bit More Notation
+
+6
+
+5 Solving the Next-to-Last Period
+5.1 Discretizing the Distribution . . . . . . . . . . . . . .
+5.2 The Approximate Consumption and Value Functions .
+5.3 An Interpolated Consumption Function . . . . . . . .
+5.4 Interpolating Expectations . . . . . . . . . . . . . . .
+5.5 Value Function versus First Order Condition . . . . .
+5.6 Transformation . . . . . . . . . . . . . . . . . . . . . .
+5.7 The Self-Imposed ‘Natural’ Borrowing Constraint and
+Bound . . . . . . . . . . . . . . . . . . . . . . . . . . .
+5.8 The Method of Endogenous Gridpoints . . . . . . . .
+5.9 Improving the a Grid . . . . . . . . . . . . . . . . . .
+5.10 The Method of Moderation . . . . . . . . . . . . . . .
+5.11 Approximating the Slope Too . . . . . . . . . . . . . .
+5.12 Value . . . . . . . . . . . . . . . . . . . . . . . . . . .
+5.13 Refinement: A Tighter Upper Bound . . . . . . . . . .
+5.14 Extension: A Stochastic Interest Factor . . . . . . . .
+5.15 Imposing ‘Artificial’ Borrowing Constraints . . . . . .
+6 Recursion
+6.1 Theory . . . . . . . . . .
+6.2 Mathematica Background
+6.3 Program Structure . . . .
+6.3.1 Iteration . . . . .
+6.4 Results . . . . . . . . . .
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+the aT −1 Lower
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+. . . . . . . . . .
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+7
+7
+9
+10
+11
+14
+16
+18
+19
+21
+22
+27
+29
+31
+33
+34
+36
+36
+37
+38
+38
+39
+
+7 Multiple Control Variables
+39
+7.1 Theory . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 40
+7.2 Application . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 41
+7.3 Implementation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 42
+macro, available at http://www.econ2.jhu.edu/people/ccarroll/public/lecturenotes/consumption. I am grateful to
+several generations of graduate students in helping me to refine these notes, to Marc Chan for help in updating the text
+and software to be consistent with Carroll (2006), to Kiichi Tokuoka for drafting the section on structural estimation, to
+Damiano Sandri for exceptionally insightful help in revising and updating the method of simulated moments estimation
+section, and to Weifeng Wu and Metin Uyanik for revising to be consistent with the ‘method of moderation’ and other
+improvements. All errors are my own.
+
+1
+
+7.4
+
+Results
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+43
+
+8 The-Infinite-Horizon
+44
+8.1 Convergence . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 45
+8.2 Coarse then Fine θVec . . . . . . . . . . . . . . . . . . . . . . . . . . . . 46
+9 Structural Estimation
+46
+9.1 Life Cycle Model . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 46
+9.2 Estimation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 48
+10 Conclusion
+
+52
+
+A Further Details on SCF Data
+
+54
+
+2
+
+1 Introduction
+Calculating the mathematically optimal amount to save is a remarkably difficult problem. Under well-founded assumptions about the nature of risk (and attitudes toward
+risk), the problem cannot be solved analytically; computational solutions are the only
+option. To avoid having to solve this hard problem, past generations of economists
+showed impressive ingenuity in reformulating the question. Budding graduate students
+are still taught a host of tricks whose purpose is partly to avoid the resort to numerical
+solutions: Quadratic or Constant Absolute Risk Aversion utility, perfect markets, perfect
+insurance, perfect foresight, the “timeless” perspective, the restriction of uncertainty to
+very special kinds,1 and more.
+The motivation is mainly to exchange an intractable general problem for a tractable
+specific alternative. Unfortunately, the burgeoning literature on numerical solutions
+has shown that the features that yield tractability also profoundly change the solution.
+These tricks are excuses to solve a problem that has defined away the central difficulty:
+Understanding the proper role of uncertainty (and other complexities like constraints)
+in optimal intertemporal choice.
+The temptation to use such tricks (and the tolerance for them in leading academic
+journals) is palpably lessening, thanks to advances in mathematical analysis, increasing
+computing power, and the growing capabilities of numerical computation software.
+Together, such tools permit today’s laptop computers to solve problems that required
+supercomputers a decade ago (and, before that, could not be solved at all).
+These points are not unique to the consumption/saving problem; the same propositions apply to almost any question that involves both intertemporal choice and uncertainty, including many aspects of the behavior of firms and governments.
+Given the ubiquity of such problems, one might expect that the use of numerical
+methods for solving dynamic optimization problems would by now be nearly as common
+as the use of econometric methods in empirical work.
+Of course, we remain far from that equilibrium. The most plausible explanation for
+the gap is that barriers to the use of numerical methods have remained forbiddingly
+high.
+These lecture notes provide a gentle introduction to a particular set of solution tools
+and show how they can be used to solve some canonical problems in consumption choice
+and portfolio allocation. Specifically, the notes describe and solve optimization problems
+for a consumer facing uninsurable idiosyncratic risk to nonfinancial income (e.g., labor
+or transfer income),2 with detailed intuitive discussion of the various mathematical and
+computational techniques that, together, speed the solution by many orders of magnitude
+compared to “brute force” methods. The problem is solved with and without liquidity
+constraints, and the infinite horizon solution is obtained as the limit of the finite horizon
+1 E.g., lognormally distributed rate-of-return risk – but no labor income risk – under CRRA utility (the Merton
+(1969)-Samuelson (1969) model).
+2 Expenditure shocks (such as for medical needs, or to repair a broken automobile) are usually treated in a manner
+similar to labor income shocks. See Merton (1969) and Samuelson (1969) for a solution to the problem of a consumer
+whose only risk is rate-of-return risk on a financial asset; the combined case (both financial and nonfinancial risk) is solved
+below, and much more closely resembles the case with only nonfinancial risk than it does the case with only financial risk.
+
+3
+
+solution. After the basic consumption/saving problem with a deterministic interest rate
+is described and solved, an extension with portfolio choice between a riskless and a risky
+asset is also solved. Finally, a simple example is presented of how to use these methods
+(via the statistical ‘method of simulated moments’ or MSM; sometimes called ‘simulated
+method of moments’ or SMM) to estimate structural parameters like the coefficient of
+relative risk aversion (a la Gourinchas and Parker (2002) and Cagetti (2003)).
+
+2 The Problem
+We are interested in the behavior a consumer whose goal in period t is to maximize
+expected discounted utility from consumption over the remainder of a lifetime that ends
+in period T :
+#
+" T −t
+X
+(1)
+max Et
+β nθ u(ct+n ) ,
+nθ =0
+
+and whose circumstances evolve according to the transition equations3
+at =
+bt+1 =
+yt+1 =
+mt+1 =
+
+mt − ct
+at Rt+1
+p t+1 θt+1
+bt+1 + yt+1
+
+(2)
+(3)
+(4)
+(5)
+
+where the variables are
+β − pure time discount factor
+at − assets after all actions have been accomplished in period t
+bt+1 − ‘bank balances’ (nonhuman wealth) at the beginning of t + 1
+ct − consumption in period t
+mt − ‘market resources’ available for consumption (‘cash-on-hand’)
+p t+1 − ‘permanent labor income’ in period t + 1
+Rt+1 − interest factor (1 + rt+1 ) from period t to t + 1
+yt+1 − noncapital income in period t + 1.
+For now, we will assume that the exogenous variables evolve as follows:
+Rt =
+p t+1 =
+log θt+n ∼
+
+R∀t
+- constant interest factor = 1 + r
+Γt+1p t
+- permanent labor income dynamics
+2
+2
+N (−σθ /2, σθ ) - lognormal transitory shocks ∀ n > 0.
+
+(6)
+
+3 The usual analysis of dynamic programming problems combines the equations below into a single expression; here,
+they are disarticulated to highlight the important point that several distinct processes (intertemporal choice, stochastic
+shocks, intertemporal returns, income growth) are involved in the transition from one period to the next.
+
+4
+
+Using the fact about lognormally distributed variables ELogNorm4 that if log Φ ∼
+N (φ, σφ2 ) then log E[Φ] = φ + σφ2 /2, assumption (7) guarantees that log E[θ] = 0 which
+means that E[θ]=1 (the mean value of the transitory shock is 1).
+Equation (6) indicates that we are allowing for a predictable average profile of income
+growth over the lifetime {Γ}T0 (allowing, for example, for typical career wage paths).5
+Finally, the utility function is of the Constant Relative Risk Aversion (CRRA), form,
+u(•) = •1−ρ /(1 − ρ).
+As is well known, this problem can be rewritten in recursive (Bellman equation) form
+vt (mt , p t ) = max u(ct ) + Et [βvt+1 (mt+1 , p t+1 )]
+ct
+
+(7)
+
+subject to the Dynamic Budget Constraint (DBC) (2)-(5) given above, where vt measures total expected discounted utility from behaving optimally now and henceforth.
+
+3 Normalization
+The single most powerful method for speeding the solution of such models is to redefine
+the problem in a way that reduces the number of state variables (if possible). In the
+consumption problem here, the obvious idea is to see whether the problem can be
+rewritten in terms of the ratio of various variables to permanent noncapital (‘labor’)
+income p t (henceforth for brevity referred to simply as ‘permanent income.’)
+In the last period of life, there is no future, vT +1 = 0, so the optimal plan is to consume
+everything, implying that
+m1−ρ
+T
+.
+(8)
+vT (mT , p T ) =
+1−ρ
+Now define nonbold variables as the bold variable divided by the level of permanent
+income in the same period, so that, for example, mT = mT /ppT ; and define vT (mT ) =
+u(mT ).6 For our CRRA utility function, u(xy) = x1−ρ u(y), so equation (8) can be
+rewritten as
+1−ρ
+m1−ρ
+1−ρ 1−ρ mT
+1−ρ
+T
+=
+p
+= p T1−ρ
+Γ
+vT (mT , p T ) = p 1−ρ
+T −1 T
+−1 ΓT vT (mT ).
+T
+1−ρ
+1−ρ
+Now define a new optimization problem:
+vt (mt )
+
+=
+
+max u(ct ) + Et [βΓ1−ρ
+t+1 vt+1 (mt+1 )]
+ct
+
+(9)
+
+s.t.
+4 This
+
+fact is referred to as ELogNorm in the handout MathFactsList, in the references as Carroll (Current); further
+citation to facts in that handout will be referenced simply by the name used in the handout for the fact in question, e.g.
+LogELogNorm is the name of the fact that implies that log E[θ] = 0.
+5 This equation assumes that there are no shocks to permanent income. A large literature finds that, in reality,
+permanent (or at least extremely highly persistent) shocks exist and are quite large; such shocks therefore need to be
+incorporated into any ‘serious’ model (that is, one that hopes to match and explain empirical data), but the treatment
+of permanent shocks clutters the exposition without adding much to the intuition, so permanent shocks are omitted from
+the analysis until the last section of the notes, which shows how to match the model with empirical micro data. For a full
+treatment of the theory including permanent shocks, see Carroll (Forthcoming).
+6 Nonbold value is bold value divided by p 1−ρ rather than p .
+
+5
+
+at
+mt+1
+
+=
+=
+
+mt − ct
+(R/Γ ) a + θt+1
+| {zt+1} t
+≡Rt+1
+
+The accumulation equation is the normalized version of the transition equation for
+mt+1 .7 Then it is easy to see that for t = T − 1,
+vT −1 (mT −1 , p T −1 ) = p T1−ρ
+−1 vT −1 (mT −1 )
+and so on back to all earlier periods. Hence, if we solve the problem (9) which has only
+a single state variable mt , we can obtain the levels of the value function, consumption,
+and all other variables of interest simply by multiplying the results by the appropriate
+function of p t , e.g. ct (mt , p t ) = p t ct (mt /ppt ) or vt (mt , p t ) = p t1−ρ vt (mt ). We have thus
+reduced the problem from two continuous state variables to one (and thereby enormously
+simplified its solution).
+For some problems it will not be obvious that there is an appropriate ‘normalizing’
+variable, but many problems can be normalized if sufficient thought is given. For
+example, Valencia (2006) shows how a bank’s optimization problem can be normalized
+by the level of the bank’s productivity.
+
+4 The Usual Theory, and A Bit More Notation
+The first order condition for (9) with respect to ct is
+0
+u0 (ct ) = Et [βRt+1 Γ1−ρ
+t+1 vt+1 (mt+1 )]
+−ρ 0
+Γt+1
+vt+1 (mt+1 )]
+
+= Et [βR
+
+(10)
+
+and because the Envelope theorem tells us that
+0
+vt0 (mt ) = Et [βRΓ−ρ
+t+1 vt+1 (mt+1 )]
+
+(11)
+
+we can substitute the LHS of (11) for the RHS of (10) to get
+u0 (ct ) = vt0 (mt )
+
+(12)
+
+and rolling this equation forward one period yields
+0
+u0 (ct+1 ) = vt+1
+(at Rt+1 + θt+1 )
+
+(13)
+
+while substituting the LHS in equation (10) gives us the Euler equation for consumption
+0
+u0 (ct ) = Et [βRΓ−ρ
+t+1 u (ct+1 )].
+
+7 Derivation:
+
+pt+1
+mt+1 /p
+
+=
+
+mt+1
+
+=
+=
+
+pt+1 + yt+1 /p
+pt+1
+(mt − ct )R/p
+
+
+mt
+ct
+pt
+yt+1
+−
++
+R
+pt
+pt
+p t+1
+p t+1
+(mt − ct )(R/Γt+1 ) + θt+1 .
+| {z }
+at
+
+6
+
+(14)
+
+Now note that in equation (13) neither mt nor ct has any direct effect on vt+1 - only
+the difference between them (i.e. unconsumed market resources or ‘assets’ at ) matters.
+It is therefore possible (and will turn out to be convenient) to define a function8
+vt (at ) = Et [βΓ1−ρ
+t+1 vt+1 (Rt+1 at + θt+1 )]
+
+(15)
+
+that returns the expected t + 1 value associated with ending period t with any given
+amount of assets. This definition implies that
+0
+v0t (at ) = Et [βRΓ−ρ
+t+1 vt+1 (Rt+1 at + θt+1 )]
+
+or, substituting from equation (13),
+
+
+0
+v0t (at ) = Et βRΓ−ρ
+t+1 u (ct+1 (Rt+1 at + θt+1 )) .
+
+(16)
+(17)
+
+Finally, note for future use that the first order condition (10) can now be rewritten as
+u0 (ct ) = v0t (mt − ct ).
+
+(18)
+
+5 Solving the Next-to-Last Period
+The problem in the second-to-last period of life is:
+
+
+vT −1 (mT −1 ) = max u(cT −1 ) + β ET −1 ΓT1−ρ vT ((mT −1 − cT −1 )RT + θT ) ,
+cT −1
+
+and using (1) the fact that vT = u(c); (2) the definition of u(c); (3) the definition of the
+expectations operator, and (4) the fact that ΓT is nonstochastic, this becomes
+Z ∞
+c1−ρ
+((mT −1 − cT −1 )RT + θ)1−ρ
+1−ρ
+T −1
+vT −1 (mT −1 ) = max
++ βΓT
+dF(θ)
+cT −1
+1−ρ
+1−ρ
+0
+where F is the cumulative distribution function for θ.
+In principle, the maximization implicitly defines a function cT −1 (mT −1 ) that yields
+optimal consumption in period T −1 for any given level of resources mT −1 . Unfortunately,
+however, there is no general analytical solution to this maximization problem, and so
+for any given mT −1 we must use numerical computational tools to find the cT −1 that
+maximizes the expression. This is excruciatingly slow because for every potential cT −1
+to be considered, the integral must be calculated numerically, and numerical integration
+is very slow.
+
+5.1 Discretizing the Distribution
+Our first time-saving step is therefore to construct a discrete approximation to the
+lognormal distribution that can be used in place of numerical integration. We calculate
+an n-point approximation as follows.
+
+8 The peculiar letter designating our new function is pronounced ‘Gothic v’. Letters in this font will be used for
+end-of-period quantities.
+
+7
+
+ℱ
+1.
+♯n-1
+-1
+-1
+← [θ | ♯n-2
+< θ < ♯n-1
+]
+
+♯1
+
+[θ | 0 < θ < ♯-1
+1 ]→
+0.
+
+♯-1
+1
+
+-1
+♯n-1
+
+θ
+
+Figure 1 Discrete Approximation to Lognormal Distribution F
+Define a set of points from ]0 to ]nθ on the [0, 1] interval as the elements of the set
+] = {0, 1/n, 2/n, . . . , 1}.9 Call the inverse of the θ distribution F −1 , and define the
+−1
+points ]−1
+(]i ). Then the conditional mean of θ in each of the intervals numbered
+i = F
+1 to n is:
+Z ]−1
+i
+−1
+−1
+θi ≡ E[θ|]i−1 ≤ θ < ]i ] =
+ϑ dF (ϑ).
+(19)
+]−1
+i−1
+
+The method is illustrated in Figure 1. The solid continuous curve represents the “true”
+CDF F (θ) for a lognormal distribution such that E[θ] = 1, σθ = 0.1. The short vertical
+line segments represent the nθ equiprobable values of θi which are used to approximate
+this distribution.10
+Recalling our definition of vt (at ), for t = T − 1
+ X
+nθ
+(RT aT −1 + θi )1−ρ
+1
+1−ρ
+(20)
+vT −1 (aT −1 ) = βΓT
+nθ i=1
+1−ρ
+
+9 These
+
+points define intervals that constitute a partition of the domain of F .
+sophisticated approximation methods exist (e.g. Gauss-Hermite quadrature; see Kopecky and Suen (2010)
+for a discussion of other alternatives), but the method described here is easy to understand, quick to calculate, and has
+additional advantages briefly described in the discussion of simulation below.
+10 More
+
+8
+
+so we can rewrite the maximization problem as
+(
+)
+c1−ρ
+T −1
+vT −1 (mT −1 ) = max
++ vT −1 (mT −1 − cT −1 ) .
+cT −1
+1−ρ
+
+(21)
+
+5.2 The Approximate Consumption and Value Functions
+
+Given a particular value of mT −1 , a numerical maximization routine can now find the
+cT −1 that maximizes (21) in a reasonable amount of time. The Mathematica program
+that solves exactly this problem is called 2period.m. (The archive also contains parallel Matlab programs, but these notes will dwell on the specifics of the Mathematica
+implementation, which is superior in many respects.)
+The first thing 2period.m does is to read in the file functions.m which contains definitions of the consumption and value functions; functions.m also defines the function
+SolveAnotherPeriod which, given the existence in memory of a solution for period t+1,
+solves for period t.
+The next step is to run the programs setup_params.m, setup_grids.m,
+setup_shocks.m, respectively.
+setup_params.m sets values for the parameter
+values like the coefficient of relative risk aversion. setup_shocks.m calculates the values
+for the θi defined above (and puts those values, and the (identical) probability associated
+with each of them, in the vector variables θVals and θProb). Finally, setup_grids.m
+constructs a list of potential values of cash-on-hand and saving, then puts them in
+the vector variables mVec = aVec = {0, 1, 2, 3, 4} respectively. Then 2period.m runs
+the program setup_lastperiod.m which defines the elements necessary to determine
+behavior in the last period, in which cT (m) = m and vT (m) = u(m).
+After all the setup, the only remaining step in 2period.m is to invoke SolveAnotherPeriod,
+which constructs the solution for period T − 1 given the presence of the solution for
+period T (constructed by setup_lastperiod.m).
+Because we will always be comparing our solution to the perfect foresight solution, we
+also construct the variables required to characterize the perfect foresight consumption
+function in periods prior to T . In particular, we construct the list yExpPDV (which
+contains the PDV of expected income – ‘expected human wealth’), and yMinPDV which
+contains the minimum possible discounted value of future income at the beginning of
+period T − 1 (‘minimum human wealth’).11
+The perfect foresight consumption function is also constructed (setup_PerfectForesightSolution.m
+This program uses the fact that, in Mathematica, functions can be saved as objects
+using the commands # and &. The # denotes the argument of the function, while the &,
+placed at the end of the function, tells Mathematica that the function should be saved
+as an object. In the program, the last period perfect foresight consumption function
+is saved as an element in the list cz = {(# - 1 + Last[yExpPDV]) Last[κMin]
+&}, where Last[yExpPDV] gives the just-constructed PDV of human wealth at the
+beginning of T (equal to 1, since current income is included in hT ), and Last[κMin]
+gives the perfect foresight marginal propensity to consume (equal to 1, since it is
+11 This
+
+is useful in determining the search range for the optimal level of consumption in the maximization problem.
+
+9
+
+optimal to spend all resources in the last period). Since # in the code stands in for what
+was called m in the model, the discounted total wealth is decomposed into discounted
+non-human wealth # - 1 and discounted human wealth Last[yExpPDV]. The resulting
+formula then corresponds to c̄T = (mT − 1 + hT )κT , which translates to c̄T = mT for
+hT = κT = 1.
+The infinite horizon perfect foresight marginal propensity to save
+λ = (1/R)(Rβ)1/ρ
+
+(22)
+
+is also defined because it will be useful in a number of derivations.12
+The program then constructs behavior for one iteration back from the last period of life
+by using the function AddNewPeriodToParamLifeDates. Using the Mathematica command AppendTo, various existing lists (which characterized the solution for period T ) are
+redefined to include an additional element representing the relevant formulas in the second to last period of life. For example, κMin now has two elements. The second element,
+given by 1/(1 + Last[λ]/Last[κMin]), is the perfect foresight marginal propensity to
+consume in t = T − 1.13
+Next, the program defines a function v[at_] (in functions_stable.m) which is
+the exact implementation of (15): It returns the expectation of the value of behaving
+optimally in period T given any specific amount of assets at the end of T − 1, aT −1 .
+The heart of the program is the next expression (in functions.m). This expression
+loops over the values of the variable mVec, solving the maximization problem (given in
+equation (21)):
+max
+c
+
+u[c] + v[mVec[[i]]-c]
+
+(23)
+
+for each of the i values of mVec (henceforth let’s call these points mT −1,i ).
+The
+maximization routine returns two values: the maximized value, and the value of c which
+yields that maximized value. When the loop (the Table command) is finished, the
+variable vAndcList contains two lists, one with the values vT −1,i and the other with the
+consumption levels cT −1,i associated with the mT −1,i .
+
+5.3 An Interpolated Consumption Function
+Now we use the first of the really convenient built-in features of Mathematica. Given
+a set of points on a function (in this case, the consumption function cT −1 (m)), Mathematica can create an object called an InterpolatingFunction which when applied to
+an input m will yield the value of c that corresponds to a linear interpolation of the
+value of c from the points in the InterpolatingFunction object. We can therefore
+define an approximation to the consumption function c̀T −1 (mT −1 ) which, when called
+with an mT −1 that is equal to one of the points in mVec[[i]] returns the associated
+value of cT −1,i , and when called with a value of mT −1 that is not exactly equal to one
+of the mVec[[i]], returns the value of c that reflects a linear interpolation between the
+cT −1,i associated with the two mVec[[i]] points nearest to mT −1 . Thus if the function
+12 Detailed
+13 Carroll
+
+discussion can be found in Carroll (Forthcoming).
+(Forthcoming) shows that this is also a recurring formula that extends inductively to earlier periods.
+
+10
+
+cT-1
+
+2.0
+1.5
+1.0
+0.5
+
+1
+
+2
+
+3
+
+4
+
+mT-1
+
+Figure 2 cT −1 (mT −1 ) (solid) versus c̀T −1 (mT −1 ) (dashed)
+is called with mT −1 = 1.75 and the nearest gridpoints are mj,T −1 = 1 and mk,T −1 = 2
+then the value of cT −1 returned by the function would be (0.25cj,T −1 + 0.75ck,T −1 ). We
+can define a numerical approximation to the value function v̀T −1 (mT −1 ) in an exactly
+analogous way.
+Figures 2 and 3 show plots of the c̀T −1 and v̀T −1 InterpolatingFunctions that are
+generated by the program 2PeriodInt.m. While the c̀T −1 function looks very smooth,
+the fact that the v̀T −1 function is a set of line segments is very evident. This figure
+provides the beginning of the intuition for why trying to approximate the value function
+directly is a bad idea (in this context).14
+
+5.4 Interpolating Expectations
+2period.m works well in the sense that it generates a good approximation to the true
+optimal consumption function. However, there is a clear inefficiency in the program:
+Since it uses equation (21), for every value of mT −1 the program must calculate the
+utility consequences of various possible choices of cT −1 as it searches for the best choice.
+But for any given value of aT −1 , there is a good chance that the program may end
+up calculating the corresponding v many times while maximizing utility from different
+mT −1 ’s. For example, it is possible that the program will calculate the value of ending the
+14 For some problems, especially ones with discrete choices, value function approximation is unavoidable; nevertheless,
+even in such problems, the techniques sketched below can be very useful across much of the range over which the problem
+is defined.
+
+11
+
+vT-1
+-1
+-2
+-3
+-4
+-5
+-6
+1
+
+2
+
+3
+
+4
+
+mT-1
+
+Figure 3 vT −1 (solid) versus v̀T −1 (mT −1 ) (dashed)
+period with aT −1 = 0 dozens of times. It would be much more efficient if the program
+could make that calculation once and then merely recall the value when it is needed
+again.
+This can be achieved using the same interpolation technique used above to construct a direct numerical approximation to the value function: Define a grid of possible values for saving at time T − 1, ~aT −1 (aVec in setup_grids.m), designating
+the specific points aT −1,i ; for each of these values of aT −1,i , calculate the vector ~vT −1
+as the collection of points vT −1,i = vT −1 (aT −1,i ) using equation (15); then construct
+an InterpolatingFunction object v̀T −1 (aT −1 ) from the list of points on the function
+captured in the ~aT −1 and ~vT −1 vectors.
+Thus, we are now interpolating for the function that reveals the expected value of
+ending the period with a given amount of assets.15 The program 2periodIntExp.m solves
+this problem. Figure 4 compares the true value function to the InterpolatingFunction
+approximation; the functions are of course identical at the gridpoints chosen for aT −1
+and they appear reasonably close except in the region below mT −1 = 1.
+Nevertheless, the resulting consumption rule obtained when v̀T −1 (aT −1 ) is used instead
+of vT −1 (aT −1 ) is surprisingly bad, as shown in figure 5. For example, when mT −1 goes
+from 2 to 3, c̀T −1 goes from about 1 to about 2, yet when mT −1 goes from 3 to 4, c̀T −1
+goes from about 2 to about 2.05. The function fails even to be strictly concave, which
+15 What we are doing here is closely related to ‘the method of parameterized expectations’ of den Haan and Marcet
+(1990); the only difference is that our method is essentially a nonparametric version.
+
+12
+
+T-1
+
+-0.5
+-1.0
+-1.5
+-2.0
+1
+
+2
+
+3
+
+4
+
+mT-1
+
+Figure 4 End-Of-Period Value vT −1 (aT −1 ) (solid) versus v̀T −1 (aT −1 ) (dashed)
+
+cT-1
+
+2.0
+1.5
+1.0
+0.5
+
+1
+
+2
+
+3
+
+Figure 5 cT −1 (mT −1 ) (solid) versus c̀T −1 (mT −1 ) (dashed)
+
+13
+
+4
+
+mT-1
+
+is distressing because Carroll and Kimball (1996) prove that the correct consumption
+function is strictly concave in a wide class of problems that includes this problem.
+
+5.5 Value Function versus First Order Condition
+Loosely speaking, our difficulty reflects the fact that the consumption choice is governed
+by the marginal value function, not by the level of the value function (which is the
+object that we approximated). To understand this point, recall that a quadratic utility
+function exhibits risk aversion because with a stochastic c,
+2
+2
+E[−(c − c)
+ ] < −(E[c] − c)
+
+
+(24)
+
+where c is the ‘bliss point’. However, unlike the CRRA utility function, with quadratic
+utility the consumption/saving behavior of consumers is unaffected by risk since behavior
+is determined by the first order condition, which depends on marginal utility, and when
+utility is quadratic, marginal utility is unaffected by risk:
+E[−2(c − c)]
+ = −2(E[c] − c).
+
+
+(25)
+
+Intuitively, if one’s goal is to accurately capture choices that are governed by marginal
+value, numerical techniques that approximate the marginal value function will yield a
+more accurate approximation to optimal behavior than techniques that approximate the
+level of the value function.
+The first order condition of the maximization problem in period T − 1 is:
+0
+u0 (cT −1 ) = β ET −1 [Γ−ρ
+T Ru (cT )]
+ X
+nθ
+1
+−ρ
+Γ−ρ (R(mT −1 − cT −1 ) + θi )−ρ .
+cT −1 = Rβ
+nθ i=1 T
+
+(26)
+(27)
+
+The downward-sloping curve in Figure 6 shows the value of c−ρ
+T −1 for our baseline
+parameter values for 0 ≤ cT −1 ≤ 4 (the horizontal axis). The solid upward-sloping curve
+shows the value of the RHS of (27) as a function of cT −1 under the assumption that
+mT −1 = 3. Constructing this figure is rather time-consuming, because for every value of
+cT −1 plotted we must calculate the RHS of (27). The value of cT −1 for which the RHS
+and LHS of (27) are equal is the optimal level of consumption given that mT −1 = 3,
+so the intersection of the downward-sloping and the upward-sloping curves gives the
+optimal value of cT −1 . As we can see, the two curves intersect just below cT −1 = 2.
+Similarly, the upward-sloping dashed curve shows the expected value of the RHS of (27)
+under the assumption that mT −1 = 4, and the intersection of this curve with u0 (cT −1 )
+yields the optimal level of consumption if mT −1 = 4. These two curves intersect slightly
+below cT −1 = 2.5. Thus, increasing mT −1 from 3 to 4 increases optimal consumption by
+about 0.5.
+Now consider the derivative of our function v̀T −1 (aT −1 ). Because we have constructed
+v̀T −1 as a linear interpolation, the slope of v̀T −1 (aT −1 ) between any two adjacent points
+{aT −1,i , ai+1,T −1 } is constant. The level of the slope immediately below any particular
+
+14
+
+T-1 (mT-1 -cT-1 ),u' (cT-1 )
+0.8
+0.6
+0.4
+0.2
+0.0
+0
+
+1
+
+2
+
+3
+
+4
+
+cT-1
+
+Figure 6 u0 (c) versus v0T −1 (3 − c), v0T −1 (4 − c), v̀0T −1 (3 − c), v̀0T −1 (4 − c)
+gridpoint is different, of course, from the slope above that gridpoint, a fact which implies
+that the derivative of v̀T −1 (aT −1 ) follows a step function.
+The solid-line step function in Figure 6 depicts the actual value of v̀0T −1 (3 − cT −1 ).
+When we attempt to find optimal values of cT −1 given mT −1 using v̀T −1 (aT −1 ), the numerical optimization routine will return the cT −1 for which u0 (cT −1 ) = v̀0T −1 (mT −1 −cT −1 ).
+Thus, for mT −1 = 3 the program will return the value of cT −1 for which the downwardsloping u0 (cT −1 ) curve intersects with the v̀0T −1 (3 − cT −1 ); as the diagram shows, this
+value is exactly equal to 2. Similarly, if we ask the routine to find the optimal cT −1 for
+mT −1 = 4, it finds the point of intersection of u0 (cT −1 ) with v̀0T −1 (4 − cT −1 ); and as the
+diagram shows, this intersection is only slightly above 2. Hence, this figure illustrates
+why the numerical consumption function plotted earlier returned values very close to
+cT −1 = 2 for both mT −1 = 3 and mT −1 = 4.
+We would obviously obtain much better estimates of the point of intersection between
+0
+u (cT −1 ) and v0T −1 (mT −1 − cT −1 ) if our estimate of v̀0T −1 were not a step function. In
+fact, we already know how to construct linear interpolations to functions, so the obvious
+next step is to construct a linear interpolating approximation to the expected marginal
+value of end-of-period assets function v0 . That is, we calculate
+ X
+nθ
+1
+−ρ
+0
+vT −1 (aT −1 ) = βRΓT
+(RT aT −1 + θi )−ρ
+(28)
+nθ i=1
+at the points in aVec yielding {{aT −1,1 , v0T −1,1 }, {aT −1,2 , v0T −1,2 } . . .} and construct
+v̀0T −1 (aT −1 ) as the linear interpolating function that fits this set of points.
+
+15
+
+`'
+v' ,v
+2.5
+2.0
+1.5
+1.0
+0.5
+
+1
+
+2
+
+3
+
+4
+
+aT-1
+
+Figure 7 v0T −1 (aT −1 ) versus v̀0T −1 (aT −1 )
+PlotOPRawVSFOC
+The program file functionsIntExpFOC.m therefore uses the function va[at_] defined in functions_stable.m as the embodiment of equation (28), and constructs the
+InterpolatingFunction as described above. The results are shown in Figure 7. The
+linear interpolating approximation looks roughly as good (or bad) for the marginal value
+function as it was for the level of the value function. However, Figure 8 shows that
+the new consumption function (long dashes) is a considerably better approximation of
+the true consumption function (solid) than was the consumption function obtained by
+approximating the level of the value function (short dashes).
+
+5.6 Transformation
+Even the new-and-improved consumption function diverges notably from the true solution, especially at lower values of m. That is because the linear interpolation does
+an increasingly poor job of capturing the nonlinearity of v0T −1 (aT −1 ) at lower and lower
+levels of a.
+This is where we unveil our next trick. To understand the logic, start by considering
+the case where RT = β = ΓT = 1 and there is no uncertainty (that is, we know for sure
+that income next period will be θT = 1). The final Euler equation is then:
+−ρ
+c−ρ
+T −1 = cT .
+
+(29)
+
+In the case we are now considering with no uncertainty and no liquidity constraints,
+
+16
+
+cT-1
+
+2.0
+1.5
+1.0
+0.5
+
+1
+
+2
+
+3
+
+4
+
+mT-1
+
+Figure 8 cT −1 (mT −1 ) (solid) Versus Two Methods for Constructing c̀T −1 (mT −1 )
+the optimizing consumer does not care whether a unit of income is scheduled to be
+received in the future period T or the current period T − 1; there is perfect certainty
+that the income will be received, so the consumer treats it as equivalent to a unit of
+current wealth. Total resources therefore are comprised of two types: current market
+resources mT −1 and ‘human wealth’ (the PDV of future income) of hT −1 = 1 (where we
+use the Gothic font to signify that this is the expectation, as of the END of the period,
+of the income that will be received in future periods; it does not include current income,
+which has already been incorporated into mT −1 ).
+The optimal solution is to spend half of total lifetime resources in period T − 1
+and the remainder in period T . Since total resources are known with certainty to be
+mT −1 + hT −1 = mT −1 + 1, and since vT0 −1 (mT −1 ) = u0 (cT −1 ) this implies that
+−ρ
+
+mT −1 + 1
+0
+.
+(30)
+vT −1 (mT −1 ) =
+2
+Of course, this is a highly nonlinear function. However, if we raise both sides of (30) to
+the power (−1/ρ) the result is a linear function:
+mT −1 + 1
+[vT0 −1 (mT −1 )]−1/ρ =
+.
+(31)
+2
+This is a specific example of a general phenomenon: A theoretical literature cited
+in Carroll and Kimball (1996) establishes that under perfect certainty, if the periodby-period marginal utility function is of the form c−ρ
+t , the marginal value function will
+
+17
+
+be of the form (γmt + ζ)−ρ for some constants {γ, ζ}. This means that if we were solving
+the perfect foresight problem numerically, we could always calculate a numerically exact
+(because linear) interpolation. To put this in intuitive terms, the problem we are facing is
+that the marginal value function is highly nonlinear. But we have a compelling solution
+to that problem, because the nonlinearity springs largely from the fact that we are raising
+something to the power −ρ. In effect, we can ‘unwind’ all of the nonlinearity owing to
+that operation and the remaining nonlinearity will not be nearly so great. Specifically,
+applying the foregoing insights to the end-of-period value function vT −1 , we can define
+cT −1 (aT −1 ) ≡ [v0T −1 (aT −1 )]−1/ρ
+
+(32)
+
+which would be linear in the perfect foresight case. Thus, our procedure is to calculate
+the values of cT −1,i at each of the aT −1,i gridpoints, with the idea that we will construct
+c̀T −1 as the interpolating function connecting these points.
+
+5.7 The Self-Imposed ‘Natural’ Borrowing Constraint and the aT −1 Lower
+Bound
+This is the appropriate moment to ask an awkward question that we have so far neglected: How should a function like c̀T −1 be evaluated outside the range of points
+spanned by {aT −1,1 , ..., aT −1,n } for which we have calculated the corresponding cT −1,i
+gridpoints used to produce our linearly interpolating approximation c̀T −1 (as described
+in section 5.3)?
+The natural answer would seem to be linear extrapolation; for example, we could use
+c̀T −1 (aT −1 ) = c̀T −1 (aT −1,1 ) + c̀aT −1 (aT −1,1 )(aT −1 − aT −1,1 )
+
+(33)
+
+for values of aT −1 < aT −1,1 , where c̀aT −1 (aT −1,1 ) is the derivative of the c̀T −1 function
+at the bottommost gridpoint (see below). Unfortunately, this approach will lead us
+into difficulties. To see why, consider what happens to the true (not approximated)
+vT −1 (aT −1 ) as aT −1 approaches the value aT −1 = −θR−1
+T . From (28) we have
+ X
+nθ
+1
+−ρ
+0
+lim vT −1 (aT −1 ) =
+lim βRΓT
+(aT −1 RT + θi )−ρ .
+(34)
+aT −1 ↓aT −1
+aT −1 ↓aT −1
+nθ i=1
+But since θ = θ1 , exactly at aT −1 = aT −1 the first term in the summation would be
+(−θ+θ1 )−ρ = 1/0ρ which is infinity. The reason is simple: −aT −1 is the PDV, as of T −1,
+of the minimum possible realization of income in period T (RT aT −1 = −θ1 ). Thus, if
+the consumer borrows an amount greater than or equal to θR−1
+T (that is, if the consumer
+ends T − 1 with aT −1 ≤ −θR−1
+)
+and
+then
+draws
+the
+worst
+possible income shock in
+T
+period T , he will have to consume zero in period T (or a negative amount), which yields
+−∞ utility and ∞ marginal utility (or undefined utility and marginal utility).
+These reflections lead us to the conclusion that the consumer faces a ‘self-imposed’
+liquidity constraint (which results from the precautionary motive): He will never borrow
+an amount greater than or equal to θR−1
+T (that is, assets will never reach the lower
+
+18
+
+bound of aT −1 ).16 The constraint is ‘self-imposed’ in the sense that if the utility function
+were different (say, Constant Absolute Risk Aversion), the consumer would be willing to
+borrow more than θR−1
+T because a choice of zero or negative consumption in period T
+would yield some finite amount of utility.17
+This self-imposed constraint cannot be captured well when the v0T −1 function is approximated by a piecewise linear function like v̀0T −1 , because a linear approximation
+can never reach the correct gridpoint for v0T −1 (aT −1 ) = ∞. To see what will happen
+instead, note first that if we are approximating v0T −1 the smallest value in aVec must
+be greater than aT −1 (because the expectation for any gridpoint ≤ aT −1 is undefined).
+Then when the approximating v0T −1 function is evaluated at some value less than the
+first element in aVec[1], the approximating function will linearly extrapolate the slope
+that characterized the lowest segment of the piecewise linear approximation (between
+aVec[1] and aVec[2]), a procedure that will return a positive finite number, even if the
+requested aT −1 point is below aT −1 . This means that the precautionary saving motive
+is understated, and by an arbitrarily large amount as the level of assets approaches its
+true theoretical minimum aT −1 .
+The foregoing logic demonstrates that the marginal value of saving approaches inBut this implies that limaT −1 ↓aT −1 cT −1 (aT −1 ) =
+finity as aT −1 ↓ aT −1 = −θR−1
+T .
+−1/ρ
+0
+= 0; that is, as a approaches its minimum possible value, the cor(vT −1 (aT −1 ))
+responding amount of c must approach its minimum possible value: zero.
+The upshot of this discussion is a realization that all we need to do is to augment
+each of the ~aT −1 and ~cT −1 vectors with an extra point so that the first element in the
+list used to produce our InterpolatingFunction is {aT −1,0 , cT −1,0 } = {aT −1 , 0.}.
+Figure 9 plots the results (generated by the program 2periodIntExpFOCInv.m). The
+solid line calculates the exact numerical value of cT −1 (aT −1 ) while the dashed line is the
+linear interpolating approximation c̀T −1 (aT −1 ). This figure well illustrates the value of
+the transformation: The true function is close to linear, and so the linear approximation
+is almost indistinguishable from the true function except at the very lowest values of
+aT −1 .
+`0 (a ) as [c̀ (a )]−ρ (dashed
+Figure 10 similarly shows that when we calculate v̀
+T −1 T −1
+T −1 T −1
+line) we obtain a much closer approximation to the true function v0T −1 (aT −1 ) (solid line)
+than we did in the previous program which did not do the transformation (Figure 7).
+
+5.8 The Method of Endogenous Gridpoints
+Our solution procedure for cT −1 still requires us, for each point in m
+~ T −1 (mVect in the
+code), to use a numerical rootfinding algorithm to search for the value of cT −1 that solves
+u0 (cT −1 ) = v0T −1 (mT −1 − cT −1 ). Unfortunately, rootfinding is a notoriously computationintensive (that is, slow!) operation.
+16 Another
+
+term for a constraint of this kind is the ‘natural borrowing constraint.’
+it is very unclear what a proper economic interpretation of negative consumption might be – this is an
+important reason why CARA utility, like quadratic utility, is increasingly not used for serious quantitative work, though
+it is still useful for teaching purposes.
+17 Though
+
+19
+
+(T-1 (aT-1 ))-1ρ , T-1 (aT-1 )
+5
+4
+3
+2
+1
+1
+
+2
+
+3
+
+4
+
+aT-1
+
+Figure 9 cT −1 (aT −1 ) versus c̀T −1 (aT −1 )
+
+
+T-1 (aT-1 ), T-1 (aT-1 )
+1.5
+
+1.0
+
+0.5
+
+1
+
+2
+
+3
+
+4
+
+`0 (a ) Constructed Using c̀ (a )
+Figure 10 v0T −1 (aT −1 ) vs. v̀
+T −1 T −1
+T −1 T −1
+
+20
+
+aT-1
+
+Our next trick lets us completely skip the rootfinding step. The method can be
+understood by noting that any arbitrary value of aT −1,i (greater than its lower bound
+value aT −1 ) will be associated with some marginal valuation as of the end of period
+T − 1, and the further observation that it is trivial to find the value of c that yields the
+same marginal valuation, using the first order condition,
+u0 (cT −1,i ) = v0T −1 (aT −1,i )
+cT −1,i = u0−1 (v0T −1 (aT −1,i ))
+
+(35)
+(36)
+
+= (v0T −1 (aT −1,i ))−1/ρ
+≡ cT −1 (aT −1,i )
+≡ cT −1,i .
+
+(37)
+(38)
+(39)
+
+But with mutually consistent values of cT −1,i and aT −1,i (consistent, in the sense that
+they are the unique optimal values that correspond to the solution to the problem in a
+single state), we can obtain the mT −1,i that corresponds to both of them from
+mT −1,i = cT −1,i + aT −1,i .
+
+(40)
+
+These mT −1 gridpoints are “endogenous” in contrast to the usual solution method of
+specifying some ex-ante grid of values of mT −1 and then using a rootfinding routine to
+locate the corresponding optimal cT −1 .
+Thus, we can generate a set of mT −1,i and cT −1,i pairs that can be interpolated between
+in order to yield c̀(mT −1 ) at virtually zero computational cost once we have the ~cT −1
+values in hand!18 One might worry about whether the {m, c} points obtained in this
+way will provide a good representation of the consumption function as a whole, but in
+practice there are good reasons why they work well (basically, this procedure generates
+a set of gridpoints that is naturally dense right around the parts of the function with
+the greatest nonlinearity). Figure 11 plots the actual consumption function cT −1 and
+the approximated consumption function c̀T −1 derived by the method of endogenous grid
+points. Compared to the approximate consumption functions illustrated in Figure 8
+c̀T −1 is quite close to the actual consumption function.
+
+5.9 Improving the a Grid
+Thus far, we have arbitrarily used a gridpoints of {0., 1., 2., 3., 4.} (augmented in the last
+subsection by aT −1 ). But it has been obvious from the figures that the approximated
+c̀T −1 function tends to be farthest from its true value cT −1 at low values of a. Combining
+this with our insight that aT −1 is a lower bound, we are now in position to define a more
+deliberate method for constructing gridpoints for aT −1 – a method that yields values that
+are more densely spaced than the uniform grid at low values of a. A pragmatic choice
+that works well is to find the values such that (1) the last value exceeds the lower bound
+by the same amount āT −1 as our original maximum gridpoint (in our case, 4.); (2) we
+have the same
+number of gridpoints as before; and (3) the multi-exponential growth rate
+...
+ee
+(that is, e
+for some number of exponentiations nθ ) from each point to the next point
+18 This
+
+is the essential point of Carroll (2006).
+
+21
+
+cT-1 (mT-1 ), c T-1 (aT-1 )
+2.0
+1.5
+1.0
+0.5
+1
+
+2
+
+3
+
+4
+
+mT-1
+
+Figure 11 cT −1 (mT −1 ) (solid) versus c̀T −1 (mT −1 ) (dashed)
+is constant (instead of, as previously, imposing constancy of the absolute gap between
+points).
+The results (generated by the program 2periodIntExpFOCInvEEE.m) are depicted
+in Figures 12 and 13, which are notably closer to their respective truths than the
+corresponding figures that used the original grid.
+
+5.10 The Method of Moderation
+Unfortunately, this endogenous gridpoints solution is not very well-behaved outside the
+original range of gridpoints targeted by the solution method. (Though other common solution methods are no better outside their own predefined ranges). Figure 14
+demonstrates the point by plotting the amount of precautionary saving implied by a
+linear extrapolation of our approximated consumption rule (the consumption of the
+perfect foresight consumer c̄T −1 minus our approximation to optimal consumption under uncertainty, c̀T −1 ). Although theory proves that precautionary saving is always
+positive, the linearly extrapolated numerical approximation eventually predicts negative
+precautionary saving (at the point in the figure where the extrapolated locus crosses the
+horizontal axis).
+This error cannot be fixed by extending the upper gridpoint; in the presence of serious
+uncertainty, the consumption rule will need to be evaluated outside of any prespecified
+grid (because starting from the top gridpoint, a large enough realization of the uncertain
+variable will push next period’s realization of assets above that top; a similar argument
+
+22
+
+(T-1 (aT-1 ))-1ρ , T-1 (aT-1 )
+5
+4
+3
+2
+1
+1
+
+2
+
+3
+
+4
+
+aT-1
+
+Figure 12 cT −1 (aT −1 ) versus c̀T −1 (aT −1 ), Multi-Exponential aVec
+
+
+T-1 (aT-1 ), T-1 (aT-1 )
+
+1.5
+
+1.0
+
+0.5
+
+1
+
+2
+
+3
+
+`0 (a ), Multi-Exponential aVec
+Figure 13 v0T −1 (aT −1 ) vs. v̀
+T −1 T −1
+
+23
+
+4
+
+aT-1
+
+cT-1 -c T-1
+0.3
+0.2
+0.1
+0.0
+-0.1
+-0.2
+
+5
+
+10
+
+15
+
+20
+
+25
+
+30
+
+mT-1
+
+Truth
+Approximation
+
+-0.3
+Figure 14 For Large Enough mT −1 , Predicted Precautionary Saving is Negative
+(Oops!)
+applies below the bottom gridpoint). While a judicious extrapolation technique can
+prevent this problem from being fatal (for example by carefully excluding negative
+precautionary saving), the problem is often dealt with using inelegant methods whose
+implications for the accuracy of the solution are difficult to gauge.
+As a preliminary to our solution, define ht as end-of-period human wealth (the present
+discounted value of future labor income) for a perfect foresight version of the problem of
+a ‘risk optimist:’ a consumer who believes with perfect confidence that the shocks will
+always take the value 1, θt+n = E[θ] = 1 ∀ n > 0. The solution to a perfect foresight
+problem of this kind takes the form19
+c̄t (mt ) = (mt + ht )κt
+
+(41)
+
+for a constant minimal marginal propensity to consume κt given below.
+We similarly define ht as ‘minimal human wealth,’ the present discounted value of labor
+income if the shocks were to take on their worst possible value in every future period
+θt+n = θ ∀ n > 0 (which we define as corresponding to the beliefs of a ‘pessimist’).
+We will call a ‘realist’ the consumer who correctly perceives the true probabilities of
+the future risks and optimizes accordingly.
+A first useful point is that, for the realist, a lower bound for the level of market
+resources is mt = −ht , because if mt equalled this value then there would be a positive
+19 For a derivation, see Carroll (Forthcoming); κ is defined therein as the MPC of the perfect foresight consumer with
+t
+horizon T − t.
+
+24
+
+finite chance (however small) of receiving θt+n = θ in every future period, which would
+require the consumer to set ct to zero in order to guarantee that the intertemporal budget
+constraint holds (this is the multiperiod generalization of the discussion in section 5.7
+about aT −1 ). Since consumption of zero yields negative infinite utility, the solution to
+realist consumer’s problem is not well defined for values of mt < mt , and the limiting
+value of the realist’s ct is zero as mt ↓ mt .
+Given this result, it will be convenient to define ‘excess’ market resources as the
+amount by which actual resources exceed the lower bound, and ‘excess’ human wealth
+as the amount by which mean expected human wealth exceeds guaranteed minimum
+human wealth:
+=−mt
+
+z}|{
+Nmt = mt + ht
+Nht = ht − ht .
+We can now transparently define the optimal consumption rules for the two perfect
+foresight problems, those of the ‘optimist’ and the ‘pessimist.’ The ‘pessimist’ perceives
+human wealth to be equal to its minimum feasible value ht with certainty, so consumption
+is given by the perfect foresight solution
+ct (mt ) = (mt + ht )κt
+= Nmt κt .
+The ‘optimist,’ on the other hand, pretends that there is no uncertainty about future
+income, and therefore consumes
+c̄t (mt ) = (mt + ht − ht + ht )κt
+= (Nmt + Nht )κt
+= ct (mt ) + Nht κt .
+It seems obvious that the spending of the realist will be strictly greater than that
+of the pessimist and strictly less than that of the optimist. Figure 15 illustrates the
+proposition for the consumption rule in period T − 1.
+Proof is more difficult than might be imagined, but the necessary work is done
+in Carroll (Forthcoming) so we will take the proposition as a fact and proceed by
+manipulating the inequality:
+Nmt κt <
+ct (mt + Nmt )
+−Nmt κt >
+−ct (mt + Nmt )
+Nht κt >  c̄t (mt + Nmt ) − ct (mt + Nmt ) 
+c̄t (mt + Nmt ) − ct (mt + Nmt )
+1>
+Nht κt
+|
+{z
+}
+
+< (Nmt + Nht )κt
+> −(Nmt + Nht )κt
+>0
+>0
+
+≡ˆ
+t
+
+where the fraction in the middle of the last inequality is the ratio of actual precautionary
+saving (the numerator is the difference between perfect-foresight consumption and optimal consumption in the presence of uncertainty) to the maximum conceivable amount
+
+25
+
+cT-1
+5
+
+
+c
+
+4
+c=Hòm+òhLΚ 
+
+3
+
+c=HòmL Κ
+2
+1
+
+0
+
+2
+
+4
+
+6
+
+8
+
+mT-1
+
+Figure 15 Moderation Illustrated: cT −1 < c̀T −1 < c̄T −1
+of precautionary saving (the amount that would be undertaken by the pessimist who
+consumes nothing out of any future income beyond the perfectly certain component).
+Defining µt = log Nmt (which can range from −∞ to ∞), the object in the middle of
+the last inequality is
+
+
+c̄t (mt + eµt ) − ct (mt + eµt )
+,
+(42)
+
+ˆt (µt ) ≡
+Nht κt
+and we now define
+
+
+
+1−
+ˆt (µt )
+χt (µt ) = log
+χ̂
+
+ˆt (µt )
+= log (1/ˆ
+t (µt ) − 1)
+
+(43)
+(44)
+
+which has the virtue that it is linear in the limit as µt approaches +∞.
+χ, the consumption function can be recovered from
+Given χ̂
+=ˆ
+t
+
+z
+ĉt = c̄t −
+
+}|
+{
+1
+Nht κt .
+χt )
+1 + exp(χ̂
+
+(45)
+
+χt at the points µ
+Thus, the procedure is to calculate χ̂
+~ t corresponding to the log
+of the Nm
+~ t points defined above, and then using these to construct an interpolating
+` from which we indirectly obtain our approximated consumption rule
+χ
+approximation χ̂
+t
+` for χ̂
+`ĉt by substituting χ̂
+χ
+χ in equation (45).
+t
+
+26
+
+cT-1 -c T-1
+0.3
+0.2
+0.1
+0.0
+-0.1
+-0.2
+
+5
+
+10
+
+15
+
+20
+
+25
+
+30
+
+mT-1
+
+Truth
+Approximation
+
+-0.3
+Figure 16 Extrapolated `ĉT −1 Constructed Using the Method of Moderation
+Because this method relies upon the fact that the problem is easy to solve if the decision maker has unreasonable views (either in the optimistic or the pessimistic direction),
+and because the correct solution is always between these immoderate extremes, we call
+our solution procedure the ‘method of moderation.’
+Results are shown in Figure 16; a reader with very good eyesight might be able to
+detect the barest hint of a discrepancy between the Truth and the Approximation at
+the far righthand edge of the figure – a stark contrast with the calamitous divergence
+evident in Figure 14.
+
+5.11 Approximating the Slope Too
+Until now, we have calculated the level of consumption at various different gridpoints
+χT −1 ). But
+and used linear interpolation (either directly for cT −1 or indirectly for, say, χ̂
+the resulting piecewise linear approximations have the unattractive feature that they are
+not differentiable at the ‘kink points’ that correspond to the gridpoints where the slope
+of the function changes discretely.
+Carroll (Forthcoming) shows that the true consumption function for this problem is
+‘smooth:’ It exhibits a well-defined unique marginal propensity to consume at every
+positive value of m. This suggests that we should calculate, not just the level of
+consumption, but also the marginal propensity to consume (henceforth κ) at each
+gridpoint, and then find an interpolating approximation that smoothly matches both
+the level and the slope at those points.
+
+27
+
+This requires us to differentiate (42) and (44), yielding
+
+
+κt (mt )
+≡κ
+}|
+{
+z
+µt 
+
+ˆµt (µt ) = (Nht κt )−1 eµt κt − cm
+t (mt + e )
+χµt (µt )
+χ̂
+
+
+=
+
+−ˆ
+µt (µt )/ˆ
+2t
+1/ˆ
+t (µt ) − 1
+
+
+
+and (dropping arguments) with some algebra these can be combined to yield
+
+
+κt Nmt Nht (κt − κt )
+µ
+χt =
+.
+χ̂
+(c̄t − ct )(c̄t − ct − κt Nht )
+
+(46)
+(47)
+
+(48)
+
+To compute the vector of values of (46) corresponding to the points in µ
+~ t , we need
+the marginal propensities to consume (designated κ) at each of the gridpoints, cm
+t (the
+vector of such values is ~κt ). These can be obtained by differentiating the Euler equation
+(18) (where we define mt (a) ≡ ct (a) + a):
+u0 (ct ) = v̂at (mt − ct )
+
+(49)
+
+with respect to a, yielding a marginal propensity to have consumed ca at each gridpoint:
+u00 (ct )cat = v̂aa
+t (mt − ct )
+a
+00
+ct = v̂aa
+t (mt − ct )/u (ct )
+
+(50)
+(51)
+
+and the marginal propensity to consume at the beginning of the period is obtained from
+the marginal propensity to have consumed by noting that
+c = m−a
+c + 1 = ma
+a
+
+which, together with the chain rule ca = cm ma , yields the MPC from
+=ma
+
+z }| {
+cm (ca + 1) = ca
+cm = ca /(1 + ca ).
+
+(52)
+(53)
+
+Designating `ĉT −1 as the approximated consumption rule obtained using an interpolatχ that matches both the level and the first derivative
+ing polynomial approximation to χ̂
+at the gridpoints, Figure 17 plots the difference between this latest approximation and
+the true consumption rule for period T − 1 up to the same large value (far beyond the
+largest gridpoint) used in prior figures. Of course, at the gridpoints the approximation
+will match the true function; but this figure illustrates that the approximation is quite
+accurate far beyond the last gridpoint (which is the last point at which the difference
+touches the horizontal axis). (We plot here the difference between the two functions
+rather than the level plotted in previous figures, because in levels the approximation
+error would not be detectable even to the most eagle-eyed reader.)
+
+28
+
+T-1 -c T-1
+0.0025
+0.0020
+0.0015
+0.0010
+0.0005
+0.0000
+
+5
+
+10
+
+15
+
+20
+
+25
+
+30
+
+mT-1
+
+-0.0005
+Figure 17 Difference Between True cT −1 and `ĉT −1 Is Minuscule
+
+5.12 Value
+Although section 5.5 argued that our problem is more efficiently solved by constructing
+the consumption rule than by approximating the value function, often it is useful to know
+the value function as well as the consumption rule. Fortunately, many of the tricks used
+when solving for the consumption rule have a direct analogue in approximation of the
+value function.
+Consider the perfect foresight (or “optimist’s”) problem in period T − 1:
+v̄T −1 (mT −1 ) ≡ u(cT −1 ) + βu(cT )
+
+= u(cT −1 ) 1 + β((βT R)1/ρ )1−ρ
+
+= u(cT −1 ) 1 + β(βT R)1/ρ−1
+
+= u(cT −1 ) 1 + (βT R)1/ρ /R
+= u(cT −1 ) PDVTt (c)/cT −1
+{z
+}
+|
+≡CT
+t
+
+where CTt = PDVTt (c) is the present discounted value of consumption. A similar function
+can be constructed recursively for earlier periods, yielding the general expression
+v̄t (mt ) = u(c̄t )CTt
+= u(c̄t )κ−1
+t
+= u((Nmt + Nht )κt )κ−1
+t
+
+29
+
+(54)
+(55)
+(56)
+
+= u(Nmt + Nht )κ1−ρ
+κ−1
+t
+t
+= u(Nmt + Nht )κ−ρ
+t
+
+(57)
+(58)
+
+where the second line uses the fact demonstrated in Carroll (Forthcoming) that Ct = κ−1
+t .
+This can be transformed as
+Λ̄t
+
+≡ ((1 − ρ)v̄t )1/(1−ρ)
+= ct (CTt )1/(1−ρ)
+−ρ/(1−ρ)
+
+= (Nmt + Nht )κt
+with derivative
+m
+Λ̄t
+
+= (CTt )1/(1−ρ) κt ,
+−ρ/(1−ρ)
+
+= κt
+
+and since CTt is a constant while the consumption function is linear, Λ̄t will also be linear.
+We apply the same transformation to the value function for the problem with uncertainty (the “realist’s” problem) and differentiate
+Λ̄t
+m
+Λ̄t
+
+= ((1 − ρ)v̄t (mt ))1/(1−ρ)
+= ((1 − ρ)v̄t (mt ))−1+1/(1−ρ) v̄tm (mt )
+
+and an excellent approximation to the value function can be obtained by calculating the
+values of Λ̄ at the same gridpoints used by the consumption function approximation, and
+interpolating among those points.
+However, as with the consumption approximation, we can do even better if we realize
+that the Λ̄ function for the optimist’s problem is an upper bound for the Λ function in
+the presence of uncertainty, and the value function for the pessimist is a lower bound.
+Analogously to (42), define an upper-case
+
+µ 
+µ
+Λ̄t (mt + e t ) −Λt (mt + e t )
+ˆ t (µt ) =
+
+(59)
+Nht κt (CTt )1/(1−ρ)
+with derivative (dropping arguments)
+m
+ˆ µt = (Nht κt (CTt )1/(1−ρ) )−1 eµt (Λ̄m
+
+t −Λt )
+
+(60)
+
+and an upper-case version of the χ equation in (44):
+ˆ t (µt )
+1−
+ˆ t (µt )
+
+
+X̂t (µt ) = log
+
+!
+
+
+
+ˆ t (µt ) − 1
+= log 1/
+
+(61)
+(62)
+
+with corresponding derivative
+X̂µt =
+
+ˆ µt /
+ˆ 2t
+−
+ˆt − 1
+1/
+
+!
+(63)
+
+χ
+and if we approximate these objects then invert them (as above with the 
+ˆ and χ̂
+
+30
+
+functions) we obtain a very high-quality approximation to our inverted value function
+at the same points for which we have our approximated value function:
+ˆt
+=
+
+z
+Λ̂t
+
+=
+
+Λ̄t
+
+−
+
+}|
+1
+
+!{
+
+1 + exp(X̂t )
+
+Nht κt (CTt )1/(1−ρ)
+
+(64)
+
+from which we obtain our approximation to the value function and its derivatives as
+v̂t = u(Λ̂t )
+v̂tm = u0 (Λ̂t )Λ̂m
+v̂tmm = u00 (Λ̂t )(Λ̂m )2 + u0 (Λ̂t )Λ̂mm .
+Although a linear interpolation that matches the level of Λ at the gridpoints is simple,
+a Hermite interpolation that matches both the level and the derivative of the Λ̄t function
+at the gridpoints has the considerable virtue that the v̄t derived from it numerically
+satisfies the envelope theorem at each of the gridpoints for which the problem has been
+solved.
+If we use the double-derivative calculated above to produce a higher-order Hermite
+polynomial, our approximation will also match marginal propensity to consume at the
+gridpoints; this would guarantee that the consumption function generated from the
+value function would match both the level of consumption and the marginal propensity
+to consume at the gridpoints; the numerical differences between the newly constructed
+consumption function and the highly accurate one constructed earlier would be negligible
+within the grid.
+
+5.13 Refinement: A Tighter Upper Bound
+Carroll (Forthcoming) derives an upper limit κ̄t for the MPC as mt approaches its lower
+bound. Using this fact plus the strict concavity of the consumption function yields the
+proposition that
+(65)
+
+ct (mt + Nmt ) < κ̄t Nmt .
+
+The solution method described above does not guarantee that approximated consumption will respect this constraint between gridpoints, and a failure to respect the
+constraint can occasionally cause computational problems in solving or simulating the
+model. Here, we describe a method for constructing an approximation that always
+satisfies the constraint.
+Defining m#
+t as the ‘cusp’ point where the two upper bounds intersect:
+
+
+#
+Nmt + Nht κt = κ̄t Nm#
+t
+Nm#
+=
+t
+m#
+=
+t
+
+31
+
+κt Nht
+(1 − κt )κ̄t
+κt ht − ht
+(1 − κt )κ̄t
+
+,
+
+we want to construct a consumption function for mt ∈ (mt , m#
+t ] that respects the tighter
+upper bound:
+Nmt κt <
+ct (mt + Nmt )
+< κ̄t Nmt
+Nmt − ct (mt + Nm
+Nmt (κ̄t − κt ) > κ̄t
+ t) > 0
+κ̄t Nmt −ct (mt +Nmt )
+> 0.
+1>
+Nmt (κ̄t −κ )
+t
+
+Again defining µt = log Nmt , the object in the middle of the inequality is
+κ̄t − ct (mt + eµt )e−µt
+κ̄t − κt
+µt
+ct (mt + eµt )e−µt − κ m
+t (mt + e )
+
+ˇµt (µt ) =
+.
+κ̄t − κt
+
+ˇt (µt ) ≡
+
+As mt approaches −mt , 
+ˇt (µt ) converges to zero, while as mt approaches +∞, 
+ˇt (µt )
+approaches 1.
+As before (in equation (15)), we can derive an approximated consumption function;
+call it `čt . This function will clearly do a better job approximating the consumption
+function for low values of mt while the previous approximation will perform better for
+high values of mt .
+For middling values of m it is not clear which of these functions will perform better.
+However, an alternative is available which performs well. Define the highest gridpoint
+#
+#
+¯#
+below m#
+t as m̌t and the lowest gridpoint above mt as m̂t . Then there will be a unique
+interpolating polynomial that matches the level and slope of the consumption function
+at these two points. Call this function c̃t (m).
+Using indicator functions that are zero everywhere except for specified intervals,
+¯#
+1 Lo (m) = 1 if m ≤ m̌
+t
+#
+¯
+1 Mid (m) = 1 if
+m̌#
+t < m < m̂t
+1 Hi (m) = 1 if
+m̂#
+t ≤ m
+we can define a well-behaved approximating consumption function
+c̀t = 1 Lo`čt + 1 Mid`c̃t + 1 Hi`ĉt .
+
+(66)
+
+This just says that, for each interval, we use the approximation that is most appropriate. The function is continuous and once-differentiable everywhere, and is therefore
+well behaved for computational purposes.
+We now construct an upper-bound value function implied for a consumer whose
+spending behavior is consistent with the refined upper-bound consumption rule.
+For mt ≥ m#
+t , this consumption rule is the same as before, so the constructed upperbound value function is also the same. However, for values mt < m#
+t matters are slightly
+more complicated.
+Start with the fact that at the cusp point,
+#
+T
+v̄t (m#
+t ) = u(c̄t (mt ))Ct
+T
+= u(Nm#
+t κ̄t )Ct .
+
+32
+
+But for all mt ,
+v̄t (m) = u(c̄t (m)) + v̄t (m − c̄t (m)),
+and we assume that for the consumer below the cusp point consumption is given by
+κ̄Nmt so for mt < m#
+t
+v̄t (m) = u(κ̄t Nm) + v̄t ((1 − κ̄t )Nm),
+which is easy to compute because v̄t (at ) = βv̄t+1 (at R + 1) where v̄t is as defined
+above because a consumer who ends the current period with assets exceeding the lower
+bound will not expect to be constrained next period. (Recall again that we are merely
+constructing an object that is guaranteed to be an upper bound for the value that the
+‘realist’ consumer will experience.) At the gridpoints defined by the solution of the
+consumption problem can then construct
+Λ̄t (m)
+
+= ((1 − ρ)v̄t (m))1/(1−ρ)
+
+ˇ The
+and its derivatives which yields the appropriate vector for constructing X̌ and .
+rest of the procedure is analogous to that performed for the consumption rule and is
+thus omitted for brevity.
+
+5.14 Extension: A Stochastic Interest Factor
+Thus far we have assumed that the interest factor is constant at R. Extending the
+previous derivations to allow for a perfectly forecastable time-varying interest factor Rt
+would be trivial. Allowing for a stochastic interest factor is less trivial.
+The easiest case is where the interest factor is i.i.d.,
+log Rt+n ∼ N (r + φ − σr2 /2, σr2 ) ∀ n > 0
+
+(67)
+
+where φ is the risk premium and the σr2 /2 adjustment to the mean log return guarantees that an increase in σr2 constitutes a mean-preserving spread in the level of the
+return.
+This case is reasonably straightforward because Merton (1969) and Samuelson (1969)
+showed that for a consumer without labor income (or with perfectly forecastable labor
+income) the consumption function is linear, with an infinite-horizon MPC20
+1/ρ
+κ = 1 − β Et [R1−ρ
+(68)
+t+1 ]
+and in this case the previous analysis applies once we substitute this MPC for the one
+that characterizes the perfect foresight problem without rate-of-return risk.
+The more realistic case where the interest factor has some serial correlation is more
+complex. We consider the simplest case that captures the main features of empirical
+interest rate dynamics: An AR(1) process. Thus the specification is
+rt+1 − r = (rt − r)γ + t+1
+
+20 See
+
+CRRA-RateRisk for a derivation.
+
+33
+
+(69)
+
+where r is the long-run mean log interest factor, 0 < γ < 1 is the AR(1) serial correlation
+coefficient, and t+1 is the stochastic shock.
+The consumer’s problem in this case now has two state variables, mt and rt , and is
+described by
+vt (mt , rt )
+
+1−ρ
+max u(ct ) + Et [βt+1 Γt+1
+vt+1 (mt+1 , rt+1 )]
+
+=
+
+ct
+
+s.t.
+at =
+rt+1 − r =
+Rt+1 =
+mt+1 =
+
+(70)
+
+mt − ct
+(rt − r)γ + t+1
+exp(rt+1 )
+(R /Γ ) a + θt+1 .
+| t+1{z t+1} t
+≡Rt+1
+
+We approximate the AR(1) process by a Markov transition matrix using standard
+techniques. The stochastic interest factor is allowed to take on 11 values centered
+around the steady-state value r and chosen [how?]. Given this Markov transition matrix,
+conditional on the Markov AR(1) state the consumption functions for the ‘optimist’ and
+the ‘pessimist’ will still be linear, with identical MPC’s that are computed numerically.
+Given these MPC’s, the (conditional) realist’s consumption function can be computed
+for each Markov state, and the converged consumption rules constitute the solution
+contingent on the dynamics of the stochastic interest rate process.
+In principle, this refinement should be combined with the previous one; further exposition of this combination is omitted here because no new insights spring from the
+combination of the two techniques.
+
+5.15 Imposing ‘Artificial’ Borrowing Constraints
+Optimization problems often come with additional constraints that must be satisfied.
+Particularly common is an ‘artificial’ liquidity constraint that prevents the consumer’s
+net worth from falling below some value, often zero.21 The problem then becomes
+vT −1 (mT −1 )
+aT −1
+mT
+aT −1
+
+=
+
+max u(cT −1 ) + ET −1 [βΓT1−ρ vT (mT )]
+cT −1
+
+s.t.
+= mT −1 − cT −1
+= RT aT −1 + θT
+≥ 0.
+
+By definition, the constraint will bind if the unconstrained consumer would choose a
+level of spending that would violate the constraint. Here, that means that the constraint
+binds if the cT −1 that satisfies the unconstrained FOC
+0
+c−ρ
+T −1 = vT −1 (mT −1 − cT −1 )
+
+(71)
+
+21 The word artificial is chosen only because of its clarity in distinguishing this from the case of the ‘natural’ borrowing
+constraint examined above; no derogation is intended – constraints of this kind certainly exist in the real world.
+
+34
+
+is greater than mT −1 . Call c̀∗T −1 the approximated function returning the level of cT −1
+that satisfies (71). Then the approximated constrained optimal consumption function
+will be
+c̀T −1 (mT −1 ) = min[mT −1 , c̀∗T −1 (mT −1 )].
+
+(72)
+
+The introduction of the constraint also introduces a sharp nonlinearity in all of the
+functions at the point where the constraint begins to bind. As a result, to get solutions
+that are anywhere close to numerically accurate it is useful to augment the grid of values
+of the state variable to include the exact value at which the constraint ceases to bind.
+Fortunately, this is easy to calculate. We know that when the constraint is binding the
+consumer is saving nothing, which yields marginal value of v0T −1 (0). Further, when the
+constraint is binding, cT −1 = mT −1 . Thus, the largest value of consumption for which
+the constraint is binding will be the point for which the marginal utility of consumption
+is exactly equal to the (expected, discounted) marginal value of saving 0. We know this
+because the marginal utility of consumption is a downward-sloping function and so if the
+consumer were to consume  more, the marginal utility of that extra consumption would
+be below the (discounted, expected) marginal utility of saving, and thus the consumer
+would engage in positive saving and the constraint would no longer be binding. Thus
+the level of mT −1 at which the lconstraint stops binding is:22
+u0 (mT −1 ) = v0T −1 (0)
+mT −1 = (v0T −1 (0))(−1/ρ)
+= cT −1 (0).
+
+(73)
+
+The constrained problem is solved by 2periodIntExpFOCInvPesReaOptCon.m; the
+resulting consumption rule is shown in Figure 18. For comparison purposes, the approximate consumption rule from Figure 18 is reproduced here as the solid line. The presence
+of the liquidity constraint requires three changes to the procedures outlined above:
+1. We redefine ht , which now is the PDV of receiving θt+1 = θ next period and
+θt+n = 0 ∀ n > 1 – that is, the pessimist believes he will receive nothing beyond
+period t + 1
+2. We augment the end-of-period aVec with zero and with a point with a small
+positive value so that the generated mVec will the binding point m# and a point
+just above it (so that we can better capture the curvature around that point)
+3. We redefine the optimal consumption rule as in equation (72). This ensures that
+the liquidity-constrained ‘realist’ will consume more than the redefined ‘pessimist,’
+so that we will have  still between 0 and 1 and the ‘method of moderation’ will
+proceed smoothly.
+As expected, the liquidity constraint only causes a divergence between the two functions at the point where the optimal unconstrained consumption rule runs into the 45
+degree line.
+22 The
+
+logic here repeats an insight from Deaton (1991).
+
+35
+
+cT-1
+2.5
+2.0
+1.5
+1.0
+0.5
+
+1
+
+2
+
+3
+
+4
+
+mT-1
+
+Figure 18 Constrained (solid) and Unconstrained (dashed) Consumption
+
+6 Recursion
+6.1 Theory
+Before we solve for periods earlier than T − 1, we assume for convenience that in each
+such period a liquidity constraint exists of the kind discussed above, preventing c from
+exceeding m. This simplifies things a bit because now we can always consider an aVec
+that starts with zero as its smallest element.
+Recall now equations (17) and (18):
+0
+v0t (at ) = Et [βRΓ−ρ
+t+1 u (ct+1 (Rt+1 at + θt+1 ))]
+u0 (ct ) = v0t (mt − ct ).
+
+Assuming that the problem has been solved up to period t+1 (and thus assuming that we
+have an approximated c̀t+1 (mt+1 )), our solution method essentially involves using these
+two equations in succession to work back progressively from period T −1 to the beginning
+of life. Stated generally, the method is as follows. (Here, we use the original, rather than
+the “refined,” method for constructing consumption functions; the generalization of the
+algorithm below to use the refined method presents no difficulties.)
+1. For the grid of values at,i in aVect , numerically calculate the values of ct (at,i ) and
+cat (at,i ),
+−1/ρ
+
+ct,i = (v0t (at,i ))
+
+(74)
+
+,
+
+36
+
+=
+
+
+
+−ρ −1/ρ
+β Et RΓ−ρ
+,
+t+1 (c̀t+1 (Rt+1 at,i + θt+1 ))
+−1−1/ρ
+
+cat,i = −(1/ρ) (v0t (at,i ))
+
+v00t (at,i ),
+
+(75)
+(76)
+
+generating vectors of values ~ct and ~cat .
+2. Construct a corresponding list of values of ct,i and mt,i from ct,i = ct,i and mt,i =
+ct,i + at,i ; similarly construct a corresponding list of κt,i using equation (53).
+3. Construct a corresponding list of µt,i , the levels and first derivatives of t,i , and
+the levels and first derivatives of χt,i .
+4. Construct an interpolating approximation χ̀t that smoothly matches both the level
+and the slope at those points.
+5. If we are to approximate the value function, construct a corresponding list of values
+of vt,i , the levels and first derivatives of t,i , and the levels and first derivatives of
+X̂t,i ; and construct an interpolating approximation X̂t that matches those points.
+With χ̀t in hand, our approximate consumption function is computed directly from
+the appropriate substitutions in (45) and related equations. With this consumption rule
+in hand, we can continue the backwards recursion to period t − 1 and so on back to the
+beginning of life.
+Note that this loop does not contain steps for constructing v̂t0 (mt ). This is because
+with `ĉt (mt ) in hand, we simply define v̂t0 (mt ) = u0 (`ĉt (mt )) so there is no need to
+construct interpolating approximations - the function arises ‘free’ (or nearly so) from
+our constructed `ĉt (mt ).
+The program multiperiodCon.m23 presents a fairly general and flexible approach to
+solving problems of this kind. The essential structure of the program is a loop that
+simply works its way back from an assumed last period of life, using the command
+AppendTo to record the interpolated χ̀t functions in the earlier time periods back from
+the end. For a realistic life cycle problem, it would also be necessary at a minimum to
+calibrate a nonconstant path of expected income growth over the lifetime that matches
+the empirical profile; allowing for such a calibration is the reason we have included the
+{Γ}Tt vector in our computational specification of the problem.
+
+6.2 Mathematica Background
+Mathematica has several features that are useful in solving the multiperiod problem.
+• It can treat a user-created function as an object just like a number or a character.
+• Mathematica uses the ‘list’ as its basic data structure. A Mathematica ‘list’ is a
+very powerful and flexible data construct. A list of length N in Mathematica can
+hold essentially anything in each of its N um positions - a function, a number,
+23 There
+
+is also a parallel multiperiod.m file that solves the unconstrained multi-period problem.
+
+37
+
+another list, a symbolic expression, or any other object that Mathematica can
+recognize. The items at position i in a list named ExampleList are retrieved or
+addressed using the syntax ExampleList[[i]].
+• The function Apply[FuncName_, DataListName_] takes the function whose name
+is FuncName (for example, Vt) and the data in DataListName (for example, {1, 19})
+and returns the result that would have been returned by calling the function
+Vt[1,19].
+• The function Map[FuncToApply_,DataToApplyItTo_] takes a list of possible arguments to the function FuncToApply and applies that function to each of the
+elements of that list sequentially. For example, Map[Sin,{1,2,3}] would return
+a list {Sin[1],Sin[2],Sin[3]}.
+
+6.3 Program Structure
+After the usual initializations, the heart of the program works like this.
+6.3.1 Iteration
+After setting up a variable PeriodsToSolve which defines the total number of periods
+that the program will solve, the program sets up a “Do[SolveAnotherPeriod,{PeriodsToSolve}]”
+loop that runs the function SolveAnotherPeriod the number of times corresponding
+to PeriodsToSolve.
+Every time SolveAnotherPeriod is run, the interpolated
+consumption function for one period of life earlier is calculated. The structure of the
+SolveAnotherPeriod function is as follows:
+1. Add various period-t parameters to their respective lifecycle lists, which is accomplished by calling the AddNewPeriodToParamLifeDates function.
+2. For each at,i in aVec, construct c as follows:
+
+h
+i−1/ρ
+`ĉt+1 (Rt+1 at,i + θt+1 ))−ρ
+ct (at,i ) = β Et RΓ−ρ
+(
+t+1
+!
+nθ
+
+ −1/ρ
+1 X
+−ρ `
+R Γt+1 (ĉt+1 (Rt+1 at,i + θi ))−ρ
+.
+=
+β
+nθ i=1
+
+(77)
+(78)
+
+and similarly construct the corresponding cat (at,i ) We also construct the corresponding mVec, κVec, etc. by calling the AddNewPeriodToSolvedLifeDates function.
+3. For each m in mVec, we can define NmVec, find the corresponding optimal consumption vector for a pessimist and an optimist, construct the  and χ vectors, and
+finally an interpolation function χ̀t . Similarly we can construct an interpolation
+function X̀t that approximates the value function. The whole process is done by
+calling the AddNewPeriodToSolvedLifeDatesPesReaOpt function.
+
+38
+
+c T-n ()
+
+
+Figure 19 Converging c̀T −n (m) Functions as n Increases
+4. Various period-t functions are derived from χ̀t and X̀t (in functions_ConsNVal.m).
+Note that the liquidity constraint is dealt with by comparing the unconstrained
+solution cFromχ with the 45 degree line.
+
+6.4 Results
+As written, the program creates χ̀t (µt ) functions from which the relevant c̀t (mt ) functions
+are recovered in any period for any value of m.
+As an illustration, Figure 19 shows c̀T −n (m) for n = {20, 15, 10, 5, 1}. At least
+one feature of this figure is encouraging: the consumption functions converge as the
+horizon extends, something that Carroll (Forthcoming) shows must be true under certain
+parametric conditions that are satisfied by the baseline parameter values being used here.
+
+7 Multiple Control Variables
+We now consider how to solve problems with multiple control variables. (To reduce
+notational complexity, in this section we set Γt = 1 ∀ t.)
+
+39
+
+7.1 Theory
+The new control variable that the consumer can now choose is the portion of the portfolio
+to invest in risky assets. Designating the gross return on the risky asset as Rt+1 , and
+using ςt to represent the proportion of the portfolio invested in this asset between t and
+t + 1 (restricted here, as often in the literature, to values between 0 and 1, corresponding
+to an assumption that the consumer cannot be ‘net short’ and cannot issue net equity),
+the overall return on the consumer’s portfolio between t and t + 1 will be:
+
+Rt+1
+
+= R(1 − ςt ) + Rt+1 ςt
+= R + (Rt+1 − R)ςt
+
+(79)
+(80)
+
+and the maximization problem is
+vt (mt )
+
+=
+
+max u(ct ) + β Et [vt+1 (mt+1 )]
+
+{ct ,ςt }
+
+s.t.
+Rt+1 = R + (Rt+1 − R)ςt
+mt+1 = (mt − ct )Rt+1 + θt+1
+0 ≤ ςt ≤ 1,
+or, more compactly,
+vt (mt )
+
+=
+
+max u(ct ) + Et [βvt+1 ((mt − ct )Rt+1 + θt+1 )]
+
+{ct ,ςt }
+
+s.t.
+0 ≤ ςt ≤ 1.
+The first order condition with respect to ct is almost identical to that in the single-control
+problem, equation (10), with the only difference being that the nonstochastic interest
+factor R is now replaced by Rt+1 ,
+0
+u0 (ct ) = β Et [Rt+1 vt+1
+(mt+1 )],
+
+(81)
+
+and the Envelope theorem derivation remains the same, yielding the Euler equation for
+consumption
+u0 (ct ) = Et [β Rt+1 u0 (ct+1 )].
+
+(82)
+
+The first order condition with respect to the risky portfolio share is
+0
+0 = Et [vt+1
+(mt+1 )(Rt+1 − R)at ]
+0
+= at Et [u (ct+1 (mt+1 )) (Rt+1 − R)] .
+
+(83)
+
+As before, it will be useful to define vt as a function that yields the expected t + 1
+value of ending period t in a given state. However, now that there are two control
+variables, the expectation must be defined as a function of the chosen values of both of
+those variables, because expected end-of-period value will depend not just on how much
+the agent saves, but also on how the saved assets are allocated between the risky and
+
+40
+
+riskless assets. Thus we define
+vt (at , ςt ) = Et [βvt+1 (mt+1 )]
+which has derivatives
+
+m
+vat = Et [β Rt+1 vt+1
+(mt+1 )]
+ς
+m
+vt = Et [β(Rt+1 − R)vt+1
+(mt+1 )]at
+
+implying that the first order conditions (82) and (83) can be rewritten
+u0 (ct ) = vat (mt − ct , ςt )
+0 = vςt (at , ςt ).
+
+(84)
+(85)
+
+7.2 Application
+Our first step is to specify the stochastic process for Rt+1 . We follow the common practice
+of assuming that returns are lognormally distributed, log R ∼ N (φ + r − σφ2 /2, σφ2 ) where
+φ is the equity premium over the returns r available on the riskless asset.24
+As with labor income uncertainty, it is necessary to discretize the rate-of-return
+risk in order to have a problem that is soluble in a reasonable amount of time. We
+follow the same procedure as for labor income uncertainty, generating a set of nr
+equiprobable shocks to the rate of return; in a slight abuse of notation, we will designate
+the portfolio-weighted return (contingent on the chosen portfolio share in equity, and
+potentially contingent on any other aspect of the consumer’s problem) simply as Ri,j
+(where dependence on i is allowed to permit the possibility of nonzero correlation
+between the return on the risky asset and the shock to labor income (for example,
+in recessions the stock market falls and labor income also declines).
+The direct expressions for the derivatives of vt are
+
+X
+nθ X
+nr
+1
+a
+vt (at , ςt ) = β
+Ri,j (ct+1(Ri,j at + θi))−ρ
+(86)
+nr nθ i=1 j=1
+
+X
+nθ X
+nr
+1
+ς
+vt (at , ςt ) = β
+(Ri,j − R) (ct+1 (Ri,j at + θi ))−ρ .
+(87)
+nr nθ i=1 j=1
+Writing these equations out explicitly makes a problem very apparent: For every
+different combination of {at , ςt } that the routine wishes to consider, it must perform
+two double-summations of nr × n terms. Once again, there is an inefficiency if it must
+perform these same calculations many times for the same or nearby values of {at , ςt }, and
+again the solution is to construct an approximation to the derivatives of the v function.
+Details of the construction of the interpolating approximation are given below; assume
+for the moment that we have the approximations v̂at and v̂ςt in hand and we want
+to proceed. As noted above, nonlinear equation solvers (including those built into
+Mathematica) can find the solution to a set of simultaneous equations. Thus we could
+24 This
+
+2 ; see LogELogNorm.
+guarantees that E[R] = Φ is invariant to the choice of σφ
+
+41
+
+ask Mathematica to solve
+c−ρ
+= v̂at (mt − ct , ςt )
+t
+0 = v̂ςt (mt − ct , ςt )
+
+(88)
+(89)
+
+simultaneously for c and ς at the set of potential mt values defined in mVec. However,
+multidimensional constrained maximization problems are difficult and sometimes quite
+slow to solve. There is a better way. Define the problem
+ṽt (at )
+
+=
+
+max vt (at , ςt )
+ςt
+
+s.t.
+0 ≤ ςt ≤ 1
+
+(90)
+(91)
+
+where the typographical difference between ṽ and v indicates that this is the v that has
+been optimized with respect to all of the arguments other than the one still present (at ).
+We solve this problem for the set of gridpoints in aVec and use the results to construct
+`a (at ).25 With this function in hand, we can use the first order
+the interpolating function ṽ
+t
+condition from the single-control problem
+`a (mt − ct )
+c−ρ = ṽ
+t
+
+t
+
+to solve for the optimal level of consumption as a function of mt . Thus we have
+transformed the multidimensional optimization problem into a sequence of two simple
+optimization problems for which solutions are much easier and more reliable.
+Note the parallel between this trick and the fundamental insight of dynamic programming: Dynamic programming techniques transform a multi-period (or infinite-period)
+optimization problem into a sequence of two-period optimization problems which are
+individually much easier to solve; we have done the same thing here, but with multiple
+dimensions of controls rather than multiple periods.
+
+7.3 Implementation
+The program which solves the constrained problem with multiple control variables is
+multicontrolCon.m.
+Some of the functions defined in multicontrolCon.m correspond to the derivatives of
+vt (at , ςt ).
+The first function definition that does not resemble anything in multiperiod.m is
+ςRaw[at_]. This function, for its input value of at , calculates the value of the portfolio
+share ςt which satisfies the first order condition (89), tests whether the optimal portfolio
+share would violate the constraints, and if so resets the portfolio share to the constrained
+optimum. The function returns the optimal value of the portfolio share itself, ςt∗ , from
+which the functions v̄at (at ) and ςˆt (at ) will be constructed.
+
+25 A faster solution could be obtained by, for each element in aVec, computing vς (m − c , ς) of a grid of values of
+t
+t
+t
+ς, and then using an approximating interpolating function (rather than the full expectation) in the FindRoot command.
+The associated speed improvement is fairly modest, however, so this route was not pursued.
+
+42
+
+As ςˆt (at ) can be constructed by ςRaw[at_], v̄at (at ) is constructed by another newly
+defined function vaOpt[at_], where the naming convention is obviously that ‘Opt’
+stands for ‘Optimized.’ With v̄at (at ) in hand (as well as the appropriately redefined v̄t (at )
+and v̄aa
+t (at )) the analysis is essentially identical to that for the standard multiperiod
+problem with a single control variable.
+The structure of the program in detail is as follows. First, perform the usual
+initializations. Then initialize ςVec and the other variables specific to the multiple
+control problem.26 In particular, there are now three kinds of functions: those with both
+at and ςt as arguments, those with just at , and those with mt .
+Once the setup is complete, the heart of the program is the following.
+1. Construct vςt (at , ςt ) using the usual calculation over the tensor defined by the
+combinations of the elements of aVec and ςVec.
+2. For any level of saving at, the function ςRaw[at_] performs a rootfinding operation27
+= vςt (at , ςt )
+s.t.
+0 ≤ ςt ≤ 1
+0
+
+(92)
+(93)
+
+and generates the corresponding optimal portfolio share ςt∗ .
+3. Construct the function ṽa[at_]
+ṽat (at ) ≡ vat (at , ςt∗ (at ))
+
+(94)
+
+where ςt∗ (at ) is computed by ςRaw[at_].
+a
+4. Using ṽat (at ) ≡ ṽa[at_] and the redefined ṽt (at ) and ṽaa
+t (at ) (in place of vt (at ) ≡
+va[at_] in multiperiod.m), follow the same procedures as in multiperiod.m to
+generate c̀t (m).
+
+7.4 Results
+Figure 20 plots the first-period consumption function generated by the program; qualitatively it does not look much different from the consumption functions generated by
+the program without portfolio choice. Figure 21 plots the optimal portfolio share as a
+function of the level of assets. This figure exhibits several interesting features. First, even
+26 Note the choice of a coefficient of relative risk aversion of 6, in contrast with the choice of 2 made for the previous
+problems. This choice reflects the well-known ‘stockholding puzzle,’ which is the microeconomic equivalent of the equity
+premium puzzle: For plausible descriptions of income uncertainty, rate of return risk, and the equity premium, the typical
+consumer should hold all or nearly all of their portfolio in equities. Thus we choose a high value for the coefficient of
+relative risk aversion in order to generate portfolio structure behavior more interesting than a choice of 100 percent equities
+in every period for every level of wealth.
+27 Alternatively, the rootfinding operation would be 0 = v̂ς (a , ς ), where the interpolation function of vς (a , ς ) is used
+t t t
+t t t
+instead. However, the results obtained (especially ςˆt (at )) are much less satisfactory.
+
+43
+
+c
+1.0
+0.8
+0.6
+0.4
+0.2
+1
+
+2
+
+3
+
+4
+
+m
+
+Figure 20 c(m1 ) With Portfolio Choice
+with a coefficient of relative risk aversion of 6, an equity premium of only 4 percent, and
+an annual standard deviation in equity returns of 15 percent, the optimal choice is for
+the agent to invest a proportion 1 (100 percent) of the portfolio in stocks (instead of the
+safe bank account with riskless return R) is at values of at less than about 2. Second, the
+proportion of the portfolio kept in stocks is declining in the level of wealth - i.e., the poor
+should hold all of their meager assets in stocks, while the rich should be cautious, holding
+more of their wealth in safe bank deposits and less in stocks. This seemingly bizarre
+(and highly counterfactual) prediction reflects the nature of the risks the consumer
+faces. Those consumers who are poor in measured financial wealth are likely to derive
+a high proportion of future consumption from their labor income. Since by assumption
+labor income risk is uncorrelated with rate-of-return risk, the covariance between their
+future consumption and future stock returns is relatively low. By contrast, persons with
+relatively large wealth will be paying for a large proportion of future consumption out
+of that wealth, and hence if they invest too much of it in stocks their consumption will
+have a high covariance with stock returns. Consequently, they reduce that correlation
+by holding some of their wealth in the riskless form.
+
+8 The-Infinite-Horizon
+All of the solution methods presented so far have involved period-by-period iteration
+from an assumed last period of life, as is appropriate for life cycle problems. However,
+
+44
+
+ς
+1.0
+0.8
+0.6
+Limit as a approaches ∞
+0.4 ↓
+0.2
+0.0
+0
+
+20
+
+40
+
+60
+
+80
+
+a
+100
+
+Figure 21 Portfolio Share in Risky Assets in First Period ς(a)
+if the parameter values for the problem satisfy certain conditions (detailed in Carroll
+(Forthcoming)), the consumption rules (and the rest of the problem) will converge to a
+fixed rule as the horizon (remaining lifetime) gets large, as illustrated in Figure 19.
+Furthermore, Deaton (1991), Carroll (1992; 1997) and others have argued that the
+‘buffer-stock’ saving behavior that emerges under some further restrictions on parameter
+values is a good approximation of the behavior of typical consumers over much of the
+lifetime. Methods for finding the converged functions are therefore of interest, and are
+dealt with in this section.
+Of course, the simplest such method is to solve the problem as specified above for a
+large number of periods. This is feasible, but there are much faster methods.
+
+8.1 Convergence
+In solving an infinite-horizon problem, it is necessary to have some metric that determines when to stop because a solution that is ‘good enough’ has been found.
+A natural metric is defined by the unique ‘target’ level of wealth that Carroll (Forthcoming) proves will exist in problems of this kind: The m̌ such that
+Et [mt+1 /mt ] = 1 if mt = m̌
+
+(95)
+
+where the ∨ accent is meant to signify that this is the value that other m’s ‘point to.’
+Given a consumption rule c(m) it is straightforward to find the corresponding m̌. So
+for our problem, a solution is declared to have converged if the following criterion is met:
+
+45
+
+|m̌t+1 − m̌t | < , where  is a very small number and measures our degree of convergence
+tolerance.
+Similar criteria can obviously be specified for other problems. However, it is always
+wise to plot successive function differences and to experiment a bit with convergence
+criteria to verify that the function has converged for all practical purposes.
+
+8.2 Coarse then Fine θVec
+The speed of solution is roughly proportionate28 to the number of points used in
+approximating the distribution of shocks. At least 3 gridpoints should probably be
+used as an initial minimum, and my experience is that increasing the number of
+gridpoints beyond 7 generally yields only very small changes in the solution. The
+program multiperiodCon_infhor.m begins with three gridpoints, and then solves for
+successively finer θVec.
+
+9 Structural Estimation
+This section describes how to use the methods developed above to structurally estimate
+a life-cycle consumption model, following closely the work of Cagetti (2003).29 The key
+idea of structural estimation is to look for the parameter values (for the time preference
+rate, relative risk aversion, or other parameters) which lead to the best possible match
+between simulated and empirical moments. (The code for the structural estimation is
+in the self-contained subfolder StructuralEstimation in the Matlab and Mathematica
+directories.)
+
+9.1 Life Cycle Model
+The decision problem for the household at age t is:
+(
+" T
+#)
+
+
+X
+max u(ct ) + Et
+is−t Πsi=t+1 β̂i ℵi u(cs )
+
+(96)
+
+s=t+1
+
+subject to the constraints
+as =
+ms+1 =
+Ys+1 =
+p s+1 =
+
+ms − cs
+Ras + Ys+1
+p s+1 θs+1
+Γs+1p s Ψs+1
+
+28 It is also true that the speed of each iteration is directly proportional to the number of gridpoints in aVec, at which
+the problem must be solved. However given our method of moderation, now the problem could be solved very precisely
+based on five gridpoints only. Hence we do not pursue the process of “Coarse then Fine aVec”.
+29 Similar structural estimation exercises have been also performed by Palumbo (1999) and Gourinchas and Parker
+(2002).
+
+46
+
+where
+ℵs
+β̂ s
+Ψs
+i
+
+:
+:
+:
+:
+
+probability alive (not dead) until age s given alive at age s − 1
+time-varying discount factor between age s − 1 and s
+mean-one shock to permanent income
+time-invariant discount factor
+
+and all the other variables are defined as in section 2.
+Households start life at age s = 25 and live with probability 1 until retirement (s = 65).
+Thereafter the survival probability shrinks every year and agents are dead by s = 91 as
+assumed by Cagetti. Note that in addition to a typical time-invariant discount factor i,
+there is a time-varying discount factor β̂s in (96) which captures the effect of time-varying
+demographic variables (e.g. changes in family size).
+Transitory and permanent shocks are distributed as follows:
+(
+0
+with probability ℘ > 0
+(97)
+Ξs =
+θs /℘ with probability (1 − ℘), where log θs ∼ N (−σθ2 /2, σθ2 )
+(98)
+
+log ψs ∼ N (−σψ2 /2, σψ2 )
+
+where ℘ is the probability of unemployment (and unemployment shocks are turned off
+after retirement).
+The parameter values for the shocks are taken from Carroll (1992), ℘ = 0.5/100,
+σθ = 0.1, and σψ = 0.1.30 The income growth profile Γs is from Carroll (1997) and the
+values of ℵs and β̂s are obtained from Cagetti (2003) (Figure 22).31 The interest rate is
+assumed to equal 1.03. The model parameters are included in Table 1.
+Table 1 Parameter Values
+σθ
+σψ
+℘
+Γs
+β̂s , ℵs
+R
+
+0.1
+0.1
+0.005
+figure 22
+figure 22
+1.03
+
+Carroll (1992)
+Carroll (1992)
+Carroll (1992)
+Carroll (1997)
+Cagetti (2003)
+Cagetti (2003)
+
+The parameters i and ρ are structurally estimated following the procedure described
+below.
+30 Note that σ = 0.1 is smaller than the estimate for college graduates estimated in Carroll and Samwick (1997)
+θ
+√
+(= 0.197 = 0.039) which is used by Cagetti (2003). The reason for this choice is that Carroll and Samwick (1997)
+themselves argue that their estimate of σθ is almost certainly increased by measurement error.
+31 The income growth profile is the one used by Caroll for operatives. Cagetti computes the time-varying discount
+factor by educational groups using the methodology proposed by Attanasio et al. (1999) and the survival probabilities
+from the 1995 Life Tables (National Center for Health Statistics 1998).
+
+47
+
+`
+Βs+1
+
+Gs+1
+
+1.05
+
+1.0
+
+1.00
+
+0.9
+
+0.95
+
+0.8
+0.7
+
+0.90
+
+0.6
+
+0.85
+30
+
+40
+
+50
+
+60
+
+40
+
+50
+
+60
+
+70
+
+80
+
+90
+
+Age
+
+0.5
+30
+
+40
+
+50
+
+DCancels+1
+1.0
+0.9
+0.8
+0.7
+30
+
+70
+
+80
+
+90
+
+Age
+
+Figure 22 Time Varying Parameters
+
+9.2 Estimation
+When economists say that they are performing “structural estimation” of a model like
+this, they mean that they have devised a formal procedure for searching for values for
+the parameters i and ρ at which some measure of the model’s outcome (like “median
+wealth by age”) is as close as possible to an empirical measure of the same thing. Here,
+we choose to match the median of the wealth to permanent income ratio across 7 age
+groups, from age 26 − 30 up to 56 − 60.32 The choice of matching the medians rather the
+means is motivated by the fact that the wealth distribution is much more concentrated
+at the top than the model is capable of explaining using a single set of parameter values.
+This means that in practice one must pick some portion of the population who one wants
+to match well; since the model has little hope of capturing the behavior of Bill Gates, but
+32 Cagetti (2003) matches wealth levels rather than wealth to income ratios. We believe it is more appropriate to
+match ratios both because the ratios are the state variable in the theory and because empirical moments for ratios of
+wealth to income are not influenced by the method used to remove the effects of inflation and productivity growth.
+
+48
+
+60
+
+70
+
+8
+
+might conceivably match the behavior of Homer Simpson, we choose to match medians
+rather than means.
+As explained in section 3, it is convenient to work with the normalized version the
+model which can be written as:
+n
+o
+vt (mt ) = max u(ct ) + iℵt+1 β̂t+1 Et [(ψt+1 Γt+1 )1−ρ vt+1 (mt+1 )]
+ct
+
+at
+mt+1
+
+s.t.
+= mt − ct
+
+
+R
+= at
++θt+1
+ψt+1 Γt+1
+{z
+}
+|
+≡Rt+1
+
+with the first order condition:
+u0 (ct ) = iℵt+1 β̂t+1 R Et [u0 (ψt+1 Γt+1 ct+1 (at Rt+1 + θt+1 ))] .
+
+(99)
+
+The first step is to solve for the consumption functions at each age using the routines
+included in the setup_ConsFn.m file. We need to discretize the shock distribution and
+solve for the policy functions by backward induction using equation (99) following the
+procedure in sections 5 and 6 (ConstructcFuncLife). The latter routine is slightly
+complicated by the fact that we are considering a life-cycle model and therefore the
+growth rate of permanent income, the probability of death, the time-varying discount
+factor and the distribution of shocks will be different across the years. We thus must
+ensure that at each backward iteration the right parameter values are used.
+Once we have the age varying consumption functions, we can proceed to generate the
+simulated data and compute the simulated medians using the routines defined in the
+setup_Sim.m file. We first have to draw the shocks for each agent and period. This
+involves discretizing the shock distribution for as many points as the number of agents
+we want to simulate (ConstructShockDistribution). We then randomly permute this
+shock vector as many times as we need to simulate the model for, thus obtaining a
+time varying shock for each agent (ConstructSimShocks). This is much more time
+efficient than drawing at each time from the shock distribution a shock for each agent,
+and also ensures a stable distribution of shocks across the simulation periods even for a
+small number of agents. (Similarly, in order to speed up the process, at each backward
+iteration we compute the consumption function and other variables as a vector at once.)
+Then, following Cagetti (2003), we initialize the wealth-to-income ratio of agents at
+age 25 by randomly assigning the equal probability values to 0.17, 0.50 and 0.83 and
+run the simulation (Simulate). In particular we consider a population of agents at age
+25 and follow their consumption and wealth accumulation dynamics as they reach the
+age of 60, using the appropriate age-specific consumption functions and the age-varying
+parameters. The simulated medians are obtained by taking the medians of the wealth
+to income ratio of the 7 age groups.
+Given these simulated medians, we can estimate the model by calculating empirical
+medians and measure the model’s success by calculating the difference between the
+empirical median and the actual median. Specifically, defining ξ as the set of parameters
+
+49
+
+to be estimated (in the current case ξ = {ρ, i}), we could search for the parameter values
+which solve
+7
+X
+min
+|ς τ − sτ (ξ)|
+(100)
+ξ
+
+τ =1
+
+where ς and s are respectively the empirical and simulated medians of the wealth
+to permanent income ratio for age group τ .
+A drawback of proceeding in this way is that it treats the empirically estimated
+medians as though they reflected perfect measurements of the truth. Imagine, however,
+that one of the age groups happened to have (in the consumer survey) four times as
+many data observations as another age group; then we would expect the median to be
+more precisely estimated for the age group with more observations; yet (100) assigns
+equal importance to a deviation between the model and the data for all age groups.
+We can get around this problem (and a variety of others) by instead minimizing a
+slightly more complex object:
+τ
+
+τ
+
+min
+ξ
+
+N
+X
+
+ωi |ςiτ − sτ (ξ)|
+
+(101)
+
+i
+
+where ωi is the weight of household i in the entire population,33 and ςiτ is the empirical
+wealth-to-permanent-income ratio of household i whose head belongs to age group τ .
+ωi is needed because unequal weight is assigned to each observation in the Survey of
+Consumer Finances (SCF). The absolute value is used since the formula is based on the
+fact that the median is the value that minimizes the sum of the absolute deviations from
+itself.
+The actual data are taken from several waves of the SCF and the medians and means
+for each age category are plotted in figure 23. More details on the SCF data are included
+in appendix A.
+The key function to perform structural estimation is defined in the setup_Estimation.m
+file as follows:
+GapEmpiricalSimulatedMedians[ρ, i]:=
+[ ConstructcFuncLife[ρ, i];
+Simulate;
+N
+X
+ωi |ςiτ − sτ (ξ)|
+i
+
+];
+For a given pair of the parameters to be estimated, the GapEmpiricalSimulatedMedians
+routine therefore:
+1. solves for the consumption functions by calling ConstructcFuncLife
+33 The Survey of Consumer Finances includes many more high-wealth households than exist in the population as a
+whole; therefore if one wants to produce population-representative statistics, one must be careful to weight each observation
+by the factor that reflects its “true” weight in the population.
+
+50
+
+10
+8
+6
+4
+2
+Age
+26-30
+
+26-30
+
+36-40
+
+41-45
+
+46-50
+
+51-55
+
+56-60
+
+Figure 23 Wealth to Permanent Income Ratios from SCF (means (dashed) and
+medians (solid))
+2. simulates the data and computes the simulated medians by calling Simulate
+3. returns the value of equation (101)
+We delegate the task of finding the coefficients that minimize the GapEmpiricalSimulatedMedians
+function to the Mathematica built-in numerical minimizer FindMinimum. This task can
+be quite time demanding and rather problematic if the GapEmpiricalSimulatedMedians
+function has very flat regions or sharp features. It is thus wise to verify the accuracy of
+the solution, for example by experimenting with a variety of alternative starting values
+for the parameter search.
+Finally the standard errors are computed by bootstrap using the routines in the
+setup_Bootstrap.m file.34 This involves:
+1. drawing new shocks for the simulation
+2. drawing a random sample (with replacement) of actual data from the SCF
+3. obtaining new estimates for ρ and i
+We repeat the above procedure several times (Bootstrap) and take the standard deviation for each of the estimated parameters across the various bootstrap iterations.
+The file StructEstimation.m produces our ρ and i estimates with standard
+errors using 10,000 simulated agents.35 Results are reported in Table 2.36 Figure
+24 shows the contour plot of the GapEmpiricalSimulatedMedians function and
+the parameter estimates. The contour plot shows equally spaced isoquants of the
+34 For
+
+a treatment of the advantages of the bootstrap see Horowitz (2001)
+procedure is: First we calculate the ρ and i estimates as the minimizer of equation (101) using the actual SCF
+data. Then, we apply the Bootstrap function several times to obtain the standard error of our estimates.
+36 Differently from Cagetti (2003) who estimates a different set of parameters for college graduates, high school
+graduates and high school dropouts graduates, we perform the structural estimation on the full population.
+35 The
+
+51
+
+GapEmpiricalSimulatedMedians function, i.e. the pairs of ρ and i which lead to
+the same deviations between simulated and empirical medians (equivalent values of
+equation (101)). We can thus interestingly see that there is a large rather flat region,
+or more formally speaking there exists a broad set of parameter pairs which leads to
+similar simulated wealth to income ratios. Intuitively, the flatter and larger is this
+region, the harder it is for the structural estimation procedure to precisely identify the
+parameters.
+Table 2 Estimation Results
+ρ
+4.68
+(0.13)
+
+i
+1.00
+(0.00)
+
+10 Conclusion
+There are many alternative choices that can be made for solving microeconomic dynamic
+stochastic optimization problems. The set of techniques, and associated programs,
+described in these notes represents an approach that I have found to be powerful,
+flexible, and efficient, but other problems may require other techniques. For a much
+broader treatment of many of the issues considered here, see Judd (1998).
+
+52
+
+1.05
+
+1.00
+
+0.95
+
+0.90
+
+0.85
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+Figure 24 Contour Plot (larger values are shown lighter) with {ρ, i} Estimates (red
+dot).
+
+53
+
+Appendices
+A Further Details on SCF Data
+Data used in the estimation is constructed using the SCF 1992, 1995, 1998, 2001 and 2004
+waves. The definition of wealth is net worth including housing wealth, but excluding
+pensions and social securities. The data set contains only households whose heads are
+aged 26-60 and excludes singles, following Cagetti (2003).37 Furthermore, the data set
+contains only households whose heads are college graduates. The total sample size is
+4,774.
+In the waves between 1995 and 2004 of the SCF, levels of normal income are reported.
+The question in the questionnaire is "About what would your income have been if it
+had been a normal year?" We consider the level of normal income as corresponding
+to the model’s theoretical object P , permanent noncapital income. Levels of normal
+income are not reported in the 1992 wave. Instead, in this wave there is a variable which
+reports whether the level of income is normal or not. Regarding the 1992 wave, only
+observations which report that the level of income is normal are used, and the levels
+of income of remaining observations in the 1992 wave are interpreted as the levels of
+permanent income.
+Normal income levels in the SCF are before-tax figures. These before-tax permanent
+income figures must be rescaled so that the median of the rescaled permanent income
+of each age group matches the median of each age group’s income which is assumed in
+the simulation. This rescaled permanent income is interpreted as after-tax permanent
+income. This rescaling is crucial since in the estimation empirical profiles are matched
+with simulated ones which are generated using after-tax permanent income (remember
+the income process assumed in the main text). Wealth / permanent income ratio is
+computed by dividing the level of wealth by the level of (after-tax) permanent income,
+and this ratio is used for the estimation.38
+
+37 Cagetti
+
+(2003) argues that younger households should be dropped since educational choice is not modeled. Also, he
+drops singles, since they include a large number of single mothers whose saving behavior is influenced by welfare.
+38 Please refer to the archive code for details of how these after-tax measures of P are constructed.
+
+54
+
+References
+Attanasio, O.P., J. Banks, C. Meghir, and G. Weber (1999): “Humps and
+Bumps in Lifetime Consumption,” Journal of Business and Economic Statistics, 17(1),
+22–35.
+Cagetti, Marco (2003): “Wealth Accumulation Over the Life Cycle and
+Precautionary Savings,” Journal of Business and Economic Statistics, 21(3), 339–353.
+Carroll, Christopher D. (1992): “The Buffer-Stock Theory of Saving: Some
+Macroeconomic Evidence,” Brookings Papers on Economic Activity, 1992(2), 61–156,
+http://econ.jhu.edu/people/ccarroll/BufferStockBPEA.pdf.
+(1997):
+“Buffer Stock Saving and the Life Cycle/Permanent Income Hypothesis,” Quarterly Journal of Economics, CXII(1), 1–56, http:
+//econ.jhu.edu/people/ccarroll/BSLCPIH.zip.
+(2006): “The Method of Endogenous Gridpoints for Solving Dynamic
+Stochastic Optimization Problems,” Economics Letters, 91(3), 312–320, http:
+//econ.jhu.edu/people/ccarroll/EndogenousGridpoints.pdf.
+Notes.
+
+(Current): “Math Facts Useful for Graduate Macroeconomics,” Online Lecture
+
+(Forthcoming): “Theoretical Foundations of Buffer Stock Saving,” Quantitative
+Economics.
+Carroll, Christopher D., and Miles S. Kimball (1996):
+“On the
+Concavity of the Consumption Function,” Econometrica, 64(4), 981–992, http:
+//econ.jhu.edu/people/ccarroll/concavity.pdf.
+Carroll, Christopher D., and Andrew A. Samwick (1997): “The Nature of
+Precautionary Wealth,” Journal of Monetary Economics, 40(1), 41–71.
+Deaton, Angus S. (1991): “Saving and Liquidity Constraints,” Econometrica, 59,
+1221–1248, http://www.jstor.org/stable/2938366.
+den Haan, Wouter J, and Albert Marcet (1990):
+“Solving the
+Stochastic Growth Model by Parameterizing Expectations,”
+Journal
+of Business and Economic Statistics,
+8(1),
+31–34,
+Available at
+http://ideas.repec.org/a/bes/jnlbes/v8y1990i1p31-34.html.
+Gourinchas, Pierre-Olivier, and Jonathan Parker (2002): “Consumption Over
+the Life Cycle,” Econometrica, 70(1), 47–89.
+Horowitz, Joel L. (2001): “The Bootstrap,” in Handbook of Econometrics, ed. by
+James J. Heckman, and Edward Leamer, vol. 5. Elsevier/North Holland.
+
+55
+
+Judd, Kenneth L. (1998): Numerical Methods in Economics. The MIT Press,
+Cambridge, Massachusetts.
+Kopecky, Karen A., and Richard M.H. Suen (2010): “Finite State Markov-Chain
+Approximations To Highly Persistent Processes,” Review of Economic Dynamics,
+13(3), 701–714, http://www.karenkopecky.net/RouwenhorstPaper.pdf.
+Merton, Robert C. (1969): “Lifetime Portfolio Selection under Uncertainty: The
+Continuous Time Case,” Review of Economics and Statistics, 51, 247–257.
+Palumbo, Michael G (1999): “Uncertain Medical Expenses and Precautionary Saving
+Near the End of the Life Cycle,” Review of Economic Studies, 66(2), 395–421, Available
+at http://ideas.repec.org/a/bla/restud/v66y1999i2p395-421.html.
+Samuelson, Paul A. (1969): “Lifetime Portfolio Selection by Dynamic Stochastic
+Programming,” Review of Economics and Statistics, 51, 239–46.
+Valencia, Fabian (2006): “Banks’ Financial Structure and Business Cycles,” Ph.D.
+thesis, Johns Hopkins University.
+
+56
+
+
