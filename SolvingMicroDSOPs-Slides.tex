@@ -106,9 +106,9 @@
 \frametitle{\large\textbf{The Basic Problem at Date $t$}}
 
 \input{./Equations/MaxProb.tex}
-\begin{equation}\begin{gathered}\begin{aligned}
-{\yLev}_{t}  & = {\pLev}_{t}\tShkEmp_{t}
-\end{aligned}\end{gathered}\end{equation}
+\begin{eqnarray}
+{\yLev}_{t} & = & {\pLev}_{t}\tShkEmp_{t}
+\end{eqnarray}
 \input{./Equations/ExogVars.tex}
 \end{frame}
 
@@ -117,10 +117,10 @@
 
 \input{./Equations/vrecurse.tex}
 
-\begin{equation*}\begin{gathered}\begin{aligned}
+\begin{eqnarray*}
    \mLev & - & \text{ `market resources' (net worth plus current income)}
 \\ \pLev & - & \text{ permanent labor income }
-\end{aligned}\end{gathered}\end{equation*}
+\end{eqnarray*}
 
 \end{frame}
 
@@ -132,14 +132,14 @@
 \input{./Equations/vNormed.tex}
 
 where nonbold variables are bold ones normalized by $\pLev$:
-\begin{equation}\begin{gathered}\begin{aligned}
-\mRat_{t}  & = \mLev_{t}/\pLev_{t}
-\end{aligned}\end{gathered}\end{equation}
+\begin{eqnarray}
+\mRat_{t} & = & \mLev_{t}/\pLev_{t}
+\end{eqnarray}
 
 Yields $\cFunc_{t}(m)$ from which we can obtain
-\begin{equation}\begin{gathered}\begin{aligned}
-  \cLev_{t}(\mLev_{t},\pLev_{t})  & = \cFunc_{t}(\mLev_{t}/\pLev_{t})\pLev_{t}
-\end{aligned}\end{gathered}\end{equation}
+\begin{eqnarray}
+  \cLev_{t}(\mLev_{t},\pLev_{t}) & = & \cFunc_{t}(\mLev_{t}/\pLev_{t})\pLev_{t}
+\end{eqnarray}
 
 \end{frame}
 
@@ -164,9 +164,9 @@ Yields $\cFunc_{t}(m)$ from which we can obtain
 Define 
 \input{./Equations/vEndtdefn.tex}
 so 
-\begin{equation}\begin{gathered}\begin{aligned}
-  \vFunc_{t}(\mRat_{t})  & = \max_{\cRat_{t}}~~ \util(\cRat_{t}) + \vEnd_{t}(\mRat_{t}-\cRat_{t})
-\end{aligned}\end{gathered}\end{equation}
+\begin{eqnarray}
+  \vFunc_{t}(\mRat_{t}) & = & \max_{\cRat_{t}}~~ \util(\cRat_{t}) + \vEnd_{t}(\mRat_{t}-\cRat_{t})
+\end{eqnarray}
 with FOC
 \input{./Equations/upEqbetaOp.tex}
 and Envelope relation
@@ -188,9 +188,9 @@ E.g.\ use an equiprobable 7-point distribution:\medskip\medskip
 \begin{frame}[label=DiscretizeEqn]
 \frametitle{Trick: Discretize the Risks}
 
-\begin{equation}\begin{gathered}\begin{aligned}
-        \vEnd_{t}^{\prime}({a}_{t})  & =  \Discount \Rfree \PGro_{t+1}^{-\CRRA} \left(\frac{1}{n}\right) \sum_{i=1}^{n} \util^{\prime}\left(\cFunc_{t+1}(\Rnorm_{t+1} {a}_{t} + \tShkEmp_{i})\right)
-\end{aligned}\end{gathered}\end{equation}
+\begin{eqnarray}
+        \vEnd_{t}^{\prime}({a}_{t}) & = &  \Discount \Rfree \PGro_{t+1}^{-\CRRA} \left(\frac{1}{n}\right) \sum_{i=1}^{n} \util^{\prime}\left(\cFunc_{t+1}(\Rnorm_{t+1} {a}_{t} + \tShkEmp_{i})\right)
+\end{eqnarray}
 
 %\input{./Equations/vDiscrete.tex}
 
@@ -241,9 +241,9 @@ Numerical search for values of $\cRat_{T-1}$ satisfying
 $\util^{\prime}(\cRat) = \vEnd^{\prime}_{t}(\mRat[i]-\cRat)$ at, say,
 6 gridpoints of $\vec{\mRat}_{T-1}$ may require hundreds or even thousands of
 evaluations of
-\begin{equation}\begin{gathered}\begin{aligned}
-        \vEnd^{\prime}_{T-1}(\overbrace{{m}_{T-1}-{\cRat}_{T-1}}^{\aRat_{T-1}})  & =   \Discount_{T} \PGro_{T}^{1-\CRRA}\left(\frac{1}{n}\right)\sum_{i=1}^{n}   \frac{\left( \Rnorm_{T} {a}_{T-1} + \tShkEmp_{i}\right)^{1-\CRRA}}{1-\CRRA}  
-\end{aligned}\end{gathered}\end{equation}
+\begin{eqnarray}
+        \vEnd^{\prime}_{T-1}(\overbrace{{m}_{T-1}-{\cRat}_{T-1}}^{\aRat_{T-1}}) & = &   \Discount_{T} \PGro_{T}^{1-\CRRA}\left(\frac{1}{n}\right)\sum_{i=1}^{n}   \left( \Rnorm_{T} {a}_{T-1} + \tShkEmp_{i}\right)^{-\CRRA} \notag
+\end{eqnarray}
 
 \end{frame}
 
@@ -264,9 +264,9 @@ can be constructed by linear interpolation among the points:
 
 \begin{frame}
 \frametitle{Using $\grave{\vEnd}_{T-1}$ In Optimization}
-\begin{equation*}\begin{gathered}\begin{aligned}
-  \vFunc_{t}(\mRat_{t})  & = \max_{\cRat_{t}}~~ \util(\cRat_{t}) + \grave{\vEnd}_{t}(\mRat_{t}-\cRat_{t})
-\end{aligned}\end{gathered}\end{equation*}
+\begin{eqnarray*}
+  \vFunc_{t}(\mRat_{t}) & = & \max_{\cRat_{t}}~~ \util(\cRat_{t}) + \grave{\vEnd}_{t}(\mRat_{t}-\cRat_{t})
+\end{eqnarray*}
 is {\it much} faster,  but result is bad:
 \begin{center}
 \includegraphics[width=3in]{./Figures/PlotComparecTm1AB}
@@ -301,18 +301,18 @@ Better ... but still violates first two principles:
 
 Each of these $\vEnd_{t}^{\prime}[j]$ corresponds to a unique
 $\cRat[j]$ via FOC:
-\begin{equation}\begin{gathered}\begin{aligned}
-  \cRat[j]^{-\CRRA}  & = \vEnd_{t}^{\prime}(\aRat[j])
-\\ \cRat[j]  & = \left(\vEnd_{t}^{\prime}(\aRat[j])\right)^{-1/\CRRA}
-\end{aligned}\end{gathered}\end{equation}
+\begin{eqnarray}
+  \cRat[j]^{-\CRRA} & = & \vEnd_{t}^{\prime}(\aRat[j])
+\\ \cRat[j] & = & \left(\vEnd_{t}^{\prime}(\aRat[j])\right)^{-1/\CRRA}
+\end{eqnarray}
 
 \pause 
 
 But the DBC says
-\begin{equation}\begin{gathered}\begin{aligned}
-  \aRat_{t}  & = \mRat_{t} - \cRat_{t}
-\\ \mRat[j]  & = \aRat[j]+\cRat[j]
-\end{aligned}\end{gathered}\end{equation}
+\begin{eqnarray}
+  \aRat_{t} & = & \mRat_{t} - \cRat_{t}
+\\ \mRat[j] & = & \aRat[j]+\cRat[j]
+\end{eqnarray}
 
 \pause 
 So computing $\vEnd_{t}^{\prime}$ at a vector of $\vec{\aRat}$ values has produced for us the corresponding $\vec{\cRat}$ and $\vec{\mRat}$ 
@@ -349,9 +349,9 @@ Principles of Approximation
 \medskip
 
 Perfect Foresight Theory:
-\begin{equation}\begin{gathered}\begin{aligned}
-  \cFunc_{t}(\mRat)  & = (\mRat+\hEnd_{t})\MinMPC_{t} 
-\end{aligned}\end{gathered}\end{equation}
+\begin{eqnarray}
+  \cFunc_{t}(\mRat) & = & (\mRat+\hEnd_{t})\MinMPC_{t} 
+\end{eqnarray}
 for market resources $\mRat$ and end-of-period human wealth $\hEnd$.
 
 
@@ -378,9 +378,9 @@ which is linear.
 \medskip\medskip
 \pause If you need the value function, approximate the {\it inverted} value function to generate $\grave{\vInv}_{t}$ 
 and then obtain your approximation from 
-\begin{equation}\begin{gathered}\begin{aligned}
-  \grave{\vFunc}_{t}  & = \util(\grave{\vInv}_{t})
-\end{aligned}\end{gathered}\end{equation}
+\begin{eqnarray}
+  \grave{\vFunc}_{t} & = & \util(\grave{\vInv}_{t})
+\end{eqnarray}
 
 
 \end{frame}
@@ -394,16 +394,16 @@ and then obtain your approximation from
 
 \pause 
 Define {\it consumed} function and its derivative as 
-\begin{equation}\begin{gathered}\begin{aligned}
-  \cEndFunc_{t}(\aRat)  & = (\vEnd^{\prime}_{t}(\aRat))^{-1/\CRRA}
-\\ \cEndFunc_{t}^{\aRat}(\aRat)  & = -(1/\CRRA)\left(\vEnd_{t}^{\prime}({a})\right)^{-1-1/\CRRA} \vEnd_{t}^{\prime\prime}(\aRat) 
-\end{aligned}\end{gathered}\end{equation}
+\begin{eqnarray}
+  \cEndFunc_{t}(\aRat) & = & (\vEnd^{\prime}_{t}(\aRat))^{-1/\CRRA}
+\\ \cEndFunc_{t}^{\aRat}(\aRat) & = & -(1/\CRRA)\left(\vEnd_{t}^{\prime}({a})\right)^{-1-1/\CRRA} \vEnd_{t}^{\prime\prime}(\aRat) 
+\end{eqnarray}
 
 \pause 
 and using chain rule it is easy to show that
-\begin{equation}\begin{gathered}\begin{aligned}
- \cFunc^{\mRat}_{t}  & = \cEndFunc^{\aRat}_{t}/(1+\cEndFunc^{\aRat}_{t})
-\end{aligned}\end{gathered}\end{equation}
+\begin{eqnarray}
+ \cFunc^{\mRat}_{t} & = & \cEndFunc^{\aRat}_{t}/(1+\cEndFunc^{\aRat}_{t})
+\end{eqnarray}
 
 \end{frame}
 
@@ -425,19 +425,19 @@ and using chain rule it is easy to show that
 \frametitle{Problem: $\Alt{\cFunc}$ Below Bottom $\mRat$ Gridpoint and Extrapolation}
 
 Consider what happens as ${a}_{T-1}$ approaches $\underline{a}_{T-1}\equiv-\underline{\tShkEmp}\Rnorm_{T}^{-1}$,
-\begin{equation*}\begin{gathered}\begin{aligned}
-        \lim_{{\aRat} \downarrow \underline{a}_{T-1}} \vEnd_{T-1}^{\prime}({\aRat}) 
-& =         \lim_{{\aRat} \downarrow \underline{a}_{T-1}} \Discount \Rfree \PGro_{T}^{-\CRRA} \left(\frac{1}{n}\right) \sum_{i=1}^{n} \left( {\aRat} \Rnorm_{T}+ \tShkEmp_{i}\right)^{-\CRRA}
-\\  & = \infty
-\end{aligned}\end{gathered}\end{equation*}
+\begin{eqnarray*}
+        \lim_{{\aRat} \downarrow \underline{a}_{T-1}} \vEnd_{T-1}^{\prime}({\aRat}) & = &
+        \lim_{{\aRat} \downarrow \underline{a}_{T-1}} \Discount \Rfree \PGro_{T}^{-\CRRA} \left(\frac{1}{n}\right) \sum_{i=1}^{n} \left( {\aRat} \Rnorm_{T}+ \tShkEmp_{i}\right)^{-\CRRA}
+\\ & = & \infty
+\end{eqnarray*}
 
 This means our lowest value in $\vec{\aRat}_{T-1}$ should be $> \underline{\aRat}_{T-1}$.  
 
 \medskip
 Suppose we construct $\Alt{\cFunc}$ by linear interpolation:
-\begin{equation*}\begin{gathered}\begin{aligned}
-  \Alt{\cFunc}_{T-1}(\mRat)  & = \Alt{\cFunc}_{T-1}(\vec{\mRat}_{T-1}[1])+\Alt{\cFunc}_{T-1}^{\prime}(\vec{\mRat}_{T-1}[1])({\mRat}-\vec{\mRat}_{T-1}[1]) \label{eq:ExtrapLin}
-\end{aligned}\end{gathered}\end{equation*}
+\begin{eqnarray*}
+  \Alt{\cFunc}_{T-1}(\mRat) &  = & \Alt{\cFunc}_{T-1}(\vec{\mRat}_{T-1}[1])+\Alt{\cFunc}_{T-1}^{\prime}(\vec{\mRat}_{T-1}[1])({\mRat}-\vec{\mRat}_{T-1}[1]) \label{eq:ExtrapLin}
+\end{eqnarray*}
 
 True $\cFunc$ is strictly concave 
 $\Rightarrow \exists \mRat^{-} > \underline{\mRat}_{T-1}$  for which $\mRat^{-}-\Alt{\cFunc}_{T-1}(\mRat^{-}) < \underline{\aRat}_{T-1}$
@@ -448,10 +448,10 @@ $\Rightarrow \exists \mRat^{-} > \underline{\mRat}_{T-1}$  for which $\mRat^{-}-
 \frametitle{Solution: Hard-Code the Bottom Point}
 
 Theory says that
-\begin{equation}\begin{gathered}\begin{aligned}
-  \lim_{\mRat \downarrow \underline{\mRat}_{T-1}} \cFunc_{T-1}(\mRat)  & = 0
-\\ \lim_{\mRat \downarrow \underline{\mRat}_{T-1}} \cFunc_{T-1}^{\mRat}(\mRat)  & = \MaxMPC_{T-1}
-\end{aligned}\end{gathered}\end{equation}
+\begin{eqnarray}
+  \lim_{\mRat \downarrow \underline{\mRat}_{T-1}} \cFunc_{T-1}(\mRat) & = & 0
+\\ \lim_{\mRat \downarrow \underline{\mRat}_{T-1}} \cFunc_{T-1}^{\mRat}(\mRat) & = & \MaxMPC_{T-1}
+\end{eqnarray}
 
 \medskip 
 
@@ -511,10 +511,10 @@ Define $\grave{\cFunc}^{*}_{t}$ as soln to unconstrained problem.  Then
 \frametitle{Imposing `Artificial' Borrowing Constraints}
 
 Point where constraint makes transition from binding to not is
-\begin{equation*}\begin{gathered}\begin{aligned}
-    \util^{\prime}(\mRat_{T-1}^{\#})  & = \vEnd^{\prime}_{T-1}(0.)
-\\  \mRat_{T-1}^{\#}  & = \left(\vEnd^{\prime}_{T-1}(0.)\right)^{-1/\CRRA}
-\end{aligned}\end{gathered}\end{equation*}
+\begin{eqnarray*}
+    \util^{\prime}(\mRat_{T-1}^{\#}) & = & \vEnd^{\prime}_{T-1}(0.)
+\\  \mRat_{T-1}^{\#} & = & \left(\vEnd^{\prime}_{T-1}(0.)\right)^{-1/\CRRA}
+\end{eqnarray*}
 \pause\medskip
 
 Procedure is very easy:
@@ -591,9 +591,9 @@ while the FOC with respect to the portfolio share yields
 When the problem satisfies certain conditions~(\cite{BufferStockTheory}),
 it defines a `converged' consumption rule with a `target' ratio $\check{\mRat}$
 that satisfies:
-\begin{equation}\begin{gathered}\begin{aligned}
-  \Ex_{t}[\mRat_{t+1}/\mRat_{t}]  & = 1 \text{~if $\mRat_{t} = \check{\mRat}$}
-\end{aligned}\end{gathered}\end{equation}
+\begin{eqnarray}
+  \Ex_{t}[\mRat_{t+1}/\mRat_{t}] & = & 1 \text{~if $\mRat_{t} = \check{\mRat}$}
+\end{eqnarray}
 
 \pause 
 
@@ -602,9 +602,9 @@ Define the target $\mRat$ implied by the consumption rule $\cFunc_{t}$ as $\chec
 \medskip\pause
 Then a plausible metric for convergence is to define some value $\epsilon$ and to declare
 the solution to have converged when
-\begin{equation}\begin{gathered}\begin{aligned}
-  |\check{\mRat}_{t+1}-\check{\mRat}_{t}|  & < \epsilon
-\end{aligned}\end{gathered}\end{equation}
+\begin{eqnarray}
+  |\check{\mRat}_{t+1}-\check{\mRat}_{t}| & < & \epsilon
+\end{eqnarray}
 
 \end{frame}
 
@@ -682,9 +682,9 @@ $\Rightarrow \mRat$ distribution by age
 
 \begin{frame}
 \frametitle{Calculate Match Between Theory and Data}
-\begin{equation}\begin{gathered}\begin{aligned}
-\xi  & = \{\CRRA,\beth\}
-\end{aligned}\end{gathered}\end{equation}
+\begin{eqnarray}
+\xi & = & \{\CRRA,\beth\}
+\end{eqnarray}
 solve
 \input{./Equations/StructEstim.tex}
 

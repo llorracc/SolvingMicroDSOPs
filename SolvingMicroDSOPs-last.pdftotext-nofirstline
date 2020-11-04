@@ -1,7 +1,7 @@
 
 Solution Methods for Microeconomic
 Dynamic Stochastic Optimization Problems
-November 3, 2020
+November 4, 2020
 
 Christopher D. Carroll1
 Note: The code associated with this document should work (though the Matlab code
@@ -273,7 +273,7 @@ the aT −1 Lower
 18
 19
 21
-22
+23
 27
 29
 31
