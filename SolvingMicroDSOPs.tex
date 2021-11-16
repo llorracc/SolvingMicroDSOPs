@@ -219,17 +219,17 @@ lifetime that ends in period $T$:
 \input {./Equations/MaxProb.tex}
 and whose circumstances evolve according to the transition equations\footnote{The usual analysis of dynamic programming problems combines the equations below into a single expression; here, they are disarticulated to highlight the important point that several distinct processes (intertemporal choice, stochastic shocks, intertemporal returns, income growth) are involved in the transition from one period to the next.}\ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Note that ${\aLev}$ is savings, not saving.  Also mention that $M$ is cash-on-hand.}}{}
 \begin{verbatimwrite}{./Equations/DBCLevelStart.tex}
-  \begin{eqnarray}
-    {\aLev}_{t} & = & \mLev_{t}-\cLev_{t} \label{DBCLevelStart}
-    \\  {\bLev}_{t+1} & = & {\aLev}_{t} \Rfree_{t+1}
-    \\  {\yLev}_{t+1} & = & \pLev_{t+1}\tShkEmp_{t+1}
-    \\  {\mLev}_{t+1} & = & {\bLev}_{t+1} + {\yLev}_{t+1} \label{eq:budconstr} \label{DBCLevelEnd}
-  \end{eqnarray}
+  \begin{equation}\begin{gathered}\begin{aligned}
+    {\aLev}_{t}  & = \mLev_{t}-\cLev_{t} \label{DBCLevelStart}
+    \\  {\bLev}_{t+1}  & = {\aLev}_{t} \Rfree_{t+1}
+    \\  {\yLev}_{t+1}  & = \pLev_{t+1}\tShkEmp_{t+1}
+    \\  {\mLev}_{t+1}  & = {\bLev}_{t+1} + {\yLev}_{t+1} \label{eq:budconstr} \label{DBCLevelEnd}
+  \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/DBCLevelStart.tex}
 where the variables are\ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Note multiplicative form for transitory uncertainty.}}{}
 \begin{verbatimwrite}{./Equations/Defns.tex}
-  \begin{eqnarray*}
+  \begin{equation*}\begin{gathered}\begin{aligned}
     {\DiscAlt} & - & \text{pure time discount factor} \\
     {\aLev}_{t} & - & \text{assets after all actions have been accomplished in period $t$} \\
     {\bLev}_{t+1} & - & \text{`bank balances' (nonhuman wealth) at the beginning of $t+1$} \\
@@ -238,19 +238,19 @@ where the variables are\ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Note mult
     \pLev_{t+1} & - & \text{`permanent labor income' in period $t+1$} \\
     \Rfree_{t+1} & - & \text{interest factor $(1+\rfree_{t+1})$ from period $t$ to $t+1$ } \\
     {\yLev}_{t+1} & - & \text{noncapital income in period $t+1$}.
-  \end{eqnarray*}
+  \end{aligned}\end{gathered}\end{equation*}
 \end{verbatimwrite}
 \input{./Equations/Defns.tex}
 
 For now, we will assume that the exogenous variables evolve as follows: \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Subscript on permanent income allows pattern of income growth over the lifetime.}}{}
 \begin{verbatimwrite}{./Equations/ExogVars.tex}
-  \begin{eqnarray}
+  \begin{equation}\begin{gathered}\begin{aligned}
     \Rfree_{t}   = & \Rfree~\forall~t & \text{- constant interest factor = $1+\rfree$}  \notag
     \\ \pLev_{t+1}  = & \PGro_{t+1}\pLev_{t} &   \text{- permanent labor income dynamics} \label{eq:permincgrow} 
     \\ \log ~ \tShkEmp_{t+n} \sim &  ~\mathcal{N}(-\sigma_{\tShkEmp}^{2}/2,\sigma_{\tShkEmp}^{2}) & \text{- lognormal transitory shocks}~\forall~n>0 \notag
                                                                                                     \label{eq:epsdist}
                                                                                                     .
-  \end{eqnarray}
+  \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input ./Equations/ExogVars.tex
 
@@ -286,9 +286,9 @@ Constant Relative Risk Aversion (CRRA), form, $\util(\bullet) = \bullet^{1-\CRRA
 
 As is well known, this problem can be rewritten in recursive (Bellman equation) form
 \begin{verbatimwrite}{./Equations/vrecurse.tex}
-  \begin{eqnarray}
-    \vLevBF_{t}(\mLev_{t},\pLev_{t}) & = & \max_{\cLev_{t}}~ \util(\cLev_{t}) + \Ex_{t}[{\DiscAlt} \vLevBF_{t+1}({\mLev}_{t+1},\pLev_{t+1})]\label{eq:vrecurse}
-  \end{eqnarray}
+  \begin{equation}\begin{gathered}\begin{aligned}
+    \vLevBF_{t}(\mLev_{t},\pLev_{t})  & = \max_{\cLev_{t}}~ \util(\cLev_{t}) + \Ex_{t}[{\DiscAlt} \vLevBF_{t+1}({\mLev}_{t+1},\pLev_{t+1})]\label{eq:vrecurse}
+  \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/vrecurse.tex}
 subject to the Dynamic Budget Constraint (DBC) \eqref{DBCLevelStart}-\eqref{DBCLevelEnd} given above, where $\vLevBF_{t}$
@@ -312,42 +312,42 @@ for brevity referred to simply as `permanent income.')
 In the last period of life, there is no
 future, $\vLevBF_{T+1} = 0$, so
 the optimal plan is to consume everything, implying that
-\begin{eqnarray}
-  \vLevBF_{T}(\mLev_{T},\pLev_{T}) & = & \frac{\mLev_{T}^{1-\CRRA}}{1-\CRRA}. \label{eq:levelTm1}
-\end{eqnarray}
+\begin{equation}\begin{gathered}\begin{aligned}
+  \vLevBF_{T}(\mLev_{T},\pLev_{T})  & = \frac{\mLev_{T}^{1-\CRRA}}{1-\CRRA}. \label{eq:levelTm1}
+\end{aligned}\end{gathered}\end{equation}
 Now define nonbold variables as the bold variable divided by
 the level of permanent income in the same period, so that, for
 example, ${m}_{T}=\mLev_{T}/\pLev_{T}$; and define
 $\valfn_{T}({m}_{T}) = \util({m}_{T})$.\footnote{Nonbold value is bold value divided by $\pLev^{1-\CRRA}$ rather than $\pLev$.}  For our CRRA utility function, $\util(xy)=x^{1-\CRRA}\util(y)$, so equation (\ref{eq:levelTm1}) can be
 rewritten as
-\begin{eqnarray*}
-  \vLevBF_{T}(\mLev_{T},\pLev_{T}) & = & \pLev_{T}^{1-\CRRA}\frac{{m}_{T}^{1-\CRRA}}{1-\CRRA} = \pLev_{T-1}^{1-\CRRA}\PGro_{T}^{1-\CRRA}\frac{{m}_{T}^{1-\CRRA}}{1-\CRRA}  = \pLev_{T-1}^{1-\CRRA}\PGro_{T}^{1-\CRRA}\vFunc_{T}({m}_{T}).
-\end{eqnarray*}
+\begin{equation*}\begin{gathered}\begin{aligned}
+  \vLevBF_{T}(\mLev_{T},\pLev_{T})  & = \pLev_{T}^{1-\CRRA}\frac{{m}_{T}^{1-\CRRA}}{1-\CRRA} = \pLev_{T-1}^{1-\CRRA}\PGro_{T}^{1-\CRRA}\frac{{m}_{T}^{1-\CRRA}}{1-\CRRA}  = \pLev_{T-1}^{1-\CRRA}\PGro_{T}^{1-\CRRA}\vFunc_{T}({m}_{T}).
+\end{aligned}\end{gathered}\end{equation*}
 
 
 Now define a new optimization problem:\ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Note that in mathematical terms, the $\PGro_{t+1}^{1-\CRRA} {\DiscAlt}$ term is basically just a time-varying discount factor.}}{}
 \begin{verbatimwrite}{./Equations/vNormed.tex}
-  \begin{eqnarray}
-    \null{\vFunc}_{t}({m}_{t}) & = & \max_{{c}_{t}} ~~ \util({c}_{t})+
+  \begin{equation}\begin{gathered}\begin{aligned}
+    \null{\vFunc}_{t}({m}_{t})  & = \max_{{c}_{t}} ~~ \util({c}_{t})+
                                      \Ex_{t}[{\Discount} \PGro_{t+1}^{1-\CRRA}\null{\vFunc}_{t+1}({m}_{t+1})] \label{vtNorm}
     \\         & \text{s.t.} &   \nonumber \\
-    {a}_{t}   & = & {m}_{t}-{c}_{t} \nonumber
-    \\      {m}_{t+1} & = & \underbrace{\left(\Rfree/\PGro_{t+1}\right)}_{\equiv \Rnorm_{t+1}}{a}_{t}+\tShkEmp_{t+1} \nonumber
-  \end{eqnarray}
+    {a}_{t}    & = {m}_{t}-{c}_{t} \nonumber
+    \\      {m}_{t+1}  & = \underbrace{\left(\Rfree/\PGro_{t+1}\right)}_{\equiv \Rnorm_{t+1}}{a}_{t}+\tShkEmp_{t+1} \nonumber
+  \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input ./Equations/vNormed.tex
 
 The accumulation equation is the normalized version of the transition
 equation for $\mLev_{t+1}$.\footnote{Derivation:
-  \begin{eqnarray*}
-    \mLev_{t+1}/\pLev_{t+1} & = & (\mLev_{t}-\cLev_{t})\Rfree/\pLev_{t+1} + {\yLev}_{t+1}/\pLev_{t+1}
-    \\      {m}_{t+1} & = & \left(\frac{\mLev_{t}}{\pLev_{t}} - \frac{\cLev_{t}}{\pLev_{t}}\right)\Rfree\frac{\pLev_{t}}{\pLev_{t+1}} + \frac{{\yLev}_{t+1}}{\pLev_{t+1}}
-    \\       & = & \underbrace{({m}_{t} - {c}_{t})}_{{a}_{t}}(\Rfree/\PGro_{t+1}) + \tShkEmp_{t+1}.
-  \end{eqnarray*}
+  \begin{equation*}\begin{gathered}\begin{aligned}
+    \mLev_{t+1}/\pLev_{t+1}  & = (\mLev_{t}-\cLev_{t})\Rfree/\pLev_{t+1} + {\yLev}_{t+1}/\pLev_{t+1}
+    \\      {m}_{t+1}  & = \left(\frac{\mLev_{t}}{\pLev_{t}} - \frac{\cLev_{t}}{\pLev_{t}}\right)\Rfree\frac{\pLev_{t}}{\pLev_{t+1}} + \frac{{\yLev}_{t+1}}{\pLev_{t+1}}
+    \\        & = \underbrace{({m}_{t} - {c}_{t})}_{{a}_{t}}(\Rfree/\PGro_{t+1}) + \tShkEmp_{t+1}.
+  \end{aligned}\end{gathered}\end{equation*}
 }  Then it is easy to see that for $t=T-1$,
-\begin{eqnarray*}
-  \vLevBF_{T-1}(\mLev_{T-1},\pLev_{T-1}) &=& \pLev_{T-1}^{1-\CRRA}\null{\vFunc}_{T-1}({m}_{T-1})
-\end{eqnarray*}
+\begin{equation*}\begin{gathered}\begin{aligned}
+  \vLevBF_{T-1}(\mLev_{T-1},\pLev_{T-1})  & =  \pLev_{T-1}^{1-\CRRA}\null{\vFunc}_{T-1}({m}_{T-1})
+\end{aligned}\end{gathered}\end{equation*}
 and so on back to all earlier periods.  Hence, if we solve the problem \eqref{vtNorm}
 which has only a single state variable $\mRat_{t}$, we can obtain the levels of
 the value function, consumption, and all other variables of interest
@@ -371,32 +371,32 @@ the bank's productivity.
 
 
 The first order condition for \eqref{vtNorm} with respect to ${c}_{t}$ is
-\begin{eqnarray}
-  \util^{\prime}({c}_{t}) & = & \Ex_{t}[\Discount \Rnorm_{t+1}\PGro_{t+1}^{1-\CRRA}\null{\vFunc}^{\prime}_{t+1}({m}_{t+1})]  \nonumber 
-  \\  & = &  \Ex_{t}[\Discount\Rfree\phantom{_{t+1}}\PGro_{t+1}^{\phantom{1}-\CRRA}\null{\vFunc}^{\prime}_{t+1}({m}_{t+1})] \label{eq:upceqEvtp1}
-\end{eqnarray}
+\begin{equation}\begin{gathered}\begin{aligned}
+  \util^{\prime}({c}_{t})  & = \Ex_{t}[\Discount \Rnorm_{t+1}\PGro_{t+1}^{1-\CRRA}\null{\vFunc}^{\prime}_{t+1}({m}_{t+1})]  \nonumber 
+  \\   & =  \Ex_{t}[\Discount\Rfree\phantom{_{t+1}}\PGro_{t+1}^{\phantom{1}-\CRRA}\null{\vFunc}^{\prime}_{t+1}({m}_{t+1})] \label{eq:upceqEvtp1}
+\end{aligned}\end{gathered}\end{equation}
 and because the \handoutC{Envelope} theorem tells us that
-\begin{eqnarray}
-  \null{\vFunc}^{\prime}_{t}({m}_{t}) & = &  \Ex_{t} [\Discount\Rfree\PGro_{t+1}^{-\CRRA}\null{\vFunc}^{\prime}_{t+1}({m}_{t+1})] \label{eq:envelope}
-\end{eqnarray}
+\begin{equation}\begin{gathered}\begin{aligned}
+  \null{\vFunc}^{\prime}_{t}({m}_{t})  & =  \Ex_{t} [\Discount\Rfree\PGro_{t+1}^{-\CRRA}\null{\vFunc}^{\prime}_{t+1}({m}_{t+1})] \label{eq:envelope}
+\end{aligned}\end{gathered}\end{equation}
 we can substitute the LHS of \eqref{eq:envelope} for the RHS of
 (\ref{eq:upceqEvtp1}) to get
 \begin{verbatimwrite}{./Equations/Envelope.tex}
-  \begin{eqnarray}
-    \util^{\prime}({c}_{t}) & = & \null{\vFunc}^{\prime}_{t}({m}_{t})\label{eq:Envelope}
-  \end{eqnarray}
+  \begin{equation}\begin{gathered}\begin{aligned}
+    \util^{\prime}({c}_{t})  & = \null{\vFunc}^{\prime}_{t}({m}_{t})\label{eq:Envelope}
+  \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/Envelope.tex}
 and rolling this equation forward one period yields
-\begin{eqnarray}
-  \util^{\prime}({c}_{t+1}) & = & \null{\vFunc}^{\prime}_{t+1}({a}_{t}\Rnorm_{t+1}+\tShkEmp_{t+1}) \label{eq:upctp1EqVpxtp1}
-\end{eqnarray}
+\begin{equation}\begin{gathered}\begin{aligned}
+  \util^{\prime}({c}_{t+1})  & = \null{\vFunc}^{\prime}_{t+1}({a}_{t}\Rnorm_{t+1}+\tShkEmp_{t+1}) \label{eq:upctp1EqVpxtp1}
+\end{aligned}\end{gathered}\end{equation}
 while substituting the LHS in equation (\ref{eq:upceqEvtp1})
 gives us the Euler equation for consumption
 \begin{verbatimwrite}{./Equations/cEuler.tex}
-  \begin{eqnarray}
-    \util^{\prime}({c}_{t}) & = & \Ex_{t}[\Discount\Rfree \PGro_{t+1}^{-\CRRA}\util^{\prime}({c}_{t+1})]. \label{eq:cEuler}
-  \end{eqnarray}
+  \begin{equation}\begin{gathered}\begin{aligned}
+    \util^{\prime}({c}_{t})  & = \Ex_{t}[\Discount\Rfree \PGro_{t+1}^{-\CRRA}\util^{\prime}({c}_{t+1})]. \label{eq:cEuler}
+  \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input ./Equations/cEuler.tex
 
@@ -407,9 +407,9 @@ out to be convenient) to define a function\footnote{The peculiar letter designat
 \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Define
     $\Alt{\vEnd}_{t}({a}_{t})$.}}{}
 \begin{verbatimwrite}{./Equations/vEndtdefn.tex}
-  \begin{eqnarray}
-    {\vEnd}_{t}({a}_{t}) & = & \Ex_{t}[\Discount \PGro_{t+1}^{1-\CRRA}\null{\vFunc}_{t+1}(\Rnorm_{t+1} {a}_{t}+{\tShkEmp}_{t+1})]  \label{eq:vEndtdefn}
-  \end{eqnarray}
+  \begin{equation}\begin{gathered}\begin{aligned}
+    {\vEnd}_{t}({a}_{t})  & = \Ex_{t}[\Discount \PGro_{t+1}^{1-\CRRA}\null{\vFunc}_{t+1}(\Rnorm_{t+1} {a}_{t}+{\tShkEmp}_{t+1})]  \label{eq:vEndtdefn}
+  \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/vEndtdefn.tex}
 that returns the expected $t+1$ value associated with ending period
@@ -417,20 +417,20 @@ $t$ with any given amount of
 \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny $\vEnd$ yields
     discounted utility.}}{} assets.  This definition
 implies that
-\begin{eqnarray}
-  {\vEnd}_{t}^{\prime}({a}_{t}) & = & \Ex_{t}[\Discount \Rfree \PGro_{t+1}^{-\CRRA} \null{\vFunc}_{t+1}^{\prime}(\Rnorm_{t+1} {a}_{t}+{\tShkEmp}_{t+1})]  \label{eq:vEndPrimetdefn}
-\end{eqnarray}
+\begin{equation}\begin{gathered}\begin{aligned}
+  {\vEnd}_{t}^{\prime}({a}_{t})  & = \Ex_{t}[\Discount \Rfree \PGro_{t+1}^{-\CRRA} \null{\vFunc}_{t+1}^{\prime}(\Rnorm_{t+1} {a}_{t}+{\tShkEmp}_{t+1})]  \label{eq:vEndPrimetdefn}
+\end{aligned}\end{gathered}\end{equation}
 or, substituting from equation (\ref{eq:upctp1EqVpxtp1}),
-\begin{eqnarray}
-  {\vEnd}_{t}^{\prime}({a}_{t}) & = & \Ex_{t}\left[\Discount \Rfree \PGro_{t+1}^{-\CRRA} \util^{\prime}\left(\cFunc_{t+1}(\Rnorm_{t+1} {a}_{t}+{\tShkEmp}_{t+1})\right)\right].  \label{eq:vEndPrimetOfc}
-\end{eqnarray}
+\begin{equation}\begin{gathered}\begin{aligned}
+  {\vEnd}_{t}^{\prime}({a}_{t})  & = \Ex_{t}\left[\Discount \Rfree \PGro_{t+1}^{-\CRRA} \util^{\prime}\left(\cFunc_{t+1}(\Rnorm_{t+1} {a}_{t}+{\tShkEmp}_{t+1})\right)\right].  \label{eq:vEndPrimetOfc}
+\end{aligned}\end{gathered}\end{equation}
 Finally, note for future use that the first order condition
 (\ref{eq:upceqEvtp1}) can now be rewritten as
 \begin{verbatimwrite}{./Equations/upEqbetaOp.tex}
-  \begin{eqnarray}
-    \util^{\prime}({c}_{t})  & = & {\vEnd}_{t}^{\prime}({m}_{t}-{c}_{t}).
+  \begin{equation}\begin{gathered}\begin{aligned}
+    \util^{\prime}({c}_{t})   & = {\vEnd}_{t}^{\prime}({m}_{t}-{c}_{t}).
                                    \label{eq:upEqbetaOp}
-  \end{eqnarray}
+  \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/upEqbetaOp.tex}
 
@@ -439,20 +439,20 @@ Finally, note for future use that the first order condition
 \section{Solving the Next-to-Last Period}\label{sec:NextToLast}
 
 The problem in the second-to-last period of life is:
-\begin{eqnarray*}
-  \null{\vFunc}_{T-1}({m}_{T-1}) & = & \max_{{c}_{T-1}} ~~ \util({c}_{T-1}) +
+\begin{equation*}\begin{gathered}\begin{aligned}
+  \null{\vFunc}_{T-1}({m}_{T-1})  & = \max_{{c}_{T-1}} ~~ \util({c}_{T-1}) +
                                        \Discount \Ex_{T-1} \left[\PGro_{T}^{1-\CRRA}\null{\vFunc}_{T}(({m}_{T-1} - {c}_{T-1})\Rnorm_{T} + \tShkEmp_{T})\right],
-\end{eqnarray*}
+\end{aligned}\end{gathered}\end{equation*}
 and using (1) the fact that $\vFunc_{T}=\util(c)$; (2) the definition of $\util(c)$; (3) the
 definition of the expectations operator, and (4) the fact that $\PGro_{T}$ is nonstochastic, this becomes
-\begin{eqnarray*}
-  \null{\vFunc}_{T-1}({m}_{T-1})  & = & \max_{{c}_{T-1}} ~~
+\begin{equation*}\begin{gathered}\begin{aligned}
+  \null{\vFunc}_{T-1}({m}_{T-1})   & = \max_{{c}_{T-1}} ~~
   % \{
                                         \frac{{c}_{T-1}^{1-\CRRA}}{1-\CRRA} + \Discount \PGro_{T}^{1-\CRRA}\int_{0}^{\infty}
                                         \frac{\left(({m}_{T-1}-{c}_{T-1})\Rnorm_{T}+ \tShkEmp\right)^{1-\CRRA}}{1-\CRRA}
                                         d\FDist(\tShkEmp)
                                         % \}.
-\end{eqnarray*}
+\end{aligned}\end{gathered}\end{equation*}
 where $\FDist$ is the cumulative distribution function for ${\tShkEmp}$.
 
 In principle, the maximization implicitly defines a function  \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny No analytical formula for the ${c}_{T-1}$ that maximizes this; numerical search is excruciatingly slow, because for every ${c}_{T-1}$ considered the numerical integral must be computed, which is very slow.}}{}
@@ -479,9 +479,9 @@ follows.
 as the elements of the set $\sharp = \{0,1/n,2/n, \ldots,1\}$.\footnote{These points define intervals that constitute a partition of the domain of $\FDist$.}  Call the inverse of the $\tShkEmp$ distribution $\FDist^{-1}_{\phantom{\tShkEmp}}$, and define the
 points $\sharp^{-1}_{i} = \FDist^{-1}_{\phantom{\tShkEmp}}(\sharp_{i})$.  Then
 the conditional mean of $\tShkEmp$ in each of the intervals numbered 1 to $n$ is:
-\begin{eqnarray}
-  \tShkEmp_{i} \equiv \Ex[\tShkEmp | \sharp_{i-1}^{-1} \leq \tShkEmp < \sharp_{i}^{-1}] & = & \int_{\sharp^{-1}_{i-1}}^{\sharp^{-1}_{i}} \vartheta ~ d\FDist_{\phantom{\tShkEmp}}(\vartheta)  .
-\end{eqnarray}
+\begin{equation}\begin{gathered}\begin{aligned}
+  \tShkEmp_{i} \equiv \Ex[\tShkEmp | \sharp_{i-1}^{-1} \leq \tShkEmp < \sharp_{i}^{-1}]  & = \int_{\sharp^{-1}_{i-1}}^{\sharp^{-1}_{i}} \vartheta ~ d\FDist_{\phantom{\tShkEmp}}(\vartheta)  .
+\end{aligned}\end{gathered}\end{equation}
 
 The method is illustrated in Figure~\ref{fig:discreteapprox}.  The solid continuous curve represents
 the ``true'' CDF $\FDist_{\phantom{\tShkEmp}}(\tShkEmp)$ for a lognormal distribution such that $\Ex[\tShkEmp] = 1$, $\sigma_{\tShkEmp} = 0.1$.  The short vertical line segments represent the $n_{\tShkEmp}$
@@ -502,21 +502,21 @@ distribution.\footnote{More sophisticated approximation methods exist
 
 Recalling our definition of ${\vEnd}_{t}({a}_{t})$, for $t=T-1$
 \begin{verbatimwrite}{./Equations/vDiscrete.tex}
-  \begin{eqnarray}
-    \vEnd_{T-1}({a}_{T-1}) & = &   \Discount \PGro_{T}^{1-\CRRA}\left(\frac{1}{n_{\tShkEmp}}\right)\sum_{i=1}^{n_{\tShkEmp}}   \frac{\left( \Rnorm_{T} {a}_{T-1} + \tShkEmp_{i}\right)^{1-\CRRA}}{1-\CRRA} \label{eq:vDiscrete}
-  \end{eqnarray}
+  \begin{equation}\begin{gathered}\begin{aligned}
+    \vEnd_{T-1}({a}_{T-1})  & =   \Discount \PGro_{T}^{1-\CRRA}\left(\frac{1}{n_{\tShkEmp}}\right)\sum_{i=1}^{n_{\tShkEmp}}   \frac{\left( \Rnorm_{T} {a}_{T-1} + \tShkEmp_{i}\right)^{1-\CRRA}}{1-\CRRA} \label{eq:vDiscrete}
+  \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/vDiscrete}
 so we can rewrite the maximization problem as \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Be sure to discuss \eqref{eq:vEndTm1} explicitly, as it is implemented directly in the program as per equation \eqref{eq:vEndTm1prog}.}}{}
 \begin{verbatimwrite}{./Equations/vEndTm1.tex}
-  \begin{eqnarray}
-    {\vFunc}_{T-1}({m}_{T-1})  & = & \max_{\cRat_{T-1}}
+  \begin{equation}\begin{gathered}\begin{aligned}
+    {\vFunc}_{T-1}({m}_{T-1})   & = \max_{\cRat_{T-1}}
                                      \left\{
                                      \frac{{c}_{T-1}^{1-\CRRA}}{1-\CRRA} +
                                      \vEnd_{T-1}({m}_{T-1}-{c}_{T-1})
                                      \right\}.
                                      \label{eq:vEndTm1}
-  \end{eqnarray}
+  \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/vEndTm1.tex}
 
@@ -587,9 +587,9 @@ $\bar{\cFunc}_{T} = (m_{T}-1+{h}_{T})\MinMPC_{T}$, which translates to
 $\bar{\cFunc}_{T} = m_{T}$ for ${h}_{T}=\MinMPC_{T}=1$.
 
 The infinite horizon perfect foresight marginal propensity to save 
-\begin{eqnarray}
-  \MPS & = & (1/\Rfree)(\Rfree \Discount)^{1/\CRRA} \label{eq:lambdadefn}
-\end{eqnarray}
+\begin{equation}\begin{gathered}\begin{aligned}
+  \MPS  & = (1/\Rfree)(\Rfree \Discount)^{1/\CRRA} \label{eq:lambdadefn}
+\end{aligned}\end{gathered}\end{equation}
 is also defined because it will be useful in a number of derivations.\footnote{Detailed discussion can
   be found in Carroll~\citeyearpar{BufferStockTheory}.}
 
@@ -619,9 +619,9 @@ This expression
 loops over the values of the variable \texttt{mVec}, solving the
 maximization problem
 (given in  equation (\ref{eq:vEndTm1})):\ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny This corresponds exactly to equation \eqref{eq:vEndTm1}.}}{}
-\begin{eqnarray}
+\begin{equation}\begin{gathered}\begin{aligned}
   \max_{\texttt{c}} &  & \mbox{\texttt{u[c] + $\vEnd$[mVec[[i]]-c]}} \label{eq:vEndTm1prog}
-\end{eqnarray}
+\end{aligned}\end{gathered}\end{equation}
 for each of the $i$ values of \texttt{mVec} (henceforth let's
 call these points ${m}_{T-1,i}$).
 \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Clarify the
@@ -802,10 +802,10 @@ of the value function.
 
 The first order condition of the maximization problem in period $T-1$ is:
 \begin{verbatimwrite}{./Equations/FOCTm1.tex}
-  \begin{eqnarray}
-    \util^{\prime}({c}_{T-1})      & = & \Discount \Ex_{T-1} [\PGro_{T}^{-\CRRA}\Rfree \util^{\prime}({c}_{T})]  \label{eq:focraw}
-    \\      {c}_{T-1}^{-\CRRA}  & = & \Rfree \Discount \left(\frac{1}{n_{\tShkEmp}}\right) \sum_{i=1}^{n_{\tShkEmp}} \PGro_{T}^{-\CRRA}\left(\Rfree ({m}_{T-1}-{c}_{T-1}) + \tShkEmp_{i}\right)^{-\CRRA} \label{eq:FOCTm1}.
-  \end{eqnarray}
+  \begin{equation}\begin{gathered}\begin{aligned}
+    \util^{\prime}({c}_{T-1})       & = \Discount \Ex_{T-1} [\PGro_{T}^{-\CRRA}\Rfree \util^{\prime}({c}_{T})]  \label{eq:focraw}
+    \\      {c}_{T-1}^{-\CRRA}   & = \Rfree \Discount \left(\frac{1}{n_{\tShkEmp}}\right) \sum_{i=1}^{n_{\tShkEmp}} \PGro_{T}^{-\CRRA}\left(\Rfree ({m}_{T-1}-{c}_{T-1}) + \tShkEmp_{i}\right)^{-\CRRA} \label{eq:FOCTm1}.
+  \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/FOCTm1.tex}
 \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Go from \eqref{eq:focraw} to \eqref{eq:FOCTm1} by substituting $\util(c)=c^{-\CRRA}$ and use the approximation to the integral.}}{}
@@ -874,9 +874,9 @@ fact, we already know how to construct linear interpolations
 to functions, so the obvious next step is to construct a
 linear interpolating approximation to the \textit{expected marginal
   value of end-of-period assets function} $\vEnd^{\prime}$. That is, we calculate
-\begin{eqnarray}
-  \vEnd_{T-1}^{\prime}({a}_{T-1}) & = &  \Discount \Rfree \PGro_{T}^{-\CRRA} \left(\frac{1}{n_{\tShkEmp}}\right) \sum_{i=1}^{n_{\tShkEmp}} \left(\Rnorm_{T} {a}_{T-1} + \tShkEmp_{i}\right)^{-\CRRA} \label{eq:vEndPrimeTm1}
-\end{eqnarray}
+\begin{equation}\begin{gathered}\begin{aligned}
+  \vEnd_{T-1}^{\prime}({a}_{T-1})  & =  \Discount \Rfree \PGro_{T}^{-\CRRA} \left(\frac{1}{n_{\tShkEmp}}\right) \sum_{i=1}^{n_{\tShkEmp}} \left(\Rnorm_{T} {a}_{T-1} + \tShkEmp_{i}\right)^{-\CRRA} \label{eq:vEndPrimeTm1}
+\end{aligned}\end{gathered}\end{equation}
 at the points in \texttt{aVec} yielding
 $\{\{\null{a}_{T-1,1},\vEnd_{T-1,1}^{\prime}\},\{{a}_{T-1,2},\vEnd_{T-1,2}^{\prime}\}
 \ldots\}$ and construct
@@ -927,9 +927,9 @@ start by considering the case where $\Rnorm_{T} = \Discount =
 \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Go over this
     carefully.}}{} (that is, we know for sure that income next period
 will be $\tShkEmp_{T} = 1$).  The final Euler equation is then:
-\begin{eqnarray}
-  {c}_{T-1}^{-\CRRA} & = & {c}_{T}^{-\CRRA}.
-\end{eqnarray}
+\begin{equation}\begin{gathered}\begin{aligned}
+  {c}_{T-1}^{-\CRRA}  & = {c}_{T}^{-\CRRA}.
+\end{aligned}\end{gathered}\end{equation}
 
 In the case we are now considering with no uncertainty and no liquidity
 constraints, the optimizing consumer does not care whether a unit of
@@ -959,9 +959,9 @@ implies that \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Crucial
 Of course, this is a highly nonlinear
 function.  However, if we raise both sides of \eqref{eq:vPLin} to the
 power $(-1/\CRRA)$ the result is a linear function:
-\begin{eqnarray}
-  [\vFunc^{\prime}_{T-1}({m}_{T-1})]^{-1/\CRRA} & = & \frac{{m}_{T-1}+1}{2}  .
-\end{eqnarray}
+\begin{equation}\begin{gathered}\begin{aligned}
+  [\vFunc^{\prime}_{T-1}({m}_{T-1})]^{-1/\CRRA}  & = \frac{{m}_{T-1}+1}{2}  .
+\end{aligned}\end{gathered}\end{equation}
 This is a specific example of a general phenomenon: A theoretical
 literature cited in~\cite{carroll&kimball:concavity} establishes that under
 perfect certainty, if the period-by-period marginal utility function
@@ -977,9 +977,9 @@ something to the power $-\CRRA$.  In effect, we can `unwind' all of
 the nonlinearity owing to that operation and the remaining
 nonlinearity will not be nearly so great.  Specifically, applying the foregoing insights
 to the end-of-period value function $\vEnd_{T-1}$, we can define
-\begin{eqnarray}
-  \cEndFunc_{T-1}({a}_{T-1}) & \equiv & [\vEnd_{T-1}^{\prime}({a}_{T-1})]^{-1/\CRRA} \label{eq:cGoth}
-\end{eqnarray}
+\begin{equation}\begin{gathered}\begin{aligned}
+  \cEndFunc_{T-1}({a}_{T-1})  & \equiv  [\vEnd_{T-1}^{\prime}({a}_{T-1})]^{-1/\CRRA} \label{eq:cGoth}
+\end{aligned}\end{gathered}\end{equation}
 which would be linear in the perfect foresight case.  Thus, our
 procedure is to calculate the values of $\cEndFunc_{T-1,i}$ at each
 of the ${a}_{T-1,i}$ gridpoints, with the idea that we will construct
@@ -1000,19 +1000,19 @@ the corresponding $\cEndFunc_{T-1,i}$ gridpoints used to produce our
 linearly interpolating approximation $\Alt{\cEndFunc}_{T-1}$ (as described in section~\ref{subsec:LinInterp})?
 
 The natural answer would seem to be linear extrapolation; for example, we could use
-\begin{eqnarray}
-  \Alt{\cEndFunc}_{T-1}({a}_{T-1}) &  = & \Alt{\cEndFunc}_{T-1}({a}_{T-1,1})+\Alt{\cEndFunc}_{T-1}^{{a}}({a}_{T-1,1})({a}_{T-1}-{a}_{T-1,1}) \label{eq:ExtrapLin}
-\end{eqnarray}
+\begin{equation}\begin{gathered}\begin{aligned}
+  \Alt{\cEndFunc}_{T-1}({a}_{T-1})  & = \Alt{\cEndFunc}_{T-1}({a}_{T-1,1})+\Alt{\cEndFunc}_{T-1}^{{a}}({a}_{T-1,1})({a}_{T-1}-{a}_{T-1,1}) \label{eq:ExtrapLin}
+\end{aligned}\end{gathered}\end{equation}
 for values of ${a}_{T-1} < {a}_{T-1,1}$, where $\Alt{\cEndFunc}_{T-1}^{{a}}({a}_{T-1,1})$ is the derivative of the $\Alt{\cEndFunc}_{T-1}$ function at the bottommost gridpoint (see below).  Unfortunately, this approach
 will lead us into difficulties.  To see why, consider what
 happens to the true (not approximated) $\vEnd_{T-1}({a}_{T-1})$ as
 ${a}_{T-1}$ approaches the value
 $\underline{a}_{T-1}=-\underline{\tShkEmp}\Rnorm_{T}^{-1}$.  From
 \eqref{eq:vEndPrimeTm1} we have
-\begin{eqnarray}
-  \lim_{{a}_{T-1} \downarrow \underline{a}_{T-1}} \vEnd_{T-1}^{\prime}({a}_{T-1}) & = &
-                                                                                        \lim_{{a}_{T-1} \downarrow \underline{a}_{T-1}} \Discount \Rfree \PGro_{T}^{-\CRRA} \left(\frac{1}{n_{\tShkEmp}}\right) \sum_{i=1}^{n_{\tShkEmp}} \left( {a}_{T-1} \Rnorm_{T}+ \tShkEmp_{i}\right)^{-\CRRA}.
-\end{eqnarray}
+\begin{equation}\begin{gathered}\begin{aligned}
+  \lim_{{a}_{T-1} \downarrow \underline{a}_{T-1}} \vEnd_{T-1}^{\prime}({a}_{T-1}) 
+& =                                                                                         \lim_{{a}_{T-1} \downarrow \underline{a}_{T-1}} \Discount \Rfree \PGro_{T}^{-\CRRA} \left(\frac{1}{n_{\tShkEmp}}\right) \sum_{i=1}^{n_{\tShkEmp}} \left( {a}_{T-1} \Rnorm_{T}+ \tShkEmp_{i}\right)^{-\CRRA}.
+\end{aligned}\end{gathered}\end{equation}
 
 But since $\tShkEmpMin=\tShkEmp_{1}$, exactly at
 ${a}_{T-1}=\underline{a}_{T-1}$ the first term in the summation would
@@ -1133,22 +1133,22 @@ value $\underline{a}_{T-1}$) will be associated with \textit{some}
 marginal valuation as of the end of period $T-1$, and the further
 observation that it is trivial to find the value of ${c}$ that yields
 the same marginal valuation, using the first order condition,
-\begin{eqnarray}
-  \util^{\prime}({\cRat}_{T-1,i})  & =  &
+\begin{equation}\begin{gathered}\begin{aligned}
+  \util^{\prime}({\cRat}_{T-1,i})  & = 
                                           \vEnd^{\prime}_{T-1}({a}_{T-1,i}) \label{eq:eulerTm1}
-  \\ {\cRat}_{T-1,i} & = & \util^{\prime-1}(\vEnd^{\prime}_{T-1}({a}_{T-1,i}))
-  \\ & = & (\vEnd^{\prime}_{T-1}({a}_{T-1,i}))^{-1/\CRRA}
-  \\ & \equiv & \cEndFunc_{T-1}({a}_{T-1,i})
-  \\ & \equiv & \cEndFunc_{T-1,i}
+  \\ {\cRat}_{T-1,i}  & = \util^{\prime-1}(\vEnd^{\prime}_{T-1}({a}_{T-1,i}))
+  \\  & = (\vEnd^{\prime}_{T-1}({a}_{T-1,i}))^{-1/\CRRA}
+  \\  & \equiv  \cEndFunc_{T-1}({a}_{T-1,i})
+  \\  & \equiv  \cEndFunc_{T-1,i}
                 .
-\end{eqnarray}
+\end{aligned}\end{gathered}\end{equation}
 
 But with mutually consistent values of ${c}_{T-1,i}$ and ${a}_{T-1,i}$ (consistent, in the sense that they are the unique optimal
 values that correspond to the solution to the problem in a single state), we can
 obtain the ${m}_{T-1,i}$ that corresponds to both of them from
-\begin{eqnarray}
-  {m}_{T-1,i} & = & {\cRat}_{T-1,i}+{a}_{T-1,i}.
-\end{eqnarray}
+\begin{equation}\begin{gathered}\begin{aligned}
+  {m}_{T-1,i}  & = {\cRat}_{T-1,i}+{a}_{T-1,i}.
+\end{aligned}\end{gathered}\end{equation}
 
 These ${m}_{T-1}$ gridpoints are ``endogenous'' in contrast to the usual solution method of
 specifying some ex-ante grid of values of ${m}_{T-1}$ and then using a rootfinding
@@ -1275,9 +1275,9 @@ grid.
 \end{verbatimwrite}
 \input{./cctwMoM/MoM-Prelims.tex}
 \begin{verbatimwrite}{./Equations/cFuncAbove.tex}
-  \begin{eqnarray}
-    \cFuncAbove_{t}(\mRat_{t}) & = & (\mRat_{t} + \hEnd_{t})\MinMPC_{t} \label{eq:cFuncAbove}
-  \end{eqnarray}
+  \begin{equation}\begin{gathered}\begin{aligned}
+    \cFuncAbove_{t}(\mRat_{t})  & = (\mRat_{t} + \hEnd_{t})\MinMPC_{t} \label{eq:cFuncAbove}
+  \end{aligned}\end{gathered}\end{equation}
   for a constant minimal marginal propensity to consume $\MinMPC_{t}$ given below.
 \end{verbatimwrite}
 \input{./Equations/cFuncAbove.tex}
@@ -1314,30 +1314,30 @@ grid.
   resources as the amount by which actual resources exceed the lower
   bound, and `excess' human wealth as the amount by which mean expected human wealth
   exceeds guaranteed minimum human wealth:
-  \begin{eqnarray*}
-    \aboveMin \mRat_{t} & = & {m}_{t}+\overbrace{\hEndMin_{t}}^{=-\ushort{m}_{t}}
-    \\  \aboveMin \hEnd_{t} & = & \hEnd_{t}-\hEndMin_{t}.
-  \end{eqnarray*}
+  \begin{equation*}\begin{gathered}\begin{aligned}
+    \aboveMin \mRat_{t}  & = {m}_{t}+\overbrace{\hEndMin_{t}}^{=-\ushort{m}_{t}}
+    \\  \aboveMin \hEnd_{t}  & = \hEnd_{t}-\hEndMin_{t}.
+  \end{aligned}\end{gathered}\end{equation*}
 
   We can now transparently define the optimal
   consumption rules for the two perfect foresight problems, those of the
   `optimist' and the `pessimist.'  The `pessimist' perceives human
   wealth to be equal to its minimum feasible value $\hEndMin_{t}$ with certainty, so 
   consumption is given by the perfect foresight solution
-  \begin{eqnarray*}
-    \cFuncBelow_{t}(m_{t}) & = & ({m}_{t}+\hEndMin_{t})\MinMPC_{t}
-    \\ & = & \aboveMin \mRat_{t}\MinMPC_{t}
+  \begin{equation*}\begin{gathered}\begin{aligned}
+    \cFuncBelow_{t}(m_{t})  & = ({m}_{t}+\hEndMin_{t})\MinMPC_{t}
+    \\  & = \aboveMin \mRat_{t}\MinMPC_{t}
              .
-  \end{eqnarray*}
+  \end{aligned}\end{gathered}\end{equation*}
 
   The `optimist,' on the other hand, pretends that there is no uncertainty
   about future income, and therefore consumes
-  \begin{eqnarray*}
-    \cFuncAbove_{t}(m_{t}) & = & ({m}_{t} +\hEndMin_{t} - \hEndMin_{t} + \hEnd_{t} )\MinMPC_{t}
-    \\   & = & (\aboveMin \mRat_{t} + \aboveMin \hEnd_{t})\MinMPC_{t}
-    \\     & = & \cFuncBelow_{t}(m_{t})+\aboveMin \hEnd_{t} \MinMPC_{t}
+  \begin{equation*}\begin{gathered}\begin{aligned}
+    \cFuncAbove_{t}(m_{t})  & = ({m}_{t} +\hEndMin_{t} - \hEndMin_{t} + \hEnd_{t} )\MinMPC_{t}
+    \\    & = (\aboveMin \mRat_{t} + \aboveMin \hEnd_{t})\MinMPC_{t}
+    \\      & = \cFuncBelow_{t}(m_{t})+\aboveMin \hEnd_{t} \MinMPC_{t}
                  .
-  \end{eqnarray*}
+  \end{aligned}\end{gathered}\end{equation*}
 
   It seems obvious that the spending of the realist will be strictly greater
   than that of the pessimist and strictly less than that of the
@@ -1384,14 +1384,14 @@ grid.
 \begin{verbatimwrite}{./Equations/MoM-KoppaOfMu.tex}
   Defining $\mu_{t} =
   \log \aboveMin \mRat_{t}$ (which can range from $-\infty$ to $\infty$), the object in the middle of the last inequality is
-  \begin{eqnarray}
-    \Hi{\koppa}_{t}(\mu_{t})  & \equiv & \left(\frac{\bar{\cFunc}_{t}(\ushort{m}_{t}+e^{\mu_{t}})-\cFunc_{t}(\ushort{m}_{t}+e^{\mu_{t}})}{\aboveMin \hEnd_{t} \MinMPC_{t}}\right), \label{eq:koppa}
-  \end{eqnarray}
+  \begin{equation}\begin{gathered}\begin{aligned}
+    \Hi{\koppa}_{t}(\mu_{t})   & \equiv  \left(\frac{\bar{\cFunc}_{t}(\ushort{m}_{t}+e^{\mu_{t}})-\cFunc_{t}(\ushort{m}_{t}+e^{\mu_{t}})}{\aboveMin \hEnd_{t} \MinMPC_{t}}\right), \label{eq:koppa}
+  \end{aligned}\end{gathered}\end{equation}
   and we now define
-  \begin{eqnarray}
-    \Hi{\chiFunc}_{t}(\mu_{t}) & = & \log \left(\frac{1-\Hi{\koppa}_{t}(\mu_{t})}{\Hi{\koppa}_{t}(\mu_{t})}\right)
-    \\ & = & \log \left(1/\Hi{\koppa}_{t}(\mu_{t})-1\right) \label{eq:chi}
-  \end{eqnarray}
+  \begin{equation}\begin{gathered}\begin{aligned}
+    \Hi{\chiFunc}_{t}(\mu_{t})  & = \log \left(\frac{1-\Hi{\koppa}_{t}(\mu_{t})}{\Hi{\koppa}_{t}(\mu_{t})}\right)
+    \\  & = \log \left(1/\Hi{\koppa}_{t}(\mu_{t})-1\right) \label{eq:chi}
+  \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/MoM-KoppaOfMu.tex}
 \begin{verbatimwrite}{./cctwMoM/MoM-KoppaOfMu-Describe.tex}
@@ -1401,9 +1401,9 @@ grid.
 \end{verbatimwrite}
 \input{./cctwMoM/MoM-KoppaOfMu-Describe.tex}
 \begin{verbatimwrite}{./Equations/cFuncHi.tex}
-  \begin{eqnarray}
-    \Hi{\cFunc}_{t} & = & \bar{\cFunc}_{t}-\overbrace{\left(\frac{1}{1+\exp(\Hi{\chiFunc}_{t})}\right)}^{=\Hi{\koppa}_{t}} \aboveMin \hEnd_{t} \MinMPC_{t}. \label{eq:cFuncHi}
-  \end{eqnarray}
+  \begin{equation}\begin{gathered}\begin{aligned}
+    \Hi{\cFunc}_{t}  & = \bar{\cFunc}_{t}-\overbrace{\left(\frac{1}{1+\exp(\Hi{\chiFunc}_{t})}\right)}^{=\Hi{\koppa}_{t}} \aboveMin \hEnd_{t} \MinMPC_{t}. \label{eq:cFuncHi}
+  \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/cFuncHi.tex}
 
@@ -1459,15 +1459,15 @@ interpolating approximation that smoothly matches both the level and the slope
 at those points.
 
 This requires us to differentiate \eqref{eq:koppa} and \eqref{eq:chi}, yielding
-\begin{eqnarray}
-  \Hi{\koppa}_{t}^{\mu}(\mu_{t})  & = & (\aboveMin \hEnd_{t} \MinMPC_{t})^{-1}e^{\mu_{t}}\left(\MinMPC_{t}-\overbrace{\cFunc^{\mRat}_{t}(\ushort{m}_{t}+e^{\mu_{t}})}^{\equiv \MPCFunc_{t}(\mRat_{t})}\right)  \label{eq:koppaPrime}
-  \\ \Hi{\chiFunc}_{t}^{\mu}(\mu_{t}) & = & \left(\frac{-\Hi{\koppa}_{t}^{\mu}(\mu_{t})/\Hi{\koppa}_{t}^{2}}{1/\Hi{\koppa}_{t}(\mu_{t})-1}\right)
-\end{eqnarray}
+\begin{equation}\begin{gathered}\begin{aligned}
+  \Hi{\koppa}_{t}^{\mu}(\mu_{t})   & = (\aboveMin \hEnd_{t} \MinMPC_{t})^{-1}e^{\mu_{t}}\left(\MinMPC_{t}-\overbrace{\cFunc^{\mRat}_{t}(\ushort{m}_{t}+e^{\mu_{t}})}^{\equiv \MPCFunc_{t}(\mRat_{t})}\right)  \label{eq:koppaPrime}
+  \\ \Hi{\chiFunc}_{t}^{\mu}(\mu_{t})  & = \left(\frac{-\Hi{\koppa}_{t}^{\mu}(\mu_{t})/\Hi{\koppa}_{t}^{2}}{1/\Hi{\koppa}_{t}(\mu_{t})-1}\right)
+\end{aligned}\end{gathered}\end{equation}
 and (dropping arguments) with some algebra these can be combined to yield
-\begin{eqnarray}
-  \Hi{\chiFunc}_{t}^{\mu} & = & \left(\frac{\MinMPC_{t} \aboveMin \mRat_{t} \aboveMin \hEnd_{t} (\MinMPC_{t}-\MPC_{t})}
+\begin{equation}\begin{gathered}\begin{aligned}
+  \Hi{\chiFunc}_{t}^{\mu}  & = \left(\frac{\MinMPC_{t} \aboveMin \mRat_{t} \aboveMin \hEnd_{t} (\MinMPC_{t}-\MPC_{t})}
                                 {(\cFuncAbove_{t}-\cFunc_{t})(\cFuncAbove_{t}-\cFunc_{t} - \MinMPC_{t} \aboveMin \hEnd_{t})}\right).
-\end{eqnarray}
+\end{aligned}\end{gathered}\end{equation}
 
 To compute the vector of values of \eqref{eq:koppaPrime} corresponding
 to the points in $\vec{\mu}_{t}$, we need the marginal propensities to
@@ -1476,27 +1476,27 @@ $\cFunc^{\mRat}_{t}$ (the vector of such values is
 $\vec{\MPC}_{t}$).  These can be obtained by differentiating the
 Euler equation \eqref{eq:upEqbetaOp} (where we define
 $\mathfrak{m}_{t}({a}) \equiv \cEndFunc_{t}({a})+{a}$):
-\begin{eqnarray}
-  \util^{\prime}({\cEndFunc}_{t})  & = & \hat{\vEnd}_{t}^{\aRat}(\mathfrak{m}_{t}-{\cEndFunc}_{t})
-\end{eqnarray}
+\begin{equation}\begin{gathered}\begin{aligned}
+  \util^{\prime}({\cEndFunc}_{t})   & = \hat{\vEnd}_{t}^{\aRat}(\mathfrak{m}_{t}-{\cEndFunc}_{t})
+\end{aligned}\end{gathered}\end{equation}
 with respect to $\aRat$, yielding a marginal propensity to
 \textit{have consumed} $\cEndFunc^{\aRat}$ at each gridpoint:
-\begin{eqnarray}
-  \uPP(\cEndFunc_{t})\cEndFunc_{t}^{\aRat} & = & \hat{\vEnd}_{t}^{\aRat\aRat}(\mathfrak{m}_{t}-{\cEndFunc}_{t})
-  \\ \cEndFunc_{t}^{\aRat} & = & \hat{\vEnd}_{t}^{\aRat\aRat}(\mathfrak{m}_{t}-{\cEndFunc}_{t})/\uPP(\cEndFunc_{t})
-\end{eqnarray}
+\begin{equation}\begin{gathered}\begin{aligned}
+  \uPP(\cEndFunc_{t})\cEndFunc_{t}^{\aRat}  & = \hat{\vEnd}_{t}^{\aRat\aRat}(\mathfrak{m}_{t}-{\cEndFunc}_{t})
+  \\ \cEndFunc_{t}^{\aRat}  & = \hat{\vEnd}_{t}^{\aRat\aRat}(\mathfrak{m}_{t}-{\cEndFunc}_{t})/\uPP(\cEndFunc_{t})
+\end{aligned}\end{gathered}\end{equation}
 and the marginal propensity to consume at the beginning of the period is obtained from the marginal
 propensity to have consumed by noting that
-\begin{eqnarray*}
-  \cEndFunc & = & \mathfrak{m}-\aRat
-  \\ \cEndFunc^{\aRat}+1 & = & \mathfrak{m}^{\aRat}
-\end{eqnarray*}
+\begin{equation*}\begin{gathered}\begin{aligned}
+  \cEndFunc  & = \mathfrak{m}-\aRat
+  \\ \cEndFunc^{\aRat}+1  & = \mathfrak{m}^{\aRat}
+\end{aligned}\end{gathered}\end{equation*}
 which, together with the chain rule $\cEndFunc^{\aRat}  = \cFunc^{\mRat}\mathfrak{m}^{\aRat}$,
 yields the MPC from
-\begin{eqnarray}
-  \cFunc^{\mRat}(\overbrace{\cEndFunc^{\aRat}+1}^{=\mathfrak{m}^{\aRat}}) & = & \cEndFunc^{\aRat}
-  \\ \cFunc^{\mRat} & = & \cEndFunc^{\aRat}/(1+\cEndFunc^{\aRat}) \label{eq:MPCfromMPTHC}.
-\end{eqnarray}
+\begin{equation}\begin{gathered}\begin{aligned}
+  \cFunc^{\mRat}(\overbrace{\cEndFunc^{\aRat}+1}^{=\mathfrak{m}^{\aRat}})  & = \cEndFunc^{\aRat}
+  \\ \cFunc^{\mRat}  & = \cEndFunc^{\aRat}/(1+\cEndFunc^{\aRat}) \label{eq:MPCfromMPTHC}.
+\end{aligned}\end{gathered}\end{equation}
 
 
 Designating $\Alt{\Hi{\cFunc}}_{T-1}$ as the approximated consumption rule
@@ -1539,50 +1539,50 @@ most eagle-eyed reader.)
   direct analogue in approximation of the value function.
 
   Consider the perfect foresight (or ``optimist's'') problem in period $T-1$:
-  \begin{eqnarray*}
-    \bar{\vFunc}_{T-1}({m}_{T-1}) & \equiv & \util(\cRat_{T-1})+\Discount \util(\cRat_{T})
-    \\ & = & \util(\cRat_{T-1})\left(1+\Discount ((\Discount_{T}\Rfree)^{1/\CRRA})^{1-\CRRA}\right)
-    \\ & = & \util(\cRat_{T-1})\left(1+\Discount (\Discount_{T}\Rfree)^{1/\CRRA-1}\right)
-    \\ & = & \util(\cRat_{T-1})\left(1+(\Discount_{T}\Rfree)^{1/\CRRA}/\Rfree\right)
-    \\ & = & \util(\cRat_{T-1})\underbrace{\mbox{PDV}_{t}^{T}(\cRat)/\cRat_{T-1}}_{\equiv \mathbb{C}_{t}^{T}}
-  \end{eqnarray*}
+  \begin{equation*}\begin{gathered}\begin{aligned}
+    \bar{\vFunc}_{T-1}({m}_{T-1})  & \equiv  \util(\cRat_{T-1})+\Discount \util(\cRat_{T})
+    \\  & = \util(\cRat_{T-1})\left(1+\Discount ((\Discount_{T}\Rfree)^{1/\CRRA})^{1-\CRRA}\right)
+    \\  & = \util(\cRat_{T-1})\left(1+\Discount (\Discount_{T}\Rfree)^{1/\CRRA-1}\right)
+    \\  & = \util(\cRat_{T-1})\left(1+(\Discount_{T}\Rfree)^{1/\CRRA}/\Rfree\right)
+    \\  & = \util(\cRat_{T-1})\underbrace{\mbox{PDV}_{t}^{T}(\cRat)/\cRat_{T-1}}_{\equiv \mathbb{C}_{t}^{T}}
+  \end{aligned}\end{gathered}\end{equation*}
   where $\mathbb{C}_{t}^{T}=\mbox{PDV}_{t}^{T}(\cRat)$ is the present discounted value of consumption.
   A similar function can be constructed recursively for earlier periods, yielding
   the general expression \hypertarget{vFuncPF}{}
 \end{verbatimwrite}
 \input{./cctwMoM/value-Intro.tex}
 \begin{verbatimwrite}{./Equations/vFuncPF.tex}
-  \begin{eqnarray}
-    \bar{\vFunc}_{t}({m}_{t}) & = & \util(\bar{\cRat}_{t})\mathbb{C}_{t}^{T}\label{eq:vFuncPF}
-    \\ & = & \util(\bar{c}_{t}) \MinMPC_{t}^{-1} % 20190820
-    \\ & = & \util((\aboveMin \mRat_{t}+\aboveMin \hEnd_{t})\MinMPC_{t}) \MinMPC_{t}^{-1} % 20190820
-    \\ & = & \util(\aboveMin \mRat_{t}+\aboveMin \hEnd_{t})\MinMPC_{t}^{1-\CRRA} \MinMPC_{t}^{-1} % 20190820
-    \\ & = & \util(\aboveMin \mRat_{t}+\aboveMin \hEnd_{t})\MinMPC_{t}^{-\CRRA}  % 20190820
-  \end{eqnarray}
+  \begin{equation}\begin{gathered}\begin{aligned}
+    \bar{\vFunc}_{t}({m}_{t})  & = \util(\bar{\cRat}_{t})\mathbb{C}_{t}^{T}\label{eq:vFuncPF}
+    \\  & = \util(\bar{c}_{t}) \MinMPC_{t}^{-1} % 20190820
+    \\  & = \util((\aboveMin \mRat_{t}+\aboveMin \hEnd_{t})\MinMPC_{t}) \MinMPC_{t}^{-1} % 20190820
+    \\  & = \util(\aboveMin \mRat_{t}+\aboveMin \hEnd_{t})\MinMPC_{t}^{1-\CRRA} \MinMPC_{t}^{-1} % 20190820
+    \\  & = \util(\aboveMin \mRat_{t}+\aboveMin \hEnd_{t})\MinMPC_{t}^{-\CRRA}  % 20190820
+  \end{aligned}\end{gathered}\end{equation}
   where the second line uses the fact demonstrated in \cite{BufferStockTheory} that $\mathbb{C}_{t}=\MPC^{-1}_{t}$. % 20190820
 
   This can be transformed as
-  \begin{eqnarray*}
-    \bar{\vInv}_{t} & \equiv & \left((1-\CRRA)\bar{\vFunc}_{t}\right)^{1/(1-\CRRA)}
-    \\ & = & \cRat_{t}(\mathbb{C}_{t}^{T})^{1/(1-\CRRA)}
-    \\ & = & (\aboveMin \mRat_{t}+\aboveMin \hEnd_{t})\MinMPC_{t}^{-\CRRA/(1-\CRRA)}   % 20190820
-  \end{eqnarray*}
+  \begin{equation*}\begin{gathered}\begin{aligned}
+    \bar{\vInv}_{t}  & \equiv  \left((1-\CRRA)\bar{\vFunc}_{t}\right)^{1/(1-\CRRA)}
+    \\  & = \cRat_{t}(\mathbb{C}_{t}^{T})^{1/(1-\CRRA)}
+    \\  & = (\aboveMin \mRat_{t}+\aboveMin \hEnd_{t})\MinMPC_{t}^{-\CRRA/(1-\CRRA)}   % 20190820
+  \end{aligned}\end{gathered}\end{equation*}
 \end{verbatimwrite}
 \input{./Equations/vFuncPF.tex}
 \begin{verbatimwrite}{./cctwMoM/value-Rest.tex}
   \MPCMatch{with derivative
-    \begin{eqnarray*}
-      \bar{\vInv}_{t}^{m} & = & (\mathbb{C}_{t}^{T})^{1/(1-\CRRA)}\MinMPC_{t},
-      \\ & = & \MinMPC_{t}^{-\CRRA/(1-\CRRA)} % 20190820
-    \end{eqnarray*}}{}
+    \begin{equation*}\begin{gathered}\begin{aligned}
+      \bar{\vInv}_{t}^{m}  & = (\mathbb{C}_{t}^{T})^{1/(1-\CRRA)}\MinMPC_{t},
+      \\  & = \MinMPC_{t}^{-\CRRA/(1-\CRRA)} % 20190820
+    \end{aligned}\end{gathered}\end{equation*}}{}
   and since $\mathbb{C}_{t}^{T}$ is a constant while the consumption
   function is linear, $\bar{\vInv}_{t}$ will also be linear.
 
   We apply the same transformation to the value function for the problem with uncertainty (the ``realist's'' problem)\MPCMatch{ and differentiate}:
-  \begin{eqnarray*}
-    \bar{\vInv}_{t} & = & \left((1-\CRRA)\bar{\vFunc}_{t}({m}_{t})\right)^{1/(1-\CRRA)}
-                          \MPCMatch{\\ \bar{\vInv}^{m}_{t} & = & \left((1-\CRRA)\bar{\vFunc}_{t}({m}_{t})\right)^{-1+1/(1-\CRRA)}\bar{\vFunc}_{t}^{m}({m}_{t})}{}
-  \end{eqnarray*}
+  \begin{equation*}\begin{gathered}\begin{aligned}
+    \bar{\vInv}_{t}  & = \left((1-\CRRA)\bar{\vFunc}_{t}({m}_{t})\right)^{1/(1-\CRRA)}
+                          \MPCMatch{\\ \bar{\vInv}^{m}_{t}  & = \left((1-\CRRA)\bar{\vFunc}_{t}({m}_{t})\right)^{-1+1/(1-\CRRA)}\bar{\vFunc}_{t}^{m}({m}_{t})}{}
+  \end{aligned}\end{gathered}\end{equation*}
   and an excellent approximation to the value function can be obtained by
   calculating the values of $\bar{\vInv}$ at the same gridpoints used by the
   consumption function approximation, and interpolating among those points.
@@ -1591,37 +1591,37 @@ most eagle-eyed reader.)
   realize that the $\bar{\vInv}$ function for the optimist's problem is
   an upper bound for the ${\vInv}$ function in the presence of uncertainty, and the value function
   for the pessimist is a lower bound. Analogously to \eqref{eq:koppa}, define an upper-case
-  \begin{eqnarray}
-    \hat{\Koppa}_{t}(\mu_{t})  & = & \left(\frac{\bar{\vInv}_{t}(\ushort{m}_{t}+e^{\mu_{t}})-\vInv_{t}(\ushort{m}_{t}+e^{\mu_{t}})}{\aboveMin \hEnd_{t} \MinMPC_{t} (\mathbb{C}_{t}^{T})^{1/(1-\CRRA)}}\right) \label{eq:Koppa}
-  \end{eqnarray}
+  \begin{equation}\begin{gathered}\begin{aligned}
+    \hat{\Koppa}_{t}(\mu_{t})   & = \left(\frac{\bar{\vInv}_{t}(\ushort{m}_{t}+e^{\mu_{t}})-\vInv_{t}(\ushort{m}_{t}+e^{\mu_{t}})}{\aboveMin \hEnd_{t} \MinMPC_{t} (\mathbb{C}_{t}^{T})^{1/(1-\CRRA)}}\right) \label{eq:Koppa}
+  \end{aligned}\end{gathered}\end{equation}
   \MPCMatch{with derivative (dropping arguments)
-    \begin{eqnarray}
-      \hat{\Koppa}_{t}^{\mu}  & = & (\aboveMin \hEnd_{t} \MinMPC_{t} (\mathbb{C}_{t}^{T})^{1/(1-\CRRA)})^{-1}e^{\mu_{t}}\left(\bar{\vInv}^{m}_{t}-\vInv^{m}_{t}\right) \label{eq:KoppaPrime}
-      % \\ & = &  (\aboveMin \hEnd_{t} \MinMPC_{t})^{-1}e^{\mu_{t}}\left((\mathbb{C}_{t}^{T})^{1/(1-\CRRA)}\MinMPC_{t}-\left((1-\CRRA)\vFunc_{t}({m}_{t})\right)^{-1+1/(1-\CRRA)}\vFunc_{t}^{m}({m}_{t})\right)  \notag
-    \end{eqnarray}}{}
+    \begin{equation}\begin{gathered}\begin{aligned}
+      \hat{\Koppa}_{t}^{\mu}   & = (\aboveMin \hEnd_{t} \MinMPC_{t} (\mathbb{C}_{t}^{T})^{1/(1-\CRRA)})^{-1}e^{\mu_{t}}\left(\bar{\vInv}^{m}_{t}-\vInv^{m}_{t}\right) \label{eq:KoppaPrime}
+      % \\  & =  (\aboveMin \hEnd_{t} \MinMPC_{t})^{-1}e^{\mu_{t}}\left((\mathbb{C}_{t}^{T})^{1/(1-\CRRA)}\MinMPC_{t}-\left((1-\CRRA)\vFunc_{t}({m}_{t})\right)^{-1+1/(1-\CRRA)}\vFunc_{t}^{m}({m}_{t})\right)  \notag
+    \end{aligned}\end{gathered}\end{equation}}{}
   and an upper-case version of the $\chiFunc$ equation in \eqref{eq:chi}:
-  \begin{eqnarray}
-    \hat{\Chi}_{t}(\mu_{t}) & = & \log \left(\frac{1-\hat{\Koppa}_{t}(\mu_{t})}{\hat{\Koppa}_{t}(\mu_{t})}\right)
-    \\ & = & \log \left(1/\hat{\Koppa}_{t}(\mu_{t})-1\right) \label{eq:Chi}
-  \end{eqnarray}
+  \begin{equation}\begin{gathered}\begin{aligned}
+    \hat{\Chi}_{t}(\mu_{t})  & = \log \left(\frac{1-\hat{\Koppa}_{t}(\mu_{t})}{\hat{\Koppa}_{t}(\mu_{t})}\right)
+    \\  & = \log \left(1/\hat{\Koppa}_{t}(\mu_{t})-1\right) \label{eq:Chi}
+  \end{aligned}\end{gathered}\end{equation}
   \MPCMatch{with corresponding derivative
-    \begin{eqnarray}
-      \hat{\Chi}_{t}^{\mu} & = & \left(\frac{-\hat{\Koppa}_{t}^{\mu}/\hat{\Koppa}_{t}^{2}}{1/\hat{\Koppa}_{t}-1}\right)
-    \end{eqnarray}}{}
+    \begin{equation}\begin{gathered}\begin{aligned}
+      \hat{\Chi}_{t}^{\mu}  & = \left(\frac{-\hat{\Koppa}_{t}^{\mu}/\hat{\Koppa}_{t}^{2}}{1/\hat{\Koppa}_{t}-1}\right)
+    \end{aligned}\end{gathered}\end{equation}}{}
   and if we approximate these objects then invert them (as above with
   the $\Hi{\koppa}$ and $\Hi{\chiFunc}$ functions) we obtain a very high-quality
   approximation to our inverted value function at the same points for
   which we have our approximated value function:
-  \begin{eqnarray}
-    \hat{\vInv}_{t} & = & \bar{\vInv}_{t}-\overbrace{\left(\frac{1}{1+\exp(\hat{\Chi}_{t})}\right)}^{=\hat{\Koppa}_{t}} \aboveMin \hEnd_{t} \MinMPC_{t} (\mathbb{C}_{t}^{T})^{1/(1-\CRRA) }
-  \end{eqnarray}
+  \begin{equation}\begin{gathered}\begin{aligned}
+    \hat{\vInv}_{t}  & = \bar{\vInv}_{t}-\overbrace{\left(\frac{1}{1+\exp(\hat{\Chi}_{t})}\right)}^{=\hat{\Koppa}_{t}} \aboveMin \hEnd_{t} \MinMPC_{t} (\mathbb{C}_{t}^{T})^{1/(1-\CRRA) }
+  \end{aligned}\end{gathered}\end{equation}
   from which we obtain our approximation to the value function\MPCMatch{ and its derivatives~}~as \hypertarget{vHatFunc}{}
-  \begin{eqnarray*}
-    \hat{\vFunc}_{t} & = & \util(\hat{\vInv}_{t})
-    \\  \hat{\vFunc}^{m}_{t} & = & \util^{\prime}(\hat{\vInv}_{t}) \hat{\vInv}^{m}
-                                   \MPCMatch{\\  \hat{\vFunc}^{mm}_{t} & = & \util^{\prime\prime}(\hat{\vInv}_{t}) (\hat{\vInv}^{m})^{2} + \util^{\prime}(\hat{\vInv}_{t})\hat{\vInv}^{mm}}{}
+  \begin{equation*}\begin{gathered}\begin{aligned}
+    \hat{\vFunc}_{t}  & = \util(\hat{\vInv}_{t})
+    \\  \hat{\vFunc}^{m}_{t}  & = \util^{\prime}(\hat{\vInv}_{t}) \hat{\vInv}^{m}
+                                   \MPCMatch{\\  \hat{\vFunc}^{mm}_{t}  & = \util^{\prime\prime}(\hat{\vInv}_{t}) (\hat{\vInv}^{m})^{2} + \util^{\prime}(\hat{\vInv}_{t})\hat{\vInv}^{mm}}{}
                                                                              .
-  \end{eqnarray*}
+  \end{aligned}\end{gathered}\end{equation*}
 
   Although a linear interpolation that matches the level of $\vInv$ at
   the gridpoints is simple, a Hermite interpolation that matches both
@@ -1649,9 +1649,9 @@ most eagle-eyed reader.)
   approaches its lower bound.  Using this 
   fact plus the strict concavity of the consumption function yields the
   proposition that 
-  \begin{eqnarray}
+  \begin{equation}\begin{gathered}\begin{aligned}
     \cFunc_{t}(\ushort{m}_{t}+\aboveMin \mRat_{t}) & < \MaxMPC_{t} \aboveMin \mRat_{t}.
-  \end{eqnarray}
+  \end{aligned}\end{gathered}\end{equation}
 
   The solution method described above does not guarantee that
   approximated consumption will respect this constraint between gridpoints, and a failure to 
@@ -1693,11 +1693,11 @@ most eagle-eyed reader.)
 \begin{verbatimwrite}{./Equations/mtCusp.tex}
   Defining $\mtCusp$ as the `cusp' point where the two upper bounds
   intersect:
-  \begin{eqnarray*}
-    \left(\aboveMin \mtCusp+\aboveMin \hEnd_{t}\right)\MinMPC_{t} &=& \MaxMPC_{t} \aboveMin \mtCusp \\
-    \aboveMin \mtCusp &=& \frac{\MinMPC_{t}\aboveMin \hEnd_{t}}{(1-\MinMPC_{t})\MaxMPC_{t}} \\
-    \mtCusp &=& \frac{\MinMPC_{t}\hEnd_{t}-\hEndMin_{t}}{(1-\MinMPC_{t})\MaxMPC_{t}},
-  \end{eqnarray*}
+  \begin{equation*}\begin{gathered}\begin{aligned}
+    \left(\aboveMin \mtCusp+\aboveMin \hEnd_{t}\right)\MinMPC_{t}  & =  \MaxMPC_{t} \aboveMin \mtCusp \\
+    \aboveMin \mtCusp  & =  \frac{\MinMPC_{t}\aboveMin \hEnd_{t}}{(1-\MinMPC_{t})\MaxMPC_{t}} \\
+    \mtCusp  & =  \frac{\MinMPC_{t}\hEnd_{t}-\hEndMin_{t}}{(1-\MinMPC_{t})\MaxMPC_{t}},
+  \end{aligned}\end{gathered}\end{equation*}
 \end{verbatimwrite}
 \input{./Equations/mtCusp.tex}
 \begin{verbatimwrite}{./Equations/TighterUpperBound.tex}
@@ -1716,10 +1716,10 @@ most eagle-eyed reader.)
 
 \begin{verbatimwrite}{./Equations/koppaLo.tex}
   Again defining $\mu_{t} =\log \aboveMin \mRat_{t}$, the object in the middle of the inequality is
-  \begin{eqnarray*}
-    \Lo{\koppa}_{t}(\mu_{t}) & \equiv & \frac{\MaxMPC_{t}-\cFunc_{t}(\ushort{m}_{t}+e^{\mu_{t}})e^{-\mu_{t}}}{\MaxMPC_{t}-\MinMPC_{t}} \label{eq:koppaL} 
-                                        \MPCMatch{\\ \Lo{\koppa}^{\mu}_{t}(\mu_{t}) & = & \frac{\cFunc_{t}(\ushort{m}_{t}+e^{\mu_{t}})e^{-\mu_{t}}-\MPCFunc_{t}^{m}(\ushort{m}_{t}+e^{\mu_{t}})}{\MaxMPC_{t}-\MinMPC_{t}}}{} .
-  \end{eqnarray*}
+  \begin{equation*}\begin{gathered}\begin{aligned}
+    \Lo{\koppa}_{t}(\mu_{t})  & \equiv  \frac{\MaxMPC_{t}-\cFunc_{t}(\ushort{m}_{t}+e^{\mu_{t}})e^{-\mu_{t}}}{\MaxMPC_{t}-\MinMPC_{t}} \label{eq:koppaL} 
+                                        \MPCMatch{\\ \Lo{\koppa}^{\mu}_{t}(\mu_{t})  & = \frac{\cFunc_{t}(\ushort{m}_{t}+e^{\mu_{t}})e^{-\mu_{t}}-\MPCFunc_{t}^{m}(\ushort{m}_{t}+e^{\mu_{t}})}{\MaxMPC_{t}-\MinMPC_{t}}}{} .
+  \end{aligned}\end{gathered}\end{equation*}
 \end{verbatimwrite}
 \input{./Equations/koppaLo.tex}
 
@@ -1745,15 +1745,15 @@ most eagle-eyed reader.)
 \end{verbatimwrite}
 \input{./cctwMoM/TighterThreeFuncs.tex}
 \begin{verbatimwrite}{./Equations/TighterThreeEqns.tex}
-  \begin{eqnarray*}
-    \pmb{1}_{\text{Lo}}(\mRat) & = & 1 \text{~if $          \mRat \leq  \bar{\check{\mRat}}_{t}^{\#} \phantom{< \mRat <   \ushort{\hat{\mRat}}_{t}^{\#}          \leq \mRat}$}
-    \\  \pmb{1}_{\text{Mid}}(\mRat) & = & 1 \text{~if $\phantom{ \mRat \leq}~ \bar{\check{\mRat}}_{t}^{\#}          < \mRat <   \ushort{\hat{\mRat}}_{t}^{\#} \phantom{\leq \mRat}$}
-    \\  \pmb{1}_{\text{Hi}}(\mRat) & = & 1 \text{~if $\phantom{ \mRat \leq  ~\bar{\check{\mRat}}_{t}^{\#}          < \mRat < } \ushort{\hat{\mRat}}_{t}^{\#}           \leq \mRat$}
-  \end{eqnarray*}
+  \begin{equation*}\begin{gathered}\begin{aligned}
+    \pmb{1}_{\text{Lo}}(\mRat)  & = 1 \text{~if $          \mRat \leq  \bar{\check{\mRat}}_{t}^{\#} \phantom{< \mRat <   \ushort{\hat{\mRat}}_{t}^{\#}          \leq \mRat}$}
+    \\  \pmb{1}_{\text{Mid}}(\mRat)  & = 1 \text{~if $\phantom{ \mRat \leq}~ \bar{\check{\mRat}}_{t}^{\#}          < \mRat <   \ushort{\hat{\mRat}}_{t}^{\#} \phantom{\leq \mRat}$}
+    \\  \pmb{1}_{\text{Hi}}(\mRat)  & = 1 \text{~if $\phantom{ \mRat \leq  ~\bar{\check{\mRat}}_{t}^{\#}          < \mRat < } \ushort{\hat{\mRat}}_{t}^{\#}           \leq \mRat$}
+  \end{aligned}\end{gathered}\end{equation*}
   we can define a well-behaved approximating consumption function
-  \begin{eqnarray}
-    \Alt{\cFunc}_{t} & = & \pmb{1}_{\text{Lo}} \Alt{\Lo{\cFunc}}_{t} + \pmb{1}_{\text{Mid}} \Alt{\tilde{\cFunc}}_{t}+\pmb{1}_{\text{Hi}} \Alt{\Hi{\cFunc}}_{t}.
-  \end{eqnarray}
+  \begin{equation}\begin{gathered}\begin{aligned}
+    \Alt{\cFunc}_{t}  & = \pmb{1}_{\text{Lo}} \Alt{\Lo{\cFunc}}_{t} + \pmb{1}_{\text{Mid}} \Alt{\tilde{\cFunc}}_{t}+\pmb{1}_{\text{Hi}} \Alt{\Hi{\cFunc}}_{t}.
+  \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/TighterThreeEqns.tex}
 
@@ -1782,27 +1782,27 @@ most eagle-eyed reader.)
   values $\mRat_{t} < \mRat_{t}^{\#}$ matters are slightly more complicated.  
 
   Start with the fact that at the cusp point, 
-  \begin{eqnarray*}
-    \bar{\vFunc}_{t}(\mtCusp) & = & \util(\bar{\cRat}_{t}(\mtCusp))\mathbb{C}_{t}^{T} \\
-                              &=& \util(\aboveMin \mtCusp  \MaxMPC_{t})\mathbb{C}_{t}^{T}
+  \begin{equation*}\begin{gathered}\begin{aligned}
+    \bar{\vFunc}_{t}(\mtCusp)  & = \util(\bar{\cRat}_{t}(\mtCusp))\mathbb{C}_{t}^{T} \\
+                               & =  \util(\aboveMin \mtCusp  \MaxMPC_{t})\mathbb{C}_{t}^{T}
                                   .
-  \end{eqnarray*}
+  \end{aligned}\end{gathered}\end{equation*}
 
   But for \textit{all} $\mRat_{t}$,
-  \begin{eqnarray*}
-    \bar{\vFunc}_{t}(\mRat) & = & \util(\bar{\cRat}_{t}(\mRat))+ \bar{\vEnd}_{t}(\mRat-\bar{\cRat}_{t}(\mRat)),
-  \end{eqnarray*}
+  \begin{equation*}\begin{gathered}\begin{aligned}
+    \bar{\vFunc}_{t}(\mRat)  & = \util(\bar{\cRat}_{t}(\mRat))+ \bar{\vEnd}_{t}(\mRat-\bar{\cRat}_{t}(\mRat)),
+  \end{aligned}\end{gathered}\end{equation*}
   and we assume that for the consumer below the cusp point consumption is given by $\MaxMPC \aboveMin \mRat_{t}$ so for $\mRat_{t}< \mtCusp$
-  \begin{eqnarray*}
-    \bar{\vFunc}_{t}(\mRat) & = & \util( \MaxMPC_{t} \aboveMin \mRat)+ \bar{\vEnd}_{t}((1-\MaxMPC_{t})\aboveMin \mRat),
-  \end{eqnarray*}
+  \begin{equation*}\begin{gathered}\begin{aligned}
+    \bar{\vFunc}_{t}(\mRat)  & = \util( \MaxMPC_{t} \aboveMin \mRat)+ \bar{\vEnd}_{t}((1-\MaxMPC_{t})\aboveMin \mRat),
+  \end{aligned}\end{gathered}\end{equation*}
   which is easy to compute because $\bar{\vEnd}_{t}(\aRat_{t}) = \Discount \bar{\vFunc}_{t+1}(\aRat_{t}\Rnorm+1)$
   where $\bar{\vFunc}_{t}$ is as defined above because a consumer who ends the current period with assets exceeding
   the lower bound will not expect to be constrained next period.  (Recall again that we are merely constructing an object that is guaranteed to be an \textit{upper bound} for the value that the `realist' consumer will experience.)  At the gridpoints defined by the solution of the 
   consumption problem can then construct
-  \begin{eqnarray*}
-    \bar{\vInv}_{t}(\mRat) & = & ((1-\CRRA)\bar{\vFunc}_{t}(\mRat))^{1/(1-\CRRA)}
-  \end{eqnarray*}
+  \begin{equation*}\begin{gathered}\begin{aligned}
+    \bar{\vInv}_{t}(\mRat)  & = ((1-\CRRA)\bar{\vFunc}_{t}(\mRat))^{1/(1-\CRRA)}
+  \end{aligned}\end{gathered}\end{equation*}
   \MPCMatch{and its derivatives}{} which yields the appropriate vector for constructing $\check{\Chi}$ and $\check{\Koppa}$.  The rest of the procedure is analogous to that performed for the consumption rule and is thus omitted for brevity.
 
 \end{verbatimwrite}
@@ -1819,9 +1819,9 @@ would be trivial.  Allowing for a stochastic interest factor is less trivial.
 
 The easiest case is where the interest factor is i.i.d.,
 \begin{verbatimwrite}{./Equations/distRisky.tex}
-  \begin{eqnarray}
+  \begin{equation}\begin{gathered}\begin{aligned}
     \log \Risky_{t+n} & \sim & \mathcal{N}(\rfree + \eprem - \sigma^{2}_{\risky}/2,\sigma^{2}_{\risky}) ~\forall~n>0 \label{eq:distRisky}
-  \end{eqnarray}
+  \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/distRisky.tex}
 
@@ -1831,32 +1831,32 @@ guarantees that an increase in $\sigma^{2}_{\risky}$ constitutes a mean-preservi
 This case is reasonably straightforward because \cite{merton:restat} and \cite{samuelson:portfolio} showed
 that for a consumer without labor income (or with perfectly forecastable labor income) the consumption
 function is linear, with an infinite-horizon MPC\footnote{See \handoutC{CRRA-RateRisk} for a derivation.}
-\begin{eqnarray}
-  \MPC & = & 1- \left(\Discount  \Ex_{t}[\Risky_{t+1}^{1-\CRRA}]\right)^{1/\CRRA} \label{eq:MPCExact}
-\end{eqnarray}
+\begin{equation}\begin{gathered}\begin{aligned}
+  \MPC  & = 1- \left(\Discount  \Ex_{t}[\Risky_{t+1}^{1-\CRRA}]\right)^{1/\CRRA} \label{eq:MPCExact}
+\end{aligned}\end{gathered}\end{equation}
 and in this case the previous analysis applies once we substitute this MPC for the one that characterizes 
 the perfect foresight problem without rate-of-return risk.  
 
 The more realistic case where the interest factor has some serial correlation is more complex.  We consider 
 the simplest case that captures the main features of empirical interest rate dynamics: An AR(1) process.  Thus
 the specification is 
-\begin{eqnarray}
-  \risky_{t+1}-\risky & = & (\risky_{t}-\risky) \gamma + \epsilon_{t+1} 
-\end{eqnarray}
+\begin{equation}\begin{gathered}\begin{aligned}
+  \risky_{t+1}-\risky  & = (\risky_{t}-\risky) \gamma + \epsilon_{t+1} 
+\end{aligned}\end{gathered}\end{equation}
 where $\risky$ is the long-run mean log interest factor, $0 < \gamma < 1$ is the AR(1) serial correlation
 coefficient, and $\epsilon_{t+1}$ is the stochastic shock.  
 
 The consumer's problem in this case now has two state variables, $\mRat_{t}$ and $\risky_{t}$, and 
 is described by
-\begin{eqnarray}
-  \null{\vFunc}_{t}({m}_{t},\risky_{t}) & = & \max_{{c}_{t}} ~ \util({c}_{t})+
+\begin{equation}\begin{gathered}\begin{aligned}
+  \null{\vFunc}_{t}({m}_{t},\risky_{t})  & = \max_{{c}_{t}} ~ \util({c}_{t})+
                                               \Ex_{t}[{\Discount}_{t+1}\PGro_{t+1}^{1-\CRRA}\null{\vFunc}_{t+1}({m}_{t+1},\risky_{t+1})] \label{vtNormRisky}
   \\         & \text{s.t.} &   \nonumber \\
-  {a}_{t}   & = & {m}_{t}-{c}_{t} \nonumber
-  \\      \risky_{t+1}-\risky & = & (\risky_{t}-\risky)\gamma + \epsilon_{t+1} \notag
-  \\      \Risky_{t+1} & = & \exp(\risky_{t+1}) \notag
-  \\      {m}_{t+1} & = & \underbrace{\left(\Risky_{t+1}/\PGro_{t+1}\right)}_{\equiv \Rprod_{t+1}}{a}_{t}+\tShkEmp_{t+1} \nonumber.
-\end{eqnarray}
+  {a}_{t}    & = {m}_{t}-{c}_{t} \nonumber
+  \\      \risky_{t+1}-\risky  & = (\risky_{t}-\risky)\gamma + \epsilon_{t+1} \notag
+  \\      \Risky_{t+1}  & = \exp(\risky_{t+1}) \notag
+  \\      {m}_{t+1}  & = \underbrace{\left(\Risky_{t+1}/\PGro_{t+1}\right)}_{\equiv \Rprod_{t+1}}{a}_{t}+\tShkEmp_{t+1} \nonumber.
+\end{aligned}\end{gathered}\end{equation}
 
 % Kiichi: I will need you to read the literature and figure out how exactly we want to choose the Markov points and transition probabilities.
 % When done, you will fill in the [how] text below.
@@ -1882,13 +1882,13 @@ prevents the consumer's net worth from falling below some value, often
 zero.\footnote{The word artificial is chosen only because of its clarity in distinguishing
   this from the case of the `natural' borrowing constraint examined above; no derogation is
   intended -- constraints of this kind certainly exist in the real world.}  The problem then becomes
-\begin{eqnarray*}
-  {\vFunc}_{T-1}({m}_{T-1}) & = & \max_{\cRat_{T-1}} ~~ \util({c}_{T-1}) + \Ex_{T-1} [\Discount \PGro_{T}^{1-\CRRA}{\vFunc}_{T}({m}_{T})] \label{eq:ConstrArt}
+\begin{equation*}\begin{gathered}\begin{aligned}
+  {\vFunc}_{T-1}({m}_{T-1})  & = \max_{\cRat_{T-1}} ~~ \util({c}_{T-1}) + \Ex_{T-1} [\Discount \PGro_{T}^{1-\CRRA}{\vFunc}_{T}({m}_{T})] \label{eq:ConstrArt}
   \\ & \mbox{s.t.}&  \nonumber
-  \\ {a}_{T-1} & = & {m}_{T-1} - {c}_{T-1}
-  \\ {m}_{T} & = & \Rnorm_{T} {a}_{T-1} + \tShkEmp_{T}
+  \\ {a}_{T-1}  & = {m}_{T-1} - {c}_{T-1}
+  \\ {m}_{T}  & = \Rnorm_{T} {a}_{T-1} + \tShkEmp_{T}
   \\ {a}_{T-1} & \geq & 0 .
-\end{eqnarray*}
+\end{aligned}\end{gathered}\end{equation*}
 
 \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Constraint binds whenever you would like to consume more than current resources.}}{}
 
@@ -1896,16 +1896,16 @@ By definition, the constraint will bind if the unconstrained consumer
 would choose a level of spending that would violate the constraint.
 Here, that means that the constraint binds if the ${c}_{T-1}$
 that satisfies the unconstrained FOC
-\begin{eqnarray}
-  {c}_{T-1}^{-\CRRA} & = & \vEnd_{T-1}^{\prime}({m}_{T-1}-{c}_{T-1}) \label{eq:cUnc}
-\end{eqnarray}
+\begin{equation}\begin{gathered}\begin{aligned}
+  {c}_{T-1}^{-\CRRA}  & = \vEnd_{T-1}^{\prime}({m}_{T-1}-{c}_{T-1}) \label{eq:cUnc}
+\end{aligned}\end{gathered}\end{equation}
 is greater than ${m}_{T-1}$.  Call $\grave{\cFunc}^{\ast}_{T-1}$ the approximated function
 returning the level of ${c}_{T-1}$ that satisfies \eqref{eq:cUnc}.
 Then the approximated constrained optimal consumption function will be
 \begin{verbatimwrite}{./Equations/LiqCons.tex}
-  \begin{eqnarray}
-    \grave{\cFunc}_{T-1}({m}_{T-1}) & = & \min[{m}_{T-1},\grave{\cFunc}^{\ast}_{T-1}({m}_{T-1})] \label{eq:LiqCons}.
-  \end{eqnarray}
+  \begin{equation}\begin{gathered}\begin{aligned}
+    \grave{\cFunc}_{T-1}({m}_{T-1})  & = \min[{m}_{T-1},\grave{\cFunc}^{\ast}_{T-1}({m}_{T-1})] \label{eq:LiqCons}.
+  \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/LiqCons.tex}
 
@@ -1933,11 +1933,11 @@ the (discounted, expected) marginal utility of saving, and thus the
 consumer would engage in positive saving and the constraint would no
 longer be binding.  Thus the level of ${m}_{T-1}$ at which the
 lconstraint stops binding is:\footnote{The logic here repeats an insight from \cite{deatonLiqConstr}.}
-\begin{eqnarray}
-  \util^{\prime}({m}_{T-1}) & = & \vEnd_{T-1}^{\prime}(0)  \nonumber \\
-  {m}_{T-1} & = & (\vEnd_{T-1}^{\prime}(0))^{(-1/\CRRA)}  \nonumber
-  \\       & = & \cEndFunc_{T-1}(0). \label{eq:LCbindsTm1}
-\end{eqnarray}
+\begin{equation}\begin{gathered}\begin{aligned}
+  \util^{\prime}({m}_{T-1})  & = \vEnd_{T-1}^{\prime}(0)  \nonumber \\
+  {m}_{T-1}  & = (\vEnd_{T-1}^{\prime}(0))^{(-1/\CRRA)}  \nonumber
+  \\        & = \cEndFunc_{T-1}(0). \label{eq:LCbindsTm1}
+\end{aligned}\end{gathered}\end{equation}
 
 \hypertarget{cVScCon}{}
 \begin{figure}
@@ -1984,11 +1984,11 @@ simplifies things a bit because now we can always consider an
 \texttt{aVec} that starts with zero as its smallest element.
 
 Recall now equations~(\ref{eq:vEndPrimetOfc}) and (\ref{eq:upEqbetaOp}):
-\begin{eqnarray*}
-  \vEnd_{t}^{\prime}({a}_{t}) & = & \Ex_{t}[\Discount \Rfree \PGro_{t+1}^{-\CRRA}
+\begin{equation*}\begin{gathered}\begin{aligned}
+  \vEnd_{t}^{\prime}({a}_{t})  & = \Ex_{t}[\Discount \Rfree \PGro_{t+1}^{-\CRRA}
                                     \util^{\prime}(\cFunc_{t+1}(\Rnorm_{t+1} {a}_{t}+{\tShkEmp}_{t+1}))]
-  \\\util^{\prime}({c}_{t})  & = & \vEnd_{t}^{\prime}({m}_{t}-{c}_{t}).
-\end{eqnarray*}
+  \\\util^{\prime}({c}_{t})   & = \vEnd_{t}^{\prime}({m}_{t}-{c}_{t}).
+\end{aligned}\end{gathered}\end{equation*}
 Assuming that the problem has been solved up to period $t+1$ (and thus
 assuming that we have an approximated $\Alt{\cFunc}_{t+1}({m}_{t+1})$), our solution method essentially
 involves using these two equations in succession to work back
@@ -2005,11 +2005,11 @@ no difficulties.)
 \item For the grid of values ${a}_{t,i}$ in \texttt{aVec}$_{t}$, numerically calculate the values
   of $\cEndFunc_{t}({a}_{t,i})$ and $\cEndFunc_{t}^{{a}}({a}_{t,i})$,
   \begin{verbatimwrite}{./Equations/vEndeq.tex}
-    \begin{eqnarray}
-      \cEndFunc_{t,i} & = & \left(\vEnd_{t}^{\prime}({a}_{t,i})\right)^{-1/\CRRA},
-      \\                            & = & \left(\Discount \Ex_{t} \left[\Rfree \PGro_{t+1}^{-\CRRA}(\grave{\cFunc}_{t+1}(\Rnorm_{t+1} {a}_{t,i} +      {\tShkEmp}_{t+1}))^{-\CRRA}\right]\right)^{-1/\CRRA}, \label{eq:vEndeq}
-                                          \MPCMatch{\\        \cEndFunc^{a}_{t,i} & = & -(1/\CRRA)\left(\vEnd_{t}^{\prime}({a}_{t,i})\right)^{-1-1/\CRRA} \vEnd_{t}^{\prime\prime}(\aRat_{t,i}),}{}
-    \end{eqnarray}
+    \begin{equation}\begin{gathered}\begin{aligned}
+      \cEndFunc_{t,i}  & = \left(\vEnd_{t}^{\prime}({a}_{t,i})\right)^{-1/\CRRA},
+      \\                             & = \left(\Discount \Ex_{t} \left[\Rfree \PGro_{t+1}^{-\CRRA}(\grave{\cFunc}_{t+1}(\Rnorm_{t+1} {a}_{t,i} +      {\tShkEmp}_{t+1}))^{-\CRRA}\right]\right)^{-1/\CRRA}, \label{eq:vEndeq}
+                                          \MPCMatch{\\        \cEndFunc^{a}_{t,i}  & = -(1/\CRRA)\left(\vEnd_{t}^{\prime}({a}_{t,i})\right)^{-1-1/\CRRA} \vEnd_{t}^{\prime\prime}(\aRat_{t,i}),}{}
+    \end{aligned}\end{gathered}\end{equation}
   \end{verbatimwrite}
   \input{./Equations/vEndeq.tex}
   generating vectors of values $\vec{\cEndFunc}_{t}$\MPCMatch{ and $\vec{\cEndFunc}^{a}_{t}$.}{.}
@@ -2108,10 +2108,10 @@ of the \texttt{SolveAnotherPeriod} function is as follows:
 \item Add various period-t parameters to their respective lifecycle lists, which is accomplished by calling the \texttt{AddNewPeriodToParamLifeDates} function.
 
 \item For each ${a}_{t,i}$ in \texttt{aVec}, construct \texttt{$\cEndFunc$} as follows:
-  \begin{eqnarray}
-    \cEndFunc_{t}({a}_{t,i}) & = & \left( \Discount \Ex_{t} \left[\Rfree \PGro_{t+1}^{-\CRRA} (\Alt{\Hi{\cFunc}}_{t+1}(\Rnorm_{t+1} {a}_{t,i} +         {\tShkEmp}_{t+1}))^{-\CRRA}\right]\right)^{-1/\CRRA}
-    \\                          & = & \left(\Discount \frac{1}{n_{\tShkEmp}} \sum_{i=1}^{n_{\tShkEmp}}\Rfree\left(\PGro_{t+1}^{-\CRRA}(\Alt{\Hi{\cFunc}}_{t+1}(\Rnorm_{t+1} {a}_{t,i} +       \tShkEmp_{i}))^{-\CRRA}\right)\right)^{-1/\CRRA}.
-  \end{eqnarray}
+  \begin{equation}\begin{gathered}\begin{aligned}
+    \cEndFunc_{t}({a}_{t,i})  & = \left( \Discount \Ex_{t} \left[\Rfree \PGro_{t+1}^{-\CRRA} (\Alt{\Hi{\cFunc}}_{t+1}(\Rnorm_{t+1} {a}_{t,i} +         {\tShkEmp}_{t+1}))^{-\CRRA}\right]\right)^{-1/\CRRA}
+    \\                           & = \left(\Discount \frac{1}{n_{\tShkEmp}} \sum_{i=1}^{n_{\tShkEmp}}\Rfree\left(\PGro_{t+1}^{-\CRRA}(\Alt{\Hi{\cFunc}}_{t+1}(\Rnorm_{t+1} {a}_{t,i} +       \tShkEmp_{i}))^{-\CRRA}\right)\right)^{-1/\CRRA}.
+  \end{aligned}\end{gathered}\end{equation}
   \MPCMatch{and similarly construct the corresponding $\cEndFunc_{t}^{a}({a}_{t,i})$}{}
   We also construct
   the corresponding \texttt{mVec}, \texttt{$\kappa$Vec}, etc. by calling
@@ -2171,9 +2171,9 @@ satisfied by the baseline parameter values being used here.
   level of assets ${m}_{t}$ and the level of the habit stock $h_{t-1}$,
   where the accumulation equation for ${m}_{t}$ is the same as before and
   the transition equation for habits is
-  \begin{eqnarray}
-    h_{t} & = & h_{t-1} + \MPS({c}_{t}-h_{t-1}).
-  \end{eqnarray}
+  \begin{equation}\begin{gathered}\begin{aligned}
+    h_{t}  & = h_{t-1} + \MPS({c}_{t}-h_{t-1}).
+  \end{aligned}\end{gathered}\end{equation}
   That is, the habit stock at the end of this period is equal to the
   habit stock at the end of last period plus a proportion of the gap
   between the level of consumption chosen this period and the level of
@@ -2189,23 +2189,23 @@ satisfied by the baseline parameter values being used here.
   will be that the derivative of $u_{t}$ with respect to ${c}_{t}$ is
   $u_{t}^{c}({c}_{t},h_{t-1})$ or $u_{t}^{c}$ for short, and analogously
   for $u_{t}^{h}$.  Thus we have
-  \begin{eqnarray}
-    \util^{c}_{t} & = & ({c}_{t} h_{t-1}^{-\gamma})^{-\CRRA}h_{t-1}^{-\gamma}  \\
-                  & = & {c}_{t}^{-\CRRA}h_{t-1}^{\CRRA\gamma-\gamma}  \\
-    \util^{h}_{t} & = & -\gamma ({c}_{t} h_{t-1}^{-\gamma})^{-\CRRA} {c}_{t} h_{t-1}^{-\gamma-1} \\
-                  & = & -\gamma {c}_{t}^{1-\CRRA}h_{t-1}^{\gamma\CRRA - \gamma -
+  \begin{equation}\begin{gathered}\begin{aligned}
+    \util^{c}_{t}  & = ({c}_{t} h_{t-1}^{-\gamma})^{-\CRRA}h_{t-1}^{-\gamma}  \\
+                   & = {c}_{t}^{-\CRRA}h_{t-1}^{\CRRA\gamma-\gamma}  \\
+    \util^{h}_{t}  & = -\gamma ({c}_{t} h_{t-1}^{-\gamma})^{-\CRRA} {c}_{t} h_{t-1}^{-\gamma-1} \\
+                   & = -\gamma {c}_{t}^{1-\CRRA}h_{t-1}^{\gamma\CRRA - \gamma -
                         1} = -\gamma ({c}_{t}/h_{t-1}) \util^{c}_{t}.
-  \end{eqnarray}
+  \end{aligned}\end{gathered}\end{equation}
 
   Bellman's equation for this problem (imposing liquidity constraints again) is
-  \begin{eqnarray}
-    {\vFunc}_{t}({m}_{t},h_{t-1}) & = & \max_{\{{c}_{t}\}}  \{\util({c}_{t},h_{t-1}) +
+  \begin{equation}\begin{gathered}\begin{aligned}
+    {\vFunc}_{t}({m}_{t},h_{t-1})  & = \max_{\{{c}_{t}\}}  \{\util({c}_{t},h_{t-1}) +
                                         \Ex_{t}[\Discount  {\vFunc}_{t+1}({m}_{t+1},h_{t}) ]\}
     \\ & \text{s.t.} & \nonumber \\
-    {m}_{t+1} & = & [{m}_{t}-{c}_{t}]\Rnorm_{t+1} + \tShkEmp_{t+1}\\
-    h_{t} &  = & h_{t-1} + \MPS ({c}_{t} - h_{t-1} ) \\
-    {c}_{t} & \leq & {m}_{t} .
-  \end{eqnarray}
+    {m}_{t+1}  & = [{m}_{t}-{c}_{t}]\Rnorm_{t+1} + \tShkEmp_{t+1}\\
+    h_{t}  & = h_{t-1} + \MPS ({c}_{t} - h_{t-1} ) \\
+    {c}_{t} & \leq  {m}_{t} .
+  \end{aligned}\end{gathered}\end{equation}
 
   As was done for utility above, define the derivatives of ${\vFunc}_{t}$ with
   respect to each argument as ${\vFunc}_{t}^{m}({m}_{t},h_{t-1})$ (${\vFunc}_{t}^{m}$
@@ -2214,24 +2214,24 @@ satisfied by the baseline parameter values being used here.
   ending period $t$ in a given position, but now the `position'
   involves both the level of assets ${a}_{t}$ and the level of the habit
   stock $h_{t}$:
-  \begin{eqnarray}
-    \vEnd_{t}({a}_{t},h_{t}) & = & \Ex_{t}[\Discount {v}_{t+1}(\Rnorm_{t+1} {a}_{t}+{\tShkEmp}_{t+1},h_{t}))]
-  \end{eqnarray}
+  \begin{equation}\begin{gathered}\begin{aligned}
+    \vEnd_{t}({a}_{t},h_{t})  & = \Ex_{t}[\Discount {v}_{t+1}(\Rnorm_{t+1} {a}_{t}+{\tShkEmp}_{t+1},h_{t}))]
+  \end{aligned}\end{gathered}\end{equation}
   For future reference note that the derivatives are
-  \begin{eqnarray}
-    \vEnd_{t}^{{a}} & = & \Discount \Ex_{t} [\Rnorm_{t+1} {v}_{t+1}^{m}] \label{eq:vEndsdefn} \\
-    \vEnd_{t}^{h} & = & \Discount \Ex_{t} [{\vFunc}_{t+1}^{h}] \label{eq:vEndhdefn}
-  \end{eqnarray}
+  \begin{equation}\begin{gathered}\begin{aligned}
+    \vEnd_{t}^{{a}}  & = \Discount \Ex_{t} [\Rnorm_{t+1} {v}_{t+1}^{m}] \label{eq:vEndsdefn} \\
+    \vEnd_{t}^{h}  & = \Discount \Ex_{t} [{\vFunc}_{t+1}^{h}] \label{eq:vEndhdefn}
+  \end{aligned}\end{gathered}\end{equation}
   and the maximization problem can be rewritten
-  \begin{eqnarray}
-    {\vFunc}_{t}({m}_{t},h_{t-1}) & = &
-                                        \max_{\{{c}_{t}\}} %\{
+  \begin{equation}\begin{gathered}\begin{aligned}
+    {\vFunc}_{t}({m}_{t},h_{t-1}) 
+& =                                         \max_{\{{c}_{t}\}} %\{
                                         \util({c}_{t},h_{t-1})  +  \Discount
                                         \vEnd_{t}({m}_{t}-{c}_{t},h_{t-1}+\MPS({c}_{t}-h_{t-1}))
                                         % \}
     \\        & \text{s.t.} & \nonumber
-    \\  {c}_{t} & \leq & {m}_{t}.
-  \end{eqnarray}
+    \\  {c}_{t} & \leq  {m}_{t}.
+  \end{aligned}\end{gathered}\end{equation}
 
   \hypertarget{The-Strategy}{}
   \subsection{The Strategy}
@@ -2259,33 +2259,33 @@ satisfied by the baseline parameter values being used here.
       \vEnd^{h}_{t}$ term reflects the fact that if you consume a
       bit more today, tomorrow's habit stock will be larger by $\MPS$,
       which will make you worse off.}}{}
-  \begin{eqnarray}
-    0 & = & \util^{c}_{t} + \Discount \Ex_{t} \left[{\vFunc}^{m}_{t+1}(-\Rfree)+{\vFunc}^{h}_{t+1} \MPS\right]  \\
-    \util^{c}_{t} & = & \Discount \Ex_{t} [\Rnorm_{t+1} {\vFunc}_{t+1}^{m}-\MPS {\vFunc}_{t+1}^{h}] \label{eq:ctfoc}
-    \\           & = & \left[\vEnd_{t}^{{a}}-\MPS \vEnd_{t}^{h} \right].
-    % ({c}_{t}h_{t-1}^{-\gamma})^{-\CRRA}h_{t-1}^{-\gamma} & = & \Discount \Ex_{t} \left(\Rnorm_{t+1} {\vFunc}^{m}_{t+1}-{\vFunc}^{h}_{t+1} \MPS\right) \label{eq:directfoc} \\
-    % {c}_{t}^{-\CRRA} & = & h_{t-1}^{\gamma-\gamma\CRRA}\Discount \Ex_{t} \left(\Rnorm_{t+1} {\vFunc}^{m}_{t+1}-{\vFunc}^{h}_{t+1} \MPS\right)
-  \end{eqnarray}
+  \begin{equation}\begin{gathered}\begin{aligned}
+    0  & = \util^{c}_{t} + \Discount \Ex_{t} \left[{\vFunc}^{m}_{t+1}(-\Rfree)+{\vFunc}^{h}_{t+1} \MPS\right]  \\
+    \util^{c}_{t}  & = \Discount \Ex_{t} [\Rnorm_{t+1} {\vFunc}_{t+1}^{m}-\MPS {\vFunc}_{t+1}^{h}] \label{eq:ctfoc}
+    \\            & = \left[\vEnd_{t}^{{a}}-\MPS \vEnd_{t}^{h} \right].
+    % ({c}_{t}h_{t-1}^{-\gamma})^{-\CRRA}h_{t-1}^{-\gamma}  & = \Discount \Ex_{t} \left(\Rnorm_{t+1} {\vFunc}^{m}_{t+1}-{\vFunc}^{h}_{t+1} \MPS\right) \label{eq:directfoc} \\
+    % {c}_{t}^{-\CRRA}  & = h_{t-1}^{\gamma-\gamma\CRRA}\Discount \Ex_{t} \left(\Rnorm_{t+1} {\vFunc}^{m}_{t+1}-{\vFunc}^{h}_{t+1} \MPS\right)
+  \end{aligned}\end{gathered}\end{equation}
   Substituting the definition of $u_{t}^{c}$:
-  \begin{eqnarray}
-    {c}_{t}^{-\CRRA}h_{t-1}^{\CRRA\gamma-\gamma} & = & \left[\vEnd_{t}^{{a}}-\MPS \vEnd_{t}^{h} \right]
-    \\  {c}_{t}                                    & = & \left[h_{t-1}^{\gamma-\CRRA\gamma} \left(\vEnd_{t}^{{a}}-\MPS \vEnd_{t}^{h} \right) \right]^{-1/\CRRA} \label{eq:habitsfoc}.
-  \end{eqnarray}
+  \begin{equation}\begin{gathered}\begin{aligned}
+    {c}_{t}^{-\CRRA}h_{t-1}^{\CRRA\gamma-\gamma}  & = \left[\vEnd_{t}^{{a}}-\MPS \vEnd_{t}^{h} \right]
+    \\  {c}_{t}                                     & = \left[h_{t-1}^{\gamma-\CRRA\gamma} \left(\vEnd_{t}^{{a}}-\MPS \vEnd_{t}^{h} \right) \right]^{-1/\CRRA} \label{eq:habitsfoc}.
+  \end{aligned}\end{gathered}\end{equation}
   and the liquidity constraint implies that if the $\check{c}_{t}$ which
   satisfies this equation is larger than ${m}_{t}$ the consumer spends
   ${m}_{t}$ rather than $\check{c}_{t}$.  The point at which the liquidity
   constraint becomes binding is therefore implicitly defined by the equation
-  \begin{eqnarray}
-    {m}_{t} & = & \left[h_{t-1}^{\gamma-\CRRA\gamma} \left(\vEnd_{t}^{{a}}(0,h_{t-1}+\MPS({m}_{t}-h_{t-1}))-\MPS \vEnd_{t}^{h}(0,h_{t-1}+\MPS({m}_{t}-h_{t-1}))\right)  \right]^{-1/\CRRA}, \label{eq:LCbindsHabits}
-  \end{eqnarray}
+  \begin{equation}\begin{gathered}\begin{aligned}
+    {m}_{t}  & = \left[h_{t-1}^{\gamma-\CRRA\gamma} \left(\vEnd_{t}^{{a}}(0,h_{t-1}+\MPS({m}_{t}-h_{t-1}))-\MPS \vEnd_{t}^{h}(0,h_{t-1}+\MPS({m}_{t}-h_{t-1}))\right)  \right]^{-1/\CRRA}, \label{eq:LCbindsHabits}
+  \end{aligned}\end{gathered}\end{equation}
   or incorporating the transition equation for
   and $h_{t-1}$ that
-  \begin{eqnarray}
-    {c}_{t} & = & \left[h_{t-1}^{\gamma-\CRRA\gamma}
+  \begin{equation}\begin{gathered}\begin{aligned}
+    {c}_{t}  & = \left[h_{t-1}^{\gamma-\CRRA\gamma}
                   \left(\vEnd_{t}^{{a}}({m}_{t}-{c}_{t},h_{t-1}+\MPS({c}_{t}-h_{t-1}))
                   -\MPS \vEnd_{t}^{h}({m}_{t}-{c}_{t},h_{t-1}+\MPS({c}_{t}-h_{t-1})\right)
                   \right]^{-1/\CRRA}. \nonumber
-  \end{eqnarray}
+  \end{aligned}\end{gathered}\end{equation}
 
   This equation could be solved for a given grid of ${m}_{t}$ and
   $h_{t-1}$ values to yield the two-dimensional matrix of values
@@ -2319,14 +2319,14 @@ satisfied by the baseline parameter values being used here.
   given ${a}_{t}$.  That is, defining the set $\mathcal{L} =
   \{\{{a}_{1},h_{1}\},\{{a}_{1},h_{2}\},\ldots,\{{a}_{m},h_{n_{\tShkEmp}}\}\}$,
   we find the set of values of ${\cRat}_{i}$ that satisfy
-  \begin{eqnarray}
-    {\cRat}_{k}^{\ell} & = & \left[(h_{k}^{\ell})^{\gamma-\CRRA\gamma}
+  \begin{equation}\begin{gathered}\begin{aligned}
+    {\cRat}_{k}^{\ell}  & = \left[(h_{k}^{\ell})^{\gamma-\CRRA\gamma}
                              \left(\vEnd_{t}^{{a}}({a}_{k}^{\ell},h_{k}^{\ell}
                              +\MPS({\cRat}_{k}^{\ell}-h_{k}^{\ell}))
                              -\MPS
                              \vEnd_{t}^{h}({a}_{k}^{\ell},h_{k}^{\ell}+\MPS({\cRat}_{k}^{\ell}-h_{k}^{\ell})\right)
                              \right]^{-1/\CRRA}. \nonumber
-  \end{eqnarray}
+  \end{aligned}\end{gathered}\end{equation}
   and the budget constraint again gives us the ${m}_{k}^{\ell}$
   associated with the given $\{{a}_{t},h_{t-1}\}$ pair.
 
@@ -2380,49 +2380,49 @@ satisfied by the baseline parameter values being used here.
   \hypertarget{Applying-the-Envelope-Theorem}{}
   \subsubsection{Applying the Envelope Theorem}
   The Envelope theorem on ${m}_{t}$ says:
-  \begin{eqnarray}
-    {\vFunc}^{m}_{t} & = & \frac{\partial {\vFunc}_{t}}{\partial {m}_{t}} + \overbrace{\frac{\partial {\vFunc}_{t}}{\partial {c}_{t}}}^{=0}\frac{\partial {c}_{t}}{\partial {m}_{t}} \label{eq:vxt} \\
-    {\vFunc}_{t}^{m} & = & \Discount  \Ex_{t} [\Rnorm_{t+1} {\vFunc}_{t+1}^{m}] \label{eq:envelopex}
-  \end{eqnarray}
+  \begin{equation}\begin{gathered}\begin{aligned}
+    {\vFunc}^{m}_{t}  & = \frac{\partial {\vFunc}_{t}}{\partial {m}_{t}} + \overbrace{\frac{\partial {\vFunc}_{t}}{\partial {c}_{t}}}^{=0}\frac{\partial {c}_{t}}{\partial {m}_{t}} \label{eq:vxt} \\
+    {\vFunc}_{t}^{m}  & = \Discount  \Ex_{t} [\Rnorm_{t+1} {\vFunc}_{t+1}^{m}] \label{eq:envelopex}
+  \end{aligned}\end{gathered}\end{equation}
 
   Substituting this into the FOC equation~(\ref{eq:ctfoc}) gives
-  \begin{eqnarray}
-    \util^{c}_{t} & = & {\vFunc}_{t}^{m}-\Ex_{t}[\Discount \MPS {\vFunc}_{t+1}^{h}] \label{eq:ctfocsubx}
-    \\ {\vFunc}_{t}^{m} & = & \util^{c}_{t}+\Ex_{t}[\Discount \MPS {\vFunc}_{t+1}^{h}] \label{eq:vtfoc}
-    \\           & = & \util^{c}_{t}+\MPS \vEnd_{t}^{h} \label{eq:vxtformula}.
-  \end{eqnarray}
+  \begin{equation}\begin{gathered}\begin{aligned}
+    \util^{c}_{t}  & = {\vFunc}_{t}^{m}-\Ex_{t}[\Discount \MPS {\vFunc}_{t+1}^{h}] \label{eq:ctfocsubx}
+    \\ {\vFunc}_{t}^{m}  & = \util^{c}_{t}+\Ex_{t}[\Discount \MPS {\vFunc}_{t+1}^{h}] \label{eq:vtfoc}
+    \\            & = \util^{c}_{t}+\MPS \vEnd_{t}^{h} \label{eq:vxtformula}.
+  \end{aligned}\end{gathered}\end{equation}
 
   What if the consumer is liquidity constrained?  It is useful here to \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny By `is constrained' I mean the constraint is binding right now.}}{}
   rewrite Bellman's equation:
-  \begin{eqnarray}
-    {\vFunc}_{t}({m}_{t},h_{t-1}) & = & \util({c}_{t},h_{t-1}) +  \Discount \Ex_{t}
+  \begin{equation}\begin{gathered}\begin{aligned}
+    {\vFunc}_{t}({m}_{t},h_{t-1})  & = \util({c}_{t},h_{t-1}) +  \Discount \Ex_{t}
                                         \left[{\vFunc}_{t+1}(({m}_{t}-{c}_{t})\Rnorm_{t+1}+{\tShkEmp}_{t+1},h_{t-1}+\MPS({c}_{t}-h_{t-1}))
                                         \right] \nonumber
-  \end{eqnarray}
+  \end{aligned}\end{gathered}\end{equation}
   Substituting in the fact that ${c}_{t}={m}_{t}$ (because the consumer is constrained)
-  \begin{eqnarray}
-    {\vFunc}_{t}({m}_{t},h_{t-1}) & = & \util({c}_{t},h_{t-1}) +  \Ex_{t}\left[\Discount
+  \begin{equation}\begin{gathered}\begin{aligned}
+    {\vFunc}_{t}({m}_{t},h_{t-1})  & = \util({c}_{t},h_{t-1}) +  \Ex_{t}\left[\Discount
                                         {\vFunc}_{t+1}({\tShkEmp}_{t+1},h_{t-1}+\MPS({c}_{t}-h_{t-1}))\right]
                                         \nonumber
-  \end{eqnarray}
+  \end{aligned}\end{gathered}\end{equation}
   Thus $\partial {\vFunc}_{t}/\partial {m}_{t} = 0$, and because the liquidity
   constraint implies that $\partial {c}_{t}/\partial {m}_{t} = 1$,
   equation (\ref{eq:vxt}) becomes
-  \begin{eqnarray}
-    {\vFunc}_{t}^{m}  & = &  \frac{\partial {\vFunc}_{t}}{\partial {c}_{t}}
-    \\             & = & \util_{t}^{c} + \Discount \Ex_{t} [\MPS {\vFunc}_{t+1}^{h}]
-  \end{eqnarray}
+  \begin{equation}\begin{gathered}\begin{aligned}
+    {\vFunc}_{t}^{m}   & =  \frac{\partial {\vFunc}_{t}}{\partial {c}_{t}}
+    \\              & = \util_{t}^{c} + \Discount \Ex_{t} [\MPS {\vFunc}_{t+1}^{h}]
+  \end{aligned}\end{gathered}\end{equation}
   which is identical to the expression (\ref{eq:vtfoc}) for ${\vFunc}_{t}^{m}$
   for the unconstrained consumer.
 
   The Envelope theorem for $h_{t-1}$ says:
-  \begin{eqnarray}
-    {\vFunc}_{t}^{h} & = & \frac{\partial {\vFunc}_{t}}{\partial h_{t-1}} + \overbrace{\frac{\partial {\vFunc}_{t}}{\partial {c}_{t}}}^{=0}\frac{\partial {c}_{t}}{\partial h_{t-1}} \nonumber
-    \\ & = & \util^{h}_{t} + \Discount \Ex_{t} \left[{\vFunc}_{t+1}^{h}\frac{\partial h_{t}}{\partial h_{t-1}} \right]\nonumber
-    \\ & = & \util^{h}_{t} + \Discount \Ex_{t} [(1-\MPS) {\vFunc}_{t+1}^{h}] \nonumber
-    \\ & = & \util^{h}_{t} + (1-\MPS) \vEnd_{t}^{h} \label{eq:vhtformula}
-  \end{eqnarray}
-  % & = & -\gamma {c}_{t}^{1-\CRRA} h_{t-1}^{\gamma \CRRA - \gamma -1} + (1-\MPS) \Discount \Ex_{t} {\vFunc}_{t+1}^{h} \label{eq:vhtfoc}
+  \begin{equation}\begin{gathered}\begin{aligned}
+    {\vFunc}_{t}^{h}  & = \frac{\partial {\vFunc}_{t}}{\partial h_{t-1}} + \overbrace{\frac{\partial {\vFunc}_{t}}{\partial {c}_{t}}}^{=0}\frac{\partial {c}_{t}}{\partial h_{t-1}} \nonumber
+    \\  & = \util^{h}_{t} + \Discount \Ex_{t} \left[{\vFunc}_{t+1}^{h}\frac{\partial h_{t}}{\partial h_{t-1}} \right]\nonumber
+    \\  & = \util^{h}_{t} + \Discount \Ex_{t} [(1-\MPS) {\vFunc}_{t+1}^{h}] \nonumber
+    \\  & = \util^{h}_{t} + (1-\MPS) \vEnd_{t}^{h} \label{eq:vhtformula}
+  \end{aligned}\end{gathered}\end{equation}
+  %  & = -\gamma {c}_{t}^{1-\CRRA} h_{t-1}^{\gamma \CRRA - \gamma -1} + (1-\MPS) \Discount \Ex_{t} {\vFunc}_{t+1}^{h} \label{eq:vhtfoc}
   What if the consumer is constrained?  In that case while $\partial
   {\vFunc}_{t}/\partial {c}_{t} \neq 0$, $\partial {c}_{t}/\partial h_{t-1} = 0$, so as
   with ${\vFunc}_{t}^{m}$ the constraint has no effect on the expression for ${\vFunc}^{h}_{t}$.
@@ -2451,10 +2451,10 @@ satisfied by the baseline parameter values being used here.
   the first step, the object in question is transformed as in the
   original problem without habits.  For example, the transformed utility
   function for the last period of life would be
-  \begin{eqnarray}
-    n_{T}^{c} & = & \left[\util^{c}_{T}\right]^{-1/\CRRA}
-    \\       & = & {c}_{T}h_{T-1}^{\gamma(1/\CRRA-1)}.
-  \end{eqnarray}
+  \begin{equation}\begin{gathered}\begin{aligned}
+    n_{T}^{c}  & = \left[\util^{c}_{T}\right]^{-1/\CRRA}
+    \\        & = {c}_{T}h_{T-1}^{\gamma(1/\CRRA-1)}.
+  \end{aligned}\end{gathered}\end{equation}
 
   This leaves us with an equation that is linear in ${c}_{T}$ but
   nonlinear in $h_{T-1}$.  So now we do a second transformation:
@@ -2462,14 +2462,14 @@ satisfied by the baseline parameter values being used here.
   yields a function $\hat{n_{\tShkEmp}}_{T}^{c}$ that can be transformed back into
   $\util^{c}_{T}$ on demand, but is itself linear in ${c}_{t}.$  Analogously,
   in the last period of life the marginal value of habits is given by
-  \begin{eqnarray*}
-    {\vFunc}_{T}^{h} & = & -\gamma {c}_{T}^{1-\CRRA}h_{T-1}^{\gamma(\CRRA-1)-1}
-  \end{eqnarray*}
+  \begin{equation*}\begin{gathered}\begin{aligned}
+    {\vFunc}_{T}^{h}  & = -\gamma {c}_{T}^{1-\CRRA}h_{T-1}^{\gamma(\CRRA-1)-1}
+  \end{aligned}\end{gathered}\end{equation*}
   so the natural normalization procedure is to define
-  \begin{eqnarray}
-    \Lambda_{t}^{h} & = &
-                          \left[\frac{h_{t-1}^{1-\gamma(\CRRA-1)}{\vFunc}_{t}^{h}}{-\gamma}\right]^{1/(1-\CRRA)}
-  \end{eqnarray}
+  \begin{equation}\begin{gathered}\begin{aligned}
+    \Lambda_{t}^{h} 
+& =                           \left[\frac{h_{t-1}^{1-\gamma(\CRRA-1)}{\vFunc}_{t}^{h}}{-\gamma}\right]^{1/(1-\CRRA)}
+  \end{aligned}\end{gathered}\end{equation}
   and similarly for $\vEnd_{t}^{h}$.
 
 
@@ -2481,24 +2481,24 @@ satisfied by the baseline parameter values being used here.
   see this, start with the first order condition for the problem in the
   second-to-last period of life (setting $\Discount = \Rnorm_{t+1} = 1$ and assuming
   away uncertainty for transparency):
-  \begin{eqnarray}
-    \util_{t}^{c}   & = & \util_{t+1}^{c} - \MPS {\vFunc}_{t+1}^{h}
-    \\      \util_{T-1}^{c} & = & \util_{T}^{c} - \MPS \util_{T}^{h}
-    \\  & = &  \util_{T}^{c}\left(1 + \gamma \MPS
+  \begin{equation}\begin{gathered}\begin{aligned}
+    \util_{t}^{c}    & = \util_{t+1}^{c} - \MPS {\vFunc}_{t+1}^{h}
+    \\      \util_{T-1}^{c}  & = \util_{T}^{c} - \MPS \util_{T}^{h}
+    \\   & =  \util_{T}^{c}\left(1 + \gamma \MPS
               ({c}_{T}/h_{T-1})\right)
-    \\      {c}_{T-1}^{-\CRRA} & = &
-                                     {c}_{T}^{-\CRRA}\left(\frac{h_{T-1}}{h_{T-2}}\right)^{\gamma(\CRRA-1)}\left(1 + \gamma \MPS
+    \\      {c}_{T-1}^{-\CRRA} 
+& =                                      {c}_{T}^{-\CRRA}\left(\frac{h_{T-1}}{h_{T-2}}\right)^{\gamma(\CRRA-1)}\left(1 + \gamma \MPS
                                      ({c}_{T}/h_{T-1})\right)  \\
-    {c}_{T-1} & = &
-                    ({m}_{T-1}-{c}_{T-1})\left(\frac{h_{T-1}}{h_{T-2}}\right)^{\gamma(1/\CRRA-1)}\left(1 +
+    {c}_{T-1} 
+& =                     ({m}_{T-1}-{c}_{T-1})\left(\frac{h_{T-1}}{h_{T-2}}\right)^{\gamma(1/\CRRA-1)}\left(1 +
                     \gamma \MPS \left[\frac{{m}_{T-1}-{c}_{T-1}}{(1-\MPS)h_{T-2}+\MPS
                     {c}_{T-1}}\right]\right)^{-1/\CRRA}
-    \\      1 & = &
-                    \left(\frac{{m}_{T-1}-{c}_{T-1}}{{c}_{T-1}}\right)\left(\frac{(1-\MPS)h_{T-2}+\MPS {c}_{T-1}}{h_{T-2}}\right)^{\gamma(1/\CRRA-1)}\left(1 +
+    \\      1 
+& =                     \left(\frac{{m}_{T-1}-{c}_{T-1}}{{c}_{T-1}}\right)\left(\frac{(1-\MPS)h_{T-2}+\MPS {c}_{T-1}}{h_{T-2}}\right)^{\gamma(1/\CRRA-1)}\left(1 +
                     \gamma \MPS \left[\frac{{m}_{T-1}-{c}_{T-1}}{(1-\MPS)h_{T-2}+\MPS
                     {c}_{T-1}}\right]\right)^{-1/\CRRA} \nonumber
     \\ \label{eq:oneeq}
-  \end{eqnarray}
+  \end{aligned}\end{gathered}\end{equation}
 
   Now conjecture that for fixed ${m}_{T-1}$
   \begin{equation}
@@ -2507,19 +2507,19 @@ satisfied by the baseline parameter values being used here.
   \end{equation}
   for some $\mu<1, \mu>1$.  Then the limit of \eqref{eq:oneeq} as $h_{T-2}
   \rightarrow \infty$ is given by
-  \begin{eqnarray*}
-    1 & = & ({m}_{T-1}/{c}_{T-1})\left(\frac{\MPS
+  \begin{equation*}\begin{gathered}\begin{aligned}
+    1  & = ({m}_{T-1}/{c}_{T-1})\left(\frac{\MPS
             {c}_{T-1}}{h_{T-2}}\right)^{\gamma(1/\CRRA-1)}\left(\gamma
             \left[\frac{{m}_{T-1}}{{c}_{T-1}}\right]\right)^{-1/\CRRA}
-    \\    & = &
-                {c}_{T-1}^{\gamma(1/\CRRA-1)-1+1/\CRRA}h_{T-2}^{-\gamma(1/\CRRA-1)}\MPS^{\gamma(1/\CRRA-1)}(\gamma {m}_{T-1})^{-1/\CRRA}
-    \\    & = &
-                {c}_{T-1}^{(1+\gamma)(1/\CRRA-1)}h_{T-2}^{-\gamma(1/\CRRA-1)}\MPS^{\gamma(1/\CRRA-1)}(\gamma {m}_{T-1})^{-1/\CRRA}
-    \\    & = &
-                {c}_{T-1}^{(1+\gamma)}h_{T-2}^{-\gamma}\MPS^{\gamma}(\gamma {m}_{T-1})^{1/(\CRRA-1)}
-    \\ {c}_{T-1}   & = & h_{T-2}^{\gamma/(1+\gamma)}\MPS^{-\gamma}(\gamma
+    \\    
+& =                 {c}_{T-1}^{\gamma(1/\CRRA-1)-1+1/\CRRA}h_{T-2}^{-\gamma(1/\CRRA-1)}\MPS^{\gamma(1/\CRRA-1)}(\gamma {m}_{T-1})^{-1/\CRRA}
+    \\    
+& =                 {c}_{T-1}^{(1+\gamma)(1/\CRRA-1)}h_{T-2}^{-\gamma(1/\CRRA-1)}\MPS^{\gamma(1/\CRRA-1)}(\gamma {m}_{T-1})^{-1/\CRRA}
+    \\    
+& =                 {c}_{T-1}^{(1+\gamma)}h_{T-2}^{-\gamma}\MPS^{\gamma}(\gamma {m}_{T-1})^{1/(\CRRA-1)}
+    \\ {c}_{T-1}    & = h_{T-2}^{\gamma/(1+\gamma)}\MPS^{-\gamma}(\gamma
                          {m}_{T-1})^{\frac{1}{(\gamma+1)(\CRRA-1)}}
-  \end{eqnarray*}
+  \end{aligned}\end{gathered}\end{equation*}
   which confirms the conjecture \eqref{eq:mueq}.  On the other hand,
   suppose that we postulate that
   \begin{equation}
@@ -2529,14 +2529,14 @@ satisfied by the baseline parameter values being used here.
 
   Under this conjecture, the limit of the RHS of \eqref{eq:oneeq} as
   $h_{T-2} \rightarrow \infty$ is
-  \begin{eqnarray*}
-    \kappa & = &
-                 (1-\kappa)\left(1-\MPS\right)^{\gamma(1/\CRRA-1)}
-    \\      \kappa\left(1+(1-\MPS)^{\gamma(1/\CRRA-1)}\right) & = & \left(1-\MPS\right)^{\gamma(1/\CRRA-1)}
-    \\      \kappa & = &
-                         \left(\frac{\left(1-\MPS\right)^{\gamma(1/\CRRA-1)}}
+  \begin{equation*}\begin{gathered}\begin{aligned}
+    \kappa 
+& =                  (1-\kappa)\left(1-\MPS\right)^{\gamma(1/\CRRA-1)}
+    \\      \kappa\left(1+(1-\MPS)^{\gamma(1/\CRRA-1)}\right)  & = \left(1-\MPS\right)^{\gamma(1/\CRRA-1)}
+    \\      \kappa 
+& =                          \left(\frac{\left(1-\MPS\right)^{\gamma(1/\CRRA-1)}}
                          {1+(1-\MPS)^{\gamma(1/\CRRA-1)}}\right)
-  \end{eqnarray*}
+  \end{aligned}\end{gathered}\end{equation*}
   confirming conjecture \eqref{eq:kappaguess}.
 
   This combination of results indicates that the consumption function
@@ -2559,16 +2559,16 @@ satisfied by the baseline parameter values being used here.
   a value of $\mu = 0.04$.
 
   The combined transformations for the various variables are thus
-  \begin{eqnarray}
-    \cEndFunc_{t}^{{a}}({a}_{t},h_{t})       & = & [\vEnd_{t}^{{a}}({a}_{t},h_{t})]^{-1/\CRRA} h_{t}^{\gamma(1-1/\CRRA)} \label{eq:vEndstransform} \\
-    \Lambda_{t}^{m}({m}_{t},h_{t-1})  & = & [{\vFunc}_{t}^{m}({m}_{t},h_{t-1})]^{-1/\CRRA} h_{t-1}^{\gamma(1-1/\CRRA)} \label{eq:vxtransform} \\
-    \cEndFunc_{t}^{h}({a}_{t},h_{t})       & = &
-                                                 [-h_{t}^{1-\gamma(\CRRA-1)}\vEnd_{t}^{h}({a}_{t},h_{t})/\gamma]^{1/(1-\CRRA)}  \label{eq:vEndhtransform}
-    \\      \Lambda_{t}^{h}({m}_{t},h_{t-1})  & = & [-h_{t-1}^{1-\gamma(\CRRA-1)}{\vFunc}_{t}^{h}({m}_{t},h_{t-1})/\gamma]^{1/(1-\CRRA)} \label{eq:vhtransform}
-    \\      \Lambda_{t}({m}_{t},h_{t-1})      & = & [(1-\CRRA)
+  \begin{equation}\begin{gathered}\begin{aligned}
+    \cEndFunc_{t}^{{a}}({a}_{t},h_{t})        & = [\vEnd_{t}^{{a}}({a}_{t},h_{t})]^{-1/\CRRA} h_{t}^{\gamma(1-1/\CRRA)} \label{eq:vEndstransform} \\
+    \Lambda_{t}^{m}({m}_{t},h_{t-1})   & = [{\vFunc}_{t}^{m}({m}_{t},h_{t-1})]^{-1/\CRRA} h_{t-1}^{\gamma(1-1/\CRRA)} \label{eq:vxtransform} \\
+    \cEndFunc_{t}^{h}({a}_{t},h_{t})       
+& =                                                  [-h_{t}^{1-\gamma(\CRRA-1)}\vEnd_{t}^{h}({a}_{t},h_{t})/\gamma]^{1/(1-\CRRA)}  \label{eq:vEndhtransform}
+    \\      \Lambda_{t}^{h}({m}_{t},h_{t-1})   & = [-h_{t-1}^{1-\gamma(\CRRA-1)}{\vFunc}_{t}^{h}({m}_{t},h_{t-1})/\gamma]^{1/(1-\CRRA)} \label{eq:vhtransform}
+    \\      \Lambda_{t}({m}_{t},h_{t-1})       & = [(1-\CRRA)
                                                     {\vFunc}_{t}({m}_{t},h_{t-1})]^{1/(1-\CRRA)} h_{t-1}^{\gamma}\label{eq:vtransform}
-    \\  \chi({m}_{t},h_{t-1})      & = & \cFunc({m}_{t},h_{t-1})h_{t-1}^{-\gamma/(1+\gamma)}(h_{t-1}+\mu)^{\gamma/(1+\gamma)}.
-  \end{eqnarray}
+    \\  \chi({m}_{t},h_{t-1})       & = \cFunc({m}_{t},h_{t-1})h_{t-1}^{-\gamma/(1+\gamma)}(h_{t-1}+\mu)^{\gamma/(1+\gamma)}.
+  \end{aligned}\end{gathered}\end{equation}
   where these are the functions that are actually approximated by
   interpolation and the objects of interest (like the consumption
   function) are obtained by reversing the transformations.
@@ -2603,22 +2603,22 @@ satisfied by the baseline parameter values being used here.
     value of $\cEndFunc_{t}^{{a}}$ and $\cEndFunc_{t}^{h}$ (from
     equations (\ref{eq:vEndsdefn}) and (\ref{eq:vEndhdefn})) and
     \eqref{eq:vEndstransform} and \eqref{eq:vEndhtransform},
-    \begin{eqnarray}
-      \cEndFunc_{k,t}^{{a}} & = & (h_{k}^{\ell})^{\gamma(1-1/\CRRA)}
+    \begin{equation}\begin{gathered}\begin{aligned}
+      \cEndFunc_{k,t}^{{a}}  & = (h_{k}^{\ell})^{\gamma(1-1/\CRRA)}
                                   \left(\Discount \Ex_{t}
                                   \left[
                                   \Rnorm_{t+1} (\hat{\vFunc}_{t+1}^{m}(\Rnorm_{t+1} s^{\ell}_{k} +
                                   {\tShkEmp}_{t+1},h^{\ell}_{k}))
                                   \right]
                                   \right)^{-1/\CRRA}
-      \\      \cEndFunc_{k,t}^{h} & = &
-                                        \left(-(h_{k}^{\ell})^{1-\gamma(\CRRA-1)} \Discount \Ex_{t}
+      \\      \cEndFunc_{k,t}^{h} 
+& =                                         \left(-(h_{k}^{\ell})^{1-\gamma(\CRRA-1)} \Discount \Ex_{t}
                                         \left[
                                         \hat{\vFunc}_{t+1}^{h}(\Rnorm_{t+1} s^{\ell}_{k} +
                                         {\tShkEmp}_{t+1},h^{\ell}_{k})
                                         \right]/\gamma
                                         \right)^{1/(1-\CRRA)},
-    \end{eqnarray}
+    \end{aligned}\end{gathered}\end{equation}
     generating lists of values
     $\cEndFunc^{a}_{k,t}$,$\cEndFunc^{h}_{k,t}$.
 
@@ -2685,56 +2685,56 @@ proportion of the portfolio invested in this asset between $t$ and $t+1$
 short' and cannot issue net equity), the overall return on
 the consumer's portfolio between $t$ and $t+1$ will be:
 \begin{verbatimwrite}{./Equations/Rport.tex}
-  \begin{eqnarray}
-    \Rport_{t+1} & = & \Rfree(1-\varsigma_{t}) + \Risky_{t+1}\varsigma_{t} \label{eq:return1}
-    \\              & = & \Rfree + (\Risky_{t+1}-\Rfree) \varsigma_{t} \label{eq:return2}
-  \end{eqnarray}
+  \begin{equation}\begin{gathered}\begin{aligned}
+    \Rport_{t+1}  & = \Rfree(1-\varsigma_{t}) + \Risky_{t+1}\varsigma_{t} \label{eq:return1}
+    \\               & = \Rfree + (\Risky_{t+1}-\Rfree) \varsigma_{t} \label{eq:return2}
+  \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/Rport.tex}
 and the maximization problem is
 \begin{verbatimwrite}{./Equations/PortProb.tex}
-  \begin{eqnarray*}
-    {\vFunc}_{t}({m}_{t}) & = & \max_{\{{c}_{t},\varsigma_{t}\}}   ~~ \util({c}_{t}) +  \Discount
+  \begin{equation*}\begin{gathered}\begin{aligned}
+    {\vFunc}_{t}({m}_{t})  & = \max_{\{{c}_{t},\varsigma_{t}\}}   ~~ \util({c}_{t}) +  \Discount
                                 \Ex_{t}[{\vFunc}_{t+1}({m}_{t+1})]
     \\      & \text{s.t.} & \nonumber
-    \\      \Rport_{t+1} & = & \Rfree + (\Risky_{t+1}-\Rfree) \varsigma_{t}
-    \\      {m}_{t+1} & = & ({m}_{t}-{c}_{t})\Rport_{t+1} + \tShkEmp_{t+1}
+    \\      \Rport_{t+1}  & = \Rfree + (\Risky_{t+1}-\Rfree) \varsigma_{t}
+    \\      {m}_{t+1}  & = ({m}_{t}-{c}_{t})\Rport_{t+1} + \tShkEmp_{t+1}
     \\  0       \leq & \varsigma_{t} & \leq 1, \label{eq:noshorts}
-  \end{eqnarray*}
+  \end{aligned}\end{gathered}\end{equation*}
 \end{verbatimwrite}
 \input{./Equations/PortProb.tex}
 or, more compactly,
-\begin{eqnarray*}
-  {\vFunc}_{t}({m}_{t}) & = & \max_{\{\cFunc_{t},\varsigma_{t}\}} ~~  \util({c}_{t}) +  \Ex_{t}[\Discount {\vFunc}_{t+1}(({m}_{t}-{c}_{t}){\Rport}_{t+1} +        {\tShkEmp}_{t+1})]
+\begin{equation*}\begin{gathered}\begin{aligned}
+  {\vFunc}_{t}({m}_{t})  & = \max_{\{\cFunc_{t},\varsigma_{t}\}} ~~  \util({c}_{t}) +  \Ex_{t}[\Discount {\vFunc}_{t+1}(({m}_{t}-{c}_{t}){\Rport}_{t+1} +        {\tShkEmp}_{t+1})]
   \\                       & \text{s.t.} & \nonumber
   \\ 0 \leq & \varsigma_{t} & \leq 1
                               .
-\end{eqnarray*}
+\end{aligned}\end{gathered}\end{equation*}
 The first order condition with respect to ${c}_{t}$ is almost identical
 to that in the single-control problem, equation (\ref{eq:upceqEvtp1}),
 with the only difference being that the nonstochastic interest factor
 $\Rfree$ is now replaced by ${\Rport}_{t+1}$,
 \begin{verbatimwrite}{./Equations/valfuncFOCRtilde.tex}
-  \begin{eqnarray}
-    \util^{\prime}({c}_{t}) & = & \Discount \Ex_{t} [{\Rport}_{t+1} \vFunc^{\prime}_{t+1}({m}_{t+1})] \label{eq:valfuncFOCRtilde},
-  \end{eqnarray}
+  \begin{equation}\begin{gathered}\begin{aligned}
+    \util^{\prime}({c}_{t})  & = \Discount \Ex_{t} [{\Rport}_{t+1} \vFunc^{\prime}_{t+1}({m}_{t+1})] \label{eq:valfuncFOCRtilde},
+  \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/valfuncFOCRtilde.tex}
 and the Envelope theorem derivation remains the same, 
 yielding the Euler equation for consumption
 \begin{verbatimwrite}{./Equations/EulercRiskyR.tex}
-  \begin{eqnarray}
-    \util^{\prime}({c}_{t}) & = & \Ex_{t}[\Discount {\Rport}_{t+1} \util^{\prime}({c}_{t+1})]. \label{eq:EulercRiskyR}
-  \end{eqnarray}
+  \begin{equation}\begin{gathered}\begin{aligned}
+    \util^{\prime}({c}_{t})  & = \Ex_{t}[\Discount {\Rport}_{t+1} \util^{\prime}({c}_{t+1})]. \label{eq:EulercRiskyR}
+  \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/EulercRiskyR.tex}
 
 The first order condition with respect to the risky portfolio share is
 \begin{verbatimwrite}{./Equations/FOCw.tex}
-  \begin{eqnarray}
-    0 & = & \Ex_{t}[{\vFunc}_{t+1}^{\prime}({m}_{t+1})(\Risky_{t+1}-\Rfree){a}_{t}] \notag
-    \\        & = & {a}_{t}\Ex_{t}\left[\util^{\prime}\left(\cFunc_{t+1}({m}_{t+1})\right)(\Risky_{t+1}-\Rfree)\right] \label{eq:FOCw}.
-  \end{eqnarray}
+  \begin{equation}\begin{gathered}\begin{aligned}
+    0  & = \Ex_{t}[{\vFunc}_{t+1}^{\prime}({m}_{t+1})(\Risky_{t+1}-\Rfree){a}_{t}] \notag
+    \\         & = {a}_{t}\Ex_{t}\left[\util^{\prime}\left(\cFunc_{t+1}({m}_{t+1})\right)(\Risky_{t+1}-\Rfree)\right] \label{eq:FOCw}.
+  \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/FOCw.tex}
 
@@ -2745,20 +2745,20 @@ must be defined as a function of the chosen values of both of those
 variables, because expected end-of-period value will depend not just
 on how much the agent saves, but also on how the saved assets are
 allocated between the risky and riskless assets.  Thus we define
-\begin{eqnarray*}
-  \vEnd_{t}({a}_{t},\varsigma_{t}) & = & \Ex_{t}[\Discount {\vFunc}_{t+1}({m}_{t+1})]
-\end{eqnarray*}
+\begin{equation*}\begin{gathered}\begin{aligned}
+  \vEnd_{t}({a}_{t},\varsigma_{t})  & = \Ex_{t}[\Discount {\vFunc}_{t+1}({m}_{t+1})]
+\end{aligned}\end{gathered}\end{equation*}
 which has derivatives
-\begin{eqnarray*}
-  \vEnd_{t}^{{a}} & = & \Ex_{t}[\Discount {\Rport}_{t+1}{\vFunc}_{t+1}^{m}({m}_{t+1})]
-  \\      \vEnd_{t}^{\varsigma} & = & \Ex_{t}[\Discount (\Risky_{t+1}-\Rfree){\vFunc}_{t+1}^{m}({m}_{t+1})  ]a_{t}
-\end{eqnarray*}
+\begin{equation*}\begin{gathered}\begin{aligned}
+  \vEnd_{t}^{{a}}  & = \Ex_{t}[\Discount {\Rport}_{t+1}{\vFunc}_{t+1}^{m}({m}_{t+1})]
+  \\      \vEnd_{t}^{\varsigma}  & = \Ex_{t}[\Discount (\Risky_{t+1}-\Rfree){\vFunc}_{t+1}^{m}({m}_{t+1})  ]a_{t}
+\end{aligned}\end{gathered}\end{equation*}
 implying that the first order conditions (\ref{eq:EulercRiskyR}) and
 (\ref{eq:FOCw}) can be rewritten
-\begin{eqnarray}
-  \util^{\prime}({c}_{t}) & = & \vEnd_{t}^{{a}}({m}_{t}-{c}_{t},\varsigma_{t})
-  \\      0 & = & \vEnd^{\varsigma}_{t}({a}_{t},\varsigma_{t}).
-\end{eqnarray}
+\begin{equation}\begin{gathered}\begin{aligned}
+  \util^{\prime}({c}_{t})  & = \vEnd_{t}^{{a}}({m}_{t}-{c}_{t},\varsigma_{t})
+  \\      0  & = \vEnd^{\varsigma}_{t}({a}_{t},\varsigma_{t}).
+\end{aligned}\end{gathered}\end{equation}
 
 \subsection{Application}
 
@@ -2781,10 +2781,10 @@ between the return on the risky asset and the shock to labor income (for example
 in recessions the stock market falls and labor income also declines).
 
 The direct expressions for the derivatives of $\vEnd_{t}$ are
-\begin{eqnarray}
-  \vEnd_{t}^{{a}}({a}_{t},\varsigma_{t}) & = & \Discount \left(\frac{1}{n_{\risky} n_{\tShkEmp}}\right)\sum_{i=1}^{n_{\tShkEmp}}\sum_{j=1}^{n_{\risky} }\Rport_{i,j} \left(\cFunc_{t+1}(\Rport_{i,j}{a}_{t}+\tShkEmp_{i})\right)^{-\CRRA}
-  \\      \vEnd_{t}^{\varsigma}({a}_{t},\varsigma_{t}) & = & \Discount \left(\frac{1}{n_{\risky} n_{\tShkEmp}}\right)\sum_{i=1}^{n_{\tShkEmp}}\sum_{j=1}^{n_{\risky} }(\Risky_{i,j}-\Rfree)\left(\cFunc_{t+1}(\Rport_{i,j}{a}_{t}+\tShkEmp_{i})\right)^{-\CRRA}.
-\end{eqnarray}
+\begin{equation}\begin{gathered}\begin{aligned}
+  \vEnd_{t}^{{a}}({a}_{t},\varsigma_{t})  & = \Discount \left(\frac{1}{n_{\risky} n_{\tShkEmp}}\right)\sum_{i=1}^{n_{\tShkEmp}}\sum_{j=1}^{n_{\risky} }\Rport_{i,j} \left(\cFunc_{t+1}(\Rport_{i,j}{a}_{t}+\tShkEmp_{i})\right)^{-\CRRA}
+  \\      \vEnd_{t}^{\varsigma}({a}_{t},\varsigma_{t})  & = \Discount \left(\frac{1}{n_{\risky} n_{\tShkEmp}}\right)\sum_{i=1}^{n_{\tShkEmp}}\sum_{j=1}^{n_{\risky} }(\Risky_{i,j}-\Rfree)\left(\cFunc_{t+1}(\Rport_{i,j}{a}_{t}+\tShkEmp_{i})\right)^{-\CRRA}.
+\end{aligned}\end{gathered}\end{equation}
 
 Writing these equations out explicitly makes a problem very
 apparent: For every different combination of $\{{a}_{t},\varsigma_{t}\}$
@@ -2802,19 +2802,19 @@ hand and we want to proceed.  As noted above, nonlinear equation
 solvers (including those built into {\Mma}) can find the
 solution to a set of simultaneous equations.  Thus we could ask
 {\Mma}~to solve
-\begin{eqnarray}
-  {c}_{t}^{-\CRRA} & = & \hat{\vEnd}^{a}_{t}({m}_{t}-{c}_{t},\varsigma_{t}) \label{eq:FOCwrtcMultContr}
-  \\      0 & = & \hat{\vEnd}^{\varsigma}_{t}({m}_{t}-{c}_{t},\varsigma_{t}) \label{eq:FOCwrtw}
-\end{eqnarray}
+\begin{equation}\begin{gathered}\begin{aligned}
+  {c}_{t}^{-\CRRA}  & = \hat{\vEnd}^{a}_{t}({m}_{t}-{c}_{t},\varsigma_{t}) \label{eq:FOCwrtcMultContr}
+  \\      0  & = \hat{\vEnd}^{\varsigma}_{t}({m}_{t}-{c}_{t},\varsigma_{t}) \label{eq:FOCwrtw}
+\end{aligned}\end{gathered}\end{equation}
 simultaneously for $\cRat$ and $\varsigma$ at the set of potential ${m}_{t}$ values defined in
 \texttt{mVec}. However, multidimensional constrained
 maximization problems are difficult and sometimes quite slow to
 solve.  There is a better way.  Define the problem
-\begin{eqnarray}
-  \vOpt_{t}({a}_{t}) & = & \max_{\varsigma_{t}} ~~  \vEnd_{t}({a}_{t},\varsigma_{t})
+\begin{equation}\begin{gathered}\begin{aligned}
+  \vOpt_{t}({a}_{t})  & = \max_{\varsigma_{t}} ~~  \vEnd_{t}({a}_{t},\varsigma_{t})
   \\      & \text{s.t.} & \nonumber
   \\      0 \leq & \varsigma_{t} & \leq 1
-\end{eqnarray}
+\end{aligned}\end{gathered}\end{equation}
 where the typographical difference between $\vOpt$ and $\vEnd$
 indicates that this is the $\vEnd$ that has been optimized with
 respect to all of the arguments other than the one still present
@@ -2829,9 +2829,9 @@ function $\vOptAlt_{t}^{a}({a}_{t})$.\footnote{A faster solution
   however, so this route was not pursued.}  With this function in
 hand, we can use the first order condition from the single-control
 problem
-\begin{eqnarray*}
-  {c}_{t}^{-\CRRA} & = & \vOptAlt_{t}^{{a}}({m}_{t}-{c}_{t})
-\end{eqnarray*}
+\begin{equation*}\begin{gathered}\begin{aligned}
+  {c}_{t}^{-\CRRA}  & = \vOptAlt_{t}^{{a}}({m}_{t}-{c}_{t})
+\end{aligned}\end{gathered}\end{equation*}
 to solve for the optimal level of consumption as a function of
 ${m}_{t}$.  Thus we have transformed the multidimensional optimization
 problem into a sequence of two simple optimization problems for which
@@ -2915,19 +2915,19 @@ following.
     interpolation function of $\vEnd_{t}^{\varsigma}({a}_{t},\varsigma_{t})$ is
     used instead. However, the results obtained (especially
     $\hat{\varsigma}_{t}({a}_{t})$) are much less satisfactory.}
-  \begin{eqnarray}
-    0 & = & \vEnd^{\varsigma}_{t}({a}_{t},\varsigma_{t})
+  \begin{equation}\begin{gathered}\begin{aligned}
+    0  & = \vEnd^{\varsigma}_{t}({a}_{t},\varsigma_{t})
     \\      & \text{s.t.} & \nonumber
     \\      0 \leq & \varsigma_{t} & \leq 1
-  \end{eqnarray}
+  \end{aligned}\end{gathered}\end{equation}
   and generates the corresponding optimal portfolio share
   $\varsigma^{\ast}_{t}$.
 
 \item Construct the function \texttt{$\vOpt$a[at\_]}
-  \begin{eqnarray}
+  \begin{equation}\begin{gathered}\begin{aligned}
     \vOpt_{t}^{a}({a}_{t}) \equiv
     \vEnd_{t}^{a}({a}_{t},\varsigma^{\ast}_{t}({a}_{t}))
-  \end{eqnarray}
+  \end{aligned}\end{gathered}\end{equation}
   where $\varsigma^{\ast}_{t}({a}_{t})$ is computed by \texttt{$\riskyshare$Raw[at\_]}.
 
 \item Using $\vOpt_{t}^{a}({a}_{t}) \equiv$
@@ -3046,24 +3046,24 @@ function has converged for all practical purposes.
 
   For the perfect foresight infinite horizon consumption problem,
   the solution is
-  \begin{eqnarray}
-    \bar{\cFunc}({m}_{t}) & = & \overbrace{(1-\Rfree^{-1}(\Rfree
+  \begin{equation}\begin{gathered}\begin{aligned}
+    \bar{\cFunc}({m}_{t})  & = \overbrace{(1-\Rfree^{-1}(\Rfree
                                 \Discount)^{1/\CRRA})}^{\equiv
                                 \underline{\MPC}}\left[{m}_{t}-1+\left(\frac{1}{1-1/\Rfree}\right)\right]
                                 \label{eq:pfinfhorc}
-  \end{eqnarray}
+  \end{aligned}\end{gathered}\end{equation}
   where $\underline{\MPC}$ is the MPC in the
   infinite-horizon perfect foresight problem.  In our baseline problem,
   we set $\PGro = \pLev_{t} = 1$.  It is straightforward to show that the
   infinite-horizon perfect-foresight value function and marginal value
   function are given by
-  \begin{eqnarray}
-    \bar{\vFunc}({m}_{t}) & = &
-                                \left(\frac{\bar{\cFunc}({m}_{t})^{1-\CRRA}}{
+  \begin{equation}\begin{gathered}\begin{aligned}
+    \bar{\vFunc}({m}_{t}) 
+& =                                 \left(\frac{\bar{\cFunc}({m}_{t})^{1-\CRRA}}{
                                 (1-\CRRA)\underline{\MPC} }\right)
-    \\  \bar{\vFunc}^{\prime}({m}_{t}) & = &       (\bar{\cFunc}({m}_{t}))^{-\CRRA}
-    \\  \vOpt^{\prime}({a}_{t}) & = & \Discount \Rfree \PGro_{t+1}^{-\CRRA} \bar{\vFunc}^{\prime}(\Rnorm_{t+1} {a}_{t}+1).
-  \end{eqnarray}
+    \\  \bar{\vFunc}^{\prime}({m}_{t})  & =       (\bar{\cFunc}({m}_{t}))^{-\CRRA}
+    \\  \vOpt^{\prime}({a}_{t})  & = \Discount \Rfree \PGro_{t+1}^{-\CRRA} \bar{\vFunc}^{\prime}(\Rnorm_{t+1} {a}_{t}+1).
+  \end{aligned}\end{gathered}\end{equation}
 
   % WW delete the text on 2011-06-21 because we no longer start from the infinite horizon perfect foresight solution.
   % If we choose to pursue that starting point, we need to derive the optimist's and pessimist's consumption function,
@@ -3126,20 +3126,20 @@ function has converged for all practical purposes.
   \end{verbatimwrite}
   \input{./Equations/lifecyclemax.tex}
   subject to the constraints
-  \begin{eqnarray*}
-    \aLev_{s} &=&\mLev_{s}-\cLev_{s}
-    \\      \mLev_{s+1} &=&\Rfree \aLev_{s}+Y_{s+1}
-    \\      Y_{s+1} &=&\pLev_{s+1}\tShkEmp _{s+1}
-    \\      \pLev_{s+1} &=&\PGro_{s+1}\pLev_{s}\Psi_{s+1}
-  \end{eqnarray*}
+  \begin{equation*}\begin{gathered}\begin{aligned}
+    \aLev_{s}  & = \mLev_{s}-\cLev_{s}
+    \\      \mLev_{s+1}  & = \Rfree \aLev_{s}+Y_{s+1}
+    \\      Y_{s+1}  & = \pLev_{s+1}\tShkEmp _{s+1}
+    \\      \pLev_{s+1}  & = \PGro_{s+1}\pLev_{s}\Psi_{s+1}
+  \end{aligned}\end{gathered}\end{equation*}
   where
   \begin{verbatimwrite}{./Equations/subjectTo.tex}
-    \begin{eqnarray*}
+    \begin{equation*}\begin{gathered}\begin{aligned}
       \Alive _{s} &:&\text{probability alive (not dead) until age $s$ given alive at age $s-1$}
       \\      {\hat{\Discount}}_{s} &:&\text{time-varying discount factor between age $s-1$ and $s$}
       \\     \Psi_{s} &:&\text{mean-one shock to permanent income}
       \\     \beth &:&\text{time-invariant discount factor}
-    \end{eqnarray*}
+    \end{aligned}\end{gathered}\end{equation*}
   \end{verbatimwrite}
   \input{./Equations/subjectTo.tex}
   and all the other variables are defined as in section \ref{sec:basicproblem}.
@@ -3152,14 +3152,14 @@ function has converged for all practical purposes.
   captures the effect of time-varying demographic variables (e.g.\ changes in family size).
 
   Transitory and permanent shocks are distributed as follows:
-  \begin{eqnarray}
-    \Xi_{s}&=&
+  \begin{equation}\begin{gathered}\begin{aligned}
+    \Xi_{s} & = 
                \begin{cases}
                  0\phantom{/\pZero} & \text{with probability $\pZero>0$} \\
                  \tShkEmp_{s}/\pZero      & \text{with probability $(1-\pZero)$, where $\log \tShkEmp_{s}\thicksim \mathcal{N}(-\sigma_{\tShkEmp}^{2}/2,\sigma_{\tShkEmp}^{2})$}\\
                \end{cases}\\
     \log \pShk_{s} &\thicksim& \mathcal{N}(-\sigma_{\pShk}^{2}/2,\sigma_{\pShk}^{2})
-  \end{eqnarray}
+  \end{aligned}\end{gathered}\end{equation}
   where $\pZero$ is the probability of unemployment (and unemployment shocks are turned off after retirement).
 
   The parameter values for the shocks are taken from Carroll~\citeyearpar{carroll:brookings}, $\pZero=0.5/100$, $\sigma _{\tShkEmp }=0.1$, and $\sigma_{\pShk}=0.1$.\footnote{Note that $\sigma _{\tShkEmp}=0.1$ is smaller than the estimate for college graduates estimated in
@@ -3216,20 +3216,20 @@ function has converged for all practical purposes.
 
   As explained in section \ref{sec:normalization}, it is convenient to work with the normalized version the model which can be written as:
   \begin{verbatimwrite}{./Equations/LifeCycleMaxNormed.tex}
-    \begin{eqnarray*}
-      {\vFunc}_{t}({m}_{t}) & = & \max_{{c}_{t}} \left\{\util({c}_{t})+\beth\Alive_{t+1}\hat{\Discount}_{t+1}
+    \begin{equation*}\begin{gathered}\begin{aligned}
+      {\vFunc}_{t}({m}_{t})  & = \max_{{c}_{t}} \left\{\util({c}_{t})+\beth\Alive_{t+1}\hat{\Discount}_{t+1}
                                   \Ex_{t}[(\pShk_{t+1}\PGro_{t+1})^{1-\CRRA}{\vFunc}_{t+1}({m}_{t+1})] \right\}   \\
                             & \text{s.t.} &   \nonumber \\
-      {a}_{t}   & = & {m}_{t}-{c}_{t} \nonumber
-      \\      {m}_{t+1} & = & {a}_{t}\underbrace{\left(\frac{\Rfree}{\pShk_{t+1}\PGro_{t+1}}\right)}_{\equiv \Rnorm_{t+1}}+\tShkEmp_{t+1}
-    \end{eqnarray*}
+      {a}_{t}    & = {m}_{t}-{c}_{t} \nonumber
+      \\      {m}_{t+1}  & = {a}_{t}\underbrace{\left(\frac{\Rfree}{\pShk_{t+1}\PGro_{t+1}}\right)}_{\equiv \Rnorm_{t+1}}+\tShkEmp_{t+1}
+    \end{aligned}\end{gathered}\end{equation*}
   \end{verbatimwrite}
   \input{./Equations/LifeCycleMaxNormed.tex}
   with the first order condition:
-  \begin{eqnarray}
-    \util^{\prime}({c}_{t})&=&\beth\Alive_{t+1}\hat{\Discount}_{t+1}\Rfree \Ex_{t}\left[\util^{\prime}\left(\pShk_{t+1}\PGro_{t+1}\cFunc_{t+1}\left({a}_{t}\Rnorm_{t+1}+\tShkEmp_{t+1}\right)\right)\right]\label{eq:FOCLifeCycle}
+  \begin{equation}\begin{gathered}\begin{aligned}
+    \util^{\prime}({c}_{t}) & = \beth\Alive_{t+1}\hat{\Discount}_{t+1}\Rfree \Ex_{t}\left[\util^{\prime}\left(\pShk_{t+1}\PGro_{t+1}\cFunc_{t+1}\left({a}_{t}\Rnorm_{t+1}+\tShkEmp_{t+1}\right)\right)\right]\label{eq:FOCLifeCycle}
                                .
-  \end{eqnarray}
+  \end{aligned}\end{gathered}\end{equation}
 
   The first step is to solve for the consumption functions at each age
   using the routines included in the \texttt{setup\_ConsFn.m} file. We
@@ -3276,9 +3276,9 @@ function has converged for all practical purposes.
   to be estimated (in the current case $\xi =\{\CRRA ,{\beth}\}$), we could search for
   the parameter values which solve
   \begin{verbatimwrite}{./Equations/naivePowell.tex}
-    \begin{eqnarray}
+    \begin{equation}\begin{gathered}\begin{aligned}
       \min_{\xi} \sum_{\tau=1}^{7} |\varsigma^{\tau} -\mathbf{s}^{\tau}(\xi)|  \label{eq:naivePowell}
-    \end{eqnarray}
+    \end{aligned}\end{gathered}\end{equation}
   \end{verbatimwrite}
   \input{./Equations/naivePowell.tex}
   where $\varsigma^{\tau }$ and $\mathbf{s}^{\tau}$ are respectively the empirical and simulated medians of the wealth to permanent income ratio for age group $\tau $.
@@ -3326,13 +3326,13 @@ function has converged for all practical purposes.
 
   The key function to perform structural estimation is defined in the \texttt{setup\_Estimation.m} file as follows:
   \begin{verbatimwrite}{./Equations/GapEmpiricalSimulatedMedians.tex}
-    \begin{eqnarray}
-      \lefteqn{    \texttt{GapEmpiricalSimulatedMedians$[\CRRA,\beth]$:=}} & &  \nonumber \\
+    \begin{equation}\begin{gathered}\begin{aligned}
+      \lefteqn{    \texttt{GapEmpiricalSimulatedMedians$[\CRRA,\beth]$:=}}    \nonumber \\
                                                                            &[&\texttt{ConstructcFuncLife$[\CRRA,\beth]$;}\nonumber\\
-                                                                           &&\texttt{Simulate;}\nonumber\\
-                                                                           &&\sum\limits_{i}^{N}\weight _{i}\left|\varsigma_{i}^{\tau }-\mathbf{s}^{\tau}(\xi )\right| \nonumber\\
+                                                                           &\texttt{Simulate;}\nonumber\\
+                                                                           &\sum\limits_{i}^{N}\weight _{i}\left|\varsigma_{i}^{\tau }-\mathbf{s}^{\tau}(\xi )\right| \nonumber\\
                                                                            &];&\nonumber
-    \end{eqnarray}
+    \end{aligned}\end{gathered}\end{equation}
   \end{verbatimwrite}
   \input{./Equations/GapEmpiricalSimulatedMedians.tex}
   For a given pair of the parameters to be estimated, the \texttt{GapEmpiricalSimulatedMedians} routine therefore:
