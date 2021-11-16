@@ -11,6 +11,9 @@ handoutName=$1
 # cd "$(dirname "$0")" # http://stackoverflow.com/questions/3349105/how-to-set-current
 
 cmd="cp `kpsewhich svg-math-and-subfigures.cfg` $handoutName.cfg"
+#cmd="cp `kpsewhich svg-math-and-subfigures_html5.cfg` $handoutName.cfg"
+#cmd="cp `kpsewhich svg-math-and-subfigures_xhtml.cfg` $handoutName.cfg"
+#cmd="cp `kpsewhich svg-math-and-subfigures_fix-dmofilter-parsing-problems.cfg` $handoutName.cfg"
 echo "$cmd" ; eval "$cmd"
 #cp `kpsewhich svg-set-size-to-1p0.mk4` $handoutName.mk4
 cmd="cp `kpsewhich svg-set-size-to-1p0.mk4` $handoutName.mk4"
