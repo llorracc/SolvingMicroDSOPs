@@ -11,7 +11,7 @@
 >
   <div class="maketitle">
 <h2 class="titleHead">The Method of Moderation</h2>
-<div class="date" >November 16, 2021</div>
+<div class="date" >November 17, 2021</div>
 <span 
 class="ecrm-0600"> </span>
  <div class="author" ><span 
@@ -186,73 +186,85 @@ max  𝔼t      β  u (ct+n)  ,
          n𝜃=0
 " class="math-display" ></center></td><td class="equation-label">(1)</td></tr></table>
 <!--l. 3--><p class="nopar" >
-subject to <div class="eqnarray">
+subject to
+  <table 
+class="equation"><tr><td><a 
+ id="x1-2002r2"></a>
   <center class="math-display" >
 <img 
-src="cctwMoM1x.svg" alt="   at  =   mt − ct                                (2)
- b     =   aR                                     (3)
-  t+1       t t+1
- yt+1  =  pppt+1𝜃t+1                                (4)
-mt+1   =   bt+1 + yt+1                             (5)
+src="cctwMoM1x.svg" alt="  at = mt −  ct
+ bt+1 = atRt+1
+
+yt+1 = pppt+1𝜃t+1
+mt+1 = bt+1 + yt+1
+" class="math-display" ></center></td><td class="equation-label">(2)</td></tr></table>
+<!--l. 6--><p class="nopar" >
+where
+  <table 
+class="equation-star"><tr><td>
+  <center class="math-display" >
+<img 
+src="cctwMoM2x.svg" alt="  β −                                      pure time  discount factor
+
+  at−      assets after all actions have been accomplished in period t
+bt+1−   ‘bank  balances’ (nonhuman   wealth ) at the beginning of t + 1
+
+  ct−                                       consumption  in period t
+ mt −  ‘market  resources’ available for consumption  (‘cash-on-hand ’)
+
+pppt+1−                       ‘permanent  labor income ’ in period t + 1
+Rt+1−                interest factor (1 + rt+1) from period t to t + 1
+y   −                             noncapital income  in period t + 1.
+ t+1
+" class="math-display" ></center></td></tr></table>
+<!--l. 10--><p class="nopar" >
+and the exogenous variables evolve according to
+  <table 
+class="equation"><tr><td><a 
+ id="x1-2003r3"></a>
+  <center class="math-display" >
+<img 
+src="cctwMoM3x.svg" alt="     Rt =R  ∀ t                - constant interest factor = 1 + r
+
+    pppt+1 = Γ t+1pppt           - permanent  labor income  dynamics
+log  𝜃t+n ∼  𝒩 (− σ2𝜃∕2,σ2𝜃)  - lognormal  transitory shocks ∀ n &#x003E;  0.
 " class="math-display" ><a 
- id="x1-2002r2"></a><a 
- id="x1-2002r5"></a></center>
-</div> where <div class="eqnarray">
-  <center class="math-display" >
-<img 
-src="cctwMoM2x.svg" alt="  β   −  pure time  discount factor
-  at  −  assets after all actions have been accomplished in period t
-
-bt+1  −  ‘bank  balances ’ (nonhuman  wealth) at the beginning of t + 1
-  ct  −  consumption   in period t
-
- mt   −  ‘market  resources’ available for consumption  (‘cash-on-hand ’)
-pppt+1  −  ‘permanent  labor income ’ in period t + 1
-
-Rt+1  −  interest factor (1 + rt+1) from period t to t + 1
-yt+1  −  noncapital income  in period t + 1.
-" class="math-display" ></center>
-</div> and the exogenous variables evolve according to <div class="eqnarray">
-                                                                                     
-                                                                                     
-  <center class="math-display" >
-<img 
-src="cctwMoM3x.svg" alt="     Rt =        R ∀ t      - constant interest factor = 1 + r
-    pppt+1 =       Γ t+1pppt     - permanent  labor income  dynamics          (6)
-                   2    2
-log  𝜃t+n ∼    𝒩 (− σ 𝜃∕2,σ𝜃) - lognormal  transitory shocks ∀ n &#x003E;  0.
-" class="math-display" ><a 
- id="x1-2004r6"></a><a 
- id="x1-2004r7"></a></center>
-</div>
+ id="x1-2003r2"></a></center></td></tr></table>
+<!--l. 5--><p class="nopar" >
 <!--l. 166--><p class="indent" >  It turns out (see <span 
 class="ecbx-1200">? </span>for a proof) that this problem can be rewritten in a more convenient
 form in which choice and state variables are normalized by the level of permanent
 income, e.g., using nonbold font for normalized variables, <img 
 src="cctwMoM4x.svg" alt="mt =  ct∕pppt  " class="math";align="absmiddle">. When that is
-done, the Bellman equation for the transformed version of the consumer’s problem is
-<div class="eqnarray">
+done, the Bellman equation for the transformed version of the consumer’s problem
+is
+  <table 
+class="equation"><tr><td><a 
+ id="x1-2004r3"></a>
   <center class="math-display" >
 <img 
-src="cctwMoM5x.svg" alt="vt(mt )  =    max   u(ct) + 𝔼t[βΓ 1−t+1ρvt+1 (mt+1 )]                (7)
-               ct
-         s.t.
-     a   =    m  − c
-      t         t   t
-  mt+1   =    (R◟-∕Γ◝ t◜+1)◞at + 𝜃t+1
-               ≡ ℛt+1
+src="cctwMoM5x.svg" alt="vt(mt ) = max   u(ct) + 𝔼t[βΓ 1−ρvt+1(mt+1)]
+           ct                t+1
+       s.t.
+
+     at = mt − ct
+  mt+1 =  (R∕Γ t+1) at + 𝜃t+1
+          ◟--◝◜--◞
+           ≡ ℛt+1
 " class="math-display" ><a 
- id="x1-2005r7"></a></center>
-</div> and because we have not imposed a liquidity constraint, the solution satisﬁes the Euler
-equation <div class="eqnarray">
+ id="x1-2004r2"></a></center></td></tr></table>
+<!--l. 7--><p class="nopar" >
+and because we have not imposed a liquidity constraint, the solution satisﬁes the Euler
+equation
+  <table 
+class="equation"><tr><td><a 
+ id="x1-2005r3"></a>
   <center class="math-display" >
 <img 
-src="cctwMoM6x.svg" alt="u′(ct)  =   𝔼t[βRΓ −t+ρ1u ′(ct+1)].                         (8)
-                                                                                     
-                                                                                     
-" class="math-display" ><a 
- id="x1-2006r8"></a></center>
-</div>
+src="cctwMoM6x.svg" alt="                −ρ
+u ′(ct) = 𝔼t[βR Γ t+1u ′(ct+1)].
+" class="math-display" ></center></td><td class="equation-label">(3)</td></tr></table>
+<!--l. 3--><p class="nopar" >
 <!--l. 176--><p class="indent" >  For the remainder of the paper we will assume that permanent income <img 
 src="cctwMoM7x.svg" alt="pppt  " class="math";align="absmiddle"> grows by a
 constant factor <img 
@@ -276,6 +288,8 @@ gridpoints chosen to capture the structure of the consumption function reasonabl
 well at values of <img 
 src="cctwMoM10x.svg" alt="m  " class="math";align="absmiddle"> near the inﬁnite-horizon target value. (See those notes for
 details).
+                                                                                     
+                                                                                     
 <!--l. 2--><p class="indent" >  Unfortunately, this endogenous gridpoints solution is not very well-behaved outside the
 original range of gridpoints targeted by the solution method. (Though other common solution
 methods are no better outside their own predeﬁned ranges). Figure <a 
@@ -338,24 +352,29 @@ src="cctwMoM15x.svg" alt="𝜃t+n = 𝔼 [𝜃] = 1 ∀ n &#x003E; 0  " class="m
 form<span class="footnote-mark"><a 
 href="cctwMoM2.html#fn2x0"><sup class="textsuperscript">2</sup></a></span><a 
  id="x1-6001f2"></a>  
-<div class="eqnarray">
+  <table 
+class="equation"><tr><td><a 
+ id="x1-6002r4"></a>
   <center class="math-display" >
 <img 
-src="cctwMoM18x.svg" alt="¯ct(mt)  =   (mt + 𝔥t)κt                            (9)
-" class="math-display" ><a 
- id="x1-6002r9"></a></center>
-</div>for a constant minimal marginal propensity to consume <img 
+src="cctwMoM18x.svg" alt="¯ct(mt ) = (mt + 𝔥t)κt
+" class="math-display" ></center></td><td class="equation-label">(4)</td></tr></table>
+                                                                                     
+                                                                                     
+<!--l. 3--><p class="nopar" >
+for a constant minimal marginal propensity to consume <img 
 src="cctwMoM19x.svg" alt="κt  " class="math";align="absmiddle"> given below.  We similarly deﬁne
-                                                                                     
-                                                                                     
 <img 
-src="cctwMoM20x.svg" alt="𝔥t " class="math";align="absmiddle"> as ‘minimal human wealth,’ the present discounted value of labor income if the shocks
+src="cctwMoM20x.svg" alt="𝔥
+-t " class="math";align="absmiddle"> as ‘minimal human wealth,’ the present discounted value of labor income if the shocks
 were to take on their worst possible value in every future period <img 
-src="cctwMoM21x.svg" alt="𝜃t+n = 𝜃-∀ n &#x003E;  0  " class="math";align="absmiddle"> (which we
+src="cctwMoM21x.svg" alt="𝜃    = 𝜃 ∀ n &#x003E;  0
+ t+n   --  " class="math";align="absmiddle"> (which we
 deﬁne as corresponding to the beliefs of a ‘pessimist’).
 <!--l. 12--><p class="indent" >  A ﬁrst useful point is that, for the realist, a lower bound for the level of market resources is
 <img 
-src="cctwMoM22x.svg" alt="mt  = − 𝔥t  " class="math";align="absmiddle">, because if <img 
+src="cctwMoM22x.svg" alt="mt  = − 𝔥-
+         t  " class="math";align="absmiddle">, because if <img 
 src="cctwMoM23x.svg" alt="mt  " class="math";align="absmiddle"> equalled this value then there would be a positive ﬁnite chance
 (however small) of receiving <img 
 src="cctwMoM24x.svg" alt="𝜃t+n = 𝜃-  " class="math";align="absmiddle"> in every future period, which would require the
@@ -368,46 +387,50 @@ realist’s <img
 src="cctwMoM27x.svg" alt="ct  " class="math";align="absmiddle"> is zero as <img 
 src="cctwMoM28x.svg" alt="mt ↓ mt  " class="math";align="absmiddle">.
 <!--l. 28--><p class="indent" >  Given this result, it will be convenient to deﬁne ‘excess’ market resources as the amount by
-which actual resources exceed the lower bound, and ‘excess’ human wealth as the amount by
-which mean expected human wealth exceeds guaranteed minimum human wealth:
-<div class="eqnarray">
+which actual resources exceed the lower bound, and ‘excess’ human wealth as the
+amount by which mean expected human wealth exceeds guaranteed minimum human
+wealth:
+  <table 
+class="equation-star"><tr><td>
   <center class="math-display" >
 <img 
-src="cctwMoM29x.svg" alt="                =−m
-                ◜◞◟◝t
-▴mt    =  mt +   𝔥-
-                  t
- ▴ 𝔥t  =  𝔥t − 𝔥t.
-" class="math-display" ></center>
-</div>
+src="cctwMoM29x.svg" alt="             =−mt
+             ◜◞◟◝
+▴mt  = mt +   𝔥t
+ ▴𝔥t = 𝔥t − 𝔥 .
+            -t
+" class="math-display" ></center></td></tr></table>
+<!--l. 35--><p class="nopar" >
 <!--l. 37--><p class="indent" >  We can now transparently deﬁne the optimal consumption rules for the two perfect foresight
 problems, those of the ‘optimist’ and the ‘pessimist.’ The ‘pessimist’ perceives human wealth
 to be equal to its minimum feasible value <img 
 src="cctwMoM30x.svg" alt="𝔥
 -t  " class="math";align="absmiddle"> with certainty, so consumption is given by the
-perfect foresight solution <div class="eqnarray">
+perfect foresight solution
+  <table 
+class="equation-star"><tr><td>
   <center class="math-display" >
 <img 
-src="cctwMoM31x.svg" alt="ct(mt)  =   (mt + 𝔥-)κt
-                   t
-        =   ▴mt κt.
-" class="math-display" ></center>
-</div>
-                                                                                     
-                                                                                     
+src="cctwMoM31x.svg" alt="c(mt ) = (mt  + 𝔥 )κ-
+ t             -t  t
+      =  ▴mt κt.
+" class="math-display" ></center></td></tr></table>
+<!--l. 46--><p class="nopar" >
 <!--l. 48--><p class="indent" >  The ‘optimist,’ on the other hand, pretends that there is no uncertainty about future
-income, and therefore consumes <div class="eqnarray">
+income, and therefore consumes
+  <table 
+class="equation-star"><tr><td>
   <center class="math-display" >
 <img 
-src="cctwMoM32x.svg" alt="¯ct(mt )  =  (mt + 𝔥t − 𝔥t + 𝔥t)κt
-        =  (▴mt  + ▴ 𝔥t)κt
-
-        =  ct(mt) + ▴ 𝔥tκt.
-" class="math-display" ></center>
-</div>
+src="cctwMoM32x.svg" alt="¯ct(mt ) = (mt + 𝔥- − 𝔥-+  𝔥t)κt
+                t    t
+       = (▴mt  + ▴ 𝔥t)κt
+       = ct(mt ) + ▴𝔥tκt.
+" class="math-display" ></center></td></tr></table>
+<!--l. 55--><p class="nopar" >
 <!--l. 57--><p class="indent" >  It seems obvious that the spending of the realist will be strictly greater than that of the
 pessimist and strictly less than that of the optimist. Figure <a 
-href="#x1-60062">2<!--tex4ht:ref: fig:IntExpFOCInvPesReaOptNeedHiPlot --></a> illustrates the proposition for
+href="#x1-60032">2<!--tex4ht:ref: fig:IntExpFOCInvPesReaOptNeedHiPlot --></a> illustrates the proposition for
 the consumption rule in period <img 
 src="cctwMoM33x.svg" alt="T −  1  " class="math";align="absmiddle">.
 <!--l. 1--><p class="indent" >  <a 
@@ -416,7 +439,7 @@ src="cctwMoM33x.svg" alt="T −  1  " class="math";align="absmiddle">.
                                                                                      
                                                                                      
 <a 
- id="x1-60062"></a>
+ id="x1-60032"></a>
                                                                                      
                                                                                      
 <!--l. 3--><p class="noindent" > <img 
@@ -424,7 +447,7 @@ src="./Figures/IntExpFOCInvPesReaOptNeedHiPlot.png" alt="pict"
  width="578.15999pt" >
 <figcaption class="caption" ><span class="id">Figure 2:</span><span  
 class="content">Moderation Illustrated: <img 
-src="cctwMoM34x.svg" alt="cT−1 &#x003C; `cT −1 &#x003C; ¯cT−1   " class="math";align="absmiddle"></span></figcaption><!--tex4ht:label?: x1-60062 -->
+src="cctwMoM34x.svg" alt="cT−1 &#x003C; `cT −1 &#x003C; ¯cT−1   " class="math";align="absmiddle"></span></figcaption><!--tex4ht:label?: x1-60032 -->
                                                                                      
                                                                                      
   </div>
@@ -456,58 +479,68 @@ nothing out of any future income beyond the perfectly certain component).  Deﬁ
 src="cctwMoM36x.svg" alt="μt = log ▴mt  " class="math";align="absmiddle"> (which can range from <img 
 src="cctwMoM37x.svg" alt="−  ∞ " class="math";align="absmiddle"> to <img 
 src="cctwMoM38x.svg" alt="∞ " class="math";align="absmiddle">), the object in the middle of the last
-inequality is <div class="eqnarray">
+inequality is
+  <table 
+class="equation"><tr><td><a 
+ id="x1-6004r5"></a>
   <center class="math-display" >
 <img 
-src="cctwMoM39x.svg" alt="            (          μt             μt )
-ˆϙ (μt)  ≡    ¯ct(mt-+-e--)-−-ct(mt--+-e--)  ,                 (10)
-  t                     ▴𝔥tκt
-" class="math-display" ><a 
- id="x1-6007r10"></a></center>
-</div>and we now deﬁne <div class="eqnarray">
+src="cctwMoM39x.svg" alt="         (                           )
+          ¯ct(mt-+-eμt)-−-ct(mt--+-eμt)
+ˆϙt(μt) ≡             ▴𝔥tκt             ,
+" class="math-display" ></center></td><td class="equation-label">(5)</td></tr></table>
+<!--l. 5--><p class="nopar" >
+and we now deﬁne
+  <table 
+class="equation"><tr><td><a 
+ id="x1-6005r6"></a>
+                                                                                     
+                                                                                     
   <center class="math-display" >
 <img 
-src="cctwMoM40x.svg" alt="               (           )
-                 1 − ˆϙt(μt)
-ˆχχχt(μt)  =   log   ----------                          (11)
-                   ˆϙt(μt)
-        =   log (1∕ˆϙt(μt) − 1 )                       (12)
-" class="math-display" ><a 
- id="x1-6008r12"></a></center>
-</div> which has the virtue that it is linear in the limit as <img 
+src="cctwMoM40x.svg" alt="            ( 1 − ˆϙ (μt) )
+ˆχχχt(μt) = log   -----t----
+                ˆϙt(μt)
+      =  log (1∕ˆϙt(μt) − 1 )
+" class="math-display" ></center></td><td class="equation-label">(6)</td></tr></table>
+<!--l. 10--><p class="nopar" >
+which has the virtue that it is linear in the limit as <img 
 src="cctwMoM41x.svg" alt="μt  " class="math";align="absmiddle"> approaches <img 
-src="cctwMoM42x.svg" alt="+ ∞ " class="math";align="absmiddle">.
+src="cctwMoM42x.svg" alt="+  ∞ " class="math";align="absmiddle">.
 <!--l. 3--><p class="indent" >  Given <img 
-src="cctwMoM43x.svg" alt="ˆχχχ  " class="math";align="absmiddle">, the consumption function can be recovered from  <div class="eqnarray">
+src="cctwMoM43x.svg" alt="ˆχχχ  " class="math";align="absmiddle">, the consumption function can be recovered from
+  <table 
+class="equation"><tr><td><a 
+ id="x1-6006r7"></a>
   <center class="math-display" >
 <img 
-src="cctwMoM44x.svg" alt="                  =ˆϙt
-            ◜(-----◞◟-----)◝
-              -----1------
-ˆct  =  ¯ct −   1 + exp (ˆχχχ ) ▴ 𝔥tκt.                      (13)
-                       t
-" class="math-display" ><a 
- id="x1-6009r13"></a></center>
-</div>
+src="cctwMoM44x.svg" alt="                =ˆϙt
+         ◜(------◞◟-----◝)
+           -----1------
+ˆct = ¯ct −  1 + exp (χχˆχ )  ▴𝔥tκt.
+                     t
+" class="math-display" ></center></td><td class="equation-label">(7)</td></tr></table>
+<!--l. 3--><p class="nopar" >
 <!--l. 2--><p class="indent" >  Thus, the procedure is to calculate <img 
 src="cctwMoM45x.svg" alt="ˆχχχt  " class="math";align="absmiddle"> at the points <img 
 src="cctwMoM46x.svg" alt="⃗μt  " class="math";align="absmiddle"> corresponding to the log of the
 <img 
 src="cctwMoM47x.svg" alt="▴ ⃗mt  " class="math";align="absmiddle"> points deﬁned above, and then using these to construct an interpolating approximation
 <img 
-src="cctwMoM48x.svg" alt="`ˆχχχt " class="math";align="absmiddle"> from which we indirectly obtain our approximated consumption rule <img 
-src="cctwMoM49x.svg" alt="`ˆct  " class="math";align="absmiddle"> by substituting
+src="cctwMoM48x.svg" alt="`
+ˆχχχt " class="math";align="absmiddle"> from which we indirectly obtain our approximated consumption rule <img 
+src="cctwMoM49x.svg" alt="`
+ˆct  " class="math";align="absmiddle"> by substituting
 <img 
-src="cctwMoM50x.svg" alt="`ˆχχχ
-  t " class="math";align="absmiddle"> for <img 
+src="cctwMoM50x.svg" alt="`ˆχχχt " class="math";align="absmiddle"> for <img 
 src="cctwMoM51x.svg" alt="ˆχχχ  " class="math";align="absmiddle"> in equation (<a 
-href="#x1-6009r13">13<!--tex4ht:ref: eq:cFuncHi --></a>).
+href="#x1-6006r7">7<!--tex4ht:ref: eq:cFuncHi --></a>).
 <!--l. 8--><p class="indent" >  Because this method relies upon the fact that the problem is easy to solve if the decision
 maker has unreasonable views (either in the optimistic or the pessimistic direction), and
 because the correct solution is always between these immoderate extremes, we call our
 solution procedure the ‘method of moderation.’
 <!--l. 14--><p class="indent" >  Results are shown in Figure <a 
-href="#x1-60103">3<!--tex4ht:ref: fig:ExtrapProblemSolved --></a>; a reader with very good eyesight might be able to detect the
+href="#x1-60073">3<!--tex4ht:ref: fig:ExtrapProblemSolved --></a>; a reader with very good eyesight might be able to detect the
 barest hint of a discrepancy between the Truth and the Approximation at the far righthand
 edge of the ﬁgure. <a 
  id="ExtrapProblemSolvedPlot"></a> <div class="figure" 
@@ -515,7 +548,7 @@ edge of the ﬁgure. <a
                                                                                      
                                                                                      
 <a 
- id="x1-60103"></a>
+ id="x1-60073"></a>
                                                                                      
                                                                                      
 <!--l. 21--><p class="noindent" > <img 
@@ -523,7 +556,7 @@ src="././Figures/ExtrapProblemSolvedPlot.png" alt="pict"
  width="578.15999pt" >
 <figcaption class="caption" ><span class="id">Figure 3:</span><span  
 class="content">Extrapolated <img 
-src="cctwMoM52x.svg" alt="`ˆcT−1   " class="math";align="absmiddle"> Constructed Using the Method of Moderation</span></figcaption><!--tex4ht:label?: x1-60103 -->
+src="cctwMoM52x.svg" alt="`ˆcT−1   " class="math";align="absmiddle"> Constructed Using the Method of Moderation</span></figcaption><!--tex4ht:label?: x1-60073 -->
                                                                                      
                                                                                      
   </div>
@@ -536,136 +569,158 @@ value function as well as the consumption rule. Fortunately, many of the tricks 
 solving for the consumption rule have a direct analogue in approximation of the value
 function.
 <!--l. 9--><p class="indent" >  Consider the perfect foresight (or “optimist’s”) problem in period <img 
-src="cctwMoM53x.svg" alt="T − 1  " class="math";align="absmiddle">: <div class="eqnarray">
+src="cctwMoM53x.svg" alt="T − 1  " class="math";align="absmiddle">:
+  <table 
+class="equation-star"><tr><td>
   <center class="math-display" >
 <img 
-src="cctwMoM54x.svg" alt="¯v   (m    )  ≡   u(c   ) + βu (c )
- T−1   T− 1         T−1  (     T     1∕ρ 1−ρ)
-             =   u(cT−1)  1 + β((βTR )  )
-                         (           1∕ρ−1)
-             =   u(cT−1) (1 + β(βTR )   )
-             =   u(cT−1)  1 + (βT R)1∕ρ∕R
-                             T
-             =   u(cT−1) P◟DV-t-(◝c◜)∕cT-−1◞
-                              ≡ℂTt
-" class="math-display" ></center>
-</div>where <img 
-src="cctwMoM55x.svg" alt="ℂT =  PDVT  (c)
- t        t  " class="math";align="absmiddle"> is the present discounted value of consumption. A similar function
-can be constructed recursively for earlier periods, yielding the general expression <a 
+src="cctwMoM54x.svg" alt="¯v    (m    ) ≡ u(c   ) + βu (c  )
+ T −1   T−1       T−1 (      T            )
+            =  u(cT−1)  1 + β ((βTR )1∕ρ)1−ρ
+                      (            1∕ρ−1)
+            =  u(cT−1)( 1 + β (βTR )  )
+            =  u(cT−1)  1 + (βT R)1∕ρ∕R
+                           T
+            =  u(cT−1)P◟DV--t-(c◝)◜∕cT-−1◞
+                            ≡ℂT
+                              t
+" class="math-display" ></center></td></tr></table>
+<!--l. 16--><p class="nopar" >
+where <img 
+src="cctwMoM55x.svg" alt=" T        T
+ℂt =  PDV t (c)  " class="math";align="absmiddle"> is the present discounted value of consumption. A similar function
+can be constructed recursively for earlier periods, yielding the general expression
+<a 
  id="vFuncPF"></a>
-<div class="eqnarray">
+  <table 
+class="equation"><tr><td><a 
+ id="x1-7001r8"></a>
   <center class="math-display" >
 <img 
-src="cctwMoM56x.svg" alt="                  T
-¯vt(mt)  =   u(¯ct)ℂ t                                    (14)
-        =   u(¯ct)κ-−t1                                   (15)
-        =   u((▴m   + ▴𝔥 )κ )κ− 1                      (16)
-                  t      t-t1− ρt
-        =   u(▴mt  + ▴ 𝔥t)κ-t  κ−t1                      (17)
-        =   u(▴m   + ▴ 𝔥)κ −ρ                          (18)
-                  t     t--t
-" class="math-display" ><a 
- id="x1-7002r14"></a></center>
-</div>where the second line uses the fact demonstrated in <a 
+src="cctwMoM56x.svg" alt="¯vt(mt ) = u(¯ct)ℂT
+               −t1
+       =  u(¯ct)κt
+       =  u((▴mt +  ▴𝔥t)κt)κ−t1
+                        1−ρ  −1
+       =  u(▴mt +  ▴𝔥t)κt  κ-t
+       =  u(▴m  +  ▴𝔥 )κ− ρ
+               t      t-t
+" class="math-display" ></center></td><td class="equation-label">(8)</td></tr></table>
+<!--l. 7--><p class="nopar" >
+where the second line uses the fact demonstrated in <a 
 href="#XBufferStockTheory">Carroll</a> (<a 
 href="#XBufferStockTheory">Forthcoming</a>) that
 <img 
-src="cctwMoM57x.svg" alt="       −1
-ℂt =  κt  " class="math";align="absmiddle">.
-<!--l. 10--><p class="indent" >  This can be transformed as <div class="eqnarray">
+src="cctwMoM57x.svg" alt="ℂt =  κ−1
+       t  " class="math";align="absmiddle">.
+<!--l. 10--><p class="indent" >  This can be transformed as
+  <table 
+class="equation-star"><tr><td>
   <center class="math-display" >
 <img 
-src="cctwMoM58x.svg" alt="¯Λ   ≡   ((1 − ρ)¯v)1∕(1− ρ)
-  t         T 1∕(1t−ρ)
-    =   ct(ℂ t )
-    =   (▴m   + ▴𝔥 )κ− ρ∕(1−ρ)
-            t      t-t
-" class="math-display" ></center>
-</div> and since <img 
-src="cctwMoM59x.svg" alt="ℂT
- t  " class="math";align="absmiddle"> is a constant while the consumption function is linear, <img 
-src="cctwMoM60x.svg" alt="¯Λ
- t  " class="math";align="absmiddle"> will also be
+src="cctwMoM58x.svg" alt="¯Λt ≡ ((1 − ρ)¯vt)1∕(1−ρ)
+         T 1∕(1−ρ)
+  =  ct(ℂ t )
+  =  (▴m   + ▴ 𝔥 )κ−ρ∕(1−ρ)
+         t     t -t
+" class="math-display" ></center></td></tr></table>
+<!--l. 15--><p class="nopar" >
+and since <img 
+src="cctwMoM59x.svg" alt="  T
+ℂ t  " class="math";align="absmiddle"> is a constant while the consumption function is linear, <img 
+src="cctwMoM60x.svg" alt="¯Λt  " class="math";align="absmiddle"> will also be
 linear.
 <!--l. 9--><p class="indent" >  We apply the same transformation to the value function for the problem with uncertainty
-(the “realist’s” problem): <div class="eqnarray">
+(the “realist’s” problem):
+  <table 
+class="equation-star"><tr><td>
   <center class="math-display" >
 <img 
-src="cctwMoM61x.svg" alt="                      1∕(1−ρ)
-¯Λt =   ((1 − ρ)¯vt(mt ))
-" class="math-display" ></center>
-</div>and an excellent approximation to the value function can be obtained by calculating the values
+src="cctwMoM61x.svg" alt="¯Λt = ((1 − ρ)¯vt(mt ))1∕(1−ρ)
+" class="math-display" ></center></td></tr></table>
+                                                                                     
+                                                                                     
+<!--l. 13--><p class="nopar" >
+and an excellent approximation to the value function can be obtained by calculating the values
 of <img 
 src="cctwMoM62x.svg" alt="¯Λ   " class="math";align="absmiddle"> at the same gridpoints used by the consumption function approximation, and
 interpolating among those points.
 <!--l. 18--><p class="indent" >  However, as with the consumption approximation, we can do even better if we realize that
 the <img 
-src="cctwMoM63x.svg" alt="¯
-Λ   " class="math";align="absmiddle"> function for the optimist’s problem is an upper bound for the <img 
+src="cctwMoM63x.svg" alt="¯Λ   " class="math";align="absmiddle"> function for the optimist’s problem is an upper bound for the <img 
 src="cctwMoM64x.svg" alt="Λ   " class="math";align="absmiddle"> function in the
 presence of uncertainty, and the value function for the pessimist is a lower bound. Analogously
-                                                                                     
-                                                                                     
 to (<a 
-href="#x1-6007r10">10<!--tex4ht:ref: eq:koppa --></a>), deﬁne an upper-case <div class="eqnarray">
+href="#x1-6004r5">5<!--tex4ht:ref: eq:koppa --></a>), deﬁne an upper-case
+  <table 
+class="equation"><tr><td><a 
+ id="x1-7002r9"></a>
   <center class="math-display" >
 <img 
-src="cctwMoM65x.svg" alt="           (                           )
-ˆ            ¯Λt(mt-+-eμt) −-Λt(mt-+-eμt)
-Ϙt(μt)  =         ▴ 𝔥 κ (ℂT )1∕(1− ρ)                         (19)
-                     t-t  t
-" class="math-display" ><a 
- id="x1-7005r19"></a></center>
-</div> and an upper-case version of the <img 
+src="cctwMoM65x.svg" alt="         (          μt            μt )
+Ϙˆ (μ ) =   ¯Λt(mt-+-e--) −-Λt(mt-+-e-)
+  t  t          ▴ 𝔥tκt(ℂTt )1∕(1−ρ)
+" class="math-display" ></center></td><td class="equation-label">(9)</td></tr></table>
+<!--l. 24--><p class="nopar" >
+and an upper-case version of the <img 
 src="cctwMoM66x.svg" alt="χχχ  " class="math";align="absmiddle"> equation in (<a 
-href="#x1-6008r12">12<!--tex4ht:ref: eq:chi --></a>): <div class="eqnarray">
+href="#x1-6005r6">6<!--tex4ht:ref: eq:chi --></a>):
+  <table 
+class="equation"><tr><td><a 
+ id="x1-7003r10"></a>
   <center class="math-display" >
 <img 
-src="cctwMoM67x.svg" alt="              (           )
-ˆ                1 −-Ϙˆt(μt)
-Xt(μt)  =  log    Ϙˆ (μ )                             (20)
-              (     t  t    )
-        =  log  1∕ˆϘ (μ ) − 1                         (21)
-                   t  t
-" class="math-display" ><a 
- id="x1-7006r21"></a></center>
-</div> and if we approximate these objects then invert them (as above with the <img 
-src="cctwMoM68x.svg" alt="ˆϙ  " class="math";align="absmiddle"> and
-<img 
-src="cctwMoM69x.svg" alt="ˆχχχ " class="math";align="absmiddle"> functions) we obtain a very high-quality approximation to our inverted value
-function at the same points for which we have our approximated value function:
-<div class="eqnarray">
-  <center class="math-display" >
-<img 
-src="cctwMoM70x.svg" alt="                   ˆ
-            ◜(-----=◞Ϙ◟t----)◝
-                   1
-ˆΛt =   ¯Λt −   ------------ ▴ 𝔥tκt(ℂTt )1∕(1−ρ)                (22)
-              1 + exp(ˆXt)
-" class="math-display" ></center>
+src="cctwMoM67x.svg" alt="            (     ˆ     )
+ˆXt(μt) = log  1-−-Ϙt(μt)
+                Ϙˆt(μt)
+            (             )
+       = log  1∕ˆϘt(μt) − 1
+" class="math-display" ></center></td><td class="equation-label">(10)</td></tr></table>
+<!--l. 34--><p class="nopar" >
+and if we approximate these objects then invert them (as above with the <img 
+src="cctwMoM68x.svg" alt="ˆϙ  " class="math";align="absmiddle"> and <img 
+src="cctwMoM69x.svg" alt="χχˆχ  " class="math";align="absmiddle"> functions)
+we obtain a very high-quality approximation to our inverted value function at the same points
+for which we have our approximated value function:
+  <table 
+class="equation"><tr><td><a 
+ id="x1-7004r11"></a>
                                                                                      
                                                                                      
-</div>from which we obtain our approximation to the value function as <a 
- id="vHatFunc"></a> <div class="eqnarray">
   <center class="math-display" >
 <img 
-src="cctwMoM71x.svg" alt=" ˆv   =  u (ˆΛ)
- mt       ′ t  m
-ˆvt   =  u (ˆΛt)ˆΛ .
-" class="math-display" ></center>
-</div>
+src="cctwMoM70x.svg" alt="                =ˆϘt
+         ◜(------◞◟-----)◝
+                 1               T 1∕(1− ρ)
+ˆΛt = ¯Λt −  ---------ˆ--  ▴ 𝔥tκt(ℂt )
+           1 + exp (Xt)
+" class="math-display" ></center></td><td class="equation-label">(11)</td></tr></table>
+<!--l. 45--><p class="nopar" >
+from which we obtain our approximation to the value function as <a 
+ id="vHatFunc"></a>
+  <table 
+class="equation-star"><tr><td>
+  <center class="math-display" >
+<img 
+src="cctwMoM71x.svg" alt=" ˆvt = u(ˆΛt)
+ˆvm  = u′(ˆΛ )ˆΛm.
+  t       t
+" class="math-display" ></center></td></tr></table>
+<!--l. 52--><p class="nopar" >
 <!--l. 54--><p class="indent" >  Although a linear interpolation that matches the level of <img 
 src="cctwMoM72x.svg" alt="Λ   " class="math";align="absmiddle"> at the gridpoints is simple, a
 Hermite interpolation that matches both the level and the derivative of the <img 
 src="cctwMoM73x.svg" alt="¯Λt  " class="math";align="absmiddle"> function at the
 gridpoints has the considerable virtue that the <img 
-src="cctwMoM74x.svg" alt="¯vt  " class="math";align="absmiddle"> derived from it numerically satisﬁes
+src="cctwMoM74x.svg" alt="¯v
+ t  " class="math";align="absmiddle"> derived from it numerically satisﬁes
 the envelope theorem at each of the gridpoints for which the problem has been
 solved.
 <!--l. 227--><p class="noindent" >
   <h3 class="sectionHead"><span class="titlemark">5  </span> <a 
  id="x1-80005"></a>Extensions</h3>
+                                                                                     
+                                                                                     
 <!--l. 229--><p class="noindent" >
   <h4 class="subsectionHead"><span class="titlemark">5.1  </span> <a 
  id="x1-90005.1"></a>A Tighter Upper Bound</h4>
@@ -675,35 +730,41 @@ href="#XBufferStockTheory">Forthcoming</a>) derives an upper limit <img
 src="cctwMoM75x.svg" alt="¯κt  " class="math";align="absmiddle"> for the MPC as <img 
 src="cctwMoM76x.svg" alt="mt  " class="math";align="absmiddle"> approaches its lower
 bound. Using this fact plus the strict concavity of the consumption function yields the
-proposition that <div class="eqnarray">
+proposition that
+  <table 
+class="equation"><tr><td><a 
+ id="x1-9001r12"></a>
   <center class="math-display" >
 <img 
-src="cctwMoM77x.svg" alt="ct(mt + ▴mt  ) &#x003C;  ¯κt▴mt.                            (23)
-" class="math-display" ></center>
-                                                                                     
-                                                                                     
-</div>
+src="cctwMoM77x.svg" alt="ct(mt + ▴mt ) &#x003C; ¯κt▴mt.
+" class="math-display" ></center></td><td class="equation-label">(12)</td></tr></table>
+<!--l. 7--><p class="nopar" >
 <!--l. 9--><p class="indent" >  The solution method described above does not guarantee that approximated consumption
 will respect this constraint between gridpoints, and a failure to respect the constraint can
 occasionally cause computational problems in solving or simulating the model. Here,
 we describe a method for constructing an approximation that always satisﬁes the
 constraint.
 <!--l. 1--><p class="indent" >  Deﬁning <img 
-src="cctwMoM78x.svg" alt="m#t  " class="math";align="absmiddle"> as the ‘cusp’ point where the two upper bounds intersect: <div class="eqnarray">
+src="cctwMoM78x.svg" alt="  #
+m t  " class="math";align="absmiddle"> as the ‘cusp’ point where the two upper bounds intersect:
+  <table 
+class="equation-star"><tr><td>
   <center class="math-display" >
 <img 
-src="cctwMoM79x.svg" alt="(    #       )              #
-  ▴m t + ▴ 𝔥t  κt  =  ¯κt▴m  t
-                        κ-▴ 𝔥t
-            ▴m#t   =  ----t-----
-                      (1 − κt)¯κt
-               #       κt𝔥t − 𝔥t
-             m t   =  (1-−-κ-)¯κ-,
-                           -t  t
-" class="math-display" ></center>
-</div> we want to construct a consumption function for <img 
-src="cctwMoM80x.svg" alt="m   ∈ (m ,m#  ]
-  t    --t  t  " class="math";align="absmiddle"> that respects the tighter
+src="cctwMoM79x.svg" alt="(           )
+ ▴m#  +  ▴𝔥   κ  = ¯κ ▴m#
+    t       t -t    t    t
+              #    --κt▴-𝔥t--
+           ▴m t  = (1 − κ )¯κ
+                        -t  t
+              #    -κt𝔥t −-𝔥t
+             mt  = (1 − κt)¯κt,
+" class="math-display" ></center></td></tr></table>
+                                                                                     
+                                                                                     
+<!--l. 7--><p class="nopar" >
+we want to construct a consumption function for <img 
+src="cctwMoM80x.svg" alt="mt ∈ (mt, m#t ]  " class="math";align="absmiddle"> that respects the tighter
 upper bound:
 <div class="center" 
 >
@@ -711,25 +772,28 @@ upper bound:
 <div class="pic-tabular">
 <img 
 src="cctwMoM81x.svg" alt="       ▴mt κt &#x003C;       ct(mt + ▴mt )       &#x003C; ¯κt▴mt
-▴mt (¯κt − κt) &#x003E;  κ¯t▴(mt  − ct(mt + ▴mt)  )  &#x003E; 0
-            1 &#x003E;      ¯κt▴mt−ct(mt+▴mt)-     &#x003E; 0.
-                        ▴mt(¯κt− κt)
+▴mt (¯κt − κ-) &#x003E;  κ¯t▴mt  − ct(mt + ▴mt  )  &#x003E; 0
+           t       ( ¯κt▴mt−ct(mt+▴mt))
+            1 &#x003E;      ---▴mt(¯κt−-κt)----     &#x003E; 0.
 " ></div></div>
 <!--l. 1--><p class="noindent" >Again deﬁning <img 
-src="cctwMoM82x.svg" alt="μt = log▴mt  " class="math";align="absmiddle">, the object in the middle of the inequality is <div class="eqnarray">
+src="cctwMoM82x.svg" alt="μt = log▴mt  " class="math";align="absmiddle">, the object in the middle of the inequality is
+  <table 
+class="equation-star"><tr><td>
   <center class="math-display" >
 <img 
-src="cctwMoM83x.svg" alt="            ¯κt − ct(mt + eμt)e−μt
-ˇϙt(μt)  ≡   --------------------.
-                  κ¯t − κt
+src="cctwMoM83x.svg" alt="        κ¯t-−-ct(mt-+-eμt)e−μt
+ˇϙt(μt) ≡        ¯κ  − κ        .
+                 t  -t
 " class="math-display" ><a 
- id="x1-9003r24"></a></center>
-</div> As <img 
+ id="x1-90005.1"></a></center></td></tr></table>
+<!--l. 5--><p class="nopar" >
+As <img 
 src="cctwMoM84x.svg" alt="mt  " class="math";align="absmiddle"> approaches <img 
-src="cctwMoM85x.svg" alt="− mt  " class="math";align="absmiddle">, <img 
+src="cctwMoM85x.svg" alt="−  mt  " class="math";align="absmiddle">, <img 
 src="cctwMoM86x.svg" alt="ˇϙt(μt)  " class="math";align="absmiddle"> converges to zero, while as <img 
 src="cctwMoM87x.svg" alt="mt  " class="math";align="absmiddle"> approaches <img 
-src="cctwMoM88x.svg" alt="+  ∞ " class="math";align="absmiddle">,
+src="cctwMoM88x.svg" alt="+ ∞ " class="math";align="absmiddle">,
 <img 
 src="cctwMoM89x.svg" alt="ˇϙt(μt)  " class="math";align="absmiddle"> approaches <img 
 src="cctwMoM90x.svg" alt="1  " class="math";align="absmiddle">.
@@ -746,31 +810,40 @@ src="cctwMoM93x.svg" alt="mt  " class="math";align="absmiddle">.
 src="cctwMoM94x.svg" alt="m  " class="math";align="absmiddle"> it is not clear which of these functions will perform better.
 However, an alternative is available which performs well. Deﬁne the highest gridpoint below
 <img 
-src="cctwMoM95x.svg" alt="m#t  " class="math";align="absmiddle"> as <img 
-src="cctwMoM96x.svg" alt="¯ˇm#t  " class="math";align="absmiddle"> and the lowest gridpoint above <img 
-src="cctwMoM97x.svg" alt="m#t  " class="math";align="absmiddle"> as <img 
-src="cctwMoM98x.svg" alt="ˆm#t  " class="math";align="absmiddle">. Then there will be a unique
+src="cctwMoM95x.svg" alt="m#
+  t  " class="math";align="absmiddle"> as <img 
+src="cctwMoM96x.svg" alt="¯ˇm#
+  t  " class="math";align="absmiddle"> and the lowest gridpoint above <img 
+src="cctwMoM97x.svg" alt="m#
+  t  " class="math";align="absmiddle"> as <img 
+src="cctwMoM98x.svg" alt="ˆm#
+  t  " class="math";align="absmiddle">. Then there will be a unique
 interpolating polynomial that matches the level and slope of the consumption function at
 these two points. Call this function <img 
 src="cctwMoM99x.svg" alt="˜ct(m )  " class="math";align="absmiddle">.
 <!--l. 18--><p class="indent" >  Using indicator functions that are zero everywhere except for speciﬁed intervals,
-<div class="eqnarray">
-  <center class="math-display" >
-<img 
-src="cctwMoM100x.svg" alt="                       ¯ #
- 111Lo(m )  =   1 if m ≤  ˇm t
-111Mid (m )  =   1 if      ¯ˇm#t &#x003C; m  &#x003C; mˆ#t
-                                    #
-  111Hi(m )  =   1 if                 mˆt ≤  m
-" class="math-display" ></center>
-</div>we can deﬁne a well-behaved approximating consumption function <div class="eqnarray">
-  <center class="math-display" >
-<img 
-src="cctwMoM101x.svg" alt="`ct  =   111Lo`ˇct + 111Mid`˜ct + 111Hi`ˆct.                      (24)
-" class="math-display" ></center>
-</div>
+  <table 
+class="equation-star"><tr><td>
                                                                                      
                                                                                      
+  <center class="math-display" >
+<img 
+src="cctwMoM100x.svg" alt=" 111  (m ) = 1 if m ≤ m¯ˇ#
+  Lo                 t
+111Mid(m ) = 1 if     ¯ˇm#t &#x003C; m  &#x003C; ˆm#t
+                                 #
+ 111Hi(m ) = 1 if                ˆm-t ≤ m
+" class="math-display" ></center></td></tr></table>
+<!--l. 5--><p class="nopar" >
+we can deﬁne a well-behaved approximating consumption function
+  <table 
+class="equation"><tr><td><a 
+ id="x1-9002r13"></a>
+  <center class="math-display" >
+<img 
+src="cctwMoM101x.svg" alt="`ct = 111Lo`ˇct + 111Mid`˜ct + 111Hi`ˆct.
+" class="math-display" ></center></td><td class="equation-label">(13)</td></tr></table>
+<!--l. 9--><p class="nopar" >
 <!--l. 2--><p class="indent" >  This just says that, for each interval, we use the approximation that is most appropriate.
 The function is continuous and once-diﬀerentiable everywhere, and is therefore well behaved
 for computational purposes.
@@ -780,34 +853,44 @@ behavior is consistent with the reﬁned upper-bound consumption rule.
 src="cctwMoM102x.svg" alt="        #
 mt  ≥ m t  " class="math";align="absmiddle">, this consumption rule is the same as before, so the constructed upper-bound
 value function is also the same. However, for values <img 
-src="cctwMoM103x.svg" alt="mt  &#x003C; m#t  " class="math";align="absmiddle"> matters are slightly more
+src="cctwMoM103x.svg" alt="        #
+mt  &#x003C; m t  " class="math";align="absmiddle"> matters are slightly more
 complicated.
-<!--l. 24--><p class="indent" >  Start with the fact that at the cusp point, <div class="eqnarray">
+<!--l. 24--><p class="indent" >  Start with the fact that at the cusp point,
+  <table 
+class="equation-star"><tr><td>
   <center class="math-display" >
+                                                                                     
+                                                                                     
 <img 
-src="cctwMoM104x.svg" alt="v¯t(m#t ) =   u(¯ct(m#t ))ℂTt
-                   #     T
-         =   u(▴m  t ¯κt)ℂ t .
-" class="math-display" ></center>
-</div>
+src="cctwMoM104x.svg" alt="    #           #    T
+¯vt(m t ) = u(¯ct(m t ))ℂt
+       =  u(▴m#t ¯κt)ℂTt .
+" class="math-display" ></center></td></tr></table>
+<!--l. 29--><p class="nopar" >
 <!--l. 31--><p class="indent" >  But for <span 
 class="ecti-1200">all</span> <img 
-src="cctwMoM105x.svg" alt="mt  " class="math";align="absmiddle">, <div class="eqnarray">
+src="cctwMoM105x.svg" alt="mt  " class="math";align="absmiddle">,
+  <table 
+class="equation-star"><tr><td>
   <center class="math-display" >
 <img 
-src="cctwMoM106x.svg" alt="¯vt(m )  =  u (¯ct(m )) + ¯𝔳t(m  − ¯ct(m )),
-" class="math-display" ></center>
-</div>and we assume that for the consumer below the cusp point consumption is given by <img 
+src="cctwMoM106x.svg" alt="                   ¯
+¯vt(m ) = u(¯ct(m )) + 𝔳t(m − ¯ct(m )),
+" class="math-display" ></center></td></tr></table>
+<!--l. 34--><p class="nopar" >
+and we assume that for the consumer below the cusp point consumption is given by <img 
 src="cctwMoM107x.svg" alt="¯κ▴mt  " class="math";align="absmiddle"> so
 for <img 
-src="cctwMoM108x.svg" alt="       #
-mt &#x003C; m t  " class="math";align="absmiddle"> <div class="eqnarray">
+src="cctwMoM108x.svg" alt="mt &#x003C; m#t  " class="math";align="absmiddle">
+  <table 
+class="equation-star"><tr><td>
   <center class="math-display" >
 <img 
-src="cctwMoM109x.svg" alt="                      ¯
-¯vt(m )  =   u(¯κt▴m ) + 𝔳t((1 − ¯κt)▴m  ),
-" class="math-display" ></center>
-</div>which is easy to compute because <img 
+src="cctwMoM109x.svg" alt="¯vt(m ) = u (¯κt▴m ) + ¯𝔳t((1 − ¯κt)▴m ),
+" class="math-display" ></center></td></tr></table>
+<!--l. 38--><p class="nopar" >
+which is easy to compute because <img 
 src="cctwMoM110x.svg" alt="¯𝔳t(at) = β ¯vt+1 (atℛ  + 1)  " class="math";align="absmiddle"> where <img 
 src="cctwMoM111x.svg" alt="¯vt  " class="math";align="absmiddle"> is as deﬁned above
 because a consumer who ends the current period with assets exceeding the lower bound will
@@ -815,13 +898,19 @@ not expect to be constrained next period. (Recall again that we are merely const
 object that is guaranteed to be an <span 
 class="ecti-1200">upper bound </span>for the value that the ‘realist’ consumer will
 experience.) At the gridpoints deﬁned by the solution of the consumption problem can then
-construct <div class="eqnarray">
+construct
+  <table 
+class="equation-star"><tr><td>
+                                                                                     
+                                                                                     
   <center class="math-display" >
 <img 
-src="cctwMoM112x.svg" alt="¯Λt(m ) =   ((1 − ρ)¯vt(m ))1∕(1− ρ)
-" class="math-display" ></center>
-</div> which yields the appropriate vector for constructing <img 
-src="cctwMoM113x.svg" alt="Xˇ  " class="math";align="absmiddle"> and <img 
+src="cctwMoM112x.svg" alt="                       1∕(1−ρ)
+¯Λt(m ) = ((1 − ρ)¯vt(m ))
+" class="math-display" ></center></td></tr></table>
+<!--l. 45--><p class="nopar" >
+which yields the appropriate vector for constructing <img 
+src="cctwMoM113x.svg" alt="ˇX  " class="math";align="absmiddle"> and <img 
 src="cctwMoM114x.svg" alt="ˇϘ  " class="math";align="absmiddle">. The rest of the procedure
 is analogous to that performed for the consumption rule and is thus omitted for
 brevity.

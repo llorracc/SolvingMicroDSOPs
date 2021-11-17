@@ -223,7 +223,7 @@ and whose circumstances evolve according to the transition equations\footnote{Th
     {\aLev}_{t}  & = \mLev_{t}-\cLev_{t} \label{DBCLevelStart}
     \\  {\bLev}_{t+1}  & = {\aLev}_{t} \Rfree_{t+1}
     \\  {\yLev}_{t+1}  & = \pLev_{t+1}\tShkEmp_{t+1}
-    \\  {\mLev}_{t+1}  & = {\bLev}_{t+1} + {\yLev}_{t+1} \label{eq:budconstr} \label{DBCLevelEnd}
+    \\  {\mLev}_{t+1}  & = {\bLev}_{t+1} + {\yLev}_{t+1} %\label{eq:budconstr} \label{DBCLevelEnd}
   \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/DBCLevelStart.tex}
@@ -247,9 +247,7 @@ For now, we will assume that the exogenous variables evolve as follows: \ifthene
   \begin{equation}\begin{gathered}\begin{aligned}
     \Rfree_{t}   = & \Rfree~\forall~t & \text{- constant interest factor = $1+\rfree$}  \notag
     \\ \pLev_{t+1}  = & \PGro_{t+1}\pLev_{t} &   \text{- permanent labor income dynamics} \label{eq:permincgrow} 
-    \\ \log ~ \tShkEmp_{t+n} \sim &  ~\mathcal{N}(-\sigma_{\tShkEmp}^{2}/2,\sigma_{\tShkEmp}^{2}) & \text{- lognormal transitory shocks}~\forall~n>0 \notag
-                                                                                                    \label{eq:epsdist}
-                                                                                                    .
+    \\ \log ~ \tShkEmp_{t+n} \sim &  ~\mathcal{N}(-\sigma_{\tShkEmp}^{2}/2,\sigma_{\tShkEmp}^{2}) & \text{- lognormal transitory shocks}~\forall~n>0 \notag.
   \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input ./Equations/ExogVars.tex
@@ -261,7 +259,7 @@ Using the fact about lognormally distributed variables \handoutM{ELogNorm}\footn
   the name used in the handout for the fact in question, e.g.\
   \handoutM{LogELogNorm} is the name of the fact that implies that $\log \Ex[{\tShkEmp}]=0$.} that if $\log \EPrem \sim
 \mathcal{N}(\eprem,\sigma_{\eprem}^{2})$ then $\log \Ex[{\EPrem}] =
-\eprem +\sigma_{\eprem}^{2}/2$, assumption \eqref{eq:epsdist} guarantees that $\log \Ex[{\tShkEmp}] = 0$ which means that
+\eprem +\sigma_{\eprem}^{2}/2$, assumption the assumption about the distribution of shocks guarantees that $\log \Ex[{\tShkEmp}] = 0$ which means that
 $\Ex[{\tShkEmp}]$=1 (the mean value of the transitory shock is 1).
 
 Equation \eqref{eq:permincgrow} indicates that we are allowing
@@ -803,12 +801,12 @@ of the value function.
 The first order condition of the maximization problem in period $T-1$ is:
 \begin{verbatimwrite}{./Equations/FOCTm1.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
-    \util^{\prime}({c}_{T-1})       & = \Discount \Ex_{T-1} [\PGro_{T}^{-\CRRA}\Rfree \util^{\prime}({c}_{T})]  \label{eq:focraw}
+    \util^{\prime}({c}_{T-1})       & = \Discount \Ex_{T-1} [\PGro_{T}^{-\CRRA}\Rfree \util^{\prime}({c}_{T})]  %\label{eq:focraw}
     \\      {c}_{T-1}^{-\CRRA}   & = \Rfree \Discount \left(\frac{1}{n_{\tShkEmp}}\right) \sum_{i=1}^{n_{\tShkEmp}} \PGro_{T}^{-\CRRA}\left(\Rfree ({m}_{T-1}-{c}_{T-1}) + \tShkEmp_{i}\right)^{-\CRRA} \label{eq:FOCTm1}.
   \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/FOCTm1.tex}
-\ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Go from \eqref{eq:focraw} to \eqref{eq:FOCTm1} by substituting $\util(c)=c^{-\CRRA}$ and use the approximation to the integral.}}{}
+\ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Go from the first to the last equation in \eqref{eq:FOCTm1} by substituting $\util(c)=c^{-\CRRA}$ and use the approximation to the integral.}}{}
 \hypertarget{PlotuPrimeVSOPrime}{}
 \begin{figure}
   \includegraphics{./Figures/PlotuPrimeVSOPrime}
@@ -2687,7 +2685,7 @@ the consumer's portfolio between $t$ and $t+1$ will be:
 \begin{verbatimwrite}{./Equations/Rport.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
     \Rport_{t+1}  & = \Rfree(1-\varsigma_{t}) + \Risky_{t+1}\varsigma_{t} \label{eq:return1}
-    \\               & = \Rfree + (\Risky_{t+1}-\Rfree) \varsigma_{t} \label{eq:return2}
+    \\               & = \Rfree + (\Risky_{t+1}-\Rfree) \varsigma_{t} %\label{eq:return2}
   \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/Rport.tex}
@@ -2803,7 +2801,7 @@ solvers (including those built into {\Mma}) can find the
 solution to a set of simultaneous equations.  Thus we could ask
 {\Mma}~to solve
 \begin{equation}\begin{gathered}\begin{aligned}
-  {c}_{t}^{-\CRRA}  & = \hat{\vEnd}^{a}_{t}({m}_{t}-{c}_{t},\varsigma_{t}) \label{eq:FOCwrtcMultContr}
+  {c}_{t}^{-\CRRA}  & = \hat{\vEnd}^{a}_{t}({m}_{t}-{c}_{t},\varsigma_{t}) %\label{eq:FOCwrtcMultContr}
   \\      0  & = \hat{\vEnd}^{\varsigma}_{t}({m}_{t}-{c}_{t},\varsigma_{t}) \label{eq:FOCwrtw}
 \end{aligned}\end{gathered}\end{equation}
 simultaneously for $\cRat$ and $\varsigma$ at the set of potential ${m}_{t}$ values defined in
