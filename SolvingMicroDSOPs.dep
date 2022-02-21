@@ -2,8 +2,8 @@
   *{application}{TeX}     {1990/03/25 v3.x}
   *{format} {LaTeX2e}     {2020-02-02 v2.e}
   *{file}   {./econtexRoot.tex}{0000/00/00 v0.0}
-  *{file}   {./econtexPaths.tex}{0000/00/00 v0.0}
-  *{class}  {./texmf-local/tex/latex/econtex}{0000/00/00 v0.0}
+  *{file}   {./Resources/econtexPaths.tex}{0000/00/00 v0.0}
+  *{class}  {./Resources/texmf-local/tex/latex/econtex}{0000/00/00 v0.0}
   *{package}{snapshot}    {2002/03/05 v1.14}
   *{package}{ifthen}      {2014/09/29 v1.1c}
   *{package}{changepage}  {2009/10/20 v1.0c}
@@ -74,7 +74,11 @@
   *{package}{nccfoots}    {2005/02/03 v1.2}
   *{package}{perpage}     {2014/10/25 v2.0}
   *{package}{tex4ht}      {0000/00/00 v0.0}
-  *{package}{./texmf-local/tex/latex/econtexSetup}{0000/00/00 v0.0}
+  *{package}{./Resources/LaTeXInputs/SolvingMicroDSOPs}{0000/00/00 v0.0}
+  *{package}{econark}     {0000/00/00 v0.0}
+  *{package}{subfiles}    {2020/02/14 v1.6}
+  *{package}{import}      {2020/01/22 v6.0}
+  *{package}{./Resources/texmf-local/tex/latex/econtexSetup}{0000/00/00 v0.0}
   *{package}{wasysym}     {2020/01/19 v2.4}
   *{package}{psibycus}    {2004/10/18 v4.5}
   *{file}   {ibycus4.map} {0000/00/00 v0.0}
@@ -99,12 +103,13 @@
   *{file}   {pd1enc.def}  {2020/01/14 v7.00d}
   *{package}{intcalc}     {2019/12/15 v1.3}
   *{package}{etexcmds}    {2019/12/15 v1.7}
+  *{file}   {puenc.def}   {2020/01/14 v7.00d}
+  *{file}   {puenc.def}   {2020/01/14 v7.00d}
   *{package}{bitset}      {2019/12/09 v1.3}
   *{package}{bigintcalc}  {2019/12/15 v1.5}
   *{package}{atbegshi}    {2019/12/05 v1.19}
   *{file}   {htex4ht.def} {2020/01/14 v7.00d}
   *{file}   {htex4ht.def} {2020/01/14 v7.00d}
-  *{package}{./texmf-local/tex/latex/econtexShortcuts}{0000/00/00 v0.0}
   *{file}   {ifthen.4ht}  {0000/00/00 v0.0}
   *{file}   {scrartcl.4ht}{0000/00/00 v0.0}
   *{file}   {babel.4ht}   {0000/00/00 v0.0}
