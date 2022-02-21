@@ -159,12 +159,12 @@ At the beginning it clears everything in the memory, and sets the present workin
       \item \texttt{setup\_params.m} defines values for various parameters.
       \item \texttt{setup\_params\_2period.m} revises the value for the standard error of the log-normal distribution from $0.1$ to $1.0$, which the transitory income shock is assumed to follow. This unrealistic exaggeration is used to make the following illustration more vivid.
       \item \texttt{setup\_shocks.m} invokes the previously-defined discrete approximation function and generates the discrete points with associated probabilities, which approximates the lognormal-distributed shock to the transitory income.
-      \item \texttt{setup\_shocks\_Unem.m} adjusts the discretized transitory shock to incorporate the scenario of unemployment risk $\pZero>0$ and benefit $\thetaMin>0$: suppose $\log \tShkEmp_{s}\thicksim \mathcal{N}(-\sigma_{\tShkEmp}^{2}/2, \sigma_{\tShkEmp}^{2})$, then taking into account of the unemployment scenario, we assume the new transitory shock is
+      \item \texttt{setup\_shocks\_Unem.m} adjusts the discretized transitory shock to incorporate the scenario of unemployment risk $\pZero>0$ and benefit $\thetaMin>0$: suppose $\log \TranShkEmp_{s}\thicksim \mathcal{N}(-\sigma_{\TranShkEmp}^{2}/2, \sigma_{\TranShkEmp}^{2})$, then taking into account of the unemployment scenario, we assume the new transitory shock is
           \begin{eqnarray}
           \epsilon_{s} &=& 
           \begin{cases}
             \thetaMin_{s} & \text{with probability $\pZero_{s}>0$} \\
-            \thetaMin_{s} + \tShkEmp_{s}\frac{1-\thetaMin_{s}}{1-\pZero_{s}}  & \text{with probability $(1-\pZero_{s})$}
+            \thetaMin_{s} + \TranShkEmp_{s}\frac{1-\thetaMin_{s}}{1-\pZero_{s}}  & \text{with probability $(1-\pZero_{s})$}
           \end{cases}
           \end{eqnarray}
       \item \texttt{setup\_grids.m} constructs the grids for the cash-on-hand $m_{t}$ (in case of exogenous grid points) and end-of-period asset $a_{t}$ (in case of endogenous grid points).

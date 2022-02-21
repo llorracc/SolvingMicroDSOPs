@@ -1,0 +1,19 @@
+% Define a few objects that are unique to this paper
+% Allow different actions depending on whether document is being processed as
+% subfile or being process as standalone
+\providecommand{\onlyinsubfile}{}\renewcommand{\onlyinsubfile}[1]{#1}
+\providecommand{\notinsubfile}{}\renewcommand{\notinsubfile}[1]{}
+
+% Control whether subsection is displayed at top of page of PDF 
+\newboolean{showPageHead}
+\setboolean{showPageHead}{true}
+
+% Declare registers for manipulation of tables (to fit page)
+\newsavebox{\TblBox}
+\newlength{\TblShrunk}
+\newsavebox{\TblShrunkBox}
+
+
+\providecommand{\aboveMin}{\blacktriangle}
+\providecommand{\Hi}{\hat}
+\providecommand{\chiFunc}{\pmb{\chi}}

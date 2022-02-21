@@ -1,0 +1,307 @@
+\documentclass[./SolvingMicroDSOPs_TRP]{subfiles}
+\begin{document}
+\section{Wealth In Utility Model}
+
+% Control whether optional \trp or \cdc components appear
+\setboolean{trpVersion}{true}
+
+\provideboolean{CDC}\setboolean{CDC}{true}
+\newcommand{\cdc}{\ifthenelse{\boolean{CDC}}}
+
+\newcommand{\wealthU}{\delta}
+\newcommand{\uFromC}{\acute{\uFunc}}
+\newcommand{\uFromB}{\grave{\uFunc}}
+\newcommand{\muInvVect}{[{\mu}^{-1}_{\tCurr}]}
+\newcommand{\Rend}{\tilde}
+
+\newcommand{\beginWithb}{0\epsilon}
+\newcommand{\receiveinc}{1\epsilon}
+\newcommand{\calculatem}{2\epsilon}
+\newcommand{\choosecons}{3\epsilon}
+\newcommand{\calculatea}{4\epsilon}
+\newcommand{\chooserisk}{5\epsilon}
+\newcommand{\definevEnd}{6\epsilon}
+\newcommand{\drawreturn}{2\epsilon}
+\newcommand{\calculatee}{1\epsilon}
+\newcommand{\Maxed}{\accentset{*}}
+
+
+This appendix considers how to solve a model with a utility function that allows a role for financial balances distinct from the implications those balances might have for consumption expenditures: $\uFunc(c,b)$.  Thus, for example, in a terminal period where there is no probability of survival (say, at age 120), value will be 
+\begin{align}
+  \vFunc_{\tTerm} & = \uFunc(\cNrm_{\tTerm},\bNrm_{\tTerm}).
+\end{align}
+
+For purposes of articulating the exact structure of the model it is useful to define a sequence for events that are in principle simultaneous.  These correspond essentially to a set of steps that will be executed in order by the code solving (or simulating) the model.  Notationally the sequence of steps can be indexed by time gaps of infinitesimal duration $\epsilon$.  We conceive of the sequence of events in the period as follows, where for example the notation $2\epsilon$ means that the event is conceived of has happening two instants after the beginning of the period and because the period is of total duration 1, $1-\calculatee$ means that the event is conceived of as happening an instant before the end of the period:
+%\begin{quote}
+\begin{enumerate}
+\item[$\phantom{1-}\beginWithb$:] The consumer arrives with exogenous financial balances $\bNrm_{\tCurr}$
+
+\item[$\phantom{1-}\receiveinc$:] The consumer receives income $\yNrm_{\tCurr+\receiveinc}$
+\item[$\phantom{1-}\calculatem$:] Market resources are determined
+\begin{equation}
+  \mNrm_{\tCurr+\calculatem} = \bNrm_{\tCurr+\beginWithb}+\yNrm_{\tCurr+\receiveinc}
+\end{equation}
+
+\item[$\phantom{1-}\choosecons$:]  The consumer decides how much to consume for the year
+  \begin{itemize}
+    \item We imagine that this amount is immediately deducted from market resources; concretely, imagine that the amount $\cNrm_{\tCurr+\choosecons}$ is put into an untouchable escrow account
+    \item The escrow account funds a constant \textit{flow rate} of consumption that will be maintained throughout the interval from $\tCurr+\choosecons$ to $\tCurr+1$
+
+\end{itemize}
+\item[$\phantom{1-}\calculatea$:]  The consumption decision determines the amount of investable assets:
+\begin{equation}
+  \aNrm_{\tCurr+\calculatea} = \mNrm_{\tCurr+\calculatem}-\cNrm_{\tCurr+\choosecons}
+  \end{equation}
+\item[$\phantom{1-}\chooserisk$:]  The consumer makes a decision about the proportion of assets $\aNrm$ to invest in the risky asset, $\Rend{\riskyshare}_{\tCurr+\chooserisk}$
+\item[$1-\drawreturn$:] The rate of return on the risky asset $\Rend{\Risky}$ for the year is determined; combining this with the riskless (but potentially time-varying) return $\Rend{\Rfree}_{\tCurr}$, this yields the portfolio return
+\begin{align}
+ \Rend{\Rport}_{\tCurr} & = \riskyshare_{\tCurr}\Rend{\Risky}_{\tCurr}+(1-\riskyshare_{\tCurr})\Rend{\Rfree}_{\tCurr}
+\end{align}
+\item[$1-\calculatee$:] End-of-period (December 31 11:59:59$\bar{9}$) financial balances are
+\begin{align}
+ \eNrm_{\tNext-\calculatee} & = \Rend{\Rport}_{\tNext-\drawreturn} \aNrm_{\tCurr+\calculatea}
+\end{align}
+
+\end{enumerate}
+%\end{quote}
+
+The model in the main text considers the problem at the point we have designated $\choosecons$ above: After the realization of all of the stochastic variables that determine $\mNrm$.  Given the new assumption that the consumer's financial balances appear in the utility function, those balances must now be accounted for as a state variable in the value function.  The revised value function is designated as before by the Roman letter $\vFunc$:
+\begin{align}
+  \vFunc_{\tCurr+\choosecons}(\mNrm_{\tCurr+\calculatem},\bNrm_{\tCurr+\beginWithb}) & = \max_{\{\cNrm_{\tCurr+\choosecons},\Rend{\riskyshare}_{\tCurr+\chooserisk}\}} \uFunc(\cNrm_{\tCurr+\choosecons},\bNrm_{\tCurr+\beginWithb})+\Ex_{\tCurr+\chooserisk}[\DiscFac_{\tNext}\vFunc_{\tNext+\choosecons}(\mNrm_{\tNext+\choosecons},\bNrm_{\tNext})].
+\end{align}
+
+Using this notation we can now unambiguously define period-$\tCurr$ post-all-decisions but pre-realization (of returns) expected value as being calculable immediately after the portfolio share has been chosen (and as in the main text we use a Gothic font for this $\vFunc$ because the Goths flourished after the Romans):
+\begin{align}
+  \vEnd_{\tCurr+\definevEnd}(\aNrm_{\tCurr+\choosecons},\Rend{\riskyshare}_{\tCurr+\chooserisk}) & =  \Ex_{\tCurr+\chooserisk}[\DiscFac_{\tNext} \vFunc_{\tNext+\choosecons}(\mNrm_{\tNext+\choosecons},\bNrm_{\tNext})], \label{eq:vEndWithEpsilon}
+\end{align}
+
+Now note that if the period's income is predetermined as of the beginning of the period, the value function can be defined as a function of beginning-of-period financial balances $\bNrm_{\tCurr+\beginWithb}$ because with a perfectly predictable $\yNrm$, $\mNrm$ is immediately calculable from $\bNrm$ and is therefore not an independent state variable.  Because the Roman $\mathrm{v}$ derives from the Greek upsilon character $\upsilon$ (and the Greeks flourished before the Romans), we can write this beginning-of-period value function as
+  \begin{align}
+    \vBeg_{\tCurr+\beginWithb}(\bNrm_{\tCurr+\beginWithb}) & = \vFunc_{\tCurr+\choosecons}(\mNrm_{\tCurr+\calculatem},\bNrm_{\tCurr+\beginWithb}).
+  \end{align}
+
+  If income is stochastic, we can still define beginning-of-period value as a function of $\bNrm$ but it must be defined as an expectation:
+  \begin{align}
+    \vBeg_{\tCurr+\beginWithb}(\bNrm_{\tCurr+\beginWithb}) & = \Ex_{\tCurr+\beginWithb}[\vFunc_{\tCurr+\choosecons}(\mNrm_{\tCurr+\calculatem},\bNrm_{\tCurr+\beginWithb})].
+  \end{align}
+
+Having now established this conceptual sequence, we can dispense with the $\epsilon$ timing conventions for all variables, and simply use a $\tCurr$ subscript to denote the value of any variable determined at any point within the period, leaving the reader to remember the logic of the implicit timing above.  For example, beginning-of-period-$(\tNext)$ (January 01 12:00:00) financial balances are the same as end-of-period-$\tCurr$ assets because an infinitesimal amount of time separates them:
+\begin{align}
+ \bNrm_{\tNext} & = \eNrm_{\tCurr}
+\end{align}
+since the value of $\eNrm_{\tCurr}$ is in principle determined at the last instant of period $\tCurr$; that is, by $\eNrm_{\tCurr}$ we expect the reader to understand us to mean what we wrote as $\eNrm_{\tCurr+1-\calculatee}$ above.  Likewise, in the simpler notation, we can rewrite \eqref{eq:vEndWithEpsilon} more compactly as
+\begin{align}
+  \vEnd_{\tCurr}(\aNrm_{\tCurr},\Rend{\riskyshare}_{\tCurr}) & =  \Ex_{\tCurr}[\DiscFac_{\tNext} \vBeg_{\tNext}(\bNrm_{\tNext})] \label{eq:vEnd}.
+\end{align}
+
+Now we can imagine inserting another step (in principle, between steps $\calculatea$ and $\chooserisk$; but now that our timing is clear, we will use the simpler notation) to calculate the optimal risky share as the share that maximizes expected value:
+\begin{align}
+  \Rend{\riskyshare}_{\tCurr}^{*} & = \argmax_{\Rend{\riskyshare}_{\tCurr}} ~~\vEnd_{\tCurr}(\aNrm_{\tCurr},\Rend{\riskyshare}_{\tCurr})
+\end{align}
+which lets us construct a function $\Maxed{\vEnd}_{\tCurr}(\aNrm_{\tCurr})$ that calculates expected-value-given-optimal-portfolio-choice (with the asterisk accent indicating this is the maximum):
+\begin{align}
+   \Maxed{\vEnd}_{\tCurr}(\aNrm_{\tCurr}) & = \vEnd_{\tCurr}(\aNrm_{\tCurr},\Rend{\riskyshare}_{\tCurr}^{*})       
+\end{align}
+whose derivative is calculable as
+\begin{align}
+  \Maxed{\vEnd}_{\tCurr}^{\aNrm}(\aNrm_{\tCurr}) & = \left(\frac{d}{d \aNrm_{\tCurr}}\right) \vEnd_{\tCurr}(\aNrm_{\tCurr},\Rend{\riskyshare}_{\tCurr}^{*}) 
+  \\ & = \vEnd_{\tCurr}^{\aNrm}(\aNrm_{\tCurr},\Rend{\riskyshare}_{\tCurr}^{*})+\underbrace{
+       \vEnd_{\tCurr}^{\Rend{\riskyshare}}(\aNrm_{\tCurr},\Rend{\riskyshare}_{\tCurr}^{*})}_{=0~\texttt{by FOC}}\left(\frac{d \Rend{\riskyshare}_{\tCurr}^{*}}{d \aNrm_{\tCurr}}\right) \notag
+\end{align}
+
+
+\together{
+Collecting all of this, in our new notation the Roman-step problem is 
+\begin{align}
+  \vFunc_{\tCurr}(\mNrm_{\tCurr},\bNrm_{\tCurr}) & = \max_{\cNrm_{\tCurr}}~~ \uFunc(\cNrm_{\tCurr},\bNrm_{\tCurr}) + \Maxed{\vEnd}_{\tCurr}(\mNrm_{\tCurr}-\cNrm_{\tCurr})
+\end{align}}
+with FOC
+\begin{align}
+  \uFunc^{\cNrm} & = \Maxed{\vEnd}^{\aNrm}(\mNrm_{\tCurr}-\cNrm_{\tCurr}) \label{eq:FOCRoman}.
+\end{align}
+
+To make further progress, we now must specify the structure of the utility function.  \trp{\cdc{We consider two utility specifications, respectively called \texttt{CobbDouglas} and \texttt{CDC}:}{}}{}
+\begin{align*}
+\trp{
+\texttt{CobbDouglas:~~~~~}  \uFunc(\cNrm,\bNrm) & = \left(
+                        \frac
+                        {(\cNrm^{1-\wealthU}\bNrm^{\wealthU})^{1-\CRRA}}
+                        {1-\CRRA}
+                        \right) \notag
+  \\
+                       \uFunc^{c} & =  (1-\wealthU)(\mNrm/\cNrm)^{\wealthU}({\cNrm^{1-\wealthU}\bNrm^{\wealthU}})^{-\CRRA} = (1-\wealthU)\cNrm^{-(\CRRA(1-\wealthU)+\wealthU)}\bNrm^{\wealthU(1-\CRRA)} 
+\\                        \uFunc^{\bNrm} & =  -\wealthU({\cNrm^{1-\wealthU}\bNrm^{\wealthU-1}})\left(\cNrm^{1-\wealthU}\bNrm^{\wealthU}\right)^{-\CRRA} \notag
+\\  }{}
+  \cdc{
+  \texttt{CDC:~~~~~} \uFunc(\cNrm,\bNrm) & = \uFromC(\cNrm)+\uFromB(\bNrm)
+  \\  \uFromC(\cNrm) & = \left(\frac{\cNrm^{1-\CRRA}}{1-\CRRA}\right)(1-\wealthU)^{-\CRRA}
+  \\  \uFromB(\bNrm) & = \left(\frac{\bNrm^{1-\CRRA}}{1-\CRRA}\right)\wealthU^{-\CRRA}
+\\ \uFromC^{\cNrm} & = \cNrm^{-\CRRA}(1-\wealthU)^{-\CRRA}
+\\ \uFromB^{\bNrm} & = \bNrm^{-\CRRA}\wealthU^{-\CRRA}
+  }{}
+\end{align*}
+
+
+\cdc{
+  In the \texttt{CDC} value function, note that relative risk aversion with respect to (proportional) fluctuations in $\bNrm$ (for a fixed $\cNrm$) is
+  \begin{align}
+    \CRRA & = \left(\frac{-\bNrm\uFromB^{bb}}{\uFromB^{b}}\right)
+  \end{align}
+  which is identical to relative risk aversion with respect to (proportional) fluctuations in $\cNrm$.
+}{}
+
+\trp{
+  In the \texttt{CobbDouglas} value function, relative risk aversion with respect to (proportional) fluctuations in $\bNrm$ (for a fixed $\cNrm$) is given by $\wealthU\CRRA$, while relative risk aversion with respect to (proportional) fluctuations in $\cNrm$ (for a fixed $\bNrm$) is given by $(1-\wealthU)\CRRA$.  Suppose we calibrate $\wealthU$ to 1/3, so that in the last period of life a consumer who faced no risk would choose to set $\bNrm = (1/2) \cNrm$.  In such a case, when we consider introducing rate of return risk, the consumer's relative aversion to consumption risk will be twice as large as their relative aversion to fluctuations in financial balances.
+}{}
+
+\subsection{Solution}
+
+\newcommand{\aIdx}{\mathrm{i}}
+\newcommand{\aCnt}{\mathrm{I}}
+\newcommand{\bIdx}{\mathrm{j}}
+\newcommand{\bCnt}{\mathrm{J}}
+Now, as in the main text, designate a matrix of values of end-of-period assets in $\aMat_{\aIdx}$ for $\aIdx \in \{0,...,\aCnt-1\}$ and for each element in $\aIdx$ compute the corresponding matrix of values of Gothic maximized value (for the particular problem we have specified, these matrices will have only one dimension -- they will be vectors):
+\begin{align}
+  [\Maxed{\vEnd}^{\aNrm}_{\tCurr}]=\Maxed{\vEnd}^{\aNrm}_{\tCurr}(\aMat) 
+\end{align}
+
+That is, $[\Maxed{\vEnd}^{\aNrm}_{\tCurr}]_{\aIdx} = \Maxed{\vEnd}^{\aNrm}_{\tCurr}(\aMat_{\aIdx})~\forall~\aIdx$.
+
+\trp{\subsection{CobbDouglas Model}
+Now suppose for convenience we define $\grave{\CRRA}=\CRRA(1-\wealthU)+\wealthU$ so that
+\begin{align}
+  \uFunc^{c} & = (1-\wealthU)\cNrm^{-\grave{\CRRA}}\bNrm^{\wealthU(1-\CRRA)}
+\end{align}
+and we define a pseudo-inverse function
+\begin{align}
+ \mu^{-1}(\bullet) &= \left(\frac{\bullet}{1-\wealthU}\right)^{-1/\grave{\CRRA}} 
+\end{align}
+so that 
+\begin{align}
+  \mu^{-1}(\uFunc^{c}_{\tCurr}) & =  \cNrm_{\tCurr}\bNrm_{\tCurr}^{-\wealthU(1-\CRRA)/\grave{\CRRA}}
+\end{align}
+(and note that when $\wealthU=0$ this collapses to $\cNrm_{\tCurr}$ as in the EGM treatment in the main text).
+Now we use the fact that for an optimizing consumer $\uFunc^{\cNrm}_{\tCurr}=\Maxed{\vEnd}^{\aNrm}_{\tCurr}$ to define a `consumed' function that recovers the amount the optimizing consumer must have consumed to have arrived at the point $\{\aNrm,\bNrm\}$:
+\begin{align}
+  \mathfrak{\cNrm}_{\tCurr}(\aNrm,\bNrm) & = \mu^{-1}(\Maxed{\vEnd}_{\tCurr}^{\aNrm}(\aNrm))/\bNrm^{-\wealthU(1-\CRRA)/\grave{\CRRA}}. \label{eq:cGoth}
+\end{align}
+
+We now have two potential ways to proceed.
+
+\subsubsection{Rootfinding}
+
+First for convenience define a matrix of values of $\mu^{-1}$ calculated at the values in $\aMat$:
+\begin{align}
+  \muInvVect & = \mu^{-1}(\Maxed{\vEnd}_{\tCurr}^{\aNrm}(\aMat))
+\end{align}
+If income $\yNrm$ is nonstochastic (for convenience, suppose it is $\yNrm=1$), for any given $\aMat_{\aIdx}$ we must have 
+\begin{align}
+  \aMat_{\aIdx} & = \bNrm + 1 - \mathfrak{\cNrm}_{\tCurr}(\aMat_{\aIdx},\bNrm)
+%  \\  \aMat_{\aIdx} -1 & = \bNrm - \muInvVect_{\aIdx} \bNrm^{-\wealthU(1-\CRRA)/\grave{\CRRA}} \notag
+%  \\  \aMat_{\aIdx} -1 & = \bNrm - \muInvVect_{\aIdx} \bNrm^{-\wealthU(1-\CRRA)/\grave{\CRRA}}                        
+\end{align}
+
+This is a nonlinear equation that will have a unique numerical solution for $\bNrm$ that can be found using a rootfinding algorithm.  For every $\aMat_{\aIdx}$ this will yield a corresponding $\bMat_{\aIdx}$ and plugging that $\bNrm$ back into \eqref{eq:cGoth} will yield a corresponding $\cMat_{\aIdx}$.  It will now be possible to interpolate the $\{\bMat,\cMat\}$ values to yield an interpolating approximation to the consumption function $\chi_{\tCurr+\beginWithb}(\bNrm_{\tCurr})$ (where we have briefly reverted to the earlier cumbersome notation to make the timing clear, and have used the Greek equivalent to the Roman letter $\cFunc$ to signal that timing; the simpler notation would just call this $\chi_{\tCurr}(\bNrm_{t})$).  Alternatively, we could construct $\mMat = \bMat + 1$ and construct a consumption function $\cFunc_{\tCurr+\calculatem}(\mNrm_{\tCurr+\calculatem} \equiv \cFunc_{\tCurr}(\mNrm_{\tCurr}$ that corresponds to the Roman period (by interpolating among using $\{\mMat,\cMat\}$).
+
+Unfortunately, rootfinding is a computationally slow operation.  Fortunately, there is an alternative, which is interesting in its own right.  
+
+\subsubsection{Interpolation}
+
+Analogously to the matrix of values of $\aNrm$ above, now define some set of values of $\bMat_{\bIdx}$ for $\bIdx \in \{0,...,\bCnt-1\}$.
+
+Then for any $\{\aMat,\bMat\}$ pair we can construct the corresponding
+\begin{align}
+  \cMat_{\aIdx\bIdx} & = \mathfrak{\cNrm}_{\tCurr}(\aMat_{\aIdx},\bMat_{\bIdx})
+\\ \mMat_{\aIdx\bIdx} & = \aMat_{\aIdx}+\cMat_{\aIdx\bIdx}                       
+\end{align}
+which allows us to calculate the realized value of $\yNrm_{\tCurr}$ that would be required to cause a consumer who began the period with $\bMat_{\bIdx}$ and received $\bMat_{\bIdx}+\yMat_{\aIdx\bIdx}$ to end the period with $\aMat_{\aIdx}$:
+\begin{align}
+  \yMat_{\aIdx\bIdx} & = \mMat_{\aIdx\bIdx}-\bMat_{\bIdx}
+\end{align}
+
+Next, we could construct a two dimensional interpolator for a function $\hat{\chi}(\bNrm,\yNrm)$ from the values in $\{\bMat,\yMat,\cMat\}$.  Finally, we could evaluate this two dimensional interpolator at $\cFunc(\bMat,[\mathbf{1}])$ where $[\mathbf{1}]$ is a $\bCnt$-length vector of 1's (corresponding to the realization of $\yNrm=1$ for every $\bMat_{\bIdx}$).  That is, we construct the consumption function as the interpolated value when income takes its expected value.
+
+An even more interesting interpretation is available:  If $\yNrm$ is stochastic, we will have computed the necessary stochastic realization of $\yNrm$ to make a consumer who begins with any given $\bMat_{\bIdx}$ end with any given $\aMat_{\aIdx}$.  Thus, the computation required to solve a version of the model with stochastic $\yNrm$ is \textit{less} than that required to solve the model with $\yNrm=1$, since we no longer need to evaluate the interpolating function at $\yNrm_{\tCurr}=1$ for every $\bMat_{\bIdx}$.
+}{} % end \subsection{CobbDouglas Model}
+
+\cdc{\subsection{CDC Utility Specification}
+  If we define a pseudo-inverse function
+\begin{align}
+ \mu^{-1}(\bullet) &= \bullet^{-1/\CRRA} 
+\end{align}
+and a corresponding   
+\begin{align}
+  \mathfrak{\cNrm}_{\tCurr}(\aNrm) & = \mu^{-1}(\Maxed{\vEnd}_{\tCurr}^{\aNrm}(\aNrm)) \label{eq:cGothCDC}
+\end{align}
+as in the main text, we can construct a list of gridpoints and an interpolating consumption function as in the basic model in the main text.
+
+The trick here is that by the time consumption is being determined, this period's value of $\bNrm$ will have been chosen already.  We can imagine inserting an extra step into the time sequence table above: At step $0.5\epsilon$ the consumer reaps the utility from their beginning financial balances.  Then from the perspective of steps $1\epsilon$ and later the problem is exactly the same as the problem treated in the main text:
+\begin{align}
+  \vFunc_{\tCurr+\choosecons}(\mNrm_{\tCurr+\calculatem}) & = \max_{\cNrm_{\tCurr+\choosecons}} ~~\uFromC(\cNrm_{\tCurr+\choosecons})+\Maxed{\vEnd}_{\tCurr}(\mNrm_{\tCurr+\calculatem}-\cNrm_{\tCurr+\choosecons})
+\end{align}
+where $\uFromC$ is now mathematically like the utility function in the main text, so all of the steps to solve for $\cFunc_{\tCurr+\calculatem}(\mNrm_{\tCurr+\calculatem})$ are identical to those in the main text, given that $\Maxed{\vEnd}_{\tCurr}$ has been constructed.
+
+But $\vEnd_{\tCurr}$ is just 
+\begin{align}
+  \vEnd_{\tCurr+\definevEnd}(\aNrm_{t},\Rend{\riskyshare}) & = \DiscFac \Ex_{\tCurr+\definevEnd}\left[\uFromB(\bNrm_{t+1})+\vFunc_{\tNext+\choosecons}(\mNrm_{\tNext+\calculatem})\right]
+\end{align}
+which can be maximized as usual by finding, for every $\aMat_{\aIdx}$, the value of $\Rend{\riskyshare}_{\tCurr}$ for which $\vEnd_{\tCurr+\definevEnd}^{\Rend{\riskyshare}}(\aMat_{\aIdx},\Rend{\riskyshare}_{\tCurr}) = 0$, yielding  the required $[\Maxed{\vEnd}_{\tCurr}^{\aNrm}]_{\aIdx}$:
+\begin{align}
+  [\Maxed{\vEnd}_{\tCurr}^{\aNrm}]_{\aIdx} & = \DiscFac \Ex_{\tCurr}\left[\Rend{\Rport}_{\tCurr}\left((1-\wealthU)(\cFunc_{\tNext}(\mNrm_{\tNext}))^{-\CRRA}+(\wealthU \bNrm_{t+1})^{-\CRRA}\right)
+                                        \right]
+\end{align}
+and with these in hand we have all we need to compute $\cMat_{\aIdx}$ and $\mMat_{\aIdx}$ as in the main text and to construct an interpolating approximation to the inverted marginal value function 
+
+}{} % end \subsection{CDC Model}
+
+
+
+
+
+
+\end{document}
+
+\endinput
+
+the previous expression becomes
+\begin{align}
+  \mu^{-1}(\uFrom^{c}) & =  \cNrm_{\tCurr}\bMat_{\bIdx}^{-\wealthU(1-\CRRA)/\grave{\CRRA}}
+\end{align}
+
+\begin{align}
+  \mu^{-1}(\uFunc^{c}) & = \mu^{-1}(\Maxed{\vEnd}^{\aNrm}) \label{eq:FOCRomanInv}
+\\ (1-\wealthU)^{-1/\CRRA}(\cNrm_{\tCurr}/\bNrm_{\tCurr}) & = 
+\end{align}
+
+
+\begin{align}
+  (1-\wealthU)(\mNrm_{\tCurr}/\cNrm_{\tCurr})^{\wealthU(1-\CRRA)}\cNrm_{\tCurr}^{-\CRRA}  & = \Maxed{\vEnd}_{\tCurr}^{\aNrm}(\mNrm_{\tCurr}-\cNrm_{\tCurr})
+  \\  (\mNrm_{\tCurr}/\cNrm_{\tCurr})^{\wealthU(1-\CRRA)}\cNrm_{\tCurr}^{-\CRRA}  & = \frac{\Maxed{\vEnd}_{\tCurr}^{\aNrm}(\mNrm_{\tCurr}-\cNrm_{\tCurr})}{(1-\wealthU)}
+\\  (\mNrm_{\tCurr}/\cNrm_{\tCurr})^{\wealthU(1-1/\CRRA)}\cNrm_{\tCurr}  & = \left(\frac{\Maxed{\vEnd}_{\tCurr}^{\aNrm}(\mNrm_{\tCurr}-\cNrm_{\tCurr})}{(1-\wealthU)}                                                                           \right)^{-1/\CRRA}
+  \\  \mNrm_{\tCurr}^{\wealthU(1-1/\CRRA)}\cNrm_{\tCurr}^{1-\wealthU(1-1/\CRRA)}  & = \left(\frac{\Maxed{\vEnd}_{\tCurr}^{\aNrm}(\aNrm_{\tCurr})}{(1-\wealthU)}                                                                           \right)^{-1/\CRRA}
+  \\  \cNrm_{\tCurr}^{1-\wealthU(1-1/\CRRA)}  & = \left(\frac{\Maxed{\vEnd}_{\tCurr}^{\aNrm}(\aNrm_{\tCurr})}{(1-\wealthU)}                                                                           \right)^{-1/\CRRA}                                                                              /\mNrm_{\tCurr}^{\wealthU(1-1/\CRRA)}
+  \\  \cNrm_{\tCurr}  & = \left[\left(\frac{\Maxed{\vEnd}_{\tCurr}^{\aNrm}(\aNrm_{\tCurr})}{(1-\wealthU)}                                                                           \right)^{-1/\CRRA}                                                                              /\mNrm_{\tCurr}^{\wealthU(1-1/\CRRA)}\right]^{1/(1-\wealthU(1-1/\CRRA))}
+\end{align}
+
+\begin{align}
+  {\wealthU(1-1/\CRRA)} \log \mNrm_{\tCurr} + (1-\wealthU(1-1/\CRRA))\log \cNrm_{\tCurr}  & = (-1/\CRRA)\log \left(\frac{\Maxed{\vEnd}_{\tCurr}^{\aNrm}(\aNrm_{\tCurr})}{(1-\wealthU)}                                                                           \right)
+\\  {\wealthU(1-1/\CRRA)} (\log (\aNrm_{\tCurr}+\cNrm_{\tCurr}) - \log \cNrm_{\tCurr}) + \log \cNrm_{\tCurr}  & = (-1/\CRRA)\log \left(\frac{\Maxed{\vEnd}_{\tCurr}^{\aNrm}(\aNrm_{\tCurr})}{(1-\wealthU)}                                                                           \right)\end{align}
+
+
+\begin{align}
+  \vBeg_{\tCurr}(\mNrm_{\tCurr}) & = \max_{\mu_{\tCurr}}~~ \left(\frac{\mu_{\tCurr}^{1-\CRRA}}{1-\CRRA}+  \Maxed{\vEnd}_{\tCurr}(\mNrm_{\tCurr}-\cNrm(\mNrm_{\tCurr},\mu_{\tCurr}))\right)
+\end{align}
+
+FOC:
+
+\begin{align}
+  \mu_{\tCurr}^{-\CRRA} & = \Maxed{\vEnd}_{\tCurr}^{\aNrm}(\mNrm_{\tCurr}-\cNrm(\mu_{\tCurr},\mNrm_{\tCurr}))\left(\frac{d \cNrm}{d \mu}\right)
+\end{align}
+
+\begin{align}
+  \log \mu & = (1-\wealthU)\log \cNrm+\wealthU \log \mNrm
+  \\ \left(\frac{- \wealthU \log \mNrm +  \log \mu}{1-\wealthU}\right) & = \log \cNrm
+  \\ \exp\left( (1-\wealthU)^{-1}\log \mu- (\wealthU/(1-\wealthU))\log \mNrm\right) & = \cNrm
+  \\ \mu^{1/(1-\wealthU)}\mNrm^{(\wealthU/(1-\wealthU))}& = \cNrm
+  \\ (1/(1-\wealthU))\mu^{-1+1/(1-\wealthU)}\mNrm^{(\wealthU/(1-\wealthU))}& = \left(\frac{d \cNrm}{d \mu}\right)
+\end{align}

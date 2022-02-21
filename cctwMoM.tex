@@ -11,10 +11,10 @@
 \newcommand{\IfRiskyR}{\ifthenelse{\boolean{RiskyR}}}
 
 % Include permanent shocks?
-\provideboolean{pShkVersion}
-%\setboolean{pShkVersion}{true}
-\setboolean{pShkVersion}{false}
-\newcommand{\pShkOn}{\ifthenelse{\boolean{pShkVersion}}}
+\provideboolean{PermShkVersion}
+%\setboolean{PermShkVersion}{true}
+\setboolean{PermShkVersion}{false}
+\newcommand{\PermShkOn}{\ifthenelse{\boolean{PermShkVersion}}}
 
 % MPCMatch
 \provideboolean{MPCMatchVersion}
@@ -174,7 +174,7 @@ satisfies the Euler equation
 \import{./Equations/}{cEuler.tex}
 
 For the remainder of the paper we will assume that permanent income $\pLev_{t}$ 
-grows by a constant factor $\PGro$ and is not subject to stochastic shocks.  
+grows by a constant factor $\PermGroFac$ and is not subject to stochastic shocks.  
 (The generalization to the case with permanent shocks is 
 straightforward.)
 

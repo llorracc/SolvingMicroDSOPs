@@ -17,31 +17,31 @@
   We now construct an upper-bound value function implied for a consumer whose spending behavior
   is consistent with the refined upper-bound consumption rule.
 
-  For $\mRat_{t} \geq \mRat_{t}^{\#}$, this consumption rule is the same as before,
+  For $\mNrm_{t} \geq \mNrm_{t}^{\#}$, this consumption rule is the same as before,
   so the constructed upper-bound value function is also the same.  However, for
-  values $\mRat_{t} < \mRat_{t}^{\#}$ matters are slightly more complicated.
+  values $\mNrm_{t} < \mNrm_{t}^{\#}$ matters are slightly more complicated.
 
   Start with the fact that at the cusp point,
   \begin{equation*}\begin{gathered}\begin{aligned}
-    \bar{\vFunc}_{t}(\mtCusp)  & = \util(\bar{\cRat}_{t}(\mtCusp))\mathbb{C}_{t}^{T} \\
-                               & =  \util(\aboveMin \mtCusp  \MaxMPC_{t})\mathbb{C}_{t}^{T}
-                                  .
-  \end{aligned}\end{gathered}\end{equation*}
+        \bar{\vFunc}_{t}(\mtCusp)  & = \uFunc(\bar{\cNrm}_{t}(\mtCusp))\mathbb{C}_{t}^{T} \\
+        & =  \uFunc(\aboveMin \mtCusp  \MPCmax_{t})\mathbb{C}_{t}^{T}
+        .
+      \end{aligned}\end{gathered}\end{equation*}
 
-  But for \textit{all} $\mRat_{t}$,
+  But for \textit{all} $\mNrm_{t}$,
   \begin{equation*}\begin{gathered}\begin{aligned}
-    \bar{\vFunc}_{t}(\mRat)  & = \util(\bar{\cRat}_{t}(\mRat))+ \bar{\vEnd}_{t}(\mRat-\bar{\cRat}_{t}(\mRat)),
-  \end{aligned}\end{gathered}\end{equation*}
-  and we assume that for the consumer below the cusp point consumption is given by $\MaxMPC \aboveMin \mRat_{t}$ so for $\mRat_{t}< \mtCusp$
+        \bar{\vFunc}_{t}(\mNrm)  & = \uFunc(\bar{\cNrm}_{t}(\mNrm))+ \bar{\vEnd}_{t}(\mNrm-\bar{\cNrm}_{t}(\mNrm)),
+      \end{aligned}\end{gathered}\end{equation*}
+  and we assume that for the consumer below the cusp point consumption is given by $\MPCmax \aboveMin \mNrm_{t}$ so for $\mNrm_{t}< \mtCusp$
   \begin{equation*}\begin{gathered}\begin{aligned}
-    \bar{\vFunc}_{t}(\mRat)  & = \util( \MaxMPC_{t} \aboveMin \mRat)+ \bar{\vEnd}_{t}((1-\MaxMPC_{t})\aboveMin \mRat),
-  \end{aligned}\end{gathered}\end{equation*}
-  which is easy to compute because $\bar{\vEnd}_{t}(\aRat_{t}) = \Discount \bar{\vFunc}_{t+1}(\aRat_{t}\Rnorm+1)$
+        \bar{\vFunc}_{t}(\mNrm)  & = \uFunc( \MPCmax_{t} \aboveMin \mNrm)+ \bar{\vEnd}_{t}((1-\MPCmax_{t})\aboveMin \mNrm),
+      \end{aligned}\end{gathered}\end{equation*}
+  which is easy to compute because $\bar{\vEnd}_{t}(\aNrm_{t}) = \DiscFac \bar{\vFunc}_{t+1}(\aNrm_{t}\RNrm+1)$
   where $\bar{\vFunc}_{t}$ is as defined above because a consumer who ends the current period with assets exceeding
   the lower bound will not expect to be constrained next period.  (Recall again that we are merely constructing an object that is guaranteed to be an \textit{upper bound} for the value that the `realist' consumer will experience.)  At the gridpoints defined by the solution of the
   consumption problem can then construct
   \begin{equation*}\begin{gathered}\begin{aligned}
-    \bar{\vInv}_{t}(\mRat)  & = ((1-\CRRA)\bar{\vFunc}_{t}(\mRat))^{1/(1-\CRRA)}
-  \end{aligned}\end{gathered}\end{equation*}
+        \bar{\vInv}_{t}(\mNrm)  & = ((1-\CRRA)\bar{\vFunc}_{t}(\mNrm))^{1/(1-\CRRA)}
+      \end{aligned}\end{gathered}\end{equation*}
   \MPCMatch{and its derivatives}{} which yields the appropriate vector for constructing $\check{\Chi}$ and $\check{\Koppa}$.  The rest of the procedure is analogous to that performed for the consumption rule and is thus omitted for brevity.
 

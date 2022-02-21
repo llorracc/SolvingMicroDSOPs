@@ -107,7 +107,7 @@
 
 \input{./Equations/MaxProb.tex}
 \begin{equation}\begin{gathered}\begin{aligned}
-{\yLev}_{t}  & = {\pLev}_{t}\tShkEmp_{t}
+{\yLev}_{t}  & = {\pLev}_{t}\TranShkEmp_{t}
 \end{aligned}\end{gathered}\end{equation}
 \input{./Equations/ExogVars.tex}
 \end{frame}
@@ -165,7 +165,7 @@ Define
 \input{./Equations/vEndtdefn.tex}
 so 
 \begin{equation}\begin{gathered}\begin{aligned}
-  \vFunc_{t}(\mRat_{t})  & = \max_{\cRat_{t}}~~ \util(\cRat_{t}) + \vEnd_{t}(\mRat_{t}-\cRat_{t})
+  \vFunc_{t}(\mRat_{t})  & = \max_{\cNrm_{t}}~~ \util(\cNrm_{t}) + \vEnd_{t}(\mRat_{t}-\cNrm_{t})
 \end{aligned}\end{gathered}\end{equation}
 with FOC
 \input{./Equations/upEqbetaOp.tex}
@@ -189,13 +189,13 @@ E.g.\ use an equiprobable 7-point distribution:\medskip\medskip
 \frametitle{Trick: Discretize the Risks}
 
 \begin{equation}\begin{gathered}\begin{aligned}
-        \vEnd_{t}^{\prime}({a}_{t})  & =  \Discount \Rfree \PGro_{t+1}^{-\CRRA} \left(\frac{1}{n}\right) \sum_{i=1}^{n} \util^{\prime}\left(\cFunc_{t+1}(\Rnorm_{t+1} {a}_{t} + \tShkEmp_{i})\right)
+        \vEnd_{t}^{\prime}({a}_{t})  & =  \Discount \Rfree \PermGroFac_{t+1}^{-\CRRA} \left(\frac{1}{n}\right) \sum_{i=1}^{n} \util^{\prime}\left(\cFunc_{t+1}(\RNrm_{t+1} {a}_{t} + \TranShkEmp_{i})\right)
 \end{aligned}\end{gathered}\end{equation}
 
 %\input{./Equations/vDiscrete.tex}
 
 \pause 
-So for any particular $\mRat_{T-1}$ the corresponding $\cRat_{T-1}$ can be found
+So for any particular $\mRat_{T-1}$ the corresponding $\cNrm_{T-1}$ can be found
 using the FOC:
 \input{./Equations/upEqbetaOp.tex}
 
@@ -208,9 +208,9 @@ using the FOC:
 \begin{enumerate}
 \item Define a grid of points $\vec{\mRat}$ (indexed $\mRat[i]$)
 \item Use numerical rootfinder to solve 
-$\util^{\prime}(\cRat) = \vEnd^{\prime}_{t}(\mRat[i]-\cRat)$
+$\util^{\prime}(\cNrm) = \vEnd^{\prime}_{t}(\mRat[i]-\cNrm)$
 \begin{itemize}
-\item The $\cRat$ that solves this becomes $\cRat[i]$
+\item The $\cNrm$ that solves this becomes $\cNrm[i]$
 \end{itemize}
 \item Construct interpolating function $\grave{\cFunc}$ by linear interpolation
 \begin{itemize}
@@ -237,12 +237,12 @@ Example: $\vec{\mRat}_{T-1} = \{0.,1.,2.,3.,4.\}$ (solid is `correct' soln)
 \begin{frame}[label=vEndtSlow]
 \frametitle{Problem: Numerical Rootfinding is {\it Slow}}
 
-Numerical search for values of $\cRat_{T-1}$ satisfying
-$\util^{\prime}(\cRat) = \vEnd^{\prime}_{t}(\mRat[i]-\cRat)$ at, say,
+Numerical search for values of $\cNrm_{T-1}$ satisfying
+$\util^{\prime}(\cNrm) = \vEnd^{\prime}_{t}(\mRat[i]-\cNrm)$ at, say,
 6 gridpoints of $\vec{\mRat}_{T-1}$ may require hundreds or even thousands of
 evaluations of
 \begin{equation}\begin{gathered}\begin{aligned}
-        \vEnd^{\prime}_{T-1}(\overbrace{{m}_{T-1}-{\cRat}_{T-1}}^{\aRat_{T-1}})  & =   \Discount_{T} \PGro_{T}^{1-\CRRA}\left(\frac{1}{n}\right)\sum_{i=1}^{n}   \left( \Rnorm_{T} {a}_{T-1} + \tShkEmp_{i}\right)^{-\CRRA} \notag
+        \vEnd^{\prime}_{T-1}(\overbrace{{m}_{T-1}-{\cNrm}_{T-1}}^{\aRat_{T-1}})  & =   \Discount_{T} \PermGroFac_{T}^{1-\CRRA}\left(\frac{1}{n}\right)\sum_{i=1}^{n}   \left( \RNrm_{T} {a}_{T-1} + \TranShkEmp_{i}\right)^{-\CRRA} \notag
 \end{aligned}\end{gathered}\end{equation}
 
 \end{frame}
@@ -265,7 +265,7 @@ can be constructed by linear interpolation among the points:
 \begin{frame}
 \frametitle{Using $\grave{\vEnd}_{T-1}$ In Optimization}
 \begin{equation*}\begin{gathered}\begin{aligned}
-  \vFunc_{t}(\mRat_{t})  & = \max_{\cRat_{t}}~~ \util(\cRat_{t}) + \grave{\vEnd}_{t}(\mRat_{t}-\cRat_{t})
+  \vFunc_{t}(\mRat_{t})  & = \max_{\cNrm_{t}}~~ \util(\cNrm_{t}) + \grave{\vEnd}_{t}(\mRat_{t}-\cNrm_{t})
 \end{aligned}\end{gathered}\end{equation*}
 is {\it much} faster,  but result is bad:
 \begin{center}
@@ -300,22 +300,22 @@ Better ... but still violates first two principles:
 \pause 
 
 Each of these $\vEnd_{t}^{\prime}[j]$ corresponds to a unique
-$\cRat[j]$ via FOC:
+$\cNrm[j]$ via FOC:
 \begin{equation}\begin{gathered}\begin{aligned}
-  \cRat[j]^{-\CRRA}  & = \vEnd_{t}^{\prime}(\aRat[j])
-\\ \cRat[j]  & = \left(\vEnd_{t}^{\prime}(\aRat[j])\right)^{-1/\CRRA}
+  \cNrm[j]^{-\CRRA}  & = \vEnd_{t}^{\prime}(\aRat[j])
+\\ \cNrm[j]  & = \left(\vEnd_{t}^{\prime}(\aRat[j])\right)^{-1/\CRRA}
 \end{aligned}\end{gathered}\end{equation}
 
 \pause 
 
 But the DBC says
 \begin{equation}\begin{gathered}\begin{aligned}
-  \aRat_{t}  & = \mRat_{t} - \cRat_{t}
-\\ \mRat[j]  & = \aRat[j]+\cRat[j]
+  \aRat_{t}  & = \mRat_{t} - \cNrm_{t}
+\\ \mRat[j]  & = \aRat[j]+\cNrm[j]
 \end{aligned}\end{gathered}\end{equation}
 
 \pause 
-So computing $\vEnd_{t}^{\prime}$ at a vector of $\vec{\aRat}$ values has produced for us the corresponding $\vec{\cRat}$ and $\vec{\mRat}$ 
+So computing $\vEnd_{t}^{\prime}$ at a vector of $\vec{\aRat}$ values has produced for us the corresponding $\vec{\cNrm}$ and $\vec{\mRat}$ 
 values at virtually no cost!  
 
 \pause 
@@ -350,7 +350,7 @@ Principles of Approximation
 
 Perfect Foresight Theory:
 \begin{equation}\begin{gathered}\begin{aligned}
-  \cFunc_{t}(\mRat)  & = (\mRat+\hEnd_{t})\MinMPC_{t} 
+  \cFunc_{t}(\mRat)  & = (\mRat+\hEnd_{t})\MPCmin_{t} 
 \end{aligned}\end{gathered}\end{equation}
 for market resources $\mRat$ and end-of-period human wealth $\hEnd$.
 
@@ -424,10 +424,10 @@ and using chain rule it is easy to show that
 \begin{frame}
 \frametitle{Problem: $\Alt{\cFunc}$ Below Bottom $\mRat$ Gridpoint and Extrapolation}
 
-Consider what happens as ${a}_{T-1}$ approaches $\underline{a}_{T-1}\equiv-\underline{\tShkEmp}\Rnorm_{T}^{-1}$,
+Consider what happens as ${a}_{T-1}$ approaches $\underline{a}_{T-1}\equiv-\underline{\TranShkEmp}\RNrm_{T}^{-1}$,
 \begin{equation*}\begin{gathered}\begin{aligned}
         \lim_{{\aRat} \downarrow \underline{a}_{T-1}} \vEnd_{T-1}^{\prime}({\aRat}) 
-& =         \lim_{{\aRat} \downarrow \underline{a}_{T-1}} \Discount \Rfree \PGro_{T}^{-\CRRA} \left(\frac{1}{n}\right) \sum_{i=1}^{n} \left( {\aRat} \Rnorm_{T}+ \tShkEmp_{i}\right)^{-\CRRA}
+& =         \lim_{{\aRat} \downarrow \underline{a}_{T-1}} \Discount \Rfree \PermGroFac_{T}^{-\CRRA} \left(\frac{1}{n}\right) \sum_{i=1}^{n} \left( {\aRat} \RNrm_{T}+ \TranShkEmp_{i}\right)^{-\CRRA}
 \\  & = \infty
 \end{aligned}\end{gathered}\end{equation*}
 
@@ -450,17 +450,17 @@ $\Rightarrow \exists \mRat^{-} > \underline{\mRat}_{T-1}$  for which $\mRat^{-}-
 Theory says that
 \begin{equation}\begin{gathered}\begin{aligned}
   \lim_{\mRat \downarrow \underline{\mRat}_{T-1}} \cFunc_{T-1}(\mRat)  & = 0
-\\ \lim_{\mRat \downarrow \underline{\mRat}_{T-1}} \cFunc_{T-1}^{\mRat}(\mRat)  & = \MaxMPC_{T-1}
+\\ \lim_{\mRat \downarrow \underline{\mRat}_{T-1}} \cFunc_{T-1}^{\mRat}(\mRat)  & = \MPCmax_{T-1}
 \end{aligned}\end{gathered}\end{equation}
 
 \medskip 
 
 \begin{enumerate}
 \item Redefine $\vec{\aRat}$ {\it relative} to $\uline{\aRat}_{T-1}$
-\item Construct corresponding $\vec{\mRat}_{T-1}$ and $\vec{\cRat}_{T-1}$
+\item Construct corresponding $\vec{\mRat}_{T-1}$ and $\vec{\cNrm}_{T-1}$
 \item Prepend $\uline{\mRat}_{T-1}$ to $\vec{\mRat}_{T-1}$
-\item Prepend $0.$ to $\vec{\cRat}_{T-1}$
-\item Prepend $\MaxMPC_{T-1}$ to $\vec{\MPC}_{T-1}$
+\item Prepend $0.$ to $\vec{\cNrm}_{T-1}$
+\item Prepend $\MPCmax_{T-1}$ to $\vec{\MPC}_{T-1}$
 \end{enumerate}
 then proceed as before.
 
@@ -542,8 +542,8 @@ Procedure is very easy:
 \begin{enumerate}
 \item Construct 
 \input{./Equations/vEndeq.tex}
-\item Call the result $\vec{\cRat}_{t}$ and generate the corresponding $\vec{\mRat}_{t}=\vec{\cRat}_{t}+\vec{\aRat}_{t}$
-\item Interpolate to create $\grave{\cRat}_{t}(\mRat)$
+\item Call the result $\vec{\cNrm}_{t}$ and generate the corresponding $\vec{\mRat}_{t}=\vec{\cNrm}_{t}+\vec{\aRat}_{t}$
+\item Interpolate to create $\grave{\cNrm}_{t}(\mRat)$
 \end{enumerate}
 
 \end{frame}
@@ -567,7 +567,7 @@ Procedure is very easy:
 Now the consumer has a choice between a risky and a safe asset.  \pause The portfolio
 return is
 \input{./Equations/Rport.tex}
-\pause so (setting $\PGro=1$) the maximization problem is \pause 
+\pause so (setting $\PermGroFac=1$) the maximization problem is \pause 
 \input{./Equations/PortProb.tex}
 
 \end{frame}
@@ -575,7 +575,7 @@ return is
 \begin{frame}
 \frametitle{Portfolio Choice}
 
-The FOC with respect to $\cRat_{t}$ now yields an Euler equation
+The FOC with respect to $\cNrm_{t}$ now yields an Euler equation
 \input{./Equations/EulercRiskyR.tex}
 \pause
 while the FOC with respect to the portfolio share yields
@@ -610,12 +610,12 @@ the solution to have converged when
 
 \subsection{Tricks}
 \begin{frame}
-\frametitle{Trick: Coarse then Fine $\tShkEmp$}
+\frametitle{Trick: Coarse then Fine $\TranShkEmp$}
 
 \begin{enumerate}
-\item Start with coarse grid for $\tShkEmp$ (say, 3 points)
+\item Start with coarse grid for $\TranShkEmp$ (say, 3 points)
 \item Solve to convergence; call period of convergence $n$
-\item Construct finer grid for $\tShkEmp$ (say, 7 points)
+\item Construct finer grid for $\TranShkEmp$ (say, 7 points)
 \item Solve for period $T-n-1$ assuming $\Alt{\cFunc}_{T-n}$ 
 \item Continue to convergence
 \end{enumerate}
@@ -668,7 +668,7 @@ the solution to have converged when
 Given a set of parameter values $\{\CRRA,\beth\}$:
 \begin{itemize}
 \item Start at age 25 with empirical $\mRat$ data
-\item Draw shocks using calibrated $\sigma^{2}_{\pShk}$,$\sigma^{2}_{\tShkEmp}$
+\item Draw shocks using calibrated $\sigma^{2}_{\PermShk}$,$\sigma^{2}_{\TranShkEmp}$
 \item Consume according to solved $\cFunc_{t}$
 \end{itemize}
 \pause 
