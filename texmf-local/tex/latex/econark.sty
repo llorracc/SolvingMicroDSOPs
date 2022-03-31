@@ -43,12 +43,14 @@
 \newcommand{\MBalLvl}{\BalGroFac{\MNrm}} % m where MLvl grows by PermGroFac
 \newcommand{\mBalLog}{\BalGroRte{\mNrm}} % m where mLog grows by PermGroRte
 \newcommand{\mTrgNrm}{\TargetNrm{\mNrm}} % m where E[m_{t+1}]=m_{t}
+\newcommand{\bTrgNrm}{\TargetNrm{\bNrm}} % m where E[m_{t+1}]=m_{t}
 
 % Create links to explanations in text
 \newcommand{\BSTpaperLink}{https://\owner.github.io/BufferStockTheory/BufferStockTheory3.html} % Frame 3
 
 % Suffix of Defn indicates reference to text name and source doc definition
-\newcommand{\FHWC}{\hyperlink{FHWC}{\textrm{FHWC}}}
+\providecommand{\FHWC}{}
+\renewcommand{\FHWC}{\hyperlink{FHWC}{\textrm{FHWC}}}
 %\newcommand{\FHWFacDefn}{\hyperlink{FHWFacDefn}{\textrm{FHWF}}}
 \newcommand{\FHWFacDefn}{\hyperlink{FHWFacDefn}{\textrm{FHWF}}}
 \newcommand{\GICRaw}{\hyperlink{GICRaw}{\textrm{GIC}}}
@@ -57,16 +59,21 @@
 \newcommand{\GICMod}{\hyperlink{GICMod}{\textrm{GIC-Mod}}}
 \newcommand{\GICHarm}{\hyperlink{GICHarm}{\textrm{GIC-Harm}}}
 \newcommand{\GICSdl}{\hyperlink{GICSdl}{\textrm{GIC-Szeidl}}}
-\newcommand{\RIC}{\hyperlink{RIC}{\textrm{RIC}}}
-\newcommand{\PFFVAC}{\hyperlink{PFFVAC}{\textrm{PF-FVAC}}}
+\providecommand{\RIC}{}
+\renewcommand{\RIC}{\hyperlink{RIC}{\textrm{RIC}}}
+\providecommand{\PFFVAC}{}
+\renewcommand{\PFFVAC}{\hyperlink{PFFVAC}{\textrm{PF-FVAC}}}
 \newcommand{\PFVAFacDefn}{\hyperlink{PFVAFacDefn}{\textrm{PF-VAF}}}
-\newcommand{\FVAC}{\hyperlink{FVAC}{\textrm{FVAC}}}
+\providecommand{\FVAC}{}
+\renewcommand{\FVAC}{\hyperlink{FVAC}{\textrm{FVAC}}}
 \newcommand{\VAFacDefn}{\hyperlink{VAFacDefn}{\textrm{VAF}}}
 \newcommand{\APFacDefn}{\hyperlink{APFacDefn}{\textrm{APF}}}
 \newcommand{\RPFacDefn}{\hyperlink{RPFacDefn}{\textrm{RPF}}}
-\newcommand{\AIC}{\hyperlink{AIC}{\textrm{AIC}}}
+\providecommand{\AIC}{}
+\renewcommand{\AIC}{\hyperlink{AIC}{\textrm{AIC}}}
 \newcommand{\WRPFacDefn}{\hyperlink{WRPFacDefn}{\textrm{WRPF}}}
-\newcommand{\WRIC}{\hyperlink{WRIC}{\textrm{WRIC}}}
+\providecommand{\WRIC}{}
+\renewcommand{\WRIC}{\hyperlink{WRIC}{\textrm{WRIC}}}
 
 % Levels are boldface
 \providecommand{\aLvl}{\mathbf{a}}
@@ -180,6 +187,7 @@
 \providecommand{\rNrm}{s}
 \providecommand{\sNrm}{s}
 \providecommand{\vNrm}{v}
+\providecommand{\xNrm}{x}
 \providecommand{\yNrm}{y}
 \providecommand{\zNrm}{z}
 
@@ -391,6 +399,7 @@
 \providecommand{\bMat}{[{\mathrm{\bNrm}}]}
 \providecommand{\cMat}{[{\mathrm{\cNrm}}]}
 \providecommand{\mMat}{[{\mathrm{\mNrm}}]}
+\providecommand{\xMat}{[{\mathrm{\xNrm}}]}
 \providecommand{\yMat}{[{\mathrm{\yNrm}}]}
 
 \providecommand{\tPrev}{t-1}

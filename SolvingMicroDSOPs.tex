@@ -2,11 +2,10 @@
 \input{./econtexRoot} % Set paths (like, \LaTeXInputs to find resources)
 \newcommand{\texname}{SolvingMicroDSOPs}% Keyname for the paper
 \documentclass[titlepage, headings=optiontotocandhead]{\econtex}
-
 \usepackage{accents}
 \usepackage{\LaTeXInputs/\texname}% LaTeX Shortcuts for whole paper
 
-\usepackage{econark}
+\usepackage{\econark}
 \usepackage{\econtexSetup} % Gets, configures often-used packages
 
 % \usepackage{econtexSetup} sets boolean Web=true if compilation type is dvi
@@ -21,6 +20,7 @@
 % Switches 
 \provideboolean{ctwVersion}\setboolean{ctwVersion}{false}\newcommand{\ctw}{\ifthenelse{\boolean{ctwVersion}}}
 \provideboolean{trpVersion}\setboolean{trpVersion}{false}\newcommand{\trp}{\ifthenelse{\boolean{trpVersion}}}
+\setboolean{trpVersion}{true}
 
 \provideboolean{uCDC}
 \setboolean{uCDC}{true}
@@ -76,20 +76,12 @@
 \date{\today}
 \maketitle
 
-\noindent  Note: The code associated with this document should work (though the Matlab code may be out of date), but has been superceded by the set of tools available in the \href{https://github.com/econ-ark/HARK}{Econ-ARK} toolkit, more specifically the \href{https://github.com/econ-ark/HARK}{HARK Framework}.  The SMM estination code at the end has specifically been superceded by the \href{https://github.com/econ-ark/REMARK/tree/master/REMARKs/SolvingMicroDSOPs}{SolvingMicroDSOPs} \href{https://github.com/econ-ark/REMARK}{REMARK}
+\noindent  Note: The code associated with this document should work (though the Matlab code may be out of date), but has been superceded by the set of tools available in the \href{https://github.com/econ-ark/HARK}{Econ-ARK} toolkit, more specifically the \href{https://github.com/econ-ark/HARK}{HARK Framework}.  The SMM estination code at the end has specifically been superceded by the \href{https://econ-ark.org/materials/solvingmicrodsops?launch}{SolvingMicroDSOPs} \href{https://github.com/econ-ark/REMARK}{REMARK}
 
 
 \hypertarget{Abstract}{}
 \begin{abstract}
-  These notes describe tools for solving microeconomic dynamic
-  stochastic optimization problems, and show how to use those tools
-  for efficiently estimating a standard life cycle consumption/saving model
-  using microeconomic data.  No attempt is made at a systematic
-  overview of the many possible technical choices; instead, I present
-  a specific set of methods that have proven useful in my own work
-  (and explain why other popular methods, such as value function
-  iteration, are a bad idea).  Paired with these notes is \textit{Mathematica} and Matlab software that solves the problems
-  described in the text.
+  These notes describe tools for solving microeconomic dynamic stochastic optimization problems, and show how to use those tools for efficiently estimating a standard life cycle consumption/saving model using microeconomic data.  No attempt is made at a systematic overview of the many possible technical choices; instead, I present a specific set of methods that have proven useful in my own work (and explain why other popular methods, such as value function iteration, are a bad idea).  Paired with these notes is \textit{Mathematica}, Matlab, and Python software that solves the problems described in the text.
 \end{abstract}
 
 \begin{footnotesize}
@@ -110,32 +102,7 @@
     \href{mailto:ccarroll@jhu.edu}{\texttt{ccarroll@jhu.edu}}, Phone: (410) 516-7602}
 \end{authorsinfo}
 
-\thanksFooter{The notes were originally written for my
-  Advanced Topics in Macroeconomic Theory class at Johns Hopkins
-  University; instructors elsewhere are welcome to use them for
-  teaching purposes.  Relative to earlier drafts, this version incorporates several improvements related to new
-  results in the paper
-  \href{http://econ-ark.github.io/BufferStockTheory}{``Theoretical
-    Foundations of Buffer Stock Saving''} (especially tools for
-  approximating the consumption and value functions).  Like the last
-  major draft, it also builds on material in ``The Method of
-  Endogenous Gridpoints for Solving Dynamic Stochastic Optimization
-  Problems'' published in \textit{Economics Letters}, available at
-  \url{http://www.econ2.jhu.edu/people/ccarroll/EndogenousArchive.zip}, and
-  by including sample code for a method of simulated moments
-  estimation of the life cycle model \textit{a la}
-  \cite{gpLifecycle} and
-  Cagetti~\citeyearpar{cagettiWprofiles}.  Background derivations,
-  notation, and related subjects are treated in my class notes for
-  first year macro, available at
-  \url{http://www.econ2.jhu.edu/people/ccarroll/public/lecturenotes/consumption}.
-  I am grateful to several generations of graduate students in helping
-  me to refine these notes, to Marc Chan for help in updating the text
-  and software to be consistent with \cite{carrollEGM}, to
-  Kiichi Tokuoka for drafting the section on structural estimation,
-  to Damiano Sandri for exceptionally insightful help in revising
-  and updating the method of simulated moments estimation section, and to Weifeng Wu and Metin Uyanik for revising to be consistent with the `method of moderation' and other improvements.
-  All errors are my own.}
+\thanksFooter{The notes were originally written for my Advanced Topics in Macroeconomic Theory class at Johns Hopkins University; instructors elsewhere are welcome to use them for teaching purposes.  Relative to earlier drafts, this version incorporates several improvements related to new results in the paper \href{http://econ-ark.github.io/BufferStockTheory}{``Theoretical Foundations of Buffer Stock Saving''} (especially tools for approximating the consumption and value functions).  Like the last major draft, it also builds on material in ``The Method of Endogenous Gridpoints for Solving Dynamic Stochastic Optimization Problems'' published in \textit{Economics Letters}, available at \url{http://www.econ2.jhu.edu/people/ccarroll/EndogenousArchive.zip}, and by including sample code for a method of simulated moments estimation of the life cycle model \textit{a la} \cite{gpLifecycle} and Cagetti~\citeyearpar{cagettiWprofiles}.  Background derivations, notation, and related subjects are treated in my class notes for first year macro, available at \url{http://www.econ2.jhu.edu/people/ccarroll/public/lecturenotes/consumption}.  I am grateful to several generations of graduate students in helping me to refine these notes, to Marc Chan for help in updating the text and software to be consistent with \cite{carrollEGM}, to Kiichi Tokuoka for drafting the section on structural estimation, to Damiano Sandri for exceptionally insightful help in revising and updating the method of simulated moments estimation section, and to Weifeng Wu and Metin Uyanik for revising to be consistent with the `method of moderation' and other improvements.  All errors are my own.}
 
 \titlepagefinish
 \setcounter{page}{1}
@@ -1557,12 +1524,7 @@ most eagle-eyed reader.)
 
 \begin{verbatimwrite}{./cctwMoM/value-Intro.tex}
 
-  Although section~\ref{subsec:vVsuP} argued that our problem is more
-  efficiently solved by constructing the consumption rule than by
-  approximating the value function, often it is useful to know the
-  value function as well as the consumption rule.  Fortunately, many
-  of the tricks used when solving for the consumption rule have a 
-  direct analogue in approximation of the value function.
+  Often it is useful to know the value function as well as the consumption rule.  Fortunately, many of the tricks used when solving for the consumption rule have a direct analogue in approximation of the value function.
 
   Consider the perfect foresight (or ``optimist's'') problem in period $T-1$:
   \begin{equation*}\begin{gathered}\begin{aligned}
@@ -1754,7 +1716,7 @@ most eagle-eyed reader.)
   $-\ushort{m}_{t}$, $\Lo{\koppa}_{t}(\mu_{t})$ converges to zero, while as $m_{t}$
   approaches $+\infty$, $\Lo{\koppa}_{t}(\mu_{t})$ approaches $1$.  
 
-  As before (in equation \eqref{eq:vEndtdefn}), we can derive an approximated consumption function; call it
+  As before, we can derive an approximated consumption function; call it
   $\Alt{\Lo{\cFunc}}_{t}$.  This function will clearly do a better job approximating the consumption
   function for low values of $\mNrm_{t}$ while the previous approximation will perform better
   for high values of $\mNrm_{t}$.  
@@ -2775,10 +2737,10 @@ allocated between the risky and riskless assets.  Thus we define
       \vEnd_{t}({a}_{t},\varsigma_{t})  & = \Ex_{t}[\DiscFac {\vFunc}_{t+1}({m}_{t+1})]
     \end{aligned}\end{gathered}\end{equation*}
 which has derivatives
-\begin{equation*}\begin{gathered}\begin{aligned}
-      \vEnd_{t}^{{a}}  & = \Ex_{t}[\DiscFac {\Rport}_{t+1}{\vFunc}_{t+1}^{m}({m}_{t+1})]
-      \\      \vEnd_{t}^{\varsigma}  & = \Ex_{t}[\DiscFac (\Risky_{t+1}-\Rfree){\vFunc}_{t+1}^{m}({m}_{t+1})  ]a_{t}
-    \end{aligned}\end{gathered}\end{equation*}
+\begin{equation}\begin{gathered}\begin{aligned}
+      \vEnd_{t}^{{a}}  & = \Ex_{t}[\DiscFac {\Rport}_{t+1}{\vFunc}_{t+1}^{m}({m}_{t+1})] = \Ex_{t}[\DiscFac {\Rport}_{t+1}{\uFunc}_{t+1}^{\prime}(\cFunc_{t+1}({m}_{t+1}))]
+      \\      \vEnd_{t}^{\varsigma}  & = \Ex_{t}[\DiscFac (\Risky_{t+1}-\Rfree){\vFunc}_{t+1}^{m}({m}_{t+1})  ]a_{t} = \Ex_{t}[\DiscFac (\Risky_{t+1}-\Rfree){\uFunc}_{t+1}^{\prime}(\cFunc_{t+1}({m}_{t+1}))  ]a_{t} \notag
+    \end{aligned}\end{gathered}\end{equation}
 implying that the first order conditions (\ref{eq:EulercRiskyR}) and
 (\ref{eq:FOCw}) can be rewritten
 \begin{equation}\begin{gathered}\begin{aligned}
@@ -3495,8 +3457,29 @@ this ratio is used for the estimation.\footnote{Please refer to the archive code
 \appendix
 \addcontentsline{toc}{section}{Appendices} % Say "Appendices"
 
-\subfile{TRP}
+\subfile{TRP_aInU}
 }{}
 
 
 \end{document}
+
+% Local Variables:
+% TeX-master-file: t
+% eval: (setq TeX-command-list  (assq-delete-all (car (assoc "BibTeX" TeX-command-list)) TeX-command-list))
+% eval: (setq TeX-command-list  (assq-delete-all (car (assoc "Biber"  TeX-command-list)) TeX-command-list))
+% eval: (setq TeX-command-list  (remove '("BibTeX" "%(bibtex) %s"    TeX-run-BibTeX nil t :help "Run BibTeX") TeX-command-list))
+% eval: (setq TeX-command-list  (remove '("BibTeX"    "bibtex %s"    TeX-run-BibTeX nil (plain-tex-mode latex-mode doctex-mode ams-tex-mode texinfo-mode context-mode)  :help "Run BibTeX") TeX-command-list))
+% eval: (setq TeX-command-list  (remove '("BibTeX" "bibtex %s"    TeX-run-BibTeX nil t :help "Run BibTeX") TeX-command-list))
+% eval: (add-to-list 'TeX-command-list '("BibTeX" "bibtex %s" TeX-run-BibTeX nil t                                                                              :help "Run BibTeX") t)
+% eval: (add-to-list 'TeX-command-list '("BibTeX" "bibtex %s" TeX-run-BibTeX nil (plain-tex-mode latex-mode doctex-mode ams-tex-mode texinfo-mode context-mode) :help "Run BibTeX") t)
+% TeX-PDF-mode: t
+% TeX-file-line-error: t
+% TeX-debug-warnings: t
+% LaTeX-command-style: (("" "%(PDF)%(latex) %(file-line-error) %(extraopts) -output-directory=. %S%(PDFout)"))
+% TeX-source-correlate-mode: t
+% TeX-parse-self: t
+% TeX-parse-all-errors: t
+% eval: (cond ((string-equal system-type "darwin") (progn (setq TeX-view-program-list '(("Skim" "/Applications/Skim.app/Contents/SharedSupport/displayline -b %n %o %b"))))))
+% eval: (cond ((string-equal system-type "gnu/linux") (progn (setq TeX-view-program-list '(("Evince" "evince --page-index=%(outpage) %o"))))))
+% eval: (cond ((string-equal system-type "gnu/linux") (progn (setq TeX-view-program-selection '((output-pdf "Evince"))))))
+% End:
