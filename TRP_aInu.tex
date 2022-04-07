@@ -7,7 +7,7 @@
 % Control whether optional \trp or \cdc components appear
 \setboolean{trpVersion}{true}
 \provideboolean{aInUVersion}\setboolean{aInUVersion}{true}
-%\provideboolean{aInUVersion}\setboolean{aInUVersion}{false}
+% \provideboolean{aInUVersion}\setboolean{aInUVersion}{false}
 \newcommand{\aInU}{\ifthenelse{\boolean{aInUVersion}}}
 \provideboolean{xInUVersion}\setboolean{xInUVersion}{true}
 \provideboolean{xInUVersion}\setboolean{xInUVersion}{false}
@@ -51,14 +51,14 @@ This appendix considers how to solve a model with a utility function that allows
 \aInU{$\uFunc(c,a)$}{$\uFunc(c,b)$}.
 \begin{comment}
   Thus, for example, in a terminal period where there is no probability of survival (say, at age 120), value will be
-\aInU{
-  \begin{align}
-    \vFunc_{\tTerm} & = \uFunc(\cNrm_{\tTerm},\aNrm_{\tTerm}).
-  \end{align}}{
-  \begin{align}
-    \vFunc_{\tTerm} & = \uFunc(\cNrm_{\tTerm},\bNrm_{\tTerm}).
-  \end{align}
-}
+  \aInU{
+    \begin{align}
+      \vFunc_{\tTerm} & = \uFunc(\cNrm_{\tTerm},\aNrm_{\tTerm}).
+    \end{align}}{
+    \begin{align}
+      \vFunc_{\tTerm} & = \uFunc(\cNrm_{\tTerm},\bNrm_{\tTerm}).
+    \end{align}
+  }
 \end{comment}
 
 For purposes of articulating the exact structure of the model it is useful to define a sequence for events that are in principle simultaneous.  These correspond essentially to a set of steps that will be executed in order by the code solving (or simulating) the model.  Notationally the sequence of steps can be indexed by time gaps of infinitesimal duration $\epsilon$.  We conceive of the sequence of events in the period as follows, where for example the notation $2\epsilon$ means that the event is conceived of has happening two instants after the beginning of the period and because the period is of total duration 1, $1-\calculatee$ means that the event is conceived of as happening an instant before the end of the period:
@@ -89,12 +89,12 @@ For purposes of articulating the exact structure of the model it is useful to de
   \begin{equation}
     \mNrm_{\tCurr+\calculatem} = \bNrm_{\tCurr+\beginWithb}+\yNrm_{\tCurr+\receiveinc}
   \end{equation}
-
+  
 \item[$\phantom{1-}\choosecons$:]  The consumer decides how much to consume for the year
   \begin{itemize}
   \item We imagine that this amount is immediately deducted from market resources; concretely, imagine that the amount $\cNrm_{\tCurr+\choosecons}$ is put into an untouchable escrow account
   \item The escrow account funds a constant \textit{flow rate} of consumption that will be maintained throughout the interval from $\tCurr+\choosecons$ to $\tCurr+1-\epsilon$
-
+    
   \end{itemize}
 \item[$\phantom{1-}\calculatea$:]  The consumption decision determines the amount of investable assets:
   \begin{equation}
@@ -109,7 +109,7 @@ For purposes of articulating the exact structure of the model it is useful to de
   \begin{align}
     \eNrm_{\tNext-\calculatee} & = \Rend{\Rport}_{\tNext-\drawreturn} \aNrm_{\tCurr+\calculatea}
   \end{align}
-
+  
 \end{enumerate}
 % \end{quote}
 
@@ -140,7 +140,7 @@ Using this notation we can now unambiguously define period-$\tCurr$ post-all-dec
   \begin{align}
     \vBeg_{\tCurr+\beginWithk}(\kNrm_{\tCurr+\beginWithk}) & = \Ex_{\tCurr+\beginWithk}[\vFunc_{\tCurr+\choosecons}(\mNrm_{\tCurr+\calculatem},\bNrm_{\tCurr+\beginWithb})].
   \end{align}
-
+  
   % We can also define beginning-of-period value as a function of $\kNrm$ but it must be defined as an expectation; I will resist the temptation to use a Phoenician or Egyptian letter and simply write this as $\vFunc^{-}$:
   % \begin{align}
   %   \vFunc_{\tCurr+\beginWithk}^{-}(\kNrm_{\tCurr+\beginWithk}) & = \Ex_{\tCurr+\beginWithk}[\vFunc_{\tCurr+\choosecons}(\mNrm_{\tCurr+\calculatem},\bNrm_{\tCurr+\beginWithk})].
@@ -258,7 +258,7 @@ To make further progress, we now must specify the structure of the utility funct
   \begin{align}
     \uFunc^{c}-\uFunc^{a} & = \left(1-(\cNrm/\aNrm)\left(\frac{\wealthU}{1-\wealthU}\right)\right)\uFunc^{c}
   \end{align}
-
+  
   \cdc{
     \eInU{}{% \eInU-True-End \eInU-False-Start
       In the \texttt{CDC} value function, note that relative risk aversion with respect to (proportional) fluctuations in $\bNrm$ (for a fixed $\cNrm$) is
@@ -271,19 +271,19 @@ To make further progress, we now must specify the structure of the utility funct
   \trp{
     In the \texttt{CobbDouglas} value function, relative risk aversion with respect to (proportional) fluctuations in \aInU{$\aNrm$}{$\bNrm$} (for a fixed $\cNrm$) is given by $\wealthU\CRRA$, while relative risk aversion with respect to (proportional) fluctuations in $\cNrm$ (for a fixed \aInU{$\aNrm$}{$\bNrm$}) is given by $(1-\wealthU)\CRRA$.  Suppose we calibrate $\wealthU$ to 1/3, so that in the last period of life a consumer who faced no risk would choose to set \aInU{$\aNrm = (1/2) \cNrm$}{$\bNrm = (1/2) \cNrm$}.  In such a case, when we consider introducing rate of return risk, the consumer's relative aversion to consumption risk will be twice as large as their relative aversion to fluctuations in financial balances.
   }{}
-
-
+  
+  
   \subsection{Solution}
-
+  
   Now, as in the main text, designate a matrix of values of end-of-period assets in $\aMat_{\aIdx}$ for $\aIdx \in \{0,...,\aCnt-1\}$ and for each element in $\aIdx$ compute the corresponding matrix of values of Gothic maximized value (for the particular problem we have specified, these matrices will have only one dimension -- they will be vectors):
   \begin{align}
     [\Maxed{\vEnd}^{\aNrm}_{\tCurr}]=\Maxed{\vEnd}^{\aNrm}_{\tCurr}(\aMat) 
   \end{align}
-
+  
   That is, $[\Maxed{\vEnd}^{\aNrm}_{\tCurr}]_{\aIdx} = \Maxed{\vEnd}^{\aNrm}_{\tCurr}(\aMat_{\aIdx})~\forall~\aIdx$.
-
+  
   \trp{\subsection{CobbDouglas Model}
-
+    
     \xInU{
       \begin{align}
         \xi & = \cNrm (\cNrm/\aNrm)^{-\wealthU} = \cNrm^{1-\wealthU}\aNrm^{\wealthU}
@@ -321,17 +321,17 @@ To make further progress, we now must specify the structure of the utility funct
       \end{align}
       % so that 
       % \begin{align}
-          %           \muInv(\uFunc^{c}_{\tCurr},\xNrm_{\tCurr}) & = \cNrm_{\tCurr}
-                                                                   %                                                                    \muInv(\uFunc^{\cNrm}) & = \cNrm\xNrm^{-\wealthU}\left(\xNrm^{-\wealthU}(1-\wealthU)\right)^{-1/\CRRA}
-                                                                                                                                                                 %         \end{align}
-                                                                                                                                                                 %                                                                                                                                                                  (and note that when $\wealthU=0$ this collapses to $\cNrm_{\tCurr}$ as in the EGM treatment in the main text).
-
+      % \muInv(\uFunc^{c}_{\tCurr},\xNrm_{\tCurr}) & = \cNrm_{\tCurr}
+      % \muInv(\uFunc^{\cNrm}) & = \cNrm\xNrm^{-\wealthU}\left(\xNrm^{-\wealthU}(1-\wealthU)\right)^{-1/\CRRA}
+      % \end{align}
+      % (and note that when $\wealthU=0$ this collapses to $\cNrm_{\tCurr}$ as in the EGM treatment in the main text).
+      
       Then the EGM step applied to the FOC of the optimization problem is 
       \begin{align}
         \muInv(\uFunc_{c}) & = \muInv(\Maxed{\vEnd}^{\aNrm}_{\tCurr}(\aNrm_{t}))
         \\ \cNrm_{\tCurr} \xNrm_{\tCurr}^{-\wealthU(1-1/\CRRA)} \left(1-\wealthU(1-\xNrm_{\tCurr})\right)^{-1/\CRRA} & = \muInv(\Maxed{\vEnd}^{\aNrm}_{\tCurr}(\aNrm_{t})) \notag
       \end{align}
-
+      
       Now specify some fixed vector $\xMat$ of possible values of $\xNrm$:
       \begin{align}
         (\xMat_{\aIdx})^{-\wealthU(1-1/\CRRA)} \left(1-\wealthU(1-\xMat_{\aIdx})\right)^{-1/\CRRA} \cNrm_{\tCurr} & = \muInv(\Maxed{\vEnd}^{\aNrm}_{\tCurr}(\cNrm_{\tCurr}/\xMat_{\aIdx})) \notag
@@ -354,7 +354,7 @@ To make further progress, we now must specify the structure of the utility funct
   { % \trp-Not
   }
   Now suppose for convenience we define $\grave{\CRRA}=\CRRA(1-\wealthU)+\wealthU$ so that
-
+  
   \begin{align}
     \uFunc^{c}(\cNrm,\aNrm) & = \cNrm^{-\grave{\CRRA}}\aNrm^{\wealthU(1-\CRRA)}(1- \wealthU)
     \\    \uFunc^{a}(\cNrm,\aNrm) & = \cNrm^{-\grave{\CRRA}}\aNrm^{\wealthU(1-\CRRA)}\phantom{~}\wealthU
@@ -368,22 +368,22 @@ To make further progress, we now must specify the structure of the utility funct
   %   \muInv(\uFunc^{c}_{\tCurr}) & = ( \aNrm_{t})^{-\wealthU(1-\CRRA)/\grave{\CRRA}}\cNrm_{t}
   % \end{align}
   % (and note that when $\wealthU=0$ this collapses to $\cNrm_{\tCurr}$ as in the EGM treatment in the main text).
-
+  
   Then
   \begin{align}
     \muInv(\uFunc^{\cNrm}_{\tCurr}-\uFunc^{\aNrm}_{\tCurr}) & = \muInv\left(1-(\cNrm_{t}/\aNrm_{t})(\wealthU/(1-\wealthU))\right)(\aNrm^{-\wealthU(1-\CRRA)/\grave{\CRRA}})\cNrm_{t}
   \end{align}
-
+  
   Now we use the fact that for an optimizing consumer
   \begin{align}
     \muInv(\uFunc^{\cNrm}_{\tCurr}-\uFunc^{\aNrm}_{\tCurr})/\aNrm^{-\wealthU(1-\CRRA)/\grave{\CRRA}} & = \muInv(\Maxed{\vEnd}_{\tCurr}^{\aNrm}(\aNrm))/\aNrm^{-\wealthU(1-\CRRA)/\grave{\CRRA}}
-    \\ \muInv\left(1-(\cNrm/\aNrm)(\wealthU/(1-\wealthU))\right)\cNrm & = \muInv(\Maxed{\vEnd}_{\tCurr}^{\aNrm}(\aNrm)) \notag.
+    \\ \muInv\left(1-(\cNrm/\aNrm)(\wealthU/(1-\wealthU))\right)\cNrm & = \muInv(\Maxed{\vEnd}_{\tCurr}^{\aNrm}(\aNrm)) \aNrm^{\wealthU(1-\CRRA)/\grave{\CRRA}} \notag.
   \end{align}
-
+  
   For any fixed $\aNrm>0$ this is a nonlinear equation that can be solved for the unique $\cNrm$ that satisfies it.  (See below for discussion of options for solving the equation).
-
+  
   Define the `consumed' function obtained in that manner as $\mathfrak{\cNrm}_{\tCurr}(\aNrm)$.
-
+  
   % Now we use the fact that for an optimizing consumer $\uFunc^{\cNrm}_{\tCurr}=\Maxed{\vEnd}^{\aNrm}_{\tCurr}$ to define a `consumed' function that recovers the amount the optimizing consumer must have consumed to have arrived at the point $\{\aNrm\}$:
   % \begin{align}
   %   \mathfrak{\cNrm}_{\tCurr}(\aNrm) & = \muInv(\Maxed{\vEnd}_{\tCurr}^{\aNrm}(\aNrm))/\aNrm^{-\wealthU(1-\CRRA)/\grave{\CRRA}}. \label{eq:cGoth}
@@ -402,7 +402,7 @@ To make further progress, we now must specify the structure of the utility funct
     \muInv(\uFunc^{c}_{\tCurr}) & =  \cNrm_{\tCurr}\bNrm_{\tCurr}^{-\wealthU(1-\CRRA)/\grave{\CRRA}} %\label{eq:cb}
   \end{align}
   (and note that when $\wealthU=0$ this collapses to $\cNrm_{\tCurr}$ as in the EGM treatment in the main text).
-
+  
   The fact that $\muInv(\uFunc^{c}) = \muInv(\Maxed{\vEnd}^{\aNrm}(\aNrm))$ allows us to define the optimal `consumed' function
   \begin{equation}
     \label{eq:cGoth}
@@ -421,7 +421,7 @@ To make further progress, we now must specify the structure of the utility funct
     \\ & = \bNrm+\yNrm - \cNrm
     \\ \aNrm-\yNrm+\mathfrak{\cNrm}(\aNrm,\bNrm) & = \bNrm
   \end{align}
-
+  
   \newcommand{\aNrmR}{\ERport \aNrm}
   
   Using these, and (to simplify the expressions) defining $\muInvMax=\muInv(\Maxed{\vEnd}_{\tCurr}^{\aNrm}(\aNrm))$ rewrite the solution as
@@ -469,16 +469,16 @@ To make further progress, we now must specify the structure of the utility funct
   \begin{align}
     \mMat_{\aIdx} & = \aMat_{\aIdx} + \mathfrak{\cNrm}_{\tCurr}(\aMat_{\aIdx})
   \end{align}
-
+  
   We can now construct a consumption function $\cFunc_{\tCurr+\calculatem}(\mNrm_{\tCurr+\calculatem}) \equiv \cFunc_{\tCurr}(\mNrm_{\tCurr})$ that corresponds to the Roman period (by interpolating among using $\{\mMat,\cMat\}$).
-
+  
   If income is nonstochastic, say at $\yNrm_{t}=1$, we can (if we like) define $\bMat = \mMat - 1$ and construct the Greek version of the solution from
   \begin{align}
     \vBeg_{t}(\bNrm_{t}) & = \vFunc_{t}(\bNrm_{t}+1)
     \\ \chi_{t}(\bNrm_{t}) & = \cFunc_{t}(\bNrm_{t}+1)                       
   \end{align}
   and so on.
-
+  
 }{ % aInU-End
   % bInU
   Now for convenience define a matrix of values of $\muInv$ calculated at the values in $\aMat$:
@@ -490,7 +490,7 @@ To make further progress, we now must specify the structure of the utility funct
     \aMat_{\aIdx} & = \bNrm + 1 - \mathfrak{\cNrm}_{\tCurr}(\aMat_{\aIdx},\bNrm)
   \end{align}
   This is a nonlinear equation that will have a unique numerical solution for $\bNrm$ that can be found using a rootfinding algorithm.  For every $\aMat_{\aIdx}$ this will yield a corresponding $\bMat_{\aIdx}$ and plugging that $\bNrm$ back into \eqref{eq:cGoth} will yield a corresponding $\cMat_{\aIdx}$.  It will now be possible to interpolate the $\{\bMat,\cMat\}$ values to yield an interpolating approximation to the consumption function $\chi_{\tCurr+\beginWithb}(\bNrm_{\tCurr})$ (where we have briefly reverted to the earlier cumbersome notation to make the timing clear, and have used the Greek equivalent to the Roman letter $\cFunc$ to signal that timing; the simpler notation would just call this $\chi_{\tCurr}(\bNrm_{t})$).  Alternatively, we could construct $\mMat = \bMat + 1$ and construct a consumption function $\cFunc_{\tCurr+\calculatem}(\mNrm_{\tCurr+\calculatem}) \equiv \cFunc_{\tCurr}(\mNrm_{\tCurr})$ that corresponds to the Roman period (by interpolating among using $\{\mMat,\cMat\}$).
-
+  
   Unfortunately, rootfinding is a computationally slow operation.  To address this problem, consider the following.
   \begin{align}
     \Ex[\bNrm_{t+1}] & = \aNrm_{t}\Ex[(\Rport_{t+1}/\PermGroFac)]
@@ -498,20 +498,20 @@ To make further progress, we now must specify the structure of the utility funct
   while in the vicinity of the steady state, $\bNrm_{t}$ will be close to $\Ex_{t}[\bNrm_{t+1}]$.  So let's define $\bMat= \aMat \PermGroFac/\Ex_{t}[\Rport_{t+1}]$, and rewrite the EGM step as 
   \begin{align*}
     \mathfrak{\cNrm}_{\tCurr}(\aMat,\bMat) & \approx \muInvVect(\aMat \bar{\Rport}_{t+1}/\PermGroFac)^{\wealthU(1-\CRRA)/\grave{\CRRA}}
-                                             %           \\ & = \muInvVect(\aMat(1+\Delta \bMat/\aMat))^{\wealthU(1-\CRRA)/\grave{\CRRA}}
-                                                              %           \\ & \approx \muInvVect(\aMat^{\wealthU(1-\CRRA)/\grave{\CRRA}}(1+({\wealthU(1-\CRRA)/\grave{\CRRA}})\Delta \bMat/\aMat)
-                                                                               %           \\ & = \muInvVect(\aMat^{\wealthU(1-\CRRA)/\grave{\CRRA}}(1+({\wealthU(1-\CRRA)/\grave{\CRRA}}) \PermGroFac/\Ex[\Rport]).
+    % \\ & = \muInvVect(\aMat(1+\Delta \bMat/\aMat))^{\wealthU(1-\CRRA)/\grave{\CRRA}}
+    % \\ & \approx \muInvVect(\aMat^{\wealthU(1-\CRRA)/\grave{\CRRA}}(1+({\wealthU(1-\CRRA)/\grave{\CRRA}})\Delta \bMat/\aMat)
+    % \\ & = \muInvVect(\aMat^{\wealthU(1-\CRRA)/\grave{\CRRA}}(1+({\wealthU(1-\CRRA)/\grave{\CRRA}}) \PermGroFac/\Ex[\Rport]).
   \end{align*}
-
+  
   This will generate a vector of approximate solutions for each $\aIdx$ point, $\cMat$.  %Even more accurate approximate solutions 
-
+  
   It will then be possible to test the degree of success of the approximation by generating the implied $\bMat$ values and comparing them to the approximated values; for points where the results are far from each other, an explicit rootfinding solution can be obtained.  Or, even if a rootfinder is used for all of the points, the points generated in this manner may be used as starting points for the rootfinding algorithm.
-
+  
   Fortunately, there is another alternative to rootfinding, which is interesting in its own right.  
   \subsubsection{Interpolation}
-
+  
   Analogously to the matrix of values of $\aNrm$ above, now define some set of values of $\bMat_{\bIdx}$ for $\bIdx \in \{0,...,\bCnt-1\}$ (perhaps by means of the algorithm just described).
-
+  
   Then for any $\{\aMat,\bMat\}$ pair we can construct the corresponding
   \begin{align}
     \cMat_{\aIdx\bIdx} & = \mathfrak{\cNrm}_{\tCurr}(\aMat_{\aIdx},\bMat_{\bIdx})
@@ -521,9 +521,9 @@ To make further progress, we now must specify the structure of the utility funct
   \begin{align}
     \yMat_{\aIdx\bIdx} & = \mMat_{\aIdx\bIdx}-\bMat_{\bIdx}
   \end{align}
-
+  
   Next, we could construct a two dimensional interpolator for a function $\hat{\chi}(\bNrm,\yNrm)$ from the values in $\{\bMat,\yMat,\cMat\}$.  Finally, we could evaluate this two dimensional interpolator at $\mathfrak{\cNrm}(\bMat,[\mathbf{1}])$ where $[\mathbf{1}]$ is a $\bCnt$-length vector of 1's (corresponding to the realization of $\yNrm=1$ for every $\bMat_{\bIdx}$).  That is, we construct the consumption function as the interpolated value when income takes its expected value.
-
+  
   An even more interesting interpretation is available:  If $\yNrm$ is stochastic, we will have computed the necessary stochastic realization of $\yNrm$ to make a consumer who begins with any given $\bMat_{\bIdx}$ end with any given $\aMat_{\aIdx}$.  Thus, the computation required to solve a version of the model with stochastic $\yNrm$ is \textit{less} than that required to solve the model with $\yNrm=1$, since we no longer need to evaluate the interpolating function at $\yNrm_{\tCurr}=1$ for every $\bMat_{\bIdx}$.
 } % \bInU-End
 
@@ -543,7 +543,7 @@ To make further progress, we now must specify the structure of the utility funct
       \vFunc_{\tCurr+\choosecons}(\mNrm_{\tCurr+\calculatem}) & = \max_{\cNrm_{\tCurr+\choosecons}} ~~\uFromC(\cNrm_{\tCurr+\choosecons})+\Maxed{\vEnd}_{\tCurr}(\mNrm_{\tCurr+\calculatem}-\cNrm_{\tCurr+\choosecons})
     \end{align}
     where $\uFromC$ is now mathematically like the utility function in the main text, so all of the steps to solve for $\cFunc_{\tCurr+\calculatem}(\mNrm_{\tCurr+\calculatem})$ are identical to those in the main text, given that $\Maxed{\vEnd}_{\tCurr}$ has been constructed.
-
+    
     But $\vEnd_{\tCurr}$ is just 
     \begin{align}
       \vEnd_{\tCurr+\definevEnd}(\aNrm_{t},\Rend{\riskyshare}) & = \DiscFac \Ex_{\tCurr+\definevEnd}\left[\uFromB(\bNrm_{t+1})+\vFunc_{\tNext+\choosecons}(\mNrm_{\tNext+\calculatem})\right]
