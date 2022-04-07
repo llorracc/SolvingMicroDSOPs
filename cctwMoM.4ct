@@ -1,0 +1,16 @@
+\expandafter\ifx\csname doTocEntry\endcsname\relax \expandafter\endinput\fi 
+\doTocEntry\tocsection{1}{\csname a:TocLink\endcsname{1}{x1-10001}{QQ2-1-1}{Introduction}}{4}\relax 
+\doTocEntry\tocsection{2}{\csname a:TocLink\endcsname{1}{x1-20002}{QQ2-1-2}{The Realist's Problem}}{4}\relax 
+\doTocEntry\tocsection{3}{\csname a:TocLink\endcsname{1}{x1-30003}{QQ2-1-3}{Benchmark: The Method of Endogenous Gridpoints}}{7}\relax 
+\doTocEntry\toclof{1}{\csname a:TocLink\endcsname{1}{x1-30011}{}{\ignorespaces For Large Enough ${m}_{T-1}$, Predicted Precautionary Saving is Negative (Oops!)}}{figure}\relax 
+\doTocEntry\tocsection{4}{\csname a:TocLink\endcsname{1}{x1-40004}{QQ2-1-5}{The Method of Moderation}}{11}\relax 
+\doTocEntry\tocsubsection{4.1}{\csname a:TocLink\endcsname{1}{x1-50004.1}{QQ2-1-6}{The Optimist, the Pessimist, and the Realist}}{11}\relax 
+\doTocEntry\tocsubsubsection{4.1.1}{\csname a:TocLink\endcsname{1}{x1-60004.1.1}{QQ2-1-7}{The Consumption Function}}{11}\relax 
+\doTocEntry\toclof{2}{\csname a:TocLink\endcsname{1}{x1-60032}{}{\ignorespaces Moderation Illustrated: $\relax $\o:@@underline: {\hbox {\mathrm@@ {c}}}\mathsurround \z@ $\relax _{T-1} < \cc@accent {"7012}{\mathrm@@ {c}}_{T-1} < \cc@accent {"7016}{\mathrm@@ {c}}_{T-1}$}}{figure}\relax 
+\doTocEntry\toclof{3}{\csname a:TocLink\endcsname{1}{x1-60073}{}{\ignorespaces Extrapolated $\cc@accent {"7012}{\cc@accent {"705E}{\mathrm@@ {c}}}_{T-1}$ Constructed Using the Method of Moderation}}{figure}\relax 
+\doTocEntry\tocsubsubsection{4.1.2}{\csname a:TocLink\endcsname{1}{x1-70004.1.2}{QQ2-1-10}{The Value Function}}{20}\relax 
+\doTocEntry\tocsection{5}{\csname a:TocLink\endcsname{1}{x1-80005}{QQ2-1-11}{Extensions}}{23}\relax 
+\doTocEntry\tocsubsection{5.1}{\csname a:TocLink\endcsname{1}{x1-90005.1}{QQ2-1-12}{A Tighter Upper Bound}}{24}\relax 
+\doTocEntry\tocsection{6}{\csname a:TocLink\endcsname{1}{x1-100006}{QQ2-1-13}{Conclusion}}{31}\relax 
+\doTocEntry\toclikesection{}{\csname a:TocLink\endcsname{1}{x1-110006}{QQ2-1-14}{References}}{32}\relax 
+\par 
