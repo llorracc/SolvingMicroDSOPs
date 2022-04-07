@@ -1,0 +1,106 @@
+\providecommand{\noopsort}[1]{} \providecommand{\singleletter}[1]{#1}
+\ifx\undefined\BySame
+\newcommand{\BySame}{\leavevmode\rule[.5ex]{3em}{.5pt}\ }
+\fi
+\begin{thebibliography}{}
+
+\harvarditem[Attanasio, Banks, Meghir, and Weber]{Attanasio, Banks, Meghir, and
+  Weber}{1999}{AttanasioBanksMeghirWeber}
+\textsc{Attanasio, O.P., J.~Banks, C.~Meghir,  {and} G.~Weber}  (1999): ``Humps
+  and Bumps in Lifetime Consumption,'' \emph{Journal of Business and Economic
+  Statistics}, 17(1), 22--35.
+
+\harvarditem[Cagetti]{Cagetti}{2003}{cagettiWprofiles}
+\textsc{Cagetti, Marco}  (2003): ``Wealth Accumulation Over the Life Cycle and
+  Precautionary Savings,'' \emph{Journal of Business and Economic Statistics},
+  21(3), 339--353.
+
+\harvarditem[Carroll]{Carroll}{1992}{carroll:brookings}
+\textsc{Carroll, Christopher~D.}  (1992): ``The Buffer-Stock Theory of Saving:
+  Some Macroeconomic Evidence,'' \emph{Brookings Papers on Economic Activity},
+  1992(2), 61--156,
+  \url{https://www.econ2.jhu.edu/people/ccarroll/BufferStockBPEA.pdf}.
+
+\harvarditem[Carroll]{Carroll}{1997}{carrollBSLCPIH}
+\textsc{\BySame{}}  (1997): ``Buffer Stock Saving and the Life Cycle/Permanent
+  Income Hypothesis,'' \emph{Quarterly Journal of Economics}, CXII(1), 1--56.
+
+\harvarditem[Carroll]{Carroll}{2006}{carrollEGM}
+\textsc{\BySame{}}  (2006): ``The {M}ethod of {E}ndogenous {G}ridpoints for
+  {S}olving {D}ynamic {S}tochastic {O}ptimization {P}roblems,'' \emph{Economics
+  Letters}, 91(3), 312--320,
+  \url{https://www.econ2.jhu.edu/people/ccarroll/EndogenousGridpoints.pdf}.
+
+\harvarditem[Carroll]{Carroll}{2022}{BufferStockTheory}
+\textsc{\BySame{}}  (2022): ``Theoretical Foundations of Buffer Stock Saving,''
+  \emph{Submitted}.
+
+\harvarditem[Carroll]{Carroll}{Current}{MathFacts}
+\textsc{\BySame{}}  (Current): ``Math Facts Useful for Graduate
+  Macroeconomics,'' Online Lecture Notes.
+
+\harvarditem[Carroll and Kim{\-}ball]{Carroll and
+  Kim{\-}ball}{1996}{carroll&kimball:concavity}
+\textsc{Carroll, Chris{\-}to{\-}pher~D.,  {and} Miles~S. Kim{\-}ball}  (1996):
+  ``On the {C}on{\-}cav{\-}ity of the {C}on{\-}sumption {F}unction,''
+  \emph{Econometrica}, 64(4), 981--992,
+  \url{https://www.econ2.jhu.edu/people/ccarroll/concavity.pdf}.
+
+\harvarditem[Carroll and Samwick]{Carroll and
+  Samwick}{1997}{carroll&samwick:nature}
+\textsc{Carroll, Christopher~D.,  {and} Andrew~A. Samwick}  (1997): ``The
+  {N}ature of {P}recautionary {W}ealth,'' \emph{Journal of Monetary Economics},
+  40(1), 41--71.
+
+\harvarditem[Deaton]{Deaton}{1991}{deatonLiqConstr}
+\textsc{Deaton, Angus~S.}  (1991): ``Saving and Liquidity Constraints,''
+  \emph{Econometrica}, 59, 1221--1248,
+  \url{https://www.jstor.org/stable/2938366}.
+
+\harvarditem[den Haan and Marcet]{den Haan and
+  Marcet}{1990}{denHaanMarcet:parameterized}
+\textsc{den Haan, Wouter~J,  {and} Albert Marcet}  (1990): ``Solving the
+  Stochastic Growth Model by Parameterizing Expectations,'' \emph{Journal of
+  Business and Economic Statistics}, 8(1), 31--34, Available at
+  {\url{http://ideas.repec.org/a/bes/jnlbes/v8y1990i1p31-34.html}}.
+
+\harvarditem[Gourinchas and Parker]{Gourinchas and Parker}{2002}{gpLifecycle}
+\textsc{Gourinchas, Pierre-Olivier,  {and} Jonathan Parker}  (2002):
+  ``Consumption Over the Life Cycle,'' \emph{Econometrica}, 70(1), 47--89.
+
+\harvarditem[Horowitz]{Horowitz}{2001}{horowitzBootstrap}
+\textsc{Horowitz, Joel~L.}  (2001): ``The Bootstrap,'' in \emph{Handbook of
+  Econometrics}, ed. by James~J. Heckman,  {and} Edward Leamer, vol.~5.
+  Elsevier/North Holland.
+
+\harvarditem[Judd]{Judd}{1998}{judd:book}
+\textsc{Judd, Kenneth~L.}  (1998): \emph{Numerical Methods in Economics}. The
+  MIT Press, Cambridge, Massachusetts.
+
+\harvarditem[Kopecky and Suen]{Kopecky and Suen}{2010}{kopecky2010finite}
+\textsc{Kopecky, Karen~A.,  {and} Richard~M.H. Suen}  (2010): ``Finite State
+  Markov-Chain Approximations To Highly Persistent Processes,'' \emph{Review of
+  Economic Dynamics}, 13(3), 701--714,
+  \url{http://www.karenkopecky.net/RouwenhorstPaper.pdf}.
+
+\harvarditem[Merton]{Merton}{1969}{merton:restat}
+\textsc{Merton, Robert~C.}  (1969): ``Lifetime Portfolio Selection under
+  Uncertainty: The Continuous Time Case,'' \emph{Review of Economics and
+  Statistics}, 51, 247--257.
+
+\harvarditem[Palumbo]{Palumbo}{1999}{palumbo:medical}
+\textsc{Palumbo, Michael~G}  (1999): ``Uncertain Medical Expenses and
+  Precautionary Saving Near the End of the Life Cycle,'' \emph{Review of
+  Economic Studies}, 66(2), 395--421, Available at
+  {\url{http://ideas.repec.org/a/bla/restud/v66y1999i2p395-421.html}}.
+
+\harvarditem[Samuelson]{Samuelson}{1969}{samuelson:portfolio}
+\textsc{Samuelson, Paul~A.}  (1969): ``Lifetime Portfolio Selection by Dynamic
+  Stochastic Programming,'' \emph{Review of Economics and Statistics}, 51,
+  239--46.
+
+\harvarditem[Valencia]{Valencia}{2006}{valencia:2006}
+\textsc{Valencia, Fabian}  (2006): ``Banks' Financial Structure and Business
+  Cycles,'' Ph.D. thesis, Johns Hopkins University.
+
+\end{thebibliography}

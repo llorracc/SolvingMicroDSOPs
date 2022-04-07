@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2020)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: SolvingMicroDSOPs.aux
+The style file: ./Resources/texmf-local/bibtex/bst/econtex.bst
+Database file #1: economics.bib
+Database file #2: SolvingMicroDSOPs.bib
+Database file #3: SolvingMicroDSOPs-Add.bib
+Done.
+You've used 19 entries,
+            2309 wiz_defined-function locations,
+            642 strings with 6622 characters,
+and the built_in function-call counts, 8672 in all, are:
+= -- 904
+> -- 385
+< -- 1
++ -- 131
+- -- 110
+* -- 762
+:= -- 1699
+add.period$ -- 21
+call.type$ -- 19
+change.case$ -- 103
+chr.to.int$ -- 19
+cite$ -- 19
+duplicate$ -- 319
+empty$ -- 569
+format.name$ -- 136
+if$ -- 1665
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 18
+newline$ -- 64
+num.names$ -- 115
+pop$ -- 70
+preamble$ -- 2
+purify$ -- 103
+quote$ -- 0
+skip$ -- 289
+stack$ -- 0
+substring$ -- 530
+swap$ -- 55
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 1
+type$ -- 206
+warning$ -- 0
+while$ -- 115
+width$ -- 0
+write$ -- 240

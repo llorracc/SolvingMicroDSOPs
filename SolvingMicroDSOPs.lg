@@ -1,0 +1,1305 @@
+htfcss: eccc1000 font-variant: small-caps;
+htfcss: ecbx  font-weight: bold;
+htfcss: ecsx  font-weight: bold;
+htfcss: ecbi  font-weight: bold;   font-style: italic;
+htfcss: ecit  font-style: italic; font-family: monospace,monospace;
+htfcss: ecss  font-family: sans-serif;
+htfcss: ecff  font-family: fantasy;
+htfcss: ecti  font-style: italic;
+htfcss: ectt  font-family: monospace,monospace;
+htfcss: cmss   font-family: sans-serif;
+htfcss: cmssbx  font-family: sans-serif; font-weight: bold;
+htfcss: cmssbxo  font-family: sans-serif; font-style: oblique; font-weight: bold;
+htfcss: cmssdc  font-family: sans-serif;
+htfcss: cmssi  font-family: sans-serif; font-style: oblique;
+htfcss: cmbx  font-weight: bold;
+htfcss: cmbxsl  font-weight: bold; font-style: oblique;
+htfcss: ecbx  font-weight: bold;
+htfcss: ecsx  font-weight: bold;
+htfcss: ecbi  font-weight: bold;   font-style: italic;
+htfcss: ecit  font-style: italic; font-family: monospace,monospace;
+htfcss: ecss  font-family: sans-serif;
+htfcss: ecff  font-family: fantasy;
+htfcss: ecti  font-style: italic;
+htfcss: ectt  font-family: monospace,monospace;
+htfcss: cmss   font-family: sans-serif;
+htfcss: cmssbx  font-family: sans-serif; font-weight: bold;
+htfcss: cmssbxo  font-family: sans-serif; font-style: oblique; font-weight: bold;
+htfcss: cmssdc  font-family: sans-serif;
+htfcss: cmssi  font-family: sans-serif; font-style: oblique;
+htfcss: cmbx  font-weight: bold;
+htfcss: cmbxsl  font-weight: bold; font-style: oblique;
+htfcss: cmbx  font-weight: bold;
+htfcss: cmbxsl  font-weight: bold; font-style: oblique;
+htfcss: cmbx  font-weight: bold;
+htfcss: cmbxsl  font-weight: bold; font-style: oblique;
+htfcss: cmmi font-style: italic;
+htfcss: cmmib font-style: italic; font-weight: bold;
+htfcss: ecbx  font-weight: bold;
+htfcss: ecsx  font-weight: bold;
+htfcss: ecbi  font-weight: bold;   font-style: italic;
+htfcss: ecit  font-style: italic; font-family: monospace,monospace;
+htfcss: ecss  font-family: sans-serif;
+htfcss: ecff  font-family: fantasy;
+htfcss: ecti  font-style: italic;
+htfcss: ectt  font-family: monospace,monospace;
+htfcss: ecbx  font-weight: bold;
+htfcss: ecsx  font-weight: bold;
+htfcss: ecbi  font-weight: bold;   font-style: italic;
+htfcss: ecit  font-style: italic; font-family: monospace,monospace;
+htfcss: ecss  font-family: sans-serif;
+htfcss: ecff  font-family: fantasy;
+htfcss: ecti  font-style: italic;
+htfcss: ectt  font-family: monospace,monospace;
+htfcss: ecbx  font-weight: bold;
+htfcss: ecsx  font-weight: bold;
+htfcss: ecbi  font-weight: bold;   font-style: italic;
+htfcss: ecit  font-style: italic; font-family: monospace,monospace;
+htfcss: ecss  font-family: sans-serif;
+htfcss: ecff  font-family: fantasy;
+htfcss: ecti  font-style: italic;
+htfcss: ectt  font-family: monospace,monospace;
+htfcss: ecbx  font-weight: bold;
+htfcss: ecsx  font-weight: bold;
+htfcss: ecbi  font-weight: bold;   font-style: italic;
+htfcss: ecit  font-style: italic; font-family: monospace,monospace;
+htfcss: ecss  font-family: sans-serif;
+htfcss: ecff  font-family: fantasy;
+htfcss: ecti  font-style: italic;
+htfcss: ectt  font-family: monospace,monospace;
+htfcss: ecbx  font-weight: bold;
+htfcss: ecsx  font-weight: bold;
+htfcss: ecbi  font-weight: bold;   font-style: italic;
+htfcss: ecit  font-style: italic; font-family: monospace,monospace;
+htfcss: ecss  font-family: sans-serif;
+htfcss: ecff  font-family: fantasy;
+htfcss: ecti  font-style: italic;
+htfcss: ectt  font-family: monospace,monospace;
+htfcss: ecbx  font-weight: bold;
+htfcss: ecsx  font-weight: bold;
+htfcss: ecbi  font-weight: bold;   font-style: italic;
+htfcss: ecit  font-style: italic; font-family: monospace,monospace;
+htfcss: ecss  font-family: sans-serif;
+htfcss: ecff  font-family: fantasy;
+htfcss: ecti  font-style: italic;
+htfcss: ectt  font-family: monospace,monospace;
+htfcss: ecbx  font-weight: bold;
+htfcss: ecsx  font-weight: bold;
+htfcss: ecbi  font-weight: bold;   font-style: italic;
+htfcss: ecit  font-style: italic; font-family: monospace,monospace;
+htfcss: ecss  font-family: sans-serif;
+htfcss: ecff  font-family: fantasy;
+htfcss: ecti  font-style: italic;
+htfcss: ectt  font-family: monospace,monospace;
+htfcss: ecbx  font-weight: bold;
+htfcss: ecsx  font-weight: bold;
+htfcss: ecbi  font-weight: bold;   font-style: italic;
+htfcss: ecit  font-style: italic; font-family: monospace,monospace;
+htfcss: ecss  font-family: sans-serif;
+htfcss: ecff  font-family: fantasy;
+htfcss: ecti  font-style: italic;
+htfcss: ectt  font-family: monospace,monospace;
+htfcss: ecbx  font-weight: bold;
+htfcss: ecsx  font-weight: bold;
+htfcss: ecbi  font-weight: bold;   font-style: italic;
+htfcss: ecit  font-style: italic; font-family: monospace,monospace;
+htfcss: ecss  font-family: sans-serif;
+htfcss: ecff  font-family: fantasy;
+htfcss: ecti  font-style: italic;
+htfcss: ectt  font-family: monospace,monospace;
+htfcss: ecbx  font-weight: bold;
+htfcss: ecsx  font-weight: bold;
+htfcss: ecbi  font-weight: bold;   font-style: italic;
+htfcss: ecit  font-style: italic; font-family: monospace,monospace;
+htfcss: ecss  font-family: sans-serif;
+htfcss: ecff  font-family: fantasy;
+htfcss: ecti  font-style: italic;
+htfcss: ectt  font-family: monospace,monospace;
+htfcss: ecbx  font-weight: bold;
+htfcss: ecsx  font-weight: bold;
+htfcss: ecbi  font-weight: bold;   font-style: italic;
+htfcss: ecit  font-style: italic; font-family: monospace,monospace;
+htfcss: ecss  font-family: sans-serif;
+htfcss: ecff  font-family: fantasy;
+htfcss: ecti  font-style: italic;
+htfcss: ectt  font-family: monospace,monospace;
+htfcss: ecbx  font-weight: bold;
+htfcss: ecsx  font-weight: bold;
+htfcss: ecbi  font-weight: bold;   font-style: italic;
+htfcss: ecit  font-style: italic; font-family: monospace,monospace;
+htfcss: ecss  font-family: sans-serif;
+htfcss: ecff  font-family: fantasy;
+htfcss: ecti  font-style: italic;
+htfcss: ectt  font-family: monospace,monospace;
+htfcss: ecbx  font-weight: bold;
+htfcss: ecsx  font-weight: bold;
+htfcss: ecbi  font-weight: bold;   font-style: italic;
+htfcss: ecit  font-style: italic; font-family: monospace,monospace;
+htfcss: ecss  font-family: sans-serif;
+htfcss: ecff  font-family: fantasy;
+htfcss: ecti  font-style: italic;
+htfcss: ectt  font-family: monospace,monospace;
+File: SolvingMicroDSOPs.html
+File: SolvingMicroDSOPs.css
+File: SolvingMicroDSOPs.tmp
+File: SolvingMicroDSOPs2.html
+File: SolvingMicroDSOPs3.html
+File: SolvingMicroDSOPs4.html
+File: SolvingMicroDSOPs5.html
+File: SolvingMicroDSOPs6.html
+File: SolvingMicroDSOPs7.html
+File: SolvingMicroDSOPs8.html
+File: SolvingMicroDSOPs9.html
+File: SolvingMicroDSOPs10.html
+File: SolvingMicroDSOPs11.html
+File: SolvingMicroDSOPs12.html
+File: SolvingMicroDSOPs13.html
+File: SolvingMicroDSOPs14.html
+File: SolvingMicroDSOPs15.html
+File: SolvingMicroDSOPs16.html
+File: SolvingMicroDSOPs17.html
+File: SolvingMicroDSOPs18.html
+File: SolvingMicroDSOPs19.html
+File: SolvingMicroDSOPs20.html
+File: SolvingMicroDSOPs21.html
+File: SolvingMicroDSOPs22.html
+File: SolvingMicroDSOPs23.html
+File: SolvingMicroDSOPs24.html
+File: SolvingMicroDSOPs25.html
+File: SolvingMicroDSOPs26.html
+File: SolvingMicroDSOPs27.html
+File: SolvingMicroDSOPs28.html
+File: SolvingMicroDSOPs29.html
+File: SolvingMicroDSOPs30.html
+File: SolvingMicroDSOPs31.html
+File: SolvingMicroDSOPs32.html
+File: SolvingMicroDSOPs33.html
+File: SolvingMicroDSOPs34.html
+File: SolvingMicroDSOPs35.html
+File: SolvingMicroDSOPs36.html
+File: SolvingMicroDSOPs37.html
+File: SolvingMicroDSOPs38.html
+Font_Class(4,"4"): <span  class="small-caps"></span>
+File: SolvingMicroDSOPs.tmp
+File: SolvingMicroDSOPs.tmp
+File: SolvingMicroDSOPs.tmp
+File: SolvingMicroDSOPs.tmp
+File: SolvingMicroDSOPs.tmp
+File: SolvingMicroDSOPs.tmp
+File: SolvingMicroDSOPs.tmp
+File: SolvingMicroDSOPs.tmp
+File: SolvingMicroDSOPs.tmp
+File: SolvingMicroDSOPs.tmp
+File: SolvingMicroDSOPs.tmp
+File: SolvingMicroDSOPs.tmp
+File: SolvingMicroDSOPs.tmp
+File: SolvingMicroDSOPs.tmp
+File: SolvingMicroDSOPs.tmp
+File: SolvingMicroDSOPs.tmp
+File: SolvingMicroDSOPs.tmp
+File: SolvingMicroDSOPs.tmp
+File: SolvingMicroDSOPs.tmp
+File: SolvingMicroDSOPs.tmp
+File: SolvingMicroDSOPs.tmp
+File: SolvingMicroDSOPs.tmp
+File: SolvingMicroDSOPs.tmp
+File: SolvingMicroDSOPs.tmp
+Css: p{margin-top:0;margin-bottom:0}
+Css: p.indent{text-indent:0;}
+Css: p + p{margin-top:1em;}
+Css: p + div, p + pre {margin-top:1em;}
+Css: div + p, pre + p {margin-top:1em;}
+Css: @media print {div.crosslinks {visibility:hidden;}}
+Css: a img { border-top: 0; border-left: 0; border-right: 0; }
+Font_Css("4"): .small-caps{font-variant: small-caps; }
+Font_Css("10"): .htf-cmbx {font-weight: bold; font-style:normal;}
+Font_Css("12"): .htf-calligraphy {font-family:cursive}
+Font_Css("14"): .htf-italic {font-style: italic;}
+Font_Css("16"): .htf-bold {font-weight: bold;}
+Font_Css("12"): .htf-calligraphy-bold {font-family:cursive ; font-weight: bold; }
+Css: center { margin-top:1em; margin-bottom:1em; }
+Css: td center { margin-top:0em; margin-bottom:0em; }
+Css: .Canvas { position:relative; }
+Css: img.math{vertical-align:middle;}
+Css: li p.indent { text-indent: 0em }
+Css: li p:first-child{ margin-top:0em; }
+Css: li p:last-child, li div:last-child { margin-bottom:0.5em; }
+Css: li p~ul:last-child, li p~ol:last-child{ margin-bottom:0.5em; }
+Css: .enumerate1 {list-style-type:decimal;}
+Css: .enumerate2 {list-style-type:lower-alpha;}
+Css: .enumerate3 {list-style-type:lower-roman;}
+Css: .enumerate4 {list-style-type:upper-alpha;}
+Css: div.newtheorem { margin-bottom: 2em; margin-top: 2em;}
+Css: .obeylines-h,.obeylines-v {white-space: nowrap; }
+Css: div.obeylines-v p { margin-top:0; margin-bottom:0; }
+Css: .overline{ text-decoration:overline; }
+Css: .overline img{ border-top: 1px solid black; }
+Css: td.displaylines {text-align:center; white-space:nowrap;}
+Css: .centerline {text-align:center;}
+Css: .rightline {text-align:right;}
+Css: div.pic-tabular {text-align:center;}
+Css: div.verbatim {font-family: monospace,monospace; white-space: nowrap; text-align:left; clear:both; }
+Css: .fbox {padding-left:3.0pt; padding-right:3.0pt; text-indent:0pt; border:solid black 0.4pt; }
+Css: div.fbox {display:table}
+Css: div.center div.fbox {text-align:center; clear:both; padding-left:3.0pt; padding-right:3.0pt; text-indent:0pt; border:solid black 0.4pt; }
+Css: div.minipage{width:100%;}
+Css: div.center, div.center div.center {text-align: center; margin-left:1em; margin-right:1em;}
+Css: div.center div {text-align: left;}
+Css: div.flushright, div.flushright div.flushright {text-align: right;}
+Css: div.flushright div {text-align: left;}
+Css: div.flushleft {text-align: left;}
+Css: .underline{ text-decoration:underline; }
+Css: .underline img{ border-bottom: 1px solid black; margin-bottom:1pt; }
+Css: .framebox-c, .framebox-l, .framebox-r { padding-left:3.0pt; padding-right:3.0pt; text-indent:0pt; border:solid black 0.4pt; }
+Css: .framebox-c {text-align:center;}
+Css: .framebox-l {text-align:left;}
+Css: .framebox-r {text-align:right;}
+Css: span.thank-mark{ vertical-align: super }
+Css: span.footnote-mark sup.textsuperscript, span.footnote-mark a sup.textsuperscript{ font-size:80%; }
+Css: td p:first-child{ margin-top:0em; }
+Css: td p:last-child{ margin-bottom:0em; }
+Css: div.td00{ margin-left:0pt; margin-right:0pt; }
+Css: div.td01{ margin-left:0pt; margin-right:5pt; }
+Css: div.td10{ margin-left:5pt; margin-right:0pt; }
+Css: div.td11{ margin-left:5pt; margin-right:5pt; }
+Css: table[rules] {border-left:solid black 0.4pt; border-right:solid black 0.4pt; }
+Css: td.td00{ padding-left:0pt; padding-right:0pt; }
+Css: td.td01{ padding-left:0pt; padding-right:5pt; }
+Css: td.td10{ padding-left:5pt; padding-right:0pt; }
+Css: td.td11{ padding-left:5pt; padding-right:5pt; }
+Css: table[rules] {border-left:solid black 0.4pt; border-right:solid black 0.4pt; }
+Css: .hline hr, .cline hr{ height : 0px; margin:0px; }
+Css: .hline td, .cline td{ padding: 0; }
+Css: .hline hr, .cline hr{border:none;border-top:1px solid black;}
+Css: .tabbing-right {text-align:right;}
+Css: div.float, div.figure {margin-left: auto; margin-right: auto;}
+Css: div.float img {text-align:center;}
+Css: div.figure img {text-align:center;}
+Css: .marginpar,.reversemarginpar {width:20%; float:right; text-align:left; margin-left:auto; margin-top:0.5em; font-size:85%; text-decoration:underline;}
+Css: .marginpar p,.reversemarginpar p{margin-top:0.4em; margin-bottom:0.4em;}
+Css: .reversemarginpar{float:left;}
+Css: table.equation {width:100%;}
+Css: .equation td{text-align:center; }
+Css: td.equation { margin-top:1em; margin-bottom:1em; } 
+Css: td.equation-label { width:5%; text-align:center; }
+Css: td.eqnarray4 { width:5%; white-space: normal; }
+Css: td.eqnarray2 { width:5%; }
+Css: table.eqnarray-star, table.eqnarray {width:100%;}
+Css: div.eqnarray{text-align:center;}
+Css: div.array {text-align:center;}
+Css: div.pmatrix {text-align:center;}
+Css: table.pmatrix {width:100%;}
+Css: span.pmatrix img{vertical-align:middle;}
+Css: div.pmatrix {text-align:center;}
+Css: table.pmatrix {width:100%;}
+Css: span.bar-css {text-decoration:overline;}
+Css: table.tabular{border-collapse: collapse; border-spacing: 0;}
+Css: img.cdots{vertical-align:middle;}
+Css: .partToc a, .partToc, .likepartToc a, .likepartToc {line-height: 200%; font-weight:bold; font-size:110%;}
+Css: .index-item, .index-subitem, .index-subsubitem {display:block}
+Css: div.caption {text-indent:-2em; margin-left:3em; margin-right:1em; text-align:left;}
+Css: div.caption span.id{font-weight: bold; white-space: nowrap; }
+Css: h1.partHead{text-align: center}
+Css: p.bibitem { text-indent: -2em; margin-left: 2em; margin-top:0.6em; margin-bottom:0.6em; }
+Css: p.bibitem-p { text-indent: 0em; margin-left: 2em; margin-top:0.6em; margin-bottom:0.6em; }
+Css: .paragraphHead, .likeparagraphHead { margin-top:2em; font-weight: bold;}
+Css: .subparagraphHead, .likesubparagraphHead { font-weight: bold;}
+Css: .quote {margin-bottom:0.25em; margin-top:0.25em; margin-left:1em; margin-right:1em; text-align:justify;}
+Css: .verse{white-space:nowrap; margin-left:2em}
+Css: div.maketitle {text-align:center;}
+Css: h2.titleHead{text-align:center;}
+Css: div.maketitle{ margin-bottom: 2em; }
+Css: div.author, div.date {text-align:center;}
+Css: div.thanks{text-align:left; margin-left:10%; font-size:85%; font-style:italic; }
+Css: div.author{white-space: nowrap;}
+Font_Size: 12
+Css: .quotation {margin-bottom:0.25em; margin-top:0.25em; margin-left:1em; }
+Css: .abstract p {margin-left:5%; margin-right:5%;}
+Css: div.abstract {width:100%;}
+Css: figure.float, div.figure {margin-left: auto; margin-right: auto;}
+Css: figure.float img {text-align:center;}
+Css: figure.figure img {text-align:center;}
+Css: figure.figure > p {text-align:center;}
+Css: figcaption.caption {text-indent:-2em; margin-left:3em; margin-right:1em; text-align:center;}
+Css: figcaption.caption span.id{font-weight: bold; white-space: nowrap; }
+Css: span.footnote-mark sup.textsuperscript, span.footnote-mark a sup.textsuperscript{ font-size:80%; }
+Css: figure.float, div.figure {margin-left: auto; margin-right: auto;}
+Css: figure.float img {text-align:center;}
+Css: figure.figure img {text-align:center;}
+Css: figure.figure > p {text-align:center;}
+Css: figcaption.caption {text-indent:-2em; margin-left:3em; margin-right:1em; text-align:center;}
+Css: figcaption.caption span.id{font-weight: bold; white-space: nowrap; }
+Css: div.verbatiminput {font-family: monospace,monospace; white-space: nowrap; }
+Css: .equation td{text-align:center; }
+Css: .equation-star td{text-align:center; }
+Css: table.equation-star { width:100%; }
+Css: table.equation { width:100%; }
+Css: div.align {text-align: center;}
+Css: table.multline, table.multline-star {width:100%;}
+Css: td.gather {text-align:center; }
+Css: table.gather {width:100%;}
+Css: div.gather-star {text-align:center;}
+Css: td p:first-child{ margin-top:0em; }
+Css: td p:last-child{ margin-bottom:0em; }
+Css: div.td00{ margin-left:0pt; margin-right:0pt; }
+Css: div.td01{ margin-left:0pt; margin-right:5pt; }
+Css: div.td10{ margin-left:5pt; margin-right:0pt; }
+Css: div.td11{ margin-left:5pt; margin-right:5pt; }
+Css: table[rules] {border-left:solid black 0.4pt; border-right:solid black 0.4pt; }
+Css: td.td00{ padding-left:0pt; padding-right:0pt; }
+Css: td.td01{ padding-left:0pt; padding-right:5pt; }
+Css: td.td10{ padding-left:5pt; padding-right:0pt; }
+Css: td.td11{ padding-left:5pt; padding-right:5pt; }
+Css: table[rules] {border-left:solid black 0.4pt; border-right:solid black 0.4pt; }
+Css: .hline hr, .cline hr{ height : 0px; margin:0px; }
+Css: .hline td, .cline td{ padding: 0; }
+Css: .hline hr, .cline hr{border:none;border-top:1px solid black;}
+Css: div.array {text-align:center;}
+Css: table.boxedverbatim {width:100%;}
+Css:  pre.boxedverbatim{border:solid 1px; padding-right:1em;} 
+Css: table.boxedverbatim {text-align:center;}
+Css: .listinginput p{ margin-bottom:0em; margin-top:0em; }
+Css: span.accentset span.accent{font-size:80%; position:relative; top:-1.7ex; left:-0.6em;}
+Css: span.underaccent span.accent{font-size:80%; position:relative; top:1.6ex; left:-0.6em;}
+Css: .uline{ text-decoration:underline; }
+Css: .uuline{ text-decoration:underline; }
+Css: span.sout {text-decoration: line-through }
+Css: span.xout {text-decoration: line-through }
+Css: span.uwave {text-decoration:underline }
+Css: .underline-d{ border-bottom: 3px double black; margin-bottom:1pt; }
+Css: .rotatebox{display: inline-block;}
+Css: .figure img.graphics {margin-left:10%;}
+Css: div.caption {text-align:left;font-size:83%;text-indent:0em; margin-left:2em; margin-right:2em; }
+Css: div.caption span.id{font-variant: small-caps; white-space: nowrap; }
+Css: .figure div.caption{text-align: center;}
+Css: .table div.caption{text-align: center;}
+Css: .table div.pic-tabular{text-align:center;clear:both;overflow:auto;width:100%;margin-bottom:1em;margin-left:auto;margin-right:auto}
+Css: div.figure{text-align:center;clear:both;overflow:auto;width:100%;margin-bottom:1em;margin-left:auto;margin-right:auto}
+Css: div.table{text-align:center;clear:both;overflow:auto;width:100%;margin-bottom:1em;margin-left:auto;margin-right:auto}
+Css: div.float{text-align:center;clear:both;overflow:auto;width:100%;margin-bottom:1em;margin-left:auto;margin-right:auto}
+Css: .subfigure img{display:block; margin-left:auto; margin-right:auto}
+Css: .equation td{text-align:center; }
+Css: td.equation { margin-top:5em; margin-bottom:5em; }
+--- needs --- SolvingMicroDSOPs.idv[2] ==> SolvingMicroDSOPs0x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[3] ==> SolvingMicroDSOPs1x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[4] ==> SolvingMicroDSOPs2x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[6] ==> SolvingMicroDSOPs3x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[8] ==> SolvingMicroDSOPs4x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[9] ==> SolvingMicroDSOPs5x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[11] ==> SolvingMicroDSOPs6x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[12] ==> SolvingMicroDSOPs7x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[13] ==> SolvingMicroDSOPs8x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[14] ==> SolvingMicroDSOPs9x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[15] ==> SolvingMicroDSOPs10x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[16] ==> SolvingMicroDSOPs11x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[18] ==> SolvingMicroDSOPs12x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[19] ==> SolvingMicroDSOPs13x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[21] ==> SolvingMicroDSOPs14x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[23] ==> SolvingMicroDSOPs15x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[24] ==> SolvingMicroDSOPs16x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[26] ==> SolvingMicroDSOPs17x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[28] ==> SolvingMicroDSOPs18x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[29] ==> SolvingMicroDSOPs19x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[30] ==> SolvingMicroDSOPs20x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[31] ==> SolvingMicroDSOPs21x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[32] ==> SolvingMicroDSOPs22x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[33] ==> SolvingMicroDSOPs23x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[35] ==> SolvingMicroDSOPs24x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[36] ==> SolvingMicroDSOPs25x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[37] ==> SolvingMicroDSOPs26x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[38] ==> SolvingMicroDSOPs27x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[39] ==> SolvingMicroDSOPs28x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[41] ==> SolvingMicroDSOPs29x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[42] ==> SolvingMicroDSOPs30x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[43] ==> SolvingMicroDSOPs31x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[44] ==> SolvingMicroDSOPs32x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[46] ==> SolvingMicroDSOPs33x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[47] ==> SolvingMicroDSOPs34x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[49] ==> SolvingMicroDSOPs35x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[51] ==> SolvingMicroDSOPs36x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[53] ==> SolvingMicroDSOPs37x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[55] ==> SolvingMicroDSOPs38x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[57] ==> SolvingMicroDSOPs39x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[58] ==> SolvingMicroDSOPs40x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[59] ==> SolvingMicroDSOPs41x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[60] ==> SolvingMicroDSOPs42x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[61] ==> SolvingMicroDSOPs43x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[63] ==> SolvingMicroDSOPs44x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[64] ==> SolvingMicroDSOPs45x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[65] ==> SolvingMicroDSOPs46x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[67] ==> SolvingMicroDSOPs47x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[69] ==> SolvingMicroDSOPs48x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[71] ==> SolvingMicroDSOPs49x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[72] ==> SolvingMicroDSOPs50x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[73] ==> SolvingMicroDSOPs51x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[74] ==> SolvingMicroDSOPs52x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[75] ==> SolvingMicroDSOPs53x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[76] ==> SolvingMicroDSOPs54x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[77] ==> SolvingMicroDSOPs55x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[78] ==> SolvingMicroDSOPs56x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[79] ==> SolvingMicroDSOPs57x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[80] ==> SolvingMicroDSOPs58x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[81] ==> SolvingMicroDSOPs59x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[82] ==> SolvingMicroDSOPs60x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[83] ==> SolvingMicroDSOPs61x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[85] ==> SolvingMicroDSOPs62x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[86] ==> SolvingMicroDSOPs63x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[87] ==> SolvingMicroDSOPs64x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[88] ==> SolvingMicroDSOPs65x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[90] ==> SolvingMicroDSOPs66x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[91] ==> SolvingMicroDSOPs67x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[92] ==> SolvingMicroDSOPs68x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[93] ==> SolvingMicroDSOPs69x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[94] ==> SolvingMicroDSOPs70x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[95] ==> SolvingMicroDSOPs71x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[96] ==> SolvingMicroDSOPs72x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[97] ==> SolvingMicroDSOPs73x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[99] ==> SolvingMicroDSOPs74x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[100] ==> SolvingMicroDSOPs75x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[101] ==> SolvingMicroDSOPs76x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[102] ==> SolvingMicroDSOPs77x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[103] ==> SolvingMicroDSOPs78x.svg ---
+File: ./Figures/discreteApprox.png
+--- needs --- SolvingMicroDSOPs.idv[105] ==> SolvingMicroDSOPs79x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[107] ==> SolvingMicroDSOPs80x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[108] ==> SolvingMicroDSOPs81x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[109] ==> SolvingMicroDSOPs82x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[111] ==> SolvingMicroDSOPs83x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[113] ==> SolvingMicroDSOPs84x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[114] ==> SolvingMicroDSOPs85x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[116] ==> SolvingMicroDSOPs86x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[117] ==> SolvingMicroDSOPs87x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[118] ==> SolvingMicroDSOPs88x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[119] ==> SolvingMicroDSOPs89x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[120] ==> SolvingMicroDSOPs90x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[121] ==> SolvingMicroDSOPs91x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[122] ==> SolvingMicroDSOPs92x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[123] ==> SolvingMicroDSOPs93x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[124] ==> SolvingMicroDSOPs94x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[125] ==> SolvingMicroDSOPs95x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[126] ==> SolvingMicroDSOPs96x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[127] ==> SolvingMicroDSOPs97x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[128] ==> SolvingMicroDSOPs98x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[129] ==> SolvingMicroDSOPs99x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[130] ==> SolvingMicroDSOPs100x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[131] ==> SolvingMicroDSOPs101x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[132] ==> SolvingMicroDSOPs102x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[133] ==> SolvingMicroDSOPs103x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[134] ==> SolvingMicroDSOPs104x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[135] ==> SolvingMicroDSOPs105x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[136] ==> SolvingMicroDSOPs106x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[138] ==> SolvingMicroDSOPs107x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[140] ==> SolvingMicroDSOPs108x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[141] ==> SolvingMicroDSOPs109x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[142] ==> SolvingMicroDSOPs110x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[143] ==> SolvingMicroDSOPs111x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[144] ==> SolvingMicroDSOPs112x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[146] ==> SolvingMicroDSOPs113x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[147] ==> SolvingMicroDSOPs114x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[148] ==> SolvingMicroDSOPs115x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[149] ==> SolvingMicroDSOPs116x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[150] ==> SolvingMicroDSOPs117x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[152] ==> SolvingMicroDSOPs118x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[153] ==> SolvingMicroDSOPs119x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[154] ==> SolvingMicroDSOPs120x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[155] ==> SolvingMicroDSOPs121x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[156] ==> SolvingMicroDSOPs122x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[157] ==> SolvingMicroDSOPs123x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[159] ==> SolvingMicroDSOPs124x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[160] ==> SolvingMicroDSOPs125x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[161] ==> SolvingMicroDSOPs126x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[162] ==> SolvingMicroDSOPs127x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[163] ==> SolvingMicroDSOPs128x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[164] ==> SolvingMicroDSOPs129x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[165] ==> SolvingMicroDSOPs130x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[166] ==> SolvingMicroDSOPs131x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[167] ==> SolvingMicroDSOPs132x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[168] ==> SolvingMicroDSOPs133x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[169] ==> SolvingMicroDSOPs134x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[170] ==> SolvingMicroDSOPs135x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[171] ==> SolvingMicroDSOPs136x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[172] ==> SolvingMicroDSOPs137x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[173] ==> SolvingMicroDSOPs138x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[174] ==> SolvingMicroDSOPs139x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[175] ==> SolvingMicroDSOPs140x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[176] ==> SolvingMicroDSOPs141x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[177] ==> SolvingMicroDSOPs142x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[178] ==> SolvingMicroDSOPs143x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[179] ==> SolvingMicroDSOPs144x.svg ---
+File: ./Figures/PlotcTm1Simple.png
+--- needs --- SolvingMicroDSOPs.idv[181] ==> SolvingMicroDSOPs145x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[182] ==> SolvingMicroDSOPs146x.svg ---
+File: ./Figures/PlotVTm1Simple.png
+--- needs --- SolvingMicroDSOPs.idv[184] ==> SolvingMicroDSOPs147x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[185] ==> SolvingMicroDSOPs148x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[187] ==> SolvingMicroDSOPs149x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[188] ==> SolvingMicroDSOPs150x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[189] ==> SolvingMicroDSOPs151x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[190] ==> SolvingMicroDSOPs152x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[191] ==> SolvingMicroDSOPs153x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[192] ==> SolvingMicroDSOPs154x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[193] ==> SolvingMicroDSOPs155x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[194] ==> SolvingMicroDSOPs156x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[195] ==> SolvingMicroDSOPs157x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[196] ==> SolvingMicroDSOPs158x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[197] ==> SolvingMicroDSOPs159x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[198] ==> SolvingMicroDSOPs160x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[199] ==> SolvingMicroDSOPs161x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[200] ==> SolvingMicroDSOPs162x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[201] ==> SolvingMicroDSOPs163x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[203] ==> SolvingMicroDSOPs164x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[204] ==> SolvingMicroDSOPs165x.svg ---
+File: ./Figures/PlotOTm1RawVSInt.png
+--- needs --- SolvingMicroDSOPs.idv[206] ==> SolvingMicroDSOPs166x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[207] ==> SolvingMicroDSOPs167x.svg ---
+File: ./Figures/PlotComparecTm1AB.png
+--- needs --- SolvingMicroDSOPs.idv[209] ==> SolvingMicroDSOPs168x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[210] ==> SolvingMicroDSOPs169x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[212] ==> SolvingMicroDSOPs170x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[213] ==> SolvingMicroDSOPs171x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[214] ==> SolvingMicroDSOPs172x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[215] ==> SolvingMicroDSOPs173x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[216] ==> SolvingMicroDSOPs174x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[217] ==> SolvingMicroDSOPs175x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[219] ==> SolvingMicroDSOPs176x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[220] ==> SolvingMicroDSOPs177x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[222] ==> SolvingMicroDSOPs178x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[224] ==> SolvingMicroDSOPs179x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[226] ==> SolvingMicroDSOPs180x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[227] ==> SolvingMicroDSOPs181x.svg ---
+File: ./Figures/PlotuPrimeVSOPrime.png
+--- needs --- SolvingMicroDSOPs.idv[229] ==> SolvingMicroDSOPs182x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[230] ==> SolvingMicroDSOPs183x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[232] ==> SolvingMicroDSOPs184x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[233] ==> SolvingMicroDSOPs185x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[234] ==> SolvingMicroDSOPs186x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[235] ==> SolvingMicroDSOPs187x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[236] ==> SolvingMicroDSOPs188x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[237] ==> SolvingMicroDSOPs189x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[238] ==> SolvingMicroDSOPs190x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[239] ==> SolvingMicroDSOPs191x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[240] ==> SolvingMicroDSOPs192x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[241] ==> SolvingMicroDSOPs193x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[242] ==> SolvingMicroDSOPs194x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[243] ==> SolvingMicroDSOPs195x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[244] ==> SolvingMicroDSOPs196x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[245] ==> SolvingMicroDSOPs197x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[246] ==> SolvingMicroDSOPs198x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[247] ==> SolvingMicroDSOPs199x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[248] ==> SolvingMicroDSOPs200x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[249] ==> SolvingMicroDSOPs201x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[250] ==> SolvingMicroDSOPs202x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[251] ==> SolvingMicroDSOPs203x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[252] ==> SolvingMicroDSOPs204x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[253] ==> SolvingMicroDSOPs205x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[254] ==> SolvingMicroDSOPs206x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[255] ==> SolvingMicroDSOPs207x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[256] ==> SolvingMicroDSOPs208x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[257] ==> SolvingMicroDSOPs209x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[258] ==> SolvingMicroDSOPs210x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[259] ==> SolvingMicroDSOPs211x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[260] ==> SolvingMicroDSOPs212x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[261] ==> SolvingMicroDSOPs213x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[262] ==> SolvingMicroDSOPs214x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[263] ==> SolvingMicroDSOPs215x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[264] ==> SolvingMicroDSOPs216x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[265] ==> SolvingMicroDSOPs217x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[266] ==> SolvingMicroDSOPs218x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[267] ==> SolvingMicroDSOPs219x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[268] ==> SolvingMicroDSOPs220x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[269] ==> SolvingMicroDSOPs221x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[270] ==> SolvingMicroDSOPs222x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[271] ==> SolvingMicroDSOPs223x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[273] ==> SolvingMicroDSOPs224x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[275] ==> SolvingMicroDSOPs225x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[276] ==> SolvingMicroDSOPs226x.svg ---
+File: ./Figures/PlotOPRawVSFOC.png
+--- needs --- SolvingMicroDSOPs.idv[278] ==> SolvingMicroDSOPs227x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[279] ==> SolvingMicroDSOPs228x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[281] ==> SolvingMicroDSOPs229x.svg ---
+File: ./Figures/PlotcTm1ABC.png
+--- needs --- SolvingMicroDSOPs.idv[283] ==> SolvingMicroDSOPs230x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[284] ==> SolvingMicroDSOPs231x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[286] ==> SolvingMicroDSOPs232x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[287] ==> SolvingMicroDSOPs233x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[288] ==> SolvingMicroDSOPs234x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[289] ==> SolvingMicroDSOPs235x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[290] ==> SolvingMicroDSOPs236x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[291] ==> SolvingMicroDSOPs237x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[293] ==> SolvingMicroDSOPs238x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[294] ==> SolvingMicroDSOPs239x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[295] ==> SolvingMicroDSOPs240x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[296] ==> SolvingMicroDSOPs241x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[297] ==> SolvingMicroDSOPs242x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[298] ==> SolvingMicroDSOPs243x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[299] ==> SolvingMicroDSOPs244x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[300] ==> SolvingMicroDSOPs245x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[301] ==> SolvingMicroDSOPs246x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[303] ==> SolvingMicroDSOPs247x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[305] ==> SolvingMicroDSOPs248x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[306] ==> SolvingMicroDSOPs249x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[308] ==> SolvingMicroDSOPs250x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[309] ==> SolvingMicroDSOPs251x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[310] ==> SolvingMicroDSOPs252x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[311] ==> SolvingMicroDSOPs253x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[312] ==> SolvingMicroDSOPs254x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[314] ==> SolvingMicroDSOPs255x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[316] ==> SolvingMicroDSOPs256x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[317] ==> SolvingMicroDSOPs257x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[318] ==> SolvingMicroDSOPs258x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[320] ==> SolvingMicroDSOPs259x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[321] ==> SolvingMicroDSOPs260x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[322] ==> SolvingMicroDSOPs261x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[323] ==> SolvingMicroDSOPs262x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[324] ==> SolvingMicroDSOPs263x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[325] ==> SolvingMicroDSOPs264x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[327] ==> SolvingMicroDSOPs265x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[328] ==> SolvingMicroDSOPs266x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[329] ==> SolvingMicroDSOPs267x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[330] ==> SolvingMicroDSOPs268x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[331] ==> SolvingMicroDSOPs269x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[332] ==> SolvingMicroDSOPs270x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[334] ==> SolvingMicroDSOPs271x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[336] ==> SolvingMicroDSOPs272x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[337] ==> SolvingMicroDSOPs273x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[338] ==> SolvingMicroDSOPs274x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[339] ==> SolvingMicroDSOPs275x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[340] ==> SolvingMicroDSOPs276x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[341] ==> SolvingMicroDSOPs277x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[342] ==> SolvingMicroDSOPs278x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[343] ==> SolvingMicroDSOPs279x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[344] ==> SolvingMicroDSOPs280x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[345] ==> SolvingMicroDSOPs281x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[346] ==> SolvingMicroDSOPs282x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[347] ==> SolvingMicroDSOPs283x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[348] ==> SolvingMicroDSOPs284x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[349] ==> SolvingMicroDSOPs285x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[350] ==> SolvingMicroDSOPs286x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[351] ==> SolvingMicroDSOPs287x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[352] ==> SolvingMicroDSOPs288x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[353] ==> SolvingMicroDSOPs289x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[354] ==> SolvingMicroDSOPs290x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[355] ==> SolvingMicroDSOPs291x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[356] ==> SolvingMicroDSOPs292x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[357] ==> SolvingMicroDSOPs293x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[358] ==> SolvingMicroDSOPs294x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[359] ==> SolvingMicroDSOPs295x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[360] ==> SolvingMicroDSOPs296x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[361] ==> SolvingMicroDSOPs297x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[363] ==> SolvingMicroDSOPs298x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[364] ==> SolvingMicroDSOPs299x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[365] ==> SolvingMicroDSOPs300x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[366] ==> SolvingMicroDSOPs301x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[367] ==> SolvingMicroDSOPs302x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[368] ==> SolvingMicroDSOPs303x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[369] ==> SolvingMicroDSOPs304x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[370] ==> SolvingMicroDSOPs305x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[371] ==> SolvingMicroDSOPs306x.svg ---
+File: ./Figures/GothVInvVSGothC.png
+--- needs --- SolvingMicroDSOPs.idv[373] ==> SolvingMicroDSOPs307x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[374] ==> SolvingMicroDSOPs308x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[376] ==> SolvingMicroDSOPs309x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[377] ==> SolvingMicroDSOPs310x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[378] ==> SolvingMicroDSOPs311x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[379] ==> SolvingMicroDSOPs312x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[380] ==> SolvingMicroDSOPs313x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[381] ==> SolvingMicroDSOPs314x.svg ---
+File: ./Figures/GothVVSGothCInv.png
+--- needs --- SolvingMicroDSOPs.idv[383] ==> SolvingMicroDSOPs315x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[384] ==> SolvingMicroDSOPs316x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[385] ==> SolvingMicroDSOPs317x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[387] ==> SolvingMicroDSOPs318x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[388] ==> SolvingMicroDSOPs319x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[389] ==> SolvingMicroDSOPs320x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[390] ==> SolvingMicroDSOPs321x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[391] ==> SolvingMicroDSOPs322x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[392] ==> SolvingMicroDSOPs323x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[393] ==> SolvingMicroDSOPs324x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[394] ==> SolvingMicroDSOPs325x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[395] ==> SolvingMicroDSOPs326x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[397] ==> SolvingMicroDSOPs327x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[398] ==> SolvingMicroDSOPs328x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[399] ==> SolvingMicroDSOPs329x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[401] ==> SolvingMicroDSOPs330x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[403] ==> SolvingMicroDSOPs331x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[404] ==> SolvingMicroDSOPs332x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[405] ==> SolvingMicroDSOPs333x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[406] ==> SolvingMicroDSOPs334x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[407] ==> SolvingMicroDSOPs335x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[408] ==> SolvingMicroDSOPs336x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[409] ==> SolvingMicroDSOPs337x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[411] ==> SolvingMicroDSOPs338x.svg ---
+File: ./Figures/PlotComparecTm1AD.png
+--- needs --- SolvingMicroDSOPs.idv[413] ==> SolvingMicroDSOPs339x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[414] ==> SolvingMicroDSOPs340x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[416] ==> SolvingMicroDSOPs341x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[417] ==> SolvingMicroDSOPs342x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[418] ==> SolvingMicroDSOPs343x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[420] ==> SolvingMicroDSOPs344x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[421] ==> SolvingMicroDSOPs345x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[422] ==> SolvingMicroDSOPs346x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[423] ==> SolvingMicroDSOPs347x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[424] ==> SolvingMicroDSOPs348x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[425] ==> SolvingMicroDSOPs349x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[426] ==> SolvingMicroDSOPs350x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[427] ==> SolvingMicroDSOPs351x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[428] ==> SolvingMicroDSOPs352x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[429] ==> SolvingMicroDSOPs353x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[430] ==> SolvingMicroDSOPs354x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[431] ==> SolvingMicroDSOPs355x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[432] ==> SolvingMicroDSOPs356x.svg ---
+File: ./Figures/GothVInvVSGothCEEE.png
+--- needs --- SolvingMicroDSOPs.idv[434] ==> SolvingMicroDSOPs357x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[435] ==> SolvingMicroDSOPs358x.svg ---
+File: ./Figures/GothVVSGothCInvEEE.png
+--- needs --- SolvingMicroDSOPs.idv[437] ==> SolvingMicroDSOPs359x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[438] ==> SolvingMicroDSOPs360x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[440] ==> SolvingMicroDSOPs361x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[441] ==> SolvingMicroDSOPs362x.svg ---
+File: ./Figures/ExtrapProblemPlot.png
+--- needs --- SolvingMicroDSOPs.idv[443] ==> SolvingMicroDSOPs363x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[445] ==> SolvingMicroDSOPs364x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[446] ==> SolvingMicroDSOPs365x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[448] ==> SolvingMicroDSOPs366x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[449] ==> SolvingMicroDSOPs367x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[450] ==> SolvingMicroDSOPs368x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[452] ==> SolvingMicroDSOPs369x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[453] ==> SolvingMicroDSOPs370x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[454] ==> SolvingMicroDSOPs371x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[455] ==> SolvingMicroDSOPs372x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[456] ==> SolvingMicroDSOPs373x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[457] ==> SolvingMicroDSOPs374x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[459] ==> SolvingMicroDSOPs375x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[460] ==> SolvingMicroDSOPs376x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[461] ==> SolvingMicroDSOPs377x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[462] ==> SolvingMicroDSOPs378x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[463] ==> SolvingMicroDSOPs379x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[464] ==> SolvingMicroDSOPs380x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[465] ==> SolvingMicroDSOPs381x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[466] ==> SolvingMicroDSOPs382x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[468] ==> SolvingMicroDSOPs383x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[469] ==> SolvingMicroDSOPs384x.svg ---
+File: ./Figures/IntExpFOCInvPesReaOptNeedHiPlot.png
+--- needs --- SolvingMicroDSOPs.idv[471] ==> SolvingMicroDSOPs385x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[473] ==> SolvingMicroDSOPs386x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[474] ==> SolvingMicroDSOPs387x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[475] ==> SolvingMicroDSOPs388x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[476] ==> SolvingMicroDSOPs389x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[477] ==> SolvingMicroDSOPs390x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[479] ==> SolvingMicroDSOPs391x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[481] ==> SolvingMicroDSOPs392x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[482] ==> SolvingMicroDSOPs393x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[483] ==> SolvingMicroDSOPs394x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[484] ==> SolvingMicroDSOPs395x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[486] ==> SolvingMicroDSOPs396x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[487] ==> SolvingMicroDSOPs397x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[488] ==> SolvingMicroDSOPs398x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[489] ==> SolvingMicroDSOPs399x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[490] ==> SolvingMicroDSOPs400x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[491] ==> SolvingMicroDSOPs401x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[492] ==> SolvingMicroDSOPs402x.svg ---
+File: ./Figures/ExtrapProblemSolvedPlot.png
+--- needs --- SolvingMicroDSOPs.idv[494] ==> SolvingMicroDSOPs403x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[496] ==> SolvingMicroDSOPs404x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[497] ==> SolvingMicroDSOPs405x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[499] ==> SolvingMicroDSOPs406x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[500] ==> SolvingMicroDSOPs407x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[501] ==> SolvingMicroDSOPs408x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[503] ==> SolvingMicroDSOPs409x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[505] ==> SolvingMicroDSOPs410x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[506] ==> SolvingMicroDSOPs411x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[507] ==> SolvingMicroDSOPs412x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[508] ==> SolvingMicroDSOPs413x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[509] ==> SolvingMicroDSOPs414x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[510] ==> SolvingMicroDSOPs415x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[512] ==> SolvingMicroDSOPs416x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[513] ==> SolvingMicroDSOPs417x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[514] ==> SolvingMicroDSOPs418x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[516] ==> SolvingMicroDSOPs419x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[517] ==> SolvingMicroDSOPs420x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[518] ==> SolvingMicroDSOPs421x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[520] ==> SolvingMicroDSOPs422x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[521] ==> SolvingMicroDSOPs423x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[522] ==> SolvingMicroDSOPs424x.svg ---
+File: ./Figures/IntExpFOCInvPesReaOptGapPlot.png
+--- needs --- SolvingMicroDSOPs.idv[524] ==> SolvingMicroDSOPs425x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[525] ==> SolvingMicroDSOPs426x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[527] ==> SolvingMicroDSOPs427x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[528] ==> SolvingMicroDSOPs428x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[529] ==> SolvingMicroDSOPs429x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[531] ==> SolvingMicroDSOPs430x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[533] ==> SolvingMicroDSOPs431x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[534] ==> SolvingMicroDSOPs432x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[535] ==> SolvingMicroDSOPs433x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[536] ==> SolvingMicroDSOPs434x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[537] ==> SolvingMicroDSOPs435x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[539] ==> SolvingMicroDSOPs436x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[540] ==> SolvingMicroDSOPs437x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[541] ==> SolvingMicroDSOPs438x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[542] ==> SolvingMicroDSOPs439x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[543] ==> SolvingMicroDSOPs440x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[545] ==> SolvingMicroDSOPs441x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[547] ==> SolvingMicroDSOPs442x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[548] ==> SolvingMicroDSOPs443x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[550] ==> SolvingMicroDSOPs444x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[552] ==> SolvingMicroDSOPs445x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[553] ==> SolvingMicroDSOPs446x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[555] ==> SolvingMicroDSOPs447x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[557] ==> SolvingMicroDSOPs448x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[558] ==> SolvingMicroDSOPs449x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[559] ==> SolvingMicroDSOPs450x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[560] ==> SolvingMicroDSOPs451x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[562] ==> SolvingMicroDSOPs452x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[563] ==> SolvingMicroDSOPs453x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[564] ==> SolvingMicroDSOPs454x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[566] ==> SolvingMicroDSOPs455x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[568] ==> SolvingMicroDSOPs456x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[569] ==> SolvingMicroDSOPs457x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[570] ==> SolvingMicroDSOPs458x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[571] ==> SolvingMicroDSOPs459x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[572] ==> SolvingMicroDSOPs460x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[573] ==> SolvingMicroDSOPs461x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[574] ==> SolvingMicroDSOPs462x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[575] ==> SolvingMicroDSOPs463x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[576] ==> SolvingMicroDSOPs464x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[577] ==> SolvingMicroDSOPs465x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[578] ==> SolvingMicroDSOPs466x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[579] ==> SolvingMicroDSOPs467x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[580] ==> SolvingMicroDSOPs468x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[582] ==> SolvingMicroDSOPs469x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[583] ==> SolvingMicroDSOPs470x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[584] ==> SolvingMicroDSOPs471x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[585] ==> SolvingMicroDSOPs472x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[586] ==> SolvingMicroDSOPs473x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[587] ==> SolvingMicroDSOPs474x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[588] ==> SolvingMicroDSOPs475x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[589] ==> SolvingMicroDSOPs476x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[590] ==> SolvingMicroDSOPs477x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[591] ==> SolvingMicroDSOPs478x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[593] ==> SolvingMicroDSOPs479x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[594] ==> SolvingMicroDSOPs480x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[595] ==> SolvingMicroDSOPs481x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[596] ==> SolvingMicroDSOPs482x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[597] ==> SolvingMicroDSOPs483x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[598] ==> SolvingMicroDSOPs484x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[599] ==> SolvingMicroDSOPs485x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[601] ==> SolvingMicroDSOPs486x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[602] ==> SolvingMicroDSOPs487x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[603] ==> SolvingMicroDSOPs488x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[604] ==> SolvingMicroDSOPs489x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[605] ==> SolvingMicroDSOPs490x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[606] ==> SolvingMicroDSOPs491x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[608] ==> SolvingMicroDSOPs492x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[609] ==> SolvingMicroDSOPs493x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[611] ==> SolvingMicroDSOPs494x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[613] ==> SolvingMicroDSOPs495x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[614] ==> SolvingMicroDSOPs496x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[615] ==> SolvingMicroDSOPs497x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[617] ==> SolvingMicroDSOPs498x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[619] ==> SolvingMicroDSOPs499x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[621] ==> SolvingMicroDSOPs500x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[622] ==> SolvingMicroDSOPs501x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[623] ==> SolvingMicroDSOPs502x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[624] ==> SolvingMicroDSOPs503x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[625] ==> SolvingMicroDSOPs504x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[626] ==> SolvingMicroDSOPs505x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[627] ==> SolvingMicroDSOPs506x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[629] ==> SolvingMicroDSOPs507x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[630] ==> SolvingMicroDSOPs508x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[631] ==> SolvingMicroDSOPs509x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[633] ==> SolvingMicroDSOPs510x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[634] ==> SolvingMicroDSOPs511x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[635] ==> SolvingMicroDSOPs512x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[636] ==> SolvingMicroDSOPs513x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[638] ==> SolvingMicroDSOPs514x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[639] ==> SolvingMicroDSOPs515x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[640] ==> SolvingMicroDSOPs516x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[641] ==> SolvingMicroDSOPs517x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[643] ==> SolvingMicroDSOPs518x.svg ---
+File: ./Figures/cVScCon.png
+--- needs --- SolvingMicroDSOPs.idv[645] ==> SolvingMicroDSOPs519x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[646] ==> SolvingMicroDSOPs520x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[647] ==> SolvingMicroDSOPs521x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[648] ==> SolvingMicroDSOPs522x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[649] ==> SolvingMicroDSOPs523x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[650] ==> SolvingMicroDSOPs524x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[651] ==> SolvingMicroDSOPs525x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[652] ==> SolvingMicroDSOPs526x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[654] ==> SolvingMicroDSOPs527x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[655] ==> SolvingMicroDSOPs528x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[656] ==> SolvingMicroDSOPs529x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[658] ==> SolvingMicroDSOPs530x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[659] ==> SolvingMicroDSOPs531x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[660] ==> SolvingMicroDSOPs532x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[661] ==> SolvingMicroDSOPs533x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[662] ==> SolvingMicroDSOPs534x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[663] ==> SolvingMicroDSOPs535x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[664] ==> SolvingMicroDSOPs536x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[665] ==> SolvingMicroDSOPs537x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[666] ==> SolvingMicroDSOPs538x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[668] ==> SolvingMicroDSOPs539x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[669] ==> SolvingMicroDSOPs540x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[671] ==> SolvingMicroDSOPs541x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[672] ==> SolvingMicroDSOPs542x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[673] ==> SolvingMicroDSOPs543x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[674] ==> SolvingMicroDSOPs544x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[675] ==> SolvingMicroDSOPs545x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[676] ==> SolvingMicroDSOPs546x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[677] ==> SolvingMicroDSOPs547x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[678] ==> SolvingMicroDSOPs548x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[679] ==> SolvingMicroDSOPs549x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[680] ==> SolvingMicroDSOPs550x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[681] ==> SolvingMicroDSOPs551x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[682] ==> SolvingMicroDSOPs552x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[683] ==> SolvingMicroDSOPs553x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[684] ==> SolvingMicroDSOPs554x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[685] ==> SolvingMicroDSOPs555x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[686] ==> SolvingMicroDSOPs556x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[687] ==> SolvingMicroDSOPs557x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[688] ==> SolvingMicroDSOPs558x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[689] ==> SolvingMicroDSOPs559x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[690] ==> SolvingMicroDSOPs560x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[691] ==> SolvingMicroDSOPs561x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[693] ==> SolvingMicroDSOPs562x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[694] ==> SolvingMicroDSOPs563x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[695] ==> SolvingMicroDSOPs564x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[697] ==> SolvingMicroDSOPs565x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[698] ==> SolvingMicroDSOPs566x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[699] ==> SolvingMicroDSOPs567x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[701] ==> SolvingMicroDSOPs568x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[702] ==> SolvingMicroDSOPs569x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[703] ==> SolvingMicroDSOPs570x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[704] ==> SolvingMicroDSOPs571x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[705] ==> SolvingMicroDSOPs572x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[706] ==> SolvingMicroDSOPs573x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[707] ==> SolvingMicroDSOPs574x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[708] ==> SolvingMicroDSOPs575x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[709] ==> SolvingMicroDSOPs576x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[710] ==> SolvingMicroDSOPs577x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[711] ==> SolvingMicroDSOPs578x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[712] ==> SolvingMicroDSOPs579x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[713] ==> SolvingMicroDSOPs580x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[715] ==> SolvingMicroDSOPs581x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[716] ==> SolvingMicroDSOPs582x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[717] ==> SolvingMicroDSOPs583x.svg ---
+File: ./Figures/PlotCFuncsConverge.png
+--- needs --- SolvingMicroDSOPs.idv[719] ==> SolvingMicroDSOPs584x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[720] ==> SolvingMicroDSOPs585x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[722] ==> SolvingMicroDSOPs586x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[723] ==> SolvingMicroDSOPs587x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[725] ==> SolvingMicroDSOPs588x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[727] ==> SolvingMicroDSOPs589x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[728] ==> SolvingMicroDSOPs590x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[729] ==> SolvingMicroDSOPs591x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[730] ==> SolvingMicroDSOPs592x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[731] ==> SolvingMicroDSOPs593x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[732] ==> SolvingMicroDSOPs594x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[733] ==> SolvingMicroDSOPs595x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[735] ==> SolvingMicroDSOPs596x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[736] ==> SolvingMicroDSOPs597x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[737] ==> SolvingMicroDSOPs598x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[738] ==> SolvingMicroDSOPs599x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[739] ==> SolvingMicroDSOPs600x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[741] ==> SolvingMicroDSOPs601x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[743] ==> SolvingMicroDSOPs602x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[745] ==> SolvingMicroDSOPs603x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[746] ==> SolvingMicroDSOPs604x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[747] ==> SolvingMicroDSOPs605x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[748] ==> SolvingMicroDSOPs606x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[750] ==> SolvingMicroDSOPs607x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[751] ==> SolvingMicroDSOPs608x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[752] ==> SolvingMicroDSOPs609x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[754] ==> SolvingMicroDSOPs610x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[755] ==> SolvingMicroDSOPs611x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[756] ==> SolvingMicroDSOPs612x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[757] ==> SolvingMicroDSOPs613x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[758] ==> SolvingMicroDSOPs614x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[759] ==> SolvingMicroDSOPs615x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[761] ==> SolvingMicroDSOPs616x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[762] ==> SolvingMicroDSOPs617x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[763] ==> SolvingMicroDSOPs618x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[764] ==> SolvingMicroDSOPs619x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[765] ==> SolvingMicroDSOPs620x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[767] ==> SolvingMicroDSOPs621x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[768] ==> SolvingMicroDSOPs622x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[769] ==> SolvingMicroDSOPs623x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[771] ==> SolvingMicroDSOPs624x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[772] ==> SolvingMicroDSOPs625x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[773] ==> SolvingMicroDSOPs626x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[774] ==> SolvingMicroDSOPs627x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[776] ==> SolvingMicroDSOPs628x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[777] ==> SolvingMicroDSOPs629x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[778] ==> SolvingMicroDSOPs630x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[779] ==> SolvingMicroDSOPs631x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[780] ==> SolvingMicroDSOPs632x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[781] ==> SolvingMicroDSOPs633x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[782] ==> SolvingMicroDSOPs634x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[783] ==> SolvingMicroDSOPs635x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[785] ==> SolvingMicroDSOPs636x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[786] ==> SolvingMicroDSOPs637x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[787] ==> SolvingMicroDSOPs638x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[788] ==> SolvingMicroDSOPs639x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[789] ==> SolvingMicroDSOPs640x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[791] ==> SolvingMicroDSOPs641x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[792] ==> SolvingMicroDSOPs642x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[793] ==> SolvingMicroDSOPs643x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[794] ==> SolvingMicroDSOPs644x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[795] ==> SolvingMicroDSOPs645x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[796] ==> SolvingMicroDSOPs646x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[797] ==> SolvingMicroDSOPs647x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[799] ==> SolvingMicroDSOPs648x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[800] ==> SolvingMicroDSOPs649x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[801] ==> SolvingMicroDSOPs650x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[802] ==> SolvingMicroDSOPs651x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[803] ==> SolvingMicroDSOPs652x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[804] ==> SolvingMicroDSOPs653x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[805] ==> SolvingMicroDSOPs654x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[806] ==> SolvingMicroDSOPs655x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[807] ==> SolvingMicroDSOPs656x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[808] ==> SolvingMicroDSOPs657x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[809] ==> SolvingMicroDSOPs658x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[810] ==> SolvingMicroDSOPs659x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[811] ==> SolvingMicroDSOPs660x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[812] ==> SolvingMicroDSOPs661x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[813] ==> SolvingMicroDSOPs662x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[814] ==> SolvingMicroDSOPs663x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[815] ==> SolvingMicroDSOPs664x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[816] ==> SolvingMicroDSOPs665x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[817] ==> SolvingMicroDSOPs666x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[819] ==> SolvingMicroDSOPs667x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[820] ==> SolvingMicroDSOPs668x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[821] ==> SolvingMicroDSOPs669x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[823] ==> SolvingMicroDSOPs670x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[824] ==> SolvingMicroDSOPs671x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[825] ==> SolvingMicroDSOPs672x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[826] ==> SolvingMicroDSOPs673x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[827] ==> SolvingMicroDSOPs674x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[828] ==> SolvingMicroDSOPs675x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[829] ==> SolvingMicroDSOPs676x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[830] ==> SolvingMicroDSOPs677x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[831] ==> SolvingMicroDSOPs678x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[833] ==> SolvingMicroDSOPs679x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[834] ==> SolvingMicroDSOPs680x.svg ---
+File: ./Figures/PlotctMultContr.png
+--- needs --- SolvingMicroDSOPs.idv[836] ==> SolvingMicroDSOPs681x.svg ---
+File: ./Figures/PlotRiskySharetOfat.png
+--- needs --- SolvingMicroDSOPs.idv[838] ==> SolvingMicroDSOPs682x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[840] ==> SolvingMicroDSOPs683x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[841] ==> SolvingMicroDSOPs684x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[843] ==> SolvingMicroDSOPs685x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[844] ==> SolvingMicroDSOPs686x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[846] ==> SolvingMicroDSOPs687x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[847] ==> SolvingMicroDSOPs688x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[848] ==> SolvingMicroDSOPs689x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[849] ==> SolvingMicroDSOPs690x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[851] ==> SolvingMicroDSOPs691x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[852] ==> SolvingMicroDSOPs692x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[854] ==> SolvingMicroDSOPs693x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[855] ==> SolvingMicroDSOPs694x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[856] ==> SolvingMicroDSOPs695x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[857] ==> SolvingMicroDSOPs696x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[858] ==> SolvingMicroDSOPs697x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[859] ==> SolvingMicroDSOPs698x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[860] ==> SolvingMicroDSOPs699x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[862] ==> SolvingMicroDSOPs700x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[864] ==> SolvingMicroDSOPs701x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[866] ==> SolvingMicroDSOPs702x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[867] ==> SolvingMicroDSOPs703x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[868] ==> SolvingMicroDSOPs704x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[869] ==> SolvingMicroDSOPs705x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[871] ==> SolvingMicroDSOPs706x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[873] ==> SolvingMicroDSOPs707x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[874] ==> SolvingMicroDSOPs708x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[876] ==> SolvingMicroDSOPs709x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[877] ==> SolvingMicroDSOPs710x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[879] ==> SolvingMicroDSOPs711x.svg ---
+File: ./Figures/PlotTimeVaryingParam.png
+--- needs --- SolvingMicroDSOPs.idv[881] ==> SolvingMicroDSOPs712x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[883] ==> SolvingMicroDSOPs713x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[884] ==> SolvingMicroDSOPs714x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[886] ==> SolvingMicroDSOPs715x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[887] ==> SolvingMicroDSOPs716x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[888] ==> SolvingMicroDSOPs717x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[889] ==> SolvingMicroDSOPs718x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[891] ==> SolvingMicroDSOPs719x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[892] ==> SolvingMicroDSOPs720x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[894] ==> SolvingMicroDSOPs721x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[895] ==> SolvingMicroDSOPs722x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[896] ==> SolvingMicroDSOPs723x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[897] ==> SolvingMicroDSOPs724x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[898] ==> SolvingMicroDSOPs725x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[899] ==> SolvingMicroDSOPs726x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[900] ==> SolvingMicroDSOPs727x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[901] ==> SolvingMicroDSOPs728x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[902] ==> SolvingMicroDSOPs729x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[904] ==> SolvingMicroDSOPs730x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[905] ==> SolvingMicroDSOPs731x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[906] ==> SolvingMicroDSOPs732x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[908] ==> SolvingMicroDSOPs733x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[910] ==> SolvingMicroDSOPs734x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[911] ==> SolvingMicroDSOPs735x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[912] ==> SolvingMicroDSOPs736x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[913] ==> SolvingMicroDSOPs737x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[914] ==> SolvingMicroDSOPs738x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[915] ==> SolvingMicroDSOPs739x.svg ---
+File: ./Figures/PlotMeanMedianSCFcollegeGrads.png
+--- needs --- SolvingMicroDSOPs.idv[917] ==> SolvingMicroDSOPs740x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[919] ==> SolvingMicroDSOPs741x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[920] ==> SolvingMicroDSOPs742x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[921] ==> SolvingMicroDSOPs743x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[922] ==> SolvingMicroDSOPs744x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[923] ==> SolvingMicroDSOPs745x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[924] ==> SolvingMicroDSOPs746x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[926] ==> SolvingMicroDSOPs747x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[927] ==> SolvingMicroDSOPs748x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[929] ==> SolvingMicroDSOPs749x.svg ---
+File: ./Figures/PlotContourMedianStrEst.png
+--- needs --- SolvingMicroDSOPs.idv[931] ==> SolvingMicroDSOPs750x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[933] ==> SolvingMicroDSOPs751x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[934] ==> SolvingMicroDSOPs752x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[936] ==> SolvingMicroDSOPs753x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[937] ==> SolvingMicroDSOPs754x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[938] ==> SolvingMicroDSOPs755x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[939] ==> SolvingMicroDSOPs756x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[940] ==> SolvingMicroDSOPs758x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[941] ==> SolvingMicroDSOPs759x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[943] ==> SolvingMicroDSOPs760x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[945] ==> SolvingMicroDSOPs761x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[946] ==> SolvingMicroDSOPs763x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[947] ==> SolvingMicroDSOPs764x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[948] ==> SolvingMicroDSOPs765x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[950] ==> SolvingMicroDSOPs766x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[951] ==> SolvingMicroDSOPs767x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[952] ==> SolvingMicroDSOPs768x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[954] ==> SolvingMicroDSOPs770x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[956] ==> SolvingMicroDSOPs772x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[958] ==> SolvingMicroDSOPs774x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[959] ==> SolvingMicroDSOPs775x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[960] ==> SolvingMicroDSOPs776x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[962] ==> SolvingMicroDSOPs778x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[964] ==> SolvingMicroDSOPs780x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[965] ==> SolvingMicroDSOPs781x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[966] ==> SolvingMicroDSOPs783x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[967] ==> SolvingMicroDSOPs784x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[968] ==> SolvingMicroDSOPs785x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[969] ==> SolvingMicroDSOPs787x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[970] ==> SolvingMicroDSOPs788x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[971] ==> SolvingMicroDSOPs789x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[972] ==> SolvingMicroDSOPs790x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[973] ==> SolvingMicroDSOPs791x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[975] ==> SolvingMicroDSOPs792x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[976] ==> SolvingMicroDSOPs793x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[977] ==> SolvingMicroDSOPs794x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[978] ==> SolvingMicroDSOPs795x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[979] ==> SolvingMicroDSOPs796x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[980] ==> SolvingMicroDSOPs797x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[981] ==> SolvingMicroDSOPs798x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[982] ==> SolvingMicroDSOPs799x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[983] ==> SolvingMicroDSOPs800x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[984] ==> SolvingMicroDSOPs801x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[985] ==> SolvingMicroDSOPs802x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[986] ==> SolvingMicroDSOPs803x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[987] ==> SolvingMicroDSOPs804x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[988] ==> SolvingMicroDSOPs805x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[989] ==> SolvingMicroDSOPs806x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[990] ==> SolvingMicroDSOPs807x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[991] ==> SolvingMicroDSOPs808x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[992] ==> SolvingMicroDSOPs809x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[994] ==> SolvingMicroDSOPs810x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[995] ==> SolvingMicroDSOPs811x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[996] ==> SolvingMicroDSOPs812x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[997] ==> SolvingMicroDSOPs813x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[998] ==> SolvingMicroDSOPs814x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[999] ==> SolvingMicroDSOPs815x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[1001] ==> SolvingMicroDSOPs816x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[1002] ==> SolvingMicroDSOPs817x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[1003] ==> SolvingMicroDSOPs818x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[1004] ==> SolvingMicroDSOPs819x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[1005] ==> SolvingMicroDSOPs820x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[1006] ==> SolvingMicroDSOPs821x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[1007] ==> SolvingMicroDSOPs822x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[1008] ==> SolvingMicroDSOPs823x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[1009] ==> SolvingMicroDSOPs824x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[1010] ==> SolvingMicroDSOPs825x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[1011] ==> SolvingMicroDSOPs826x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[1012] ==> SolvingMicroDSOPs827x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[1014] ==> SolvingMicroDSOPs828x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[1015] ==> SolvingMicroDSOPs829x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[1016] ==> SolvingMicroDSOPs830x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[1018] ==> SolvingMicroDSOPs831x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[1019] ==> SolvingMicroDSOPs832x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[1021] ==> SolvingMicroDSOPs833x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[1022] ==> SolvingMicroDSOPs834x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[1023] ==> SolvingMicroDSOPs835x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[1024] ==> SolvingMicroDSOPs836x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[1025] ==> SolvingMicroDSOPs837x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[1026] ==> SolvingMicroDSOPs838x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[1027] ==> SolvingMicroDSOPs839x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[1028] ==> SolvingMicroDSOPs840x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[1029] ==> SolvingMicroDSOPs841x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[1030] ==> SolvingMicroDSOPs842x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[1032] ==> SolvingMicroDSOPs843x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[1033] ==> SolvingMicroDSOPs844x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[1034] ==> SolvingMicroDSOPs845x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[1035] ==> SolvingMicroDSOPs846x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[1036] ==> SolvingMicroDSOPs847x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[1037] ==> SolvingMicroDSOPs848x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[1038] ==> SolvingMicroDSOPs849x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[1039] ==> SolvingMicroDSOPs850x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[1041] ==> SolvingMicroDSOPs851x.svg ---
+--- needs --- SolvingMicroDSOPs.idv[1042] ==> SolvingMicroDSOPs852x.svg ---
+tex4ht.c error: 21
+--- characters ---
+Font("cmex","10","10","100")
+Font("line","10","10","100")
+Font("cmr","7","7","100")
+Font("cmr","10","10","100")
+Font("cmmi","5","5","100")
+Font("cmmi","7","7","100")
+Font("cmmi","10","10","100")
+Font("cmsy","7","7","100")
+Font("cmsy","10","10","100")
+Font("cmr","12","12","100")
+Font("ecrm","1200","12","100")
+Font("ecti","1200","12","100")
+Font("ecbx","1200","12","100")
+Font("ecrm","0600","6","100")
+Font("ecrm","2074","20","100")
+Font("ecbx","2074","20","100")
+Font("ecrm","1440","14","100")
+Font("msbm","10","10","100")
+Font("ecrm","1095","10","100")
+Font("ecti","1095","10","100")
+Font("ecrm","1000","10","100")
+Font("ectt","1000","10","100")
+Font("ecti","1000","10","100")
+Font("ectt","1200","12","100")
+Font("cmr","8","8","100")
+Font("cmr","6","6","100")
+Font("cmmi","12","12","100")
+Font("cmmi","8","8","100")
+Font("cmmi","6","6","100")
+Font("cmsy","10","10","120")
+Font("cmsy","8","8","100")
+Font("cmsy","6","6","100")
+Font("cmex","10","10","120")
+Font("msam","10","10","120")
+Font("msam","10","10","80")
+Font("msbm","10","10","120")
+Font("msbm","10","10","80")
+Font("cmbx","12","12","100")
+Font("cmbx","8","8","100")
+Font("cmbx","6","6","100")
+Font("cmss","12","12","100")
+Font("ecrm","0800","8","100")
+Font("cmbx","10","10","100")
+Font("cmss","10","10","100")
+Font("eufm","10","10","120")
+Font("eufm","10","10","80")
+Font("eufm","10","10","100")
+Font("ectt","0800","8","100")
+Font("fibr","84","10","120")
+Font("fibr","84","10","80")
+Font("eusm","10","10","80")
+Font("bbmss","12","12","100")
+Font("eccc1200","","12","100")

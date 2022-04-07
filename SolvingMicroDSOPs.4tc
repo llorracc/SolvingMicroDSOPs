@@ -1,0 +1,71 @@
+\expandafter\ifx\csname doTocEntry\endcsname\relax \expandafter\endinput\fi
+\doTocEntry\tocsection{1}{\csname a:TocLink\endcsname{1}{x1-10001}{QQ2-1-1}{Introduction}}{1}\relax 
+\doTocEntry\tocsection{2}{\csname a:TocLink\endcsname{1}{x1-20002}{QQ2-1-2}{The Problem}}{2}\relax 
+\doTocEntry\tocsection{3}{\csname a:TocLink\endcsname{1}{x1-30003}{QQ2-1-3}{Normalization}}{5}\relax 
+\doTocEntry\tocsection{4}{\csname a:TocLink\endcsname{1}{x1-40004}{QQ2-1-4}{The Usual Theory, and A Bit More Notation}}{8}\relax 
+\doTocEntry\tocsection{5}{\csname a:TocLink\endcsname{1}{x1-50005}{QQ2-1-5}{Solving the Next-to-Last Period}}{11}\relax 
+\doTocEntry\tocsubsection{5.1}{\csname a:TocLink\endcsname{1}{x1-60005.1}{QQ2-1-6}{Discretizing the Distribution}}{12}\relax 
+\doTocEntry\toclof{1}{\csname a:TocLink\endcsname{1}{x1-60041}{}{\ignorespaces Discrete Approximation to Lognormal Distribution $\ensuremath  {\mathcal  {F}}$}}{figure}\relax 
+\doTocEntry\tocsubsection{5.2}{\csname a:TocLink\endcsname{1}{x1-70005.2}{QQ2-1-8}{The Approximate Consumption and Value Functions}}{16}\relax 
+\doTocEntry\tocsubsection{5.3}{\csname a:TocLink\endcsname{1}{x1-80005.3}{QQ2-1-9}{An Interpolated Consumption Function}}{19}\relax 
+\doTocEntry\toclof{2}{\csname a:TocLink\endcsname{1}{x1-80022}{}{\ignorespaces $\mathrm@@ {c}_{T-1}({m}_{T-1})$ (solid) versus $\cc@accent {"7012}{\mathrm@@ {c}}_{T-1}({m}_{T-1})$ (dashed)}}{figure}\relax 
+\doTocEntry\toclof{3}{\csname a:TocLink\endcsname{1}{x1-80033}{}{\ignorespaces $\mathrm@@ {v}_{T-1}$ (solid) versus $\cc@accent {"7012}{\mathrm@@ {v}}_{T-1}({m}_{T-1})$ (dashed)}}{figure}\relax 
+\doTocEntry\tocsubsection{5.4}{\csname a:TocLink\endcsname{1}{x1-90005.4}{QQ2-1-12}{Interpolating Expectations}}{25}\relax 
+\doTocEntry\toclof{4}{\csname a:TocLink\endcsname{1}{x1-90024}{}{\ignorespaces End-Of-Period Value $\ensuremath  {\mathfrak  {v}}_{T-1}({a}_{T-1})$ (solid) versus $\cc@accent {"7012}{\ensuremath  {\mathfrak  {v}}}_{T-1}({a}_{T-1})$ (dashed)}}{figure}\relax 
+\doTocEntry\toclof{5}{\csname a:TocLink\endcsname{1}{x1-90035}{}{\ignorespaces $\mathrm@@ {c}_{T-1}({m}_{T-1})$ (solid) versus $\cc@accent {"7012}{\mathrm@@ {c}}_{T-1}({m}_{T-1})$ (dashed)}}{figure}\relax 
+\doTocEntry\tocsubsection{5.5}{\csname a:TocLink\endcsname{1}{x1-100005.5}{QQ2-1-15}{Value Function versus First Order Condition}}{31}\relax 
+\doTocEntry\toclof{6}{\csname a:TocLink\endcsname{1}{x1-100046}{}{\ignorespaces $\mathrm@@ {u}^{\prime }(c)$ versus $\ensuremath  {\mathfrak  {v}}_{T-1}^{\prime }(3-c), \ensuremath  {\mathfrak  {v}}_{T-1}^{\prime }(4-c), \cc@accent {"7012}{\ensuremath  {\mathfrak  {v}}}_{T-1}^{\prime }(3-c), \cc@accent {"7012}{\ensuremath  {\mathfrak  {v}}}_{T-1}^{\prime }(4-c)$}}{figure}\relax 
+\doTocEntry\toclof{7}{\csname a:TocLink\endcsname{1}{x1-100067}{}{\ignorespaces $\ensuremath  {\mathfrak  {v}}_{T-1}^{\prime }({a}_{T-1})$ versus $\cc@accent {"7012}{\ensuremath  {\mathfrak  {v}}}_{T-1}^{\prime }({a}_{T-1})$}}{figure}\relax 
+\doTocEntry\toclof{8}{\csname a:TocLink\endcsname{1}{x1-100078}{}{\ignorespaces $\mathrm@@ {c}_{T-1}({m}_{T-1})$ (solid) Versus Two Methods for Constructing $\cc@accent {"7012}{\mathrm@@ {c}}_{T-1}({m}_{T-1})$}}{figure}\relax 
+\doTocEntry\tocsubsection{5.6}{\csname a:TocLink\endcsname{1}{x1-110005.6}{QQ2-1-19}{Transformation}}{42}\relax 
+\doTocEntry\tocsubsection{5.7}{\csname a:TocLink\endcsname{1}{x1-120005.7}{QQ2-1-20}{The Self-Imposed `Natural' Borrowing Constraint and the $a_{T-1}$ Lower Bound}}{44}\relax 
+\doTocEntry\toclof{9}{\csname a:TocLink\endcsname{1}{x1-120059}{}{\ignorespaces $\ensuremath  {\mathfrak  {c}}_{T-1}({a}_{T-1})$ versus $\cc@accent {"7012}{\ensuremath  {\mathfrak  {c}}}_{T-1}({a}_{T-1})$}}{figure}\relax 
+\doTocEntry\toclof{10}{\csname a:TocLink\endcsname{1}{x1-1200610}{}{\ignorespaces $\ensuremath  {\mathfrak  {v}}_{T-1}^{\prime }({a}_{T-1})$ vs. $\cc@accent {"7012}{\cc@accent {"7012}{\ensuremath  {\mathfrak  {v}}}}_{T-1}^{\prime }({a}_{T-1})$ Constructed Using $\cc@accent {"7012}{\ensuremath  {\mathfrak  {c}}}_{T-1}({a}_{T-1})$}}{figure}\relax 
+\doTocEntry\tocsubsection{5.8}{\csname a:TocLink\endcsname{1}{x1-130005.8}{QQ2-1-23}{The Method of Endogenous Gridpoints}}{52}\relax 
+\doTocEntry\toclof{11}{\csname a:TocLink\endcsname{1}{x1-1300411}{}{\ignorespaces $\mathrm@@ {c}_{T-1}({m}_{T-1})$ (solid) versus $\cc@accent {"7012}{\mathrm@@ {c}}_{T-1}({m}_{T-1})$ (dashed)}}{figure}\relax 
+\doTocEntry\tocsubsection{5.9}{\csname a:TocLink\endcsname{1}{x1-140005.9}{QQ2-1-25}{Improving the $a$ Grid}}{56}\relax 
+\doTocEntry\toclof{12}{\csname a:TocLink\endcsname{1}{x1-1400112}{}{\ignorespaces $\ensuremath  {\mathfrak  {c}}_{T-1}({a}_{T-1})$ versus $\cc@accent {"7012}{\ensuremath  {\mathfrak  {c}}}_{T-1}({a}_{T-1})$, Multi-Exponential \texttt  {aVec}}}{figure}\relax 
+\doTocEntry\toclof{13}{\csname a:TocLink\endcsname{1}{x1-1400213}{}{\ignorespaces $\ensuremath  {\mathfrak  {v}}_{T-1}^{\prime }({a}_{T-1})$ vs. $\cc@accent {"7012}{\cc@accent {"7012}{\ensuremath  {\mathfrak  {v}}}}_{T-1}^{\prime }({a}_{T-1})$, Multi-Exponential \texttt  {aVec}}}{figure}\relax 
+\doTocEntry\tocsubsection{5.10}{\csname a:TocLink\endcsname{1}{x1-150005.10}{QQ2-1-28}{The Method of Moderation}}{62}\relax 
+\doTocEntry\toclof{14}{\csname a:TocLink\endcsname{1}{x1-1500114}{}{\ignorespaces For Large Enough ${m}_{T-1}$, Predicted Precautionary Saving is Negative (Oops!)}}{figure}\relax 
+\doTocEntry\toclof{15}{\csname a:TocLink\endcsname{1}{x1-1500415}{}{\ignorespaces Moderation Illustrated: $\relax $\o:@@underline: {\hbox {\mathrm@@ {c}}}\mathsurround \z@ $\relax _{T-1} < \cc@accent {"7012}{\mathrm@@ {c}}_{T-1} < \cc@accent {"7016}{\mathrm@@ {c}}_{T-1}$}}{figure}\relax 
+\doTocEntry\toclof{16}{\csname a:TocLink\endcsname{1}{x1-1500816}{}{\ignorespaces Extrapolated $\cc@accent {"7012}{\cc@accent {"705E}{\mathrm@@ {c}}}_{T-1}$ Constructed Using the Method of Moderation}}{figure}\relax 
+\doTocEntry\tocsubsection{5.11}{\csname a:TocLink\endcsname{1}{x1-160005.11}{QQ2-1-32}{Approximating the Slope Too}}{74}\relax 
+\doTocEntry\toclof{17}{\csname a:TocLink\endcsname{1}{x1-1600617}{}{\ignorespaces Difference Between True $\mathrm@@ {c}_{T-1}$ and $\cc@accent {"7012}{\cc@accent {"705E}{\mathrm@@ {c}}}_{T-1}$ Is Minuscule}}{figure}\relax 
+\doTocEntry\tocsubsection{5.12}{\csname a:TocLink\endcsname{1}{x1-170005.12}{QQ2-1-34}{Value}}{79}\relax 
+\doTocEntry\tocsubsection{5.13}{\csname a:TocLink\endcsname{1}{x1-180005.13}{QQ2-1-35}{Refinement: A Tighter Upper Bound}}{84}\relax 
+\doTocEntry\tocsubsection{5.14}{\csname a:TocLink\endcsname{1}{x1-190005.14}{QQ2-1-36}{Extension: A Stochastic Interest Factor}}{88}\relax 
+\doTocEntry\tocsubsection{5.15}{\csname a:TocLink\endcsname{1}{x1-200005.15}{QQ2-1-37}{Imposing `Artificial' Borrowing Constraints}}{91}\relax 
+\doTocEntry\toclof{18}{\csname a:TocLink\endcsname{1}{x1-2000618}{}{\ignorespaces Constrained (solid) and Unconstrained (dashed) Consumption}}{figure}\relax 
+\doTocEntry\tocsection{6}{\csname a:TocLink\endcsname{1}{x1-210006}{QQ2-1-39}{Recursion}}{96}\relax 
+\doTocEntry\tocsubsection{6.1}{\csname a:TocLink\endcsname{1}{x1-220006.1}{QQ2-1-40}{Theory}}{96}\relax 
+\doTocEntry\tocsubsection{6.2}{\csname a:TocLink\endcsname{1}{x1-230006.2}{QQ2-1-41}{{\textit  {Mathematica}}~Background}}{98}\relax 
+\doTocEntry\tocsubsection{6.3}{\csname a:TocLink\endcsname{1}{x1-240006.3}{QQ2-1-42}{Program Structure}}{99}\relax 
+\doTocEntry\tocsubsubsection{6.3.1}{\csname a:TocLink\endcsname{1}{x1-250006.3.1}{QQ2-1-43}{Iteration}}{99}\relax 
+\doTocEntry\tocsubsection{6.4}{\csname a:TocLink\endcsname{1}{x1-260006.4}{QQ2-1-44}{Results}}{100}\relax 
+\doTocEntry\toclof{19}{\csname a:TocLink\endcsname{1}{x1-2600119}{}{\ignorespaces Converging $\cc@accent {"7012}{\mathrm@@ {c}}_{T-n}({m})$ Functions as $n$ Increases}}{figure}\relax 
+\doTocEntry\tocsection{7}{\csname a:TocLink\endcsname{1}{x1-270007}{QQ2-1-46}{Multiple Control Variables}}{103}\relax 
+\doTocEntry\tocsubsection{7.1}{\csname a:TocLink\endcsname{1}{x1-280007.1}{QQ2-1-47}{Theory}}{103}\relax 
+\doTocEntry\tocsubsection{7.2}{\csname a:TocLink\endcsname{1}{x1-290007.2}{QQ2-1-48}{Application}}{107}\relax 
+\doTocEntry\tocsubsection{7.3}{\csname a:TocLink\endcsname{1}{x1-300007.3}{QQ2-1-49}{Implementation}}{109}\relax 
+\doTocEntry\tocsubsection{7.4}{\csname a:TocLink\endcsname{1}{x1-310007.4}{QQ2-1-50}{Results}}{111}\relax 
+\doTocEntry\toclof{20}{\csname a:TocLink\endcsname{1}{x1-3100120}{}{\ignorespaces $\mathrm@@ {c}({m}_{1})$ With Portfolio Choice}}{figure}\relax 
+\doTocEntry\toclof{21}{\csname a:TocLink\endcsname{1}{x1-3100221}{}{\ignorespaces Portfolio Share in Risky Assets in First Period $\varsigma ({a})$}}{figure}\relax 
+\doTocEntry\tocsection{8}{\csname a:TocLink\endcsname{1}{x1-320008}{QQ2-1-53}{The-Infinite-Horizon}}{118}\relax 
+\doTocEntry\tocsubsection{8.1}{\csname a:TocLink\endcsname{1}{x1-330008.1}{QQ2-1-54}{Convergence}}{118}\relax 
+\doTocEntry\tocsection{9}{\csname a:TocLink\endcsname{1}{x1-340009}{QQ2-1-55}{Structural Estimation}}{119}\relax 
+\doTocEntry\tocsubsection{9.1}{\csname a:TocLink\endcsname{1}{x1-350009.1}{QQ2-1-56}{Life Cycle Model}}{119}\relax 
+\doTocEntry\toclof{22}{\csname a:TocLink\endcsname{1}{x1-3500522}{}{\ignorespaces Time Varying Parameters}}{figure}\relax 
+\doTocEntry\toclot{1}{\csname a:TocLink\endcsname{1}{x1-350061}{}{\ignorespaces Parameter Values}}{table}\relax 
+\doTocEntry\tocsubsection{9.2}{\csname a:TocLink\endcsname{1}{x1-360009.2}{QQ2-1-59}{Estimation}}{127}\relax 
+\doTocEntry\toclof{23}{\csname a:TocLink\endcsname{1}{x1-3600623}{}{\ignorespaces Wealth to Permanent Income Ratios from SCF (means (dashed) and medians (solid))}}{figure}\relax 
+\doTocEntry\toclot{2}{\csname a:TocLink\endcsname{1}{x1-360232}{}{\ignorespaces Estimation Results}}{table}\relax 
+\doTocEntry\toclof{24}{\csname a:TocLink\endcsname{1}{x1-3602424}{}{\ignorespaces Contour Plot (larger values are shown lighter) with $\{{\rho },{\beth }\}$ Estimates (red dot).}}{figure}\relax 
+\doTocEntry\tocsection{10}{\csname a:TocLink\endcsname{1}{x1-3700010}{QQ2-1-63}{Conclusion}}{140}\relax 
+\doTocEntry\tocsection{A}{\csname a:TocLink\endcsname{1}{x1-38000A}{QQ2-1-64}{Further Details on SCF Data}}{141}\relax 
+\doTocEntry\toclikesection{}{\csname a:TocLink\endcsname{1}{x1-39000A}{QQ2-1-65}{References}}{142}\relax 
+\doTocEntry\tocsection{}{\csname a:TocLink\endcsname{1}{Q1-1-66}{}{Appendices}}{145}\relax 
+\doTocEntry\tocsection{A}{\csname a:TocLink\endcsname{1}{x1-40000A}{QQ2-1-67}{Wealth In Utility Model}}{145}\relax 
+\doTocEntry\tocsubsection{A.1}{\csname a:TocLink\endcsname{1}{x1-41000A.1}{QQ2-1-68}{Solution}}{151}\relax 
+\doTocEntry\tocsubsection{A.2}{\csname a:TocLink\endcsname{1}{x1-42000A.2}{QQ2-1-69}{CobbDouglas Model}}{152}\relax 
+\doTocEntry\tocsubsection{A.3}{\csname a:TocLink\endcsname{1}{x1-43000A.3}{QQ2-1-70}{CDC Utility Specification}}{153}\relax 

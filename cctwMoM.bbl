@@ -1,0 +1,17 @@
+\providecommand{\noopsort}[1]{} \providecommand{\singleletter}[1]{#1}
+\ifx\undefined\BySame
+\newcommand{\BySame}{\leavevmode\rule[.5ex]{3em}{.5pt}\ }
+\fi
+\begin{thebibliography}{}
+
+\harvarditem[Carroll]{Carroll}{2006}{carrollEGM}
+\textsc{Carroll, Christopher~D.}  (2006): ``The {M}ethod of {E}ndogenous
+  {G}ridpoints for {S}olving {D}ynamic {S}tochastic {O}ptimization
+  {P}roblems,'' \emph{Economics Letters}, 91(3), 312--320,
+  \url{https://www.econ2.jhu.edu/people/ccarroll/EndogenousGridpoints.pdf}.
+
+\harvarditem[Carroll]{Carroll}{2022}{BufferStockTheory}
+\textsc{\BySame{}}  (2022): ``Theoretical Foundations of Buffer Stock Saving,''
+  \emph{Submitted}.
+
+\end{thebibliography}

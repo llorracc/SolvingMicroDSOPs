@@ -1,0 +1,50 @@
+This is BibTeX, Version 0.99d (TeX Live 2020)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: cctwMoM.aux
+The style file: ./Resources/texmf-local/bibtex/bst/econtex.bst
+Database file #1: ./SolvingMicroDSOPs.bib
+Database file #2: economics.bib
+Warning--I didn't find a database entry for "SolvingMicroDSOPs"
+Done.
+You've used 2 entries,
+            2309 wiz_defined-function locations,
+            527 strings with 3953 characters,
+and the built_in function-call counts, 857 in all, are:
+= -- 87
+> -- 30
+< -- 0
++ -- 12
+- -- 8
+* -- 69
+:= -- 176
+add.period$ -- 2
+call.type$ -- 2
+change.case$ -- 10
+chr.to.int$ -- 2
+cite$ -- 2
+duplicate$ -- 33
+empty$ -- 57
+format.name$ -- 12
+if$ -- 158
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 2
+newline$ -- 13
+num.names$ -- 12
+pop$ -- 7
+preamble$ -- 2
+purify$ -- 10
+quote$ -- 0
+skip$ -- 30
+stack$ -- 0
+substring$ -- 49
+swap$ -- 6
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 1
+type$ -- 22
+warning$ -- 0
+while$ -- 12
+width$ -- 0
+write$ -- 30
+(There was 1 warning)
