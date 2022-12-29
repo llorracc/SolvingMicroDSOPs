@@ -27,13 +27,13 @@
 %%%     \jelclass can be used to show JEL classifications below the abstract
 %%%     \thanks{text of the thank-you footnote} produces a footnote at the bottom of the page containing the text
 
-\ProvidesClass{econtex}[2017/08/01 LaTeX class for economics papers, handouts, and exam questions written by Christopher Carroll]
+\ProvidesClass{./Resources/texmf-local/tex/latex/econtex}[2017/08/01 LaTeX class for economics papers, handouts, and exam questions written by Christopher Carroll]
 \NeedsTeXFormat{LaTeX2e}
 % \RequirePackage{rotating}
 \RequirePackage{snapshot} % Creates list of external files used by a LaTeX document
 \RequirePackage{ifthen}
 \RequirePackage{changepage}
-
+%\RequirePackage{/Volumes/Data/Papers/BufferStockTheory/BufferStockTheory-Latest/Resources/LaTeXInputs/econark}
 % If unspecified whether pdf output (instead of dvi) is being used, determine that it SHOULD be
 \newif\ifdvi\dvitrue
 \@ifundefined{pdfoutput}{}{\ifnum\pdfoutput>0 \dvifalse\fi}
@@ -50,7 +50,7 @@
 % pass any options on to the scrartcl class and load this class with some options
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{scrartcl}}
 \ProcessOptions\relax
-\LoadClass[fontsize=12pt,english,numbers=noenddot,captions=tableheading,captions=nooneline,headings=optiontocandhead]{scrartcl}
+\LoadClass[fontsize=12pt,english,numbers=noenddot,captions=tableheading,captions=nooneline]{scrartcl}
 % pointlessnumbers = do not add final dot after ordinary section numbers
 % tablecaptionabove = use \captionabove for captions above rather than below tables
 % noonelinecaption = do not treat one-line captions differently
@@ -115,6 +115,10 @@
   ,appendix
 }
 
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+ 
 \DeclareInstance{enotez-list}{superscriptednotes}{paragraph}
 {
   number = \textsuperscript{#1}
@@ -200,6 +204,7 @@
   {\mbox{\textsuperscript{\tiny\@thefnmark}}} % Restore footnote defn after titlepage redefines it
   \ifdvi
   \else
+  \providecommand{\ushort}{}
   \renewcommand{\ushort}{\underline} % ushort seems to not work properly for tex4ht (which compiles using dvi)
   \fi
 }
