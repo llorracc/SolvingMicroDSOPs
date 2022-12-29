@@ -43,7 +43,7 @@
 \setboolean{MPCMatchVersion}{true}
 \newcommand{\MPCMatch}{\ifthenelse{\boolean{MPCMatchVersion}}}
 
-% \usepackage{\econtexSetup}\usepackage{\econtexShortcuts}  
+\usepackage{\econtexSetup}\usepackage{\econtexShortcuts}  
 
 \provideboolean{MyNotes}\setboolean{MyNotes}{true}\setboolean{MyNotes}{false}
 
@@ -227,7 +227,7 @@ where the variables are\ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Note mult
         {\yLvl}_{t+1} & - & \text{noncapital income in period $t+1$}.
       \end{aligned}\end{gathered}\end{equation*}
 \end{verbatimwrite}
-\input{./Equations/Defns.tex}
+\input{./Equations/Defns.tex}\unskip
 
 For now, we will assume that the exogenous variables evolve as follows: \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Subscript on permanent income allows pattern of income growth over the lifetime.}}{}
 \begin{verbatimwrite}{./Equations/ExogVars.tex}
@@ -277,7 +277,7 @@ _{t}(\mLvl_{t},\pLvl_{t})  & = \max_{\cLvl_{t}}~ \uFunc(\cLvl_{t}) + \Ex_{t}[{\D
 _{t+1}({\mLvl}_{t+1},\pLvl_{t+1})]\label{eq:vrecurse}
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
-\input{./Equations/vrecurse.tex}
+\input{./Equations/vrecurse.tex}\unskip
 subject to the Dynamic Budget Constraint (DBC) \eqref{DBCLevel} given above, where ${\pmb{\vLvl}}
 _{t}$ measures total expected discounted utility from behaving optimally now
 and henceforth.
@@ -367,7 +367,7 @@ the bank's productivity.
 The first order condition for \eqref{vtNorm} with respect to ${c}_{t}$ is
 \begin{equation}\begin{gathered}\begin{aligned}
       \uFunc^{\prime}({c}_{t})  & = \Ex_{t}[\DiscFac \RNrm_{t+1}\PermGroFac_{t+1}^{1-\CRRA}\null{\vFunc}^{\prime}_{t+1}({m}_{t+1})]  \nonumber 
-      \\   & =  \Ex_{t}[\DiscFac\Rfree\phantom{_{t+1}}\PermGroFac_{t+1}^{\phantom{1}-\CRRA}\null{\vFunc}^{\prime}_{t+1}({m}_{t+1})] \label{eq:upceqEvtp1}
+      \\                        & =  \Ex_{t}[\DiscFac\Rfree\phantom{._{t+1}}\PermGroFac_{t+1}^{\phantom{1}-\CRRA}\null{\vFunc}^{\prime}_{t+1}({m}_{t+1})] \label{eq:upceqEvtp1}
     \end{aligned}\end{gathered}\end{equation}
 and because the \handoutC{Envelope} theorem tells us that
 \begin{equation}\begin{gathered}\begin{aligned}
@@ -380,7 +380,7 @@ we can substitute the LHS of \eqref{eq:envelope} for the RHS of
         \uFunc^{\prime}({c}_{t})  & = \null{\vFunc}^{\prime}_{t}({m}_{t})\label{eq:Envelope}
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
-\input{./Equations/Envelope.tex}
+\input{./Equations/Envelope.tex}\unskip
 and rolling this equation forward one period yields
 \begin{equation}\begin{gathered}\begin{aligned}
       \uFunc^{\prime}({c}_{t+1})  & = \null{\vFunc}^{\prime}_{t+1}({a}_{t}\RNrm_{t+1}+\TranShkEmp_{t+1}) \label{eq:upctp1EqVpxtp1}
@@ -424,13 +424,10 @@ Finally, note for future use that the first order condition
   \begin{equation}\begin{gathered}\begin{aligned}
         \uFunc^{\prime}({c}_{t})   & = {\vEnd}_{t}^{\prime}({m}_{t}-{c}_{t}).
         \label{eq:upEqbetaOp}
-      \end{aligned}\end{gathered}\end{equation}
+      \end{aligned}\end{gathered}\end{equation} \endinput
 \end{verbatimwrite}
-\input{./Equations/upEqbetaOp.tex}
-
-
-\hypertarget{Solving-the-Next-To-Last-Period}{}
-\section{Solving the Next-to-Last Period}\label{sec:NextToLast}
+\input{./Equations/upEqbetaOp.tex}\unskip
+\hypertarget{Solving-the-Next-To-Last-Period}{}\section{Solving the Next-to-Last Period}\label{sec:NextToLast}
 
 The problem in the second-to-last period of life is:
 \begin{equation*}\begin{gathered}\begin{aligned}
@@ -491,7 +488,7 @@ distribution.\footnote{More sophisticated approximation methods exist
     \label{fig:discreteapprox}
   \end{figure}
 \end{verbatimwrite}
-\input{\econtexRoot/Figures/discreteApprox.tex}
+\input{\econtexRoot/Figures/discreteApprox.tex}\unskip
 % \write18{cat \econtexRoot/Figures/discreteApprox.tex >> \econtexRoot/Figures/SolvingMicroDSOPs-Figures-List.tex}
 
 Recalling our definition of ${\vEnd}_{t}({a}_{t})$, for $t=T-1$
@@ -500,7 +497,7 @@ Recalling our definition of ${\vEnd}_{t}({a}_{t})$, for $t=T-1$
         \vEnd_{T-1}({a}_{T-1})  & =   \DiscFac \PermGroFac_{T}^{1-\CRRA}\left(\frac{1}{n_{\TranShkEmp}}\right)\sum_{i=1}^{n_{\TranShkEmp}}   \frac{\left( \RNrm_{T} {a}_{T-1} + \TranShkEmp_{i}\right)^{1-\CRRA}}{1-\CRRA} \label{eq:vDiscrete}
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
-\input{./Equations/vDiscrete}
+\input{./Equations/vDiscrete}\unskip
 so we can rewrite the maximization problem as \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Be sure to discuss \eqref{eq:vEndTm1} explicitly, as it is implemented directly in the program as per equation \eqref{eq:vEndTm1prog}.}}{}
 \begin{verbatimwrite}{./Equations/vEndTm1.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
@@ -512,7 +509,7 @@ so we can rewrite the maximization problem as \ifthenelse{\boolean{MyNotes}}{\ma
         \label{eq:vEndTm1}
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
-\input{./Equations/vEndTm1.tex}
+\input{./Equations/vEndTm1.tex}\unskip
 
 \subsection{The Approximate Consumption and Value Functions}
 
@@ -801,7 +798,7 @@ The first order condition of the maximization problem in period $T-1$ is:
         \\      {c}_{T-1}^{-\CRRA}   & = \Rfree \DiscFac \left(\frac{1}{n_{\TranShkEmp}}\right) \sum_{i=1}^{n_{\TranShkEmp}} \PermGroFac_{T}^{-\CRRA}\left(\Rfree ({m}_{T-1}-{c}_{T-1}) + \TranShkEmp_{i}\right)^{-\CRRA} \label{eq:FOCTm1}.
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
-\input{./Equations/FOCTm1.tex}
+\input{./Equations/FOCTm1.tex}\unskip
 \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Go from the first to the last equation in \eqref{eq:FOCTm1} by substituting $\uFunc(c)=c^{-\CRRA}$ and use the approximation to the integral.}}{}
 \hypertarget{PlotuPrimeVSOPrime}{}
 \begin{figure}
@@ -1253,7 +1250,7 @@ grid.
   methods whose implications for the accuracy of the solution are
   difficult to gauge.
 \end{verbatimwrite}
-\input{./cctwMoM/EndogGptsProbs.tex}
+\input{./cctwMoM/EndogGptsProbs.tex}\unskip
 
 \begin{verbatimwrite}{./cctwMoM/MoM-Prelims.tex}
   As a preliminary to our solution, define $\hEnd_{t}$ as
@@ -1267,14 +1264,14 @@ grid.
   The solution to a perfect foresight problem of this kind takes the
   form\footnote{For a derivation, see \cite{BufferStockTheory}; $\MPCmin_{t}$ is defined therein as the MPC of the perfect foresight consumer with horizon $T-t$.}
 \end{verbatimwrite}
-\input{./cctwMoM/MoM-Prelims.tex}
+\input{./cctwMoM/MoM-Prelims.tex}\unskip
 \begin{verbatimwrite}{./Equations/cFuncAbove.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
         \cFuncAbove_{t}(\mNrm_{t})  & = (\mNrm_{t} + \hEnd_{t})\MPCmin_{t} \label{eq:cFuncAbove}
       \end{aligned}\end{gathered}\end{equation}
   for a constant minimal marginal propensity to consume $\MPCmin_{t}$ given below.
 \end{verbatimwrite}
-\input{./Equations/cFuncAbove.tex}
+\input{./Equations/cFuncAbove.tex}\unskip
 
 \begin{verbatimwrite}{./cctwMoM/MoM-Words.tex}
   We similarly define $\hEndMin_{t}$ as `minimal human wealth,' the
@@ -1337,7 +1334,7 @@ grid.
   than that of the pessimist and strictly less than that of the
   optimist.  Figure~\ref{fig:IntExpFOCInvPesReaOptNeedHiPlot} illustrates the proposition for the consumption rule in period $T-1$.  
 \end{verbatimwrite}
-\input{./cctwMoM/MoM-Words.tex}
+\input{./cctwMoM/MoM-Words.tex}\unskip
 \begin{verbatimwrite}{\econtexRoot/Figures/IntExpFOCInvPesReaOptNeedHiPlot.tex}
   \hypertarget{IntExpFOCInvPesReaOptNeedHiPlot}{}
   \begin{figure}
@@ -1346,14 +1343,14 @@ grid.
     \label{fig:IntExpFOCInvPesReaOptNeedHiPlot}
   \end{figure}
 \end{verbatimwrite}
-\input{./Figures//IntExpFOCInvPesReaOptNeedHiPlot.tex}
+\input{./Figures//IntExpFOCInvPesReaOptNeedHiPlot.tex}\unskip
 \begin{verbatimwrite}{./cctwMoM/MoM-Words-Rest.tex}
 
   \indent Proof is more difficult than might be imagined, but
   the necessary work is done in \cite{BufferStockTheory} so we will take
   the proposition as a fact and proceed by manipulating the inequality:
 \end{verbatimwrite}
-\input{./cctwMoM/MoM-Words-Rest.tex}
+\input{./cctwMoM/MoM-Words-Rest.tex}\unskip
 \begin{verbatimwrite}{./Equations/MoM-Inequalities.tex}
   \begin{center}
     \begin{tabular}{rcl}
@@ -1364,7 +1361,7 @@ grid.
     \end{tabular}
   \end{center}
 \end{verbatimwrite}
-\input{./Equations/MoM-Inequalities.tex}
+\input{./Equations/MoM-Inequalities.tex}\unskip
 \begin{verbatimwrite}{./cctwMoM/MoM-Inequalities-Describe.tex}
   where the fraction in the middle of the last inequality is the ratio
   of actual precautionary saving (the numerator is the difference
@@ -1373,7 +1370,7 @@ grid.
   precautionary saving (the amount that would be undertaken by the
   pessimist who consumes nothing out of any future income beyond the perfectly certain component).
 \end{verbatimwrite}
-\input{./cctwMoM/MoM-Inequalities-Describe.tex}
+\input{./cctwMoM/MoM-Inequalities-Describe.tex}\unskip
 
 \begin{verbatimwrite}{./Equations/MoM-KoppaOfMu.tex}
   Defining $\mu_{t} =
@@ -1387,7 +1384,7 @@ grid.
         \\  & = \log \left(1/\Hi{\koppa}_{t}(\mu_{t})-1\right) \label{eq:chi}
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
-\input{./Equations/MoM-KoppaOfMu.tex}
+\input{./Equations/MoM-KoppaOfMu.tex}\unskip
 \begin{verbatimwrite}{./cctwMoM/MoM-KoppaOfMu-Describe.tex}
   which has the virtue that it is linear in the limit as $\mu_{t}$ approaches $+\infty$.
 
@@ -1399,7 +1396,7 @@ grid.
         \Hi{\cFunc}_{t}  & = \bar{\cFunc}_{t}-\overbrace{\left(\frac{1}{1+\exp(\Hi{\chiFunc}_{t})}\right)}^{=\Hi{\koppa}_{t}} \aboveMin \hEnd_{t} \MPCmin_{t}. \label{eq:cFuncHi}
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
-\input{./Equations/cFuncHi.tex}
+\input{./Equations/cFuncHi.tex}\unskip
 
 \begin{verbatimwrite}{./cctwMoM/MoM-End.tex}
 
@@ -1427,7 +1424,7 @@ grid.
     \label{fig:ExtrapProblemSolved}
   \end{figure}
 \end{verbatimwrite}
-\input{./cctwMoM/MoM-End.tex}
+\input{./cctwMoM/MoM-End.tex}\unskip
 
 \hypertarget{Approximating-the-Slope-Too}{}
 \subsection{Approximating the Slope Too}
@@ -1539,7 +1536,7 @@ most eagle-eyed reader.)
   A similar function can be constructed recursively for earlier periods, yielding
   the general expression \hypertarget{vFuncPF}{}
 \end{verbatimwrite}
-\input{./cctwMoM/value-Intro.tex}
+\input{./cctwMoM/value-Intro.tex}\unskip
 \begin{verbatimwrite}{./Equations/vFuncPF.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
         \bar{\vFunc}_{t}({m}_{t})  & = \uFunc(\bar{\cNrm}_{t})\mathbb{C}_{t}^{T}\label{eq:vFuncPF}
@@ -1557,7 +1554,7 @@ most eagle-eyed reader.)
         \\  & = (\aboveMin \mNrm_{t}+\aboveMin \hEnd_{t})\MPCmin_{t}^{-\CRRA/(1-\CRRA)}   % 20190820
       \end{aligned}\end{gathered}\end{equation*}
 \end{verbatimwrite}
-\input{./Equations/vFuncPF.tex}
+\input{./Equations/vFuncPF.tex}\unskip
 \begin{verbatimwrite}{./cctwMoM/value-Rest.tex}
   \MPCMatch{with derivative
     \begin{equation*}\begin{gathered}\begin{aligned}
@@ -1605,12 +1602,12 @@ most eagle-eyed reader.)
         \hat{\vInv}_{t}  & = \bar{\vInv}_{t}-\overbrace{\left(\frac{1}{1+\exp(\hat{\Chi}_{t})}\right)}^{=\hat{\Koppa}_{t}} \aboveMin \hEnd_{t} \MPCmin_{t} (\mathbb{C}_{t}^{T})^{1/(1-\CRRA) }
       \end{aligned}\end{gathered}\end{equation}
   from which we obtain our approximation to the value function\MPCMatch{ and its derivatives~}~as \hypertarget{vHatFunc}{}
-  \begin{equation*}\begin{gathered}\begin{aligned}
+  \begin{equation}\begin{gathered}\begin{aligned}
         \hat{\vFunc}_{t}  & = \uFunc(\hat{\vInv}_{t})
         \\  \hat{\vFunc}^{m}_{t}  & = \uFunc^{\prime}(\hat{\vInv}_{t}) \hat{\vInv}^{m}
         \MPCMatch{\\  \hat{\vFunc}^{mm}_{t}  & = \uFunc^{\prime\prime}(\hat{\vInv}_{t}) (\hat{\vInv}^{m})^{2} + \uFunc^{\prime}(\hat{\vInv}_{t})\hat{\vInv}^{mm}}{}
-        .
-      \end{aligned}\end{gathered}\end{equation*}
+.
+      \end{aligned}\end{gathered}\end{equation}
 
   Although a linear interpolation that matches the level of $\vInv$ at
   the gridpoints is simple, a Hermite interpolation that matches both
@@ -1629,7 +1626,7 @@ most eagle-eyed reader.)
     within the grid.}{}
 
 \end{verbatimwrite}
-\input{./cctwMoM/value-Rest.tex}
+\input{./cctwMoM/value-Rest.tex}\unskip
 
 \hypertarget{Refinement-A-Tighter-Upper-Bound}{}
 \subsection{Refinement: A Tighter Upper Bound}
@@ -1677,7 +1674,7 @@ most eagle-eyed reader.)
   \newcommand{\mtCusp}{\ensuremath{\mNrm_{t}^{\#}}}
   % \newcommand{\aboveMin \mtCusp}{\ensuremath{\aboveMin \mNrm_{t}^{\#}}}
 \end{verbatimwrite}
-\input{./cctwMoM/Tighter.tex}
+\input{./cctwMoM/Tighter.tex}\unskip
 
 \begin{verbatimwrite}{./Equations/mtCusp.tex}
   Defining $\mtCusp$ as the `cusp' point where the two upper bounds
@@ -1688,7 +1685,7 @@ most eagle-eyed reader.)
         \mtCusp  & =  \frac{\MPCmin_{t}\hEnd_{t}-\hEndMin_{t}}{(1-\MPCmin_{t})\MPCmax_{t}},
       \end{aligned}\end{gathered}\end{equation*}
 \end{verbatimwrite}
-\input{./Equations/mtCusp.tex}
+\input{./Equations/mtCusp.tex}\unskip
 \begin{verbatimwrite}{./Equations/TighterUpperBound.tex}
   we want to construct a consumption function for $m_{t} \in (\ushort{m}_{t}, \mtCusp]$ that respects the 
   tighter upper bound:
@@ -1701,7 +1698,7 @@ most eagle-eyed reader.)
     \end{tabular}
   \end{center}
 \end{verbatimwrite}
-\input{./Equations/TighterUpperBound.tex}
+\input{./Equations/TighterUpperBound.tex}\unskip
 
 \begin{verbatimwrite}{./Equations/koppaLo.tex}
   Again defining $\mu_{t} =\log \aboveMin \mNrm_{t}$, the object in the middle of the inequality is
@@ -1710,7 +1707,7 @@ most eagle-eyed reader.)
         \MPCMatch{\\ \Lo{\koppa}^{\mu}_{t}(\mu_{t})  & = \frac{\cFunc_{t}(\ushort{m}_{t}+e^{\mu_{t}})e^{-\mu_{t}}-\MPCFunc_{t}^{m}(\ushort{m}_{t}+e^{\mu_{t}})}{\MPCmax_{t}-\MPCmin_{t}}}{} .
       \end{aligned}\end{gathered}\end{equation*}
 \end{verbatimwrite}
-\input{./Equations/koppaLo.tex}
+\input{./Equations/koppaLo.tex}\unskip
 
 \begin{verbatimwrite}{./cctwMoM/TighterThreeFuncs.tex}
   As $m_{t}$ approaches
@@ -1732,7 +1729,7 @@ most eagle-eyed reader.)
 
   Using indicator functions that are zero everywhere except for specified intervals,
 \end{verbatimwrite}
-\input{./cctwMoM/TighterThreeFuncs.tex}
+\input{./cctwMoM/TighterThreeFuncs.tex}\unskip
 \begin{verbatimwrite}{./Equations/TighterThreeEqns.tex}
   \begin{equation*}\begin{gathered}\begin{aligned}
         \pmb{1}_{\text{Lo}}(\mNrm)  & = 1 \text{~if $          \mNrm \leq  \bar{\check{\mNrm}}_{t}^{\#} \phantom{< \mNrm <   \ushort{\hat{\mNrm}}_{t}^{\#}          \leq \mNrm}$}
@@ -1742,17 +1739,15 @@ most eagle-eyed reader.)
   we can define a well-behaved approximating consumption function
   \begin{equation}\begin{gathered}\begin{aligned}
         \Alt{\cFunc}_{t}  & = \pmb{1}_{\text{Lo}} \Alt{\Lo{\cFunc}}_{t} + \pmb{1}_{\text{Mid}} \Alt{\tilde{\cFunc}}_{t}+\pmb{1}_{\text{Hi}} \Alt{\Hi{\cFunc}}_{t}.
-      \end{aligned}\end{gathered}\end{equation}
+      \end{aligned}\end{gathered}\end{equation} 
 \end{verbatimwrite}
-\input{./Equations/TighterThreeEqns.tex}
+\input{./Equations/TighterThreeEqns.tex}\unskip
 
 \begin{verbatimwrite}{./cctwMoM/TighterThreeFuncsExplain.tex}
-
   This just says that, for each interval, we use the approximation that
   is most appropriate.  The function is continuous and
   once-differentiable everywhere, and is therefore well behaved for
   computational purposes.
-
   \begin{comment}
     In practice, in our problem the difference due to this refinement is displayed in Figure \ref{fig:IntExpFOCInvPesReaOpt45GapPlot}.
     \hypertarget{IntExpFOCInvPesReaOpt45GapPlot}{}
@@ -1795,7 +1790,7 @@ most eagle-eyed reader.)
   \MPCMatch{and its derivatives}{} which yields the appropriate vector for constructing $\check{\Chi}$ and $\check{\Koppa}$.  The rest of the procedure is analogous to that performed for the consumption rule and is thus omitted for brevity.
 
 \end{verbatimwrite}
-\input{./cctwMoM/TighterThreeFuncsExplain.tex}
+\input{./cctwMoM/TighterThreeFuncsExplain.tex}\unskip
 
 \hypertarget{Extension-A-Stochastic-Interest-Factor}{}
 \subsection{Extension: A Stochastic Interest Factor}
@@ -1812,7 +1807,7 @@ The easiest case is where the interest factor is i.i.d.,
         \log \Risky_{t+n} & \sim & \mathcal{N}(\rfree + \eprem - \sigma^{2}_{\risky}/2,\sigma^{2}_{\risky}) ~\forall~n>0 \label{eq:distRisky}
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
-\input{./Equations/distRisky.tex}
+\input{./Equations/distRisky.tex}\unskip
 
 where $\eprem$ is the risk premium and the $\sigma^{2}_{\risky}/2$ adjustment to the mean log return
 guarantees that an increase in $\sigma^{2}_{\risky}$ constitutes a mean-preserving spread in the level of the return.  
@@ -1876,7 +1871,7 @@ zero.\footnote{The word artificial is chosen only because of its clarity in dist
       \\ & \mbox{s.t.}&  \nonumber
       \\ {a}_{T-1}  & = {m}_{T-1} - {c}_{T-1}
       \\ {m}_{T}  & = \RNrm_{T} {a}_{T-1} + \TranShkEmp_{T}
-      \\ {a}_{T-1} & \geq & 0 .
+      \\ {a}_{T-1} & \geq 0 .
     \end{aligned}\end{gathered}\end{equation*}
 
 \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Constraint binds whenever you would like to consume more than current resources.}}{}
@@ -1896,7 +1891,7 @@ Then the approximated constrained optimal consumption function will be
         \grave{\cFunc}_{T-1}({m}_{T-1})  & = \min[{m}_{T-1},\grave{\cFunc}^{\ast}_{T-1}({m}_{T-1})] \label{eq:LiqCons}.
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
-\input{./Equations/LiqCons.tex}
+\input{./Equations/LiqCons.tex}\unskip
 
 \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Read this carefully
     before class.  Intuition: consider discounted mv of saving zero.  If
@@ -2026,7 +2021,7 @@ $\Alt{\Hi{\cFunc}}_{t}({m}_{t})$ in
 hand, we simply \textit{define} $\hat{\vFunc}^{\prime}_{t}({m}_{t}) = \uFunc^{\prime}(\Alt{\Hi{\cFunc}}_{t}({m}_{t}))$
 so there is no need to construct interpolating approximations 
 - the function arises `free' (or nearly so) from our constructed
-$\Alt{\Hi{\cFunc}}_{t}({m}_{t})$.
+$\Alt{\Hi{\cFunc}}_{t}({m}_{t})$ via the usual envelope result (cf.\ \eqref{eq:envelope}).
 
 The program \texttt{multiperiodCon.m}\footnote{There is also a parallel \texttt{multiperiod.m} file that solves the unconstrained multi-period problem.} presents a fairly general and
 flexible approach to solving problems of this kind. The essential
@@ -2679,7 +2674,7 @@ the consumer's portfolio between $t$ and $t+1$ will be:
         \\               & = \Rfree + (\Risky_{t+1}-\Rfree) \varsigma_{t} %\label{eq:return2}
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
-\input{./Equations/Rport.tex}
+\input{./Equations/Rport.tex}\unskip
 and the maximization problem is
 \begin{verbatimwrite}{./Equations/PortProb.tex}
   \begin{equation*}\begin{gathered}\begin{aligned}
@@ -2703,7 +2698,7 @@ The first order condition with respect to ${c}_{t}$ is almost identical
 to that in the single-control problem, equation (\ref{eq:upceqEvtp1}),
 with the only difference being that the nonstochastic interest factor
 $\Rfree$ is now replaced by ${\Rport}_{t+1}$,
-\begin{verbatimwrite}{./Equations/valfuncFOCRtilde.tex}
+\begin{verbatimwrite}{./Equations/valfuncFOCRtilde.tex}\unskip
   \begin{equation}\begin{gathered}\begin{aligned}
         \uFunc^{\prime}({c}_{t})  & = \DiscFac \Ex_{t} [{\Rport}_{t+1} \vFunc^{\prime}_{t+1}({m}_{t+1})] \label{eq:valfuncFOCRtilde},
       \end{aligned}\end{gathered}\end{equation}
@@ -2716,7 +2711,7 @@ yielding the Euler equation for consumption
         \uFunc^{\prime}({c}_{t})  & = \Ex_{t}[\DiscFac {\Rport}_{t+1} \uFunc^{\prime}({c}_{t+1})]. \label{eq:EulercRiskyR}
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
-\input{./Equations/EulercRiskyR.tex}
+\input{./Equations/EulercRiskyR.tex}\unskip
 
 The first order condition with respect to the risky portfolio share is
 \begin{verbatimwrite}{./Equations/FOCw.tex}
@@ -2725,7 +2720,7 @@ The first order condition with respect to the risky portfolio share is
         \\         & = {a}_{t}\Ex_{t}\left[\uFunc^{\prime}\left(\cFunc_{t+1}({m}_{t+1})\right)(\Risky_{t+1}-\Rfree)\right] \label{eq:FOCw}.
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
-\input{./Equations/FOCw.tex}
+\input{./Equations/FOCw.tex}\unskip
 
 As before, it will be useful to define $\vEnd_{t}$ as a function that
 yields the expected $t+1$ value of ending period $t$ in a given state.
@@ -3115,7 +3110,7 @@ The decision problem for the household at age $t$ is:
     \max \left\{ \uFunc(\cLvl_{t})+\Ex_{t}\left[\sum_{s=t+1}^{T} {\beth}^{s-t}\left( \Pi _{i=t+1}^{s}\hat{\DiscFac}_{i} \Alive _{i}\right) \uFunc(\cLvl_{s}) \right]\right\}   \label{eq:lifecyclemax}
   \end{equation}
 \end{verbatimwrite}
-\input{./Equations/lifecyclemax.tex}
+\input{./Equations/lifecyclemax.tex}\unskip
 subject to the constraints
 \begin{equation*}\begin{gathered}\begin{aligned}
       \aLvl_{s}  & = \mLvl_{s}-\cLvl_{s}
@@ -3132,7 +3127,7 @@ where
         \\     \beth &:&\text{time-invariant discount factor}
       \end{aligned}\end{gathered}\end{equation*}
 \end{verbatimwrite}
-\input{./Equations/subjectTo.tex}
+\input{./Equations/subjectTo.tex}\unskip
 and all the other variables are defined as in section \ref{sec:basicproblem}.
 
 Households start life at age $s=25$ and live with probability 1 until retirement
@@ -3215,7 +3210,7 @@ As explained in section \ref{sec:normalization}, it is convenient to work with t
         \\      {m}_{t+1}  & = {a}_{t}\underbrace{\left(\frac{\Rfree}{\PermShk_{t+1}\PermGroFac_{t+1}}\right)}_{\equiv \RNrm_{t+1}}+\TranShkEmp_{t+1}
       \end{aligned}\end{gathered}\end{equation*}
 \end{verbatimwrite}
-\input{./Equations/LifeCycleMaxNormed.tex}
+\input{./Equations/LifeCycleMaxNormed.tex}\unskip
 with the first order condition:
 \begin{equation}\begin{gathered}\begin{aligned}
       \uFunc^{\prime}({c}_{t}) & = \beth\Alive_{t+1}\hat{\DiscFac}_{t+1}\Rfree \Ex_{t}\left[\uFunc^{\prime}\left(\PermShk_{t+1}\PermGroFac_{t+1}\cFunc_{t+1}\left({a}_{t}\RNrm_{t+1}+\TranShkEmp_{t+1}\right)\right)\right]\label{eq:FOCLifeCycle}
@@ -3271,7 +3266,7 @@ the parameter values which solve
         \min_{\xi} \sum_{\tau=1}^{7} |\varsigma^{\tau} -\mathbf{s}^{\tau}(\xi)|  \label{eq:naivePowell}
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
-\input{./Equations/naivePowell.tex}
+\input{./Equations/naivePowell.tex}\unskip
 where $\varsigma^{\tau }$ and $\mathbf{s}^{\tau}$ are respectively the empirical and simulated medians of the wealth to permanent income ratio for age group $\tau $.
 
 A drawback of proceeding in this way is that it treats the empirically
@@ -3289,7 +3284,7 @@ We can get around this problem (and a variety of others) by instead minimizing a
     \min_{\xi}\sum\limits_{i}^{N}\weight _{i}\left|\varsigma_{i}^{\tau }-\mathbf{s}^{\tau}(\xi )\right|\label{eq:StructEstim}
   \end{equation}
 \end{verbatimwrite}
-\input{./Equations/StructEstim.tex}
+\input{./Equations/StructEstim.tex}\unskip
 where $\weight_{i}$ is the weight of household $i$ in the entire
 population,\footnote{The Survey of Consumer Finances includes many
   more high-wealth households than exist in the population as a whole;
@@ -3325,7 +3320,7 @@ The key function to perform structural estimation is defined in the \texttt{setu
         &];&\nonumber
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
-\input{./Equations/GapEmpiricalSimulatedMedians.tex}
+\input{./Equations/GapEmpiricalSimulatedMedians.tex}\unskip
 For a given pair of the parameters to be estimated, the \texttt{GapEmpiricalSimulatedMedians} routine therefore:
 \begin{enumerate}
 \item solves for the consumption functions by calling \texttt{ConstructcFuncLife}
@@ -3390,7 +3385,7 @@ procedure to precisely identify the parameters.
     \end{tabular}
   \end{table}
 \end{verbatimwrite}
-\input{./Tables/EstResults.tex}
+\input{./Tables/EstResults.tex}\unskip
 
 \hypertarget{PlotContourMedianStrEst}{}
 \begin{figure}
