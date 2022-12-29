@@ -9,9 +9,6 @@ s% original texmf.cnf (for example, as chosen in the installer).
 %
 openout_any = a
 shell_escape = t
-max_print_line=1000
-error_line=254
-half_error_line=238
 
 % TEXMFHOME is for any user-specific customizations
 % -- This is NOT the place for Methods customizations
@@ -24,3 +21,5 @@ TEXMFCONFIG  = /usr/local/texlive/texmf-config
 
 TEXMFMETHODS = /usr/local/texlive/texmf-local # Links should be created upon setup of TeXLive
 TEXMF = {$TEXMFMETHODS,$TEXMFCONFIG,$TEXMFVAR,$TEXMFHOME,!!$TEXMFSYSCONFIG,!!$TEXMFSYSVAR,!!$TEXMFMAIN,!!$TEXMFLOCAL,!!$TEXMFDIST}
+
+file_line_error_style = t
