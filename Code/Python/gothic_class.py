@@ -6,9 +6,9 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.11.2
+#       jupytext_version: 1.13.0
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 # ---
@@ -56,7 +56,7 @@ from __future__ import division
 from scipy.interpolate import InterpolatedUnivariateSpline
 import numpy as np
 
-# + code_folding=[2, 100, 143]
+# + code_folding=[2, 144]
 class Gothic:
     
     def __init__(self, u, beta, rho, Gamma, R, Income, variable_variance=False):
@@ -108,18 +108,18 @@ class Gothic:
         if t == -1:
             tp1 = -1    # Selects final value in a vector.
             t = -2
-            g = lambda eta:  self.u(self.R/(self.Gamma[tp1]) * a + eta) 
+            V_func = lambda tinc_shk:  self.u(self.R/(self.Gamma[tp1]) * a + tinc_shk) 
         elif v_prime is not None:
             tp1 = t + 1
-            g = lambda eta:  v_prime(self.R/(self.Gamma[tp1]) * a + eta) 
+            V_func = lambda tinc_shk:  v_prime(self.R/(self.Gamma[tp1]) * a + tinc_shk) 
         else:
             raise Exception("Please either specify that t=-1 (indicating solution for period T-1) or specify *both* t and v_prime.")
         
         if self.variable_variance:
-            gothicV = self.beta * self.Gamma_to_1minusRho[tp1] * self.Income[tp1].E(g)
+            gothicV = self.beta * self.Gamma_to_1minusRho[tp1] * self.Income[tp1].E(V_func)
             # TODO: confirm that 
         else:
-            gothicV = self.beta * self.Gamma_to_1minusRho[tp1] * self.Income.E(g)
+            gothicV = self.beta * self.Gamma_to_1minusRho[tp1] * self.Income.E(V_func)
             
         return(gothicV)
 
@@ -136,7 +136,7 @@ class Gothic:
         if t == -1:
             tp1 = -1    # Selects final value in a vector.
             t = -2
-            g = lambda eta:  psi**(-self.rho) * self.u.prime(self.R/(self.Gamma[tp1]) * a + eta) 
+            Vp_func = lambda tinc_shk:  psi**(-self.rho) * self.u.prime(self.R/(self.Gamma[tp1]) * a + tinc_shk) 
         elif c_prime is not None:
             tp1 = t+1
             
@@ -144,15 +144,15 @@ class Gothic:
             #print "mtp1", mtp1
             #g = lambda psi, eta:  psi**(-self.rho) * self.u.prime(c_prime(mtp1))
             # one possible solution:
-            g = lambda eta, R=self.R, gamma=self.Gamma[tp1],aa=a, rho=self.rho, uP=self.u.prime, ctp1=c_prime:  uP(ctp1(R/(gamma) * aa + eta))
+            Vp_func = lambda tinc_shk, R=self.R, gamma=self.Gamma[tp1],aa=a, rho=self.rho, uP=self.u.prime, ctp1=c_prime:  uP(ctp1(R/(gamma) * aa + tinc_shk))
             
         else:
             raise Exception("Please either specify that t=-1 (indicating solution for period T-1) or specify *both* t and c_prime.")
         
         if self.variable_variance:
-            gothicV_prime = self.beta * self.R * self.Gamma_to_minusRho[tp1] * self.Income[tp1].E(g)
+            gothicV_prime = self.beta * self.R * self.Gamma_to_minusRho[tp1] * self.Income[tp1].E(Vp_func)
         else:
-            gothicV_prime = self.beta * self.R * self.Gamma_to_minusRho[tp1] * self.Income.E(g)
+            gothicV_prime = self.beta * self.R * self.Gamma_to_minusRho[tp1] * self.Income.E(Vp_func)
         
         return(gothicV_prime)
     
@@ -193,8 +193,9 @@ class Gothic:
         # Convenience definitions. Note we take the last value of Gamma:
         fancyR_T = self.R/self.Gamma[-1] 
         
+        Vp_func = lambda tinc_shk: self.u.prime(fancyR_T * a + tinc_shk)
         # The value:
-        GVTm1P = self.beta * self.R * self.Gamma_to_minusRho[-1] * self.Income.E(lambda o: self.u.prime(fancyR_T * a + o))
+        GVTm1P = self.beta * self.R * self.Gamma_to_minusRho[-1] * self.Income.E(Vp_func)
 
         return GVTm1P
 
@@ -246,8 +247,9 @@ class Gothic:
             Gamma_to_mRho = self.Gamma_to_minusRho[t+1]
             scriptR_tp1 = self.R/self.Gamma[t+1]
         
+        Vp_func = lambda tinc_shk: self.u.prime(c_prime(scriptR_tp1 * a + tinc_shk))
         # The value:
-        GVPt = self.beta * self.R * Gamma_to_mRho * self.Income.E(lambda o: self.u.prime(c_prime(scriptR_tp1 * a + o)))
+        GVPt = self.beta * self.R * Gamma_to_mRho * self.Income.E(Vp_func)
         
         return GVPt
 # -

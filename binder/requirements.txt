@@ -1,0 +1,9 @@
+econ-ark==0.12
+ipywidgets==7.6.3
+jupyterlab==3.0
+matplotlib==3.4.2
+matplotlib-base==3.3.4
+numpy==1.21.1
+pandas==1.2.3
+python==3.7
+voila==0.2.10

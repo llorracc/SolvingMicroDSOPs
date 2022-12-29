@@ -1,3 +1,7 @@
+\usepackage{econark}
+
+\newcommand{\constr}[1]{\grave{#1}} % alternative to \cnstr from econark which is preferred
+
 \providecommand{\aAgg}{\ensuremath{\mathsf{A}}}
 \providecommand{\aboveMin}{\blacktriangle}
 \providecommand{\adjPar}{\ensuremath{\omega}}
@@ -6,6 +10,7 @@
 \providecommand{\aFunc}{\ensuremath{\mathrm{a}}}
 \providecommand{\Age}{\ensuremath{Z}}
 \providecommand{\age}{\ensuremath{z}}
+\providecommand{\Agg}{\bar}
 \providecommand{\ALevBF}{\ensuremath{\mathbf{A}}}
 \providecommand{\aLevBF}{\ensuremath{\mathbf{a}}}
 \providecommand{\ALev}{\ensuremath{A}}
@@ -17,7 +22,7 @@
 \providecommand{\aRat}{\ensuremath{a}}
 \providecommand{\ARat}{\ensuremath{A}}
 \providecommand{\aRat}{\ensuremath{a}}
-\providecommand{\aRatBF}{\ensuremath{\pmb{a}}}
+%\providecommand{\aRatBF}{\ensuremath{\pmb{a}}}
 \providecommand{\ASS}{\ensuremath{\ensuremath{A}}}
 \providecommand{\aSS}{\ensuremath{\ensuremath{a}}}
 \providecommand{\ATarg}{\ensuremath{\check{A}}}
@@ -134,7 +139,7 @@
 \providecommand{\empGro}{\ensuremath{\xi}}
 \providecommand{\empState}{\xi} % employment state indicator variable 
 \providecommand{\EpremLog}{\varphi} % Not using regular \eprem because want to distinguish between \varphi = log E_{t}[\Phi_{t+1}] and \phi_{t} = E[\log \Phi_{t}]
-\providecommand{\EPrem}{\Phi} % equity premium
+\providecommand{\EPrem}{\pmb{\varphi}} % equity premium
 \providecommand{\eprem}{\phi} % log equity premium
 \providecommand{\EpShkInv}{\Ex[\pShk^{-1}]}
 \providecommand{\erate}{\ensuremath{\cancel{\mho}}}
@@ -173,16 +178,15 @@
 \providecommand{\Hi}{\hat}
 \providecommand{\HLevBF}{\ensuremath{\mathbf{H}}}
 \providecommand{\hLevBF}{\ensuremath{\mathbf{h}}}
-\providecommand{\HLev}{\ensuremath{\pmb{H}}}
-\providecommand{\hLev}{\ensuremath{\pmb{h}}}
+\providecommand{\HLev}{\ensuremath{H}}
+\providecommand{\hLev}{\ensuremath{h}}
 \providecommand{\hMin}{\ensuremath{\underline{\h}}}
 \providecommand{\HMin}{\ensuremath{\underline{H}}}
 \providecommand{\hours}{\ensuremath{\mathfrak{h}}}
 \providecommand{\Hours}{\ensuremath{\mathfrak{H}}}
 \providecommand{\HRat}{\ensuremath{H}}
 \providecommand{\hRat}{\ensuremath{h}}
-\providecommand{\h}{\ensuremath{h}}
-%\providecommand{\H}{\ensuremath{H}}
+%\providecommand{\h}{\ensuremath{h}}
 \providecommand{\iFunc}{\ensuremath{\mathrm{i}}}
 \providecommand{\IFunc}{\ensuremath{\mathrm{I}}}
 \providecommand{\ILev}{\ensuremath{I}}
@@ -249,6 +253,7 @@
 \providecommand{\mLevE}{\mLev^{e}}
 \providecommand{\MLev}{\ensuremath{M}}
 \providecommand{\mLev}{\ensuremath{m}}
+\providecommand{\Mod}{\tilde}
 \providecommand{\MPCE}{\MPC^{e}}
 \providecommand{\MPCFunc}{\ensuremath{\pmb{\kappa}}}
 \providecommand{\MPCPPF}{\ensuremath{\Pi}}
@@ -261,7 +266,7 @@
 \providecommand{\mRatE}{\mRat^{e}}
 \providecommand{\MRat}{\ensuremath{M}}
 \providecommand{\mRat}{\ensuremath{m}}
-\providecommand{\mRatBF}{\ensuremath{\pmb{\mathrm{m}}}}
+%\providecommand{\mRatBF}{\ensuremath{\pmb{\mathrm{m}}}}
 \providecommand{\MSS}{\ensuremath{\breve{M}}}
 \providecommand{\mSS}{\ensuremath{\breve{m}}}
 \providecommand{\mTarg}{\check{m}}
@@ -312,9 +317,11 @@
 \providecommand{\pGrouAdj}{\ensuremath{\underline{\underline{{\pGro}}}}}
 \providecommand{\PGro}{\ensuremath{\Gamma}}
 \providecommand{\pGro}{\ensuremath{\gamma}}
+\providecommand{\PermGroFac}{\ensuremath{\pmb{\Gamma}}} % Econ-ARK
+\providecommand{\PermGroRte}{\ensuremath{\pmb{\gamma}}} % Econ-ARK
 \providecommand{\permGroFac}{\ensuremath{\Gamma}} % Econ-ARK
 \providecommand{\permGroRte}{\ensuremath{\gamma}} % Econ-ARK
-\providecommand{\phiFunc}{\ensuremath{\digamma}}
+%\providecommand{\phiFunc}{\ensuremath{\digamma}}
 \providecommand{\PIHMPC}{\ensuremath{\varkappa}}
 \providecommand{\PInc}{\ensuremath{P}}
 \providecommand{\PLabor}{\ensuremath{P}} % Permanent labor income in levels
@@ -359,6 +366,7 @@
 \providecommand{\permShkInd}{\psi} % New
 \providecommand{\pshk}{\psi} % 
 \providecommand{\PtyGro}{\ensuremath{\Phi}}
+\providecommand{\PtyGro}{\ensuremath{\Phi}}
 \providecommand{\ptyGro}{\ensuremath{\phi}}
 \providecommand{\PtyLab}{\ensuremath{\mathrm{Z}}} % Labor productivity 
 \providecommand{\ptyLab}{\ensuremath{z}} % usually, log of \PtyLab
@@ -373,7 +381,8 @@
 \providecommand{\Rev}{\ensuremath{\Pi}}
 \providecommand{\rev}{\ensuremath{\pi}}
 \providecommand{\rfree}{\ensuremath{\mathsf{r}}}   % The net return on the safe asset at an annual rate
-\providecommand{\Rfree}{\ensuremath{\mathsf{R}}}   % The return factor on the safe asset - unfortunately mathfrak fonts don't come through for tth 
+\providecommand{\Rfree}{\ensuremath{\mathsf{R}}}   % The return factor on the safe asset - unfortunately mathfrak fonts don't come through for tth
+\providecommand{\RfreeAgg}{\ensuremath{\bar{\Rfree}}}   
 \providecommand{\RFunc}{\ensuremath{\mathrm{R}}}
 \providecommand{\RGross}{\ensuremath{\breve{\mathsf{R}}}}
 \providecommand{\rGross}{\ensuremath{\breve{\mathsf{r}}}}
@@ -531,8 +540,8 @@
 \providecommand{\vNorm}{\ensuremath{\mathrm{w}}} % end-of-period value function
 \providecommand{\VNum}{\ensuremath{V}}
 \providecommand{\vNum}{\ensuremath{v}}
-\providecommand{\vOptAlt}{\ensuremath{\Alt{\tilde{\mathfrak{v}}}}}
-\providecommand{\vOpt}{\ensuremath{\tilde{\mathfrak{v}}}}
+\providecommand{\vOptAlt}{\ensuremath{\Alt{\Mod{\mathfrak{v}}}}}
+\providecommand{\vOpt}{\ensuremath{\Mod{\mathfrak{v}}}}
 \providecommand{\VRat}{\ensuremath{V}}
 \providecommand{\vRat}{\ensuremath{v}}
 \providecommand{\vTarg}{\Target{\vRat}}
@@ -647,23 +656,4 @@
 \providecommand{\cncl}{}
 \renewcommand\cncl[1]{\ensuremath{\cancel{#1}}}
 
-% Define the handles for the various conditions
-\providecommand{\constr}{}
-\renewcommand{\constr}[1]{\grave{#1}}
-
-%\renewcommand{\PFGPF}{{\mbox{PF-GPF}}}
-%\renewcommand{\PFGIC}{{\mbox{PF-GIC}}}
-%\renewcommand{\AIC}{{\mbox{AIC}}}
-%\renewcommand{\PFFVAC}{{\mbox{PF-FVAC}}}
-%\renewcommand{\PFVAF}{{\mbox{PF-VAF}}}
-%\renewcommand{\FVAC}{{\mbox{FVAC}}}
-%\renewcommand{\FVAF}{{\mbox{FVAF}}}
-%\renewcommand{\GIC}{{\mbox{GIC}}}
-%\renewcommand{\GICAgg}{{\mbox{GIC-Agg}}}
-%\renewcommand{\RIC}{{\mbox{RIC}}}
-%\renewcommand{\WRIC}{{\mbox{WRIC}}}
-%\renewcommand{\FHWC}{{\mbox{FHWC}}}
-%\renewcommand{\RPF}{{\mbox{RPF}}}
-%\renewcommand{\GPF}{{\mbox{GPF}}}
-%\renewcommand{\FHWF}{\mbox{FHWF}}
 
