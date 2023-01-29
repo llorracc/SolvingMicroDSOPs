@@ -7,8 +7,11 @@
   \fi #1% Removing this comment breaks the command
 }
 
+% Suppress useless warning "PDF inclusion: multiple PDFs with page group"
+\pdfsuppresswarningpagegroup=1
+
 % Appendices and body are subfiles
-\RequirePackage{subfiles}
+\usepackage{subfiles}
 
 % Command to define a label only if it does not yet exist (suppresses misleading
 % warnings when material created in subfiles is read in while references already
@@ -45,7 +48,8 @@
 \newcommand{\BSTpaperLink}{https://\owner.github.io/BufferStockTheory/BufferStockTheory3.html} % Frame 3
 
 % Suffix of Defn indicates reference to text name and source doc definition
-\newcommand{\FHWC}{\hyperlink{FHWC}{\textrm{FHWC}}}
+\providecommand{\FHWC}{}
+\renewcommand{\FHWC}{\hyperlink{FHWC}{\textrm{FHWC}}}
 %\newcommand{\FHWFacDefn}{\hyperlink{FHWFacDefn}{\textrm{FHWF}}}
 \newcommand{\FHWFacDefn}{\hyperlink{FHWFacDefn}{\textrm{FHWF}}}
 \newcommand{\GICRaw}{\hyperlink{GICRaw}{\textrm{GIC}}}
@@ -54,16 +58,21 @@
 \newcommand{\GICMod}{\hyperlink{GICMod}{\textrm{GIC-Mod}}}
 \newcommand{\GICHarm}{\hyperlink{GICHarm}{\textrm{GIC-Harm}}}
 \newcommand{\GICSdl}{\hyperlink{GICSdl}{\textrm{GIC-Szeidl}}}
-\newcommand{\RIC}{\hyperlink{RIC}{\textrm{RIC}}}
-\newcommand{\PFFVAC}{\hyperlink{PFFVAC}{\textrm{PF-FVAC}}}
+\providecommand{\RIC}{}
+\renewcommand{\RIC}{\hyperlink{RIC}{\textrm{RIC}}}
+\providecommand{\PFFVAC}{}
+\renewcommand{\PFFVAC}{\hyperlink{PFFVAC}{\textrm{PF-FVAC}}}
 \newcommand{\PFVAFacDefn}{\hyperlink{PFVAFacDefn}{\textrm{PF-VAF}}}
-\newcommand{\FVAC}{\hyperlink{FVAC}{\textrm{FVAC}}}
+\providecommand{\FVAC}{}
+\renewcommand{\FVAC}{\hyperlink{FVAC}{\textrm{FVAC}}}
 \newcommand{\VAFacDefn}{\hyperlink{VAFacDefn}{\textrm{VAF}}}
 \newcommand{\APFacDefn}{\hyperlink{APFacDefn}{\textrm{APF}}}
 \newcommand{\RPFacDefn}{\hyperlink{RPFacDefn}{\textrm{RPF}}}
-\newcommand{\AIC}{\hyperlink{AIC}{\textrm{AIC}}}
+\providecommand{\AIC}{}
+\renewcommand{\AIC}{\hyperlink{AIC}{\textrm{AIC}}}
 \newcommand{\WRPFacDefn}{\hyperlink{WRPFacDefn}{\textrm{WRPF}}}
-\newcommand{\WRIC}{\hyperlink{WRIC}{\textrm{WRIC}}}
+\providecommand{\WRIC}{}
+\renewcommand{\WRIC}{\hyperlink{WRIC}{\textrm{WRIC}}}
 
 % Levels are boldface
 \providecommand{\aLvl}{\mathbf{a}}
@@ -177,6 +186,7 @@
 \providecommand{\rNrm}{s}
 \providecommand{\sNrm}{s}
 \providecommand{\vNrm}{v}
+\providecommand{\xNrm}{x}
 \providecommand{\yNrm}{y}
 \providecommand{\zNrm}{z}
 
@@ -223,6 +233,7 @@
 \providecommand{\TranShkStd}{\sigma_{\TranShk}}
 \providecommand{\TranShkVar}{\sigma^{2}_{\TranShk}}
 \providecommand{\TranShkEmp}{\pmb{\theta}}    % Former tShkEmp
+\providecommand{\TranShkEmpMin}{\underline{\TranShkEmp}}    
 \providecommand{\TranShkAll}{\pmb{\xi}} % Former tShkAll
 \providecommand{\IncUnemp}{\mu}  % Income in unemployment
 
@@ -244,15 +255,15 @@
 \providecommand{\Alive}{\mathcal{L}}\renewcommand{\Alive}{\mathcal{L}}
 \providecommand{\RfreeAgg}{}\renewcommand{\RfreeAgg}{\Agg{\Rfree}}
 
-\providecommand{\DeprFac}{\ensuremath{\daleth}}
-\providecommand{\deprRte}{\ensuremath{\delta}} % New 
+\providecommand{\DeprFac}{{\daleth}}
+\providecommand{\deprRte}{{\delta}} % New 
 \providecommand{\DiscFac}{\beta}
 \providecommand{\DiscFacAlt}{\beth}
 \providecommand{\DiscAltuAdj}{{\underline{\underline{\beth}}}}
 \providecommand{\DiscAlt}{{\beth}}
 \providecommand{\DiscFacRaw}{\beta}
 \providecommand{\DiscFacLiv}{\underline{\DiscFacRaw}}
-\providecommand{\discRte}{\ensuremath{\tau}} % New
+\providecommand{\discRte}{{\tau}} % New
 
 \providecommand{\APFac}{\text{\pmb{\Thorn}}} % Former \Pat
 \providecommand{\APFacDefn}{\hyperlink{APFacDefn}{\textrm{APF}}}
@@ -285,7 +296,7 @@
 \providecommand{\pNotZero}{(1-\pZero)}
 
 
-\providecommand{\CARA}{\ensuremath{\alpha}}
+\providecommand{\CARA}{{\alpha}}
 \providecommand{\CRRA}{{\rho}}
 \providecommand{\diePrb}{\ensuremath{\mathsf{d}}} % Continuous time death rate 
 \providecommand{\DiePrb}{\ensuremath{\mathsf{D}}} % Discrete-time one-period death rate
@@ -327,7 +338,7 @@
 \providecommand{\wage}{\ensuremath{\mathsf{w}}}
 
 \providecommand{\TaxLev}{T}
-\providecommand{\Tax}{}
+\providecommand{\Tax}{\tau}
 \providecommand{\TaxFree}{\ensuremath{\cancel{\Tax}}}
 
 \providecommand{\Alt}{\grave}
@@ -337,10 +348,60 @@
 \providecommand{\unins}{\ensuremath{\zeta}}
 
 \providecommand{\Labor}{\mathrm{L}}
-\providecommand{\Labor}{\ell}
+\providecommand{\labor}{\ell}
 
 \providecommand{\EEndMap}{\ensuremath{\mathsf{E}}}
 \providecommand{\TMap}{\mathscr{T}}
 
 \providecommand{\CEndFunc}{\ensuremath{\mathfrak{C}}}
 \providecommand{\cEndFunc}{\ensuremath{\mathfrak{c}}}
+
+% Other useful items
+\providecommand{\EPrem}{{\pmb{\varphi}}} % equity premium
+\providecommand{\eprem}{\varphi} % log equity premium
+\providecommand{\vBegFunc}{\pmb{\upsilon}}
+\providecommand{\vBeg}{\upsilon}
+\providecommand{\VEndFunc}{\ensuremath{\mathfrak{V}}}
+\providecommand{\vEndFunc}{\ensuremath{\mathfrak{v}}}
+\providecommand{\VEnd}{\ensuremath{\mathfrak{V}}} % end-of-period Value function
+\providecommand{\vEnd}{\ensuremath{\mathfrak{v}}} % end-of-period value function
+\providecommand{\FDist}{\ensuremath{\mathcal{F}}}
+\providecommand{\fDist}{\ensuremath{\mathcal{f}}}
+\providecommand{\hEnd}{\ensuremath{\mathfrak{h}}}
+\providecommand{\hFunc}{\ensuremath{\mathrm{h}}}
+
+\providecommand{\MPSFunc}{\ensuremath{\pmb{lambda}}}
+\providecommand{\MPS}{\ensuremath{\lambda}}
+
+\providecommand{\cFuncAbove}{\Abve{\cFunc}}
+\providecommand{\cFuncBelow}{\Belw{\cFunc}}
+\providecommand{\hEndMin}{\ensuremath{\underline{\mathfrak{h}}}}
+
+\providecommand{\VInv}{\ensuremath{\Lambda}}
+\providecommand{\vInv}{\ensuremath{\scriptstyle \Lambda \displaystyle}}
+\providecommand{\weight}{\omega}
+\providecommand{\Chi}{\pmb{\mathrm{X}}}
+\providecommand{\Lo}{\check}
+\providecommand{\Rprod}{\mathscr{R}}
+\providecommand{\tinyAmount}{\epsilon}
+\providecommand{\Mod}{\tilde}
+\providecommand{\vOptAlt}{\ensuremath{\Alt{\Mod{\mathfrak{v}}}}}
+\providecommand{\vOpt}{\Mod{\mathfrak{v}}}
+
+\providecommand{\aVec}{\vec{\mathrm{\aNrm}}}
+\providecommand{\bVec}{\vec{\mathrm{\bNrm}}}
+\providecommand{\cVec}{\vec{\mathrm{\cNrm}}}
+\providecommand{\mVec}{\vec{\mathrm{\mNrm}}}
+\providecommand{\yVec}{\vec{\mathrm{\yNrm}}}
+
+\providecommand{\aMat}{[{\mathrm{\aNrm}}]}
+\providecommand{\bMat}{[{\mathrm{\bNrm}}]}
+\providecommand{\cMat}{[{\mathrm{\cNrm}}]}
+\providecommand{\mMat}{[{\mathrm{\mNrm}}]}
+\providecommand{\xMat}{[{\mathrm{\xNrm}}]}
+\providecommand{\yMat}{[{\mathrm{\yNrm}}]}
+
+\providecommand{\tPrev}{t-1}
+\providecommand{\tCurr}{t}
+\providecommand{\tNext}{t+1}
+\providecommand{\tTerm}{T}

@@ -117,22 +117,9 @@
 \hypertarget{Introduction}{}
 \section{Introduction}
 
-Calculating the mathematically optimal amount to save is a remarkably difficult
-problem.  Under well-founded assumptions about the nature of
-risk (and attitudes toward risk), the problem cannot be solved analytically; computational solutions are the only option. 
-To avoid having to solve
-this hard problem, past generations of economists showed impressive ingenuity in
-reformulating the question.  Budding graduate students are still
-taught a host of tricks whose purpose is partly to avoid the resort to
-numerical solutions: Quadratic or
-Constant Absolute Risk Aversion utility, perfect markets, perfect
-insurance, perfect foresight, the ``timeless'' perspective, the
-restriction of uncertainty to very special kinds,\footnote{E.g.,
-  lognormally distributed rate-of-return risk -- but no labor income
-  risk -- under CRRA utility (the
-  \cite{merton:restat}-\cite{samuelson:portfolio} model).} and more.
+Calculating the mathematically optimal amount to save is remarkably difficult.  Under well-founded assumptions about the nature of risk (and attitudes toward risk), the problem cannot be solved analytically; computational solutions are the only option.  To avoid having to solve this hard problem, past generations of economists showed impressive ingenuity in reformulating the question.  Budding graduate students are still taught a host of tricks whose purpose is partly to avoid the resort to numerical solutions: Quadratic or Constant Absolute Risk Aversion utility, perfect markets, perfect insurance, perfect foresight, the ``timeless'' perspective, the restriction of uncertainty to very special kinds,\footnote{E.g., lognormally distributed rate-of-return risk -- but no labor income risk -- under CRRA utility (the \cite{merton:restat}-\cite{samuelson:portfolio} model).} and more.
 
-The motivation is mainly to exchange an intractable general problem
+The motivation for these reformulations is to exchange an intractable general problem
 for a tractable specific alternative.  Unfortunately, the burgeoning
 literature on numerical solutions has shown that the features that
 yield tractability also profoundly change the solution.  These tricks
@@ -1005,6 +992,7 @@ $\underline{a}_{T-1}=-\underline{\TranShkEmp}\RNrm_{T}^{-1}$.  From
       & =                                                                                         \lim_{{a}_{T-1} \downarrow \underline{a}_{T-1}} \DiscFac \Rfree \PermGroFac_{T}^{-\CRRA} \left(\frac{1}{n_{\TranShkEmp}}\right) \sum_{i=1}^{n_{\TranShkEmp}} \left( {a}_{T-1} \RNrm_{T}+ \TranShkEmp_{i}\right)^{-\CRRA}.
     \end{aligned}\end{gathered}\end{equation}
 
+\providecommand{\TranShkEmpMin}{}\renewcommand{\TranShkEmpMin}{\underline{\TranShkEmp}}
 But since $\TranShkEmpMin=\TranShkEmp_{1}$, exactly at
 ${a}_{T-1}=\underline{a}_{T-1}$ the first term in the summation would
 be $(-\TranShkEmpMin+\TranShkEmp_{1})^{-\CRRA}=1/0^{\CRRA}$ which is
@@ -1346,7 +1334,7 @@ grid.
 \input{./Figures//IntExpFOCInvPesReaOptNeedHiPlot.tex}\unskip
 \begin{verbatimwrite}{./cctwMoM/MoM-Words-Rest.tex}
 
-  \indent Proof is more difficult than might be imagined, but
+  \indent The proof is more difficult than might be imagined, but
   the necessary work is done in \cite{BufferStockTheory} so we will take
   the proposition as a fact and proceed by manipulating the inequality:
 \end{verbatimwrite}

@@ -9,7 +9,7 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.13.0
+#       jupytext_version: 1.14.4
 #   kernelspec:
 #     display_name: Python 3 (ipykernel)
 #     language: python
@@ -23,7 +23,7 @@
 #     name: python
 #     nbconvert_exporter: python
 #     pygments_lexer: ipython3
-#     version: 3.9.7
+#     version: 3.9.15
 # ---
 
 # # Solution Methods for Microeconomic Dynamic Stochastic Optimization Problems (MicroDSOP)
@@ -64,12 +64,14 @@ from Code.Python.resources import (
     DiscreteApproximation,
     DiscreteApproximationTwoIndependentDistribs,
 )
-## notice that resources is stored in the subfolder Code/Python. 
+
+## notice that resources is stored in the subfolder Code/Python.
 ## It can be imported only if there is an __init__.py file in that folder
 
 import warnings
-warnings.filterwarnings("ignore", category=UserWarning) 
-## the userwarning is surpressed for a cleaner presentation. 
+
+warnings.filterwarnings("ignore", category=UserWarning)
+## the userwarning is surpressed for a cleaner presentation.
 # -
 
 ### for comparison purposes
@@ -533,7 +535,7 @@ cVec4Bot = np.insert(cVec4, 0, 0.0)
 
 # This ﬁgure well illustrates the value of the transformation (Section 6): The true function is close to linear, and so the linear approximation is almost indistinguishable from the true function except at the very lowest values of $a_{T−1}$. (See Figure 9)
 
-# + code_folding=[] jupyter={"source_hidden": true} tags=[]
+# + code_folding=[] tags=[]
 ##############
 ## Figure 9
 ##############
@@ -669,7 +671,6 @@ def setup_grids_expMult(minval, maxval, size, timestonest=20):
     return a_grid
 
 
-
 # + code_folding=[]
 def set_up_improved_EEE_a_grid(minval, maxval, size):
     gMinMin = 0.01 * minval
@@ -693,7 +694,6 @@ def set_up_improved_EEE_a_grid(minval, maxval, size):
 
     new_a_grid = exp(exp(exp(points) - 1) - 1) - 1
     return new_a_grid
-
 
 
 # +
@@ -991,26 +991,25 @@ class GothicMC(Gothic):  ## inheriting from Gothic class
         self.share_grid_size = share_grid_size
         self.varsigma_grids = np.linspace(0.0, 1.0, self.share_grid_size)
 
-    def varsigma_Tminus1(self,
-                         a):
+    def varsigma_Tminus1(self, a):
         """
         Optimization of Share on continuous interval [0,1]
-    
+
         """
-        
+
         ## make an array storing FOCs for different shares at this value of a
         share_girds = self.varsigma_grids
         FOC_s = np.empty_like(share_girds)
         for j in range(len(share_girds)):
             FOC_s[j] = self.Vsigma_Tminus1(a, share_girds[j])
-        
-        ## find the optimal share 
+
+        ## find the optimal share
         if a < 0:
             varsigma_opt = 0.0
         else:
-            if FOC_s[-1] > 0.0: ## mv of the share=1 is still positive 
+            if FOC_s[-1] > 0.0:  ## mv of the share=1 is still positive
                 varsigma_opt = 1.0
-            elif FOC_s[0] < 0.0: #mv of the share=0 is still negative 
+            elif FOC_s[0] < 0.0:  # mv of the share=0 is still negative
                 varsigma_opt = 0.0
             else:
                 crossing = np.logical_and(FOC_s[1:] <= 0.0, FOC_s[:-1] >= 0.0)
@@ -1021,25 +1020,23 @@ class GothicMC(Gothic):  ## inheriting from Gothic class
                 top_f = FOC_s[idx + 1]
                 alpha = 1.0 - top_f / (top_f - bot_f)
                 varsigma_opt = (1.0 - alpha) * bot_s + alpha * top_s
-        return varsigma_opt
-    
-    def varsigma_t(self, 
-                   a, 
-                   c_prime):
-        
+        return np.squeeze(varsigma_opt)
+
+    def varsigma_t(self, a, c_prime):
+
         ## make an array storing FOCs for different share at this value of a
         share_girds = self.varsigma_grids
         FOC_s = np.empty_like(share_girds)
         for j in range(len(share_girds)):
-            FOC_s[j] = self.Vsigma_t(a, share_girds[j],c_prime)
-        
-        ## find the optimal share 
+            FOC_s[j] = self.Vsigma_t(a, share_girds[j], c_prime)
+
+        ## find the optimal share
         if a < 0:
             varsigma_opt = 0.0
         else:
-            if FOC_s[-1] > 0.0: ## mv of the share=1 is still positive 
+            if FOC_s[-1] > 0.0:  ## mv of the share=1 is still positive
                 varsigma_opt = 1.0
-            elif FOC_s[0] < 0.0: #mv of the share=0 is still negative 
+            elif FOC_s[0] < 0.0:  # mv of the share=0 is still negative
                 varsigma_opt = 0.0
             else:
                 crossing = np.logical_and(FOC_s[1:] <= 0.0, FOC_s[:-1] >= 0.0)
@@ -1050,8 +1047,8 @@ class GothicMC(Gothic):  ## inheriting from Gothic class
                 top_f = FOC_s[idx + 1]
                 alpha = 1.0 - top_f / (top_f - bot_f)
                 varsigma_opt = (1.0 - alpha) * bot_s + alpha * top_s
-        return varsigma_opt
-    
+        return np.squeeze(varsigma_opt)
+
     def C_Tminus1(self, a):
         return self.Va_Tminus1(a) ** (-1.0 / self.rho)
 
@@ -1095,9 +1092,11 @@ class GothicMC(Gothic):  ## inheriting from Gothic class
             Vshare_func = lambda tinc_shk, rreturn: (rreturn - self.R) * self.u.prime(
                 (self.R + (rreturn - self.R) * varsigma) * a / self.Gamma[-1] + tinc_shk
             )
-            # Because next period the consumer spends everything, 
-            # we substitute  
-            GVTm1Psigma = self.beta * a / self.Gamma[-1] * self.Distribution.E(Vshare_func)
+            # Because next period the consumer spends everything,
+            # we substitute
+            GVTm1Psigma = (
+                self.beta * a / self.Gamma[-1] * self.Distribution.E(Vshare_func)
+            )
         else:
             GVTm1Psigma = np.inf
         return GVTm1Psigma
@@ -1113,7 +1112,9 @@ class GothicMC(Gothic):  ## inheriting from Gothic class
                     + tinc_shk
                 )
             )
-            GVtPsigma = self.beta * a / self.Gamma[-1] * self.Distribution.E(Vshare_func)
+            GVtPsigma = (
+                self.beta * a / self.Gamma[-1] * self.Distribution.E(Vshare_func)
+            )
         else:
             GVtPsigma = np.inf
         return GVtPsigma
@@ -1171,13 +1172,9 @@ u_port = Utility(gamma=rho_port)
 
 ### create a GothicMC instance
 ## notice we use a bigger coefficient of risk aversion
-gothicMC = GothicMC(u_port,
-                    beta, 
-                    rho_port, 
-                    gamma, 
-                    R, 
-                    Distribution = Distribution,
-                    share_grid_size = 20)
+gothicMC = GothicMC(
+    u_port, beta, rho_port, gamma, R, Distribution=Distribution, share_grid_size=20
+)
 
 ### set the a grid
 
@@ -1351,14 +1348,8 @@ mGrid = mGridPort_life[which_period]
 c_hark = LifeCycleType.cFunc[which_period - 1](mGrid)
 c_dsop = cFuncPort_life[which_period](mGrid)
 
-plt.plot(mGrid,
-         c_hark, 
-         "r--", 
-         label="HARK")
-plt.plot(mGrid, 
-         c_dsop,
-        "k-", 
-         label="MicroDSOP")
+plt.plot(mGrid, c_hark, "r--", label="HARK")
+plt.plot(mGrid, c_dsop, "k-", label="MicroDSOP")
 plt.legend(loc=0)
 plt.title("consumption function solved by MicroDSOP and HARK at $t=1$")
 plt.xlabel("m")
@@ -1380,10 +1371,7 @@ plt.plot(
     "r--",
     label="HARK solution",
 )
-plt.plot(mGrid, 
-         share_dsop, 
-         "k-", 
-         label="MicroDSOP solution")
+plt.plot(mGrid, share_dsop, "k-", label="MicroDSOP solution")
 plt.legend(loc=3)
 plt.title("share function solved by MicroDSOP and HARK (at $t=1$)")
 plt.xlabel(r"$m$")
@@ -1406,36 +1394,29 @@ plt.legend(loc=1)
 # + code_folding=[0]
 ## Compare the solutions for portfolio at the first period in life cycle
 
-which_period = T-1
+which_period = T - 1
 mGrid = mGrid
 share_hark = LifeCycleType.ShareFunc[which_period - 1](mGrid)
 share_dsop = varsigma_life[which_period](mGrid)
-share_diff = share_hark-share_dsop
+share_diff = share_hark - share_dsop
 
-## plot 
-fig, (ax1, ax2) = plt.subplots(1, 2,
-                              figsize=(9,4))
+## plot
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(9, 4))
 ax1.plot(
     mGrid,
     share_hark,
     "r--",
     label="HARK solution",
 )
-ax1.plot(mGrid, 
-         share_dsop, 
-         "k-", 
-         label="MicroDSOP solution")
+ax1.plot(mGrid, share_dsop, "k-", label="MicroDSOP solution")
 ax1.set_title("share function solved \n by MicroDSOP and HARK (at $T-1$)")
 ax1.set_xlabel(r"$m$")
 ax1.set_ylabel(r"$\varsigma_{T-1}(m)$")
 ax1.legend(loc=0)
-ax2.plot(mGrid,
-        share_diff,
-         'b--',
-        label='Difference')
+ax2.plot(mGrid, share_diff, "b--", label="Difference")
 ax2.set_xlabel(r"$m$")
 ax2.legend(loc=0)
-ax2.set_title('Differences in solutions')
+ax2.set_title("Differences in solutions")
 # -
 
 
@@ -1536,34 +1517,27 @@ which_period = T - 1
 mGrid = mGrid
 share_hark_same_a = LifeCycleType.ShareFunc[which_period - 1](mGrid)
 share_dsop_same_a = varsigma_life[which_period](mGrid)
-share_diff_same_a = share_hark_same_a-share_dsop_same_a
+share_diff_same_a = share_hark_same_a - share_dsop_same_a
 
 
-## plot 
-fig, (ax1, ax2) = plt.subplots(1, 2,
-                              figsize=(9,4))
+## plot
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(9, 4))
 ax1.plot(
     mGrid,
     share_hark_same_a,
     "r--",
     label="HARK solution",
 )
-ax1.plot(mGrid, 
-         share_dsop_same_a, 
-         "k-", 
-         label="MicroDSOP solution")
+ax1.plot(mGrid, share_dsop_same_a, "k-", label="MicroDSOP solution")
 ax1.legend(loc=0)
 ax1.set_title("share function solved by MicroDSOP and HARK")
 ax1.set_xlabel(r"$m$")
 ax1.set_ylabel(r"$\varsigma_{T-1}(m)$")
 
-ax2.plot(mGrid,
-        share_diff_same_a,
-         'b--',
-        label='Difference')
+ax2.plot(mGrid, share_diff_same_a, "b--", label="Difference")
 ax2.set_xlabel(r"$m$")
 ax2.legend(loc=0)
-ax2.set_title('Differences in solutions')
+ax2.set_title("Differences in solutions")
 # -
 
 
@@ -1604,31 +1578,23 @@ for i, a in enumerate(a_grid):
 a_grid_random = a_grid_size // 2
 
 
-## plot 
-fig, (ax1, ax2) = plt.subplots(1, 2,
-                              figsize=(9,4))
+## plot
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(9, 4))
 
 ax1.set_title(r"$\mathfrak{v}^{\varsigma}(a,\varsigma)$ at a random $a$")
-ax1.plot(share_grid, 
-         DSOP_mv[a_grid_random, :], 
-         label="SolvingMicroDSOP")
-ax1.plot(share_grid, 
-         HARK_mv[a_grid_random, :], 
-         label="HARK")
-ax1.hlines(0.0, 
-           xmin=0.0, 
-           xmax=1.0, 
-           linestyle="--", 
-           color="k", 
-           label="FOC")
+ax1.plot(share_grid, DSOP_mv[a_grid_random, :], label="SolvingMicroDSOP")
+ax1.plot(share_grid, HARK_mv[a_grid_random, :], label="HARK")
+ax1.hlines(0.0, xmin=0.0, xmax=1.0, linestyle="--", color="k", label="FOC")
 ax1.set_xlabel(r"$\varsigma$")
 ax1.set_ylabel(r"$\mathfrak{v}^{\varsigma}$")
 ax1.legend(loc=0)
 
-ax2.plot(share_grid,
-        DSOP_mv[a_grid_random, :]-HARK_mv[a_grid_random, :],
-        label="Difference")
-ax2.set_title('Differences between \n solutions')
+ax2.plot(
+    share_grid,
+    DSOP_mv[a_grid_random, :] - HARK_mv[a_grid_random, :],
+    label="Difference",
+)
+ax2.set_title("Differences between \n solutions")
 ax2.set_xlabel(r"$\varsigma$")
 ax2.legend(loc=0)
 # -
