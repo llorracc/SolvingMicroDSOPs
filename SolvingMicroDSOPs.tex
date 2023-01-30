@@ -985,12 +985,13 @@ for values of ${a}_{T-1} < {a}_{T-1,1}$, where $\Alt{\cEndFunc}_{T-1}^{{a}}({a}_
 will lead us into difficulties.  To see why, consider what
 happens to the true (not approximated) $\vEnd_{T-1}({a}_{T-1})$ as
 ${a}_{T-1}$ approaches the value
-$\underline{a}_{T-1}=-\underline{\TranShkEmp}\RNrm_{T}^{-1}$.  From
+$\underaccent{\bar}{a}_{T-1}=-\underline{\TranShkEmp}\RNrm_{T}^{-1}$.  From
 \eqref{eq:vEndPrimeTm1} we have
 \begin{equation}\begin{gathered}\begin{aligned}
       \lim_{{a}_{T-1} \downarrow \underline{a}_{T-1}} \vEnd_{T-1}^{\prime}({a}_{T-1}) 
       & =                                                                                         \lim_{{a}_{T-1} \downarrow \underline{a}_{T-1}} \DiscFac \Rfree \PermGroFac_{T}^{-\CRRA} \left(\frac{1}{n_{\TranShkEmp}}\right) \sum_{i=1}^{n_{\TranShkEmp}} \left( {a}_{T-1} \RNrm_{T}+ \TranShkEmp_{i}\right)^{-\CRRA}.
     \end{aligned}\end{gathered}\end{equation}
+\end{document}
 
 \providecommand{\TranShkEmpMin}{}\renewcommand{\TranShkEmpMin}{\underline{\TranShkEmp}}
 But since $\TranShkEmpMin=\TranShkEmp_{1}$, exactly at
@@ -1334,65 +1335,54 @@ grid.
 \input{./Figures//IntExpFOCInvPesReaOptNeedHiPlot.tex}\unskip
 \begin{verbatimwrite}{./cctwMoM/MoM-Words-Rest.tex}
 
-  \indent The proof is more difficult than might be imagined, but
-  the necessary work is done in \cite{BufferStockTheory} so we will take
-  the proposition as a fact and proceed by manipulating the inequality:
+\indent Proof is more difficult than might be imagined, but
+the necessary work is done in \cite{BufferStockTheory} so we will take
+the proposition as a fact and proceed by manipulating this inequality:
 \end{verbatimwrite}
 \input{./cctwMoM/MoM-Words-Rest.tex}\unskip
 \begin{verbatimwrite}{./Equations/MoM-Inequalities.tex}
-  \begin{center}
-    \begin{tabular}{rcl}
-      $ \aboveMin \mNrm_{t} \MPCmin_{t} < $ & $ \cFunc_{t}(\ushort{m}_{t}+\aboveMin \mNrm_{t}) $ & $< (\aboveMin \mNrm_{t}+\aboveMin \hEnd_{t})\MPCmin_{t} $
-      \\  $- \aboveMin \mNrm_{t} \MPCmin_{t} > $ & $ -\cFunc_{t}(\ushort{m}_{t}+\aboveMin \mNrm_{t}) $ & $> -(\aboveMin \mNrm_{t}+\aboveMin \hEnd_{t})\MPCmin_{t} $
-      \\  $ \aboveMin \hEnd_{t} \MPCmin_{t} > $ & $ \bar{\cFunc}_{t}(\ushort{m}_{t}+\aboveMin \mNrm_{t})-\cFunc_{t}(\ushort{m}_{t}+\aboveMin \mNrm_{t}) $ & $> 0$
-      \\  $1 > $ & $ \underbrace{\left(\frac{\bar{\cFunc}_{t}(\ushort{m}_{t}+\aboveMin \mNrm_{t})-\cFunc_{t}(\ushort{m}_{t}+\aboveMin \mNrm_{t})}{\aboveMin \hEnd_{t} \MPCmin_{t}}\right)}_{\equiv \Hi{\koppa}_{t}} $ & $> 0$
-    \end{tabular}
-  \end{center}
+\begin{center}
+	\begin{tabular}{rcl}
+		$  \cFuncBelow_{t}(m_{t}) = \aboveMin \mNrm_{t} \MPCmin_{t} < $ & $ \cFunc_{t}(\ushort{m}_{t}+\aboveMin \mNrm_{t}) $ & $< (\aboveMin \mNrm_{t}+\aboveMin \hEnd_{t})\MPCmin_{t} = $ $ \bar{\cFunc}_{t}(\ushort{m}_{t}+\aboveMin \mNrm_{t})$
+		%      \\  $- \aboveMin \mNrm_{t} \MPCmin_{t} > $ & $ -\cFunc_{t}(\ushort{m}_{t}+\aboveMin \mNrm_{t}) $ & $> -(\aboveMin \mNrm_{t}+\aboveMin \hEnd_{t})\MPCmin_{t} $
+		%      \\  $ \aboveMin \hEnd_{t} \MPCmin_{t} > $ & $ \bar{\cFunc}_{t}(\ushort{m}_{t}+\aboveMin \mNrm_{t})-\cFunc_{t}(\ushort{m}_{t}+\aboveMin \mNrm_{t}) $ & $> 0$
+		%      \\  $1 > $ & $ \underbrace{\left(\frac{\bar{\cFunc}_{t}(\ushort{m}_{t}+\aboveMin \mNrm_{t})-\cFunc_{t}(\ushort{m}_{t}+\aboveMin \mNrm_{t})}{\aboveMin \hEnd_{t} \MPCmin_{t}}\right)}_{\equiv \Hi{\koppa}_{t}} $ & $> 0$
+	\end{tabular}
+\end{center}
 \end{verbatimwrite}
-\input{./Equations/MoM-Inequalities.tex}\unskip
-\begin{verbatimwrite}{./cctwMoM/MoM-Inequalities-Describe.tex}
-  where the fraction in the middle of the last inequality is the ratio
-  of actual precautionary saving (the numerator is the difference
-  between perfect-foresight consumption and optimal consumption in the
-  presence of uncertainty) to the maximum conceivable amount of
-  precautionary saving (the amount that would be undertaken by the
-  pessimist who consumes nothing out of any future income beyond the perfectly certain component).
-\end{verbatimwrite}
-\input{./cctwMoM/MoM-Inequalities-Describe.tex}\unskip
-
-\begin{verbatimwrite}{./Equations/MoM-KoppaOfMu.tex}
-  Defining $\mu_{t} =
-  \log \aboveMin \mNrm_{t}$ (which can range from $-\infty$ to $\infty$), the object in the middle of the last inequality is
-  \begin{equation}\begin{gathered}\begin{aligned}
-        \Hi{\koppa}_{t}(\mu_{t})   & \equiv  \left(\frac{\bar{\cFunc}_{t}(\ushort{m}_{t}+e^{\mu_{t}})-\cFunc_{t}(\ushort{m}_{t}+e^{\mu_{t}})}{\aboveMin \hEnd_{t} \MPCmin_{t}}\right), \label{eq:koppa}
-      \end{aligned}\end{gathered}\end{equation}
-  and we now define
-  \begin{equation}\begin{gathered}\begin{aligned}
-        \Hi{\chiFunc}_{t}(\mu_{t})  & = \log \left(\frac{1-\Hi{\koppa}_{t}(\mu_{t})}{\Hi{\koppa}_{t}(\mu_{t})}\right)
-        \\  & = \log \left(1/\Hi{\koppa}_{t}(\mu_{t})-1\right) \label{eq:chi}
-      \end{aligned}\end{gathered}\end{equation}
-\end{verbatimwrite}
-\input{./Equations/MoM-KoppaOfMu.tex}\unskip
-\begin{verbatimwrite}{./cctwMoM/MoM-KoppaOfMu-Describe.tex}
-  which has the virtue that it is linear in the limit as $\mu_{t}$ approaches $+\infty$.
-
-  Given $\Hi{\chiFunc}$, the consumption function can be recovered from
-\end{verbatimwrite}
-\input{./cctwMoM/MoM-KoppaOfMu-Describe.tex}
-\begin{verbatimwrite}{./Equations/cFuncHi.tex}
-  \begin{equation}\begin{gathered}\begin{aligned}
-        \Hi{\cFunc}_{t}  & = \bar{\cFunc}_{t}-\overbrace{\left(\frac{1}{1+\exp(\Hi{\chiFunc}_{t})}\right)}^{=\Hi{\koppa}_{t}} \aboveMin \hEnd_{t} \MPCmin_{t}. \label{eq:cFuncHi}
-      \end{aligned}\end{gathered}\end{equation}
-\end{verbatimwrite}
-\input{./Equations/cFuncHi.tex}\unskip
+\input{./Equations/MoM-Inequalities.tex}
+%\begin{verbatimwrite}{./cctwMoM/MoM-Inequalities-Describe.tex}
+%  where the fraction in the middle of the last inequality is the ratio
+%  of actual precautionary saving (the numerator is the difference
+%  between perfect-foresight consumption and optimal consumption in the
+%  presence of uncertainty) to the maximum conceivable amount of
+%  precautionary saving (the amount that would be undertaken by the
+%  pessimist who consumes nothing out of any future income beyond the perfectly certain component).
+%\end{verbatimwrite}
+%\input{./cctwMoM/MoM-Inequalities-Describe.tex}\unskip
 
 \begin{verbatimwrite}{./cctwMoM/MoM-End.tex}
 
-  Thus, the procedure is to calculate $\Hi{\chiFunc}_{t}$ at the points
-  $\vec{\mu}_{t}$ corresponding to the log of the $\aboveMin
-  \vec{m}_{t}$ points defined above, and then using these to construct an
-  interpolating approximation $\Alt{\Hi{\chiFunc}}_{t}$ from which we indirectly obtain our 
-  approximated consumption rule $\Alt{\Hi{\cFunc}}_{t}$ by substituting $\Alt{\Hi{\chiFunc}}_{t}$ for $\Hi{\chiFunc}$ in equation \eqref{eq:cFuncHi}.
+  Using these inequalities, we now construct another approximation of consumption function, $\tilde{\cFunc}_{t}({m}_{t})$, whose performance is better for points lying outside the original grid. Denote the largest and smallest points on that grid by $\bar{m}$ and $\underaccent{\bar}{m}$ respectively.  The above inequality then tells us that we have a limiting function $ \bar{\cFunc}_{t}(\ushort{m}_{t}+\aboveMin \mNrm_{t})$ for values of m, greater than $\bar{m}$, i.e., for values of $m_t > \bar{m} $  and $m_t \rightarrow \infty $, the behavior of $\tilde{\cFunc}_{t}({m}_{t})$ is anchored by $ \bar{\cFunc}_{t}({m}_{t})$. More precisely, our improved consumption function's behavior would be governed by following  rules:
+\begin{itemize}
+\item $\tilde{\cFunc}_{t}({m}_{t})$  = $ \cFunc_{t}({m}_{t})$ when $m_t$ falls inside the specified grid, i.e.\ when $m_t$ < $\bar{m}$
+\item $\tilde{\cFunc}_{t}({m}_{t})  \rightarrow    \cFuncBelow_{t}(m_{t})  $  as $m_t \rightarrow 0$.
+\item $\tilde{\cFunc}_{t}({m}_{t})  \rightarrow   \bar{\cFunc}_{t}({m}_{t}) $  as $m_t \rightarrow \infty$.
+\end{itemize}
+
+With the above principle in mind, start with a point $m$ beyond the specified grid, $m > \bar{m}$. Since the gridpoints in our case are one-dimensional, the point in the grid closest to $m$ is $\bar{m}$. This method first calculates a standardized distance between $m$ and $\bar{m}$ as:
+\begin{align*}
+  d(m, \bar{m}) & =  \left| \frac{m - \bar{m}}{\bar{m}} \right| 
+\end{align*}
+and uses it to compute the combination between extrapolated value  $ \cFunc_{t}({m}_{t})$ and the limit-value $\bar{\cFunc}_{t}({m}_{t}) $ as :
+
+\[  \tilde{\cFunc}_{t}({m}_{t}) = e^{-d(m, \bar{m})} \times   \cFunc_{t}({m}_{t})  +  (1-e^{-d(m, \bar{m})})\times  \bar{\cFunc}_{t}({m}_{t})\]
+
+i.e. our improved approximation of consumption function is a weighted average of  $ \cFunc_{t}({m}_{t})$ and  $\bar{\cFunc}_{t}({m}_{t}) $. As the distance between $m$ and $\bar{m}$ grows,  $\bar{\cFunc}_{t}({m}_{t})$ is given more weight. That makes intuitive sense as $m$ being far outside the pre-specified grid point range corresponds to the case of a large realization of temporary shock. And that means, consumer would have enormous market resources at its disposal than usual, in which case its consumption behavior would closely follow that of an optimist (i.e. $\bar{\cFunc}_{t}({m}_{t})$).
+Readers interested in alternative methods of extrapolation should refer this HARK \href{https://github.com/econ-ark/HARK/blob/master/examples/Interpolation/DecayInterp.ipynb}{documentation}. 
+
+So far, we have discussed the procedure to carry out extrapolation when the point is larger than the maximum grid point that was specified with $\bar{\cFunc}(m)$ as the benchmark function. By similar reasoning, we can also conduct extrapolation when the point is smaller than the minimum grid point with  $\cFuncBelow(m)$ serving now as the benchmark function anchoring the behavior of approximate consumption function in that point range.
+
 
   Because this method relies upon the fact that the problem is easy to
   solve if the decision maker has unreasonable views (either in the
@@ -1411,8 +1401,10 @@ grid.
     \caption{Extrapolated $\Alt{\Hi{\cFunc}}_{T-1}$ Constructed Using the Method of Moderation}
     \label{fig:ExtrapProblemSolved}
   \end{figure}
+
 \end{verbatimwrite}
 \input{./cctwMoM/MoM-End.tex}\unskip
+
 
 \hypertarget{Approximating-the-Slope-Too}{}
 \subsection{Approximating the Slope Too}
@@ -2337,7 +2329,7 @@ satisfied by the baseline parameter values being used here.
     \Alt{\Hi{\cFunc}}_{t}({m}_{t},h_{t}) =
     \Alt{\Hi{\cFunc}}({m}_{t},\underline{j})+\left(\frac{h_{t}-\underline{h}_{t}}
       {\bar{h}_{t}-\underline{h}_{t}}\right)
-    \left(\Alt{\Hi{\cFunc}}({m}_{t},\overline{j})
+    \left(\Alt{\Hi{\cFunc}}({m}_{t},\bar{j})
       -\Alt{\Hi{\cFunc}}({m}_{t},\underline{j})\right)
   \end{displaymath}
   with points outside the \texttt{hVec} points constructed by
