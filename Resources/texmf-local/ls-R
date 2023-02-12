@@ -1,6 +1,5 @@
 % ls-R -- filename database for kpathsea; do not change this line.
 ./:
-LICENSE
 README.md
 bibtex
 ls-R
@@ -8,31 +7,39 @@ tex
 web2c
 
 ./bibtex:
+.DS_Store
+.gitkeep
 bib
 bst
 
 ./bibtex/bib:
+.DS_Store
+.gitkeep
 auto
 economics.bib
 economics.bib~
-system.bib
 
 ./bibtex/bib/auto:
 economics.el
 
 ./bibtex/bst:
+.gitkeep
 econtex.bst
 handout.bst
 unsrtnatTitlesFirst.bst
 
 
 ./tex:
+.gitkeep
 latex
 plain
 
 ./tex/latex:
+.DS_Store
+.gitkeep
 ReadMe.texmf
 articleNoRefHead.cls
+auto
 bibMake.tex
 cvBibMake.tex
 econark.sty
@@ -48,15 +55,22 @@ handoutBibMake.tex
 handoutSetup.sty
 handoutShortcuts.sty
 makePostHandoutsStart.tex
-pdfsuppressruntime.sty
 printvrb.sty
 snapshot.sty
-subfiles.4ht
 tex4ht
 tex4htMakeCFG.sh
 titlesec.sty
 
+./tex/latex/auto:
+econtex.el
+econtexSetup.el
+econtexShortcuts.el
+handout.el
+handoutShortcuts.el
+
 ./tex/latex/tex4ht:
+Old
+auto
 fix-domfilter-parsing-problems.cfg
 fix-domfilter-parsing-problems_README.md
 pictureenv.4ht
@@ -74,9 +88,17 @@ svg-set-size-to-1p2x1p0.mk4
 svg-set-size-to-1p3x1p0.mk4
 tex4ht_and_table_of_content_issues_fix.cfg
 
+./tex/latex/tex4ht/Old:
+svg-math-and-subfigures_20210827.cfg
+
+./tex/latex/tex4ht/auto:
+svg-math-and-subfigures.el
+svg-math-and-subfigures_indented.el
+svg-math-and-subfigures_tex4ht-and-table-of-contents-fix.el
+tex4ht_and_table_of_content_issues_fix.el
+
 ./tex/plain:
 .gitkeep
 
 ./web2c:
 texmf.cnf
-texmf.cnf~
