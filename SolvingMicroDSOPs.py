@@ -2,14 +2,14 @@
 # ---
 # jupyter:
 #   jupytext:
-#     cell_metadata_filter: ExecuteTime,-autoscroll,collapsed
+#     cell_metadata_filter: ExecuteTime,collapsed,jupyter,tags,code_folding,-autoscroll
 #     formats: ipynb,py:light
 #     notebook_metadata_filter: all,-widgets,-varInspector
 #     text_representation:
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.13.4
+#       jupytext_version: 1.14.4
 #   kernelspec:
 #     display_name: Python 3 (ipykernel)
 #     language: python
@@ -23,8 +23,7 @@
 #     name: python
 #     nbconvert_exporter: python
 #     pygments_lexer: ipython3
-#     version: 3.8.8
-#   orig_nbformat: 4
+#     version: 3.9.15
 # ---
 
 # # Solution Methods for Microeconomic Dynamic Stochastic Optimization Problems (MicroDSOP)

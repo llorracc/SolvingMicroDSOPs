@@ -77,7 +77,7 @@
     \setboolean{Web}{true}   
     \RequirePackage{tex4ht}
     \RequirePackage{graphicx}
-    \RequirePackage[tex4ht,hypertexnames=false,verbose,unicode=true,unicode=true,unicode=true]{hyperref}
+    \RequirePackage[tex4ht]{hyperref}
     \provideboolean{bigPrint}\setboolean{bigPrint}{true}  % HTM output looks better in a larger font size
     \providecommand{\wideMargins}{\null{}} % Wide margins doesn't mean anything for html documents
     \newcommand{\CDCFig}[1]{\centerline{\includegraphics{#1}}}
@@ -122,13 +122,9 @@
 \else
 % \RequirePackage[pdftex]{graphicx}
     \RequirePackage{graphicx} % requiring [pdftex] seems to interfere with Pandemic build
-%    \RequirePackage[plainpages=false,hypertexnames=false,verbose,unicode=true,unicode=true,unicode=true]{hyperref}
-    \usepackage{pdfcomment}
-%    \RequirePackage[hypertexnames=false,verbose,unicode=true,unicode=true,unicode=true]{hyperref} % plainpages seems to mess up BST
-    % Automatically create tooltips for sections 
+%    \RequirePackage[plainpages=false]{hyperref}
+    \RequirePackage{hyperref} % plainpages seems to mess up BST 
     \hypersetup{
-      hypertexnames=false,
-      unicode=true,
        pdffitwindow = false,     % Don't rescale to fit size of window
        pdfpagemode=UseThumbs,
        pdfstartview=FitH,
