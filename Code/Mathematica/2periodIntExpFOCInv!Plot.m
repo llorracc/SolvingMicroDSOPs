@@ -34,8 +34,14 @@ PlotcTm1IntExpFOCInv =
 PlotComparecTm1AD = 
   Show[cTm1Plot,PlotcTm1IntExpFOCInv
     ,DisplayFunction->$DisplayFunction
-    ,AxesLabel -> {"\!\(\*SubscriptBox[\(m\), \(T - 1\)]\)","\!\(\*SubscriptBox[\(c\), \(T - 1\)]\)(\!\(\*SubscriptBox[\(m\), \(T - 1\)]\)), \!\(\*SubscriptBox[OverscriptBox[\(c\), \(`\)], \(T - 1\)]\)(\!\(\*SubscriptBox[\(a\), \(T - 1\)]\))"}
+    ,AxesLabel -> {"\!\(\*SubscriptBox[\(m\), \(T - 1\)]\)","\!\(\*SubscriptBox[\(c\), \(T - 1\)]\)(\!\(\*SubscriptBox[\(m\), \(T - 1\)]\)), \!\(\*SubscriptBox[OverscriptBox[\(c\), \(`\)], \(T - 1\)]\)(\!\(\*SubscriptBox[\(m\), \(T - 1\)]\))"}
     ];
 ExportFigs["PlotComparecTm1AD",PlotComparecTm1AD];
 Print[PlotComparecTm1AD];
+
+
+
+
+
+
 

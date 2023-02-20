@@ -15,14 +15,8 @@
 
 # # Resources
 
-# This is a library of classes and functions which I often employ in simulations and numerical work. The classes (and occasional function) are organized alphabetically by titled section (within each section, the classes themselves are organized by importance/inheritance, as needed).
+# This is a library of classes and functions. The classes (and occasional function) are organized alphabetically by titled section (within each section, the classes themselves are organized by importance/inheritance, as needed).
 #
-# The classes included in Resources are used by many different projects and are gathered one place for convenience. Specific significant classes (such as the Gothic class) get their own library files. 
-#
-# ***NOTE:*** If at all possible, please add to the "resources.py" file by updating *this* Resources.ipynb file and then manually exporting to the "resources.py" file in the same directory (and then, of course, opening a Python command prompt and executing "import resources" to overwrite and update the "resource.pyc" file, which is ultimately used by import commands in other Python programs). 
-#
-# Note, finally,  that this is a cleaned-up and pared-down version of my original "resources.py" file, which may still be found in "resources_backup.py."
-
 # +
 # Import required Python libraries
 from __future__ import division     # In Python 3.x this will not be needed.
@@ -37,7 +31,6 @@ import pylab as plt
 
 
 from numpy import log, exp # For ease of reading in get_improved_grid
-
 
 # -
 
@@ -929,93 +922,31 @@ class Utility(object):
     Define a CRRA utility function in levels and 
     in first and second derivative.
     """
-    def __init__(self, gamma):
-        self.gamma = gamma
+    def __init__(self, CRRA):
+        self.CRRA = CRRA
         
     def __call__(self, c):
-        if self.gamma == 1:
+        if self.CRRA == 1:
             # Log case:
             return( np.log(c) )
         else:
             # Regular case:
-            return( c**(1.0 - self.gamma) / (1.0 - self.gamma) )
+            return( c**(1.0 - self.CRRA) / (1.0 - self.CRRA) )
         
     def prime(self, c):
-        if self.gamma == 1:
+        if self.CRRA == 1:
             # Log case:
             return(1.0/c)
         else:
             # Regular case:
-            return(c**-self.gamma)
+            return(c**-self.CRRA)
 
     def prime2(self, c):
-        if self.gamma == 1:
+        if self.CRRA == 1:
             # Log case:
             return(-c**(-2.0))
         else:
             # Regular case:
-            return(-self.gamma*c**(-self.gamma-1.0))
-
-
-class UtilityExponential:
-    """
-    Define an exponential utility function in levels and 
-    in first and second derivative.
-    """
-    def __init__(self, gamma):
-        self.gamma = gamma
-
-    def __call__(self, c):
-        return( c**self.gamma )
-
-    def prime(self, c):
-        return(self.gamma*c**(self.gamma-1.0))
-
-    def prime2(self, c):
-        return((self.gamma-1.0)*self.gamma*c**(self.gamma-2.0))
-
-    
-class UtilityWithCMin:
-    """
-    Define a CRRA utility function in levels and in 
-    first derivative, with an imposed lower bound on 
-    utility (via a lower bound on consumption.) 
-
-    Note that this is not the preferred way to impose
-    bounded utility; this is however included here 
-    for backwards compatability with some simulations.
-
-    """
-    def __init__(self, gamma, cmin):
-        self.gamma = gamma
-        self.cmin = cmin
-        if gamma == 1:
-            # Log case:
-            self.__call__ = self.call_log
-            self.prime = self.prime_log
-        else:
-            # Regular case:
-            self.__call__ = self.call_regular
-            self.prime = self.prime_regular
-
-    def prime_regular(self, c):
-        """
-        The derivative when gamma != 1.
-        """
-        return(c**-self.gamma)
-
-    def prime_log(self, c):
-        """
-        The derivative when gamma == 1.
-        """
-        return(1.0/c)
-    
-    def call_regular(self, c):
-        return( np.maximum(c,self.cmin)**(1.0 - self.gamma) / (1.0 - self.gamma) )
-
-    def call_log(self, c):
-        return( np.log(np.maximum(c, self.cmin)) )
-
-# -
+            return(-self.CRRA*c**(-self.CRRA-1.0))
 
 

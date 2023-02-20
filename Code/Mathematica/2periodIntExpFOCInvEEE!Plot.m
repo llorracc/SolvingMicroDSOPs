@@ -34,7 +34,7 @@ PlotcTm1IntExpFOCInvEEE =
 PlotComparecTm1ADEEE = 
   Show[PlotcTm1Simple,PlotcTm1IntExpFOCInvEEE
     ,DisplayFunction->$DisplayFunction
-    ,AxesLabel -> {"\!\(\*SubscriptBox[\(m\), \(T - 1\)]\)","\!\(\*SubscriptBox[\(c\), \(T - 1\)]\)(\!\(\*SubscriptBox[\(m\), \(T - 1\)]\)), \!\(\*SubscriptBox[OverscriptBox[\(c\), \(`\)], \(T - 1\)]\)(\!\(\*SubscriptBox[\(a\), \(T - 1\)]\))"}
+    ,AxesLabel -> {"\!\(\*SubscriptBox[\(m\), \(T - 1\)]\)","\!\(\*SubscriptBox[\(c\), \(T - 1\)]\)(\!\(\*SubscriptBox[\(m\), \(T - 1\)]\)), \!\(\*SubscriptBox[OverscriptBox[\(c\), \(`\)], \(T - 1\)]\)(\!\(\*SubscriptBox[\(m\), \(T - 1\)]\))"}
     ];
 ExportFigs["PlotComparecTm1ADEEE",PlotComparecTm1ADEEE];
 Print[PlotComparecTm1ADEEE];

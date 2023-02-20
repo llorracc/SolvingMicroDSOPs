@@ -33,6 +33,7 @@ If[Length[$FrontEnd] > 0,NBDir=SetDirectory[NotebookDirectory[]];OpenFigsUsingSh
 <<setup_shocks.m;
 
 
+(* ::Input::Initialization:: *)
 <<discreteApprox!Plot.m;
 
 

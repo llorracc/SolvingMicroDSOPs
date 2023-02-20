@@ -1,3 +1,3 @@
-  \begin{equation}
-    \max \left\{ \uFunc(\cLvl_{t})+\Ex_{t}\left[\sum_{s=t+1}^{T} {\beth}^{s-t}\left( \Pi _{i=t+1}^{s}\hat{\DiscFac}_{i} \Alive _{i}\right) \uFunc(\cLvl_{s}) \right]\right\}   \label{eq:lifecyclemax}
-  \end{equation}
+  \begin{equation}\begin{gathered}\begin{aligned}
+\vFunc_{t}(\pLvl_{t},\mLvl_{t}) & =    \max_{\{\cFunc\}_{t}^{T}}~~ \uFunc(\cLvl_{t})+\Ex_{t}\left[\sum_{n=1}^{T-t} {\beth}^{n} \Alive_{t}^{t+n}\hat{\DiscFac}_{t}^{t+n} \uFunc(\cLvl_{t+n}) \right]   \label{eq:lifecyclemax}
+\end{aligned}\end{gathered}  \end{equation}
