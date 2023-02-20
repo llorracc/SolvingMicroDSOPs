@@ -54,6 +54,7 @@
 \setboolean{habitsSolve}{false}
 \newcommand{\ifhabits}{\ifthenelse{\boolean{habitsSolve}}}
 
+
 \bibliographystyle{\econtexBibStyle}
 \begin{document}
 % Redefine \onlyinsubfile command defined in \texname.sty file:
@@ -103,7 +104,7 @@
     \href{mailto:ccarroll@jhu.edu}{\texttt{ccarroll@jhu.edu}}, Phone: (410) 516-7602}
 \end{authorsinfo}
 
-\thanksFooter{The notes were originally written for my Advanced Topics in Macroeconomic Theory class at Johns Hopkins University; instructors elsewhere are welcome to use them for teaching purposes.  Relative to earlier drafts, this version incorporates several improvements related to new results in the paper \href{http://econ-ark.github.io/BufferStockTheory}{``Theoretical Foundations of Buffer Stock Saving''} (especially tools for approximating the consumption and value functions).  Like the last major draft, it also builds on material in ``The Method of Endogenous Gridpoints for Solving Dynamic Stochastic Optimization Problems'' published in \textit{Economics Letters}, available at \url{http://www.econ2.jhu.edu/people/ccarroll/EndogenousArchive.zip}, and by including sample code for a method of simulated moments estimation of the life cycle model \textit{a la} \cite{gpLifecycle} and Cagetti~\citeyearpar{cagettiWprofiles}.  Background derivations, notation, and related subjects are treated in my class notes for first year macro, available at \url{http://www.econ2.jhu.edu/people/ccarroll/public/lecturenotes/consumption}.  I am grateful to several generations of graduate students in helping me to refine these notes, to Marc Chan for help in updating the text and software to be consistent with \cite{carrollEGM}, to Kiichi Tokuoka for drafting the section on structural estimation, to Damiano Sandri for exceptionally insightful help in revising and updating the method of simulated moments estimation section, and to Weifeng Wu and Metin Uyanik for revising to be consistent with the `method of moderation' and other improvements.  All errors are my own.}
+\thanksFooter{The notes were originally written for my Advanced Topics in Macroeconomic Theory class at Johns Hopkins University; instructors elsewhere are welcome to use them for teaching purposes.  Relative to earlier drafts, this version incorporates several improvements related to new results in the paper \href{http://econ-ark.github.io/BufferStockTheory}{``Theoretical Foundations of Buffer Stock Saving''} (especially tools for approximating the consumption and value functions).  Like the last major draft, it also builds on material in ``The Method of Endogenous Gridpoints for Solving Dynamic Stochastic Optimization Problems'' published in \textit{Economics Letters}, available at \url{http://www.econ2.jhu.edu/people/ccarroll/EndogenousArchive.zip}, and by including sample code for a method of simulated moments estimation of the life cycle model \textit{a la} \cite{gpLifecycle} and Cagetti~\citeyearpar{cagettiWprofiles}.  Background derivations, notation, and related subjects are treated in my class notes for first year macro, available at \url{http://www.econ2.jhu.edu/people/ccarroll/public/lecturenotes/consumption}.  I am grateful to several generations of graduate students in helping me to refine these notes, to Marc Chan for help in updating the text and software to be consistent with \cite{carrollEGM}, to Kiichi Tokuoka for drafting the section on structural estimation, to Damiano Sandri for exceptionally insightful help in revising and updating the method of simulated moments estimation section, and to Weifeng Wu and Metin Uyanik for revising to be consistent with the `method of moderation' and other improvements.  All errors are my own.  This document can be cited as \cite{SolvingMicroDSOPs} in the references.}
 
 \titlepagefinish
 \setcounter{page}{1}
@@ -325,20 +326,6 @@ gives us the Euler equation for consumption\newcommand{\substage}{substage}
 Although our focus so far has been on the consumer's consumption problem once $\mNrm$ is known, for articulating the steps of the computational solution it will be useful to distinguish a sequence of three {\substage}s within each time period.  The first substage is the moment before the shocks are realized, the middle is the moment after shocks have been realized but before the consumption decision has been made (this corresponds to the timing of $\vFunc$ in the treatment above), and the final substage captures the situation \textit{after} the consumption decision has been made.
 
 We need to define notation for these three stages. We will use the underlined time subscript $\ushort{t}$ as a marker for the moment in period $t$ before shocks have been realized, and the overbarred $\bar{t}$ sign as the indicator for the situation after the choice has been made, implicitly leaving the unmarked $t$ to indicate the substage corresponding to the decision point.
-\newcommand{\BOPt}{{t-}}
-\newcommand{\BOPtp}{{t+1-}}
-\newcommand{\MOPt}{{t~}}
-\newcommand{\EOPt}{{t+}}
-\renewcommand{\BOPt}{{\underline{t}}}
-\renewcommand{\BOPtp}{{\underline{t+1}}}
-\renewcommand{\MOPt}{{t}}
-\renewcommand{\EOPt}{\overline{t}}
-\newcommand{\vBOPt}{\vFunc_{\BOPt}}
-\newcommand{\vBOPtp}{\vFunc_{\BOPtp}}
-\newcommand{\vMOPt}{\vFunc_{\MOPt}}
-\newcommand{\vEOPt}{\vFunc_{\EOPt}}
-\newcommand{\cEOPt}{\cFunc_{\EOPt}}
-\newcommand{\vPEOPt}{\vFunc^{\prime}_{\EOPt}}
 \begin{verbatimwrite}{./Equations/vBOPt}
   \begin{equation}\begin{gathered}\begin{aligned}
 \vBOPt(\kNrm_{t}) & = \Ex_{\BOPt}[\vMOPt(\overbrace{\kNrm_{t} \Rnorm_{t} + \TranShkEmp_{t}}^{=\mNrm_{t}})]  \label{eq:vBOPt}
@@ -3016,7 +3003,7 @@ where
 \begin{verbatimwrite}{./Equations/subjectTo.tex}
   \begin{equation*}\begin{gathered}\begin{aligned}
         \Alive _{t}^{t+n} &:&\text{probability to }\Alive\text{ive until age $t+n$ given alive at age $t$}
-        \\      \byage{\DiscFac}_{t}^{b} &:&\text{age-varying discount factor between ages $t$ and $t+n$}
+        \\      \hat{\DiscFac}_{t}^{b} &:&\text{age-varying discount factor between ages $t$ and $t+n$}
         \\     \Psi_{t} &:&\text{mean-one shock to permanent income}
         \\     \beth &:&\text{time-invariant `pure' discount factor}
       \end{aligned}\end{gathered}\end{equation*}
@@ -3026,7 +3013,7 @@ and all the other variables are defined as in section \ref{sec:basicproblem}.
 
 Households start life at age $s=25$ and live with probability 1 until retirement
 ($s=65$). Thereafter the survival probability shrinks every year and
-agents are dead by $s=91$ as assumed by Cagetti. % Note that in addition to a typical time-invariant discount factor $\beth$, there is a time-varying discount factor $\byage{\DiscFac}_{s}$ in (\ref{eq:lifecyclemax}) which can be used to capture the effect of age-varying demographic variables (e.g.\ changes in family size).
+agents are dead by $s=91$ as assumed by Cagetti. % Note that in addition to a typical time-invariant discount factor $\beth$, there is a time-varying discount factor $\hat{\DiscFac}_{s}$ in (\ref{eq:lifecyclemax}) which can be used to capture the effect of age-varying demographic variables (e.g.\ changes in family size).
 
 Transitory and permanent shocks are distributed as follows:
 \begin{equation}\begin{gathered}\begin{aligned}
@@ -3040,7 +3027,7 @@ Transitory and permanent shocks are distributed as follows:
 where $\pZero$ is the probability of unemployment (and unemployment shocks are turned off after retirement).
 
 The parameter values for the shocks are taken from Carroll~\citeyearpar{carroll:brookings}, $\pZero=0.5/100$, $\sigma _{\TranShkEmp }=0.1$, and $\sigma_{\PermShk}=0.1$.\footnote{Note that $\sigma _{\TranShkEmp}=0.1$ is smaller than the estimate for college graduates estimated in
-  Carroll and Samwick~\citeyearpar{carroll&samwick:nature} ($=0.197=\sqrt{0.039}$) which is used by Cagetti~\citeyearpar{cagettiWprofiles}. The reason for this choice is that Carroll and Samwick~\citeyearpar{carroll&samwick:nature} themselves argue that their estimate of $\sigma_{\TranShkEmp }$ is almost certainly increased by measurement error.} The income growth profile $\PermGroFac_{t}$ is from Carroll~\citeyearpar{carrollBSLCPIH} and the values of $\Alive_{t}$ and $\byage{\DiscFac}_{t}$ are obtained from Cagetti~\citeyearpar{cagettiWprofiles} (Figure \ref{fig:TimeVaryingParam}).\footnote{The income growth profile is the one used by Caroll for operatives. Cagetti computes the time-varying discount factor by educational groups using the methodology proposed by Attanasio et al.~\citeyearpar{AttanasioBanksMeghirWeber} and the survival probabilities from the 1995 Life Tables (National Center for Health Statistics 1998).} The interest rate is assumed to equal $1.03$. The model parameters are included in Table \ref{table:StrEstParams}.
+  Carroll and Samwick~\citeyearpar{carroll&samwick:nature} ($=0.197=\sqrt{0.039}$) which is used by Cagetti~\citeyearpar{cagettiWprofiles}. The reason for this choice is that Carroll and Samwick~\citeyearpar{carroll&samwick:nature} themselves argue that their estimate of $\sigma_{\TranShkEmp }$ is almost certainly increased by measurement error.} The income growth profile $\PermGroFac_{t}$ is from Carroll~\citeyearpar{carrollBSLCPIH} and the values of $\Alive_{t}$ and $\hat{\DiscFac}_{t}$ are obtained from Cagetti~\citeyearpar{cagettiWprofiles} (Figure \ref{fig:TimeVaryingParam}).\footnote{The income growth profile is the one used by Caroll for operatives. Cagetti computes the time-varying discount factor by educational groups using the methodology proposed by Attanasio et al.~\citeyearpar{AttanasioBanksMeghirWeber} and the survival probabilities from the 1995 Life Tables (National Center for Health Statistics 1998).} The interest rate is assumed to equal $1.03$. The model parameters are included in Table \ref{table:StrEstParams}.
 
 \hypertarget{PlotTimeVaryingParam}{}
 \begin{figure}[h]
@@ -3058,7 +3045,7 @@ The parameter values for the shocks are taken from Carroll~\citeyearpar{carroll:
       \\ $\sigma _{\PermShk}$   & $0.1$ & Carroll~\citeyearpar{carroll:brookings}
       \\ $\pZero$           & $0.005$  & Carroll~\citeyearpar{carroll:brookings}
       \\ $\PermGroFac_{s}$        & figure \ref{fig:TimeVaryingParam} & Carroll~\citeyearpar{carrollBSLCPIH}
-      \\ $\byage{\DiscFac}_{s},\Alive_{s}$ & figure \ref{fig:TimeVaryingParam} & Cagetti~\citeyearpar{cagettiWprofiles}
+      \\ $\hat{\DiscFac}_{s},\Alive_{s}$ & figure \ref{fig:TimeVaryingParam} & Cagetti~\citeyearpar{cagettiWprofiles}
       \\$\Rfree$            & $1.03$  & Cagetti~\citeyearpar{cagettiWprofiles}\\
       \hline
     \end{tabular}
@@ -3094,7 +3081,7 @@ match medians rather than means.
 As explained in section \ref{sec:normalization}, it is convenient to work with the normalized version of the model which can be written in Bellman form as:
 \begin{verbatimwrite}{./Equations/LifeCycleMaxNormed.tex}
   \begin{equation*}\begin{gathered}\begin{aligned}
-        {\vFunc}_{t}({m}_{t})  & = \max_{{c}_{t}}~~~ \uFunc({c}_{t})+\beth\Alive_{t+1}\byage{\DiscFac}_{t+1}
+        {\vFunc}_{t}({m}_{t})  & = \max_{{c}_{t}}~~~ \uFunc({c}_{t})+\beth\Alive_{t+1}\hat{\DiscFac}_{t+1}
           \Ex_{t}[(\PermShk_{t+1}\PermGroFac_{t+1})^{1-\CRRA}{\vFunc}_{t+1}({m}_{t+1})]   \\
         & \text{s.t.} &   \nonumber \\
         {a}_{t}    & = {m}_{t}-{c}_{t} \nonumber
@@ -3104,7 +3091,7 @@ As explained in section \ref{sec:normalization}, it is convenient to work with t
 \input{./Equations/LifeCycleMaxNormed.tex}\unskip
 with the first order condition:
 \begin{equation}\begin{gathered}\begin{aligned}
-      \uFunc^{\prime}({c}_{t}) & = \beth\Alive_{t+1}\byage{\DiscFac}_{t+1}\Rfree \Ex_{t}\left[\uFunc^{\prime}\left(\PermShk_{t+1}\PermGroFac_{t+1}\cFunc_{t+1}\left({a}_{t}\RNrm_{t+1}+\TranShkEmp_{t+1}\right)\right)\right]\label{eq:FOCLifeCycle}
+      \uFunc^{\prime}({c}_{t}) & = \beth\Alive_{t+1}\hat{\DiscFac}_{t+1}\Rfree \Ex_{t}\left[\uFunc^{\prime}\left(\PermShk_{t+1}\PermGroFac_{t+1}\cFunc_{t+1}\left({a}_{t}\RNrm_{t+1}+\TranShkEmp_{t+1}\right)\right)\right]\label{eq:FOCLifeCycle}
       .
     \end{aligned}\end{gathered}\end{equation}
 
