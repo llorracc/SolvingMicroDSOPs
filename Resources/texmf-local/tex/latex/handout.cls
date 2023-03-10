@@ -28,7 +28,7 @@
 %%%     \thanks{text of the thank-you footnote} produces a footnote at the bottom of the page containing the text
 
 % Made by handoutMake.sh
-\ProvidesClass{handout}[2019/11/18 LaTeX class for handouts written by Christopher Carroll]
+\ProvidesClass{handout}[2023/03/05 LaTeX class for handouts written by Christopher Carroll]
 \NeedsTeXFormat{LaTeX2e}
 % \RequirePackage{rotating}
 \RequirePackage{snapshot} % Creates list of external files used by a LaTeX document
@@ -201,6 +201,7 @@
   {\mbox{\textsuperscript{\tiny\@thefnmark}}} % Restore footnote defn after titlepage redefines it
   \ifdvi
   \else
+  \providecommand{\ushort}{}
   \renewcommand{\ushort}{\underline} % ushort seems to not work properly for tex4ht (which compiles using dvi)
   \fi
 }

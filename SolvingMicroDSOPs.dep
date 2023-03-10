@@ -77,6 +77,7 @@
   *{package}{manyfoot}    {2019/08/03 v1.11}
   *{package}{nccfoots}    {2005/02/03 v1.2}
   *{package}{perpage}     {2014/10/25 v2.0}
+  *{package}{xr-hyper}    {2021-02-27 v7.00k}
   *{package}{./Resources/LaTeXInputs/SolvingMicroDSOPs}{0000/00/00 v0.0}
   *{package}{./Resources/LaTeXInputs/pdfsuppressruntime}{0000/00/00 v0.0}
   *{package}{./Resources/texmf-local/tex/latex/econark}{0000/00/00 v0.0}
@@ -136,22 +137,23 @@
   *{file}   {ulasy.fd}    {1998/08/17 v2.2e}
   *{file}   {uwasy.fd}    {2020/01/19 v2.4}
   *{file}   {t1cmtt.fd}   {2019/12/16 v2.5j}
+  *{file}   {./subfile-the-problem.texinput}{0000/00/00 v0.0}
   *{file}   {./Equations/MaxProb.tex}{0000/00/00 v0.0}
   *{file}   {./Equations/ExogVars.tex}{0000/00/00 v0.0}
   *{file}   {./Equations/vrecurse.tex}{0000/00/00 v0.0}
   *{file}   {./Equations/vNormed.tex}{0000/00/00 v0.0}
   *{file}   {./Equations/Envelope.tex}{0000/00/00 v0.0}
   *{file}   {./Equations/cEuler.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/vBOPt.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/vMOPt.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/vEOPt.tex}{0000/00/00 v0.0}
+  *{file}   {./subfile-stages.tex}{0000/00/00 v0.0}
+  *{file}   {./Equations/vBegStget.tex}{0000/00/00 v0.0}
+  *{file}   {./Equations/vMidStget.tex}{0000/00/00 v0.0}
+  *{file}   {./Equations/vEndStget.tex}{0000/00/00 v0.0}
   *{file}   {./Equations/vEndtdefn.tex}{0000/00/00 v0.0}
   *{file}   {./Equations/upEqbetaOp.tex}{0000/00/00 v0.0}
   *{file}   {./Figures/discreteApprox.tex}{0000/00/00 v0.0}
   *{file}   {./Figures/discreteApprox.pdf}{0000/00/00 v0.0}
   *{file}   {./Equations/vDiscrete.tex}{0000/00/00 v0.0}
   *{file}   {./Equations/vEndTm1.tex}{0000/00/00 v0.0}
-  *{file}   {ueuf.fd}     {2013/01/14 v3.01}
   *{file}   {./Figures/PlotcTm1Simple.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/PlotVTm1Simple.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/PlotOTm1RawVSInt.pdf}{0000/00/00 v0.0}
@@ -160,6 +162,7 @@
   *{file}   {./Figures/PlotuPrimeVSOPrime.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/PlotOPRawVSFOC.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/PlotcTm1ABC.pdf}{0000/00/00 v0.0}
+  *{file}   {ueuf.fd}     {2013/01/14 v3.01}
   *{file}   {./Figures/GothVInvVSGothC.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/GothVVSGothCInv.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/PlotComparecTm1AD.pdf}{0000/00/00 v0.0}
@@ -205,9 +208,12 @@
   *{file}   {./Figures/PlotctMultContr.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/PlotRiskySharetOfat.pdf}{0000/00/00 v0.0}
   *{file}   {./Equations/lifecyclemax.tex}{0000/00/00 v0.0}
+  *{file}   {./Equations/dbc-with-permshk.tex}{0000/00/00 v0.0}
   *{file}   {./Equations/subjectTo.tex}{0000/00/00 v0.0}
+  *{file}   {./Equations/shocks-for-lifecycle.tex}{0000/00/00 v0.0}
   *{file}   {./Figures/PlotTimeVaryingParam.pdf}{0000/00/00 v0.0}
   *{file}   {./Equations/LifeCycleMaxNormed.tex}{0000/00/00 v0.0}
+  *{file}   {./Equations/FOCLifeCycle.tex}{0000/00/00 v0.0}
   *{file}   {./Equations/naivePowell.tex}{0000/00/00 v0.0}
   *{file}   {./Equations/StructEstim.tex}{0000/00/00 v0.0}
   *{file}   {./Figures/PlotMeanMedianSCFcollegeGrads.pdf}{0000/00/00 v0.0}
