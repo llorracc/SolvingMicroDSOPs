@@ -1,5 +1,8 @@
+% -*- mode: LaTeX; TeX-PDF-mode: t; -*- 
 % The \commands below are required to allow sharing of the same base code via Github between TeXLive on a local machine and Overleaf (which is a proxy for "a standard distribution of LaTeX").  This is an ugly solution to the requirement that custom LaTeX packages be accessible, and that Overleaf prohibits symbolic links
-\providecommand{\econtex}{\econtexRoot/Resources/texmf-local/tex/latex/econtex}
+\providecommand{\packages}{\econtexRoot/Resources/texmf-local/tex/latex}
+\providecommand{\econtex}{\packages/econtex}
+\providecommand{\econark}{\econtexRoot/Resources/texmf-local/tex/latex/econark}
 \providecommand{\econtexSetup}{\econtexRoot/Resources/texmf-local/tex/latex/econtexSetup}
 \providecommand{\econtexShortcuts}{\econtexRoot/Resources/texmf-local/tex/latex/econtexShortcuts}
 \providecommand{\econtexBibMake}{\econtexRoot/Resources/texmf-local/tex/latex/econtexBibMake}
@@ -19,10 +22,10 @@
 \providecommand{\ApndxDir}{\econtexRoot/Appendices}
 
 \providecommand{\ResourcesDir}{\econtexRoot/Resources}
-\providecommand{\rootFromOut}{..} % Path back to root directory from output-directory
+\providecommand{\rootFromOut}{..} % APFach back to root directory from output-directory
 \providecommand{\LaTeXGenerated}{\econtexRoot/LaTeX} % Put generated files in subdirectory
 \providecommand{\econtexPaths}{\econtexRoot/Resources/econtexPaths}
 \providecommand{\LaTeXInputs}{\econtexRoot/Resources/LaTeXInputs}
 \providecommand{\LtxDir}{LaTeX/}
-\providecommand{\EqDir}{Equations} % Put generated files in subdirectory
-\providecommand{\econark}{\econtexRoot/Resources/texmf-local/tex/latex/econark}
+\providecommand{\EqDir}{\econtexRoot/Equations} % Put generated files in subdirectory
+

@@ -1,0 +1,240 @@
+% -*- mode: LaTeX; TeX-PDF-mode: t; -*- # Tell emacs the file type (for syntax)
+\input{./econtexRoot.texinput}\documentclass[SolvingMicroDSOPs]{subfiles}
+\input{\LaTeXInputs/econtex_onlyinsubfile}
+\usepackage{listings}
+\usepackage{minted}
+\begin{document}
+\lstset{language=Python,basicstyle={\small\ttfamily}}
+
+This document aims to outline the modifications we would need to have added to the configuration of models in Dolo yaml files in order for those config files to have the information necessary for them to be used for solving the kinds of models we currently solve in HARK.
+
+\section{The Problem - in Bellman Form}
+\input{./subfile-the-problem.texinput}
+\input{./Equations/lifecyclemax}
+\input{./Equations/dbc-with-permshk}
+\input{./Equations/subjectTo}
+\input{./Equations/shocks-for-lifecycle}
+The problem can be normalized by the level of permanent income $\pLvl$, yielding the resulting Bellman representation:
+\input{./Equations/LifeCycleMaxNormed}
+\input{./subfile-stages}
+\input{./Equations/vBegStget}
+\input{./Equations/vMidStget}
+\input{./Equations/vEndStget}
+
+If we turn off the mortality shocks $(\Alive=1)$ and family-size shocks, and redefine the pure time preference factor as $\beta=\beth$, the problem has first order condition
+\begin{align}
+L   \uFunc^{\prime}(\cNrm) & = \DiscFac \Rfree \vEndStget^{\prime}(\mNrm - \cNrm).  \label{eq:FOCstep}
+\end{align}
+
+\section{Creating An Instance of a Model}
+
+The first thing to do in building a model would probably be to create an empty model framework, perhaps with a command like:
+\begin{minted}{python}
+  mymodl = create_empty_model('modelsetup.yaml')
+\end{minted}
+where any information that was globally true for the model (like, maybe, its name, some links to external resources describing it, etc) would be encapsulated in \texttt{`modelsetup.yaml'}).
+
+The next thing to do would be to define at least one `period' in the model, where a period describes a set of things that are envisioned to happen in a single time step:
+\begin{minted}{python}
+  mymodl = backward_create_a_period('periodsetup_terminal.yaml')
+\end{minted}
+
+For simplicity, we will begin with a degenerate terminal period $T+1$ (\texttt{Tp1}) in which the consumer arrives in the period with some amount of capital $k$ but receives zero utility (because they are dead).  (An alternative assumption would be to incorporate a bequest motive).
+
+This period would consist of only a single `stage' in which the beginning-of-period value function would require as an input the assets with which the consumer exited the prior stage, but the $\vFunc(\aNrm)$ of those assets would be zero for every possible $a$:
+
+\begin{minted}{python}
+periodsetup_Tp1.yaml:
+
+symbols:
+  statesBegOfStge: [a]
+
+  values: | 
+    vFuncBegOfStge = 0.0       # zero value regardless of value of a
+\end{minted}
+
+With that in place, we could create the last `real' period.  The first thing we might need to do is to define the transition between this new period and the one that already exists, which we might do with a file like \texttt{transitTm1.yaml}.
+
+\begin{minted}{python}
+mymodl.backward_create_a_period('transitTm1.yaml')
+\end{minted}
+
+\begin{minted}{python}
+transitTm1.yaml:
+
+  transition:
+    mymodl.solution[0].vFuncEndOfPrd = mymodl.solution[-1].stage[0].vFuncBegOfStge
+
+\end{minted}
+which would mean that in the environment available to the model constructor in period $T-1$ the object \texttt{vFuncEndOfPrd} would be available (and would always evaluate to \texttt{vFuncEndOfPrd(a)=0}).
+
+In practice, probably the right choice would be to automate this step, so that
+\begin{minted}{python}
+mymodl.backward_create_a_period()
+\end{minted}
+would do what we have defined in \texttt{transitTm1.yaml} by default.  Only if the user wanted to do something different would it be necessary to have an explicit transition file.
+
+Having defined this transition, the next step would be to specify other information that should be universally available during the entire period, which might be done with a file something like this:
+\begin{minted}{python}
+periodsetup_normal.yaml:
+
+symbols:
+  statesBOP:  [k]            # statesEOP: [a] is implicit
+  valuesBOP:  vFuncBegOfPrd
+  parameters: [beta          # time pref
+              ,rho           # RRA
+              ,Lambda        # survival probability
+              ,R             # riskfree return factor
+              ,G             # permanent income growth factor 
+              ,sigma_ltheta  # std of log tran shock
+              ,sigma_lpsi    # std of log perm shock 
+]
+
+calibration:
+  beta:        0.96
+  G:           1.03
+  rho:         2.0
+  R:           1.04
+  Lambda:      1.00
+  sigma_ltheta:0.1
+  sigma_lpsi:  0.1
+
+options:
+  grid: !Cartesian
+      orders: [1000]
+\end{minted}
+
+Next, one would construct at least one `stage,' which consists of a set of steps that instantiate the structure of the model.  The task of defining the solution would then be to define what happens serially backwards as each step gets added.
+
+As with the between-period transition, we would presumably want to prepopulate the added stage with the assumption that the end-of-stage value function etc correspond to the beginning-of-stage value function for the following stage (in this case, the end of period value function).
+
+So, for example, for the buffer stock consumption problem we would have a \texttt{coptstep.yaml} file that defines the consumption optimization step of a problem, which would have an \texttt{equations} block that might look something like this.  (The assumption is that the step acquires its continuation value function and continuation states from the already-constructed prior stage).
+
+\begin{minted}{python}
+coptstep.yaml:
+
+symbols:
+  statesBegOfStge: [m]
+  controls:  [c]
+
+  valuesBegOfStge: [vBegOfStge]
+    value: |
+      vBegOfStge = (c^(1-rho))/(1-rho) + beta*Lambda*vEndOfStge
+
+    transition: |
+      a = m - c
+
+    arbitrage: |
+      c^(-rho) - beta*Lambda*Rfree*vEndOfStge.deriv['a'] 
+
+domain:
+    m: [0.0, max_m]
+
+\end{minted}
+where \texttt{vEndOfStge.deriv['a']} is a placeholder for whatever the correct notation would be to retrieve the derivative of \texttt{vEndOfStge} with respect to $a$ and the assumption is that the equation defined as \texttt{arbitrage} presents an expression whose value should be zero at the optimum.  The arbitrage equation therefore is equivalent to a rewritten version of our FOC \eqref{eq:FOCstep}:
+\begin{align}
+  \uFunc^{{c}}(c) - \vEndStget^{{a}}(m-c) & = 0
+\end{align}
+
+The result of processing this step should be the construction of the optimized value of $c$ for each of the points in the state space defined as the input state space for each of the values of \texttt{m} constructed previously in the definition step, and construction of the \texttt{vMidOfStge} value function for the same states. (For the moment, we are not using EGM, because it is not clear how the syntax for EGM would work for the dolo).
+
+We now need to define an earlier stage in the period, in which the stochastic shocks get realized, and expectations are constructed over the realizations of those shocks.  Call this \texttt{shocks.yaml}.
+
+\begin{minted}{python}
+equations:
+  statesBegOfStge: [k]
+  valuesBegOfStge: [vBegOfStge]
+
+
+exogenous: !Normal
+  Sigma: [[sigma_ltheta^2     , 0. ],
+          [0.                 , sigma_lpsi^2]]
+  Mu:    [-(sigma_ltheta^2)/2 ,(sigma_lpsh^2)/2]
+
+  transition: |
+      m = k*R/(G*exp(lpsi)) + exp(ltheta)
+
+   expectorate: |
+      vBegOfStge = vMidOfStge
+\end{minted}
+where the expectorate operation would be defined to construct \texttt{vBegOfStge} by calculating the expectations at the grid of points for \texttt{k} defined in the \texttt{stagesetup.yaml} file.
+
+We are now in position to see a benefit from the 
+
+\subsection{If rate of return uncorrelated with labor income shocks}
+
+Then we can define sequentially:
+
+- add expectorate over tran and perm labor shocks given Rport and a
+- add optimize over alpha using usual expectations (not expectorations)
+- expectorate over k
+
+\subsection{If rate of return correlated with labor income shocks}
+- add expectorate over all three shocks given a
+- add optimize over alpha using usual expectations (not expectorations)
+- expectorate over k
+
+\subsection{Allow for both options simultaneously}
+
+Suppose you can choose to live in the correlated or uncorrelated world
+
+Need to compute different values depending on which world you choose
+
+Prior step would choose among the options
+
+
+\begin{minted}{python}
+transition:
+   a[stage-1] <-> k[stage]
+   vEndOfStge[stage-1] <-> vBegOfStge[stage]
+\end{minted}
+and possibly it would need to have further explicit information about things like how to map whatever grid exists for $\texttt{k}$ in the current period to the corresponding grid for $\texttt{a}$ in the prior period, and any information needed to map between the value functions.
+
+
+With these files in place, the way to solve a period of the model might be something like this:
+\begin{minted}{python}
+  modl.add_period_preceding_existing_solutions = darkparse_period_setup('setupstage.yaml')
+  modl.add_stage_to_current_period = darkparse_stagesetup('stagesetup.yaml')
+  modl.add_step_in_current_stage = darkparse('stagesetup.yaml')
+  modl.add_step_in_current_stage = darkparse('coptstep.yaml')
+  modl.add_step_in_current_stage = darkparse('expectorate.yaml')
+  modl.add_step_in_current_stage = darkparse('transit.yaml')
+\end{minted}
+and at the end of this process the \texttt{modl} object would be ready to have another period added.
+
+The payoff to all this work is that it should allow us to add components modularly.  Suppose, for example, that we had the code to solve a portfolio choice problem of choosing the optimal share of risky versus safe assets; assuming that the risky return is realized at the same moment as the shocks to labor income (so that we can potentially allow the asset market return to be correlated with the labor supply decision -- say, periods with bad stock marke performance are also periods when unemployment is higher), that decision problem should be insertable into the structure above between the \texttt{transit} step and the \texttt{expectorate} step:
+\begin{minted}{python}
+  modl.add_period_preceding_existing_solutions()
+  modl.add_stage_to_current_period()
+  modl.add_step_to_current_stage = darkparse('setup.yaml')
+  modl.add_step_to_current_stage = darkparse('coptstep.yaml')
+  modl.add_step_to_current_stage = darkparse('expectorate.yaml')
+  modl.add_step_to_current_stage = darkparse('portfoliostep.yaml')
+  modl.add_step_to_current_stage = darkparse('transit.yaml')
+\end{minted}
+
+(This would also require specification of the stochastic process for the rate of return; following the scheme sketched above, this would presumably be located in the \texttt{stagesetup.yaml} file, though possibly we might decide that it makes more sense to describe the stochastic shocks in the \texttt{expectorate.yaml} file that calculates the expectations over those shocks).
+
+\section{Maybe there should be two kinds of transitions}
+
+Arguably, the transition between periods is such a different phenomenon than within-period transitions that the best way to deal with it might be to declare that each `period' is defined by a set of within-period steps, and a single transition equation that connects the period to its predecessor.  In that case, the pseudocode for defining the solution to a period might look like this:
+
+\begin{minted}{python}
+  modl.add_period_preceding_existing_solutions()
+  modl.add_step_in_current_period = darkparse('setup.yaml')
+  modl.add_step_in_current_period = darkparse('coptstep.yaml')
+  modl.add_step_in_current_period = darkparse('expectorate.yaml')
+  modl.add_step_in_current_period = darkparse('portfoliostep.yaml')
+\end{minted}
+followed by
+\begin{minted}{python}
+  modl.add_transition_to_prior_period = darktransparse('transit_to_prior_period.yaml')
+\end{minted}
+.
+
+
+
+
+\onlyinsubfile{\input{\LaTeXInputs/bibliography_blend}}
+
+\end{document}
