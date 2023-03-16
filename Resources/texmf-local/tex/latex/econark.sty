@@ -8,7 +8,7 @@
 }
 
 % Appendices and body are subfiles
-\RequirePackage{subfiles,amsmath,amsfonts,amssymb}
+\RequirePackage{subfiles}
 
 % Command to define a label only if it does not yet exist (suppresses misleading
 % warnings when material created in subfiles is read in while references already
@@ -23,7 +23,7 @@
 \providecommand{\avg}{\bar}
 \providecommand{\cov}{}\renewcommand{\cov}{\textup{cov}}
 \providecommand{\Abve}{\bar}
-\providecommand{\Belw}{\underline}
+\providecommand{\Belw}{\ushort}
 \providecommand{\CDF}{\mathcal{F}}
 \providecommand{\GroFac}{\Omega} % Generic for growth factor
 \providecommand{\GroRte}{\omega} % Generic for growth rate 
@@ -249,15 +249,15 @@
 \providecommand{\Alive}{\mathcal{L}}\renewcommand{\Alive}{\mathcal{L}}
 \providecommand{\RfreeAgg}{}\renewcommand{\RfreeAgg}{\Agg{\Rfree}}
 
-\providecommand{\DeprFac}{{\daleth}}
-\providecommand{\deprRte}{{\delta}} % New 
+\providecommand{\DeprFac}{\ensuremath{\daleth}}
+\providecommand{\deprRte}{\ensuremath{\delta}} % New 
 \providecommand{\DiscFac}{\beta}
 \providecommand{\DiscFacAlt}{\beth}
 \providecommand{\DiscAltuAdj}{{\underline{\underline{\beth}}}}
 \providecommand{\DiscAlt}{{\beth}}
 \providecommand{\DiscFacRaw}{\beta}
 \providecommand{\DiscFacLiv}{\underline{\DiscFacRaw}}
-\providecommand{\discRte}{{\tau}} % New
+\providecommand{\discRte}{\ensuremath{\tau}} % New
 
 \providecommand{\APFac}{\text{\pmb{\Thorn}}} % Former \Pat
 \providecommand{\APFacDefn}{\hyperlink{APFacDefn}{\textrm{APF}}}
@@ -290,32 +290,29 @@
 \providecommand{\pNotZero}{(1-\pZero)}
 
 
-\providecommand{\CARA}{{\alpha}}
+\providecommand{\CARA}{\ensuremath{\alpha}}
 \providecommand{\CRRA}{{\rho}}
-\providecommand{\diePrb}{{\mathsf{d}}} % Continuous time death rate 
-\providecommand{\DiePrb}{{\mathsf{D}}} % Discrete-time one-period death rate
+\providecommand{\diePrb}{\ensuremath{\mathsf{d}}} % Continuous time death rate 
+\providecommand{\DiePrb}{\ensuremath{\mathsf{D}}} % Discrete-time one-period death rate
 \providecommand{\Ex}{{\mathbb{E}}} % Expectations operator defined in econtex.cls
 \providecommand{\Mean}{{\mathbb{M}}} % Mean
 \providecommand{\MPC}{{\kappa}}
 \providecommand{\MPCFunc}{\pmb{\kappa}}
 \providecommand{\pZero}{{\wp}}
 
-\providecommand{\rfree}{{\mathsf{r}}}   % The net return rate on the safe asset
-\providecommand{\Rfree}{{\mathsf{R}}}   % The return factor on the safe asset 
-\providecommand{\RSave}{{\underline{\Rfree}}}
-\providecommand{\rsave}{{\underline{\rfree}}}
-\providecommand{\RBoro}{{\bar{\Rfree}}}
-\providecommand{\rboro}{{\bar{\rfree}}}
+\providecommand{\rfree}{{\mathsf{r}}}   % The net return on the safe asset at an annual rate
+\providecommand{\Rfree}{{\mathsf{R}}}   % The return factor on the safe asset - unfortunately mathfrak fonts don't come through for tth
+\providecommand{\RSave}{\ensuremath{\underline{\Rfree}}}
+\providecommand{\rsave}{\ensuremath{\underline{\rfree}}}
+\providecommand{\RBoro}{\ensuremath{\bar{\Rfree}}}
+\providecommand{\rboro}{\ensuremath{\bar{\rfree}}}
 
 
-\providecommand{\Risky}{{\mathbf{R}}}  % The return factor on the risky asset
-\providecommand{\risky}{{\mathbf{r}}}  % The arithmetic return rate E[\Risky] - 1
-\providecommand{\riskyELog}{\risky}     % The arithmetic return rate \Risky - 1
-\providecommand{\riskyELev}{\boldsymbol{r}} % The geometric  return rate \log \Risky
-\providecommand{\riskyshare}{{\varsigma}}
-\providecommand{\riskyvar}{\sigma^{2}_{\risky}}
-\providecommand{\Rport}{\mathfrak{R}}    % Portfolio -weighted return
-\providecommand{\rport}{\mathfrak{r}}  
+\providecommand{\Risky}{\ensuremath{\mathbf{R}}}    % The return on the risky asset
+\providecommand{\risky}{\ensuremath{\mathbf{r}}}  % The net return on the risky asset annual rate 
+\providecommand{\riskyshare}{\ensuremath{\varsigma}}
+\providecommand{\Rport}{\ensuremath{\mathbb{R}}}    % Portfolio -weighted return
+\providecommand{\rport}{\ensuremath{\mathbb{r}}}  
 
 \providecommand{\uPPP}{{{\mathrm{u}^{\prime\prime\prime}}}}
 \providecommand{\uPP}{{{\mathrm{u}^{\prime\prime}}}}
@@ -325,30 +322,30 @@
 \providecommand{\Kap}{{K}}
 \providecommand{\kap}{{k}}
 
-\providecommand{\leiShare}{{\zeta}} % 
+\providecommand{\leiShare}{\ensuremath{\zeta}} % 
 
 \providecommand{\MPSmin}{\pZero^{1/\CRRA} \RPFac}
 \providecommand{\MPSmax}{\RPFac}
 
-\providecommand{\PDV}{{\mathbb{P}}} % PDV
-\providecommand{\Wage}{{\mathsf{W}}}
-\providecommand{\wage}{{\mathsf{w}}}
+\providecommand{\PDV}{\ensuremath{\mathbb{P}}} % PDV
+\providecommand{\Wage}{\ensuremath{\mathsf{W}}}
+\providecommand{\wage}{\ensuremath{\mathsf{w}}}
 
 \providecommand{\TaxLev}{T}
 \providecommand{\Tax}{}
-\providecommand{\TaxFree}{{\cancel{\Tax}}}
+\providecommand{\TaxFree}{\ensuremath{\cancel{\Tax}}}
 
 \providecommand{\Alt}{\grave}
 
-\providecommand{\urate}{{\mho}}
-\providecommand{\erate}{{\cancel{\mho}}}
-\providecommand{\unins}{{\zeta}}
+\providecommand{\urate}{\ensuremath{\mho}}
+\providecommand{\erate}{\ensuremath{\cancel{\mho}}}
+\providecommand{\unins}{\ensuremath{\zeta}}
 
 \providecommand{\Labor}{\mathrm{L}}
 \providecommand{\Labor}{\ell}
 
-\providecommand{\EEndMap}{{\mathsf{E}}}
+\providecommand{\EEndMap}{\ensuremath{\mathsf{E}}}
 \providecommand{\TMap}{\mathscr{T}}
 
-\providecommand{\CEndFunc}{{\mathfrak{C}}}
-\providecommand{\cEndFunc}{{\mathfrak{c}}}
+\providecommand{\CEndFunc}{\ensuremath{\mathfrak{C}}}
+\providecommand{\cEndFunc}{\ensuremath{\mathfrak{c}}}
