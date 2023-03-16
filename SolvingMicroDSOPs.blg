@@ -1,0 +1,52 @@
+This is BibTeX, Version 0.99d (TeX Live 2021)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: SolvingMicroDSOPs.aux
+The style file: ./Resources/texmf-local/bibtex/bst/econtex.bst
+I found no \bibdata command---while reading file SolvingMicroDSOPs.aux
+Warning--I didn't find a database entry for "gpLifecycle"
+Warning--I didn't find a database entry for "cagettiWprofiles"
+Warning--I didn't find a database entry for "carrollEGM"
+Warning--I didn't find a database entry for "SolvingMicroDSOPs"
+Done.
+You've used 0 entries,
+            2309 wiz_defined-function locations,
+            514 strings with 3567 characters,
+and the built_in function-call counts, 26 in all, are:
+= -- 0
+> -- 0
+< -- 0
++ -- 0
+- -- 0
+* -- 0
+:= -- 9
+add.period$ -- 0
+call.type$ -- 0
+change.case$ -- 0
+chr.to.int$ -- 0
+cite$ -- 0
+duplicate$ -- 0
+empty$ -- 1
+format.name$ -- 0
+if$ -- 1
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 0
+newline$ -- 6
+num.names$ -- 0
+pop$ -- 0
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 1
+stack$ -- 0
+substring$ -- 0
+swap$ -- 0
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 1
+type$ -- 0
+warning$ -- 0
+while$ -- 0
+width$ -- 0
+write$ -- 5
+(There was 1 error message)
