@@ -1,6 +1,7 @@
 \RequireVersions{
   *{application}{TeX}     {1990/03/25 v3.x}
   *{format} {LaTeX2e}     {2020-10-01 v2.e}
+  *{file}   {cctwMoM.tex} {0000/00/00 v0.0}
   *{file}   {./.econtexRoot}{0000/00/00 v0.0}
   *{file}   {./Resources/econtexPaths.tex}{0000/00/00 v0.0}
   *{class}  {./Resources/texmf-local/tex/latex/econtex}{2017/08/01 v0.0}
@@ -34,7 +35,7 @@
   *{package}{amsthm}      {2020/05/29 v2.20.6}
   *{package}{xpatch}      {2020/03/25 v0.3a}
   *{package}{expl3}       {2021-02-18 v3}
-  *{file}   {l3backend-dvips.def}{2021-03-18 v3}
+  *{file}   {l3backend-pdftex.def}{2021-03-18 v3}
   *{package}{xparse}      {2021-01-09 v3}
   *{package}{xparse-2020-10-01}{0000/00/00 v0.0}
   *{package}{etoolbox}    {2020/10/05 v2.5k}
@@ -62,7 +63,7 @@
   *{file}   {t1cmss.fd}   {2019/12/16 v2.5j}
   *{package}{xcolor}      {2016/05/11 v2.12}
   *{file}   {color.cfg}   {2016/01/02 v1.6}
-  *{file}   {dvips.def}   {2017/06/20 v3.1d}
+  *{file}   {pdftex.def}  {2020/10/05 v1.2a}
   *{package}{accents}     {2006/05/12 v1.4}
   *{package}{appendix}    {2020/02/08 v1.2c}
   *{package}{eucal}       {2009/06/22 v3.00}
@@ -76,7 +77,6 @@
   *{package}{manyfoot}    {2019/08/03 v1.11}
   *{package}{nccfoots}    {2005/02/03 v1.2}
   *{package}{perpage}     {2014/10/25 v2.0}
-  *{package}{tex4ht}      {0000/00/00 v0.0}
   *{package}{import}      {2020/04/01 v6.2}
   *{package}{./Resources/texmf-local/tex/latex/econark}{0000/00/00 v0.0}
   *{package}{subfiles}    {2020/11/14 v2.2}
@@ -87,13 +87,11 @@
   *{package}{psibycus}    {2004/10/18 v4.5}
   *{file}   {ibycus4.map} {0000/00/00 v0.0}
   *{file}   {Uibycus.fd}  {2004/10/18 v4.5}
-  *{file}   {Uibycus.fd}  {2004/10/18 v4.5}
   *{file}   {iby4extr.tex}{0000/00/00 v0.0}
   *{package}{ushort}      {2001/06/13 v2.2}
   *{package}{graphicx}    {2020/09/09 v1.2b}
   *{package}{graphics}    {2020/08/30 v1.4c}
   *{package}{trig}        {2016/01/03 v1.10}
-  *{file}   {graphics.cfg}{2016/06/04 v1.11}
   *{file}   {graphics.cfg}{2016/06/04 v1.11}
   *{package}{hyperref}    {2021-02-27 v7.00k}
   *{package}{kvsetkeys}   {2019/12/15 v1.18}
@@ -104,105 +102,32 @@
   *{package}{auxhook}     {2019-12-17 v1.6}
   *{package}{kvoptions}   {2020-10-07 v3.14}
   *{file}   {pd1enc.def}  {2021-02-27 v7.00k}
-  *{file}   {pd1enc.def}  {2021-02-27 v7.00k}
-  *{file}   {hyperref-langpatches.def}{2021-02-27 v7.00k}
   *{file}   {hyperref-langpatches.def}{2021-02-27 v7.00k}
   *{package}{intcalc}     {2019/12/15 v1.3}
   *{package}{etexcmds}    {2019/12/15 v1.7}
   *{file}   {puenc.def}   {2021-02-27 v7.00k}
-  *{file}   {puenc.def}   {2021-02-27 v7.00k}
   *{package}{bitset}      {2019/12/09 v1.3}
   *{package}{bigintcalc}  {2019/12/15 v1.5}
   *{package}{atbegshi-ltx}{2020/08/17 v1.0a}
-  *{file}   {htex4ht.def} {2021-02-27 v7.00k}
-  *{file}   {htex4ht.def} {2021-02-27 v7.00k}
+  *{file}   {hpdftex.def} {2021-02-27 v7.00k}
+  *{package}{atveryend-ltx}{2020/08/19 v1.0a}
+  *{package}{rerunfilecheck}{2019/12/05 v1.9}
+  *{package}{uniquecounter}{2019/12/15 v1.4}
+  *{package}{./Resources/texmf-local/tex/latex/econtexShortcuts}{0000/00/00 v0.0}
+  *{file}   {t3cmr.fd}    {2001/12/31 v0.0}
+  *{file}   {translations-basic-dictionary-english.trsl}{(english v0.0}
+  *{file}   {supp-pdf.mkii}{0000/00/00 v0.0}
+  *{package}{epstopdf-base}{2020-01-24 v2.11}
+  *{file}   {epstopdf-sys.cfg}{2010/07/13 v1.3}
   *{package}{nameref}     {2021-04-02 v2.47}
   *{package}{refcount}    {2019/12/15 v3.6}
   *{package}{gettitlestring}{2019/12/15 v1.6}
-  *{package}{./Resources/texmf-local/tex/latex/econtexShortcuts}{0000/00/00 v0.0}
-  *{file}   {ifthen.4ht}  {0000/00/00 v0.0}
-  *{file}   {scrartcl.4ht}{0000/00/00 v0.0}
-  *{file}   {babel.4ht}   {0000/00/00 v0.0}
-  *{file}   {english.4ht} {0000/00/00 v0.0}
-  *{file}   {verbatim.4ht}{0000/00/00 v0.0}
-  *{file}   {amsmath.4ht} {0000/00/00 v0.0}
-  *{file}   {amstext.4ht} {0000/00/00 v0.0}
-  *{file}   {amsbsy.4ht}  {0000/00/00 v0.0}
-  *{file}   {amsopn.4ht}  {0000/00/00 v0.0}
-  *{file}   {amssymb.4ht} {0000/00/00 v0.0}
-  *{file}   {amsfonts.4ht}{0000/00/00 v0.0}
-  *{file}   {amsthm.4ht}  {0000/00/00 v0.0}
-  *{file}   {dcolumn.4ht} {0000/00/00 v0.0}
-  *{file}   {array.4ht}   {0000/00/00 v0.0}
-  *{file}   {multicol.4ht}{0000/00/00 v0.0}
-  *{file}   {multirow.4ht}{0000/00/00 v0.0}
-  *{file}   {booktabs.4ht}{0000/00/00 v0.0}
-  *{file}   {afterpage.4ht}{0000/00/00 v0.0}
-  *{file}   {moreverb.4ht}{0000/00/00 v0.0}
-  *{file}   {xcolor.4ht}  {0000/00/00 v0.0}
-  *{file}   {color.4ht}   {0000/00/00 v0.0}
-  *{file}   {dvips.4ht}   {0000/00/00 v0.0}
-  *{file}   {accents.4ht} {0000/00/00 v0.0}
-  *{file}   {appendix.4ht}{0000/00/00 v0.0}
-  *{file}   {eucal.4ht}   {0000/00/00 v0.0}
-  *{file}   {ulem.4ht}    {0000/00/00 v0.0}
-  *{file}   {bm.4ht}      {0000/00/00 v0.0}
-  *{file}   {url.4ht}     {0000/00/00 v0.0}
-  *{file}   {natbib.4ht}  {0000/00/00 v0.0}
-  *{file}   {footmisc.4ht}{0000/00/00 v0.0}
-  *{file}   {subfiles.4ht}{0000/00/00 v0.0}
-  *{file}   {ushort.4ht}  {0000/00/00 v0.0}
-  *{file}   {graphicx.4ht}{0000/00/00 v0.0}
-  *{file}   {graphics.4ht}{0000/00/00 v0.0}
-  *{file}   {hyperref.4ht}{0000/00/00 v0.0}
-  *{file}   {pd1enc.4ht}  {0000/00/00 v0.0}
-  *{file}   {nameref.4ht} {0000/00/00 v0.0}
-  *{file}   {t3cmr.fd}    {2001/12/31 v0.0}
-  *{file}   {t3cmr.fd}    {2001/12/31 v0.0}
-  *{file}   {translations-basic-dictionary-english.trsl}{(english v0.0}
-  *{file}   {translations-basic-dictionary-english.trsl}{(english v0.0}
+  *{file}   {cctwMoM.out} {0000/00/00 v0.0}
+  *{file}   {cctwMoM.out} {0000/00/00 v0.0}
   *{package}{bookmark}    {2020-11-06 v1.29}
-  *{file}   {bkm-dvips.def}{2020-11-06 v1.29}
-  *{file}   {bkm-dvips.def}{2020-11-06 v1.29}
-  *{file}   {umsa.fd}     {2013/01/14 v3.01}
+  *{file}   {bkm-pdftex.def}{2020-11-06 v1.29}
   *{file}   {umsa.fd}     {2013/01/14 v3.01}
   *{file}   {umsb.fd}     {2013/01/14 v3.01}
-  *{file}   {umsb.fd}     {2013/01/14 v3.01}
-  *{file}   {ulasy.fd}    {1998/08/17 v2.2e}
   *{file}   {ulasy.fd}    {1998/08/17 v2.2e}
   *{file}   {uwasy.fd}    {2020/01/19 v2.4}
-  *{file}   {uwasy.fd}    {2020/01/19 v2.4}
-  *{file}   {t1cmtt.fd}   {2019/12/16 v2.5j}
-  *{file}   {t1cmtt.fd}   {2019/12/16 v2.5j}
-  *{file}   {./Equations/MaxProb.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/DBCLevelStart.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/Defns.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/ExogVars.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/vNormed.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/cEuler.tex}{0000/00/00 v0.0}
-  *{file}   {././cctwMoM/EndogGptsProbs.tex}{0000/00/00 v0.0}
-  *{file}   {././cctwMoM/MoM-Prelims.tex}{0000/00/00 v0.0}
-  *{file}   {ueuf.fd}     {2013/01/14 v3.01}
-  *{file}   {ueuf.fd}     {2013/01/14 v3.01}
-  *{file}   {./Equations/cFuncAbove.tex}{0000/00/00 v0.0}
-  *{file}   {././cctwMoM/MoM-Words.tex}{0000/00/00 v0.0}
-  *{file}   {./Figures/IntExpFOCInvPesReaOptNeedHiPlot.tex}{0000/00/00 v0.0}
-  *{file}   {././cctwMoM/MoM-Words-Rest.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/MoM-Inequalities.tex}{0000/00/00 v0.0}
-  *{file}   {././cctwMoM/MoM-Inequalities-Describe.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/MoM-KoppaOfMu.tex}{0000/00/00 v0.0}
-  *{file}   {././cctwMoM/MoM-KoppaOfMu-Describe.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/cFuncHi.tex}{0000/00/00 v0.0}
-  *{file}   {././cctwMoM/MoM-End.tex}{0000/00/00 v0.0}
-  *{file}   {././cctwMoM/value-Intro.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/vFuncPF.tex}{0000/00/00 v0.0}
-  *{file}   {././cctwMoM/value-Rest.tex}{0000/00/00 v0.0}
-  *{file}   {././cctwMoM/Tighter.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/mtCusp.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/TighterUpperBound.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/koppaLo.tex}{0000/00/00 v0.0}
-  *{file}   {././cctwMoM/TighterThreeFuncs.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/TighterThreeEqns.tex}{0000/00/00 v0.0}
-  *{file}   {././cctwMoM/TighterThreeFuncsExplain.tex}{0000/00/00 v0.0}
-  *{file}   {cctwMoM.bbl} {0000/00/00 v0.0}
 }
