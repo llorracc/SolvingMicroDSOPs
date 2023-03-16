@@ -1,0 +1,263 @@
+<!DOCTYPE html> 
+<html lang="en" xml:lang="en" > 
+<head>
+  <title>Solution Methods for Microeconomic Dynamic Stochastic Optimization Problems</title> 
+<meta  charset="utf-8" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="SolvingMicroDSOPs.css" /> 
+<meta name="src" content="SolvingMicroDSOPs.tex"> 
+</head><body 
+>
+<!--l. 65--><p class="noindent" >                                                                  <span 
+class="ecrm-0600">SolvingMicroDSOPs, March 16,</span>
+<span 
+class="ecrm-0600">2023</span>
+  <div class="maketitle">
+<h2 class="titleHead">Solution Methods for Microeconomic Dynamic
+Stochastic Optimization Problems</h2>
+<div class="date" >2023-03-16</div>
+<span 
+class="ecrm-0600"> </span>
+ <div class="author" ><span 
+class="ecrm-1440">Christopher D. Carroll</span><sup class="textsuperscript"><span 
+class="ecrm-0600">1</span></sup></div>
+<br />
+</div>
+<!--l. 81--><p class="noindent" >Note: The code associated with this document should work (though the Matlab code may be
+out of date), but has been superceded by the set of tools available in the <a 
+href="https://github.com/econ-ark/HARK" >Econ-ARK</a> toolkit,
+more speciﬁcally the <a 
+href="https://github.com/econ-ark/HARK" >HARK Framework</a>. The SMM estimation code at the end has speciﬁcally
+been superceded by the <a 
+href="https://econ-ark.org/materials/solvingmicrodsops?launch" >SolvingMicroDSOPs</a> <a 
+href="https://github.com/econ-ark/REMARK" >REMARK</a>
+<!--l. 84--><p class="indent" >  <a 
+ id="Abstract"></a> <section role="doc-abstract" class="abstract"> 
+
+<!--l. 85--><p class="noindent" > <br 
+class="newline" />_____________________________________________________________________________________
+<!--l. 85--><p class="noindent" ><span 
+class="ecbx-1200">Abstract</span><br 
+class="newline" />   <span 
+class="ecrm-1095">These notes describe tools for solving microeconomic dynamic stochastic optimization problems,</span>
+<span 
+class="ecrm-1095">and show how to use those tools for eﬃciently estimating a standard life cycle consumption/saving</span>
+<span 
+class="ecrm-1095">model using microeconomic data. No attempt is made at a systematic overview of the many possible</span>
+<span 
+class="ecrm-1095">technical choices; instead, I present a speciﬁc set of methods that have proven useful in my own work</span>
+<span 
+class="ecrm-1095">(and explain why other popular methods, such as value function iteration, are a bad idea). Paired</span>
+<span 
+class="ecrm-1095">with these notes is </span><span 
+class="ecti-1095">Mathematica</span><span 
+class="ecrm-1095">, Matlab, and Python software that solves the problems described in</span>
+<span 
+class="ecrm-1095">the text.   </span><br 
+class="newline" />
+        <blockquote class="quote">
+                     <dl class="list2"><dt class="list">
+<span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> Keywords</span><span 
+class="ecbx-1200"> </span></dt><dd 
+class="list">
+                 <!--l. 87--><p class="noindent" >Dynamic  Stochastic  Optimization,  Method  of  Simulated
+                   Moments, Structural Estimation
+                                                                                     
+                                                                                     
+              </dd><dt class="list">
+<span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> JEL codes</span><span 
+class="ecbx-1200"> </span></dt><dd 
+class="list">
+              <!--l. 87--><p class="noindent" >E21, F41</dd></dl>
+      </blockquote>
+</section>
+<div class="center" 
+>
+<!--l. 90--><p class="noindent" >
+<table  
+cellpadding="0" border="0"  
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:75;" 
+class="tabbing"><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> PDF:</span><span 
+class="ectt-1000">  </span></td><td  
+class="tabbing"></td><td  
+class="tabbing"><a 
+href="https://github.com/llorracc/SolvingMicroDSOPs/blob/master/SolvingMicroDSOPs.pdf" class="url" ><span 
+class="ectt-1000">https://github.com/llorracc/SolvingMicroDSOPs/blob/master/SolvingMicroDSOPs.pdf</span></a>
+</td></tr></table>
+<!--l. 92--><p class="noindent" ><table  
+cellpadding="0" border="0"  
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:75;" 
+class="tabbing"><span 
+class="ectt-1000"> Slides:</span><span 
+class="ectt-1000">  </span></td><td  
+class="tabbing"></td><td  
+class="tabbing"><a 
+href="https://github.com/llorracc/SolvingMicroDSOPs/blob/master/SolvingMicroDSOPs-Slides.pdf" class="url" ><span 
+class="ectt-1000">https://github.com/llorracc/SolvingMicroDSOPs/blob/master/SolvingMicroDSOPs-Slides.pdf</span></a></td></tr></table>
+<!--l. 93--><p class="noindent" >                                <table  
+cellpadding="0" border="0"  
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:75;" 
+class="tabbing"><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> Web:</span><span 
+class="ectt-1000">  </span></td><td  
+class="tabbing"></td><td  
+class="tabbing"><a 
+href="https://llorracc.github.io/SolvingMicroDSOPs" class="url" ><span 
+class="ectt-1000">https://llorracc.github.io/SolvingMicroDSOPs</span></a></td></tr></table>
+<!--l. 94--><p class="noindent" >              <table  
+cellpadding="0" border="0"  
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:75;" 
+class="tabbing"><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> Code:</span><span 
+class="ectt-1000">  </span></td><td  
+class="tabbing"></td><td  
+class="tabbing"><a 
+href="https://github.com/llorracc/SolvingMicroDSOPs/tree/master/Code" class="url" ><span 
+class="ectt-1000">https://github.com/llorracc/SolvingMicroDSOPs/tree/master/Code</span></a></td></tr></table>
+<!--l. 95--><p class="noindent" >                               <table  
+cellpadding="0" border="0"  
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:75;" 
+class="tabbing"><span 
+class="ectt-1000">Archive:</span><span 
+class="ectt-1000">  </span></td><td  
+class="tabbing"></td><td  
+class="tabbing"><a 
+href="https://github.com/llorracc/SolvingMicroDSOPs" class="url" ><span 
+class="ectt-1000">https://github.com/llorracc/SolvingMicroDSOPs</span></a></td></tr></table>
+<!--l. 96--><p class="noindent" >     <table  
+cellpadding="0" border="0"  
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:75;" 
+class="tabbing"><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">  </span></td><td  
+class="tabbing"></td><td  
+class="tabbing"><span 
+class="ecti-1000">(Contains LaTeX code for this document and software producing ﬁgures and results)</span></td></tr></table>
+<!--l. 98--><p class="noindent" >
+</div>
+<!--l. 105--><p class="indent" >  <span class="footnote-mark"><sup class="textsuperscript"></sup></span>
+<!--l. 107--><p class="indent" >  <span class="footnote-mark"><sup class="textsuperscript"></sup></span>
+      <sup class="textsuperscript"></sup>
+<!--l. 104--><p class="indent" >  <sup class="textsuperscript"><span 
+class="ecrm-0600">1</span></sup><span 
+class="ecrm-1000">Carroll: Department of Economics, Johns Hopkins University, Baltimore, MD,</span>
+<a 
+href="http://www.econ2.jhu.edu/people/ccarroll/" class="url" ><span 
+class="ectt-1000">http://www.econ2.jhu.edu/people/ccarroll/</span></a><span 
+class="ecrm-1000">, </span><a 
+href="mailto:ccarroll@jhu.edu" ><span 
+class="ectt-1000">ccarroll@jhu.edu</span></a><span 
+class="ecrm-1000">, Phone: (410) 516-7602</span><span 
+class="ecrm-1000"> </span><span 
+class="ecrm-1000"> </span><span 
+class="ecrm-1000"> </span><span 
+class="ecrm-1000"> </span>
+      <sup class="textsuperscript"></sup><span 
+class="ecrm-1000">The notes were originally written for my Advanced Topics in Macroeconomic Theory class at</span>
+<span 
+class="ecrm-1000">Johns Hopkins University; instructors elsewhere are welcome to use them for teaching purposes. Relative</span>
+<span 
+class="ecrm-1000">to earlier drafts, this version incorporates several improvements related to new results in the paper</span>
+<a 
+href="http://econ-ark.github.io/BufferStockTheory" ><span 
+class="ecrm-1000">“Theoretical Foundations of Buﬀer Stock Saving”</span></a> <span 
+class="ecrm-1000">(especially tools for approximating the consumption</span>
+<span 
+class="ecrm-1000">and value functions). Like the last major draft, it also builds on material in “The Method of Endogenous</span>
+<span 
+class="ecrm-1000">Gridpoints for Solving Dynamic Stochastic Optimization Problems”  published in </span><span 
+class="ecti-1000">Economics Letters</span><span 
+class="ecrm-1000">,</span>
+<span 
+class="ecrm-1000">available</span>
+<span 
+class="ecrm-1000">at </span><a 
+href="http://www.econ2.jhu.edu/people/ccarroll/EndogenousArchive.zip" class="url" ><span 
+class="ectt-1000">http://www.econ2.jhu.edu/people/ccarroll/EndogenousArchive.zip</span></a><span 
+class="ecrm-1000">, and by including sample</span>
+<span 
+class="ecrm-1000">code for a method of simulated moments estimation of the life cycle model </span><span 
+class="ecti-1000">a la </span><span 
+class="ecbx-1000">? </span><span 
+class="ecrm-1000">and Cagetti</span><span 
+class="ecrm-1000"> (</span><span 
+class="ecbx-1000">?</span><span 
+class="ecrm-1000">).</span>
+<span 
+class="ecrm-1000">Background derivations, notation, and related subjects are treated in my class notes for ﬁrst year macro,</span>
+<span 
+class="ecrm-1000">available  at  </span><a 
+href="http://www.econ2.jhu.edu/people/ccarroll/public/lecturenotes/consumption" class="url" ><span 
+class="ectt-1000">http://www.econ2.jhu.edu/people/ccarroll/public/lecturenotes/consumption</span></a><span 
+class="ecrm-1000">.  I</span>
+<span 
+class="ecrm-1000">am grateful to several generations of graduate students in helping me to reﬁne these notes, to Marc</span>
+<span 
+class="ecrm-1000">Chan for help in updating the text and software to be consistent with </span><span 
+class="ecbx-1000">?</span><span 
+class="ecrm-1000">, to Kiichi Tokuoka for drafting</span>
+<span 
+class="ecrm-1000">the section on structural estimation, to Damiano Sandri for exceptionally insightful help in revising and</span>
+<span 
+class="ecrm-1000">updating the method of simulated moments estimation section, and to Weifeng Wu and Metin Uyanik</span>
+<span 
+class="ecrm-1000">for revising to be consistent with the ‘method of moderation’ and other improvements. All errors are</span>
+<span 
+class="ecrm-1000">my own. This document can be cited as </span><span 
+class="ecbx-1000">? </span><span 
+class="ecrm-1000">in the references.</span>
+                                                                                     
+                                                                                     
+   
+</body> 
+</html>
+                                                                                     
+
+
