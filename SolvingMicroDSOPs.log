@@ -1,0 +1,3030 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=latex 2021.3.25)  16 MAR 2023 14:22
+entering extended mode
+ \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**\makeatletter\def\HCode{\futurelet\HCode\HChar}\def\HChar{\ifx"\HCode\def\HCo
+de"##1"{\Link##1}\expandafter\HCode\else\expandafter\Link\fi}\def\Link#1.a.b.c.
+{\g@addto@macro\@documentclasshook{\RequirePackage[#1,html]{tex4ht}}\let\HCode\
+documentstyle\def\documentstyle{\let\documentstyle\HCode\expandafter\def\csname
+ tex4ht\endcsname{#1,html}\def\HCode####1{\documentstyle[tex4ht,}\@ifnextchar[{
+\HCode}{\documentstyle[tex4ht]}}}\makeatother\HCode SolvingMicroDSOPs.cfg,svg  
+          ,charset=utf-8,html5.a.b.c.\input "\detokenize{SolvingMicroDSOPs}"
+(./SolvingMicroDSOPs.tex (./.econtexRoot.tex (./Resources/econtexPaths.tex)) (.
+/Resources/texmf-local/tex/latex/econtex.cls
+
+LaTeX Warning: You have requested document class `./Resources/texmf-local/tex/l
+atex/econtex',
+               but the document class provides `econtex'.
+
+Document Class: econtex 2017/08/01 LaTeX class for economics papers, handouts, 
+and exam questions written by Christopher Carroll
+(/usr/local/texlive/texmf-local/tex/latex/snapshot.sty
+Package: snapshot 2002/03/05 v1.14
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/changepage/changepage.sty
+Package: changepage 2009/10/20 v1.0c check page and change page layout
+\c@cp@cntr=\count179
+\cp@tempcnt=\count180
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/setspace/setspace.sty
+Package: setspace 2011/12/19 v6.7a set line spacing
+)
+\c@IncludeTitlePage=\count181
+(/usr/local/texlive/2021/texmf-dist/tex/latex/koma-script/scrartcl.cls
+Document Class: scrartcl 2021/03/17 v3.33 KOMA-Script document class (article)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/koma-script/scrkbase.sty
+Package: scrkbase 2021/03/17 v3.33 KOMA-Script package (KOMA-Script-dependent b
+asics and keyval usage)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/koma-script/scrbase.sty
+Package: scrbase 2021/03/17 v3.33 KOMA-Script package (KOMA-Script-independent 
+basics and keyval usage)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/koma-script/scrlfile.sty
+Package: scrlfile 2021/03/17 v3.33 KOMA-Script package (file load hooks)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/koma-script/scrlfile-hook.sty
+Package: scrlfile-hook 2021/03/17 v3.33 KOMA-Script package (using LaTeX hooks)
+
+
+LaTeX3 Info: Defining command \BeforeFile with sig. 'm' on line 61.
+
+
+LaTeX3 Info: Defining command \AfterFile with sig. 'm' on line 65.
+
+
+LaTeX3 Info: Defining command \BeforeClass with sig. 'm' on line 69.
+
+
+LaTeX3 Info: Defining command \BeforePackage with sig. 'm' on line 73.
+
+
+LaTeX3 Info: Defining command \AfterAtEndOfClass with sig. 'smo+m' on line 83.
+
+
+LaTeX3 Info: Defining command \AfterAtEndOfPackage with sig. 'smo+m' on line
+(LaTeX3)     93.
+
+
+LaTeX3 Info: Defining command \scrlfile@AfterClass with sig. 'smo+m' on line
+(LaTeX3)     173.
+
+
+LaTeX3 Info: Defining command \AfterClass with sig. '' on line 174.
+
+
+LaTeX3 Info: Defining command \scrlfile@AfterPackage with sig. 'smo+m' on line
+(LaTeX3)     191.
+
+
+LaTeX3 Info: Defining command \AfterPackage with sig. '' on line 192.
+
+
+LaTeX3 Info: Defining command \ReplaceInput with sig. '' on line 193.
+
+
+LaTeX3 Info: Defining command \ReplaceClass with sig. 'mm' on line 196.
+
+
+LaTeX3 Info: Defining command \ReplacePackage with sig. 'mm' on line 199.
+
+
+LaTeX3 Info: Defining command \UnReplaceInput with sig. '' on line 200.
+
+
+LaTeX3 Info: Defining command \UnReplaceClass with sig. 'm' on line 203.
+
+
+LaTeX3 Info: Defining command \UnReplacePackage with sig. 'mm' on line 206.
+
+
+LaTeX3 Info: Defining command \PreventPackageFromLoading with sig. 's+om' on
+(LaTeX3)     line 234.
+
+
+LaTeX3 Info: Defining command \StorePreventPackageFromLoading with sig. 'm' on
+(LaTeX3)     line 242.
+
+
+LaTeX3 Info: Defining command \ResetPreventPackageFromLoading with sig. '' on
+(LaTeX3)     line 247.
+
+
+LaTeX3 Info: Defining command \UnPreventPackageFromLoading with sig. 'sm' on
+(LaTeX3)     line 261.
+
+
+LaTeX3 Info: Defining command \BeforeClosingMainAux with sig. 'om' on line
+(LaTeX3)     274.
+
+
+LaTeX3 Info: Defining command \AfterReadingMainAux with sig. 'om' on line 287.
+
+
+LaTeX3 Info: Defining command \protected@immediate@write with sig. 'm+m+m' on
+(LaTeX3)     line 298.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/koma-script/scrlogo.sty
+Package: scrlogo 2021/03/17 v3.33 KOMA-Script package (logo)
+))) (/usr/local/texlive/2021/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks15
+)
+Skipping: [2021/05/01] Usage of raw option list on input line 252.
+Applying: [0000/00/00] compatibility for LaTeX before 2021/05/01 on input line 
+337.
+)) (/usr/local/texlive/2021/texmf-dist/tex/latex/koma-script/tocbasic.sty
+Package: tocbasic 2021/03/17 v3.33 KOMA-Script package (handling toc-files)
+\scr@dte@tocline@numberwidth=\skip47
+\scr@dte@tocline@numbox=\box47
+)
+Package tocbasic Info: babel extension for `toc' omitted
+(tocbasic)             because of missing \bbl@set@language on input line 135.
+Class scrartcl Info: File `scrsize12pt.clo' used to setup font sizes on input l
+ine 2239.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/koma-script/scrsize12pt.clo
+File: scrsize12pt.clo 2021/03/17 v3.33 KOMA-Script font size class option (12pt
+)
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/koma-script/typearea.sty
+Package: typearea 2021/03/17 v3.33 KOMA-Script package (type area)
+\ta@bcor=\skip48
+\ta@div=\count182
+\ta@hblk=\skip49
+\ta@vblk=\skip50
+\ta@temp=\skip51
+\footheight=\skip52
+Package typearea Info: These are the values describing the layout:
+(typearea)             DIV  = 12
+(typearea)             BCOR = 0.0pt
+(typearea)             \paperwidth      = 597.50793pt
+(typearea)              \textwidth      = 448.13095pt
+(typearea)              DIV departure   = -6%
+(typearea)              \evensidemargin = 2.4185pt
+(typearea)              \oddsidemargin  = 2.4185pt
+(typearea)             \paperheight     = 845.04694pt
+(typearea)              \textheight     = 635.5pt
+(typearea)              \topmargin      = -41.72441pt
+(typearea)              \headheight     = 18.125pt
+(typearea)              \headsep        = 21.75pt
+(typearea)              \topskip        = 12.0pt
+(typearea)              \footskip       = 50.75pt
+(typearea)              \baselineskip   = 14.5pt
+(typearea)              on input line 1741.
+)
+\c@part=\count183
+\c@section=\count184
+\c@subsection=\count185
+\c@subsubsection=\count186
+\c@paragraph=\count187
+\c@subparagraph=\count188
+\scr@dte@section@maxnumwidth=\skip53
+Class scrartcl Info: using compatibility default `runin=bysign'
+(scrartcl)           for `\section on input line 4846.
+Class scrartcl Info: using compatibility default `afterindent=bysign'
+(scrartcl)           for `\section on input line 4846.
+\scr@dte@part@maxnumwidth=\skip54
+Class scrartcl Info: using compatibility default `afterindent=false'
+(scrartcl)           for `\part on input line 4854.
+\scr@dte@subsection@maxnumwidth=\skip55
+Class scrartcl Info: using compatibility default `runin=bysign'
+(scrartcl)           for `\subsection on input line 4864.
+Class scrartcl Info: using compatibility default `afterindent=bysign'
+(scrartcl)           for `\subsection on input line 4864.
+\scr@dte@subsubsection@maxnumwidth=\skip56
+Class scrartcl Info: using compatibility default `runin=bysign'
+(scrartcl)           for `\subsubsection on input line 4874.
+Class scrartcl Info: using compatibility default `afterindent=bysign'
+(scrartcl)           for `\subsubsection on input line 4874.
+\scr@dte@paragraph@maxnumwidth=\skip57
+Class scrartcl Info: using compatibility default `runin=bysign'
+(scrartcl)           for `\paragraph on input line 4885.
+Class scrartcl Info: using compatibility default `afterindent=bysign'
+(scrartcl)           for `\paragraph on input line 4885.
+\scr@dte@subparagraph@maxnumwidth=\skip58
+Class scrartcl Info: using compatibility default `runin=bysign'
+(scrartcl)           for `\subparagraph on input line 4895.
+Class scrartcl Info: using compatibility default `afterindent=bysign'
+(scrartcl)           for `\subparagraph on input line 4895.
+\abovecaptionskip=\skip59
+\belowcaptionskip=\skip60
+\c@pti@nb@sid@b@x=\box48
+Package tocbasic Info: babel extension for `lof' omitted
+(tocbasic)             because of missing \bbl@set@language on input line 6127.
+
+\scr@dte@figure@maxnumwidth=\skip61
+\c@figure=\count189
+Package tocbasic Info: babel extension for `lot' omitted
+(tocbasic)             because of missing \bbl@set@language on input line 6139.
+
+\scr@dte@table@maxnumwidth=\skip62
+\c@table=\count190
+Class scrartcl Info: Redefining `\numberline' on input line 6303.
+\bibindent=\dimen138
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2020/08/10 v2.0s Standard LaTeX package
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2021/03/24 3.56 The Babel package
+(/usr/local/texlive/2021/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2021/03/24 3.56 Babel common definitions
+\babel@savecnt=\count191
+\U@D=\dimen139
+\l@babelnohyphens=\language87
+(/usr/local/texlive/2021/texmf-dist/tex/generic/babel/txtbabel.def)
+\bbl@readstream=\read2
+)
+\bbl@dirlevel=\count192
+(/usr/local/texlive/2021/texmf-dist/tex/generic/babel-english/english.ldf
+Language: english 2017/06/06 v3.3r English support from the babel system
+Package babel Info: \l@canadian = using hyphenrules for english
+(babel)             (\language0) on input line 102.
+Package babel Info: \l@australian = using hyphenrules for ukenglish
+(babel)             (\language21) on input line 105.
+Package babel Info: \l@newzealand = using hyphenrules for ukenglish
+(babel)             (\language21) on input line 108.
+)) (/usr/local/texlive/2021/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count193
+\calc@Bcount=\count194
+\calc@Adimen=\dimen140
+\calc@Bdimen=\dimen141
+\calc@Askip=\skip63
+\calc@Bskip=\skip64
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count195
+\calc@Cskip=\skip65
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/cancel/cancel.sty
+Package: cancel 2013/04/12 v2.2 Cancel math terms
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/tools/verbatim.sty
+Package: verbatim 2020-07-07 v1.5u LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks16
+\verbatim@line=\toks17
+\verbatim@in@stream=\read3
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2020/09/23 v2.17i AMS math features
+\@mathmargin=\skip66
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
+(/usr/local/texlive/2021/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks18
+\ex@=\dimen142
+)) (/usr/local/texlive/2021/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen143
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count196
+LaTeX Info: Redefining \frac on input line 234.
+\uproot@=\count197
+\leftroot@=\count198
+LaTeX Info: Redefining \overline on input line 399.
+\classnum@=\count199
+\DOTSCASE@=\count266
+LaTeX Info: Redefining \ldots on input line 496.
+LaTeX Info: Redefining \dots on input line 499.
+LaTeX Info: Redefining \cdots on input line 620.
+\Mathstrutbox@=\box49
+\strutbox@=\box50
+\big@size=\dimen144
+LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
+\macc@depth=\count267
+\c@MaxMatrixCols=\count268
+\dotsspace@=\muskip16
+\c@parentequation=\count269
+\dspbrk@lvl=\count270
+\tag@help=\toks19
+\row@=\count271
+\column@=\count272
+\maxfields@=\count273
+\andhelp@=\toks20
+\eqnshift@=\dimen145
+\alignsep@=\dimen146
+\tagshift@=\dimen147
+\tagwidth@=\dimen148
+\totwidth@=\dimen149
+\lineht@=\dimen150
+\@envbody=\toks21
+\multlinegap=\skip67
+\multlinetaggap=\skip68
+\mathdisplay@stack=\toks22
+LaTeX Info: Redefining \[ on input line 2923.
+LaTeX Info: Redefining \] on input line 2924.
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+(/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)) (/usr/local/texlive/2021/texmf-dist/tex/latex/amscls/amsthm.sty
+Package: amsthm 2020/05/29 v2.20.6
+\thm@style=\toks23
+\thm@bodyfont=\toks24
+\thm@headfont=\toks25
+\thm@notefont=\toks26
+\thm@headpunct=\toks27
+\thm@preskip=\skip69
+\thm@postskip=\skip70
+\thm@headsep=\skip71
+\dth@everypar=\toks28
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/xpatch/xpatch.sty (/usr/local/t
+exlive/2021/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2021-02-18 L3 programming layer (loader) 
+(/usr/local/texlive/2021/texmf-dist/tex/latex/l3backend/l3backend-dvips.def
+File: l3backend-dvips.def 2021-03-18 L3 backend support: dvips
+\l__pdf_internal_box=\box51
+\g__pdf_backend_object_int=\count274
+\l__pdf_backend_content_box=\box52
+\l__pdf_backend_model_box=\box53
+\g__pdf_backend_annotation_int=\count275
+\g__pdf_backend_link_int=\count276
+\g__pdf_backend_link_sf_int=\count277
+))
+Package: xpatch 2020/03/25 v0.3a Extending etoolbox patching commands
+(/usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+(/usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xparse/xparse-2020-10-
+01.sty
+(/usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xparse/xparse-generic.
+tex))) (/usr/local/texlive/2021/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count278
+))
+Class scrartcl Info: amsthm's \deferred@thm@head patched.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/threeparttable/threeparttable.sty
+Package: threeparttable 2003/06/13  v 3.0
+\@tempboxb=\box54
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/tools/dcolumn.sty
+Package: dcolumn 2014/10/28 v1.06 decimal alignment package (DPC)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/tools/array.sty
+Package: array 2020/10/01 v2.5c Tabular extension package (FMi)
+\col@sep=\dimen151
+\ar@mcellbox=\box55
+\extrarowheight=\dimen152
+\NC@list=\toks29
+\extratabsurround=\skip72
+\backup@length=\skip73
+\ar@cellbox=\box56
+)) (/usr/local/texlive/2021/texmf-dist/tex/latex/tools/multicol.sty
+Package: multicol 2019/12/09 v1.8y multicolumn formatting (FMi)
+\c@tracingmulticols=\count279
+\mult@box=\box57
+\multicol@leftmargin=\dimen153
+\c@unbalance=\count280
+\c@collectmore=\count281
+\doublecol@number=\count282
+\multicoltolerance=\count283
+\multicolpretolerance=\count284
+\full@width=\dimen154
+\page@free=\dimen155
+\premulticols=\dimen156
+\postmulticols=\dimen157
+\multicolsep=\skip74
+\multicolbaselineskip=\skip75
+\partial@page=\box58
+\last@line=\box59
+\maxbalancingoverflow=\dimen158
+\mult@rightbox=\box60
+\mult@grightbox=\box61
+\mult@gfirstbox=\box62
+\mult@firstbox=\box63
+\@tempa=\box64
+\@tempa=\box65
+\@tempa=\box66
+\@tempa=\box67
+\@tempa=\box68
+\@tempa=\box69
+\@tempa=\box70
+\@tempa=\box71
+\@tempa=\box72
+\@tempa=\box73
+\@tempa=\box74
+\@tempa=\box75
+\@tempa=\box76
+\@tempa=\box77
+\@tempa=\box78
+\@tempa=\box79
+\@tempa=\box80
+\@tempa=\box81
+\@tempa=\box82
+\@tempa=\box83
+\@tempa=\box84
+\@tempa=\box85
+\@tempa=\box86
+\@tempa=\box87
+\@tempa=\box88
+\@tempa=\box89
+\@tempa=\box90
+\@tempa=\box91
+\@tempa=\box92
+\@tempa=\box93
+\@tempa=\box94
+\@tempa=\box95
+\@tempa=\box96
+\@tempa=\box97
+\@tempa=\box98
+\@tempa=\box99
+\@tempa=\box100
+\c@minrows=\count285
+\c@columnbadness=\count286
+\c@finalcolumnbadness=\count287
+\last@try=\dimen159
+\multicolovershoot=\dimen160
+\multicolundershoot=\dimen161
+\mult@nat@firstbox=\box101
+\colbreak@box=\box102
+\mc@col@check@num=\count288
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/multirow/multirow.sty
+Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
+\multirow@colwidth=\skip76
+\multirow@cntb=\count289
+\multirow@dima=\skip77
+\bigstrutjot=\dimen162
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen163
+\lightrulewidth=\dimen164
+\cmidrulewidth=\dimen165
+\belowrulesep=\dimen166
+\belowbottomsep=\dimen167
+\aboverulesep=\dimen168
+\abovetopsep=\dimen169
+\cmidrulesep=\dimen170
+\cmidrulekern=\dimen171
+\defaultaddspace=\dimen172
+\@cmidla=\count290
+\@cmidlb=\count291
+\@aboverulesep=\dimen173
+\@belowrulesep=\dimen174
+\@thisruleclass=\count292
+\@lastruleclass=\count293
+\@thisrulewidth=\dimen175
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/base/latexsym.sty
+Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
+\symlasy=\mathgroup6
+LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
+(Font)                  U/lasy/m/n --> U/lasy/b/n on input line 52.
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/tools/afterpage.sty
+Package: afterpage 2014/10/28 v1.08 After-Page Package (DPC)
+\AP@output=\toks30
+\AP@partial=\box103
+\AP@footins=\box104
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/enotez/enotez.sty (/usr/local/t
+exlive/2021/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+Package: l3keys2e 2021-03-12 LaTeX2e option processing using LaTeX3 keys
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xtemplate/xtemplate.st
+y
+Package: xtemplate 2021-03-12 L3 Experimental prototype document functions
+\l__xtemplate_tmp_dim=\dimen176
+\l__xtemplate_tmp_int=\count294
+\l__xtemplate_tmp_muskip=\muskip17
+\l__xtemplate_tmp_skip=\skip78
+)
+Package: enotez 2020/12/13 v0.10c Endnotes for LaTeX2e
+\l__enotez_list_preamble_skip=\skip79
+\l__enotez_list_postamble_skip=\skip80
+\g__enotez_endnote_id_int=\count295
+\g__enotez_endnote_mark_int=\count296
+\c@endnote=\count297
+\g__enotez_list_printed_int=\count298
+\l__enotez_tmpa_int=\count299
+
+Package xtemplate Info: Declaring object type 'enotez-list' taking 1
+(xtemplate)             argument(s) on line 471.
+
+\l__enotez_list_notes_sep_dim=\dimen177
+(/usr/local/texlive/2021/texmf-dist/tex/latex/translations/translations.sty
+Package: translations 2021/01/17 v1.10a internationalization of LaTeX2e package
+s (CN)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2020/03/06 v1.0d TeX engine tests
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode is ignored in DVI mode.
+))) (/usr/local/texlive/2021/texmf-dist/tex/latex/moreverb/moreverb.sty
+Package: moreverb 2008/06/03 v2.3a `more' verbatim facilities
+\tab@position=\count300
+\tab@size=\count301
+\listing@line=\count302
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/tools/hhline.sty
+Package: hhline 2020/01/04 v2.04 Table rule package (DPC)
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/tipa/tipa.sty
+Package: tipa 2002/08/08 TIPA version 1.1
+(/usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2020/08/10 v2.0s Standard LaTeX package
+(/usr/local/texlive/2021/texmf-dist/tex/latex/tipa/t3enc.def
+File: t3enc.def 2001/12/31 T3 encoding
+Now handling font encoding T3 ...
+... no UTF-8 mapping file for font encoding T3
+LaTeX Font Info:    Trying to load font information for T1+cmss on input line 3
+57.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/base/t1cmss.fd
+File: t1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)))) (/usr/local/texlive/2021/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: dvips.def on input line 225.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/graphics-def/dvips.def
+File: dvips.def 2017/06/20 v3.1d Graphics/color driver for dvips
+)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/accents/accents.sty
+Package: accents 2006/05/12 v1.4 Math Accent Tools
+\cc@skew=\dimen178
+\cc@wd=\dimen179
+\cc@code=\count303
+\cc@group=\count304
+\cc@skewchar=\count305
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/appendix/appendix.sty
+Package: appendix 2020/02/08 v1.2c extra appendix facilities
+\c@@pps=\count306
+\c@@ppsavesec=\count307
+\c@@ppsaveapp=\count308
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/eucal.sty
+Package: eucal 2009/06/22 v3.00 Euler Script fonts
+LaTeX Font Info:    Overwriting math alphabet `\EuScript' in version `bold'
+(Font)                  U/eus/m/n --> U/eus/b/n on input line 33.
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/ulem/ulem.sty
+\UL@box=\box105
+\UL@hyphenbox=\box106
+\UL@skip=\skip81
+\UL@hook=\toks31
+\UL@height=\dimen180
+\UL@pe=\count309
+\UL@pixel=\dimen181
+\ULC@box=\box107
+Package: ulem 2019/11/18
+\ULdepth=\dimen182
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/tools/bm.sty
+Package: bm 2019/07/24 v1.2d Bold Symbol Support (DPC/FMi)
+LaTeX Info: Redefining \bm on input line 209.
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/bbm-macros/bbm.sty
+Package: bbm 1999/03/15 V 1.2 provides fonts for set symbols - TH
+LaTeX Font Info:    Overwriting math alphabet `\mathbbm' in version `bold'
+(Font)                  U/bbm/m/n --> U/bbm/bx/n on input line 33.
+LaTeX Font Info:    Overwriting math alphabet `\mathbbmss' in version `bold'
+(Font)                  U/bbmss/m/n --> U/bbmss/bx/n on input line 35.
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip18
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/optional/optional.sty
+Package: optional 2005/01/26 ver 2.2b;  Optional inclusion/omission
+)
+Using optional text marked with econtex. 
+(/usr/local/texlive/2021/texmf-dist/tex/latex/natbib/natbib.sty
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip82
+\bibsep=\skip83
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count310
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/footmisc/footmisc.sty
+Package: footmisc 2011/06/06 v5.5b a miscellany of footnote facilities
+\FN@temptoken=\toks32
+\footnotemargin=\dimen183
+\c@pp@next@reset=\count311
+Package footmisc Info: Declaring symbol style bringhurst on input line 855.
+Package footmisc Info: Declaring symbol style chicago on input line 863.
+Package footmisc Info: Declaring symbol style wiley on input line 872.
+Package footmisc Info: Declaring symbol style lamport-robust on input line 883.
+
+Package footmisc Info: Declaring symbol style lamport* on input line 903.
+Package footmisc Info: Declaring symbol style lamport*-robust on input line 924
+.
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/ncctools/manyfoot.sty
+Package: manyfoot 2019/08/03 v1.11 Many Footnote Levels Package (NCC)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/ncctools/nccfoots.sty
+Package: nccfoots 2005/02/03 v1.2 NCC Footnotes Package (NCC)
+)
+\MFL@columnwidth=\dimen184
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/bigfoot/perpage.sty
+Package: perpage 2014/10/25 2.0 Reset/sort counters per page
+\c@abspage=\count312
+)
+Package footmisc Info: Declaring symbol style blank on input line 350.
+\footinsB=\insert252
+\c@footnoteB=\count313
+\c@pp@a@footnoteB=\count314
+\c@authornum=\count315
+\c@bottomauthor=\count316
+LaTeX Info: Redefining \rm on input line 405.
+LaTeX Info: Redefining \sf on input line 406.
+LaTeX Info: Redefining \tt on input line 407.
+LaTeX Info: Redefining \bf on input line 408.
+LaTeX Info: Redefining \it on input line 409.
+LaTeX Info: Redefining \sl on input line 410.
+LaTeX Info: Redefining \sc on input line 411.
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/tex4ht.sty
+version 2021-03-06-13:30
+Package: tex4ht 
+--------------------------------------
+--- Note --- for _ at preamble, use the command line option `early_'
+--------------------------------------
+--------------------------------------
+--- Note --- for ^ at preamble, use the command line option `early^'
+--------------------------------------
+\tmp:toks=\toks33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/usepackage.4ht
+version 2021-02-07-14:58
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/xrhyper-hooks.4ht
+version 2020-10-17-13:53
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/hyperref/xr-hyper.sty
+Package: xr-hyper 2021-02-27 v7.00k eXternal References (DPC)
+) (./Resources/LaTeXInputs/SolvingMicroDSOPs.sty
+\TblBox=\box108
+\TblShrunk=\skip84
+\TblShrunkBox=\box109
+(./Resources/LaTeXInputs/pdfsuppressruntime.sty
+pdfTeX warning (\pdftrailerid): not allowed in DVI mode (\pdfoutput <= 0); igno
+ring it
+)) (./Resources/texmf-local/tex/latex/econark.sty (/usr/local/texlive/2021/texm
+f-dist/tex/latex/subfiles/subfiles.sty
+Package: subfiles 2020/11/14 v2.2 Multi-file projects (package)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/import/import.sty
+Package: import 2020/04/01  v 6.2
+))) (./Resources/texmf-local/tex/latex/econtexSetup.sty (/usr/local/texlive/202
+1/texmf-dist/tex/latex/wasysym/wasysym.sty
+Package: wasysym 2020/01/19 v2.4 Wasy-2 symbol support package
+\symwasy=\mathgroup7
+LaTeX Font Info:    Overwriting symbol font `wasy' in version `bold'
+(Font)                  U/wasy/m/n --> U/wasy/b/n on input line 93.
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/ibygrk/psibycus.sty
+Package: psibycus 2004/10/18 v4.5 Ibycus4 using Type1 fonts (P.A.MacKay/WaS)
+\digraphs=\toks34
+(/usr/local/texlive/2021/texmf-dist/tex/generic/ibygrk/ibycus4.map (/usr/local/
+texlive/2021/texmf-dist/tex/generic/ibygrk/tlgsqq.tex)) (/usr/local/texlive/202
+1/texmf-dist/tex/generic/ibygrk/Uibycus.fd
+File: Uibycus.fd 2004/10/18 v4.5 font definitions for Ibycus/Type1 (WaS)
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/ibygrk/iby4extr.tex (/usr/loc
+al/texlive/2021/texmf-dist/tex/generic/ibygrk/version4.tex Ibycus Greek. Versio
+n 4. 15 July 1997))) (/usr/local/texlive/2021/texmf-dist/tex/latex/ushort/ushor
+t.sty
+ushort.sty by M. Vaeth: Release: 2.2 
+Package: ushort 2001/06/13 v2.2
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2020/09/09 v1.2b Enhanced LaTeX Graphics (DPC,SPQR)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/graphics-hooks.4ht
+version 2020-10-17-13:53
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2020/08/30 v1.4c Standard LaTeX Graphics (DPC,SPQR)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: dvips.def on input line 105.
+)
+\Gin@req@height=\dimen185
+\Gin@req@width=\dimen186
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/hyperref-hooks.4ht) (/
+usr/local/texlive/2021/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2021-02-27 v7.00k Hypertext links for LaTeX
+(/usr/local/texlive/2021/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/hycolor/hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty
+Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/auxhook/auxhook.sty
+Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
+
+Package auxhook Warning: Cannot patch \document,
+(auxhook)                using \AtBeginDocument instead.
+
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
+)
+\@linkdim=\dimen187
+\Hy@linkcounter=\count317
+\Hy@pagecounter=\count318
+(/usr/local/texlive/2021/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2021-02-27 v7.00k Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/hyperref/hyperref-langpatches.def
+File: hyperref-langpatches.def 2021-02-27 v7.00k Hyperref: patches for babel la
+nguages
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/intcalc/intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/etexcmds/etexcmds.sty
+Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
+)
+\Hy@SavedSpaceFactor=\count319
+(/usr/local/texlive/2021/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2021-02-27 v7.00k Hyperref: PDF Unicode definition (HO)
+Now handling font encoding PU ...
+... no UTF-8 mapping file for font encoding PU
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 4073.
+Package hyperref Info: Option `colorlinks' set `true' on input line 4073.
+Package hyperref Info: Hyper figures OFF on input line 4192.
+Package hyperref Info: Link nesting OFF on input line 4197.
+Package hyperref Info: Hyper index ON on input line 4200.
+Package hyperref Info: Plain pages OFF on input line 4207.
+Package hyperref Info: Backreferencing OFF on input line 4212.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4445.
+\c@Hy@tempcnt=\count320
+LaTeX Info: Redefining \url on input line 4804.
+\XeTeXLinkMargin=\dimen188
+(/usr/local/texlive/2021/texmf-dist/tex/generic/bitset/bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
+))
+\Fld@menulength=\count321
+\Field@Width=\dimen189
+\Fld@charsize=\dimen190
+\Field@toks=\toks35
+Package hyperref Info: Hyper figures OFF on input line 6075.
+Package hyperref Info: Link nesting OFF on input line 6080.
+Package hyperref Info: Hyper index ON on input line 6083.
+Package hyperref Info: backreferencing OFF on input line 6090.
+Package hyperref Info: Link coloring ON on input line 6093.
+Package hyperref Info: Link coloring with OCG OFF on input line 6100.
+Package hyperref Info: PDF/A mode OFF on input line 6105.
+LaTeX Info: Redefining \ref on input line 6145.
+LaTeX Info: Redefining \pageref on input line 6149.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/base/atbegshi-ltx.sty
+Package: atbegshi-ltx 2020/08/17 v1.0a Emulation of the original atbegshi packa
+ge
+with kernel methods
+)
+\Hy@abspage=\count322
+
+Package hyperref Message: Stopped early.
+
+)
+Package hyperref Info: Driver: htex4ht.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/hyperref/htex4ht.def
+File: htex4ht.def 2021-02-27 v7.00k Hyperref driver for TeX4ht
+Package hyperref Info: tex4ht is already loaded.
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
+(/usr/local/texlive/2021/texmf-dist/tex/latex/refcount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/gettitlestring/gettitlestring.s
+ty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+)
+\c@section@level=\count323
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 153.
+Including MathFactsList.defs) (./Resources/texmf-local/tex/latex/econtexShortcu
+ts.sty) (./SolvingMicroDSOPs.cfg (/usr/local/texlive/2021/texmf-dist/tex/generi
+c/tex4ht/tex4ht.4ht
+version 2020-03-12-14:03
+--------------------------------------
+--- Note --- for additional information, use the command line option `info'
+--------------------------------------
+::::::::::::::::::::::::::::::::::::::::::
+ TeX4ht info is available in the log file 
+::::::::::::::::::::::::::::::::::::::::::
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/tex4ht.sty
+version 2021-03-06-13:30
+--- needs --- tex4ht SolvingMicroDSOPs ---
+\tmp:cnt=\count324
+\openout15 = `SolvingMicroDSOPs.tmp'.
+
+(./SolvingMicroDSOPs.tmp)
+\tmp:dim=\skip85
+--------------------------------------
+--- Note --- for XML code, use the command line option `xml' or `xhtml'
+--------------------------------------
+(./SolvingMicroDSOPs.xref)
+\:refout=\write3
+\openout3 = `SolvingMicroDSOPs.xref'.
+
+(/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+--------------------------------------
+--- Note --- to remove the <?xml version=...?> processing instruction use the c
+ommand line option `no-VERSION'
+--------------------------------------
+--------------------------------------
+--- Note --- to remove the DOCTYPE declaration use the command line option `no-
+DOCTYPE'
+--------------------------------------
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+)
+--------------------------------------
+--- Note --- for marking of the base font, use the command line option `fonts+'
+
+--------------------------------------
+--------------------------------------
+--- Note --- for non active _, use the command line option `no_'
+--------------------------------------
+--------------------------------------
+--- Note --- for _ of catcode 13, use the command line option `_13'
+--------------------------------------
+--------------------------------------
+--- Note --- for non active ^, use the command line option `no^'
+--------------------------------------
+--------------------------------------
+--- Note --- for ^ of catcode 13, use the command line option `^13'
+--------------------------------------
+(/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+--------------------------------------
+--- Note --- to ignore CSS font decoration, use the `NoFonts' command line opti
+on
+--------------------------------------
+--------------------------------------
+--- Note --- for jpg bitmaps of pictures, use the `jpg' command line option. (C
+haracter bitmaps are controled only by `g' records of tex4ht.env and `-g' switc
+hes of tex4ht.c) 
+--------------------------------------
+--------------------------------------
+--- Note --- for gif bitmaps of pictures, use the `gif' command line option. (C
+haracter bitmaps are controled only by `g' records of tex4ht.env and `-g' switc
+hes of tex4ht.c) 
+--------------------------------------
+--------------------------------------
+--- Note --- for content and toc in 2 frames, use the command line option `fram
+es'
+--------------------------------------
+--------------------------------------
+--- Note --- for content, toc, and footnotes in 3 frames, use the command line 
+option `frames-fn'
+--------------------------------------
+--------------------------------------
+--- Note --- for file extension name xht, use the command line option `xht'
+--------------------------------------
+TeX4ht package options: svg,charset=utf-8,html5,html,charset="latin1",p-width,p
+ic-align,pic-tabular
+--------------------------------------
+--- Note --- To print a timestamp, use the command line option timestamp
+--------------------------------------
+--------------------------------------
+--- Note --- to ignore CSS code, use the command line option `-css
+--------------------------------------
+--------------------------------------
+--- Note --- for inline CSS code, use the command line option `css-in'
+--------------------------------------
+--------------------------------------
+--- Note --- for pop ups on mouse over, use the command line option `mouseover'
+
+--------------------------------------
+--------------------------------------
+--- Note --- for addressing images in a subdirectory, use the command line opti
+on `imgdir:.../'
+--------------------------------------
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+--------------------------------------
+--- Note --- for external SVG files try the command line options `svg-obj' and 
+'svg-'
+--------------------------------------
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+--------------------------------------
+--- Note --- To print a timestamp, use the command line option timestamp
+--------------------------------------
+)
+\:tokwrite=\toks36
+\:tokpage=\toks37
+--------------------------------------
+--- Note --- for back links to toc, use the command line option `sections+'
+--------------------------------------
+--------------------------------------
+--- Note --- for linear crosslinks of pages, use the command line option `next'
+
+--------------------------------------
+\openout15 = `SolvingMicroDSOPs.4ct'.
+
+\:tocout=\write4
+\openout4 = `SolvingMicroDSOPs.4tc'.
+
+(/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/latex.4ht
+version 2021-02-06-14:21
+LaTeX Info: Redefining \_ on input line 173.
+LaTeX Info: Redefining \, on input line 791.
+LaTeX Info: Redefining \; on input line 792.
+LaTeX Info: Redefining \! on input line 793.
+LaTeX Info: Redefining \: on input line 794.
+LaTeX Info: Redefining \> on input line 795.
+--------------------------------------
+--- Note --- for links into captions, instead of float heads, use the command l
+ine option `refcaption'
+--------------------------------------
+(/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+--------------------------------------
+--- Note --- For mini tocs immediately aftter the header use the command line o
+ption `minitoc<'
+--------------------------------------
+--------------------------------------
+--- Note --- for enumerated list elements with valued data, use the command lin
+e option `enumerate+'
+--------------------------------------
+--------------------------------------
+--- Note --- for enumerated list elements li's with value attributes, use the c
+ommand line option `enumerate-'
+--------------------------------------
+--------------------------------------
+--- Note --- for CSS2 code, use the command line option `css2'
+--------------------------------------
+--------------------------------------
+--- Note --- for bitmap fbox'es, use the command line option `pic-fbox'
+--------------------------------------
+--------------------------------------
+--- Note --- for bitmap framebox'es, use the command line option `pic-framebox'
+
+--------------------------------------
+--------------------------------------
+--- Note --- for inline footnotes use command line option `fn-in'
+--------------------------------------
+--------------------------------------
+--- Note --- for tracing of latex font commands, use the command line option `f
+onts'
+--------------------------------------
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+--------------------------------------
+--- Note --- for pictorial eqnarray, use the command line option `pic-eqnarray'
+
+--------------------------------------
+--------------------------------------
+--- Note --- for pictorial array, use the command line option `pic-array'
+--------------------------------------
+--------------------------------------
+--- Note --- for pictorial $...$ environments, use the command line option `pic
+-m' (not recommended!!)
+--------------------------------------
+--------------------------------------
+--- Note --- for pictorial $...$ and $$...$$ environments with latex alt, use t
+he command line option `pic-m+' (not safe!!)
+--------------------------------------
+--------------------------------------
+--- Note --- for pictorial array, use the command line option `pic-array'
+--------------------------------------
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/fontmath.4ht
+version 2018-11-06-15:55
+(/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/ifthen.4ht
+version 2009-05-21-09:32
+(/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/scrartcl.4ht
+version 2018-10-20-15:45
+(/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/article.4ht (/usr/local/
+texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+--------------------------------------
+--- Note --- for automatic sectioning pagination, use the command line option `
+1', `2', `3', '4', '5', '6', or '7'
+--------------------------------------
+--------------------------------------
+--- Note --- for files named derived from section titles, use the command line 
+option `sec-filename'
+--------------------------------------
+--------------------------------------
+--- Note --- for i-columns index, use the command line option `index=i' (e.g., 
+index=2)
+--------------------------------------
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/babel.4ht (/usr/local
+/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/english.4ht
+version 2009-05-21-09:32
+(/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/verbatim.4ht
+version 2009-05-21-09:32
+(/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/amsmath.4ht
+version 2019-12-29-14:17
+\tmp:muskip=\muskip19
+(/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+LaTeX Info: Redefining \[ on input line 503.
+LaTeX Info: Redefining \] on input line 503.
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/amstext.4ht
+version 2009-05-21-09:32
+(/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/amsbsy.4ht
+version 2009-05-21-09:32
+(/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/amsopn.4ht
+version 2009-05-21-09:32
+(/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/amssymb.4ht
+version 2009-05-21-09:32
+(/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/amsfonts.4ht
+version 2009-05-21-09:32
+(/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/amsthm.4ht
+version 2009-05-21-09:32
+(/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/dcolumn.4ht
+version 2009-05-21-09:32
+(/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/array.4ht
+version 2009-05-21-09:32
+(/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+--------------------------------------
+--- Note --- for pictorial array, use the command line option `pic-array'
+--------------------------------------
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/multicol.4ht (/usr/lo
+cal/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/multirow.4ht (/usr/lo
+cal/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/booktabs.4ht
+version 2009-05-21-09:32
+(/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/afterpage.4ht
+version 2009-05-21-09:32
+l.37 --- TeX4ht warning --- afterpage.sty not supported ---
+(/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/moreverb.4ht
+version 2009-05-21-09:32
+(/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/xcolor.4ht
+version 2019-04-09-10:06
+(/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/color.4ht (/usr/local/te
+xlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/color.4ht) (/usr/loca
+l/texlive/2021/texmf-dist/tex/generic/tex4ht/dvips.4ht
+version 2009-05-21-09:32
+(/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/accents.4ht
+version 2009-05-21-09:32
+(/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/appendix.4ht
+version 2019-10-24-10:36
+(/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/eucal.4ht
+version 2009-05-21-09:32
+(/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/ulem.4ht
+version 2009-05-21-09:32
+(/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/bm.4ht
+version 2009-05-21-09:32
+(/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/url.4ht
+version 2009-05-21-09:32
+(/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+--------------------------------------
+--- Note --- for URL encoding within href use the command line option `url-enc'
+
+--------------------------------------
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/natbib.4ht (/usr/loca
+l/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/footmisc.4ht
+version 2019-12-23-13:36
+(/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/xr-hyper.4ht
+version 2016-12-21-15:03
+(/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+)) (/usr/local/texlive/texmf-local/tex/latex/subfiles.4ht (/usr/local/texlive/2
+021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/ushort.4ht
+version 2009-05-21-09:32
+(/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/graphicx.4ht
+version 2018-10-01-14:24
+(/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/graphics.4ht (/usr/lo
+cal/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+--------------------------------------
+--- Note --- if included graphics are of degraded quality, try the command line
+ options `graphics-num' or `graphics-'. The `num' should provide the density of
+ pixels in the bitmaps (e.g., 110). 
+--------------------------------------
+--------------------------------------
+--- Note --- for key dimensions try the option `Gin-dim'; for key dimensions wh
+en bounding box is unavailable try `Gin-dim+'; neither is recommended
+--------------------------------------
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/hyperref.4ht
+version 2021-01-02-13:53
+LaTeX Info: Redefining \autoref on input line 88.
+\Hy@SectionHShift=\skip86
+(/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/pd1enc.4ht
+version 2009-05-21-09:32
+(/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/nameref.4ht
+version 2021-02-03-14:57
+(/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4.4ht
+version 2021-03-06-13:31
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/unicode.4ht
+version 2021-02-06-14:21
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html4-math.4ht
+version 2021-01-30-14:17
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/svg-option.4ht
+version 2018-12-30-09:33
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/html5.4ht
+version 2021-02-14-13:56
+))
+
+LaTeX Warning: Unused global option(s):
+    [headings=optiontocandhead].
+
+(./SolvingMicroDSOPs.aux)
+\openout1 = `SolvingMicroDSOPs.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 81.
+LaTeX Font Info:    Trying to load font information for T3+cmr on input line 81
+.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/tipa/t3cmr.fd
+File: t3cmr.fd 2001/12/31 TIPA font definitions
+)
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+Package scrbase Info: activating english \contentsname on input line 81.
+Package scrbase Info: activating english \listfigurename on input line 81.
+Package scrbase Info: activating english \listtablename on input line 81.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/translations/translations-basic-d
+ictionary-english.trsl
+File: translations-basic-dictionary-english.trsl (english translation file `tra
+nslations-basic-dictionary')
+)
+Package translations Info: loading dictionary `translations-basic-dictionary' f
+or `english'. on input line 81.
+Package hyperref Info: Link coloring ON on input line 81.
+LaTeX Info: Redefining \ref on input line 81.
+LaTeX Info: Redefining \pageref on input line 81.
+LaTeX Info: Redefining \nameref on input line 81.
+Class scrartcl Info: loading recommended package `bookmark'.
+(scrartcl)           Using `bookmark' together with `hyperref' is recommended,
+(scrartcl)           because of handling of possible bookmark level gaps.
+(scrartcl)           You can avoid loading `bookmark' with KOMA-Script option
+(scrartcl)           `bookmarkpackage=false' before \begin{document} and
+(scrartcl)           you can avoid this message adding:
+(scrartcl)             \usepackage{bookmark}
+(scrartcl)           before \begin{document} on input line 81.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/bookmark/bookmark.sty
+Package: bookmark 2020-11-06 v1.29 PDF bookmarks (HO)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/tex4ht/hyperref-hooks.4ht) (/us
+r/local/texlive/2021/texmf-dist/tex/latex/bookmark/bkm-dvips.def
+File: bkm-dvips.def 2020-11-06 v1.29 bookmark driver for dvips (HO)
+\BKM@id=\count325
+))
+--- file SolvingMicroDSOPs.css ---
+\c=\count326
+)
+\verbatim@out=\write5
+\openout5 = `./SolvingMicroDSOPs.title'.
+
+LaTeX Font Info:    Trying to load font information for U+msa on input line 79.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 79.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Trying to load font information for U+lasy on input line 79
+.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/base/ulasy.fd
+File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
+)
+LaTeX Font Info:    Trying to load font information for U+wasy on input line 79
+.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/wasysym/uwasy.fd
+File: uwasy.fd 2020/01/19 v2.4 Wasy-2 symbol font definitions
+) [1
+
+]
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 9
+2.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+) [2]
+--- file SolvingMicroDSOPs2.html ---
+--- file SolvingMicroDSOPs3.html ---
+[1
+
+
+]
+\openout5 = `./subfile-the-problem.texinput'.
+
+(./subfile-the-problem.texinput
+l. 3 Writing SolvingMicroDSOPs.idv[1] (SolvingMicroDSOPs0x.svg)
+l. 3 Writing SolvingMicroDSOPs.idv[2] (SolvingMicroDSOPs1x.svg)
+l. 3 Writing SolvingMicroDSOPs.idv[3] (SolvingMicroDSOPs2x.svg)
+l. 4 Writing SolvingMicroDSOPs.idv[4] (SolvingMicroDSOPs3x.svg)
+l. 8 Writing SolvingMicroDSOPs.idv[5] (SolvingMicroDSOPs4x.svg)
+l. 8 Writing SolvingMicroDSOPs.idv[6] (SolvingMicroDSOPs5x.svg)
+l. 8 Writing SolvingMicroDSOPs.idv[7] (SolvingMicroDSOPs6x.svg)
+l. 9 Writing SolvingMicroDSOPs.idv[8] (SolvingMicroDSOPs7x.svg)
+[2]
+l. 12 Writing SolvingMicroDSOPs.idv[9] (SolvingMicroDSOPs8x.svg)
+l. 14 Writing SolvingMicroDSOPs.idv[10] (SolvingMicroDSOPs9x.svg)
+l. 14 Writing SolvingMicroDSOPs.idv[11] (SolvingMicroDSOPs10x.svg)
+l. 15 Writing SolvingMicroDSOPs.idv[12] (SolvingMicroDSOPs11x.svg)
+l. 18 Writing SolvingMicroDSOPs.idv[13] (SolvingMicroDSOPs12x.svg)
+l. 20 Writing SolvingMicroDSOPs.idv[14] (SolvingMicroDSOPs13x.svg)
+)
+\openout5 = `./Equations/MaxProb.tex'.
+
+(./Equations/MaxProb.tex
+l. 1 Writing SolvingMicroDSOPs.idv[15] (SolvingMicroDSOPs14x.svg)
+) [3]
+\openout5 = `./Equations/ExogVars.tex'.
+
+(./Equations/ExogVars.tex
+l. 1 Writing SolvingMicroDSOPs.idv[16] (SolvingMicroDSOPs15x.svg)
+)
+l. 214 Writing SolvingMicroDSOPs.idv[17] (SolvingMicroDSOPs16x.svg)
+--- file SolvingMicroDSOPs4.html ---
+l. 216 Writing SolvingMicroDSOPs.idv[18] (SolvingMicroDSOPs17x.svg)
+\openout5 = `./Equations/vrecurse.tex'.
+
+(./Equations/vrecurse.tex
+l. 1 Writing SolvingMicroDSOPs.idv[19] (SolvingMicroDSOPs18x.svg)
+[4
+
+])
+l. 229 Writing SolvingMicroDSOPs.idv[20] (SolvingMicroDSOPs19x.svg)
+l. 235 Writing SolvingMicroDSOPs.idv[21] (SolvingMicroDSOPs20x.svg)
+l. 240 Writing SolvingMicroDSOPs.idv[22] (SolvingMicroDSOPs21x.svg)
+l. 243 Writing SolvingMicroDSOPs.idv[23] (SolvingMicroDSOPs22x.svg)
+[5]
+l. 249 Writing SolvingMicroDSOPs.idv[24] (SolvingMicroDSOPs23x.svg)
+l. 250 Writing SolvingMicroDSOPs.idv[25] (SolvingMicroDSOPs24x.svg)
+--- file SolvingMicroDSOPs5.html ---
+l. 250 Writing SolvingMicroDSOPs.idv[26] (SolvingMicroDSOPs25x.svg)
+l. 250 Writing SolvingMicroDSOPs.idv[27] (SolvingMicroDSOPs26x.svg)
+l. 250 Writing SolvingMicroDSOPs.idv[28] (SolvingMicroDSOPs27x.svg)
+l. 252 Writing SolvingMicroDSOPs.idv[29] (SolvingMicroDSOPs28x.svg)
+\openout5 = `./Equations/vNormed.tex'.
+
+(./Equations/vNormed.tex
+l. 1 Writing SolvingMicroDSOPs.idv[30] (SolvingMicroDSOPs29x.svg)
+[6
+
+])
+l. 270 Writing SolvingMicroDSOPs.idv[31] (SolvingMicroDSOPs30x.svg)
+--- file SolvingMicroDSOPs6.html ---
+l. 276 Writing SolvingMicroDSOPs.idv[32] (SolvingMicroDSOPs31x.svg)
+l. 276 Writing SolvingMicroDSOPs.idv[33] (SolvingMicroDSOPs32x.svg)
+l. 277 Writing SolvingMicroDSOPs.idv[34] (SolvingMicroDSOPs33x.svg)
+[7
+
+]
+l. 281 Writing SolvingMicroDSOPs.idv[35] (SolvingMicroDSOPs34x.svg)
+l. 283 Writing SolvingMicroDSOPs.idv[36] (SolvingMicroDSOPs35x.svg)
+l. 283 Writing SolvingMicroDSOPs.idv[37] (SolvingMicroDSOPs36x.svg)
+l. 284 Writing SolvingMicroDSOPs.idv[38] (SolvingMicroDSOPs37x.svg)
+l. 299 Writing SolvingMicroDSOPs.idv[39] (SolvingMicroDSOPs38x.svg)
+l. 300 Writing SolvingMicroDSOPs.idv[40] (SolvingMicroDSOPs39x.svg)
+l. 305 Writing SolvingMicroDSOPs.idv[41] (SolvingMicroDSOPs40x.svg)
+[8]
+\openout5 = `./Equations/Envelope.tex'.
+
+(./Equations/Envelope.tex
+l. 1 Writing SolvingMicroDSOPs.idv[42] (SolvingMicroDSOPs41x.svg)
+)
+l. 317 Writing SolvingMicroDSOPs.idv[43] (SolvingMicroDSOPs42x.svg)
+\openout5 = `./Equations/cEuler.tex'.
+
+(./Equations/cEuler.tex
+l. 1 Writing SolvingMicroDSOPs.idv[44] (SolvingMicroDSOPs43x.svg)
+[9])
+\openout5 = `./subfile-stages.tex'.
+
+(./subfile-stages.tex
+l. 1 Writing SolvingMicroDSOPs.idv[45] (SolvingMicroDSOPs44x.svg)
+l. 1 Writing SolvingMicroDSOPs.idv[46] (SolvingMicroDSOPs45x.svg)
+l. 3 Writing SolvingMicroDSOPs.idv[47] (SolvingMicroDSOPs46x.svg)
+l. 3 Writing SolvingMicroDSOPs.idv[48] (SolvingMicroDSOPs47x.svg)
+l. 3 Writing SolvingMicroDSOPs.idv[49] (SolvingMicroDSOPs48x.svg)
+l. 3 Writing SolvingMicroDSOPs.idv[50] (SolvingMicroDSOPs49x.svg)
+)
+\openout5 = `./Equations/vBegStget.tex'.
+
+(./Equations/vBegStget.tex
+l. 1 Writing SolvingMicroDSOPs.idv[51] (SolvingMicroDSOPs50x.svg)
+)
+\openout5 = `./Equations/vMidStget.tex'.
+
+(./Equations/vMidStget.tex [10]
+l. 1 Writing SolvingMicroDSOPs.idv[52] (SolvingMicroDSOPs51x.svg)
+)
+\openout5 = `./Equations/vEndStget.tex'.
+
+(./Equations/vEndStget.tex
+l. 1 Writing SolvingMicroDSOPs.idv[53] (SolvingMicroDSOPs52x.svg)
+)
+l. 356 Writing SolvingMicroDSOPs.idv[54] (SolvingMicroDSOPs53x.svg)
+\openout5 = `./Equations/vEndtdefn.tex'.
+
+(./Equations/vEndtdefn.tex
+l. 1 Writing SolvingMicroDSOPs.idv[55] (SolvingMicroDSOPs54x.svg)
+[11])
+l. 363 Writing SolvingMicroDSOPs.idv[56] (SolvingMicroDSOPs55x.svg)
+l. 363 Writing SolvingMicroDSOPs.idv[57] (SolvingMicroDSOPs56x.svg)
+l. 363 Writing SolvingMicroDSOPs.idv[58] (SolvingMicroDSOPs57x.svg)
+l. 364 Writing SolvingMicroDSOPs.idv[59] (SolvingMicroDSOPs58x.svg)
+l. 368 Writing SolvingMicroDSOPs.idv[60] (SolvingMicroDSOPs59x.svg)
+\openout5 = `./Equations/upEqbetaOp.tex'.
+
+(./Equations/upEqbetaOp.tex
+l. 1 Writing SolvingMicroDSOPs.idv[61] (SolvingMicroDSOPs60x.svg)
+[12])
+l. 384 Writing SolvingMicroDSOPs.idv[62] (SolvingMicroDSOPs61x.svg)
+l. 388 Writing SolvingMicroDSOPs.idv[63] (SolvingMicroDSOPs62x.svg)
+l. 388 Writing SolvingMicroDSOPs.idv[64] (SolvingMicroDSOPs63x.svg)
+l. 389 Writing SolvingMicroDSOPs.idv[65] (SolvingMicroDSOPs64x.svg)
+l. 390 Writing SolvingMicroDSOPs.idv[66] (SolvingMicroDSOPs65x.svg)
+l. 398 Writing SolvingMicroDSOPs.idv[67] (SolvingMicroDSOPs66x.svg)
+l. 398 Writing SolvingMicroDSOPs.idv[68] (SolvingMicroDSOPs67x.svg)
+l. 400 Writing SolvingMicroDSOPs.idv[69] (SolvingMicroDSOPs68x.svg)
+l. 400 Writing SolvingMicroDSOPs.idv[70] (SolvingMicroDSOPs69x.svg)
+l. 400 Writing SolvingMicroDSOPs.idv[71] (SolvingMicroDSOPs70x.svg)
+l. 400 Writing SolvingMicroDSOPs.idv[72] (SolvingMicroDSOPs71x.svg)
+l. 400 Writing SolvingMicroDSOPs.idv[73] (SolvingMicroDSOPs72x.svg)
+l. 400 Writing SolvingMicroDSOPs.idv[74] (SolvingMicroDSOPs73x.svg)
+[13]
+l. 404 Writing SolvingMicroDSOPs.idv[75] (SolvingMicroDSOPs74x.svg)
+l. 404 Writing SolvingMicroDSOPs.idv[76] (SolvingMicroDSOPs75x.svg)
+l. 404 Writing SolvingMicroDSOPs.idv[77] (SolvingMicroDSOPs76x.svg)
+l. 404 Writing SolvingMicroDSOPs.idv[78] (SolvingMicroDSOPs77x.svg)
+l. 405 Writing SolvingMicroDSOPs.idv[79] (SolvingMicroDSOPs78x.svg)
+l. 409 Writing SolvingMicroDSOPs.idv[80] (SolvingMicroDSOPs79x.svg)
+l. 411 Writing SolvingMicroDSOPs.idv[81] (SolvingMicroDSOPs80x.svg)
+l. 411 Writing SolvingMicroDSOPs.idv[82] (SolvingMicroDSOPs81x.svg)
+l. 413 Writing SolvingMicroDSOPs.idv[83] (SolvingMicroDSOPs82x.svg)
+l. 415 Writing SolvingMicroDSOPs.idv[84] (SolvingMicroDSOPs83x.svg)
+l. 415 Writing SolvingMicroDSOPs.idv[85] (SolvingMicroDSOPs84x.svg)
+l. 415 Writing SolvingMicroDSOPs.idv[86] (SolvingMicroDSOPs85x.svg)
+l. 416 Writing SolvingMicroDSOPs.idv[87] (SolvingMicroDSOPs86x.svg)
+--- file SolvingMicroDSOPs7.html ---
+l. 416 Writing SolvingMicroDSOPs.idv[88] (SolvingMicroDSOPs87x.svg)
+l. 416 Writing SolvingMicroDSOPs.idv[89] (SolvingMicroDSOPs88x.svg)
+l. 416 Writing SolvingMicroDSOPs.idv[90] (SolvingMicroDSOPs89x.svg)
+l. 417 Writing SolvingMicroDSOPs.idv[91] (SolvingMicroDSOPs90x.svg)
+l. 418 Writing SolvingMicroDSOPs.idv[92] (SolvingMicroDSOPs91x.svg)
+l. 418 Writing SolvingMicroDSOPs.idv[93] (SolvingMicroDSOPs92x.svg)
+[14
+
+]
+l. 419 Writing SolvingMicroDSOPs.idv[94] (SolvingMicroDSOPs93x.svg)
+l. 424 Writing SolvingMicroDSOPs.idv[95] (SolvingMicroDSOPs94x.svg)
+l. 424 Writing SolvingMicroDSOPs.idv[96] (SolvingMicroDSOPs95x.svg)
+l. 424 Writing SolvingMicroDSOPs.idv[97] (SolvingMicroDSOPs96x.svg)
+l. 424 Writing SolvingMicroDSOPs.idv[98] (SolvingMicroDSOPs97x.svg)
+l. 425 Writing SolvingMicroDSOPs.idv[99] (SolvingMicroDSOPs98x.svg)
+--- file SolvingMicroDSOPs8.html ---
+\openout5 = `./Figures/discreteApprox.tex'.
+
+(./Figures/discreteApprox.tex [15
+
+] [16
+
+]
+l. 3 --- needs --- ./Figures/discreteApprox.png ---
+l. 4 Writing SolvingMicroDSOPs.idv[100] (SolvingMicroDSOPs99x.svg)
+[17
+
+])
+l. 440 Writing SolvingMicroDSOPs.idv[101] (SolvingMicroDSOPs100x.svg)
+l. 440 Writing SolvingMicroDSOPs.idv[102] (SolvingMicroDSOPs101x.svg)
+\openout5 = `./Equations/vDiscrete.tex'.
+
+(./Equations/vDiscrete.tex
+l. 1 Writing SolvingMicroDSOPs.idv[103] (SolvingMicroDSOPs102x.svg)
+)
+\openout5 = `./Equations/vEndTm1.tex'.
+
+(./Equations/vEndTm1.tex
+l. 1 Writing SolvingMicroDSOPs.idv[104] (SolvingMicroDSOPs103x.svg)
+)
+l. 463 Writing SolvingMicroDSOPs.idv[105] (SolvingMicroDSOPs104x.svg)
+l. 464 Writing SolvingMicroDSOPs.idv[106] (SolvingMicroDSOPs105x.svg)
+l. 470 Writing SolvingMicroDSOPs.idv[107] (SolvingMicroDSOPs106x.svg)
+l. 471 Writing SolvingMicroDSOPs.idv[108] (SolvingMicroDSOPs107x.svg)
+[18
+
+]
+l. 477 Writing SolvingMicroDSOPs.idv[109] (SolvingMicroDSOPs108x.svg)
+l. 479 Writing SolvingMicroDSOPs.idv[110] (SolvingMicroDSOPs109x.svg)
+l. 480 Writing SolvingMicroDSOPs.idv[111] (SolvingMicroDSOPs110x.svg)
+l. 482 Writing SolvingMicroDSOPs.idv[112] (SolvingMicroDSOPs111x.svg)
+l. 485 Writing SolvingMicroDSOPs.idv[113] (SolvingMicroDSOPs112x.svg)
+l. 485 Writing SolvingMicroDSOPs.idv[114] (SolvingMicroDSOPs113x.svg)
+l. 489 Writing SolvingMicroDSOPs.idv[115] (SolvingMicroDSOPs114x.svg)
+l. 490 Writing SolvingMicroDSOPs.idv[116] (SolvingMicroDSOPs115x.svg)
+l. 495 Writing SolvingMicroDSOPs.idv[117] (SolvingMicroDSOPs116x.svg)
+l. 498 Writing SolvingMicroDSOPs.idv[118] (SolvingMicroDSOPs117x.svg)
+--- file SolvingMicroDSOPs9.html ---
+l. 511 Writing SolvingMicroDSOPs.idv[119] (SolvingMicroDSOPs118x.svg)
+l. 511 Writing SolvingMicroDSOPs.idv[120] (SolvingMicroDSOPs119x.svg)
+l. 513 Writing SolvingMicroDSOPs.idv[121] (SolvingMicroDSOPs120x.svg)
+l. 514 Writing SolvingMicroDSOPs.idv[122] (SolvingMicroDSOPs121x.svg)
+l. 514 Writing SolvingMicroDSOPs.idv[123] (SolvingMicroDSOPs122x.svg)
+l. 517 Writing SolvingMicroDSOPs.idv[124] (SolvingMicroDSOPs123x.svg)
+l. 521 Writing SolvingMicroDSOPs.idv[125] (SolvingMicroDSOPs124x.svg)
+l. 522 Writing SolvingMicroDSOPs.idv[126] (SolvingMicroDSOPs125x.svg)
+l. 522 Writing SolvingMicroDSOPs.idv[127] (SolvingMicroDSOPs126x.svg)
+[19
+
+]
+l. 525 Writing SolvingMicroDSOPs.idv[128] (SolvingMicroDSOPs127x.svg)
+--- file SolvingMicroDSOPs10.html ---
+l. 535 Writing SolvingMicroDSOPs.idv[129] (SolvingMicroDSOPs128x.svg)
+l. 537 Writing SolvingMicroDSOPs.idv[130] (SolvingMicroDSOPs129x.svg)
+l. 539 Writing SolvingMicroDSOPs.idv[131] (SolvingMicroDSOPs130x.svg)
+l. 539 Writing SolvingMicroDSOPs.idv[132] (SolvingMicroDSOPs131x.svg)
+l. 540 Writing SolvingMicroDSOPs.idv[133] (SolvingMicroDSOPs132x.svg)
+--- file SolvingMicroDSOPs11.html ---
+l. 543 Writing SolvingMicroDSOPs.idv[134] (SolvingMicroDSOPs133x.svg)
+l. 548 Writing SolvingMicroDSOPs.idv[135] (SolvingMicroDSOPs134x.svg)
+l. 549 Writing SolvingMicroDSOPs.idv[136] (SolvingMicroDSOPs135x.svg)
+l. 549 Writing SolvingMicroDSOPs.idv[137] (SolvingMicroDSOPs136x.svg)
+l. 557 Writing SolvingMicroDSOPs.idv[138] (SolvingMicroDSOPs137x.svg)
+[20
+
+
+]
+l. 560 Writing SolvingMicroDSOPs.idv[139] (SolvingMicroDSOPs138x.svg)
+l. 561 Writing SolvingMicroDSOPs.idv[140] (SolvingMicroDSOPs139x.svg)
+l. 566 Writing SolvingMicroDSOPs.idv[141] (SolvingMicroDSOPs140x.svg)
+l. 569 Writing SolvingMicroDSOPs.idv[142] (SolvingMicroDSOPs141x.svg)
+l. 570 Writing SolvingMicroDSOPs.idv[143] (SolvingMicroDSOPs142x.svg)
+l. 570 Writing SolvingMicroDSOPs.idv[144] (SolvingMicroDSOPs143x.svg)
+l. 578 Writing SolvingMicroDSOPs.idv[145] (SolvingMicroDSOPs144x.svg)
+l. 578 Writing SolvingMicroDSOPs.idv[146] (SolvingMicroDSOPs145x.svg)
+l. 578 Writing SolvingMicroDSOPs.idv[147] (SolvingMicroDSOPs146x.svg)
+l. 578 Writing SolvingMicroDSOPs.idv[148] (SolvingMicroDSOPs147x.svg)
+l. 578 Writing SolvingMicroDSOPs.idv[149] (SolvingMicroDSOPs148x.svg)
+l. 578 Writing SolvingMicroDSOPs.idv[150] (SolvingMicroDSOPs149x.svg)
+l. 578 Writing SolvingMicroDSOPs.idv[151] (SolvingMicroDSOPs150x.svg)
+l. 578 Writing SolvingMicroDSOPs.idv[152] (SolvingMicroDSOPs151x.svg)
+l. 578 Writing SolvingMicroDSOPs.idv[153] (SolvingMicroDSOPs152x.svg)
+l. 578 Writing SolvingMicroDSOPs.idv[154] (SolvingMicroDSOPs153x.svg)
+l. 578 Writing SolvingMicroDSOPs.idv[155] (SolvingMicroDSOPs154x.svg)
+l. 578 Writing SolvingMicroDSOPs.idv[156] (SolvingMicroDSOPs155x.svg)
+l. 578 Writing SolvingMicroDSOPs.idv[157] (SolvingMicroDSOPs156x.svg)
+l. 578 Writing SolvingMicroDSOPs.idv[158] (SolvingMicroDSOPs157x.svg)
+l. 578 Writing SolvingMicroDSOPs.idv[159] (SolvingMicroDSOPs158x.svg)
+l. 578 Writing SolvingMicroDSOPs.idv[160] (SolvingMicroDSOPs159x.svg)
+l. 578 Writing SolvingMicroDSOPs.idv[161] (SolvingMicroDSOPs160x.svg)
+l. 582 Writing SolvingMicroDSOPs.idv[162] (SolvingMicroDSOPs161x.svg)
+l. 582 Writing SolvingMicroDSOPs.idv[163] (SolvingMicroDSOPs162x.svg)
+l. 584 Writing SolvingMicroDSOPs.idv[164] (SolvingMicroDSOPs163x.svg)
+l. 585 Writing SolvingMicroDSOPs.idv[165] (SolvingMicroDSOPs164x.svg)
+--- file SolvingMicroDSOPs12.html ---
+[21
+
+] [22
+
+]
+l. 595 --- needs --- ./Figures/PlotcTm1Simple.png ---
+l. 596 Writing SolvingMicroDSOPs.idv[166] (SolvingMicroDSOPs165x.svg)
+l. 596 Writing SolvingMicroDSOPs.idv[167] (SolvingMicroDSOPs166x.svg)
+[23
+
+] [24
+
+] [25
+
+]
+l. 602 --- needs --- ./Figures/PlotVTm1Simple.png ---
+l. 603 Writing SolvingMicroDSOPs.idv[168] (SolvingMicroDSOPs167x.svg)
+l. 603 Writing SolvingMicroDSOPs.idv[169] (SolvingMicroDSOPs168x.svg)
+[26
+
+]
+l. 616 Writing SolvingMicroDSOPs.idv[170] (SolvingMicroDSOPs169x.svg)
+l. 617 Writing SolvingMicroDSOPs.idv[171] (SolvingMicroDSOPs170x.svg)
+l. 621 Writing SolvingMicroDSOPs.idv[172] (SolvingMicroDSOPs171x.svg)
+l. 623 Writing SolvingMicroDSOPs.idv[173] (SolvingMicroDSOPs172x.svg)
+l. 624 Writing SolvingMicroDSOPs.idv[174] (SolvingMicroDSOPs173x.svg)
+l. 625 Writing SolvingMicroDSOPs.idv[175] (SolvingMicroDSOPs174x.svg)
+l. 631 Writing SolvingMicroDSOPs.idv[176] (SolvingMicroDSOPs175x.svg)
+l. 632 Writing SolvingMicroDSOPs.idv[177] (SolvingMicroDSOPs176x.svg)
+l. 635 Writing SolvingMicroDSOPs.idv[178] (SolvingMicroDSOPs177x.svg)
+l. 636 Writing SolvingMicroDSOPs.idv[179] (SolvingMicroDSOPs178x.svg)
+l. 636 Writing SolvingMicroDSOPs.idv[180] (SolvingMicroDSOPs179x.svg)
+l. 636 Writing SolvingMicroDSOPs.idv[181] (SolvingMicroDSOPs180x.svg)
+l. 640 Writing SolvingMicroDSOPs.idv[182] (SolvingMicroDSOPs181x.svg)
+l. 641 Writing SolvingMicroDSOPs.idv[183] (SolvingMicroDSOPs182x.svg)
+l. 641 Writing SolvingMicroDSOPs.idv[184] (SolvingMicroDSOPs183x.svg)
+--- file SolvingMicroDSOPs13.html ---
+l. 651 Writing SolvingMicroDSOPs.idv[185] (SolvingMicroDSOPs184x.svg)
+l. 653 Writing SolvingMicroDSOPs.idv[186] (SolvingMicroDSOPs185x.svg)
+[27
+
+
+] [28
+
+]
+l. 657 --- needs --- ./Figures/PlotOTm1RawVSInt.png ---
+l. 658 Writing SolvingMicroDSOPs.idv[187] (SolvingMicroDSOPs186x.svg)
+l. 658 Writing SolvingMicroDSOPs.idv[188] (SolvingMicroDSOPs187x.svg)
+[29
+
+] [30
+
+] [31
+
+]
+l. 664 --- needs --- ./Figures/PlotComparecTm1AB.png ---
+l. 665 Writing SolvingMicroDSOPs.idv[189] (SolvingMicroDSOPs188x.svg)
+l. 665 Writing SolvingMicroDSOPs.idv[190] (SolvingMicroDSOPs189x.svg)
+[32
+
+]
+l. 669 Writing SolvingMicroDSOPs.idv[191] (SolvingMicroDSOPs190x.svg)
+l. 672 Writing SolvingMicroDSOPs.idv[192] (SolvingMicroDSOPs191x.svg)
+l. 674 Writing SolvingMicroDSOPs.idv[193] (SolvingMicroDSOPs192x.svg)
+l. 674 Writing SolvingMicroDSOPs.idv[194] (SolvingMicroDSOPs193x.svg)
+l. 675 Writing SolvingMicroDSOPs.idv[195] (SolvingMicroDSOPs194x.svg)
+l. 675 Writing SolvingMicroDSOPs.idv[196] (SolvingMicroDSOPs195x.svg)
+l. 694 Writing SolvingMicroDSOPs.idv[197] (SolvingMicroDSOPs196x.svg)
+l. 695 Writing SolvingMicroDSOPs.idv[198] (SolvingMicroDSOPs197x.svg)
+l. 698 Writing SolvingMicroDSOPs.idv[199] (SolvingMicroDSOPs198x.svg)
+l. 703 Writing SolvingMicroDSOPs.idv[200] (SolvingMicroDSOPs199x.svg)
+[33
+
+]
+l. 714 Writing SolvingMicroDSOPs.idv[201] (SolvingMicroDSOPs200x.svg)
+\openout5 = `./Equations/FOCTm1.tex'.
+
+(./Equations/FOCTm1.tex
+l. 1 Writing SolvingMicroDSOPs.idv[202] (SolvingMicroDSOPs201x.svg)
+) [34] [35
+
+]
+l. 725 --- needs --- ./Figures/PlotuPrimeVSOPrime.png ---
+l. 726 Writing SolvingMicroDSOPs.idv[203] (SolvingMicroDSOPs202x.svg)
+l. 726 Writing SolvingMicroDSOPs.idv[204] (SolvingMicroDSOPs203x.svg)
+[36
+
+]
+l. 731 Writing SolvingMicroDSOPs.idv[205] (SolvingMicroDSOPs204x.svg)
+l. 732 Writing SolvingMicroDSOPs.idv[206] (SolvingMicroDSOPs205x.svg)
+l. 734 Writing SolvingMicroDSOPs.idv[207] (SolvingMicroDSOPs206x.svg)
+l. 734 Writing SolvingMicroDSOPs.idv[208] (SolvingMicroDSOPs207x.svg)
+l. 736 Writing SolvingMicroDSOPs.idv[209] (SolvingMicroDSOPs208x.svg)
+l. 737 Writing SolvingMicroDSOPs.idv[210] (SolvingMicroDSOPs209x.svg)
+l. 739 Writing SolvingMicroDSOPs.idv[211] (SolvingMicroDSOPs210x.svg)
+l. 740 Writing SolvingMicroDSOPs.idv[212] (SolvingMicroDSOPs211x.svg)
+l. 741 Writing SolvingMicroDSOPs.idv[213] (SolvingMicroDSOPs212x.svg)
+l. 743 Writing SolvingMicroDSOPs.idv[214] (SolvingMicroDSOPs213x.svg)
+l. 744 Writing SolvingMicroDSOPs.idv[215] (SolvingMicroDSOPs214x.svg)
+l. 745 Writing SolvingMicroDSOPs.idv[216] (SolvingMicroDSOPs215x.svg)
+l. 746 Writing SolvingMicroDSOPs.idv[217] (SolvingMicroDSOPs216x.svg)
+l. 746 Writing SolvingMicroDSOPs.idv[218] (SolvingMicroDSOPs217x.svg)
+l. 752 Writing SolvingMicroDSOPs.idv[219] (SolvingMicroDSOPs218x.svg)
+l. 753 Writing SolvingMicroDSOPs.idv[220] (SolvingMicroDSOPs219x.svg)
+l. 754 Writing SolvingMicroDSOPs.idv[221] (SolvingMicroDSOPs220x.svg)
+l. 755 Writing SolvingMicroDSOPs.idv[222] (SolvingMicroDSOPs221x.svg)
+l. 759 Writing SolvingMicroDSOPs.idv[223] (SolvingMicroDSOPs222x.svg)
+l. 763 Writing SolvingMicroDSOPs.idv[224] (SolvingMicroDSOPs223x.svg)
+l. 764 Writing SolvingMicroDSOPs.idv[225] (SolvingMicroDSOPs224x.svg)
+l. 764 Writing SolvingMicroDSOPs.idv[226] (SolvingMicroDSOPs225x.svg)
+l. 765 Writing SolvingMicroDSOPs.idv[227] (SolvingMicroDSOPs226x.svg)
+l. 766 Writing SolvingMicroDSOPs.idv[228] (SolvingMicroDSOPs227x.svg)
+l. 766 Writing SolvingMicroDSOPs.idv[229] (SolvingMicroDSOPs228x.svg)
+l. 768 Writing SolvingMicroDSOPs.idv[230] (SolvingMicroDSOPs229x.svg)
+l. 768 Writing SolvingMicroDSOPs.idv[231] (SolvingMicroDSOPs230x.svg)
+l. 769 Writing SolvingMicroDSOPs.idv[232] (SolvingMicroDSOPs231x.svg)
+l. 770 Writing SolvingMicroDSOPs.idv[233] (SolvingMicroDSOPs232x.svg)
+l. 772 Writing SolvingMicroDSOPs.idv[234] (SolvingMicroDSOPs233x.svg)
+l. 772 Writing SolvingMicroDSOPs.idv[235] (SolvingMicroDSOPs234x.svg)
+l. 773 Writing SolvingMicroDSOPs.idv[236] (SolvingMicroDSOPs235x.svg)
+l. 774 Writing SolvingMicroDSOPs.idv[237] (SolvingMicroDSOPs236x.svg)
+l. 777 Writing SolvingMicroDSOPs.idv[238] (SolvingMicroDSOPs237x.svg)
+l. 777 Writing SolvingMicroDSOPs.idv[239] (SolvingMicroDSOPs238x.svg)
+l. 778 Writing SolvingMicroDSOPs.idv[240] (SolvingMicroDSOPs239x.svg)
+l. 781 Writing SolvingMicroDSOPs.idv[241] (SolvingMicroDSOPs240x.svg)
+l. 782 Writing SolvingMicroDSOPs.idv[242] (SolvingMicroDSOPs241x.svg)
+l. 783 Writing SolvingMicroDSOPs.idv[243] (SolvingMicroDSOPs242x.svg)
+l. 787 Writing SolvingMicroDSOPs.idv[244] (SolvingMicroDSOPs243x.svg)
+l. 788 Writing SolvingMicroDSOPs.idv[245] (SolvingMicroDSOPs244x.svg)
+[37
+
+]
+l. 792 Writing SolvingMicroDSOPs.idv[246] (SolvingMicroDSOPs245x.svg)
+l. 794 Writing SolvingMicroDSOPs.idv[247] (SolvingMicroDSOPs246x.svg)
+[38] [39
+
+]
+l. 799 --- needs --- ./Figures/PlotOPRawVSFOC.png ---
+l. 800 Writing SolvingMicroDSOPs.idv[248] (SolvingMicroDSOPs247x.svg)
+l. 800 Writing SolvingMicroDSOPs.idv[249] (SolvingMicroDSOPs248x.svg)
+[40
+
+] [41
+
+] [42
+
+]
+l. 820 --- needs --- ./Figures/PlotcTm1ABC.png ---
+l. 821 Writing SolvingMicroDSOPs.idv[250] (SolvingMicroDSOPs249x.svg)
+l. 821 Writing SolvingMicroDSOPs.idv[251] (SolvingMicroDSOPs250x.svg)
+[43
+
+]
+l. 829 Writing SolvingMicroDSOPs.idv[252] (SolvingMicroDSOPs251x.svg)
+l. 831 Writing SolvingMicroDSOPs.idv[253] (SolvingMicroDSOPs252x.svg)
+l. 832 Writing SolvingMicroDSOPs.idv[254] (SolvingMicroDSOPs253x.svg)
+l. 835 Writing SolvingMicroDSOPs.idv[255] (SolvingMicroDSOPs254x.svg)
+l. 839 Writing SolvingMicroDSOPs.idv[256] (SolvingMicroDSOPs255x.svg)
+l. 840 Writing SolvingMicroDSOPs.idv[257] (SolvingMicroDSOPs256x.svg)
+l. 846 Writing SolvingMicroDSOPs.idv[258] (SolvingMicroDSOPs257x.svg)
+l. 847 Writing SolvingMicroDSOPs.idv[259] (SolvingMicroDSOPs258x.svg)
+l. 850 Writing SolvingMicroDSOPs.idv[260] (SolvingMicroDSOPs259x.svg)
+l. 851 Writing SolvingMicroDSOPs.idv[261] (SolvingMicroDSOPs260x.svg)
+LaTeX Font Info:    Trying to load font information for U+euf on input line 851
+.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/ueuf.fd
+File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
+)
+l. 855 Writing SolvingMicroDSOPs.idv[262] (SolvingMicroDSOPs261x.svg)
+l. 858 Writing SolvingMicroDSOPs.idv[263] (SolvingMicroDSOPs262x.svg)
+l. 858 Writing SolvingMicroDSOPs.idv[264] (SolvingMicroDSOPs263x.svg)
+l. 860 Writing SolvingMicroDSOPs.idv[265] (SolvingMicroDSOPs264x.svg)
+l. 861 Writing SolvingMicroDSOPs.idv[266] (SolvingMicroDSOPs265x.svg)
+[44
+
+]
+l. 866 Writing SolvingMicroDSOPs.idv[267] (SolvingMicroDSOPs266x.svg)
+l. 871 Writing SolvingMicroDSOPs.idv[268] (SolvingMicroDSOPs267x.svg)
+l. 872 Writing SolvingMicroDSOPs.idv[269] (SolvingMicroDSOPs268x.svg)
+
+Package amsmath Warning: Bracket group [\vFunc ^{{m}}_{T-1}({m}_{T-1})] at form
+ula start!
+(amsmath)                It could be a misspelled positional argument.
+(amsmath)                If it belongs to the formula add a \relax in
+(amsmath)                front to hide it on input line 873.
+
+l. 878 Writing SolvingMicroDSOPs.idv[270] (SolvingMicroDSOPs269x.svg)
+l. 879 Writing SolvingMicroDSOPs.idv[271] (SolvingMicroDSOPs270x.svg)
+l. 880 Writing SolvingMicroDSOPs.idv[272] (SolvingMicroDSOPs271x.svg)
+l. 886 Writing SolvingMicroDSOPs.idv[273] (SolvingMicroDSOPs272x.svg)
+l. 889 Writing SolvingMicroDSOPs.idv[274] (SolvingMicroDSOPs273x.svg)
+l. 890 Writing SolvingMicroDSOPs.idv[275] (SolvingMicroDSOPs274x.svg)
+[45]
+l. 894 Writing SolvingMicroDSOPs.idv[276] (SolvingMicroDSOPs275x.svg)
+l. 895 Writing SolvingMicroDSOPs.idv[277] (SolvingMicroDSOPs276x.svg)
+l. 896 Writing SolvingMicroDSOPs.idv[278] (SolvingMicroDSOPs277x.svg)
+l. 902 Writing SolvingMicroDSOPs.idv[279] (SolvingMicroDSOPs278x.svg)
+l. 906 Writing SolvingMicroDSOPs.idv[280] (SolvingMicroDSOPs279x.svg)
+l. 908 Writing SolvingMicroDSOPs.idv[281] (SolvingMicroDSOPs280x.svg)
+l. 909 Writing SolvingMicroDSOPs.idv[282] (SolvingMicroDSOPs281x.svg)
+l. 910 Writing SolvingMicroDSOPs.idv[283] (SolvingMicroDSOPs282x.svg)
+l. 913 Writing SolvingMicroDSOPs.idv[284] (SolvingMicroDSOPs283x.svg)
+l. 916 Writing SolvingMicroDSOPs.idv[285] (SolvingMicroDSOPs284x.svg)
+l. 916 Writing SolvingMicroDSOPs.idv[286] (SolvingMicroDSOPs285x.svg)
+l. 916 Writing SolvingMicroDSOPs.idv[287] (SolvingMicroDSOPs286x.svg)
+l. 918 Writing SolvingMicroDSOPs.idv[288] (SolvingMicroDSOPs287x.svg)
+l. 919 Writing SolvingMicroDSOPs.idv[289] (SolvingMicroDSOPs288x.svg)
+l. 920 Writing SolvingMicroDSOPs.idv[290] (SolvingMicroDSOPs289x.svg)
+[46]
+l. 922 Writing SolvingMicroDSOPs.idv[291] (SolvingMicroDSOPs290x.svg)
+l. 928 Writing SolvingMicroDSOPs.idv[292] (SolvingMicroDSOPs291x.svg)
+l. 929 Writing SolvingMicroDSOPs.idv[293] (SolvingMicroDSOPs292x.svg)
+l. 930 Writing SolvingMicroDSOPs.idv[294] (SolvingMicroDSOPs293x.svg)
+l. 931 Writing SolvingMicroDSOPs.idv[295] (SolvingMicroDSOPs294x.svg)
+l. 932 Writing SolvingMicroDSOPs.idv[296] (SolvingMicroDSOPs295x.svg)
+l. 933 Writing SolvingMicroDSOPs.idv[297] (SolvingMicroDSOPs296x.svg)
+l. 933 Writing SolvingMicroDSOPs.idv[298] (SolvingMicroDSOPs297x.svg)
+l. 935 Writing SolvingMicroDSOPs.idv[299] (SolvingMicroDSOPs298x.svg)
+l. 936 Writing SolvingMicroDSOPs.idv[300] (SolvingMicroDSOPs299x.svg)
+l. 936 Writing SolvingMicroDSOPs.idv[301] (SolvingMicroDSOPs300x.svg)
+l. 937 Writing SolvingMicroDSOPs.idv[302] (SolvingMicroDSOPs301x.svg)
+l. 938 Writing SolvingMicroDSOPs.idv[303] (SolvingMicroDSOPs302x.svg)
+l. 939 Writing SolvingMicroDSOPs.idv[304] (SolvingMicroDSOPs303x.svg)
+l. 939 Writing SolvingMicroDSOPs.idv[305] (SolvingMicroDSOPs304x.svg)
+l. 945 Writing SolvingMicroDSOPs.idv[306] (SolvingMicroDSOPs305x.svg)
+l. 947 Writing SolvingMicroDSOPs.idv[307] (SolvingMicroDSOPs306x.svg)
+--- file SolvingMicroDSOPs14.html ---
+l. 951 Writing SolvingMicroDSOPs.idv[308] (SolvingMicroDSOPs307x.svg)
+l. 952 Writing SolvingMicroDSOPs.idv[309] (SolvingMicroDSOPs308x.svg)
+--- file SolvingMicroDSOPs15.html ---
+l. 960 Writing SolvingMicroDSOPs.idv[310] (SolvingMicroDSOPs309x.svg)
+l. 961 Writing SolvingMicroDSOPs.idv[311] (SolvingMicroDSOPs310x.svg)
+l. 963 Writing SolvingMicroDSOPs.idv[312] (SolvingMicroDSOPs311x.svg)
+l. 964 Writing SolvingMicroDSOPs.idv[313] (SolvingMicroDSOPs312x.svg)
+l. 965 Writing SolvingMicroDSOPs.idv[314] (SolvingMicroDSOPs313x.svg)
+l. 966 Writing SolvingMicroDSOPs.idv[315] (SolvingMicroDSOPs314x.svg)
+l. 967 Writing SolvingMicroDSOPs.idv[316] (SolvingMicroDSOPs315x.svg)
+l. 973 Writing SolvingMicroDSOPs.idv[317] (SolvingMicroDSOPs316x.svg)
+l. 973 Writing SolvingMicroDSOPs.idv[318] (SolvingMicroDSOPs317x.svg)
+l. 976 Writing SolvingMicroDSOPs.idv[319] (SolvingMicroDSOPs318x.svg)
+[47
+
+
+]
+l. 978 Writing SolvingMicroDSOPs.idv[320] (SolvingMicroDSOPs319x.svg)
+l. 980 Writing SolvingMicroDSOPs.idv[321] (SolvingMicroDSOPs320x.svg)
+l. 982 Writing SolvingMicroDSOPs.idv[322] (SolvingMicroDSOPs321x.svg)
+l. 983 Writing SolvingMicroDSOPs.idv[323] (SolvingMicroDSOPs322x.svg)
+l. 986 Writing SolvingMicroDSOPs.idv[324] (SolvingMicroDSOPs323x.svg)
+l. 986 Writing SolvingMicroDSOPs.idv[325] (SolvingMicroDSOPs324x.svg)
+l. 988 Writing SolvingMicroDSOPs.idv[326] (SolvingMicroDSOPs325x.svg)
+[48] [49
+
+]
+l. 992 --- needs --- ./Figures/GothVInvVSGothC.png ---
+l. 993 Writing SolvingMicroDSOPs.idv[327] (SolvingMicroDSOPs326x.svg)
+l. 993 Writing SolvingMicroDSOPs.idv[328] (SolvingMicroDSOPs327x.svg)
+[50
+
+]
+l. 999 Writing SolvingMicroDSOPs.idv[329] (SolvingMicroDSOPs328x.svg)
+l. 999 Writing SolvingMicroDSOPs.idv[330] (SolvingMicroDSOPs329x.svg)
+l. 999 Writing SolvingMicroDSOPs.idv[331] (SolvingMicroDSOPs330x.svg)
+l. 1002 Writing SolvingMicroDSOPs.idv[332] (SolvingMicroDSOPs331x.svg)
+l. 1003 Writing SolvingMicroDSOPs.idv[333] (SolvingMicroDSOPs332x.svg)
+l. 1005 Writing SolvingMicroDSOPs.idv[334] (SolvingMicroDSOPs333x.svg)
+[51
+
+] [52
+
+]
+l. 1011 --- needs --- ./Figures/GothVVSGothCInv.png ---
+l. 1012 Writing SolvingMicroDSOPs.idv[335] (SolvingMicroDSOPs334x.svg)
+l. 1012 Writing SolvingMicroDSOPs.idv[336] (SolvingMicroDSOPs335x.svg)
+l. 1012 Writing SolvingMicroDSOPs.idv[337] (SolvingMicroDSOPs336x.svg)
+[53
+
+]
+l. 1021 Writing SolvingMicroDSOPs.idv[338] (SolvingMicroDSOPs337x.svg)
+l. 1022 Writing SolvingMicroDSOPs.idv[339] (SolvingMicroDSOPs338x.svg)
+l. 1023 Writing SolvingMicroDSOPs.idv[340] (SolvingMicroDSOPs339x.svg)
+l. 1024 Writing SolvingMicroDSOPs.idv[341] (SolvingMicroDSOPs340x.svg)
+l. 1029 Writing SolvingMicroDSOPs.idv[342] (SolvingMicroDSOPs341x.svg)
+l. 1030 Writing SolvingMicroDSOPs.idv[343] (SolvingMicroDSOPs342x.svg)
+l. 1031 Writing SolvingMicroDSOPs.idv[344] (SolvingMicroDSOPs343x.svg)
+l. 1032 Writing SolvingMicroDSOPs.idv[345] (SolvingMicroDSOPs344x.svg)
+l. 1034 Writing SolvingMicroDSOPs.idv[346] (SolvingMicroDSOPs345x.svg)
+l. 1044 Writing SolvingMicroDSOPs.idv[347] (SolvingMicroDSOPs346x.svg)
+l. 1044 Writing SolvingMicroDSOPs.idv[348] (SolvingMicroDSOPs347x.svg)
+l. 1046 Writing SolvingMicroDSOPs.idv[349] (SolvingMicroDSOPs348x.svg)
+l. 1047 Writing SolvingMicroDSOPs.idv[350] (SolvingMicroDSOPs349x.svg)
+[54
+
+]
+l. 1051 Writing SolvingMicroDSOPs.idv[351] (SolvingMicroDSOPs350x.svg)
+l. 1052 Writing SolvingMicroDSOPs.idv[352] (SolvingMicroDSOPs351x.svg)
+l. 1053 Writing SolvingMicroDSOPs.idv[353] (SolvingMicroDSOPs352x.svg)
+l. 1055 Writing SolvingMicroDSOPs.idv[354] (SolvingMicroDSOPs353x.svg)
+l. 1055 Writing SolvingMicroDSOPs.idv[355] (SolvingMicroDSOPs354x.svg)
+l. 1057 Writing SolvingMicroDSOPs.idv[356] (SolvingMicroDSOPs355x.svg)
+l. 1058 Writing SolvingMicroDSOPs.idv[357] (SolvingMicroDSOPs356x.svg)
+--- file SolvingMicroDSOPs16.html ---
+l. 1060 Writing SolvingMicroDSOPs.idv[358] (SolvingMicroDSOPs357x.svg)
+[55
+
+] [56
+
+]
+l. 1067 --- needs --- ./Figures/PlotComparecTm1AD.png ---
+l. 1068 Writing SolvingMicroDSOPs.idv[359] (SolvingMicroDSOPs358x.svg)
+l. 1068 Writing SolvingMicroDSOPs.idv[360] (SolvingMicroDSOPs359x.svg)
+[57
+
+]
+l. 1072 Writing SolvingMicroDSOPs.idv[361] (SolvingMicroDSOPs360x.svg)
+l. 1072 Writing SolvingMicroDSOPs.idv[362] (SolvingMicroDSOPs361x.svg)
+l. 1074 Writing SolvingMicroDSOPs.idv[363] (SolvingMicroDSOPs362x.svg)
+l. 1081 Writing SolvingMicroDSOPs.idv[364] (SolvingMicroDSOPs363x.svg)
+l. 1083 Writing SolvingMicroDSOPs.idv[365] (SolvingMicroDSOPs364x.svg)
+l. 1084 Writing SolvingMicroDSOPs.idv[366] (SolvingMicroDSOPs365x.svg)
+l. 1085 Writing SolvingMicroDSOPs.idv[367] (SolvingMicroDSOPs366x.svg)
+l. 1086 Writing SolvingMicroDSOPs.idv[368] (SolvingMicroDSOPs367x.svg)
+l. 1087 Writing SolvingMicroDSOPs.idv[369] (SolvingMicroDSOPs368x.svg)
+l. 1087 Writing SolvingMicroDSOPs.idv[370] (SolvingMicroDSOPs369x.svg)
+l. 1088 Writing SolvingMicroDSOPs.idv[371] (SolvingMicroDSOPs370x.svg)
+l. 1090 Writing SolvingMicroDSOPs.idv[372] (SolvingMicroDSOPs371x.svg)
+l. 1091 Writing SolvingMicroDSOPs.idv[373] (SolvingMicroDSOPs372x.svg)
+l. 1093 Writing SolvingMicroDSOPs.idv[374] (SolvingMicroDSOPs373x.svg)
+l. 1095 Writing SolvingMicroDSOPs.idv[375] (SolvingMicroDSOPs374x.svg)
+l. 1096 Writing SolvingMicroDSOPs.idv[376] (SolvingMicroDSOPs375x.svg)
+[58
+
+] [59
+
+]
+l. 1102 --- needs --- ./Figures/GothVInvVSGothCEEE.png ---
+l. 1104 Writing SolvingMicroDSOPs.idv[377] (SolvingMicroDSOPs376x.svg)
+l. 1104 Writing SolvingMicroDSOPs.idv[378] (SolvingMicroDSOPs377x.svg)
+[60
+
+] [61
+
+] [62
+
+]
+l. 1111 --- needs --- ./Figures/GothVVSGothCInvEEE.png ---
+l. 1113 Writing SolvingMicroDSOPs.idv[379] (SolvingMicroDSOPs378x.svg)
+l. 1113 Writing SolvingMicroDSOPs.idv[380] (SolvingMicroDSOPs379x.svg)
+[63
+
+]
+\openout5 = `./cctwMoM/EndogGptsProbs.tex'.
+
+(./cctwMoM/EndogGptsProbs.tex
+l. 9 Writing SolvingMicroDSOPs.idv[381] (SolvingMicroDSOPs380x.svg)
+l. 10 Writing SolvingMicroDSOPs.idv[382] (SolvingMicroDSOPs381x.svg)
+[64
+
+] [65
+
+]
+l. 18 --- needs --- ./Figures/ExtrapProblemPlot.png ---
+l. 19 Writing SolvingMicroDSOPs.idv[383] (SolvingMicroDSOPs382x.svg)
+[66
+
+])
+\openout5 = `./cctwMoM/MoM-Prelims.tex'.
+
+(./cctwMoM/MoM-Prelims.tex
+l. 1 Writing SolvingMicroDSOPs.idv[384] (SolvingMicroDSOPs383x.svg)
+l. 8 Writing SolvingMicroDSOPs.idv[385] (SolvingMicroDSOPs384x.svg)
+--- file SolvingMicroDSOPs17.html ---
+l. 10 Writing SolvingMicroDSOPs.idv[386] (SolvingMicroDSOPs385x.svg)
+l. 10 Writing SolvingMicroDSOPs.idv[387] (SolvingMicroDSOPs386x.svg)
+)
+\openout5 = `./Equations/cFuncAbove.tex'.
+
+(./Equations/cFuncAbove.tex
+l. 1 Writing SolvingMicroDSOPs.idv[388] (SolvingMicroDSOPs387x.svg)
+l. 4 Writing SolvingMicroDSOPs.idv[389] (SolvingMicroDSOPs388x.svg)
+)
+\openout5 = `./cctwMoM/MoM-Words.tex'.
+
+(./cctwMoM/MoM-Words.tex
+l. 1 Writing SolvingMicroDSOPs.idv[390] (SolvingMicroDSOPs389x.svg)
+l. 6 Writing SolvingMicroDSOPs.idv[391] (SolvingMicroDSOPs390x.svg)
+l. 13 Writing SolvingMicroDSOPs.idv[392] (SolvingMicroDSOPs391x.svg)
+l. 14 Writing SolvingMicroDSOPs.idv[393] (SolvingMicroDSOPs392x.svg)
+l. 17 Writing SolvingMicroDSOPs.idv[394] (SolvingMicroDSOPs393x.svg)
+l. 19 Writing SolvingMicroDSOPs.idv[395] (SolvingMicroDSOPs394x.svg)
+l. 23 Writing SolvingMicroDSOPs.idv[396] (SolvingMicroDSOPs395x.svg)
+l. 25 Writing SolvingMicroDSOPs.idv[397] (SolvingMicroDSOPs396x.svg)
+l. 26 Writing SolvingMicroDSOPs.idv[398] (SolvingMicroDSOPs397x.svg)
+l. 26 Writing SolvingMicroDSOPs.idv[399] (SolvingMicroDSOPs398x.svg)
+[67
+
+
+]
+l. 32 Writing SolvingMicroDSOPs.idv[400] (SolvingMicroDSOPs399x.svg)
+l. 40 Writing SolvingMicroDSOPs.idv[401] (SolvingMicroDSOPs400x.svg)
+l. 42 Writing SolvingMicroDSOPs.idv[402] (SolvingMicroDSOPs401x.svg)
+[68]
+l. 50 Writing SolvingMicroDSOPs.idv[403] (SolvingMicroDSOPs402x.svg)
+l. 59 Writing SolvingMicroDSOPs.idv[404] (SolvingMicroDSOPs403x.svg)
+)
+\openout5 = `./Figures/IntExpFOCInvPesReaOptNeedHiPlot.tex'.
+
+(./Figures//IntExpFOCInvPesReaOptNeedHiPlot.tex [69] [70
+
+]
+l. 3 --- needs --- ./Figures/IntExpFOCInvPesReaOptNeedHiPlot.png ---
+l. 4 Writing SolvingMicroDSOPs.idv[405] (SolvingMicroDSOPs404x.svg)
+[71
+
+])
+\openout5 = `./cctwMoM/MoM-Words-Rest.tex'.
+
+(./cctwMoM/MoM-Words-Rest.tex)
+\openout5 = `./Equations/MoM-Inequalities.tex'.
+
+(./Equations/MoM-Inequalities.tex
+l. 2 Writing SolvingMicroDSOPs.idv[406] (SolvingMicroDSOPs405x.svg)
+)
+\openout5 = `./cctwMoM/MoM-Inequalities-Describe.tex'.
+
+(./cctwMoM/MoM-Inequalities-Describe.tex)
+\openout5 = `./Equations/MoM-KoppaOfMu.tex'.
+
+(./Equations/MoM-KoppaOfMu.tex
+l. 1 Writing SolvingMicroDSOPs.idv[407] (SolvingMicroDSOPs406x.svg)
+l. 2 Writing SolvingMicroDSOPs.idv[408] (SolvingMicroDSOPs407x.svg)
+l. 2 Writing SolvingMicroDSOPs.idv[409] (SolvingMicroDSOPs408x.svg)
+l. 3 Writing SolvingMicroDSOPs.idv[410] (SolvingMicroDSOPs409x.svg)
+l. 7 Writing SolvingMicroDSOPs.idv[411] (SolvingMicroDSOPs410x.svg)
+[72
+
+])
+\openout5 = `./cctwMoM/MoM-KoppaOfMu-Describe.tex'.
+
+(./cctwMoM/MoM-KoppaOfMu-Describe.tex
+l. 1 Writing SolvingMicroDSOPs.idv[412] (SolvingMicroDSOPs411x.svg)
+l. 1 Writing SolvingMicroDSOPs.idv[413] (SolvingMicroDSOPs412x.svg)
+l. 3 Writing SolvingMicroDSOPs.idv[414] (SolvingMicroDSOPs413x.svg)
+)
+\openout5 = `./Equations/cFuncHi.tex'.
+
+(./Equations/cFuncHi.tex
+l. 1 Writing SolvingMicroDSOPs.idv[415] (SolvingMicroDSOPs414x.svg)
+)
+\openout5 = `./cctwMoM/MoM-End.tex'.
+
+(./cctwMoM/MoM-End.tex
+l. 2 Writing SolvingMicroDSOPs.idv[416] (SolvingMicroDSOPs415x.svg)
+l. 3 Writing SolvingMicroDSOPs.idv[417] (SolvingMicroDSOPs416x.svg)
+l. 3 Writing SolvingMicroDSOPs.idv[418] (SolvingMicroDSOPs417x.svg)
+l. 5 Writing SolvingMicroDSOPs.idv[419] (SolvingMicroDSOPs418x.svg)
+l. 6 Writing SolvingMicroDSOPs.idv[420] (SolvingMicroDSOPs419x.svg)
+l. 6 Writing SolvingMicroDSOPs.idv[421] (SolvingMicroDSOPs420x.svg)
+l. 6 Writing SolvingMicroDSOPs.idv[422] (SolvingMicroDSOPs421x.svg)
+[73] [74] [75
+
+]
+l. 21 --- needs --- ./Figures/ExtrapProblemSolvedPlot.png ---
+l. 22 Writing SolvingMicroDSOPs.idv[423] (SolvingMicroDSOPs422x.svg)
+[76
+
+])
+l. 1342 Writing SolvingMicroDSOPs.idv[424] (SolvingMicroDSOPs423x.svg)
+l. 1342 Writing SolvingMicroDSOPs.idv[425] (SolvingMicroDSOPs424x.svg)
+l. 1353 Writing SolvingMicroDSOPs.idv[426] (SolvingMicroDSOPs425x.svg)
+l. 1355 Writing SolvingMicroDSOPs.idv[427] (SolvingMicroDSOPs426x.svg)
+l. 1360 Writing SolvingMicroDSOPs.idv[428] (SolvingMicroDSOPs427x.svg)
+l. 1365 Writing SolvingMicroDSOPs.idv[429] (SolvingMicroDSOPs428x.svg)
+[77
+
+]
+l. 1371 Writing SolvingMicroDSOPs.idv[430] (SolvingMicroDSOPs429x.svg)
+l. 1372 Writing SolvingMicroDSOPs.idv[431] (SolvingMicroDSOPs430x.svg)
+l. 1373 Writing SolvingMicroDSOPs.idv[432] (SolvingMicroDSOPs431x.svg)
+l. 1374 Writing SolvingMicroDSOPs.idv[433] (SolvingMicroDSOPs432x.svg)
+l. 1376 Writing SolvingMicroDSOPs.idv[434] (SolvingMicroDSOPs433x.svg)
+l. 1377 Writing SolvingMicroDSOPs.idv[435] (SolvingMicroDSOPs434x.svg)
+l. 1380 Writing SolvingMicroDSOPs.idv[436] (SolvingMicroDSOPs435x.svg)
+l. 1381 Writing SolvingMicroDSOPs.idv[437] (SolvingMicroDSOPs436x.svg)
+l. 1382 Writing SolvingMicroDSOPs.idv[438] (SolvingMicroDSOPs437x.svg)
+[78]
+l. 1388 Writing SolvingMicroDSOPs.idv[439] (SolvingMicroDSOPs438x.svg)
+l. 1392 Writing SolvingMicroDSOPs.idv[440] (SolvingMicroDSOPs439x.svg)
+l. 1394 Writing SolvingMicroDSOPs.idv[441] (SolvingMicroDSOPs440x.svg)
+l. 1400 Writing SolvingMicroDSOPs.idv[442] (SolvingMicroDSOPs441x.svg)
+l. 1400 Writing SolvingMicroDSOPs.idv[443] (SolvingMicroDSOPs442x.svg)
+l. 1400 Writing SolvingMicroDSOPs.idv[444] (SolvingMicroDSOPs443x.svg)
+[79] [80
+
+]
+l. 1406 --- needs --- ./Figures/IntExpFOCInvPesReaOptGapPlot.png ---
+l. 1407 Writing SolvingMicroDSOPs.idv[445] (SolvingMicroDSOPs444x.svg)
+l. 1407 Writing SolvingMicroDSOPs.idv[446] (SolvingMicroDSOPs445x.svg)
+[81
+
+]
+\openout5 = `./cctwMoM/value-Intro.tex'.
+
+(./cctwMoM/value-Intro.tex
+l. 4 Writing SolvingMicroDSOPs.idv[447] (SolvingMicroDSOPs446x.svg)
+l. 5 Writing SolvingMicroDSOPs.idv[448] (SolvingMicroDSOPs447x.svg)
+l. 12 Writing SolvingMicroDSOPs.idv[449] (SolvingMicroDSOPs448x.svg)
+)
+\openout5 = `./Equations/vFuncPF.tex'.
+
+(./Equations/vFuncPF.tex
+l. 1 Writing SolvingMicroDSOPs.idv[450] (SolvingMicroDSOPs449x.svg)
+[82
+
+]
+l. 8 Writing SolvingMicroDSOPs.idv[451] (SolvingMicroDSOPs450x.svg)
+l. 11 Writing SolvingMicroDSOPs.idv[452] (SolvingMicroDSOPs451x.svg)
+)
+\openout5 = `./cctwMoM/value-Rest.tex'.
+
+(./cctwMoM/value-Rest.tex
+l. 5 Writing SolvingMicroDSOPs.idv[453] (SolvingMicroDSOPs452x.svg)
+l. 6 Writing SolvingMicroDSOPs.idv[454] (SolvingMicroDSOPs453x.svg)
+l. 7 Writing SolvingMicroDSOPs.idv[455] (SolvingMicroDSOPs454x.svg)
+[83]
+l. 10 Writing SolvingMicroDSOPs.idv[456] (SolvingMicroDSOPs455x.svg)
+l. 15 Writing SolvingMicroDSOPs.idv[457] (SolvingMicroDSOPs456x.svg)
+l. 19 Writing SolvingMicroDSOPs.idv[458] (SolvingMicroDSOPs457x.svg)
+l. 20 Writing SolvingMicroDSOPs.idv[459] (SolvingMicroDSOPs458x.svg)
+l. 22 Writing SolvingMicroDSOPs.idv[460] (SolvingMicroDSOPs459x.svg)
+[84]
+l. 29 Writing SolvingMicroDSOPs.idv[461] (SolvingMicroDSOPs460x.svg)
+l. 30 Writing SolvingMicroDSOPs.idv[462] (SolvingMicroDSOPs461x.svg)
+l. 31 Writing SolvingMicroDSOPs.idv[463] (SolvingMicroDSOPs462x.svg)
+l. 38 Writing SolvingMicroDSOPs.idv[464] (SolvingMicroDSOPs463x.svg)
+l. 40 Writing SolvingMicroDSOPs.idv[465] (SolvingMicroDSOPs464x.svg)
+l. 40 Writing SolvingMicroDSOPs.idv[466] (SolvingMicroDSOPs465x.svg)
+[85]
+l. 43 Writing SolvingMicroDSOPs.idv[467] (SolvingMicroDSOPs466x.svg)
+l. 47 Writing SolvingMicroDSOPs.idv[468] (SolvingMicroDSOPs467x.svg)
+l. 54 Writing SolvingMicroDSOPs.idv[469] (SolvingMicroDSOPs468x.svg)
+l. 56 Writing SolvingMicroDSOPs.idv[470] (SolvingMicroDSOPs469x.svg)
+l. 57 Writing SolvingMicroDSOPs.idv[471] (SolvingMicroDSOPs470x.svg)
+[86])
+\openout5 = `./cctwMoM/Tighter.tex'.
+
+(./cctwMoM/Tighter.tex
+l. 1 Writing SolvingMicroDSOPs.idv[472] (SolvingMicroDSOPs471x.svg)
+l. 1 Writing SolvingMicroDSOPs.idv[473] (SolvingMicroDSOPs472x.svg)
+l. 5 Writing SolvingMicroDSOPs.idv[474] (SolvingMicroDSOPs473x.svg)
+)
+\openout5 = `./Equations/mtCusp.tex'.
+
+(./Equations/mtCusp.tex
+l. 1 Writing SolvingMicroDSOPs.idv[475] (SolvingMicroDSOPs474x.svg)
+l. 3 Writing SolvingMicroDSOPs.idv[476] (SolvingMicroDSOPs475x.svg)
+[87])
+\openout5 = `./Equations/TighterUpperBound.tex'.
+
+(./Equations/TighterUpperBound.tex
+l. 1 Writing SolvingMicroDSOPs.idv[477] (SolvingMicroDSOPs476x.svg)
+l. 4 Writing SolvingMicroDSOPs.idv[478] (SolvingMicroDSOPs477x.svg)
+)
+\openout5 = `./Equations/koppaLo.tex'.
+
+(./Equations/koppaLo.tex
+l. 1 Writing SolvingMicroDSOPs.idv[479] (SolvingMicroDSOPs478x.svg)
+l. 2 Writing SolvingMicroDSOPs.idv[480] (SolvingMicroDSOPs479x.svg)
+)
+\openout5 = `./cctwMoM/TighterThreeFuncs.tex'.
+
+(./cctwMoM/TighterThreeFuncs.tex
+l. 1 Writing SolvingMicroDSOPs.idv[481] (SolvingMicroDSOPs480x.svg)
+l. 2 Writing SolvingMicroDSOPs.idv[482] (SolvingMicroDSOPs481x.svg)
+l. 2 Writing SolvingMicroDSOPs.idv[483] (SolvingMicroDSOPs482x.svg)
+l. 2 Writing SolvingMicroDSOPs.idv[484] (SolvingMicroDSOPs483x.svg)
+l. 3 Writing SolvingMicroDSOPs.idv[485] (SolvingMicroDSOPs484x.svg)
+l. 3 Writing SolvingMicroDSOPs.idv[486] (SolvingMicroDSOPs485x.svg)
+l. 3 Writing SolvingMicroDSOPs.idv[487] (SolvingMicroDSOPs486x.svg)
+l. 6 Writing SolvingMicroDSOPs.idv[488] (SolvingMicroDSOPs487x.svg)
+l. 7 Writing SolvingMicroDSOPs.idv[489] (SolvingMicroDSOPs488x.svg)
+l. 8 Writing SolvingMicroDSOPs.idv[490] (SolvingMicroDSOPs489x.svg)
+[88]
+l. 10 Writing SolvingMicroDSOPs.idv[491] (SolvingMicroDSOPs490x.svg)
+l. 12 Writing SolvingMicroDSOPs.idv[492] (SolvingMicroDSOPs491x.svg)
+l. 13 Writing SolvingMicroDSOPs.idv[493] (SolvingMicroDSOPs492x.svg)
+l. 13 Writing SolvingMicroDSOPs.idv[494] (SolvingMicroDSOPs493x.svg)
+l. 14 Writing SolvingMicroDSOPs.idv[495] (SolvingMicroDSOPs494x.svg)
+l. 16 Writing SolvingMicroDSOPs.idv[496] (SolvingMicroDSOPs495x.svg)
+)
+\openout5 = `./Equations/TighterThreeEqns.tex'.
+
+(./Equations/TighterThreeEqns.tex
+l. 1 Writing SolvingMicroDSOPs.idv[497] (SolvingMicroDSOPs496x.svg)
+l. 7 Writing SolvingMicroDSOPs.idv[498] (SolvingMicroDSOPs497x.svg)
+)
+\openout5 = `./cctwMoM/TighterThreeFuncsExplain.tex'.
+
+(./cctwMoM/TighterThreeFuncsExplain.tex [89]
+l. 18 Writing SolvingMicroDSOPs.idv[499] (SolvingMicroDSOPs498x.svg)
+l. 20 Writing SolvingMicroDSOPs.idv[500] (SolvingMicroDSOPs499x.svg)
+l. 23 Writing SolvingMicroDSOPs.idv[501] (SolvingMicroDSOPs500x.svg)
+l. 29 Writing SolvingMicroDSOPs.idv[502] (SolvingMicroDSOPs501x.svg)
+l. 30 Writing SolvingMicroDSOPs.idv[503] (SolvingMicroDSOPs502x.svg)
+l. 33 Writing SolvingMicroDSOPs.idv[504] (SolvingMicroDSOPs503x.svg)
+l. 33 Writing SolvingMicroDSOPs.idv[505] (SolvingMicroDSOPs504x.svg)
+[90]
+l. 34 Writing SolvingMicroDSOPs.idv[506] (SolvingMicroDSOPs505x.svg)
+l. 37 Writing SolvingMicroDSOPs.idv[507] (SolvingMicroDSOPs506x.svg)
+l. 38 Writing SolvingMicroDSOPs.idv[508] (SolvingMicroDSOPs507x.svg)
+l. 41 Writing SolvingMicroDSOPs.idv[509] (SolvingMicroDSOPs508x.svg)
+l. 44 Writing SolvingMicroDSOPs.idv[510] (SolvingMicroDSOPs509x.svg)
+l. 44 Writing SolvingMicroDSOPs.idv[511] (SolvingMicroDSOPs510x.svg)
+)
+l. 1693 Writing SolvingMicroDSOPs.idv[512] (SolvingMicroDSOPs511x.svg)
+l. 1694 Writing SolvingMicroDSOPs.idv[513] (SolvingMicroDSOPs512x.svg)
+\openout5 = `./Equations/distRisky.tex'.
+
+(./Equations/distRisky.tex [91]
+l. 1 Writing SolvingMicroDSOPs.idv[514] (SolvingMicroDSOPs513x.svg)
+)
+l. 1705 Writing SolvingMicroDSOPs.idv[515] (SolvingMicroDSOPs514x.svg)
+l. 1705 Writing SolvingMicroDSOPs.idv[516] (SolvingMicroDSOPs515x.svg)
+l. 1706 Writing SolvingMicroDSOPs.idv[517] (SolvingMicroDSOPs516x.svg)
+--- file SolvingMicroDSOPs18.html ---
+l. 1711 Writing SolvingMicroDSOPs.idv[518] (SolvingMicroDSOPs517x.svg)
+[92
+
+]
+l. 1720 Writing SolvingMicroDSOPs.idv[519] (SolvingMicroDSOPs518x.svg)
+l. 1723 Writing SolvingMicroDSOPs.idv[520] (SolvingMicroDSOPs519x.svg)
+l. 1723 Writing SolvingMicroDSOPs.idv[521] (SolvingMicroDSOPs520x.svg)
+l. 1724 Writing SolvingMicroDSOPs.idv[522] (SolvingMicroDSOPs521x.svg)
+l. 1726 Writing SolvingMicroDSOPs.idv[523] (SolvingMicroDSOPs522x.svg)
+l. 1726 Writing SolvingMicroDSOPs.idv[524] (SolvingMicroDSOPs523x.svg)
+l. 1728 Writing SolvingMicroDSOPs.idv[525] (SolvingMicroDSOPs524x.svg)
+LaTeX Font Info:    Trying to load font information for U+eus on input line 173
+5.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/ueus.fd
+File: ueus.fd 2013/01/14 v3.01 Euler Script
+)
+l. 1742 Writing SolvingMicroDSOPs.idv[526] (SolvingMicroDSOPs525x.svg)
+[93]
+--- file SolvingMicroDSOPs19.html ---
+l. 1762 Writing SolvingMicroDSOPs.idv[527] (SolvingMicroDSOPs526x.svg)
+l. 1774 Writing SolvingMicroDSOPs.idv[528] (SolvingMicroDSOPs527x.svg)
+[94
+
+]
+l. 1776 Writing SolvingMicroDSOPs.idv[529] (SolvingMicroDSOPs528x.svg)
+l. 1779 Writing SolvingMicroDSOPs.idv[530] (SolvingMicroDSOPs529x.svg)
+l. 1779 Writing SolvingMicroDSOPs.idv[531] (SolvingMicroDSOPs530x.svg)
+l. 1780 Writing SolvingMicroDSOPs.idv[532] (SolvingMicroDSOPs531x.svg)
+\openout5 = `./Equations/LiqCons.tex'.
+
+(./Equations/LiqCons.tex
+l. 1 Writing SolvingMicroDSOPs.idv[533] (SolvingMicroDSOPs532x.svg)
+)
+l. 1801 Writing SolvingMicroDSOPs.idv[534] (SolvingMicroDSOPs533x.svg)
+l. 1802 Writing SolvingMicroDSOPs.idv[535] (SolvingMicroDSOPs534x.svg)
+l. 1807 Writing SolvingMicroDSOPs.idv[536] (SolvingMicroDSOPs535x.svg)
+l. 1811 Writing SolvingMicroDSOPs.idv[537] (SolvingMicroDSOPs536x.svg)
+--- file SolvingMicroDSOPs20.html ---
+[95]
+l. 1813 Writing SolvingMicroDSOPs.idv[538] (SolvingMicroDSOPs537x.svg)
+[96
+
+] [97
+
+]
+l. 1821 --- needs --- ./Figures/cVScCon.png ---
+[98
+
+]
+l. 1834 Writing SolvingMicroDSOPs.idv[539] (SolvingMicroDSOPs538x.svg)
+l. 1835 Writing SolvingMicroDSOPs.idv[540] (SolvingMicroDSOPs539x.svg)
+l. 1836 Writing SolvingMicroDSOPs.idv[541] (SolvingMicroDSOPs540x.svg)
+l. 1837 Writing SolvingMicroDSOPs.idv[542] (SolvingMicroDSOPs541x.svg)
+l. 1839 Writing SolvingMicroDSOPs.idv[543] (SolvingMicroDSOPs542x.svg)
+l. 1844 Writing SolvingMicroDSOPs.idv[544] (SolvingMicroDSOPs543x.svg)
+l. 1844 Writing SolvingMicroDSOPs.idv[545] (SolvingMicroDSOPs544x.svg)
+l. 1844 Writing SolvingMicroDSOPs.idv[546] (SolvingMicroDSOPs545x.svg)
+l. 1857 Writing SolvingMicroDSOPs.idv[547] (SolvingMicroDSOPs546x.svg)
+l. 1859 Writing SolvingMicroDSOPs.idv[548] (SolvingMicroDSOPs547x.svg)
+l. 1859 Writing SolvingMicroDSOPs.idv[549] (SolvingMicroDSOPs548x.svg)
+l. 1864 Writing SolvingMicroDSOPs.idv[550] (SolvingMicroDSOPs549x.svg)
+[99
+
+]
+l. 1869 Writing SolvingMicroDSOPs.idv[551] (SolvingMicroDSOPs550x.svg)
+l. 1870 Writing SolvingMicroDSOPs.idv[552] (SolvingMicroDSOPs551x.svg)
+l. 1872 Writing SolvingMicroDSOPs.idv[553] (SolvingMicroDSOPs552x.svg)
+l. 1882 Writing SolvingMicroDSOPs.idv[554] (SolvingMicroDSOPs553x.svg)
+l. 1882 Writing SolvingMicroDSOPs.idv[555] (SolvingMicroDSOPs554x.svg)
+l. 1883 Writing SolvingMicroDSOPs.idv[556] (SolvingMicroDSOPs555x.svg)
+l. 1883 Writing SolvingMicroDSOPs.idv[557] (SolvingMicroDSOPs556x.svg)
+\openout5 = `./Equations/vEndeq.tex'.
+
+(./Equations/vEndeq.tex
+l. 1 Writing SolvingMicroDSOPs.idv[558] (SolvingMicroDSOPs557x.svg)
+)
+l. 1892 Writing SolvingMicroDSOPs.idv[559] (SolvingMicroDSOPs558x.svg)
+l. 1892 Writing SolvingMicroDSOPs.idv[560] (SolvingMicroDSOPs559x.svg)
+l. 1894 Writing SolvingMicroDSOPs.idv[561] (SolvingMicroDSOPs560x.svg)
+l. 1894 Writing SolvingMicroDSOPs.idv[562] (SolvingMicroDSOPs561x.svg)
+[100]
+l. 1896 Writing SolvingMicroDSOPs.idv[563] (SolvingMicroDSOPs562x.svg)
+l. 1896 Writing SolvingMicroDSOPs.idv[564] (SolvingMicroDSOPs563x.svg)
+l. 1896 Writing SolvingMicroDSOPs.idv[565] (SolvingMicroDSOPs564x.svg)
+l. 1898 Writing SolvingMicroDSOPs.idv[566] (SolvingMicroDSOPs565x.svg)
+l. 1900 Writing SolvingMicroDSOPs.idv[567] (SolvingMicroDSOPs566x.svg)
+l. 1900 Writing SolvingMicroDSOPs.idv[568] (SolvingMicroDSOPs567x.svg)
+l. 1900 Writing SolvingMicroDSOPs.idv[569] (SolvingMicroDSOPs568x.svg)
+l. 1900 Writing SolvingMicroDSOPs.idv[570] (SolvingMicroDSOPs569x.svg)
+l. 1903 Writing SolvingMicroDSOPs.idv[571] (SolvingMicroDSOPs570x.svg)
+l. 1906 Writing SolvingMicroDSOPs.idv[572] (SolvingMicroDSOPs571x.svg)
+l. 1910 Writing SolvingMicroDSOPs.idv[573] (SolvingMicroDSOPs572x.svg)
+l. 1911 Writing SolvingMicroDSOPs.idv[574] (SolvingMicroDSOPs573x.svg)
+l. 1912 Writing SolvingMicroDSOPs.idv[575] (SolvingMicroDSOPs574x.svg)
+l. 1915 Writing SolvingMicroDSOPs.idv[576] (SolvingMicroDSOPs575x.svg)
+--- file SolvingMicroDSOPs21.html ---
+l. 1921 Writing SolvingMicroDSOPs.idv[577] (SolvingMicroDSOPs576x.svg)
+l. 1926 Writing SolvingMicroDSOPs.idv[578] (SolvingMicroDSOPs577x.svg)
+[101
+
+]
+l. 1941 Writing SolvingMicroDSOPs.idv[579] (SolvingMicroDSOPs578x.svg)
+l. 1943 Writing SolvingMicroDSOPs.idv[580] (SolvingMicroDSOPs579x.svg)
+l. 1949 Writing SolvingMicroDSOPs.idv[581] (SolvingMicroDSOPs580x.svg)
+l. 1985 Writing SolvingMicroDSOPs.idv[582] (SolvingMicroDSOPs581x.svg)
+l. 1985 Writing SolvingMicroDSOPs.idv[583] (SolvingMicroDSOPs582x.svg)
+[102]
+l. 1986 Writing SolvingMicroDSOPs.idv[584] (SolvingMicroDSOPs583x.svg)
+l. 1990 Writing SolvingMicroDSOPs.idv[585] (SolvingMicroDSOPs584x.svg)
+l. 1990 Writing SolvingMicroDSOPs.idv[586] (SolvingMicroDSOPs585x.svg)
+l. 1992 Writing SolvingMicroDSOPs.idv[587] (SolvingMicroDSOPs586x.svg)
+l. 1995 Writing SolvingMicroDSOPs.idv[588] (SolvingMicroDSOPs587x.svg)
+l. 1996 Writing SolvingMicroDSOPs.idv[589] (SolvingMicroDSOPs588x.svg)
+l. 1997 Writing SolvingMicroDSOPs.idv[590] (SolvingMicroDSOPs589x.svg)
+l. 1998 Writing SolvingMicroDSOPs.idv[591] (SolvingMicroDSOPs590x.svg)
+l. 1999 Writing SolvingMicroDSOPs.idv[592] (SolvingMicroDSOPs591x.svg)
+l. 2000 Writing SolvingMicroDSOPs.idv[593] (SolvingMicroDSOPs592x.svg)
+l. 2004 Writing SolvingMicroDSOPs.idv[594] (SolvingMicroDSOPs593x.svg)
+l. 2004 Writing SolvingMicroDSOPs.idv[595] (SolvingMicroDSOPs594x.svg)
+l. 2005 Writing SolvingMicroDSOPs.idv[596] (SolvingMicroDSOPs595x.svg)
+l. 2007 Writing SolvingMicroDSOPs.idv[597] (SolvingMicroDSOPs596x.svg)
+l. 2007 Writing SolvingMicroDSOPs.idv[598] (SolvingMicroDSOPs597x.svg)
+l. 2014 Writing SolvingMicroDSOPs.idv[599] (SolvingMicroDSOPs598x.svg)
+l. 2015 Writing SolvingMicroDSOPs.idv[600] (SolvingMicroDSOPs599x.svg)
+l. 2016 Writing SolvingMicroDSOPs.idv[601] (SolvingMicroDSOPs600x.svg)
+[103] [104
+
+]
+l. 2020 --- needs --- ./Figures/PlotCFuncsConverge.png ---
+l. 2021 Writing SolvingMicroDSOPs.idv[602] (SolvingMicroDSOPs601x.svg)
+l. 2021 Writing SolvingMicroDSOPs.idv[603] (SolvingMicroDSOPs602x.svg)
+[105
+
+]
+l. 2027 Writing SolvingMicroDSOPs.idv[604] (SolvingMicroDSOPs603x.svg)
+l. 2027 Writing SolvingMicroDSOPs.idv[605] (SolvingMicroDSOPs604x.svg)
+l. 2550 Writing SolvingMicroDSOPs.idv[606] (SolvingMicroDSOPs605x.svg)
+l. 2553 Writing SolvingMicroDSOPs.idv[607] (SolvingMicroDSOPs606x.svg)
+l. 2553 Writing SolvingMicroDSOPs.idv[608] (SolvingMicroDSOPs607x.svg)
+l. 2553 Writing SolvingMicroDSOPs.idv[609] (SolvingMicroDSOPs608x.svg)
+l. 2553 Writing SolvingMicroDSOPs.idv[610] (SolvingMicroDSOPs609x.svg)
+l. 2553 Writing SolvingMicroDSOPs.idv[611] (SolvingMicroDSOPs610x.svg)
+\openout5 = `./Equations/Rport.tex'.
+
+(./Equations/Rport.tex
+l. 1 Writing SolvingMicroDSOPs.idv[612] (SolvingMicroDSOPs611x.svg)
+)
+\openout5 = `./Equations/PortProb.tex'.
+
+(./Equations/PortProb.tex [106
+
+]
+l. 1 Writing SolvingMicroDSOPs.idv[613] (SolvingMicroDSOPs612x.svg)
+)
+l. 2574 Writing SolvingMicroDSOPs.idv[614] (SolvingMicroDSOPs613x.svg)
+l. 2580 Writing SolvingMicroDSOPs.idv[615] (SolvingMicroDSOPs614x.svg)
+l. 2583 Writing SolvingMicroDSOPs.idv[616] (SolvingMicroDSOPs615x.svg)
+l. 2583 Writing SolvingMicroDSOPs.idv[617] (SolvingMicroDSOPs616x.svg)
+\openout5 = `./Equations/valfuncFOCRtilde.tex'.
+
+(./Equations/valfuncFOCRtilde.tex
+l. 1 Writing SolvingMicroDSOPs.idv[618] (SolvingMicroDSOPs617x.svg)
+[107])
+\openout5 = `./Equations/EulercRiskyR.tex'.
+
+(./Equations/EulercRiskyR.tex
+l. 1 Writing SolvingMicroDSOPs.idv[619] (SolvingMicroDSOPs618x.svg)
+)
+\openout5 = `./Equations/FOCw.tex'.
+
+(./Equations/FOCw.tex
+l. 1 Writing SolvingMicroDSOPs.idv[620] (SolvingMicroDSOPs619x.svg)
+)
+l. 2608 Writing SolvingMicroDSOPs.idv[621] (SolvingMicroDSOPs620x.svg)
+l. 2609 Writing SolvingMicroDSOPs.idv[622] (SolvingMicroDSOPs621x.svg)
+l. 2609 Writing SolvingMicroDSOPs.idv[623] (SolvingMicroDSOPs622x.svg)
+[108]
+l. 2615 Writing SolvingMicroDSOPs.idv[624] (SolvingMicroDSOPs623x.svg)
+l. 2619 Writing SolvingMicroDSOPs.idv[625] (SolvingMicroDSOPs624x.svg)
+l. 2625 Writing SolvingMicroDSOPs.idv[626] (SolvingMicroDSOPs625x.svg)
+[109]
+l. 2632 Writing SolvingMicroDSOPs.idv[627] (SolvingMicroDSOPs626x.svg)
+l. 2634 Writing SolvingMicroDSOPs.idv[628] (SolvingMicroDSOPs627x.svg)
+l. 2635 Writing SolvingMicroDSOPs.idv[629] (SolvingMicroDSOPs628x.svg)
+l. 2636 Writing SolvingMicroDSOPs.idv[630] (SolvingMicroDSOPs629x.svg)
+--- file SolvingMicroDSOPs22.html ---
+l. 2636 Writing SolvingMicroDSOPs.idv[631] (SolvingMicroDSOPs630x.svg)
+l. 2636 Writing SolvingMicroDSOPs.idv[632] (SolvingMicroDSOPs631x.svg)
+l. 2641 Writing SolvingMicroDSOPs.idv[633] (SolvingMicroDSOPs632x.svg)
+l. 2645 Writing SolvingMicroDSOPs.idv[634] (SolvingMicroDSOPs633x.svg)
+l. 2646 Writing SolvingMicroDSOPs.idv[635] (SolvingMicroDSOPs634x.svg)
+l. 2650 Writing SolvingMicroDSOPs.idv[636] (SolvingMicroDSOPs635x.svg)
+l. 2651 Writing SolvingMicroDSOPs.idv[637] (SolvingMicroDSOPs636x.svg)
+[110
+
+]
+l. 2657 Writing SolvingMicroDSOPs.idv[638] (SolvingMicroDSOPs637x.svg)
+l. 2659 Writing SolvingMicroDSOPs.idv[639] (SolvingMicroDSOPs638x.svg)
+l. 2661 Writing SolvingMicroDSOPs.idv[640] (SolvingMicroDSOPs639x.svg)
+l. 2663 Writing SolvingMicroDSOPs.idv[641] (SolvingMicroDSOPs640x.svg)
+l. 2667 Writing SolvingMicroDSOPs.idv[642] (SolvingMicroDSOPs641x.svg)
+l. 2667 Writing SolvingMicroDSOPs.idv[643] (SolvingMicroDSOPs642x.svg)
+l. 2672 Writing SolvingMicroDSOPs.idv[644] (SolvingMicroDSOPs643x.svg)
+l. 2676 Writing SolvingMicroDSOPs.idv[645] (SolvingMicroDSOPs644x.svg)
+l. 2676 Writing SolvingMicroDSOPs.idv[646] (SolvingMicroDSOPs645x.svg)
+l. 2676 Writing SolvingMicroDSOPs.idv[647] (SolvingMicroDSOPs646x.svg)
+l. 2684 Writing SolvingMicroDSOPs.idv[648] (SolvingMicroDSOPs647x.svg)
+[111]
+l. 2689 Writing SolvingMicroDSOPs.idv[649] (SolvingMicroDSOPs648x.svg)
+l. 2689 Writing SolvingMicroDSOPs.idv[650] (SolvingMicroDSOPs649x.svg)
+l. 2691 Writing SolvingMicroDSOPs.idv[651] (SolvingMicroDSOPs650x.svg)
+l. 2693 Writing SolvingMicroDSOPs.idv[652] (SolvingMicroDSOPs651x.svg)
+--- file SolvingMicroDSOPs23.html ---
+l. 2699 Writing SolvingMicroDSOPs.idv[653] (SolvingMicroDSOPs652x.svg)
+l. 2699 Writing SolvingMicroDSOPs.idv[654] (SolvingMicroDSOPs653x.svg)
+l. 2702 Writing SolvingMicroDSOPs.idv[655] (SolvingMicroDSOPs654x.svg)
+l. 2706 Writing SolvingMicroDSOPs.idv[656] (SolvingMicroDSOPs655x.svg)
+[112
+
+]
+l. 2723 Writing SolvingMicroDSOPs.idv[657] (SolvingMicroDSOPs656x.svg)
+l. 2732 Writing SolvingMicroDSOPs.idv[658] (SolvingMicroDSOPs657x.svg)
+l. 2733 Writing SolvingMicroDSOPs.idv[659] (SolvingMicroDSOPs658x.svg)
+l. 2733 Writing SolvingMicroDSOPs.idv[660] (SolvingMicroDSOPs659x.svg)
+l. 2738 Writing SolvingMicroDSOPs.idv[661] (SolvingMicroDSOPs660x.svg)
+l. 2739 Writing SolvingMicroDSOPs.idv[662] (SolvingMicroDSOPs661x.svg)
+l. 2739 Writing SolvingMicroDSOPs.idv[663] (SolvingMicroDSOPs662x.svg)
+l. 2742 Writing SolvingMicroDSOPs.idv[664] (SolvingMicroDSOPs663x.svg)
+l. 2743 Writing SolvingMicroDSOPs.idv[665] (SolvingMicroDSOPs664x.svg)
+l. 2743 Writing SolvingMicroDSOPs.idv[666] (SolvingMicroDSOPs665x.svg)
+l. 2747 Writing SolvingMicroDSOPs.idv[667] (SolvingMicroDSOPs666x.svg)
+l. 2749 Writing SolvingMicroDSOPs.idv[668] (SolvingMicroDSOPs667x.svg)
+l. 2749 Writing SolvingMicroDSOPs.idv[669] (SolvingMicroDSOPs668x.svg)
+l. 2755 Writing SolvingMicroDSOPs.idv[670] (SolvingMicroDSOPs669x.svg)
+--- file SolvingMicroDSOPs24.html ---
+l. 2767 Writing SolvingMicroDSOPs.idv[671] (SolvingMicroDSOPs670x.svg)
+l. 2768 Writing SolvingMicroDSOPs.idv[672] (SolvingMicroDSOPs671x.svg)
+l. 2768 Writing SolvingMicroDSOPs.idv[673] (SolvingMicroDSOPs672x.svg)
+l. 2769 Writing SolvingMicroDSOPs.idv[674] (SolvingMicroDSOPs673x.svg)
+l. 2777 Writing SolvingMicroDSOPs.idv[675] (SolvingMicroDSOPs674x.svg)
+l. 2779 Writing SolvingMicroDSOPs.idv[676] (SolvingMicroDSOPs675x.svg)
+l. 2781 Writing SolvingMicroDSOPs.idv[677] (SolvingMicroDSOPs676x.svg)
+--- file SolvingMicroDSOPs25.html ---
+l. 2786 Writing SolvingMicroDSOPs.idv[678] (SolvingMicroDSOPs677x.svg)
+l. 2786 Writing SolvingMicroDSOPs.idv[679] (SolvingMicroDSOPs678x.svg)
+l. 2786 Writing SolvingMicroDSOPs.idv[680] (SolvingMicroDSOPs679x.svg)
+[113
+
+]
+l. 2787 Writing SolvingMicroDSOPs.idv[681] (SolvingMicroDSOPs680x.svg)
+l. 2793 Writing SolvingMicroDSOPs.idv[682] (SolvingMicroDSOPs681x.svg)
+l. 2795 Writing SolvingMicroDSOPs.idv[683] (SolvingMicroDSOPs682x.svg)
+l. 2796 Writing SolvingMicroDSOPs.idv[684] (SolvingMicroDSOPs683x.svg)
+l. 2800 Writing SolvingMicroDSOPs.idv[685] (SolvingMicroDSOPs684x.svg)
+l. 2800 Writing SolvingMicroDSOPs.idv[686] (SolvingMicroDSOPs685x.svg)
+l. 2802 Writing SolvingMicroDSOPs.idv[687] (SolvingMicroDSOPs686x.svg)
+l. 2803 Writing SolvingMicroDSOPs.idv[688] (SolvingMicroDSOPs687x.svg)
+l. 2804 Writing SolvingMicroDSOPs.idv[689] (SolvingMicroDSOPs688x.svg)
+l. 2804 Writing SolvingMicroDSOPs.idv[690] (SolvingMicroDSOPs689x.svg)
+l. 2805 Writing SolvingMicroDSOPs.idv[691] (SolvingMicroDSOPs690x.svg)
+l. 2807 Writing SolvingMicroDSOPs.idv[692] (SolvingMicroDSOPs691x.svg)
+l. 2823 Writing SolvingMicroDSOPs.idv[693] (SolvingMicroDSOPs692x.svg)
+l. 2824 Writing SolvingMicroDSOPs.idv[694] (SolvingMicroDSOPs693x.svg)
+[114] [115] [116
+
+]
+l. 2844 --- needs --- ./Figures/PlotctMultContr.png ---
+l. 2845 Writing SolvingMicroDSOPs.idv[695] (SolvingMicroDSOPs694x.svg)
+[117
+
+] [118
+
+] [119
+
+]
+l. 2851 --- needs --- ./Figures/PlotRiskySharetOfat.png ---
+l. 2852 Writing SolvingMicroDSOPs.idv[696] (SolvingMicroDSOPs695x.svg)
+[120
+
+]
+l. 2886 Writing SolvingMicroDSOPs.idv[697] (SolvingMicroDSOPs696x.svg)
+l. 2887 Writing SolvingMicroDSOPs.idv[698] (SolvingMicroDSOPs697x.svg)
+l. 2891 Writing SolvingMicroDSOPs.idv[699] (SolvingMicroDSOPs698x.svg)
+l. 2893 Writing SolvingMicroDSOPs.idv[700] (SolvingMicroDSOPs699x.svg)
+l. 2894 Writing SolvingMicroDSOPs.idv[701] (SolvingMicroDSOPs700x.svg)
+l. 2896 Writing SolvingMicroDSOPs.idv[702] (SolvingMicroDSOPs701x.svg)
+l. 2896 Writing SolvingMicroDSOPs.idv[703] (SolvingMicroDSOPs702x.svg)
+[121
+
+]
+--- file SolvingMicroDSOPs26.html ---
+l. 2992 Writing SolvingMicroDSOPs.idv[704] (SolvingMicroDSOPs703x.svg)
+l. 2992 Writing SolvingMicroDSOPs.idv[705] (SolvingMicroDSOPs704x.svg)
+l. 2992 Writing SolvingMicroDSOPs.idv[706] (SolvingMicroDSOPs705x.svg)
+l. 2992 Writing SolvingMicroDSOPs.idv[707] (SolvingMicroDSOPs706x.svg)
+l. 2992 Writing SolvingMicroDSOPs.idv[708] (SolvingMicroDSOPs707x.svg)
+l. 2992 Writing SolvingMicroDSOPs.idv[709] (SolvingMicroDSOPs708x.svg)
+l. 2992 Writing SolvingMicroDSOPs.idv[710] (SolvingMicroDSOPs709x.svg)
+\openout5 = `./Equations/lifecyclemax.tex'.
+
+(./Equations/lifecyclemax.tex [122
+
+]
+l. 1 Writing SolvingMicroDSOPs.idv[711] (SolvingMicroDSOPs710x.svg)
+)
+\openout5 = `./Equations/dbc-with-permshk.tex'.
+
+(./Equations/dbc-with-permshk.tex
+l. 1 Writing SolvingMicroDSOPs.idv[712] (SolvingMicroDSOPs711x.svg)
+)
+\openout5 = `./Equations/subjectTo.tex'.
+
+(./Equations/subjectTo.tex
+l. 1 Writing SolvingMicroDSOPs.idv[713] (SolvingMicroDSOPs712x.svg)
+[123])
+l. 3021 Writing SolvingMicroDSOPs.idv[714] (SolvingMicroDSOPs713x.svg)
+l. 3022 Writing SolvingMicroDSOPs.idv[715] (SolvingMicroDSOPs714x.svg)
+l. 3023 Writing SolvingMicroDSOPs.idv[716] (SolvingMicroDSOPs715x.svg)
+\openout5 = `./Equations/shocks-for-lifecycle.tex'.
+
+(./Equations/shocks-for-lifecycle.tex
+l. 2 Writing SolvingMicroDSOPs.idv[717] (SolvingMicroDSOPs716x.svg)
+l. 10 Writing SolvingMicroDSOPs.idv[718] (SolvingMicroDSOPs717x.svg)
+)
+l. 3039 Writing SolvingMicroDSOPs.idv[719] (SolvingMicroDSOPs718x.svg)
+l. 3039 Writing SolvingMicroDSOPs.idv[720] (SolvingMicroDSOPs719x.svg)
+l. 3039 Writing SolvingMicroDSOPs.idv[721] (SolvingMicroDSOPs720x.svg)
+--- file SolvingMicroDSOPs27.html ---
+l. 3040 Writing SolvingMicroDSOPs.idv[722] (SolvingMicroDSOPs721x.svg)
+l. 3040 Writing SolvingMicroDSOPs.idv[723] (SolvingMicroDSOPs722x.svg)
+l. 3040 Writing SolvingMicroDSOPs.idv[724] (SolvingMicroDSOPs723x.svg)
+l. 3040 Writing SolvingMicroDSOPs.idv[725] (SolvingMicroDSOPs724x.svg)
+l. 3040 Writing SolvingMicroDSOPs.idv[726] (SolvingMicroDSOPs725x.svg)
+l. 3040 Writing SolvingMicroDSOPs.idv[727] (SolvingMicroDSOPs726x.svg)
+--- file SolvingMicroDSOPs28.html ---
+l. 3040 Writing SolvingMicroDSOPs.idv[728] (SolvingMicroDSOPs727x.svg)
+[124
+
+] [125
+
+] [126
+
+]
+l. 3044 --- needs --- ./Figures/PlotTimeVaryingParam.png ---
+[127
+
+] [128
+
+] [129
+
+]
+l. 3052 Writing SolvingMicroDSOPs.idv[729] (SolvingMicroDSOPs728x.svg)
+[130
+
+]
+l. 3065 Writing SolvingMicroDSOPs.idv[730] (SolvingMicroDSOPs729x.svg)
+l. 3065 Writing SolvingMicroDSOPs.idv[731] (SolvingMicroDSOPs730x.svg)
+l. 3071 Writing SolvingMicroDSOPs.idv[732] (SolvingMicroDSOPs731x.svg)
+l. 3072 Writing SolvingMicroDSOPs.idv[733] (SolvingMicroDSOPs732x.svg)
+l. 3075 Writing SolvingMicroDSOPs.idv[734] (SolvingMicroDSOPs733x.svg)
+l. 3076 Writing SolvingMicroDSOPs.idv[735] (SolvingMicroDSOPs734x.svg)
+--- file SolvingMicroDSOPs29.html ---
+\openout5 = `./Equations/LifeCycleMaxNormed.tex'.
+
+(./Equations/LifeCycleMaxNormed.tex
+l. 1 Writing SolvingMicroDSOPs.idv[736] (SolvingMicroDSOPs735x.svg)
+[131
+
+
+])
+\openout5 = `./Equations/FOCLifeCycle.tex'.
+
+(./Equations/FOCLifeCycle.tex
+l. 1 Writing SolvingMicroDSOPs.idv[737] (SolvingMicroDSOPs736x.svg)
+)
+l. 3140 Writing SolvingMicroDSOPs.idv[738] (SolvingMicroDSOPs737x.svg)
+l. 3141 Writing SolvingMicroDSOPs.idv[739] (SolvingMicroDSOPs738x.svg)
+l. 3141 Writing SolvingMicroDSOPs.idv[740] (SolvingMicroDSOPs739x.svg)
+l. 3142 Writing SolvingMicroDSOPs.idv[741] (SolvingMicroDSOPs740x.svg)
+l. 3144 Writing SolvingMicroDSOPs.idv[742] (SolvingMicroDSOPs741x.svg)
+l. 3147 Writing SolvingMicroDSOPs.idv[743] (SolvingMicroDSOPs742x.svg)
+[132]
+l. 3152 Writing SolvingMicroDSOPs.idv[744] (SolvingMicroDSOPs743x.svg)
+l. 3153 Writing SolvingMicroDSOPs.idv[745] (SolvingMicroDSOPs744x.svg)
+\openout5 = `./Equations/naivePowell.tex'.
+
+(./Equations/naivePowell.tex
+l. 1 Writing SolvingMicroDSOPs.idv[746] (SolvingMicroDSOPs745x.svg)
+)
+l. 3165 Writing SolvingMicroDSOPs.idv[747] (SolvingMicroDSOPs746x.svg)
+l. 3165 Writing SolvingMicroDSOPs.idv[748] (SolvingMicroDSOPs747x.svg)
+l. 3165 Writing SolvingMicroDSOPs.idv[749] (SolvingMicroDSOPs748x.svg)
+\openout5 = `./Equations/StructEstim.tex'.
+
+(./Equations/StructEstim.tex [133]
+l. 1 Writing SolvingMicroDSOPs.idv[750] (SolvingMicroDSOPs749x.svg)
+)
+l. 3183 Writing SolvingMicroDSOPs.idv[751] (SolvingMicroDSOPs750x.svg)
+l. 3183 Writing SolvingMicroDSOPs.idv[752] (SolvingMicroDSOPs751x.svg)
+--- file SolvingMicroDSOPs30.html ---
+l. 3189 Writing SolvingMicroDSOPs.idv[753] (SolvingMicroDSOPs752x.svg)
+l. 3190 Writing SolvingMicroDSOPs.idv[754] (SolvingMicroDSOPs753x.svg)
+l. 3191 Writing SolvingMicroDSOPs.idv[755] (SolvingMicroDSOPs754x.svg)
+l. 3191 Writing SolvingMicroDSOPs.idv[756] (SolvingMicroDSOPs755x.svg)
+[134
+
+] [135
+
+]
+l. 3203 --- needs --- ./Figures/PlotMeanMedianSCFcollegeGrads.png ---
+[136
+
+]
+\openout5 = `./Equations/GapEmpiricalSimulatedMedians.tex'.
+
+(./Equations/GapEmpiricalSimulatedMedians.tex
+l. 1 Writing SolvingMicroDSOPs.idv[757] (SolvingMicroDSOPs756x.svg)
+)
+--- file SolvingMicroDSOPs31.html ---
+[137
+
+
+]
+l. 3242 Writing SolvingMicroDSOPs.idv[758] (SolvingMicroDSOPs757x.svg)
+l. 3242 Writing SolvingMicroDSOPs.idv[759] (SolvingMicroDSOPs758x.svg)
+l. 3246 Writing SolvingMicroDSOPs.idv[760] (SolvingMicroDSOPs759x.svg)
+l. 3247 Writing SolvingMicroDSOPs.idv[761] (SolvingMicroDSOPs760x.svg)
+--- file SolvingMicroDSOPs32.html ---
+l. 3252 Writing SolvingMicroDSOPs.idv[762] (SolvingMicroDSOPs761x.svg)
+l. 3252 Writing SolvingMicroDSOPs.idv[763] (SolvingMicroDSOPs762x.svg)
+--- file SolvingMicroDSOPs33.html ---
+l. 3261 Writing SolvingMicroDSOPs.idv[764] (SolvingMicroDSOPs763x.svg)
+l. 3261 Writing SolvingMicroDSOPs.idv[765] (SolvingMicroDSOPs764x.svg)
+\openout5 = `./Tables/EstResults.tex'.
+
+(./Tables/EstResults.tex [138
+
+
+] [139
+
+]
+l. 4 Writing SolvingMicroDSOPs.idv[766] (SolvingMicroDSOPs765x.svg)
+[140
+
+]) [141
+
+] [142
+
+]
+l. 3287 --- needs --- ./Figures/PlotContourMedianStrEst.png ---
+l. 3288 Writing SolvingMicroDSOPs.idv[767] (SolvingMicroDSOPs766x.svg)
+[143
+
+] [144
+
+]
+--- file SolvingMicroDSOPs34.html ---
+l. 3310 Writing SolvingMicroDSOPs.idv[768] (SolvingMicroDSOPs767x.svg)
+--- file SolvingMicroDSOPs35.html ---
+l. 3329 Writing SolvingMicroDSOPs.idv[769] (SolvingMicroDSOPs768x.svg)
+[145
+
+
+
+] (./SolvingMicroDSOPs.bbl [146
+
+runsystem(if [ ! -f SolvingMicroDSOPs.bib ]; then touch SolvingMicroDSOPs.bib ;
+ fi)...executed.
+
+runsystem(if [ ! -f SolvingMicroDSOPs-Add.bib ]; then touch SolvingMicroDSOPs-A
+dd.bib ; fi)...executed.
+
+] [147])
+\BKM@file=\write6
+\openout6 = `SolvingMicroDSOPs.out.ps'.
+
+[148] (./SolvingMicroDSOPs.aux)
+\snap@out=\write7
+\openout7 = `SolvingMicroDSOPs.dep'.
+
+Dependency list written on SolvingMicroDSOPs.dep.
+ ) 
+Here is how much of TeX's memory you used:
+ 26124 strings out of 478995
+ 443126 string characters out of 5858210
+ 957153 words of memory out of 5000000
+ 42411 multiletter control sequences out of 15000+600000
+ 437266 words of font info for 123 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 125i,32n,130p,11169b,631s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on SolvingMicroDSOPs.dvi (150 pages, 542144 bytes).
