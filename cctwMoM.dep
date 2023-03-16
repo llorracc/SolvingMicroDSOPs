@@ -2,7 +2,7 @@
   *{application}{TeX}     {1990/03/25 v3.x}
   *{format} {LaTeX2e}     {2020-10-01 v2.e}
   *{file}   {cctwMoM.tex} {0000/00/00 v0.0}
-  *{file}   {./econtexRoot.tex}{0000/00/00 v0.0}
+  *{file}   {./.econtexRoot}{0000/00/00 v0.0}
   *{file}   {./Resources/econtexPaths.tex}{0000/00/00 v0.0}
   *{class}  {./Resources/texmf-local/tex/latex/econtex}{2017/08/01 v0.0}
   *{package}{snapshot}    {2002/03/05 v1.14}

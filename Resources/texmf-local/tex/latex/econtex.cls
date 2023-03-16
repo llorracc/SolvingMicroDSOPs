@@ -200,6 +200,7 @@
   {\mbox{\textsuperscript{\tiny\@thefnmark}}} % Restore footnote defn after titlepage redefines it
   \ifdvi
   \else
+  \providecommand{\ushort}{}
   \renewcommand{\ushort}{\underline} % ushort seems to not work properly for tex4ht (which compiles using dvi)
   \fi
 }
