@@ -27,7 +27,7 @@
 %%%     \jelclass can be used to show JEL classifications below the abstract
 %%%     \thanks{text of the thank-you footnote} produces a footnote at the bottom of the page containing the text
 
-\ProvidesClass{./texmf-local/tex/latex/econtex}[2017/08/01 LaTeX class for economics papers, handouts, and exam questions written by Christopher Carroll]
+\ProvidesClass{econtex}[2017/08/01 LaTeX class for economics papers, handouts, and exam questions written by Christopher Carroll]
 \NeedsTeXFormat{LaTeX2e}
 % \RequirePackage{rotating}
 \RequirePackage{snapshot} % Creates list of external files used by a LaTeX document
