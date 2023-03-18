@@ -1,12 +1,18 @@
 % -*- mode: LaTeX; TeX-PDF-mode: t; -*- # Tell emacs the file type (for syntax)
-\input{./.econtexRootinput}\documentclass[SolvingMicroDSOPs]{subfiles}
+\input{./.econtexRoot}\documentclass[SolvingMicroDSOPs]{subfiles}
 \input{\LaTeXInputs/econtex_onlyinsubfile}
 \usepackage{listings}
 \usepackage{minted}
 \begin{document}
 \lstset{language=Python,basicstyle={\small\ttfamily}}
 
-This document aims to outline the modifications we would need to have added to the configuration of models in Dolo yaml files in order for those config files to have the information necessary for them to be used for solving the kinds of models we currently solve in HARK.
+This document aims to outline the modifications we would need added to the configuration of models in Dolo yaml files in order for those config files to have the information necessary for them to be used for solving the kinds of models we currently solve in HARK.
+
+\providecommand{\stge}{s}
+\renewcommand{\stge}{s}
+
+\providecommand{\interval}{stage}
+\renewcommand{\interval}{stage}
 
 \section{The Problem - in Bellman Form}
 \input{./subfile-the-problem.texinput}
@@ -16,14 +22,25 @@ This document aims to outline the modifications we would need to have added to t
 \input{./Equations/shocks-for-lifecycle}
 The problem can be normalized by the level of permanent income $\pLvl$, yielding the resulting Bellman representation:
 \input{./Equations/LifeCycleMaxNormed}
+
 \input{./subfile-stages}
+
+But even this breakdown of the problem is insufficient for the general case.  As \cite{lujanEGMn} shows, some problems with multiple state or multiple control variables (or both) can be solved much more efficiently if the solution machinery lays the problem out as a sequence of single-control-variable choices.  For example, one might have a consumption stage that results in some stock of assets, and then a portfolio choice stage that determines the allocation of those assets between investments in the risky and the safe asset.
+
+\renewcommand{\BegStget}{s^{-}}
+\renewcommand{\MidStget}{s}
+\renewcommand{\EndStget}{s^{+}}
+
+We therefore want to allow for the problem in each period to have as many `stages' as may be convenient for solving any particular model -- say, a labor supply stage followed by a consumption stage followed by a portfolio choice stage.
+
+\input{./subfile-stage-notation}
 \input{./Equations/vBegStget}
 \input{./Equations/vMidStget}
 \input{./Equations/vEndStget}
 
 If we turn off the mortality shocks $(\Alive=1)$ and family-size shocks, and redefine the pure time preference factor as $\beta=\beth$, the problem has first order condition
 \begin{align}
-L   \uFunc^{\prime}(\cNrm) & = \DiscFac \Rfree \vEndStget^{\prime}(\mNrm - \cNrm).  \label{eq:FOCstep}
+   \uFunc^{\prime}(\cNrm) & = \DiscFac \Rfree \vEndStget^{\prime}(\mNrm - \cNrm).  \label{eq:FOCstep}
 \end{align}
 
 \section{Creating An Instance of a Model}
@@ -93,7 +110,7 @@ options:
 
 Next, one would construct at least one `stage', which consists of a set of steps that instantiate the structure of the model.  The task of defining the solution would then be to define what happens serially backwards as each step gets added.
 
-So, for example, for the buffer stock consumption problem we would have a \texttt{coptstep.yaml} file that defines the consumption optimization step of a problem, which would have an \texttt{equations} block that might look something like this
+So, for example, for the buffer stock consumption problem we would have a file that defines the consumption optimization step (call the file \texttt{coptstep.yaml}) of a problem, which would have an \texttt{equations} block that might look something like this
 
 \begin{minted}{python}
     value: |
@@ -111,7 +128,7 @@ where \texttt{vEndOfStge.deriv['a']} is a placeholder for whatever the correct n
   \uFunc^{{c}}(c) - \vEndStget^{{a}}(m-c) & = 0
 \end{align}
 
-The result of processing this step should be the construction of the optimized value of $c$ for each of the points in the state space defined as the input state space for each of the values of \texttt{m} constructed previously in the definition step, and construction of the \texttt{vMidOfStge} value function for the same states. (For the moment, we are not using EGM, because it is not clear how the syntax for EGM would work for the dolo).
+The result of processing this step should be the construction of the optimized value of $c$ for each of the points in the state space defined as the input state space for each of the values of \texttt{m} constructed previously in the definition step, and construction of the \texttt{vMidOfStge} value function for the same states. (For the moment, we are not using EGM, because it is not clear how the syntax for EGM would work for dolo).
 
 The next (earlier) step would compute the expectations that would contain the information necessary to construct the beginning-of-period value function.  That file would need to define an operation that does not exist in dolo (as we currently understand it).  That operation is basically to calculate the expectations of the value function (and other interesting objects) at the gridpoints already defined for the state variables.
 
