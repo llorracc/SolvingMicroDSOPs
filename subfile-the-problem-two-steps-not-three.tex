@@ -145,7 +145,6 @@ equations:
   statesBegOfStge: [k]
   valuesBegOfStge: [vBegOfStge]
 
-
 exogenous: !Normal
   Sigma: [[sigma_ltheta^2     , 0. ],
           [0.                 , sigma_lpsi^2]]
@@ -158,7 +157,6 @@ exogenous: !Normal
       vBegOfStge = vMidOfStge
 \end{minted}
 where the expectorate operation would be defined to construct \texttt{vBegOfStge} by calculating the expectations at the grid of points for \texttt{k} defined in the \texttt{stagesetup.yaml} file.
-
 
 \section{What about Portfolio Choice?  Depends on whether we want correlation with labor income}
 
@@ -183,14 +181,12 @@ Need to compute different values depending on which world you choose
 
 Prior step would choose among the options
 
-
 \begin{minted}{python}
 transition:
    a[stage-1] <-> k[stage]
    vEndOfStge[stage-1] <-> vBegOfStge[stage]
 \end{minted}
 and possibly it would need to have further explicit information about things like how to map whatever grid exists for $\texttt{k}$ in the current period to the corresponding grid for $\texttt{a}$ in the prior period, and any information needed to map between the value functions.
-
 
 With these files in place, the way to solve a period of the model might be something like this:
 \begin{minted}{python}
@@ -232,9 +228,6 @@ followed by
   modl.add_transition_to_prior_period = darktransparse('transit_to_prior_period.yaml')
 \end{minted}
 .
-
-
-
 
 \onlyinsubfile{\input{\LaTeXInputs/bibliography_blend}}
 
