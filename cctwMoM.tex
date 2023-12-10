@@ -31,6 +31,7 @@
 \setboolean{ctwVersion}{true}
 \newcommand{\ctw}{\ifthenelse{\boolean{ctwVersion}}}
 
+
 \usepackage{\econtexSetup}\usepackage{\econtexShortcuts}
 \write18{rm    ./Figures/List.tex }
 \write18{touch ./Figures/List.tex }
@@ -97,7 +98,9 @@ Weifeng Wu\num \\ {\small Fannie Mae}
 
 \thispagestyle{empty}
 
+
 \pagebreak\newpage
+
 
 \renewcommand{\DiscAlt}{\beta} % Erase the distinction between the alternative and the standard discount factor
 
@@ -244,6 +247,7 @@ function is linear, with an MPC\footnote{See \handoutC{CRRA-RateRisk} for a deri
 
 %\subsection{Habits}
 
+
 \section{Conclusion}
 
 The method proposed here is not universally applicable.  For example,
@@ -253,9 +257,13 @@ have obvious upper and lower bounds, and in those cases (as in the
 consumption example used in the paper), the method may result in 
 substantial improvements in accuracy and stability of solutions.
 
+
+
 \vfill\clearpage
 
 \bibliography{\econtexRoot/SolvingMicroDSOPs,economics}
+
+
 
 \end{document}
 

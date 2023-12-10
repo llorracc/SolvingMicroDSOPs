@@ -14,7 +14,6 @@ import csv
 import os
 import sys
 from builtins import range, str
-from cmath import isclose
 from time import time  # Timing utility
 
 # Parameters for the consumer type and the estimation
@@ -156,7 +155,6 @@ EstimationAgent.make_shock_history()
 
 
 def weighted_median(values, weights):
-
     inds = np.argsort(values)
     values = values[inds]
     weights = weights[inds]
@@ -175,13 +173,11 @@ def get_targeted_moments(
     empirical_groups=Data.empirical_groups,
     map_simulated_to_empirical_cohorts=Data.simulation_map_cohorts_to_age_indices,
 ):
-
     # Initialize
     group_count = len(map_simulated_to_empirical_cohorts)
     tgt_moments = np.zeros(group_count)
 
     for g in range(group_count):
-
         group_indices = empirical_groups == (g + 1)  # groups are numbered from 1
         tgt_moments[g] = weighted_median(
             empirical_data[group_indices], empirical_weights[group_indices]
@@ -203,7 +199,6 @@ def simulate_moments(
     CRRA_bound=Params.CRRA_bound,
     map_simulated_to_empirical_cohorts=Data.simulation_map_cohorts_to_age_indices,
 ):
-
     # A quick check to make sure that the parameter values are within bounds.
     # Far flung falues of DiscFacAdj or CRRA might cause an error during solution or
     # simulation, so the objective function doesn't even bother with them.
@@ -232,18 +227,13 @@ def simulate_moments(
 
     # Find the distance between empirical data and simulated medians for each age group
     group_count = len(map_simulated_to_empirical_cohorts)
-    distance_sum = 0
     sim_moments = []
     for g in range(group_count):
         cohort_indices = map_simulated_to_empirical_cohorts[
             g
         ]  # The simulated time indices corresponding to this age group
         sim_moments += [
-            np.median(
-                sim_w_history[
-                    cohort_indices,
-                ]
-            )
+            np.median(sim_w_history[cohort_indices,])
         ]  # The median of simulated wealth-to-income for this age group
 
     sim_moments = np.array(sim_moments)
@@ -374,15 +364,9 @@ def calculateStandardErrorsByBootstrap(initial_estimate, N, seed=0, verbose=Fals
         bootstrap_data = (
             bootstrap_sample_from_data(Data.scf_data_array, seed=seed_list[n])
         ).T
-        w_to_y_data_bootstrap = bootstrap_data[
-            0,
-        ]
-        empirical_groups_bootstrap = bootstrap_data[
-            1,
-        ]
-        empirical_weights_bootstrap = bootstrap_data[
-            2,
-        ]
+        w_to_y_data_bootstrap = bootstrap_data[0,]
+        empirical_groups_bootstrap = bootstrap_data[1,]
+        empirical_weights_bootstrap = bootstrap_data[2,]
 
         # Find moments with bootstrapped sample
         bstrap_tgt_moments = get_targeted_moments(
@@ -512,7 +496,6 @@ def main(
 
     # Compute standard errors by bootstrap
     if compute_standard_errors and estimate_model:
-
         # Estimate the model:
         print(
             "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
@@ -574,7 +557,6 @@ def main(
 
     # Compute sensitivity measure
     if compute_sensitivity and estimate_model:
-
         print(
             "````````````````````````````````````````````````````````````````````````````````"
         )
@@ -585,7 +567,6 @@ def main(
 
         # Find the Jacobian of the function that simulates moments
         def simulate_moments_reduced(x):
-
             moments = simulate_moments(
                 x[0],
                 x[1],

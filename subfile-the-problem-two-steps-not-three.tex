@@ -17,13 +17,13 @@ This document aims to outline the modifications we would need to have added to t
 The problem can be normalized by the level of permanent income $\pLvl$, yielding the resulting Bellman representation:
 \input{./Equations/LifeCycleMaxNormed}
 \input{./subfile-stages}
-\input{./Equations/vBegStget}
-\input{./Equations/vMidStget}
-\input{./Equations/vEndStget}
+\input{./Equations/vBegStge}
+\input{./Equations/vMidStge}
+\input{./Equations/vEndStge}
 
 If we turn off the mortality shocks $(\Alive=1)$ and family-size shocks, and redefine the pure time preference factor as $\beta=\beth$, the problem has first order condition
 \begin{align}
-L   \uFunc^{\prime}(\cNrm) & = \DiscFac \Rfree \vEndStget^{\prime}(\mNrm - \cNrm).  \label{eq:FOCstep}
+L   \uFunc^{\prime}(\cNrm) & = \DiscFac \Rfree \vEndStge^{\prime}(\mNrm - \cNrm).  \label{eq:FOCstep}
 \end{align}
 
 \section{Creating An Instance of a Model}
@@ -133,7 +133,7 @@ domain:
 \end{minted}
 where \texttt{vEndOfStge.deriv['a']} is a placeholder for whatever the correct notation would be to retrieve the derivative of \texttt{vEndOfStge} with respect to $a$ and the assumption is that the equation defined as \texttt{arbitrage} presents an expression whose value should be zero at the optimum.  The arbitrage equation therefore is equivalent to a rewritten version of our FOC \eqref{eq:FOCstep}:
 \begin{align}
-  \uFunc^{{c}}(c) - \vEndStget^{{a}}(m-c) & = 0
+  \uFunc^{{c}}(c) - \vEndStge^{{a}}(m-c) & = 0
 \end{align}
 
 The result of processing this step should be the construction of the optimized value of $c$ for each of the points in the state space defined as the input state space for each of the values of \texttt{m} constructed previously in the definition step, and construction of the \texttt{vMidOfStge} value function for the same states. (For the moment, we are not using EGM, because it is not clear how the syntax for EGM would work for the dolo).
@@ -144,6 +144,7 @@ We now need to define an earlier stage in the period, in which the stochastic sh
 equations:
   statesBegOfStge: [k]
   valuesBegOfStge: [vBegOfStge]
+
 
 exogenous: !Normal
   Sigma: [[sigma_ltheta^2     , 0. ],
@@ -157,6 +158,7 @@ exogenous: !Normal
       vBegOfStge = vMidOfStge
 \end{minted}
 where the expectorate operation would be defined to construct \texttt{vBegOfStge} by calculating the expectations at the grid of points for \texttt{k} defined in the \texttt{stagesetup.yaml} file.
+
 
 \section{What about Portfolio Choice?  Depends on whether we want correlation with labor income}
 
@@ -181,12 +183,14 @@ Need to compute different values depending on which world you choose
 
 Prior step would choose among the options
 
+
 \begin{minted}{python}
 transition:
    a[stage-1] <-> k[stage]
    vEndOfStge[stage-1] <-> vBegOfStge[stage]
 \end{minted}
 and possibly it would need to have further explicit information about things like how to map whatever grid exists for $\texttt{k}$ in the current period to the corresponding grid for $\texttt{a}$ in the prior period, and any information needed to map between the value functions.
+
 
 With these files in place, the way to solve a period of the model might be something like this:
 \begin{minted}{python}
@@ -228,6 +232,9 @@ followed by
   modl.add_transition_to_prior_period = darktransparse('transit_to_prior_period.yaml')
 \end{minted}
 .
+
+
+
 
 \onlyinsubfile{\input{\LaTeXInputs/bibliography_blend}}
 

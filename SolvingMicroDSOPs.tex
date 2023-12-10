@@ -19,6 +19,8 @@
 \newcommand{\stge}{t}
 \newcommand{\Stge}{T}
 \newcommand{\interval}{period}
+\newcommand{\move}{move}
+\newcommand{\moves}{moves}
 
 % Switches 
 \provideboolean{ctwVersion}\setboolean{ctwVersion}{false}\newcommand{\ctw}{\ifthenelse{\boolean{ctwVersion}}}
@@ -57,6 +59,7 @@
 \setboolean{habitsSolve}{false}
 \newcommand{\ifhabits}{\ifthenelse{\boolean{habitsSolve}}}
 
+
 \bibliographystyle{\econtexBibStyle}
 \begin{document}
 % Redefine \onlyinsubfile command defined in \texname.sty file:
@@ -81,6 +84,7 @@
 \maketitle
 
 \noindent  Note: The code associated with this document should work (though the Matlab code may be out of date), but has been superceded by the set of tools available in the \href{https://github.com/econ-ark/HARK}{Econ-ARK} toolkit, more specifically the \href{https://github.com/econ-ark/HARK}{HARK Framework}.  The SMM estimation code at the end has specifically been superceded by the \href{https://econ-ark.org/materials/solvingmicrodsops?launch}{SolvingMicroDSOPs} \href{https://github.com/econ-ark/REMARK}{REMARK}
+
 
 \hypertarget{Abstract}{}
 \begin{abstract}
@@ -173,7 +177,7 @@ Cagetti~\citeyearpar{cagettiWprofiles}).  % The tricks and techniques used in so
 \begin{verbatimwrite}{./subfile-the-problem.texinput}
 The usual analysis of dynamic stochastic programming problems packs a great many events (intertemporal choice, stochastic shocks, intertemporal returns, income growth, and more) into a small number of steps and variables. For the detailed analysis here, we will be careful to disarticulate everything that happens in the problem explicitly into separate steps so that each element can be scrutinized and understood in isolation.
 
-We are interested in the behavior a consumer who begins \interval $t$ with a certain amount of `capital' $\kLvl_{t}$, which is immediately rewarded by a return factor $\Rfree_{t}$ with the proceeds deposited in a \textbf{b}ank account \textbf{b}alance:
+We are interested in the behavior a consumer who begins {\interval} $t$ with a certain amount of `capital' $\kLvl_{t}$, which is immediately rewarded by a return factor $\Rfree_{t}$ with the proceeds deposited in a \textbf{b}ank account \textbf{b}alance:
 \begin{equation}\begin{gathered}\begin{aligned}
   \bLvl_{t} & = \kLvl_{t}\Rfree_{t}. \label{eq:bLvl}
 \end{aligned}\end{gathered}\end{equation}
@@ -190,7 +194,7 @@ The combination of bank balances $\bLvl$ and income $\yLvl$ define's the consume
 \end{aligned}\end{gathered}\end{equation}
 which are available to be spent on consumption $\cLvl_{t}$.  
 
-The consumer's goal is to maximize discounted utility from consumption over the rest of a lifetime whose last \interval is date $T$:
+The consumer's goal is to maximize discounted utility from consumption over the rest of a lifetime whose last {\interval} is date $T$:
 \end{verbatimwrite}
 \input{./subfile-the-problem.texinput}
 
@@ -216,11 +220,11 @@ Equation \eqref{eq:permincgrow} indicates that we are allowing for a predictable
 Finally, the utility function is of the
 Constant Relative Risk Aversion (CRRA), form, $\uFunc(\bullet) = \bullet^{1-\CRRA}/(1-\CRRA)$.
 
-As is well known, this problem can be rewritten in recursive (Bellman) form
+It is well known that this problem can be rewritten in recursive (Bellman) form
 \begin{verbatimwrite}{./Equations/vrecurse.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
-        {\pmb{\vLvl}}
-_{t}(\mLvl_{t},\pLvl_{t})  & = \max_{\cLvl_{t}}~ \uFunc(\cLvl_{t}) + {\DiscAlt}\Ex_{t}[ {\pmb{\vLvl}}
+        {\vLvl}
+_{t}(\mLvl_{t},\pLvl_{t})  & = \max_{\cLvl_{t}}~ \uFunc(\cLvl_{t}) + {\DiscAlt}\Ex_{t}[ {\vLvl}
 _{t+1}({\mLvl}_{t+1},\pLvl_{t+1})]\label{eq:vrecurse}
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
@@ -235,13 +239,14 @@ and the transition equation that defines next period's initial capital as this p
 \section{Normalization}\label{sec:normalization}
 \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Goal: Convert 2-state to 1-state problem; makes computational solutions much easier and easier to debug.}}{} The single most powerful method for speeding the solution of such models is to redefine the problem in a way that reduces the number of state variables (if possible).  Here, the obvious idea is to see whether the problem can be rewritten in terms of the ratio of various variables to permanent noncapital (`labor') income $\pLvl_{t}$ (henceforth for brevity referred to simply as `permanent income.')
 
+
 \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Call this `curly V'.}}{}
-In the last \interval of life, there is no
-future, ${\pmb{\vLvl}}
+In the last {\interval} of life, there is no
+future, ${\vLvl}
 _{T+1} = 0$, so
 the optimal plan is to consume everything:
 \begin{equation}\begin{gathered}\begin{aligned}
-      {\pmb{\vLvl}}
+      {\vLvl}
 _{T}(\mLvl_{T},\pLvl_{T})  & = \frac{\mLvl_{T}^{1-\CRRA}}{1-\CRRA}. \label{eq:levelTm1}
     \end{aligned}\end{gathered}\end{equation}
 Now define nonbold variables as the bold variable divided by
@@ -250,7 +255,7 @@ example, ${m}_{T}=\mLvl_{T}/\pLvl_{T}$; and define
 $\vFunc_{T}({m}_{T}) = \uFunc({m}_{T})$.\footnote{Nonbold value is bold value divided by $\pLvl^{1-\CRRA}$ rather than $\pLvl$.}  For our CRRA utility function, $\uFunc(xy)=x^{1-\CRRA}\uFunc(y)$, so equation (\ref{eq:levelTm1}) can be
 rewritten as
 \begin{equation*}\begin{gathered}\begin{aligned}
-      {\pmb{\vLvl}}
+      {\vLvl}
       _{T}(\mLvl_{T},\pLvl_{T})  & = \pLvl_{T}^{1-\CRRA}\frac{{m}_{T}^{1-\CRRA}}{1-\CRRA}
       \\ &      = (\pLvl_{T-1}\PermGroFac_{T})^{1-\CRRA}\frac{{m}_{T}^{1-\CRRA}}{1-\CRRA}
       \\ &= \pLvl_{T-1}^{1-\CRRA}\PermGroFac_{T}^{1-\CRRA}\vFunc_{T}({m}_{T}).
@@ -275,13 +280,13 @@ where the last equation is the normalized version of the transition equation for
       \end{aligned}\end{gathered}\end{equation*}
 }  Then it is easy to see that for $t=T-1$,
 \begin{equation*}\begin{gathered}\begin{aligned}
-      {\pmb{\vLvl}}_{T-1}(\mLvl_{T-1},\pLvl_{T-1})  & =  \pLvl_{T-1}^{1-\CRRA}\null{\vFunc}_{T-1}({m}_{T-1})
+      {\vLvl}_{T-1}(\mLvl_{T-1},\pLvl_{T-1})  & =  \pLvl_{T-1}^{1-\CRRA}\null{\vFunc}_{T-1}({m}_{T-1})
     \end{aligned}\end{gathered}\end{equation*}
 and so on back to all earlier periods.  Hence, if we solve the problem \eqref{vtNorm}
 which has only a single state variable $\mNrm_{t}$, we can obtain the levels of
 the value function, consumption, and all other variables
 from the corresponding permanent-income-normalized solution objects by multiplying each by $\pLvl_{t}$, e.g.\ ${\pmb{\cLvl}}
-_{t}(\mLvl_{t},\pLvl_{t})=\pLvl_{t}\cFunc_{t}(\mLvl_{t}/\pLvl_{t})$ (or, for the value function, ${\pmb{\vLvl}}
+_{t}(\mLvl_{t},\pLvl_{t})=\pLvl_{t}\cFunc_{t}(\mLvl_{t}/\pLvl_{t})$ (or, for the value function, ${\vLvl}
 _{t}({\mLvl}_{t},\pLvl_{t}) = \pLvl_{t}^{1-\CRRA}\vFunc_{t}({m}_{t}))$.  We have thus reduced the
 problem from two continuous state variables to one (and thereby enormously simplified its solution).
 
@@ -294,6 +299,7 @@ For some problems it will not be obvious that there is an appropriate `normalizi
 \hypertarget{The-Usual-Theory}{}
 \section{The Usual Theory, and A Bit More Notation}
 \label{sec:usualtheory}
+
 
 The first order condition for \eqref{vtNorm} with respect to ${c}_{t}$ is
 \begin{equation}\begin{gathered}\begin{aligned}
@@ -312,7 +318,7 @@ we can substitute the LHS of \eqref{eq:envelope} for the RHS of
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/Envelope.tex}\unskip
-and rolling this equation forward one \interval yields
+and rolling this equation forward one {\interval} yields
 \begin{equation}\begin{gathered}\begin{aligned}
       \uFunc^{{c}}({c}_{t+1})  & = \null{\vFunc}^{{m}}_{t+1}({a}_{t}\RNrm_{t+1}+\TranShkEmp_{t+1}) \label{eq:upctp1EqVpxtp1}
     \end{aligned}\end{gathered}\end{equation}
@@ -321,64 +327,75 @@ gives us the Euler equation for consumption
 \begin{verbatimwrite}{./Equations/cEuler.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
         \uFunc^{{c}}({c}_{t})  & = \Ex_{t}[\DiscFac\Rfree \PermGroFac_{t+1}^{-\CRRA}\uFunc^{{c}}({c}_{t+1})]. \label{eq:cEuler}
-      \end{aligned}\end{gathered}\end{equation}
+                                  \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 
 \input{./Equations/cEuler.tex}\unskip
-\begin{verbatimwrite}{./subfile-stages}
-  Although our focus so far has been on the consumer's consumption problem once $\mNrm$ is known, for articulating the steps of the computational solution it will be useful to distinguish a sequence of three steps (we use the word `steps' to capture the proposition that we are not really thinking of these as occurring at different moments in time -- only that we are putting the things that happen within a given moment into an ordered sequence).  The first step captures calculations that need to be performed before the shocks are realized, the middle step is after shocks have been realized but before the consumption decision has been made (this corresponds to the timing of $\vFunc$ in the treatment above), and the final step captures the situation \textit{after} the consumption decision has been made.
+\begin{verbatimwrite}{./subfile-stages}  Although our focus so far has been on the consumer's consumption problem once $\mNrm$ is known, for constructing the computational solution it will be useful to distinguish a sequence of three {\moves} (we use the word `\moves' to capture the fact that we are not really thinking of these as occurring at different moments in time -- only that we are putting the things that happen within a given moment into an ordered sequence).  The first {\move} captures calculations that need to be performed before the shocks are realized, the middle {\move} is after shocks have been realized but before the consumption decision has been made (this corresponds to the timing of $\vFunc$ in the treatment above), and the final {\move} captures the situation \textit{after} the consumption decision has been made.
 \end{verbatimwrite}
+\input{./subfile-stages}
 
 \begin{verbatimwrite}{./subfile-stage-notation}
-  We need to define notation for these three steps within a {\interval}. We will use $\BegStget$ as a marker for the step before shocks have been realized, and $\EndStget$ as the indicator for the situation once the choice has been made, implicitly leaving the unmarked $\stge$ to indicate the step in which the decision is made.
+  We need to define notation for these three {\moves} within a {\interval}. We will use $\BegStge$ as a marker for the {\move} before shocks have been realized, $\MidStge$ to indicate the move in which the choice is made, and $\EndStge$ as the indicator for the situation once the choice has been made.
 \end{verbatimwrite}
 \input{./subfile-stage-notation}
-\begin{verbatimwrite}{./Equations/vBegStget}
+\begin{verbatimwrite}{./Equations/vBegStge}
   \begin{equation}\begin{gathered}\begin{aligned}
-\vBegStget(\kNrm_{\stge}) & = \Ex_{\BegStget}[\vMidStget(\overbrace{\kNrm_{\stge} \Rnorm_{\stge} + \TranShkEmp_{\stge}}^{=\mNrm_{\stge}})]  \label{eq:vBegStget}
+\vBegStge(\kNrm_{\stge}) & = \Ex_{\BegStge}[\vMidStge(\overbrace{\kNrm_{\stge} \Rnorm_{\stge} + \TranShkEmp_{\stge}}^{=\mNrm_{\stge}})]  \label{eq:vBegStge}
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
-\input{./Equations/vBegStget}\unskip
-\begin{verbatimwrite}{./Equations/vMidStget}
+\input{./Equations/vBegStge}\unskip
+\begin{verbatimwrite}{./Equations/vMidStge}
   \begin{equation}\begin{gathered}\begin{aligned}
-\vMidStget(\mNrm_{\stge}) & = \uFunc(\cFunc_{\stge}(\mNrm_{\stge})) + \vEndStget(\aNrm_{\stge}) \label{eq:vMidStget}
+\vMidStge(\mNrm_{\stge}) & = \uFunc(\cFunc_{\stge}(\mNrm_{\stge})) + \vEndStge(\aNrm_{\stge}) \label{eq:vMidStge}
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
-\input{./Equations/vMidStget}\unskip
-\begin{verbatimwrite}{./Equations/vEndStget}
+\input{./Equations/vMidStge}\unskip
+\begin{verbatimwrite}{./Equations/vEndStge}
   \begin{equation}\begin{gathered}\begin{aligned}
-\vEndStget(\aNrm_{\stge}) & = \DiscFac \vBegStgetp(\underbrace{\kNrm_{\stge+1}}_{=\aNrm_{\stge}}) \label{eq:vEndStget}
+\vEndStge(\aNrm_{\stge}) & = \DiscFac \vBegStge(\underbrace{\kNrm_{\stge+1}}_{=\aNrm_{\stge}}) \label{eq:vEndStge}
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
-\input{./Equations/vEndStget}\unskip
-where the last line illustrates the notation for addressing the beginning step of a future period.
+\input{./Equations/vEndStge}\unskip
+where the last line illustrates the notation for addressing the beginning {\move} of a future {\interval}.
 
-%Now note that in equation \eqref{eq:upctp1EqVpxtp1} neither ${m}_{\stge}$ nor ${c}_{\stge}$ has any \textit{direct} effect on $\null{\vFunc}_{\stge+1}$ - only the difference between them (i.e.\ unconsumed market resources or `assets' ${a}_t$) matters.  It is therefore possible (and will turn out to be convenient) to define a function\footnote{The peculiar letter designating our new function is pronounced `Gothic v'.  Letters in this font will be used for end-of-period quantities.}  \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Define $\Alt{\vEndStget}({a}_{\stge})$.}}{}
+%Now note that in equation \eqref{eq:upctp1EqVpxtp1} neither ${m}_{\stge}$ nor ${c}_{\stge}$ has any \textit{direct} effect on $\null{\vFunc}_{\stge+1}$ - only the difference between them (i.e.\ unconsumed market resources or `assets' ${a}_t$) matters.  It is therefore possible (and will turn out to be convenient) to define a function\footnote{The peculiar letter designating our new function is pronounced `Gothic v'.  Letters in this font will be used for end-of-period quantities.}  \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Define $\Alt{\vEndStge}({a}_{\stge})$.}}{}
 
-Putting all this together, we can write the `continuation value' function from the perspective of the end of the \interval $\stge$ as 
+Putting all this together, we can write the `continuation value' function from the perspective of the end of the {\interval} $\stge$ as 
 \begin{verbatimwrite}{./Equations/vEndtdefn.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
-        \vEndStget({a}_{\stge})  & = \Ex_{\stge}[\DiscFac \PermGroFac_{\stge+1}^{1-\CRRA}\null{\vFunc}_{\stge+1}(\RNrm_{\stge+1} {a}_{\stge}+{\TranShkEmp}_{\stge+1})]  \label{eq:vEndtdefn}
+        \vEndStge({a}_{\stge})  & = \Ex_{\stge}[\DiscFac \PermGroFac_{\stge+1}^{1-\CRRA}\null{\vFunc}_{\stge+1}(\RNrm_{\stge+1} {a}_{\stge}+{\TranShkEmp}_{\stge+1})]  \label{eq:vEndtdefn}
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/vEndtdefn.tex}\unskip
-because it returns the expected $t+1$ value associated with ending \interval $\stge$ with any given amount of assets.  Differentiating with respect to $\aNrm$, we get 
+because it returns the expected $t+1$ value associated with ending {\interval} $\stge$ with any given amount of assets.  Differentiating with respect to $\aNrm$, we get 
 \begin{equation}\begin{gathered}\begin{aligned}
-      {\vPEndStget}({a}_{\stge})  & = \Ex_{\stge}[\DiscFac \Rfree \PermGroFac_{\stge+1}^{-\CRRA} \null{\vFunc}_{\stge+1}^{{m}}(\RNrm_{\stge+1}{a}_{\stge}+{\TranShkEmp}_{\stge+1})]  \label{eq:vEndPrimetdefn}
+      {\vPEndStge}({a}_{\stge})  & = \Ex_{\stge}[\DiscFac \Rfree \PermGroFac_{\stge+1}^{-\CRRA} \null{\vFunc}_{\stge+1}^{{m}}(\RNrm_{\stge+1}{a}_{\stge}+{\TranShkEmp}_{\stge+1})]  \label{eq:vEndPrimetdefn}
     \end{aligned}\end{gathered}\end{equation}
 or, substituting from equation (\ref{eq:upctp1EqVpxtp1}),
 \begin{equation}\begin{gathered}\begin{aligned}
-      \vPEndStget({a}_{\stge})  & = \Ex_{\stge}\left[\DiscFac \Rfree \PermGroFac_{\stge+1}^{-\CRRA} \uFunc^{{c}}\left(\cFunc_{\stge+1}(\RNrm_{\stge+1} {a}_{\stge}+{\TranShkEmp}_{\stge+1})\right)\right].  \label{eq:vEndPrimetOfc}
+      \vPEndStge({a}_{\stge})  & = \Ex_{\stge}\left[\DiscFac \Rfree \PermGroFac_{\stge+1}^{-\CRRA} \uFunc^{{c}}\left(\cFunc_{\stge+1}(\RNrm_{\stge+1} {a}_{\stge}+{\TranShkEmp}_{\stge+1})\right)\right].  \label{eq:vEndPrimetOfc}
     \end{aligned}\end{gathered}\end{equation}
 Finally, note for future use that the first order condition
 (\ref{eq:upceqEvtp1}) can now be rewritten compactly as
 \begin{verbatimwrite}{./Equations/upEqbetaOp.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
-        \uFunc^{{c}}({c}_{\stge})   & = \vEndStget^{{a}}({m}_{\stge}-{c}_{\stge}).
+        \uFunc^{{c}}({c}_{\stge})   & = \vEndStge^{{a}}({m}_{\stge}-{c}_{\stge}).
         \label{eq:upEqbetaOp}
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
+
 \input{./Equations/upEqbetaOp.tex}\unskip
+
+\subsection{Implementation in Python}
+
+The code which implements the tasks outlined each of the sections to come are available in the \texttt{SolvingMicroDSOPs} jupyter notebook, written in Python programming language. The benefits of Python lie in its utilization of object-oriented programming (OOP). The notebook imports various modules, including the standard \texttt{numpy} and \texttt{scipy} modules used for numerical methods in Python, as well as some user-defined modules designed to provide numerical solutions to the consumer's problem from the previous section. Before delving into the computational exercise, it is essential to touch on the practicality of these custom modules.
+
+\subsubsection{Useful auxillary files}
+
+In this exercise, two primary user-defined modules are frequently imported and utilized. The first is the \texttt{gothic\_class} module, which contains functions describing the end-of-period value functions found in equations \eqref{eq:vBegStge} - \eqref{eq:vEndStge} (and the subsequent first and second derivatives). The advantage of defining functions in the code which decompose the consumer's optimal behavior in a given period will become evident in section \ref{subsec:transformation}  
+
+The \texttt{resources} module is also used repeatedly throughout the notebook. This file has three primary objectives: (i) providing functions that discretize the continuous distributions from the theoretical model that describe the uncertainty a consumer faces, (ii) defining the utility function over consumption under a number of specifications, and (iii) enhancing the grid of end-of-period assets for which functions (such as those from the \texttt{gothic\_class} module) will be defined. These objectives will be discussed in greater detail and with respect to the numerical solution to the problem in subsequent sections of this document.
 
 \hypertarget{Solving-the-Next-To-Last-Period}{}\section{Solving the Next-to-Last Period}\label{sec:NextToLast}
 
@@ -403,7 +420,7 @@ In principle, the maximization implicitly defines a function $\cFunc_{T-1}({m}_{
 
 \hypertarget{Discretizing-the-Distribution}{}
 \subsection{Discretizing the Distribution}
-Our first time-saving step is therefore to construct a discrete approximation to the lognormal distribution that can be used in place of numerical integration.  That is, we want to approximate the expectation of a function $g(\TranShkEmp)$ by value at set of $n_{\TranShkEmp}$ points $\TranShkEmp_{i}$, each of which is given an associated probability weight $w_{i}$:
+Our first time-saving trick is therefore to construct a discrete approximation to the lognormal distribution that can be used in place of numerical integration.  That is, we want to approximate the expectation of a function $g(\TranShkEmp)$ by value at set of $n_{\TranShkEmp}$ points $\TranShkEmp_{i}$, each of which is given an associated probability weight $w_{i}$:
 \begin{equation*}\begin{gathered}\begin{aligned}
       \Ex[g(\TranShkEmp)] & = \int_{\TranShkEmpMin}^{\TranShkEmpMax}g(\TranShkEmp)d\FDist(\TranShkEmp) \\
       & \approx \sum_{\TranShkEmp = 1}^{n}w_{i}g(\TranShkEmp_{i})
@@ -439,7 +456,7 @@ distribution.\footnote{More sophisticated approximation methods exist
 \input{\econtexRoot/Figures/discreteApprox.tex}\unskip
 % \write18{cat \econtexRoot/Figures/discreteApprox.tex >> \econtexRoot/Figures/SolvingMicroDSOPs-Figures-List.tex}
 
-Substituting into our definition of $\vEndStget({a}_{t})$, for $t=T-1$
+Substituting into our definition of $\vEndStge({a}_{t})$, for $t=T-1$
 \begin{verbatimwrite}{./Equations/vDiscrete.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
         \vFunc_{T^{+}-1}({a}_{T-1})  & =   \DiscFac \PermGroFac_{t+1}^{1-\CRRA}\left(\frac{1}{n_{\TranShkEmp}}\right)\sum_{i=1}^{n_{\TranShkEmp}}   \frac{\left(\RNrm_{t+1} {a}_{t} + \TranShkEmp_{i}\right)^{1-\CRRA}}{1-\CRRA} \label{eq:vDiscrete}
@@ -459,137 +476,35 @@ so we can rewrite the maximization problem as \ifthenelse{\boolean{MyNotes}}{\ma
 \end{verbatimwrite}
 \input{./Equations/vEndTm1.tex}\unskip
 
+In the \texttt{SolvingMicroDSOPs} notebook, the section ``Discretization of the Income Shock Distribution'' provides code which instantiates the \texttt{DiscreteApproximation} class defined in the \texttt{resources} module. This class creates a discretization of the continuous log-normal distribution of transitory shocks to income by utilizing seven points, where the mean value is $-.5 \sigma^2$, and the standard deviation is $\sigma = .5$.
+
+With a close look at the \texttt{DiscreteApproximation} class and its subclasses, one may notice that the code is a computational implementation of the mathematical description of equiprobable discrete approximation in this section. Moreover, the Python code generates a graph of the discretized distribution, similar to the one depicted in figure 1.
+
 \hypertarget{The-Approximate-Consumption-and-Value-Functions}{}
 \subsection{The Approximate Consumption and Value Functions}
 
-Given a particular value of ${m}_{T-1}$, a numerical maximization
-routine can now find the ${c}_{T-1}$ that maximizes
-\eqref{eq:vEndTm1} in a reasonable amount of time.%  The {\Mma} program that solves exactly this problem is called \texttt{2period.m}.  (The archive also contains parallel Matlab programs, but these notes will dwell on the specifics of the {\Mma} implementation, which is superior in many respects.)
+Given a particular value of ${m}_{T-1}$, a numerical maximization routine can now find the ${c}_{T-1}$ that maximizes \eqref{eq:vEndTm1} in a reasonable amount of time.
 
-The first thing \texttt{2period.m} does is to read in the file
-\texttt{functions.m} which contains definitions of the consumption and
-value functions; \texttt{functions.m} also defines the function \texttt{SolveAnotherPeriod}
-which, given the existence in memory of a solution for period $t+1$,
-solves for period $t$.
+The \texttt{SolvingMicroDSOPs} notebook follows a series of steps to achieve this. Initially, parameter values for the coefficient of relative risk aversion (CRRA, $\rho$), the discount factor ($\beta$), the permanent income growth factor ($\PermGroFac$), and the risk-free interest rate ($R$) are specified in ``Define Parameters, Grids, and the  Utility Function''. Predictably, the CRRA utility function is defined for the given value of $\rho$ here as well.
 
-The next step is to
-run the programs \texttt{setup\_params.m}, \texttt{setup\_grids.m},
-\texttt{setup\_shocks.m}, respectively. \texttt{setup\_params.m} sets values for the
-parameter values like the coefficient of relative risk aversion.
-\texttt{setup\_shocks.m} calculates the values for the $\TranShkEmp_{i}$
-defined above (and puts those values, and the (identical) probability associated
-with each of them, in the vector variables \texttt{$\TranShkEmp$Vals} and
-\texttt{$\TranShkEmp$Prob}).  Finally, \texttt{setup\_grids.m} constructs a
-list of potential values of cash-on-hand and saving, then puts them in the vector
-variables \texttt{mVec} = \texttt{aVec} = $\{0,1,2,3,4\}$ respectively.
-Then \texttt{2period.m} runs the program \texttt{setup\_lastperiod.m}
-which defines the elements necessary to determine behavior in the last
-period, in which $\cFunc_{T}(m)=m$ and $\vFunc_{T}(m)=\uFunc(m)$.
+After defining the utility function, the natural borrowing constraint is defined to be $\underline{a}{T-1}=-\underline{\TranShkEmp}\RNrm{T}^{-1}$, which will be discussed in greater depth in section \ref{subsec:LiqConstrSelfImposed}. Following the reformulation of the maximization problem, an instance of the \texttt{gothic\_class} is created using the specifications and the discretized distribution described in the previous lines of code; this is required to provide the numerical solution.
 
-After all the setup, the only remaining step in
-\texttt{2period.m} is to invoke \texttt{SolveAnotherPeriod}, which
-constructs the solution for period $T-1$ given the presence of the
-solution for period $T$ (constructed by \texttt{setup\_lastperiod.m}).
+The heart of the program responsible for computing an estimated consumption function begins in ``Solving the Model by Value Function Maximization'', where a grid characterizing the possible values of market resources ($m$) is initialized, which is the first step in computing the optimal consumption and value functions. For each of the $m$ values, the consumption values $c$ that solve the minimization problem equivalent to \eqref{eq:vEndTm1} are computed using \texttt{scipy}'s minimize function. This level of consumption is used to calculate the value function at each point in the grid of market resources. The process is repeated until all $m$ grid points have been exhaused.
 
-Because we will always be comparing our solution to the perfect
-foresight solution, we also construct the variables required to
-characterize the perfect foresight consumption function in periods
-prior to $T$.  In particular, we construct the list \texttt{yExpPDV}
-(which contains the PDV of expected income -- `expected human
-wealth'), and \texttt{yMinPDV} which contains the minimum possible
-discounted value of future income at the beginning of period $T-1$
-(`minimum human wealth').\footnote{This is useful in determining the
-  search range for the optimal level of consumption in the
-  maximization problem.}
+Finally, the previously computed values of optimal consumption and the grid of market resources are utilized to generate a graph of the approximated consumption function for this specific instance of the problem. To reduce the computational expenses of solving the problem, the process is repeated with a more sparse grid of market resources.
 
-The perfect foresight consumption function is also constructed
-(\texttt{setup\_PerfectForesightSolution.m}).  This program uses the
-fact that, in {\Mma}, functions can be saved as objects using the
-commands \texttt{\#} and \texttt{\&}. The \texttt{\#} denotes the
-argument of the function, while the \texttt{\&}, placed at the end of
-the function, tells {\Mma} that the function should be saved as an
-object. In the program, the last period perfect foresight consumption
-function is saved as an element in the list \texttt{$\cNrm\digamma$ =
-  \{(\# - 1 + Last[yExpPDV]) Last[$\kappa$Min] \&\}}, where
-\texttt{Last[yExpPDV]} gives the just-constructed PDV of human wealth
-at the beginning of $T$ (equal to 1, since current income is included
-in $h_{T}$), and \texttt{Last[$\kappa$Min]} gives the perfect
-foresight marginal propensity to consume (equal to 1, since it is
-optimal to spend all resources in the last period). Since \texttt{\#}
-in the code stands in for what was called $m$ in the model, the
-discounted total wealth is decomposed into discounted non-human wealth
-\texttt{\# - 1} and discounted human wealth
-\texttt{Last[yExpPDV]}. The resulting formula then corresponds to
-$\bar{\cFunc}_{T} = (m_{T}-1+{h}_{T})\MPCmin_{T}$, which translates to
-$\bar{\cFunc}_{T} = m_{T}$ for ${h}_{T}=\MPCmin_{T}=1$.
-
-The infinite horizon perfect foresight marginal propensity to save 
-\begin{equation}\begin{gathered}\begin{aligned}
-      \MPS  & = (1/\Rfree)(\Rfree \DiscFac)^{1/\CRRA} \label{eq:lambdadefn}
-    \end{aligned}\end{gathered}\end{equation}
-is also defined because it will be useful in a number of derivations.\footnote{Detailed discussion can
-  be found in Carroll~\citeyearpar{BufferStockTheory}.}
-
-The program then constructs behavior for one iteration back from the
-last period of life by using the function
-\texttt{AddNewPeriodToParamLifeDates}.  Using the {\Mma}~command
-\texttt{AppendTo}, various existing lists (which characterized the
-solution for period $T$) are redefined to include an additional
-element representing the relevant formulas in the second to last
-period of life. For example, \texttt{$\kappa$Min} now has two
-elements.  The second element, given by \texttt{1/(1 +
-  Last[$\MPS$]/Last[$\kappa$Min])}, is the perfect foresight marginal
-propensity to consume in $t=T-1$.\footnote{Carroll~\citeyearpar{BufferStockTheory} shows that this is also a
-  recurring formula that extends inductively to earlier periods.}
-
-Next, the program defines a function \texttt{$\vEndStget$[at\_]} (in \texttt{functions\_stable.m})
-which \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny General rule:
-    functions with `Raw' in the name are exact representations of some
-    theoretical construct in the text.}}{} is the exact implementation
-of (\ref{eq:vEndtdefn}): It returns the expectation of
-the value of behaving optimally in period $T$ given any specific
-amount of assets at the end of $T-1$, ${a}_{T-1}$.
-
-The heart of the program is the next expression
-(in \texttt{functions.m}).
-This expression
-loops over the values of the variable \texttt{mVec}, solving the
-maximization problem
-(given in  equation (\ref{eq:vEndTm1})):\ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny This corresponds exactly to equation \eqref{eq:vEndTm1}.}}{}
-\begin{equation}\begin{gathered}\begin{aligned}
-      \max_{\texttt{c}} &  & \mbox{\texttt{u[c] + $\vEndStget$[mVec[[i]]-c]}} \label{eq:vEndTm1prog}
-    \end{aligned}\end{gathered}\end{equation}
-for each of the $i$ values of \texttt{mVec} (henceforth let's
-call these points ${m}_{T-1,i}$).
-\ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Clarify the
-    {\Mma} syntax that only the last item in the expression becomes
-    the table entry.  Lines 14-18 solve and put the result in cSoln.}}{}
-The maximization routine returns two values: the maximized value,
-and the value of ${c}$ which yields that maximized value.
-When the loop (the \texttt{Table} command) is finished, the variable
-\texttt{vAndcList} contains two lists, one with the values
-$\vNrm_{T-1,i}$ and the other with the consumption levels
-${c}_{T-1,i}$ associated with the ${m}_{T-1,i}$.
-\ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny The expression
-    $\{$cSoln[[1]],(c /. cSoln[[2]])$\}$ extracts the results. The
-    Transpose commands extract the first and second columns.}}{}
 
 \hypertarget{an-interpolated-consumption-function}{}
 \subsection{An Interpolated Consumption Function} \label{subsec:LinInterp}
 
-Given a set of points on a function (in this case, the consumption function $\cFunc_{T-1}(\mNrm)$), we can create an object called an `interpolating function' which when applied to an input ${m}$ will yield the value of $\cNrm$ that corresponds to a linear `connect-the-dots' interpolation of the value of $\cNrm$ from the points, creating a function that aims to provide an approximation of the functions whose points have been sampled.  We will do this to define an approximation to the consumption function $\Alt{\cFunc}_{T-1}({m}_{T-1})$ which, when called with an ${m}_{T-1}$ that is equal to one of the points in \texttt{mVec[[i]]} returns the associated value of ${c}_{T-1,i}$, and when called with a value of ${m}_{T-1}$ that is not exactly equal to one of the \texttt{mVec[[i]]}, returns the value of ${c}$ that reflects a linear interpolation between the ${c}_{T-1,i}$ associated with the two \texttt{mVec[[i]]} points nearest to ${m}_{T-1}$.  Thus if the function is called with ${m}_{T-1} = 1.75$ and the nearest gridpoints \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Go to the optimal consumption figure and show the connect-the-dots; point out that it's more obvious for the ${\vFunc}_{T-1}$.}}{} are ${m}_{j,T-1}=1$ and ${m}_{k,T-1}=2$ then the value of ${c}_{T-1}$ returned by the function would be $(0.25 {c}_{j,T-1}+0.75 {c}_{k,T-1})$. We can define a numerical approximation to the value function $\Alt{\vFunc}_{T-1}({m}_{T-1})$ in an exactly analogous way.
+Given a set of points on a function (in this case, the consumption function $\cFunc_{T-1}(\mNrm)$), we can create an object called an `interpolating function' which when applied to an input ${m}$ will yield the value of $\cNrm$ that corresponds to a linear `connect-the-dots' interpolation of the value of $\cNrm$ from the points, creating a function that aims to provide an approximation of the functions whose points have been sampled.
+
+This is accompished in ``An Interpolated Consumption Function'', where the \texttt{InterpolatedUnivariateSpline} function is called from the \texttt{scipy} module to define an approximation to the consumption function $\Alt{\cFunc}_{T-1}({m}_{T-1})$. That is, when called with an ${m}_{T-1}$ that is equal to one of the points in \texttt{mVec\_int} returns the associated value of ${c}_{T-1,i}$, and when called with a value of ${m}_{T-1}$ that is not exactly equal to one of the \texttt{mVec\_int}, returns the value of ${c}$ that reflects a linear interpolation between the ${c}_{T-1,i}$ associated with the two \texttt{mVec\_int} points nearest to ${m}_{T-1}$.  Thus if the function is called with ${m}_{T-1} = 1.75$ and the nearest gridpoints \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Go to the optimal consumption figure and show the connect-the-dots; point out that it's more obvious for the ${\vFunc}_{T-1}$.}}{} are ${m}_{j,T-1}=1$ and ${m}_{k,T-1}=2$ then the value of ${c}_{T-1}$ returned by the function would be $(0.25 {c}_{j,T-1}+0.75 {c}_{k,T-1})$. We can define a numerical approximation to the value function $\Alt{\vFunc}_{T-1}({m}_{T-1})$ in an exactly analogous way.
+
 
 Figures \ref{fig:PlotcTm1Simple} and~\ref{fig:PlotVTm1Simple} show
 plots of the $\Alt{\cFunc}_{T-1}$ and $\Alt{\vFunc}_{T-1}$
-\texttt{InterpolatingFunctions} that are generated by the program
-\texttt{2PeriodInt.m}.  While the $\Alt{\cFunc}_{T-1}$ function looks
-very smooth, the fact that the $\Alt{\vFunc}_{T-1}$ function is a set
-of line segments is very evident.  This figure provides the beginning
-of the intuition for why trying to approximate the value function
-directly is a bad idea (in this context).\footnote{For some problems,
-  especially ones with discrete choices, value function approximation is unavoidable;
-  nevertheless, even in such problems, the techniques sketched below can
-  be very useful across much of the range over which the problem is defined.}
+\texttt{InterpolatedUnivariateSpline} function calls. While the $\Alt{\cFunc}_{T-1}$ function looks very smooth, the fact that the $\Alt{\vFunc}_{T-1}$ function is a set of line segments is very evident.  This figure provides the beginning of the intuition for why trying to approximate the value function directly is a bad idea (in this context).\footnote{For some problems,especially ones with discrete choices, value function approximation is unavoidable; nevertheless, even in such problems, the techniques sketched below can be very useful across much of the range over which the problem is defined.}
 
 \hypertarget{PlotcTm1Simple}{}
 \begin{figure}
@@ -610,45 +525,36 @@ directly is a bad idea (in this context).\footnote{For some problems,
 
 \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Good approximation in the sense that increasing the number of points makes no discernable difference.}}{}
 
-\texttt{2period.m} works well in the sense that it
-generates a good approximation to the true optimal consumption
-function.  However, there is a clear inefficiency in the program:
-Since it uses equation \eqref{eq:vEndTm1}, for every value
-of ${m}_{T-1}$ the program must calculate the utility consequences of
-various possible choices of $\cNrm_{T-1}$ as it searches for the best choice.
+The \texttt{InterpolatedUnivariateSpline} function works well in the sense that it generates a good approximation to the true optimal consumption function. However, there is a clear inefficiency in the program: Since it uses equation \eqref{eq:vEndTm1}, for every value of ${m}_{T-1}$ the program must calculate the utility consequences of various possible choices of $\cNrm_{T-1}$ as it searches for the best choice.
 \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Problem:
     \eqref{eq:maxprob2} means for every ${m}_{T-1}$ calc the value of
     $\cFunc_{T-1}$; for a given ${a}_{T-1}$ (say 0) the value may be
-    calculated many times.}}{} But for any given value of ${a}_{T-1}$,
-there is a good chance that the program may end up calculating the
-corresponding $\vEndStget$ many times while maximizing utility from different
-${m}_{T-1}$'s.  For example, it is possible that the program will
-calculate the value of ending the period with ${a}_{T-1}=0$ dozens of times.  It would
-be much more efficient if the program could make that calculation once
-and then merely recall the value when it is needed again.
+    calculated many times.}}{}
+
+For any given value of ${a}_{T-1}$, notice that there is a good chance that the program may end up calculating the corresponding $\vEndStge$ many times while maximizing utility from different ${m}_{T-1}$'s.  For example, it is possible that the program will calculate the value of ending the period with ${a}_{T-1}=0$ dozens of times.  It would be much more efficient if the program could make that calculation once and then merely recall the value when it is needed again.
 
 This can be achieved using the same interpolation technique used above
 to construct a direct numerical approximation to the value function:
 Define a grid of possible values for saving at time $T-1$,
 $\vec{a}_{T-1}$
 (\texttt{aVec}
-in \texttt{setup\_grids.m}), designating the
+in the code), designating the
 specific points $\null{a}_{T-1,i}$; for each of these values of
 $\null{a}_{T-1,i}$, calculate the vector $\vec{\vFunc}_{T^{+}-1}$ as the collection of points $\vFunc_{T^{+}-1,i} =
 \vFunc_{T^{+}-1}(\null{a}_{T-1,i})$ using equation
 (\ref{eq:vEndtdefn}); then construct an
-\texttt{InterpolatingFunction} object
-$\Alt{\vFunc}_{T^{+}-1}({a}_{T-1})$ from the list of 
-points on the function captured in the $\vec{a}_{T-1}$ and $\vec{\vFunc}_{T^{+}-1}$ vectors.
+\texttt{InterpolatingUnivariateSpline} object
+$\Alt{\vFunc}_{T^{+}-1}({a}_{T-1})$ by passing the lists \texttt{aVec} and \texttt{gothicvVec} as arguments.
+These lists contain the points of the $\vec{a}_{T-1}$ and $\vec{\vFunc}_{T^{+}-1}$ vectors, respectively.
 
-Thus, we are now interpolating for the function 
+As seen in the section ``Interpolating Expectations'', we are now interpolating for the function 
 that reveals the expected value of \textit{ending} the period with a given amount
 of assets.\footnote{What we are doing here is closely related to `the
   method of parameterized expectations' of
   \cite{denHaanMarcet:parameterized}; the only difference is that our
-  method is essentially a nonparametric version.}  The
-program \texttt{2periodIntExp.m} solves this problem.  Figure~\ref{fig:PlotOTm1RawVSInt} compares the true value function to the
-\texttt{InterpolatingFunction} approximation; the functions are of course
+  method is essentially a nonparametric version.}  The problem is solved in the same block withthe remaining following lines of code. Figure~\ref{fig:PlotOTm1RawVSInt}
+compares the true value function to the
+approximation produced following the interpolation procedure; the functions are of course
 identical at the gridpoints chosen for ${a}_{T-1}$ and they appear
 reasonably close except in the region below
 ${m}_{T-1}=1$.
@@ -728,6 +634,12 @@ The first order condition of the maximization problem in period $T-1$ is:
   \label{fig:PlotuPrimeVSOPrime}
 \end{figure}
 
+In the notebook, ``Value Function versus the First Order Condition'' completes the task of finding the values
+of consumption which satisfy the first order condition in \eqref{eq:FOCTm1} using
+the \texttt{brentq} function from the \texttt{scipy} module. Notice that the use of  \texttt{u.prime} and \texttt{gothic.VP\_Tminus1}
+is possible since they are already defined in the
+\texttt{resources} and \texttt{gothic\_class} modules.
+
 The downward-sloping curve in Figure \ref{fig:PlotuPrimeVSOPrime}
 shows the value of ${c}_{T-1}^{-\CRRA}$ for our baseline parameter values
 for $0 \leq {c}_{T-1} \leq 4$ (the horizontal axis).  The solid
@@ -748,7 +660,7 @@ intersect slightly below ${c}_{T-1}=2.5$.  Thus, increasing ${m}_{T-1}$
 from 3 to 4 increases optimal consumption by about 0.5.
 
 \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Flip back to Figure
-    4 to make the point that $\Alt{\vEndStget}^{{a}}$ is a step
+    4 to make the point that $\Alt{\vEndStge}^{{a}}$ is a step
     function.}}{} Now consider the derivative of our function
 $\Alt{\vFunc}_{T^{+}-1}({a}_{T-1})$.  Because we have constructed
 $\Alt{\vFunc}_{T^{+}-1}$ as a linear interpolation, the slope of
@@ -776,7 +688,7 @@ $\Alt{\vFunc}_{T^{+}-1}^{{a}}(4-{c}_{T-1})$; and as the diagram shows,
 this intersection is only slightly above 2.  Hence, this figure
 illustrates why the numerical consumption function plotted earlier
 returned values very close to ${c}_{T-1}=2$ for both ${m}_{T-1}=3$ and
-${m}_{T-1}=4$.
+${m}_{T-1}=4$. 
 
 We would obviously obtain much better estimates of the point of
 intersection between $\uFunc^{{c}}({c}_{T-1})$ and
@@ -785,7 +697,7 @@ $\Alt{\vFunc}^{{a}}_{T^{+}-1}$ were not a step function.  In
 fact, we already know how to construct linear interpolations
 to functions, so the obvious next step is to construct a
 linear interpolating approximation to the \textit{expected marginal
-  value of end-of-period assets function} $\vEndStget^{\prime}$. That is, we calculate
+  value of end-of-period assets function} $\vEndStge^{\prime}$. That is, we calculate
 \begin{equation}\begin{gathered}\begin{aligned}
       \vFunc_{T^{+}-1}^{{a}}({a}_{T-1})  & =  \DiscFac \Rfree \PermGroFac_{T}^{-\CRRA} \left(\frac{1}{n_{\TranShkEmp}}\right) \sum_{i=1}^{n_{\TranShkEmp}} \left(\RNrm_{T} {a}_{T-1} + \TranShkEmp_{i}\right)^{-\CRRA} \label{eq:vEndPrimeTm1}
     \end{aligned}\end{gathered}\end{equation}
@@ -802,10 +714,13 @@ interpolating function that fits this set of points.
   \label{fig:PlotOPRawVSFOC}
 \end{figure}
 
-The program file \texttt{functionsIntExpFOC.m} therefore
-uses the function \texttt{vEndStgeta[at\_]} defined in \texttt{functions\_stable.m}
-as the embodiment of equation~(\ref{eq:vEndPrimeTm1}), and constructs the
-\texttt{InterpolatingFunction} as described above.  The results are
+
+This is done by making a call to the \texttt{InterpolatedUnivariateSpline} function,
+passing it \texttt{aVec} and \texttt{vpVec} as arguments. Note that in defining the list of values \texttt{vpVec}, we again makes use of the
+predefined \texttt{gothic.VP\_Tminus1} function. These steps are the embodiment of equation~(\ref{eq:vEndPrimeTm1}), and construct the
+interpolation of the expected marginal value of end-of-period assets as described above.
+
+The results are
 shown in Figure \ref{fig:PlotOPRawVSFOC}.  The linear
 interpolating approximation looks roughly as good (or bad) for the
 \textit{marginal} value function as it was for the level of the value
@@ -823,7 +738,7 @@ value function (short dashes).
 \end{figure}
 
 \hypertarget{Transformation}{}
-\subsection{Transformation}
+\subsection{Transformation}\label{subsec:transformation}
 
 Even the new-and-improved consumption function diverges notably from the true
 solution, especially at lower values of ${m}$.  That is because the
@@ -897,8 +812,10 @@ $\Alt{\cFunc}_{T^{+}-1}$ as the interpolating function connecting
 these
 points.  % A comparison of the result to the true consumed function is presented in figure~\ref{fig:GothVInvVSGothC}.  The two solutions are quite close.
 
+
 \hypertarget{The-Natural-Borrowing-Constraint-and-the-a-Lower-Bound}{}
 \subsection{The `Natural' Borrowing Constraint and the $a_{T-1}$ Lower Bound} \label{subsec:LiqConstrSelfImposed}
+
 
 This is the appropriate moment to ask an awkward question we have so far
 neglected: How should a function like $\Alt{\cFunc}_{T^{+}-1}$
@@ -963,10 +880,10 @@ will happen instead, note first that if we are approximating $\vFunc^{{a}}_{T^{+
 \texttt{aVec} must be greater than $\underline{a}_{T-1}$
 (because the expectation for any gridpoint $\leq \underline{a}_{T-1}$ is undefined).  Then when the
 approximating $\vFunc^{{a}}_{T^{+}-1}$ function is evaluated at
-some value less than the first element in \texttt{aVec[1]}, the
+some value less than the first element in \texttt{aVec}, the
 approximating function will linearly extrapolate the slope that
 characterized the lowest segment of the piecewise linear approximation
-(between \texttt{aVec[1]} and \texttt{aVec[2]}), a
+(between \texttt{aVec[0]} and \texttt{aVec[1]}), a
 procedure that will return a positive finite number, even if the
 requested ${a}_{T-1}$ point is below $\underline{a}_{T-1}$.  This means that the
 precautionary saving motive is understated, and by an arbitrarily
@@ -982,8 +899,11 @@ corresponding amount of ${c}$ must approach \textit{its} minimum possible value:
 
 The upshot of this discussion is a realization that all we need to do is to
 augment each of the $\vec{a}_{T-1}$ and $\vec{c}_{T-1}$ vectors with an extra point so that the
-first element in the list used to produce our \texttt{InterpolatingFunction} is
-$\{{a}_{T-1,0},{c}_{T-1,0}\}=\{\underline{a}_{T-1},0.\}$.
+first element in the list used to produce our interpolation function is
+$\{{a}_{T-1,0},{c}_{T-1,0}\}=\{\underline{a}_{T-1},0.\}$. This is done in section
+``The Self-Imposed `Natural' Borrowing Constraint and the $a_{T-1}$ Lower Bound'' of the notebook,
+which can be seen in the defined lists
+\texttt{aVecBot} and \texttt{cVec3Bot}.
 
 \hypertarget{GothVInvVSGothC}{}
 \begin{figure}
@@ -992,7 +912,8 @@ $\{{a}_{T-1,0},{c}_{T-1,0}\}=\{\underline{a}_{T-1},0.\}$.
   \label{fig:GothVInvVSGothC}
 \end{figure}
 
-Figure\ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny True $\cEndFunc$ is solid, linear approx is dashed.}}{} \ref{fig:GothVInvVSGothC} plots the results (generated by the program \texttt{2periodIntExpFOCInv.m}).  The solid line calculates the exact numerical value of $\cFunc_{T^{+}-1}({a}_{T-1})$ while the dashed line is the linear interpolating approximation $\Alt{\cFunc}_{T^{+}-1}({a}_{T-1}).$ This figure illustrates the value of the transformation: The true function is close to linear, and so the linear approximation is almost indistinguishable from the true function except at the very lowest values of ${a}_{T-1}$.
+
+From there, we plot the lists that have been appended with the natural borrowing contraint and the associated minimal level of consumption. The subseqeunt figure\ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny True $\cEndFunc$ is solid, linear approx is dashed.}}{} \ref{fig:GothVInvVSGothC} shows the result of this procedure. The solid line calculates the exact numerical value of $\cFunc_{T^{+}-1}({a}_{T-1})$ while the dashed line is the linear interpolating approximation $\Alt{\cFunc}_{T^{+}-1}({a}_{T-1}).$ This figure illustrates the value of the transformation: The true function is close to linear, and so the linear approximation is almost indistinguishable from the true function except at the very lowest values of ${a}_{T-1}$.
 
 Figure~\ref{fig:GothVVSGothCInv} similarly shows that when we generate
 $\Alt{\Alt{\vFunc}}_{T^{+}-1}^{\prime}({a}_{T-1})$ as
@@ -1000,7 +921,8 @@ $[\Alt{\cFunc}_{T^{+}-1}({a}_{T-1})]^{-\CRRA}$ (dashed line) we
 obtain a \textit{much} closer approximation to the true function
 $\vFunc^{{a}}_{T^{+}-1}({a}_{T-1})$ (solid line) than we did in
 the previous program which did not do the
-transformation (Figure~\ref{fig:PlotOPRawVSFOC}).
+transformation (Figure~\ref{fig:PlotOPRawVSFOC}). The calculation of marginal value using the transformation is performed and the
+associated figure is produced.
 
 \hypertarget{GothVVSGothCInv}{}
 \begin{figure}
@@ -1009,11 +931,13 @@ transformation (Figure~\ref{fig:PlotOPRawVSFOC}).
   \label{fig:GothVVSGothCInv}
 \end{figure}
 
+
+
 \hypertarget{The-Method-of-Endogenous-Gridpoints}{}
 \subsection{The Method of Endogenous Gridpoints}
 
 Our solution procedure for ${c}_{T-1}$ still requires us, for each
-point in $\vec{m}_{T-1}$ (\texttt{mVect} in the code), to use a
+point in $\vec{m}_{T-1}$ (\texttt{mVec} in the code), to use a
 numerical rootfinding algorithm to search for the value of ${c}_{T-1}$
 that solves $\uFunc^{{c}}({c}_{T-1}) =
 \vFunc^{{a}}_{T^{+}-1}({m}_{T-1}-{c}_{T-1})$.  Unfortunately, rootfinding
@@ -1044,14 +968,17 @@ obtain the ${m}_{T-1,i}$ that corresponds to both of them from
 
 These ${m}_{T-1}$ gridpoints are ``endogenous'' in contrast to the usual solution method of
 specifying some \textit{ex-ante} grid of values of ${m}_{T-1}$ and then using a rootfinding
-routine to locate the corresponding optimal ${c}_{T-1}$.
-
-Thus, we can generate a set of ${m}_{T-1,i}$ and ${\cNrm}_{T-1,i}$
+routine to locate the corresponding optimal ${c}_{T-1}$. This routine is performed in ``Endogenous Gridpoints''
+. First, the \texttt{gothic.C\_Tminus1} function is called for each of the pre-specfied
+values of end-of-period assets stored in \texttt{aVec}. These values of consumption and assets
+are used to produce the list of endogenous gridpoints, stored in the object
+\texttt{mVec\_egm}. With the $\vec{\cFunc}_{T^{+}-1}$ values in hand, we can generate a set of ${m}_{T-1,i}$ and ${\cNrm}_{T-1,i}$
 pairs that can be interpolated between in order to yield
-$\Alt{\cFunc}({m}_{T-1})$ at virtually zero computational cost once we
-have the $\vec{\cFunc}_{T^{+}-1}$ values in hand!\footnote{This is
-  the essential point of \cite{carrollEGM}.} One might worry
-about whether the $\{{m},{c}\}$ points obtained in this way will provide a
+$\Alt{\cFunc}({m}_{T-1})$ at virtually zero computational cost!\footnote{This is
+  the essential point of \cite{carrollEGM}.} This is done in the final line of code in this block, and the following
+code block produces the graph of the interpolated consumption function using this procedure.
+
+One might worry about whether the $\{{m},{c}\}$ points obtained in this way will provide a
 good representation of the consumption function as a whole, but in
 practice there are good reasons why they work well (basically, this
 procedure generates a set of gridpoints that is naturally dense right
@@ -1065,8 +992,9 @@ around the parts of the function with the greatest nonlinearity).
 Figure~\ref{fig:ComparecTm1AD} plots the actual consumption function
 ${\cFunc}_{T-1}$ and the approximated consumption function $\Alt{\cFunc}_{T-1}$
 derived by the method of endogenous grid points. Compared to the approximate consumption
-functions illustrated in Figure~\ref{fig:PlotcTm1ABC} $\Alt{\cFunc}_{T-1}$ is quite close
+functions illustrated in Figure~\ref{fig:PlotcTm1ABC}, $\Alt{\cFunc}_{T-1}$ is quite close
 to the actual consumption function.
+
 
 \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Different transformation for $\vFunc$ than for $\vFunc^{\prime}$.}}{}
 
@@ -1098,6 +1026,7 @@ absolute gap between points).
   \label{fig:GothVInvVSGothCEE}
 \end{figure}
 
+
 \hypertarget{GothVVSGothCInvEEE}{}
 \begin{figure}
   \includegraphics[width=6in]{./Figures/GothVVSGothCInvEEE}
@@ -1106,9 +1035,13 @@ absolute gap between points).
   \label{fig:GothVVSGothCInvEE}
 \end{figure}
 
-The results (generated by the program \texttt{2periodIntExpFOCInvEEE.m})
-are depicted in Figures~\ref{fig:GothVInvVSGothCEE} and
-\ref{fig:GothVVSGothCInvEE}, which are notably closer to their
+Section ``Improve the $\mathbb{A}_{grid}$'' begins by defining a function which takes as arguments the specifications of an initial grid of assets
+(captured by the arguments \texttt{minval}, \texttt{maxval}, and \texttt{size}) and returns the new grid incorporating the
+multi-exponential approach outlined above. Then, a call is made to this function and the improved
+grid of assets is stored in the object \texttt{aVec\_eee}. Lastly, the endogenous gridpoint method described in the previous
+section is performed using this new grid of assets.
+Notice that the graphs depicted in Figures~\ref{fig:GothVInvVSGothCEE} and
+\ref{fig:GothVVSGothCInvEE} are notably closer to their
 respective truths than the corresponding figures that used the original
 grid.
 
@@ -1328,12 +1261,15 @@ grid.
 \hypertarget{Approximating-the-Slope-Too}{}
 \subsection{Approximating the Slope Too}
 
+
 Until now, we have calculated the level of consumption at
 various different gridpoints and used linear interpolation\ctw{.}{ (either
   directly for $\cFunc_{T-1}$ or indirectly for, say, $\Hi{\chiFunc}_{T-1}$).}  But the
 resulting piecewise linear approximations have the unattractive feature
 that they are not differentiable at the `kink points' that correspond to
 the gridpoints where the slope of the function changes discretely.
+
+
 
 \cite{BufferStockTheory} shows that the true consumption function for
 this problem 
@@ -1362,15 +1298,15 @@ consume (designated $\MPC$) at each of the gridpoints,
 $\cFunc^{\mNrm}_{t}$ (the vector of such values is 
 $\vec{\MPC}_{t}$).  These can be obtained by differentiating the
 Euler equation \eqref{eq:upEqbetaOp} (where we define
-$\mathfrak{m}_{t}({a}) \equiv \cEndStget({a})+{a}$):
+$\mathfrak{m}_{t}({a}) \equiv \cEndStge({a})+{a}$):
 \begin{equation}\begin{gathered}\begin{aligned}
-      \uFunc^{{c}}({\cFunc}_{t})   & = \hat{\vEndStget}^{\aNrm}(\mathfrak{m}_{t}-{\cFunc}_{t})
+      \uFunc^{{c}}({\cFunc}_{t})   & = \hat{\vEndStge}^{\aNrm}(\mathfrak{m}_{t}-{\cFunc}_{t})
     \end{aligned}\end{gathered}\end{equation}
 with respect to $\aNrm$, yielding a marginal propensity to
 \textit{have consumed} $\cFunc_{\overline{t}}^{\aNrm}$ at each gridpoint:
 \begin{equation}\begin{gathered}\begin{aligned}
-      \uPP(\cEndStget)\cEndStget^{\aNrm}  & = \hat{\vEndStget}^{\aNrm}(\mathfrak{m}_{t}-{\cFunc}_{t})
-      \\ \cEndStget^{\aNrm}  & = \hat{\vEndStget}^{\aNrm}(\mathfrak{m}_{t}-{\cFunc}_{t})/\uPP(\cEndStget)
+      \uPP(\cEndStge)\cEndStge^{\aNrm}  & = \hat{\vEndStge}^{\aNrm}(\mathfrak{m}_{t}-{\cFunc}_{t})
+      \\ \cEndStge^{\aNrm}  & = \hat{\vEndStge}^{\aNrm}(\mathfrak{m}_{t}-{\cFunc}_{t})/\uPP(\cEndStge)
     \end{aligned}\end{gathered}\end{equation}
 and the marginal propensity to consume at the beginning of the period is obtained from the marginal
 propensity to have consumed by noting that
@@ -1385,7 +1321,10 @@ yields the MPC from
       \\ \cFunc^{\mNrm}  & = \cEndFunc^{\aNrm}/(1+\cEndFunc^{\aNrm}) \label{eq:MPCfromMPTHC}.
     \end{aligned}\end{gathered}\end{equation}
 
+
 Designating $\Alt{\Hi{\cFunc}}_{T-1}$ as the approximated consumption rule obtained using an interpolating polynomial approximation to $\Hi{\chiFunc}$ that matches both the level and the first derivative at the gridpoints, Figure~\ref{fig:IntExpFOCInvPesReaOptGapPlot} plots the difference between this latest approximation and the true consumption rule for period $T-1$ up to the same large value (far beyond the largest gridpoint) used in prior figures.  Of course, at the gridpoints the approximation will match the true function; but this figure illustrates that the approximation is quite accurate far beyond the last gridpoint (which is the last point at which the difference touches the horizontal axis).  (We plot here the difference between the two functions rather than the level plotted in previous figures, because in levels the approximation error would not be detectable even to the most eagle-eyed reader.)
+
+
 
 \hypertarget{IntExpFOCInvPesReaOptGapPlot}{}
 \begin{figure}
@@ -1393,6 +1332,9 @@ Designating $\Alt{\Hi{\cFunc}}_{T-1}$ as the approximated consumption rule obtai
   \caption{Difference Between True $\cFunc_{T-1}$ and $\Alt{\Hi{\cFunc}}_{T-1}$ Is Minuscule}
   \label{fig:IntExpFOCInvPesReaOptGapPlot}
 \end{figure}
+
+
+
 
 \hypertarget{Value}{}
 \subsection{Value}
@@ -1651,13 +1593,13 @@ Designating $\Alt{\Hi{\cFunc}}_{T-1}$ as the approximated consumption rule obtai
 
   But for \textit{all} $\mNrm_{t}$,
   \begin{equation*}\begin{gathered}\begin{aligned}
-        \bar{\vFunc}_{t}(\mNrm)  & = \uFunc(\bar{\cNrm}_{t}(\mNrm))+ \bar{\vEndStget}(\mNrm-\bar{\cNrm}_{t}(\mNrm)),
+        \bar{\vFunc}_{t}(\mNrm)  & = \uFunc(\bar{\cNrm}_{t}(\mNrm))+ \bar{\vEndStge}(\mNrm-\bar{\cNrm}_{t}(\mNrm)),
       \end{aligned}\end{gathered}\end{equation*}
   and we assume that for the consumer below the cusp point consumption is given by $\MPCmax \aboveMin \mNrm_{t}$ so for $\mNrm_{t}< \mtCusp$
   \begin{equation*}\begin{gathered}\begin{aligned}
-        \bar{\vFunc}_{t}(\mNrm)  & = \uFunc( \MPCmax_{t} \aboveMin \mNrm)+ \bar{\vEndStget}((1-\MPCmax_{t})\aboveMin \mNrm),
+        \bar{\vFunc}_{t}(\mNrm)  & = \uFunc( \MPCmax_{t} \aboveMin \mNrm)+ \bar{\vEndStge}((1-\MPCmax_{t})\aboveMin \mNrm),
       \end{aligned}\end{gathered}\end{equation*}
-  which is easy to compute because $\bar{\vEndStget}(\aNrm_{t}) = \DiscFac \bar{\vFunc}_{t+1}(\aNrm_{t}\RNrm+1)$
+  which is easy to compute because $\bar{\vEndStge}(\aNrm_{t}) = \DiscFac \bar{\vFunc}_{t+1}(\aNrm_{t}\RNrm+1)$
   where $\bar{\vFunc}_{t}$ is as defined above because a consumer who ends the current period with assets exceeding
   the lower bound will not expect to be constrained next period.  (Recall again that we are merely constructing an object that is guaranteed to be an \textit{upper bound} for the value that the `realist' consumer will experience.)  At the gridpoints defined by the solution of the 
   consumption problem can then construct
@@ -1672,9 +1614,11 @@ Designating $\Alt{\Hi{\cFunc}}_{T-1}$ as the approximated consumption rule obtai
 \hypertarget{Extension-A-Stochastic-Interest-Factor}{}
 \subsection{Extension: A Stochastic Interest Factor}
 
+
 Thus far we have assumed that the interest factor is constant at $\Rfree$.  Extending the
 previous derivations to allow for a perfectly forecastable time-varying interest factor $\Rfree_{t}$ 
 would be trivial.  Allowing for a stochastic interest factor is less trivial.  
+
 
 The easiest case is where the interest factor is i.i.d.,
 \begin{verbatimwrite}{./Equations/distRisky.tex}
@@ -1728,6 +1672,8 @@ interest rate process.
 In principle, this refinement should be combined with the previous one;
 further exposition of this combination is omitted here because no new
 insights spring from the combination of the two techniques.
+
+
 
 \hypertarget{Imposing-Artificial-Borrowing-Constraints}{}
 \subsection{Imposing `Artificial' Borrowing Constraints}
@@ -1802,11 +1748,16 @@ constraint stops binding is:\footnote{The logic here repeats an insight from \ci
   \label{fig:cVScCon}
 \end{figure}
 
-The constrained problem is solved by
-\texttt{2periodIntExpFOCInvPesReaOptCon.m}; the resulting consumption
-rule is shown in Figure \ref{fig:cVScCon}. For comparison purposes,
+The constrained problem is solved in section ``Artifical Borrowing Constraint''
+of the notebook, where the variable
+\texttt{constrained} is set to be a boolean type object. If the value of \texttt{constrained}
+is true, then the constraint is binding and their consumption behavior is computed to match
+\eqref{eq:LiqCons}. The resulting consumption rule is shown in Figure \ref{fig:cVScCon}. For comparison purposes,
 the approximate consumption rule from Figure \ref{fig:cVScCon} is
-reproduced here as the solid line. The presence of the liquidity
+reproduced here as the solid line; this is accomplished by setting the boolean value
+of \texttt{constrained} to false.
+
+The presence of the liquidity
 constraint requires three changes to the procedures outlined above:
 \begin{enumerate}
 \item We redefine
@@ -1841,9 +1792,9 @@ simplifies things a bit because now we can always consider an
 
 Recall now equations~(\ref{eq:vEndPrimetOfc}) and (\ref{eq:upEqbetaOp}):
 \begin{equation*}\begin{gathered}\begin{aligned}
-      \vPEndStget({a}_{t})  & = \Ex_{t}[\DiscFac \Rfree \PermGroFac_{t+1}^{-\CRRA}
+      \vPEndStge({a}_{t})  & = \Ex_{t}[\DiscFac \Rfree \PermGroFac_{t+1}^{-\CRRA}
       \uFunc^{{c}}(\cFunc_{t+1}(\RNrm_{t+1} {a}_{t}+{\TranShkEmp}_{t+1}))]
-      \\\uFunc^{{c}}({c}_{t})   & = \vEndStget^{\prime}({m}_{t}-{c}_{t}).
+      \\\uFunc^{{c}}({c}_{t})   & = \vEndStge^{\prime}({m}_{t}-{c}_{t}).
     \end{aligned}\end{gathered}\end{equation*}
 Assuming that the problem has been solved up to period $t+1$ (and thus
 assuming that we have an approximated $\Alt{\cFunc}_{t+1}({m}_{t+1})$), our solution method essentially
@@ -1855,16 +1806,16 @@ no difficulties.)
 
 \begin{enumerate}
   \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Point out that we
-      are defining $\vEndStget^{\prime}$ here by the literal summation
+      are defining $\vEndStge^{\prime}$ here by the literal summation
       operation \eqref{eq:vEndeq}.}}{}
 
-\item For the grid of values ${a}_{t,i}$ in \texttt{aVec}$_{t}$, numerically calculate the values
+\item For the grid of values ${a}_{t,i}$ in \texttt{aVec\_eee}, numerically calculate the values
   of $\cFunc_{\overline{t}}({a}_{t,i})$ and $\cFunc_{\overline{t}}^{{a}}({a}_{t,i})$,
   \begin{verbatimwrite}{./Equations/vEndeq.tex}
     \begin{equation}\begin{gathered}\begin{aligned}
-          \cFunc_{\overline{t},i}  & = \left(\vEndStget^{\prime}({a}_{t,i})\right)^{-1/\CRRA},
+          \cFunc_{\overline{t},i}  & = \left(\vEndStge^{\prime}({a}_{t,i})\right)^{-1/\CRRA},
           \\                             & = \left(\DiscFac \Ex_{t} \left[\Rfree \PermGroFac_{t+1}^{-\CRRA}(\grave{\cFunc}_{t+1}(\RNrm_{t+1} {a}_{t,i} +      {\TranShkEmp}_{t+1}))^{-\CRRA}\right]\right)^{-1/\CRRA}, \label{eq:vEndeq}
-          \MPCMatch{\\        \cFunc^{a}_{\overline{t},i}  & = -(1/\CRRA)\left(\vEndStget^{\prime}({a}_{t,i})\right)^{-1-1/\CRRA} \vEndStget^{\prime\prime}(\aNrm_{t,i}),}{}
+          \MPCMatch{\\        \cFunc^{a}_{\overline{t},i}  & = -(1/\CRRA)\left(\vEndStge^{\prime}({a}_{t,i})\right)^{-1-1/\CRRA} \vEndStge^{\prime\prime}(\aNrm_{t,i}),}{}
         \end{aligned}\end{gathered}\end{equation}
   \end{verbatimwrite}
   \input{./Equations/vEndeq.tex}
@@ -1885,114 +1836,32 @@ and related equations.  With this consumption
 rule in hand, we can continue the backwards recursion to period $t-1$
 and so on back to the beginning of life.
 
-Note that this loop does not contain steps for constructing
-$\hat{\vFunc}_{t}^{\prime}({m}_{t})$. This is because with
-$\Alt{\Hi{\cFunc}}_{t}({m}_{t})$ in
-hand, we simply \textit{define} $\hat{\vFunc}^{{m}}_{t}({m}_{t}) = \uFunc^{{c}}(\Alt{\Hi{\cFunc}}_{t}({m}_{t}))$
-so there is no need to construct interpolating approximations 
-- the function arises `free' (or nearly so) from our constructed
-$\Alt{\Hi{\cFunc}}_{t}({m}_{t})$ via the usual envelope result (cf.\ \eqref{eq:envelope}).
+Note that this loop does not contain an item for constructing $\hat{\vFunc}_{t}^{\prime}({m}_{t})$. This is because with $\Alt{\Hi{\cFunc}}_{t}({m}_{t})$ in hand, we simply \textit{define} $\hat{\vFunc}^{{m}}_{t}({m}_{t}) = \uFunc^{{c}}(\Alt{\Hi{\cFunc}}_{t}({m}_{t}))$ so there is no need to construct interpolating approximations - the function arises `free' (or nearly so) from our constructed $\Alt{\Hi{\cFunc}}_{t}({m}_{t})$ via the usual envelope result (cf.\ \eqref{eq:envelope}).
 
-The program \texttt{multiperiodCon.m}\footnote{There is also a parallel \texttt{multiperiod.m} file that solves the unconstrained multi-period problem.} presents a fairly general and
-flexible approach to solving problems of this kind. The essential
-structure of the program is a loop that simply works its way back
-from an assumed last period of life, using the command
-\texttt{AppendTo} to record the interpolated $\grave{\chi}_{t}$ functions
-in the earlier time periods back from the end. For a
-realistic life cycle problem, it would also be necessary at a
+\subsection{Program Structure}
+
+In section ``Solve for $c_t(m_t)$ in Multiple Periods'', the natural and artificial borrowing constraints are combined with the endogenous gridpoints method to approximate the optimal consumption function for a specific period. Then, this function is used to compute the approximated consumption in the previous period, and this process is repeated for the number of periods specified by \texttt{T}, as explained earlier.
+
+The essential structure of the program is a loop that iteratively solves for consumption functions by working backward from an assumed final period, using the dictionary \texttt{cFunc\_life} to store the interpolated consumption functions up to the beginning period. Consumption in a given period is utilized to determine the endogenous gridpoints for the preceding period. This is the sense in which the computation of optimal consumption is done recursively.
+
+For a realistic life cycle problem, it would also be necessary at a
 minimum to calibrate a nonconstant path of expected income growth over the
 lifetime that matches the empirical profile; allowing for such
 a calibration is the reason we have included the $\{\PermGroFac\}_{t}^{T}$
 vector in our computational specification of the problem.
 
-\hypertarget{Mathmatica-Background}{}
-\subsection{{\Mma}~Background}
-{\Mma}~has several features that are useful in solving the
-multiperiod problem.
-
-\begin{itemize}
-\item It can treat a user-created function as an object just like a
-  number or a character.
-
-\item {\Mma}~uses the `list' as its basic data structure.  A
-  {\Mma}~`list' is a very powerful and flexible data construct.  A
-  list of length N in {\Mma}~can hold essentially anything in each
-  of its $Num$ positions - a function, a number, another list, a symbolic
-  expression, or any other object that {\Mma}~can recognize.  The
-  items at position $i$ in a list named \texttt{ExampleList} are retrieved or
-  addressed using the syntax \texttt{ExampleList[[i]]}.
-
-\item The function \texttt{Apply[FuncName\_, DataListName\_]} takes
-  the function whose name is \texttt{FuncName} (for example,
-  \texttt{Vt}) and the data in \texttt{DataListName} (for example,
-  $\{1,19\}$) and returns the result that would have been returned by
-  calling the function \texttt{Vt[1,19]}.
-
-\item The function \texttt{Map[FuncToApply\_,DataToApplyItTo\_]} takes
-  a list of possible arguments to the function \texttt{FuncToApply} and applies
-  that function to each of the elements of that list sequentially.  For
-  example, \texttt{Map[Sin,\{1,2,3\}]} would return a list
-  \texttt{\{Sin[1],Sin[2],Sin[3]\}}.
-
-\end{itemize}
-
-\hypertarget{Program-Structure}{}
-\subsection{Program Structure}
-
-After the usual initializations, the heart of the program works like
-this.
-
-\hypertarget{Iteration}{}
-\subsubsection{Iteration}
-
-After setting up a variable \texttt{PeriodsToSolve} which defines the
-total number of periods that the program will solve, the program sets
-up a ``\texttt{Do[SolveAnotherPeriod,\{PeriodsToSolve\}]}'' loop that
-runs the function \texttt{SolveAnotherPeriod} the number of times
-corresponding to \texttt{PeriodsToSolve}. Every time
-\texttt{SolveAnotherPeriod} is run, the interpolated consumption
-function for one period of life earlier is calculated. The structure
-of the \texttt{SolveAnotherPeriod} function is as follows:
-\ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny It's easier to just
-    examine the program and discuss it than to try and read this flow
-    description.}}{}
-
-\begin{enumerate}
-
-\item Add various period-t parameters to their respective lifecycle lists, which is accomplished by calling the \texttt{AddNewPeriodToParamLifeDates} function.
-
-\item For each ${a}_{t,i}$ in \texttt{aVec}, construct a set of points on the `consumed' function $\cFunc_{\overline{t}}({a})$ as follows:
-  \begin{equation}\begin{gathered}\begin{aligned}
-        \cFunc_{\overline{t}}({a}_{t,i})  & = \left( \DiscFac \Ex_{t} \left[\Rfree \PermGroFac_{t+1}^{-\CRRA} (\Alt{\Hi{\cFunc}}_{t+1}(\RNrm_{t+1} {a}_{t,i} +         {\TranShkEmp}_{t+1}))^{-\CRRA}\right]\right)^{-1/\CRRA}
-        \\                           & = \left(\DiscFac \frac{1}{n_{\TranShkEmp}} \sum_{i=1}^{n_{\TranShkEmp}}\Rfree\left(\PermGroFac_{t+1}^{-\CRRA}(\Alt{\Hi{\cFunc}}_{t+1}(\RNrm_{t+1} {a}_{t,i} +       \TranShkEmp_{i}))^{-\CRRA}\right)\right)^{-1/\CRRA}
-      \end{aligned}\end{gathered}\end{equation}
-  \MPCMatch{and similarly construct the corresponding derivative with respect to $\aNrm$, $\cFunc_{\overline{t}}^{a}({a}_{t,i})$}{}
-  We also construct
-  the corresponding \texttt{mVec}, \texttt{$\kappa$Vec}, etc.\ by calling
-  the \texttt{AddNewPeriodToSolvedLifeDates} function.
-
-\item For each ${m}$ in \texttt{mVec}, we can define
-  \texttt{$\aboveMin \mNrm$Vec}, find the corresponding optimal consumption
-  vector for a pessimist and an optimist, construct the $\koppa$ and
-  $\chi$ vectors, and finally an interpolation function
-  $\grave{\chi}_{t}$. Similarly we can construct an interpolation
-  function $\Alt{\Chi}_{t}$ that approximates the value function. The
-  whole process is done by calling the
-  \texttt{AddNewPeriodToSolvedLifeDatesPesReaOpt} function.
-
-\item Various period-$t$ functions are derived from $\grave{\chi}_{t}$
-  and $\Alt{\Chi}_{t}$ (in \texttt{functions\_ConsNVal.m}). Note that
-  the liquidity constraint is dealt with by comparing the
-  unconstrained solution \texttt{$c$\text{From}$\chi$} with the 45
-  degree line.
-\end{enumerate}
-
 \hypertarget{Results}{}
 \subsection{Results}
 
-As written, the program creates \texttt{$\grave{\chi}_{t}(\mu_{t})$}
-functions from which the relevant $\Alt{\cFunc}_{t}({m}_{t})$
-functions are recovered in any period for any value of ${m}$.
+As suggested, the code creates the relevant $\Alt{\cFunc}_{t}({m}_{t})$
+functions for any period in the horizon specified by the variable \texttt{T}, at the given values of ${m}$.
+Figure \ref{fig:PlotCFuncsConverge} shows
+$\Alt{\cFunc}_{T-n}({m})$ for $n=\{20,15,10,5,1\}$.  At least one
+feature of this figure is encouraging: the consumption functions
+converge as the horizon extends, something that \cite{BufferStockTheory}
+shows must be true under certain parametric conditions that are
+satisfied by the baseline parameter values being used here.
+
 
 \hypertarget{PlotCFuncsConverge}{}
 \begin{figure}
@@ -2000,13 +1869,6 @@ functions are recovered in any period for any value of ${m}$.
   \caption{Converging $\Alt{\cFunc}_{T-n}({\mNrm})$ Functions as $n$ Increases}
   \label{fig:PlotCFuncsConverge}
 \end{figure}
-
-As an illustration, Figure \ref{fig:PlotCFuncsConverge} shows
-$\Alt{\cFunc}_{T-n}({m})$ for $n=\{20,15,10,5,1\}$.  At least one
-feature of this figure is encouraging: the consumption functions
-converge as the horizon extends, something that \cite{BufferStockTheory}
-shows must be true under certain parametric conditions that are
-satisfied by the baseline parameter values being used here.
 
 \Habits{
   \hypertarget{Multiple-State-Variables}{}
@@ -2067,19 +1929,19 @@ satisfied by the baseline parameter values being used here.
   involves both the level of assets ${a}_{t}$ and the level of the habit
   stock $h_{t}$:
   \begin{equation}\begin{gathered}\begin{aligned}
-        \vEndStget({a}_{t},h_{t})  & = \Ex_{t}[\DiscFac {v}_{t+1}(\RNrm_{t+1} {a}_{t}+{\TranShkEmp}_{t+1},h_{t}))]
+        \vEndStge({a}_{t},h_{t})  & = \Ex_{t}[\DiscFac {v}_{t+1}(\RNrm_{t+1} {a}_{t}+{\TranShkEmp}_{t+1},h_{t}))]
       \end{aligned}\end{gathered}\end{equation}
   For future reference note that the derivatives are
   \begin{equation}\begin{gathered}\begin{aligned}
-        \vEndStget^{{a}}  & = \DiscFac \Ex_{t} [\RNrm_{t+1} {v}_{t+1}^{m}] \label{eq:vEndsdefn} \\
-        \vEndStget^{h}  & = \DiscFac \Ex_{t} [{\vFunc}_{t+1}^{h}] \label{eq:vEndhdefn}
+        \vEndStge^{{a}}  & = \DiscFac \Ex_{t} [\RNrm_{t+1} {v}_{t+1}^{m}] \label{eq:vEndsdefn} \\
+        \vEndStge^{h}  & = \DiscFac \Ex_{t} [{\vFunc}_{t+1}^{h}] \label{eq:vEndhdefn}
       \end{aligned}\end{gathered}\end{equation}
   and the maximization problem can be rewritten
   \begin{equation}\begin{gathered}\begin{aligned}
         {\vFunc}_{t}({m}_{t},h_{t-1}) 
         & =                                         \max_{\{{c}_{t}\}} %\{
         \uFunc({c}_{t},h_{t-1})  +  \DiscFac
-        \vEndStget({m}_{t}-{c}_{t},h_{t-1}+\MPS({c}_{t}-h_{t-1}))
+        \vEndStge({m}_{t}-{c}_{t},h_{t-1}+\MPS({c}_{t}-h_{t-1}))
         % \}
         \\        & \text{s.t.} & \nonumber
         \\  {c}_{t} & \leq  {m}_{t}.
@@ -2091,11 +1953,11 @@ satisfied by the baseline parameter values being used here.
   This problem will be solved by a generalization of the strategy used
   to solve the one-state problem.  Previously, with a period-$t+1$
   consumption function in hand, we started by calculating
-  $\vEndStget^{{a}}_{i}$ at the set of $n$ gridpoints ${a}_{i}$
+  $\vEndStge^{{a}}_{i}$ at the set of $n$ gridpoints ${a}_{i}$
   contained in the variable \texttt{aVec}.  Now we will need to
   have a grid of possible values for habits $h_{j}$ as well (in the
   variable \texttt{hVec}) with, say, $m$ gridpoints.  We will then
-  calculate the values of $\vEndStget^{{a}}$ and $\vEndStget^{h}$
+  calculate the values of $\vEndStge^{{a}}$ and $\vEndStge^{h}$
   at all \textit{combinations} of the ${a}_{i}$ and $h_{j}$
   gridpoints, for a total of $m \times n$ datapoints.  Finally, with
   these results in hand, we can obtain the corresponding values of
@@ -2108,34 +1970,34 @@ satisfied by the baseline parameter values being used here.
   \subsubsection{The First Order Condition for ${c}_{t}$}
   The FOC for this problem with respect to ${c}_{t}$ is:
   \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny The $-\MPS
-      \vEndStget^{h}_{t}$ term reflects the fact that if you consume a
+      \vEndStge^{h}_{t}$ term reflects the fact that if you consume a
       bit more today, tomorrow's habit stock will be larger by $\MPS$,
       which will make you worse off.}}{}
   \begin{equation}\begin{gathered}\begin{aligned}
         0  & = \uFunc^{c}_{t} + \DiscFac \Ex_{t} \left[{\vFunc}^{m}_{t+1}(-\Rfree)+{\vFunc}^{h}_{t+1} \MPS\right]  \\
         \uFunc^{c}_{t}  & = \DiscFac \Ex_{t} [\RNrm_{t+1} {\vFunc}_{t+1}^{m}-\MPS {\vFunc}_{t+1}^{h}] \label{eq:ctfoc}
-        \\            & = \left[\vEndStget^{{a}}-\MPS \vEndStget^{h} \right].
+        \\            & = \left[\vEndStge^{{a}}-\MPS \vEndStge^{h} \right].
         % ({c}_{t}h_{t-1}^{-\gamma})^{-\CRRA}h_{t-1}^{-\gamma}  & = \DiscFac \Ex_{t} \left(\RNrm_{t+1} {\vFunc}^{m}_{t+1}-{\vFunc}^{h}_{t+1} \MPS\right) \label{eq:directfoc} \\
         % {c}_{t}^{-\CRRA}  & = h_{t-1}^{\gamma-\gamma\CRRA}\DiscFac \Ex_{t} \left(\RNrm_{t+1} {\vFunc}^{m}_{t+1}-{\vFunc}^{h}_{t+1} \MPS\right)
       \end{aligned}\end{gathered}\end{equation}
   Substituting the definition of $u_{t}^{c}$:
   \begin{equation}\begin{gathered}\begin{aligned}
-        {c}_{t}^{-\CRRA}h_{t-1}^{\CRRA\gamma-\gamma}  & = \left[\vEndStget^{{a}}-\MPS \vEndStget^{h} \right]
-        \\  {c}_{t}                                     & = \left[h_{t-1}^{\gamma-\CRRA\gamma} \left(\vEndStget^{{a}}-\MPS \vEndStget^{h} \right) \right]^{-1/\CRRA} \label{eq:habitsfoc}.
+        {c}_{t}^{-\CRRA}h_{t-1}^{\CRRA\gamma-\gamma}  & = \left[\vEndStge^{{a}}-\MPS \vEndStge^{h} \right]
+        \\  {c}_{t}                                     & = \left[h_{t-1}^{\gamma-\CRRA\gamma} \left(\vEndStge^{{a}}-\MPS \vEndStge^{h} \right) \right]^{-1/\CRRA} \label{eq:habitsfoc}.
       \end{aligned}\end{gathered}\end{equation}
   and the liquidity constraint implies that if the $\check{c}_{t}$ which
   satisfies this equation is larger than ${m}_{t}$ the consumer spends
   ${m}_{t}$ rather than $\check{c}_{t}$.  The point at which the liquidity
   constraint becomes binding is therefore implicitly defined by the equation
   \begin{equation}\begin{gathered}\begin{aligned}
-        {m}_{t}  & = \left[h_{t-1}^{\gamma-\CRRA\gamma} \left(\vEndStget^{{a}}(0,h_{t-1}+\MPS({m}_{t}-h_{t-1}))-\MPS \vEndStget^{h}(0,h_{t-1}+\MPS({m}_{t}-h_{t-1}))\right)  \right]^{-1/\CRRA}, \label{eq:LCbindsHabits}
+        {m}_{t}  & = \left[h_{t-1}^{\gamma-\CRRA\gamma} \left(\vEndStge^{{a}}(0,h_{t-1}+\MPS({m}_{t}-h_{t-1}))-\MPS \vEndStge^{h}(0,h_{t-1}+\MPS({m}_{t}-h_{t-1}))\right)  \right]^{-1/\CRRA}, \label{eq:LCbindsHabits}
       \end{aligned}\end{gathered}\end{equation}
   or incorporating the transition equation for
   and $h_{t-1}$ that
   \begin{equation}\begin{gathered}\begin{aligned}
         {c}_{t}  & = \left[h_{t-1}^{\gamma-\CRRA\gamma}
-          \left(\vEndStget^{{a}}({m}_{t}-{c}_{t},h_{t-1}+\MPS({c}_{t}-h_{t-1}))
-            -\MPS \vEndStget^{h}({m}_{t}-{c}_{t},h_{t-1}+\MPS({c}_{t}-h_{t-1})\right)
+          \left(\vEndStge^{{a}}({m}_{t}-{c}_{t},h_{t-1}+\MPS({c}_{t}-h_{t-1}))
+            -\MPS \vEndStge^{h}({m}_{t}-{c}_{t},h_{t-1}+\MPS({c}_{t}-h_{t-1})\right)
         \right]^{-1/\CRRA}. \nonumber
       \end{aligned}\end{gathered}\end{equation}
 
@@ -2173,10 +2035,10 @@ satisfied by the baseline parameter values being used here.
   we find the set of values of ${\cNrm}_{i}$ that satisfy
   \begin{equation}\begin{gathered}\begin{aligned}
         {\cNrm}_{k}^{\ell}  & = \left[(h_{k}^{\ell})^{\gamma-\CRRA\gamma}
-          \left(\vEndStget^{{a}}({a}_{k}^{\ell},h_{k}^{\ell}
+          \left(\vEndStge^{{a}}({a}_{k}^{\ell},h_{k}^{\ell}
             +\MPS({\cNrm}_{k}^{\ell}-h_{k}^{\ell}))
             -\MPS
-            \vEndStget^{h}({a}_{k}^{\ell},h_{k}^{\ell}+\MPS({\cNrm}_{k}^{\ell}-h_{k}^{\ell})\right)
+            \vEndStge^{h}({a}_{k}^{\ell},h_{k}^{\ell}+\MPS({\cNrm}_{k}^{\ell}-h_{k}^{\ell})\right)
         \right]^{-1/\CRRA}. \nonumber
       \end{aligned}\end{gathered}\end{equation}
   and the budget constraint again gives us the ${m}_{k}^{\ell}$
@@ -2241,7 +2103,7 @@ satisfied by the baseline parameter values being used here.
   \begin{equation}\begin{gathered}\begin{aligned}
         \uFunc^{c}_{t}  & = {\vFunc}_{t}^{m}-\Ex_{t}[\DiscFac \MPS {\vFunc}_{t+1}^{h}] \label{eq:ctfocsubx}
         \\ {\vFunc}_{t}^{m}  & = \uFunc^{c}_{t}+\Ex_{t}[\DiscFac \MPS {\vFunc}_{t+1}^{h}] \label{eq:vtfoc}
-        \\            & = \uFunc^{c}_{t}+\MPS \vEndStget^{h} \label{eq:vxtformula}.
+        \\            & = \uFunc^{c}_{t}+\MPS \vEndStge^{h} \label{eq:vxtformula}.
       \end{aligned}\end{gathered}\end{equation}
 
   What if the consumer is liquidity constrained?  It is useful here to \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny By `is constrained' I mean the constraint is binding right now.}}{}
@@ -2272,7 +2134,7 @@ satisfied by the baseline parameter values being used here.
         {\vFunc}_{t}^{h}  & = \frac{\partial {\vFunc}_{t}}{\partial h_{t-1}} + \overbrace{\frac{\partial {\vFunc}_{t}}{\partial {c}_{t}}}^{=0}\frac{\partial {c}_{t}}{\partial h_{t-1}} \nonumber
         \\  & = \uFunc^{h}_{t} + \DiscFac \Ex_{t} \left[{\vFunc}_{t+1}^{h}\frac{\partial h_{t}}{\partial h_{t-1}} \right]\nonumber
         \\  & = \uFunc^{h}_{t} + \DiscFac \Ex_{t} [(1-\MPS) {\vFunc}_{t+1}^{h}] \nonumber
-        \\  & = \uFunc^{h}_{t} + (1-\MPS) \vEndStget^{h} \label{eq:vhtformula}
+        \\  & = \uFunc^{h}_{t} + (1-\MPS) \vEndStge^{h} \label{eq:vhtformula}
       \end{aligned}\end{gathered}\end{equation}
   % & = -\gamma {c}_{t}^{1-\CRRA} h_{t-1}^{\gamma \CRRA - \gamma -1} + (1-\MPS) \DiscFac \Ex_{t} {\vFunc}_{t+1}^{h} \label{eq:vhtfoc}
   What if the consumer is constrained?  In that case while $\partial
@@ -2322,7 +2184,8 @@ satisfied by the baseline parameter values being used here.
         \Lambda_{t}^{h} 
         & =                           \left[\frac{h_{t-1}^{1-\gamma(\CRRA-1)}{\vFunc}_{t}^{h}}{-\gamma}\right]^{1/(1-\CRRA)}
       \end{aligned}\end{gathered}\end{equation}
-  and similarly for $\vEndStget^{h}$.
+  and similarly for $\vEndStge^{h}$.
+
 
   \hypertarget{Transforming-cFunc}{}
   \subsection{Transforming $\cFunc(\bullet,h_{t-1})$}
@@ -2411,10 +2274,10 @@ satisfied by the baseline parameter values being used here.
 
   The combined transformations for the various variables are thus
   \begin{equation}\begin{gathered}\begin{aligned}
-        \cFunc_{\overline{t}}^{{a}}({a}_{t},h_{t})        & = [\vEndStget^{{a}}({a}_{t},h_{t})]^{-1/\CRRA} h_{t}^{\gamma(1-1/\CRRA)} \label{eq:vEndstransform} \\
+        \cFunc_{\overline{t}}^{{a}}({a}_{t},h_{t})        & = [\vEndStge^{{a}}({a}_{t},h_{t})]^{-1/\CRRA} h_{t}^{\gamma(1-1/\CRRA)} \label{eq:vEndstransform} \\
         \Lambda_{t}^{m}({m}_{t},h_{t-1})   & = [{\vFunc}_{t}^{m}({m}_{t},h_{t-1})]^{-1/\CRRA} h_{t-1}^{\gamma(1-1/\CRRA)} \label{eq:vxtransform} \\
         \cFunc_{\overline{t}}^{h}({a}_{t},h_{t})       
-        & =                                                  [-h_{t}^{1-\gamma(\CRRA-1)}\vEndStget^{h}({a}_{t},h_{t})/\gamma]^{1/(1-\CRRA)}  \label{eq:vEndhtransform}
+        & =                                                  [-h_{t}^{1-\gamma(\CRRA-1)}\vEndStge^{h}({a}_{t},h_{t})/\gamma]^{1/(1-\CRRA)}  \label{eq:vEndhtransform}
         \\      \Lambda_{t}^{h}({m}_{t},h_{t-1})   & = [-h_{t-1}^{1-\gamma(\CRRA-1)}{\vFunc}_{t}^{h}({m}_{t},h_{t-1})/\gamma]^{1/(1-\CRRA)} \label{eq:vhtransform}
         \\      \Lambda_{t}({m}_{t},h_{t-1})       & = [(1-\CRRA)
         {\vFunc}_{t}({m}_{t},h_{t-1})]^{1/(1-\CRRA)} h_{t-1}^{\gamma}\label{eq:vtransform}
@@ -2475,7 +2338,7 @@ satisfied by the baseline parameter values being used here.
 
   \item Construct interpolating functions $\hat{\cEndFunc}^{a}_{t}({a}_{t},h_{t})$
     and $\hat{\cEndFunc}^{h}_{t}({a}_{t},h_{t})$, from which we can
-    obtain $\hat{\vEndStget}^{a}_{t}$ and $\hat{\vEndStget}^{h}_{t}$
+    obtain $\hat{\vEndStge}^{a}_{t}$ and $\hat{\vEndStge}^{h}_{t}$
     via the inverse of the transformations (\ref{eq:vEndstransform})
     and (\ref{eq:vEndhtransform}).
 
@@ -2487,8 +2350,8 @@ satisfied by the baseline parameter values being used here.
       \eqref{eq:habitsfoc}:
       \begin{equation}
         {\cNrm}_{i} = \left[h_{j}^{\gamma-\CRRA \gamma}
-          (\vEndStget^{{a}}({a}_{i},(1-\MPS) h_{j}+ {\cNrm}_{i})
-          -\MPS \vEndStget^{h}({a}_{i},(1-\MPS)
+          (\vEndStge^{{a}}({a}_{i},(1-\MPS) h_{j}+ {\cNrm}_{i})
+          -\MPS \vEndStge^{h}({a}_{i},(1-\MPS)
           h_{j}+{\cNrm}_{i}))\right]^{-1/\CRRA} \nonumber
       \end{equation}
 
@@ -2499,8 +2362,8 @@ satisfied by the baseline parameter values being used here.
     \end{itemize}
   \end{enumerate}
 
-  With $\Alt{\Hi{\cFunc}}_{t}({m}_{t},h_{t-1})$, $\hat{\vEndStget}^{{a}}$
-  and $\hat{\vEndStget}^{h}$ in hand we can obtain ${\vFunc}^{m}_{t}$
+  With $\Alt{\Hi{\cFunc}}_{t}({m}_{t},h_{t-1})$, $\hat{\vEndStge}^{{a}}$
+  and $\hat{\vEndStge}^{h}$ in hand we can obtain ${\vFunc}^{m}_{t}$
   and ${\vFunc}^{h}_{t}$ from \eqref{eq:vxtformula} and
   \eqref{eq:vhtformula}. Thus we have generated $\Alt{\Hi{\cFunc}}_{t}$,
   $\hat{\vFunc}^{m}_{t}$ and $\hat{\vFunc}^{h}_{t}$ from $\hat{\vFunc}^{a}_{t+1}$ and
@@ -2516,6 +2379,7 @@ satisfied by the baseline parameter values being used here.
     detailed analysis of some of the properties of this habit formation
     model, see Carroll~\citeyearpar{carroll:RiskyHabits}}
 
+
 }{}
 
 \hypertarget{Multiple-Control-Variables}{}
@@ -2524,7 +2388,7 @@ satisfied by the baseline parameter values being used here.
 We now consider how to solve problems with multiple control variables.
 (To reduce notational complexity, in this section we set $\PermGroFac_{t}=1~\forall~t$.)
 
-\subsection{Theory}
+\subsection{Theory}\label{subsec:MCTheory}
 The new control variable that the consumer can now choose is the portion of the portfolio to invest in risky assets.  Designating the gross return on the risky asset as $\Risky_{t+1}$, and using $\varsigma_{t}$ to represent the proportion of the portfolio invested in this asset before the return is realized after the beginning of $t+1$, corresponding to an assumption that the consumer cannot be `net short' and cannot issue net equity), the overall return on the consumer's portfolio between $t$ and $t+1$ will be:
 \begin{verbatimwrite}{./Equations/Rport.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
@@ -2580,7 +2444,7 @@ The first order condition with respect to the risky portfolio share is
 \end{verbatimwrite}
 \input{./Equations/FOCw.tex}\unskip
 
-As before, it will be useful to define $\vEndStget$ as a function that
+As before, it will be useful to define $\vEndStge$ as a function that
 yields the expected $t+1$ value of ending period $t$ in a given state.
 However, now that there are two control variables, the expectation
 must be defined as a function of the chosen values of both of those
@@ -2588,21 +2452,21 @@ variables, because expected end-of-period value will depend not just
 on how much the agent saves, but also on how the saved assets are
 allocated between the risky and riskless assets.  Thus we define
 \begin{equation*}\begin{gathered}\begin{aligned}
-      \vEndStget({a}_{t},\varsigma_{t})  & = \Ex_{t}[\DiscFac {\vFunc}_{t+1}({m}_{t+1})]
+      \vEndStge({a}_{t},\varsigma_{t})  & = \Ex_{t}[\DiscFac {\vFunc}_{t+1}({m}_{t+1})]
     \end{aligned}\end{gathered}\end{equation*}
 which has derivatives
 \begin{equation}\begin{gathered}\begin{aligned}
-      \vEndStget^{{a}}  & = \Ex_{t}[\DiscFac {\Rport}_{t+1}{\vFunc}_{t+1}^{m}({m}_{t+1})] = \Ex_{t}[\DiscFac {\Rport}_{t+1}{\uFunc}_{t+1}^{{c}}(\cFunc_{t+1}({m}_{t+1}))]
-      \\      \vEndStget^{\varsigma}  & = \Ex_{t}[\DiscFac (\Risky_{t+1}-\Rfree){\vFunc}_{t+1}^{m}({m}_{t+1})  ]a_{t} = \Ex_{t}[\DiscFac (\Risky_{t+1}-\Rfree){\uFunc}_{t+1}^{{c}}(\cFunc_{t+1}({m}_{t+1}))  ]a_{t} \notag
+      \vEndStge^{{a}}  & = \Ex_{t}[\DiscFac {\Rport}_{t+1}{\vFunc}_{t+1}^{m}({m}_{t+1})] = \Ex_{t}[\DiscFac {\Rport}_{t+1}{\uFunc}_{t+1}^{{c}}(\cFunc_{t+1}({m}_{t+1}))]
+      \\      \vEndStge^{\varsigma}  & = \Ex_{t}[\DiscFac (\Risky_{t+1}-\Rfree){\vFunc}_{t+1}^{m}({m}_{t+1})  ]a_{t} = \Ex_{t}[\DiscFac (\Risky_{t+1}-\Rfree){\uFunc}_{t+1}^{{c}}(\cFunc_{t+1}({m}_{t+1}))  ]a_{t} \notag
     \end{aligned}\end{gathered}\end{equation}
 implying that the first order conditions (\ref{eq:EulercRiskyR}) and
 (\ref{eq:FOCw}) can be rewritten
 \begin{equation}\begin{gathered}\begin{aligned}
-      \uFunc^{{c}}({c}_{t})  & = \vEndStget^{{a}}({m}_{t}-{c}_{t},\varsigma_{t})
+      \uFunc^{{c}}({c}_{t})  & = \vEndStge^{{a}}({m}_{t}-{c}_{t},\varsigma_{t})
       \\      0  & = \vFunc^{\varsigma}_{\overline{t}}({a}_{t},\varsigma_{t}).
     \end{aligned}\end{gathered}\end{equation}
 
-\subsection{Application}
+\subsection{Application}\label{subsec:MCApplication}
 
 Our first step is to specify the stochastic process for $\Risky_{t+1}$.
 We follow the common practice of assuming that returns are
@@ -2622,10 +2486,10 @@ on $i$ is allowed to permit the possibility of nonzero correlation
 between the return on the risky asset and the shock to labor income (for example,
 in recessions the stock market falls and labor income also declines).
 
-The direct expressions for the derivatives of $\vEndStget$ are
+The direct expressions for the derivatives of $\vEndStge$ are
 \begin{equation}\begin{gathered}\begin{aligned}
-      \vEndStget^{{a}}({a}_{t},\varsigma_{t})  & = \DiscFac \left(\frac{1}{n_{\risky} n_{\TranShkEmp}}\right)\sum_{i=1}^{n_{\TranShkEmp}}\sum_{j=1}^{n_{\risky} }\Rport_{i,j} \left(\cFunc_{t+1}(\Rport_{i,j}{a}_{t}+\TranShkEmp_{i})\right)^{-\CRRA}
-      \\      \vEndStget^{\varsigma}({a}_{t},\varsigma_{t})  & = \DiscFac \left(\frac{1}{n_{\risky} n_{\TranShkEmp}}\right)\sum_{i=1}^{n_{\TranShkEmp}}\sum_{j=1}^{n_{\risky} }(\Risky_{i,j}-\Rfree)\left(\cFunc_{t+1}(\Rport_{i,j}{a}_{t}+\TranShkEmp_{i})\right)^{-\CRRA}.
+      \vEndStge^{{a}}({a}_{t},\varsigma_{t})  & = \DiscFac \left(\frac{1}{n_{\risky} n_{\TranShkEmp}}\right)\sum_{i=1}^{n_{\TranShkEmp}}\sum_{j=1}^{n_{\risky} }\Rport_{i,j} \left(\cFunc_{t+1}(\Rport_{i,j}{a}_{t}+\TranShkEmp_{i})\right)^{-\CRRA}
+      \\      \vEndStge^{\varsigma}({a}_{t},\varsigma_{t})  & = \DiscFac \left(\frac{1}{n_{\risky} n_{\TranShkEmp}}\right)\sum_{i=1}^{n_{\TranShkEmp}}\sum_{j=1}^{n_{\risky} }(\Risky_{i,j}-\Rfree)\left(\cFunc_{t+1}(\Rport_{i,j}{a}_{t}+\TranShkEmp_{i})\right)^{-\CRRA}.
     \end{aligned}\end{gathered}\end{equation}
 
 Writing these equations out explicitly makes a problem very
@@ -2635,15 +2499,15 @@ double-summations of $n_{\risky} \times n$ terms.  Once again, there is an
 inefficiency if it must perform these same calculations many times
 for the same or nearby values of $\{{a}_{t},\varsigma_{t}\}$, and again
 the solution is to construct an approximation to the derivatives of
-the $\vEndStget$ function.
+the $\vEndStge$ function.
 
 Details of the construction of the interpolating approximation are
 given below; assume for the moment that we have the approximations
-$\hat{\vEndStget}^{{a}}$ and $\hat{\vEndStget}^{\varsigma}$ in
+$\hat{\vEndStge}^{{a}}$ and $\hat{\vEndStge}^{\varsigma}$ in
 hand and we want to proceed.  As noted above, nonlinear equation
-solvers (including those built into {\Mma}) can find the
+solvers can find the
 solution to a set of simultaneous equations.  Thus we could ask
-{\Mma}~to solve
+Python to solve
 \begin{equation}\begin{gathered}\begin{aligned}
       {c}_{t}^{-\CRRA}  & = \hat{\vFunc}^{a}_{\overline{t}}({m}_{t}-{c}_{t},\varsigma_{t}) %\label{eq:FOCwrtcMultContr}
       \\      0  & = \hat{\vFunc}^{\varsigma}_{\overline{t}}({m}_{t}-{c}_{t},\varsigma_{t}) \label{eq:FOCwrtw}
@@ -2657,7 +2521,7 @@ solve.  There is a better way.  Define the problem
 \providecommand{\vOpt}{}
 \renewcommand{\vOpt}{\overset{*}{\vFunc}}
 \begin{equation}\begin{gathered}\begin{aligned}
-      \Opt{\vFunc}_{\overline{t}}({a}_{t})  & = \max_{\varsigma_{t}} ~~  \vEndStget({a}_{t},\varsigma_{t})
+      \Opt{\vFunc}_{\overline{t}}({a}_{t})  & = \max_{\varsigma_{t}} ~~  \vEndStge({a}_{t},\varsigma_{t})
       \\      & \text{s.t.} & \nonumber
       \\      0 \leq & \varsigma_{t} \leq 1
     \end{aligned}\end{gathered}\end{equation}
@@ -2667,7 +2531,7 @@ respect to all of the arguments other than the one still present
 \texttt{aVec} and use the results to construct the interpolating
 function $\Alt{\Opt{\vFunc}}_{t}^{a}({a}_{t})$.\footnote{A faster solution
   could be obtained by, for each element in \texttt{aVec}, computing
-  $\vEndStget^{\varsigma}({m}_{t}-{c}_{t},\varsigma)$ of a grid of
+  $\vEndStge^{\varsigma}({m}_{t}-{c}_{t},\varsigma)$ of a grid of
   values of $\varsigma$, and then using an approximating interpolating
   function (rather than the full expectation) in the \texttt{FindRoot}
   command.  The associated speed improvement is fairly modest,
@@ -2691,99 +2555,14 @@ of controls rather than multiple periods.
 \hypertarget{Implementation}{}
 \subsection{Implementation}
 
-The program which solves the constrained problem with multiple control variables
-is \texttt{multicontrolCon.m}.
+Following the discussion from section \ref{subsec:MCTheory}, to provide a numerical solution to the problem
+with multiple control variables, we must define expressions that capture the expected marginal value of end-of-period
+assets with respect to the level of assets and the share invested in risky assets. This is addressed in ``Multiple Control Variables''. Inheriting the structure of Python, we establish a new subclass of \texttt{gothic\_class} called \texttt{GothicMC}. This subclass preserves the fundamental structure required to resolve the original problem while adding new methods that capture the previously mentioned points. The essential functions in this new class are found in the final four functions that account for the expected marginal value functions with respect to each of the control variables, both for the terminal period and all earlier periods.
 
-Some of the functions defined in \texttt{multicontrolCon.m} correspond
-to the derivatives of $\vEndStget({a}_{t},\varsigma_{t})$.
-\ifhabits{Structurally these functions are very similar to the
-  $\vEndStget({a}_{t},h_{t})$ functions defined in
-  \texttt{habits.m}; indeed, from the standpoint of the end of period
-  $t$ after the portfolio share has been chosen, the portfolio share
-  is essentially a state variable, so the resemblance to the
-  multistate problem is more than skin deep.}{}
+Having the \texttt{GothicMC} subclass available, we can proceed with implementing the steps laid out in section \ref{subsec:MCApplication} to solve the problem at hand. Initially, the two distributions that capture the uncertainty faced by consumers in this scenario are discretized. Subsequently, the \texttt{GothicMC} class is invoked with the requisite arguments to create an instance that includes the necessary functions to depict the first-order conditions of the consumer's problem. Following that, an improved grid of end-of-period assets is established.
 
-The first function definition that does not resemble anything in\ifhabits{ either \texttt{habits.m} or}{} \texttt{multiperiod.m} is
-\texttt{$\riskyshare$Raw[at\_]}. This function, for its input value of
-${a}_{t}$, calculates the value of the portfolio share $\varsigma_{t}$
-which satisfies the first order condition (\ref{eq:FOCwrtw}), tests
-whether the optimal portfolio share would violate the constraints,
-and if so resets the portfolio share to the constrained optimum. The
-function returns the optimal value of the portfolio share itself,
-$\varsigma_{t}^{*}$, from which the functions
-$\bar{\vEndStget}^{a}({a}_{t})$ and $\hat{\varsigma}_{t}({a}_{t})$ will be
-constructed.
+Here is where we can see how the approach described in section \ref{subsec:MCApplication} is reflected in the code.  For the terminal period, the optimal share of risky assets is determined for each point in \texttt{aVec\_eee}, and then the endogenous gridpoints method is employed to compute the optimal consumption level given that the share in the risky asset has been chosen optimally. It's worth noting that this solution takes into account the possibility of a binding artificial borrowing constraint. Lastly, the interpolation process is executed for both the optimal consumption function and the optimal share of the portfolio in risky assets. These values are stored in their respective dictionaries (\texttt{mGridPort\_life}, \texttt{cGridPort\_life}, and \texttt{varsigmaGrid\_life}) and utilized to conduct the recursive process outlined in section \ref{sec:recursion}, thus yielding the numerical solution for all earlier periods.
 
-As $\hat{\varsigma}_{t}({a}_{t})$ can be constructed by
-\texttt{$\riskyshare$Raw[at\_]}, $\bar{\vEndStget}^{a}({a}_{t})$ is
-constructed by another newly defined function
-\texttt{vEndStgetaOpt[at\_]}, where the naming convention is obviously
-that `Opt' stands for `Optimized.' With
-$\bar{\vEndStget}^{{a}}({a}_{t})$ in
-hand (as well as the appropriately redefined
-$\bar{\vEndStget}({a}_{t})$ and $\bar{\vEndStget}^{{aa}}({a}_{t})$) the analysis is essentially identical to that for the standard
-multiperiod problem with a single control variable.
-
-The structure of the program in detail is as follows.  First,
-perform \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Note choice
-    of $\CRRA=10$ to match stockholding puzzle.}}{} the usual
-initializations. Then initialize \texttt{$\riskyshare$Vec} and the other
-variables specific to the multiple control problem.\footnote{Note
-  the choice of a coefficient of relative risk aversion of 6, in
-  contrast with the choice of 2 made for the previous problems.  This
-  choice reflects the well-known `stockholding puzzle,' which is the
-  microeconomic equivalent of the equity premium puzzle: For plausible
-  descriptions of income uncertainty, rate of return risk, and the
-  equity premium, the typical consumer should hold all or nearly all
-  of their portfolio in equities. Thus we choose a high value for the
-  coefficient of relative risk aversion in order to generate portfolio
-  structure behavior more interesting than a choice of 100 percent
-  equities in every period for every level of wealth.} In particular,
-there are now three kinds of functions: those with both ${a}_{t}$
-and $\varsigma_{t}$ as arguments, those with just ${a}_{t}$, and those
-with ${m}_{t}$.
-
-Once the setup is complete, the heart of the program is the
-following.
-
-\begin{enumerate}
-
-\item Construct
-  $\vEndStget^{\varsigma}({a}_{t},\varsigma_{t})$ using the usual calculation
-  over the tensor defined by the combinations of the elements of
-  \texttt{aVec} and \texttt{$\riskyshare$Vec}.
-
-\item For any level of saving \texttt{at}, the function \texttt{$\riskyshare$Raw[at\_]} performs a rootfinding
-  operation\footnote{Alternatively, the rootfinding operation would be
-    $0 = \hat{\vFunc}^{\varsigma}_{\overline{t}}({a}_{t},\varsigma_{t})$, where the
-    interpolation function of $\vEndStget^{\varsigma}({a}_{t},\varsigma_{t})$ is
-    used instead. However, the results obtained (especially
-    $\hat{\varsigma}_{t}({a}_{t})$) are much less satisfactory.}
-  \begin{equation}\begin{gathered}\begin{aligned}
-        0  & = \vFunc^{\varsigma}_{\overline{t}}({a}_{t},\varsigma_{t})
-        \\      & \text{s.t.} & \nonumber
-        \\      0 \leq & \varsigma_{t}  \leq 1
-      \end{aligned}\end{gathered}\end{equation}
-  and generates the corresponding optimal portfolio share
-  $\varsigma^{\ast}_{t}$.
-
-\item Construct the function \texttt{$\Opt{\vFunc}$a[at\_]}
-  \begin{equation}\begin{gathered}\begin{aligned}
-        \Opt{\vFunc}_{t}^{a}({a}_{t}) \equiv
-        \vEndStget^{a}({a}_{t},\varsigma^{\ast}_{t}({a}_{t}))
-      \end{aligned}\end{gathered}\end{equation}
-  where $\varsigma^{\ast}_{t}({a}_{t})$ is computed by \texttt{$\riskyshare$Raw[at\_]}.
-
-\item Using $\Opt{\vFunc}_{t}^{a}({a}_{t}) \equiv$
-  \texttt{$\Opt{\vFunc}$a[at\_]} and the redefined
-  $\Opt{\vFunc}_{t}({a}_{t})$ and $\Opt{\vFunc}_{t}^{{aa}}({a}_{t})$ (in
-  place of $\vEndStget^{a}({a}_{t}) \equiv $ \texttt{vEndStgeta[at\_]} in
-  \texttt{multiperiod.m}), follow the same procedures as in
-  \texttt{multiperiod.m} to generate $\Alt{\cFunc}_{t}({m})$.
-
-\end{enumerate}
-
-\
 \subsection{Results}
 
 Figure~\ref{fig:PlotctMultContr} plots the first-period consumption
@@ -2945,8 +2724,9 @@ function has converged for all practical purposes.
   \texttt{$\TranShkEmp$Vec}.
 \end{comment}
 
+
 \hypertarget{StructuralEstimation}{}
-\section{Structural Estimation}
+\section{Structural Estimation}\label{sec:StructEst}
 
 This section describes how to use the methods developed above to
 structurally estimate a life-cycle consumption model, following
@@ -3036,7 +2816,13 @@ The parameter values for the shocks are taken from Carroll~\citeyearpar{carroll:
   \end{center}
 \end{table}
 
-The parameters ${\beth}$ and $\CRRA$ are structurally estimated following the procedure described below.
+The structural estimation of the parameters ${\beth}$ and $\CRRA$ is carried out using
+the procedure specified in the following section, which is then implemented in
+the \texttt{StructEstimation.py} file. This file consists of two main components. The
+first section defines the objects required to execute the structural estimation procedure,
+while the second section executes the procedure and various optional
+experiments with their corresponding commands. The next section elaborates on the procedure
+and its accompanying code implementation in greater detail.
 
 \subsection{Estimation}
 
@@ -3082,12 +2868,12 @@ with the first order condition:
 \end{verbatimwrite}
 \input{./Equations/FOCLifeCycle}
 
-The first step is to solve for the consumption functions at each age
-using the routines included in the \texttt{setup\_ConsFn.m} file. We
-need to discretize the shock distribution and solve for the policy
+The first substantive step in this estimation procedure is
+to solve for the consumption functions at each age. We need to
+discretize the shock distribution and solve for the policy
 functions by backward induction using equation (\ref{eq:FOCLifeCycle})
 following the procedure in sections \ref{sec:NextToLast} and
-\ref{sec:recursion} (\texttt{ConstructcFuncLife}). The latter routine
+\ref{sec:recursion}. The latter routine
 is slightly complicated by the fact that we are considering a
 life-cycle model and therefore the growth rate of permanent income,
 the probability of death, the time-varying discount factor and the
@@ -3095,35 +2881,43 @@ distribution of shocks will be different across the years. We thus
 must ensure that at each backward iteration the right parameter
 values are used.
 
-Once we have the age varying consumption functions, we can proceed to
-generate the simulated data and compute the simulated medians using
-the routines defined in the \texttt{setup\_Sim.m} file. We first have
-to draw the shocks for each agent and period. This involves
-discretizing the shock distribution for as many points as the number
-of agents we want to simulate
-(\texttt{ConstructShockDistribution}). We then randomly permute this
-shock vector as many times as we need to simulate the model for, thus
-obtaining a time varying shock for each agent
-(\texttt{ConstructSimShocks}). This is much more time efficient than
-drawing at each time from the shock distribution a shock for each
-agent, and also ensures a stable distribution of shocks across the
-simulation periods even for a small number of agents. (Similarly, in
-order to speed up the process, at each backward iteration we compute
-the consumption function and other variables as a vector at once.)
-Then, following Cagetti ~\citeyearpar{cagettiWprofiles}, we
-initialize the wealth-to-income ratio of agents at age $25$ by
+Correspondingly, the first part of the \texttt{StructEstimation.py} file begins by defining
+the agent type by inheriting from the baseline agent type \texttt{IndShockConsumerType},
+with the modification to include time-varying discount factors. Next, an instance of
+this ``life-cycle'' consumer is created for the estimation procedure.
+The number of periods for the life cycle of a given agent is set and, following Cagetti,
+~\citeyearpar{cagettiWprofiles}, we
+initialize the wealth to income ratio of agents at age $25$ by
 randomly assigning the equal probability values to $0.17$, $0.50$ and
-$0.83$ and run the simulation (\texttt{Simulate}). In particular we
+$0.83$. In particular, we
 consider a population of agents at age 25 and follow their consumption
 and wealth accumulation dynamics as they reach the age of $60$, using
 the appropriate age-specific consumption functions and the age-varying
 parameters. The simulated medians are obtained by taking the medians
 of the wealth to income ratio of the $7$ age groups.
 
-Given these simulated medians, we can estimate the model by
-calculating empirical medians and measure the model's success
-by calculating the difference between the empirical median and the
-actual median.  Specifically, defining $\xi$ as the set of parameters
+To complete the creation of the consumer type needed for the simulation,
+a history of shocks is drawn for each agent across all periods by invoking the
+\texttt{make\_shock\_history} function. This involves
+discretizing the shock distribution for as many points as the number
+of agents we want to simulate and then randomly permuting this
+shock vector as many times as we need to simulate the model for. In this way,
+we obtain a time varying shock for each agent. This is much more time efficient than
+drawing at each time from the shock distribution a shock for each
+agent, and also ensures a stable distribution of shocks across the
+simulation periods even for a small number of agents. (Similarly, in
+order to speed up the process, at each backward iteration we compute
+the consumption function and other variables as a vector at once.)
+
+With the age-varying consumption functions derived from the life-cycle agent,
+we can proceed to generate simulated data and compute the corresponding medians.
+Estimating the model involves comparing these simulated medians with empirical medians,
+measuring the model's success by calculating the difference between the two.
+However, before performing the necessary steps of solving and simulating the model to
+generate simulated moments, it's important to note a difficulty in producing the
+target moments using the available data.
+
+Specifically, defining $\xi$ as the set of parameters
 to be estimated (in the current case $\xi =\{\CRRA ,{\beth}\}$), we could search for
 the parameter values which solve
 \begin{verbatimwrite}{./Equations/naivePowell.tex}
@@ -3136,8 +2930,8 @@ the parameter values which solve
   \end{equation}
 \end{verbatimwrite}
 \input{./Equations/naivePowell.tex}\unskip
-where $\varsigma^{\tau }$ and $\mathbf{s}^{\tau}$ are respectively the empirical and simulated medians of the wealth to permanent income ratio for age group $\tau $.
-
+where $\varsigma^{\tau }$ and $\mathbf{s}^{\tau}$ are respectively the empirical
+and simulated medians of the wealth to permanent income ratio for age group $\tau$.
 A drawback of proceeding in this way is that it treats the empirically
 estimated medians as though they reflected perfect measurements of the
 truth. Imagine, however, that one of the age groups happened to have
@@ -3160,7 +2954,7 @@ population,\footnote{The Survey of Consumer Finances includes many
   therefore if one wants to produce population-representative
   statistics, one must be careful to weight each observation by the
   factor that reflects its ``true'' weight in the population.} and
-$\varsigma_{i}^{\tau }$ is the empirical wealth-to-permanent-income
+$\varsigma_{i}^{\tau }$ is the empirical wealth to permanent income
 ratio of household $i$ whose head belongs to age group
 $\tau$. $\weight _{i}$ is needed because unequal weight is assigned to
 each observation in the Survey of Consumer Finances (SCF). The
@@ -3170,7 +2964,14 @@ from itself.
 
 % In the absence of observation specific weights, equation (\ref{eq:MinStructEstim}) can be simplified to require the minimization of the distance between the empirical and simulated medians.
 
-The actual data are taken from several waves of the SCF and the medians and means for each age category are plotted in figure \ref{fig:MeanMedianSCF}. More details on the SCF data are included in appendix \ref{app:SCFdata}.
+With this in mind, we turn our attention to the computation
+of the weighted median wealth target moments for each age cohort
+using this data from the 2004 Survery of Consumer Finances on household
+wealth. The objects necessary to accomplish this task are \texttt{weighted\_median} and
+\texttt{get\_targeted\_moments}. The actual data are taken from several waves of the SCF and the medians
+and means for each age category are plotted in figure \ref{fig:MeanMedianSCF}.
+More details on the SCF data are included in appendix \ref{app:SCFdata}.
+
 \hypertarget{PlotMeanMedianSCFcollegeGrads}{}
 \begin{figure}
   % \includegraphics[width=6in]{./Figures/PlotMeanMedianSCF}} % weird mean value
@@ -3179,35 +2980,47 @@ The actual data are taken from several waves of the SCF and the medians and mean
   \label{fig:MeanMedianSCF}
 \end{figure}
 
-The key function to perform structural estimation is defined in the \texttt{setup\_Estimation.m} file as follows:
-\begin{verbatimwrite}{./Equations/GapEmpiricalSimulatedMedians.tex}
-  \begin{equation}\begin{gathered}\begin{aligned}
-        \lefteqn{    \texttt{GapEmpiricalSimulatedMedians$[\CRRA,\beth]$:=}}    \nonumber \\
-        &[&\texttt{ConstructcFuncLife$[\CRRA,\beth]$;}\nonumber\\
-        &\texttt{Simulate;}\nonumber\\
-        &\sum\limits_{i}^{N}\weight _{i}\left|\varsigma_{i}^{\tau }-\mathbf{s}^{\tau}(\xi )\right| \nonumber\\
-        &];&\nonumber
-      \end{aligned}\end{gathered}\end{equation}
-\end{verbatimwrite}
-\input{./Equations/GapEmpiricalSimulatedMedians.tex}\unskip
-For a given pair of the parameters to be estimated, the \texttt{GapEmpiricalSimulatedMedians} routine therefore:
+We now turn our attention to the the two key functions in this
+section of the code file. The first, \texttt{simulate\_moments}, executes the solving (\texttt{solve})
+and simulation (\texttt{simulation}) steps for the defined life-cycle agent.
+Subsequently, the function uses the agents' tracked levels of wealth based on
+their optimal consumption behavior to compute and store the simulated median
+wealth to income ratio for each age cohort. The second function, \texttt{smmObjectiveFxn},
+calls the \texttt{simulate\_moments} function to create the objective function
+described in (\ref{eq:StructEstim}), which is necessary to perform the SMM estimation.
+
+
+%\begin{verbatimwrite}{./Equations/GapEmpiricalSimulatedMedians.tex}
+%  \begin{equation}\begin{gathered}\begin{aligned}
+%        \lefteqn{    \texttt{GapEmpiricalSimulatedMedians$[\CRRA,\beth]$:=}}    \nonumber \\
+%        &[&\texttt{ConstructcFuncLife$[\CRRA,\beth]$;}\nonumber\\
+%        &\texttt{Simulate;}\nonumber\\
+%        &\sum\limits_{i}^{N}\weight _{i}\left|\varsigma_{i}^{\tau }-\mathbf{s}^{\tau}(\xi )\right| \nonumber\\
+%        &];&\nonumber
+%      \end{aligned}\end{gathered}\end{equation}
+%\end{verbatimwrite}
+%\input{./Equations/GapEmpiricalSimulatedMedians.tex}\unskip
+
+Thus, for a given pair of the parameters to be estimated, the single 
+call to the function \texttt{smmObjectiveFxn} executes the following:
 \begin{enumerate}
-\item solves for the consumption functions by calling \texttt{ConstructcFuncLife}
-\item simulates the data and computes the simulated medians by calling \texttt{Simulate}
+\item solves for the consumption functions for the life-cycle agent
+\item simulates the data and computes the simulated medians
 \item returns the value of equation (\ref{eq:StructEstim})
 \end{enumerate}
 
 We delegate the task of finding the coefficients that minimize the
-\texttt{GapEmpiricalSimulatedMedians} function to the \Mma~
-built-in numerical minimizer \texttt{FindMinimum}.  This task can be
-quite time demanding and rather problematic if the
-\texttt{GapEmpiricalSimulatedMedians} function has very flat regions
+\texttt{smmObjectiveFxn} function to the \texttt{minimize\_nelder\_mead}
+function, which is defined elsewhere and called in the second part of this file.
+This task can be quite time demanding and rather problematic if the
+\texttt{smmObjectiveFxn} function has very flat regions
 or sharp features. It is thus wise to verify the accuracy of the
 solution, for example by experimenting with a variety of alternative starting values for the
 parameter search.
 
-Finally the standard errors are computed by bootstrap using the
-routines in the \texttt{setup\_Bootstrap.m} file.\footnote{For a
+The final object defined in this first part of the \texttt{StructEstimation.py}
+file is \texttt{calculateStandardErrorsByBootstrap}. As the name suggsts, the
+purpose of this function is to compute the standard errors by bootstrap.\footnote{For a
   treatment of the advantages of the bootstrap see
   Horowitz~\citeyearpar{horowitzBootstrap}} This involves:
 \begin{enumerate}
@@ -3215,11 +3028,32 @@ routines in the \texttt{setup\_Bootstrap.m} file.\footnote{For a
 \item drawing a random sample (with replacement) of actual data from the SCF
 \item obtaining new estimates for $\CRRA$ and ${\beth}$
 \end{enumerate}
-We repeat the above procedure several times (\texttt{Bootstrap}) and take the standard deviation for each of the estimated parameters across the various bootstrap iterations.
+We repeat the above procedure several times (\texttt{Bootstrap}) and
+take the standard deviation for each of the estimated parameters across the various bootstrap iterations.
 
-The file \texttt{StructEstimation.m} produces our $\CRRA$ and
+\subsubsection{An Aside to Computing Sensitivity Measures}\label{subsubsec:sensmeas}
+
+A common drawback in commonly used structural estimation procedures is a lack of transparency in its estimates.
+As \cite{andrewsmeasuringsensitivity} notes, a researcher employing such structural empirical methods may be interested
+in how alternative assumptions (such as misspecification or measurement bias in the data) would ``change the moments
+of the data that the estimator uses as inputs, and how changes in these moments affect the estimates''. The authors
+provide a measure of sensitivity for given estimator that makes it easy to map the effects of different assumptions
+on the moments into predictable bias in the estimates for non-linear models. 
+
+In the language of \cite{andrewsmeasuringsensitivity}, section \ref{sec:StructEst} is aimed at providing an
+estimator $\xi =\{\CRRA ,{\beth}\}$ that has some true value $\xi_0 $ by assumption. Under the assumption $a_0$ of the 
+researcher, the empirical targets computed from the SCF is measured accurately. These moments of the data are precisely
+what determine our estimate $\hat{\xi}$, which minimizes (\ref{eq:StructEstim}). Under alternative assumptions $a$, 
+such that a given cohort is mismeasured in the survey, a different estimate is computed. Using the plug-in estimate
+provided by the authors, we can see quantitatively how our estimate changes under these alternative assumptions $a$ which correspond 
+to mismeasurement in the median wealth to income ratio for a given age cohort. 
+
+\subsection{Results}
+The second part of the file \texttt{StructEstimation.py}
+defines a function \texttt{main} which produces our $\CRRA$ and
 ${\beth}$ estimates with standard errors using 10,000 simulated
-agents.\footnote{The procedure is: First we calculate the $\CRRA$ and
+agents by setting the positional arguments \texttt{estimate\_model} and
+\texttt{compute\_standard\_errors} to true.\footnote{The procedure is: First we calculate the $\CRRA$ and
   ${\beth}$ estimates as the minimizer of equation
   (\ref{eq:StructEstim}) using the actual SCF data. Then, we apply the
   \texttt{Bootstrap} function several times to obtain the standard
@@ -3228,18 +3062,9 @@ agents.\footnote{The procedure is: First we calculate the $\CRRA$ and
   ~\citeyearpar{cagettiWprofiles} who estimates a different set of
   parameters for college graduates, high school graduates and high
   school dropouts graduates, we perform the structural estimation on
-  the full population.} Figure \ref{fig:PlotContourMedianStrEst} shows
-the contour plot of the \texttt{GapEmpiricalSimulatedMedians} function
-and the parameter estimates. The contour plot shows equally spaced
-isoquants of the \texttt{GapEmpiricalSimulatedMedians} function,
-i.e.\ the pairs of $\CRRA$ and ${\beth}$ which lead to the same
-deviations between simulated and empirical medians (equivalent values
-of equation (\ref{eq:StructEstim})). We can thus interestingly see
-that there is a large rather flat region, or more formally speaking
-there exists a broad set of parameter pairs which leads to similar
-simulated wealth to income ratios. Intuitively, the flatter and larger
-is this region, the harder it is for the structural estimation
-procedure to precisely identify the parameters.
+  the full population.}
+
+
 \begin{verbatimwrite}{./Tables/EstResults.tex}
   \begin{table}[h]
     \caption{Estimation Results}\label{tab:EstResults}
@@ -3248,24 +3073,75 @@ procedure to precisely identify the parameters.
       \hline
       $\CRRA $ & ${\beth}$\\
       \hline
-      $4.68$ & $1.00$\\
-      $(0.13)$ & $(0.00)$\\
+      $3.69$ & $0.88$\\
+      $(0.047)$ & $(0.002)$\\
       \hline
     \end{tabular}
   \end{table}
 \end{verbatimwrite}
 \input{./Tables/EstResults.tex}\unskip
 
-\hypertarget{PlotContourMedianStrEst}{}
+The literature on consumption and savings behavior over the lifecycle in
+the presenece of labor income uncertainty \footnote{For example, see \cite{gpLifecycle} for an 
+exposition of this.} warns us to be careful in disentangling the effect of time preference and
+risk aversion when describing the optimal behavior of households in this setting.
+Since the precautionary saving motive dominates in the early stages of life, the coefficient of relative
+risk aversion (as well as expected labor income growth) has a larger effect on optimal consumption and 
+saving behavior through their magnitude relative to the
+interest rate. Over time, life-cycle considerations (such as saving for retirement) become more important and
+the time preference factor plays a larger role in determining optimal behavior for this cohort.
+
+Using the positional argument \texttt{compute\_sensitivity}, Figure \ref{fig:PlotSensitivityMeasure}
+provides a plot of the plug-in estimate of the sensitivity measure described in \ref{subsubsec:sensmeas}. As you can see from 
+the figure the inverse relationship between $\rho$ and $\beth$ over the life-cycle 
+is retained by the sensitivity measure. Specifically, under the alternative 
+assumption that \textit{a particular cohort is mismeasured in the SCF dataset}, we see that the 
+y-axis suggests that our estimate of $\rho$ and $\beth$ change in a predictable way. 
+
+Suppose that there are not enough observations of the oldest cohort of households in the
+sample. Suppose further that the researcher predicts that adding more observations of these households
+to correct this mismeasurement would correspond to a higher median wealth to income ratio
+for this cohort. In this case, our estimate of the time preference factor should increase: 
+the behavior of these older households is driven by their time preference, 
+so a higher value of $\beth$ is required to match the affected wealth to income targets under this 
+alternative assumption. Since risk aversion is less important in explaining the behavior of this cohort, 
+a lower value of $\rho$ is required to match the affected empirical moments. 
+
+To recap, the sensitivity measure not only matches our intuition about the inverse relationship between 
+$\rho$ and $\beth$ over the life-cycle, but provides a quantitative estimate of what would happen to 
+our estimates of these parameters under the alternative assumption that the data is mismeasured in some way.
+
+\hypertarget{PlotSensitivityMeasure}{}
 \begin{figure}
-  \includegraphics[width=6in]{./Figures/PlotContourMedianStrEst}
-  \caption{Contour Plot (larger values are shown lighter) with $\{\CRRA,{\beth}\}$ Estimates (red dot).}
-  \label{fig:PlotContourMedianStrEst}
+  \includegraphics[width=6in]{./Figures/Sensitivity.pdf}
+  \caption{Sensitivty of Estimates $\{\CRRA,{\beth}\}$ regarding Alternative Mismeasurement Assumptions.}
+  \label{fig:PlotSensitivityMeasure}
 \end{figure}
+
+By setting the positional argument
+\texttt{make\_contour\_plot} to true, Figure \ref{fig:PlotContourMedianStrEst} shows
+the contour plot of the \texttt{smmObjectiveFxn} function
+and the parameter estimates. The contour plot shows equally spaced
+isoquants of the \texttt{smmObjectiveFxn} function,
+i.e.\ the pairs of $\CRRA$ and ${\beth}$ which lead to the same
+deviations between simulated and empirical medians (equivalent values
+of equation (\ref{eq:StructEstim})). Interestingly, there is a large rather flat region; or, more formally speaking,
+there exists a broad set of parameter pairs which leads to similar
+simulated wealth to income ratios. Intuitively, the flatter and larger
+is this region, the harder it is for the structural estimation
+procedure to precisely identify the parameters.
 
 \section{Conclusion}
 
-There are many choices that can be made for solving microeconomic dynamic stochastic optimization problems.  The set of techniques, and associated programs, described in these notes represents an approach that I have found to be powerful, flexible, and efficient, but other problems may require other techniques.  For a much broader treatment of many of the issues considered here, see Judd~\citeyearpar{judd:book}.
+There are many choices that can be made for solving microeconomic dynamic stochastic optimization problems.  
+The set of techniques, and associated programs, described in these notes represents an approach that I have found to be powerful, flexible, and efficient, but other problems may require other techniques.  For a much broader treatment of many of the issues considered here, see Judd~\citeyearpar{judd:book}.
+
+\hypertarget{PlotContourMedianStrEst}{}
+\begin{figure}
+  \includegraphics[width=6in]{./Figures/SMMcontour.pdf}
+  \caption{Contour Plot (larger values are shown lighter) with $\{\CRRA,{\beth}\}$ Estimates (red dot).}
+  \label{fig:PlotContourMedianStrEst}
+\end{figure}
 
 \clearpage\vfill\eject
 
@@ -3318,6 +3194,7 @@ this ratio is used for the estimation.\footnote{Please refer to the archive code
 
 \subfile{TRP_aInU}
 }{}
+
 
 \end{document}
 

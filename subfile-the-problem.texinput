@@ -1,6 +1,6 @@
 The usual analysis of dynamic stochastic programming problems packs a great many events (intertemporal choice, stochastic shocks, intertemporal returns, income growth, and more) into a small number of steps and variables. For the detailed analysis here, we will be careful to disarticulate everything that happens in the problem explicitly into separate steps so that each element can be scrutinized and understood in isolation.
 
-We are interested in the behavior a consumer who begins \interval $t$ with a certain amount of `capital' $\kLvl_{t}$, which is immediately rewarded by a return factor $\Rfree_{t}$ with the proceeds deposited in a \textbf{b}ank account \textbf{b}alance:
+We are interested in the behavior a consumer who begins {\interval} $t$ with a certain amount of `capital' $\kLvl_{t}$, which is immediately rewarded by a return factor $\Rfree_{t}$ with the proceeds deposited in a \textbf{b}ank account \textbf{b}alance:
 \begin{equation}\begin{gathered}\begin{aligned}
   \bLvl_{t} & = \kLvl_{t}\Rfree_{t}. \label{eq:bLvl}
 \end{aligned}\end{gathered}\end{equation}
@@ -17,4 +17,4 @@ The combination of bank balances $\bLvl$ and income $\yLvl$ define's the consume
 \end{aligned}\end{gathered}\end{equation}
 which are available to be spent on consumption $\cLvl_{t}$.
 
-The consumer's goal is to maximize discounted utility from consumption over the rest of a lifetime whose last \interval is date $T$:
+The consumer's goal is to maximize discounted utility from consumption over the rest of a lifetime whose last {\interval} is date $T$:
