@@ -1,6 +1,7 @@
 \RequireVersions{
   *{application}{TeX}     {1990/03/25 v3.x}
   *{format} {LaTeX2e}     {2022-11-01 v2.e}
+  *{file}   {cctwMoM.tex} {0000/00/00 v0.0}
   *{file}   {./.econtexRoot}{0000/00/00 v0.0}
   *{file}   {./Resources/econtexPaths.tex}{0000/00/00 v0.0}
   *{class}  {./Resources/texmf-local/tex/latex/econtex}{2017/08/01 v0.0}
@@ -121,6 +122,8 @@
   *{file}   {supp-pdf.mkii}{0000/00/00 v0.0}
   *{package}{epstopdf-base}{2020-01-24 v2.11}
   *{file}   {epstopdf-sys.cfg}{2010/07/13 v1.3}
+  *{file}   {cctwMoM.out} {0000/00/00 v0.0}
+  *{file}   {cctwMoM.out} {0000/00/00 v0.0}
   *{package}{bookmark}    {2020-11-06 v1.29}
   *{file}   {bkm-pdftex.def}{2020-11-06 v1.29}
   *{file}   {umsa.fd}     {2013/01/14 v3.01}
@@ -161,4 +164,5 @@
   *{file}   {./Equations/TighterThreeEqns.tex}{0000/00/00 v0.0}
   *{file}   {././cctwMoM/TighterThreeFuncsExplain.tex}{0000/00/00 v0.0}
   *{file}   {./Figures/IntExpFOCInvPesReaOptNeed45Plot.pdf}{0000/00/00 v0.0}
+  *{file}   {cctwMoM.bbl} {0000/00/00 v0.0}
 }
