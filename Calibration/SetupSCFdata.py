@@ -4,11 +4,8 @@ Sets up the SCF data for use in the SolvingMicroDSOPs estimation.
 from __future__ import division  # Use new division function
 from __future__ import print_function
 from __future__ import absolute_import
-from builtins import zip
-from builtins import str
-from builtins import range
 
-import os, sys
+import os
 
 # Find pathname to this file:
 my_file_path = os.path.dirname(os.path.abspath(__file__))
@@ -38,7 +35,6 @@ from EstimationParameters import initial_age, empirical_cohort_age_groups
 
 # The following libraries are part of the standard python distribution
 import numpy as np  # Numerical Python
-import csv  # Comma-separated variable reader
 import pandas as pd
 
 # Set the path to the empirical data:

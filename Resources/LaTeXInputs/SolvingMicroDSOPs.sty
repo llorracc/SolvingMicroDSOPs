@@ -19,24 +19,32 @@
 \providecommand{\chiFunc}{\pmb{\chi}}
 \usepackage{\LaTeXInputs/pdfsuppressruntime}
 
-\newcommand{\BegStget}{{t-}}
-\newcommand{\BegStgetp}{{t+1-}}
-\newcommand{\MidStget}{{t~}}
-\newcommand{\EndStget}{{t+}}
-\renewcommand{\BegStget}{{\underline{t}}}
-\renewcommand{\BegStgetp}{{\underline{t+1}}}
-\renewcommand{\MidStget}{{t}}
-\renewcommand{\EndStget}{\overline{t}}
-\renewcommand{\BegStget}{t_{-}}
-\renewcommand{\BegStgetp}{t_{-}+1}
-\renewcommand{\MidStget}{{t}}
-\renewcommand{\EndStget}{{t}^{+}}
-\newcommand{\vBegStget}{\vFunc_{\BegStget}}
-\newcommand{\vBegStge}{\vFunc}
-\newcommand{\vBegStgetp}{\vFunc_{\BegStgetp}}
-\newcommand{\vMidStge}{\vFunc}
-\newcommand{\vMidStget}{\vFunc_{\MidStget}}
-\newcommand{\vEndStget}{\vFunc_{\EndStget}}
-\newcommand{\vEndStge}{\vFunc}
-\newcommand{\cEndStget}{\cFunc_{\EndStget}}
-\newcommand{\vPEndStget}{\vFunc^{{a}}_{\EndStget}}
+\newcommand{\BegStge}{{t-}}
+\newcommand{\BegStgep}{{t+1-}}
+\newcommand{\MidStge}{{t~}}
+\newcommand{\EndStge}{{t+}}
+% \renewcommand{\BegStge}{{\underline{t}}}
+% \renewcommand{\BegStgep}{{\underline{t+1}}}
+% \renewcommand{\MidStge}{{t}}
+% \renewcommand{\EndStge}{\overline{t}}
+\renewcommand{\BegStge}{\stge_{-}}
+\renewcommand{\BegStgep}{\stge_{-}+1}
+\renewcommand{\MidStge}{{\stge{\tiny\sim}}}
+\renewcommand{\EndStge}{{\stge}^{+}}
+\renewcommand{\BegStge}{-\stge}
+\renewcommand{\BegStgep}{-\stge+1}
+\renewcommand{\MidStge}{{\sim\stge}}
+\renewcommand{\EndStge}{+{\stge}}
+\newcommand{\vBegStge}{\vFunc_{\BegStge}}
+\newcommand{\vBegStgep}{\vFunc_{\BegStgep}}
+\newcommand{\vMidStge}{\vFunc_{\MidStge}}
+\newcommand{\vEndStge}{\vFunc_{\EndStge}}
+\newcommand{\cEndStge}{\cFunc_{\EndStge}}
+\newcommand{\vPEndStge}{\vFunc^{{a}}_{\EndStge}}
+
+
+\providecommand{\stge}{s}
+\renewcommand{\stge}{s}
+
+\providecommand{\interval}{stage}
+\renewcommand{\interval}{stage}
