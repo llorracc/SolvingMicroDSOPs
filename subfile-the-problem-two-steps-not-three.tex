@@ -1,5 +1,5 @@
 % -*- mode: LaTeX; TeX-PDF-mode: t; -*- # Tell emacs the file type (for syntax)
-\input{./.econtexRootinput}\documentclass[SolvingMicroDSOPs]{subfiles}
+\input{./.econtexRoot}\documentclass[SolvingMicroDSOPs]{subfiles}
 \input{\LaTeXInputs/econtex_onlyinsubfile}
 \usepackage{listings}
 \usepackage{minted}
@@ -23,7 +23,7 @@ The problem can be normalized by the level of permanent income $\pLvl$, yielding
 
 If we turn off the mortality shocks $(\Alive=1)$ and family-size shocks, and redefine the pure time preference factor as $\beta=\beth$, the problem has first order condition
 \begin{align}
-L   \uFunc^{\prime}(\cNrm) & = \DiscFac \Rfree \vEndStge^{\prime}(\mNrm - \cNrm).  \label{eq:FOCstep}
+   \uFunc^{\prime}(\cNrm) & = \DiscFac \Rfree \vEndStge^{\prime}(\mNrm - \cNrm).  \label{eq:FOCstep}
 \end{align}
 
 \section{Creating An Instance of a Model}

@@ -22,42 +22,42 @@
 \setboolean{BigAndWide}{true}
 \setboolean{BigAndWide}{false}
 
-% % Options to set if being run from the shell (so autocompiled) 
-% \opt{FromShell}{
-% \setboolean{bigPrint}{false}
-% \setboolean{wideMargins}{false}
-% \setboolean{BigAndWide}{false}
-% }
+% Options to set if being run from the shell (so autocompiled) 
+\opt{FromShell}{
+\setboolean{bigPrint}{false}
+\setboolean{wideMargins}{false}
+\setboolean{BigAndWide}{false}
+}
 
-% \opt{bigWide}{
-% \setboolean{bigPrint}{true}
-% \setboolean{wideMargins}{true}
-% \setboolean{BigAndWide}{true}
-% \providecommand{\textSizeDefault}{\large}
-% \providecommand{\abstractSizeDefault}{\large}
-% }
+\opt{bigWide}{
+\setboolean{bigPrint}{true}
+\setboolean{wideMargins}{true}
+\setboolean{BigAndWide}{true}
+\providecommand{\textSizeDefault}{\large}
+\providecommand{\abstractSizeDefault}{\large}
+}
 
-% \opt{Aquamacs}{
-% %\setboolean{bigPrint}{true}
-% %\setboolean{wideMargins}{true}
-% %\setboolean{BigAndWide}{true}
-% %\providecommand{\textSizeDefault}{\large}
-% %\providecommand{\abstractSizeDefault}{\large}
-% }
+\opt{Aquamacs}{
+%\setboolean{bigPrint}{true}
+%\setboolean{wideMargins}{true}
+%\setboolean{BigAndWide}{true}
+%\providecommand{\textSizeDefault}{\large}
+%\providecommand{\abstractSizeDefault}{\large}
+}
 
-% \provideboolean{KoppaOn}
-% \setboolean{KoppaOn}{true}
-% %\setboolean{KoppaOn}{false}
+\provideboolean{KoppaOn}
+\setboolean{KoppaOn}{true}
+%\setboolean{KoppaOn}{false}
 
-% \ifthenelse{\boolean{KoppaOn}}{
-% \providecommand{\koppa}{\text{\greek{k+}}}
-% \providecommand{\Koppa}{\text{\greek{K+}}}
-% \providecommand{\sampi}{\text{\greek{s+}}}
-% \providecommand{\cigma}{\text{\greek{c+}}}
-% \providecommand{\Cigma}{\text{\greek{C+}}}
-% }{
-% \def\koppa{\mathbf{q}}\providecommand{\koppa}{$\mathbf{q}$}\providecommand{\Koppa}{$\mathbf{Q}$}
-% }
+\ifthenelse{\boolean{KoppaOn}}{
+\providecommand{\koppa}{\text{\greek{k+}}}
+\providecommand{\Koppa}{\text{\greek{K+}}}
+\providecommand{\sampi}{\text{\greek{s+}}}
+\providecommand{\cigma}{\text{\greek{c+}}}
+\providecommand{\Cigma}{\text{\greek{C+}}}
+}{
+\def\koppa{\mathbf{q}}\providecommand{\koppa}{$\mathbf{q}$}\providecommand{\Koppa}{$\mathbf{Q}$}
+}
 
 % Keep the elements in the argument #1 together on the same page
 \newcommand{\together}[1]{\noindent\parbox{\linewidth}{#1}} 

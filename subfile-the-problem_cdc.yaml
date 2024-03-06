@@ -1,0 +1,79 @@
+basic_c_stge:
+    explain: consumption-saving block with simple transitory shocks
+
+    states: [k, m, a]
+        k:
+            explain: beginning-of-stage capital holdings level
+	m:
+	    explain: market resources when c decision is made
+	a:
+	    explain: end-of-stage assets
+
+    controls: [c] 
+
+    # I think we will need to explicitly define the functions that use
+    # the hybrid numerical/symbolic tools Seb has found
+    # I'll call them here numsymFuncs
+    
+    funcs_sym:
+        uFunc
+	
+    funcs_sym_num:
+	cFunc
+	vFunc_beg
+	vFunc_mid
+	vFunc_end
+	
+    functions: 
+    	- uFunc @ (c)  = (c^(1-CRRA))/(1-CRRA)
+
+    exogenous: # Pablo's terminology here
+        - y ~ TranShkDstn
+        - R ~ RiskShkDstn
+
+    dynamics:
+        - b = R * k
+        - m = b + y
+	- a = m - c
+
+    optimal:
+        - cFunc := argmax vFunc_mid | c <= m
+
+    solution:
+        method: VFI
+	# brute force
+		computations:
+			- (usual brute force numerical approach)
+
+                constructions:
+			- (assumed to return vFunc_mid, cFunc numsym objects)
+	
+		expectations: 
+		        - vFunc_beg.sym     = E_beg.sym[ R.sym * vFunc_mid.sym ]
+			
+        method: EGM
+	# EGM requires the derivatives as well, so we need to define and compute them
+	
+		# presumably all of these could be automatically constructed using sympy?
+		functions:
+		        - uFunc.sym.der @ (c)      = (c^( -CRRA)) 
+			- uFunc.sym.inv @ (u)      = ((1-CRRA)(u))^(1/(1-CRRA))
+		
+		# the key EGM calculation
+		computations:
+			- (hook to any solution computations required and not providable by DARK)
+			- (for EGM there are none such - existing default operations do the trick)
+			- c_end.grd = uFunc.sym.der.inv(vFunc_end.der)  # .x means get x axis
+			- m_mid.grd = c_end.grd + vFunc_end.x
+		
+		constructions:
+			- (hook to code to construct objects like interpolators)
+			- c_end.sym = InterpolatingFunction[{vFunc_end.grd,c_end.grd}]
+			- c_mid.sym = InterpolatingFunction[{m_mid.grd,c_end.grd}]
+			
+		expectations: 
+		        - vFunc_beg.sym     = E.sym[         vFunc_mid.sym  ]    # symbolic
+		        - vFunc_beg.num     = E.num[         vFunc_mid.num  ]    # numerical
+		        - vFunc_beg.der.sym = E.sym[ R.sym * vFunc_mid.der.sym ] # symbolic
+		        - vFunc_beg.der.num = E.num[ R.num * vFunc_mid.der.num ] # numerical
+			

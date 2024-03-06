@@ -627,4 +627,4 @@ private
 *.el
 
 # ls-R will differ from machine to machine
-ls-R
+ls*
