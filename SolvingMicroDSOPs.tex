@@ -1,7 +1,7 @@
 % -*- mode: LaTeX; TeX-PDF-mode: t; -*- # Tell emacs the file type (for syntax)
 \input{./.econtexRoot} % Set paths (like, \LaTeXInputs to find resources)
 \newcommand{\texname}{SolvingMicroDSOPs}% Keyname for the paper
-\documentclass[titlepage, headings=optiontotocandhead]{\econtex}
+\documentclassegin{align\*}titlepage, headings=optiontotocandhead]{\econtex}
 \usepackage{accents,xr-hyper}
 \usepackage{\LaTeXInputs/\texname}% LaTeX Shortcuts for whole paper
 
@@ -66,7 +66,7 @@
 % Redefine \onlyinsubfile command defined in \texname.sty file:
 % This lets any submaterial called from here know that it is not standalone
 % If not called from here and IS standalone, can make bib (or other content)
-\renewcommand{\onlyinsubfile}[1]{}\renewcommand{\notinsubfile}[1]{#1}
+\renewcommand{\onlyinsubfile}egin{align\*}1]{}\renewcommand{\notinsubfile}egin{align\*}1]{#1}
 
 \hfill{\tiny \jobname, \today}
 
@@ -201,7 +201,7 @@ The consumer's goal is to maximize discounted utility from consumption over the 
 
 \begin{verbatimwrite}{./Equations/MaxProb.tex}
   \begin{equation}\label{eq:MaxProb}
-    \max ~ \Ex_{t}\left[ \sum_{n=0}^{T-t} {\DiscAlt}^{n} \uFunc({\cLvl}_{t+n})\right].
+    \max ~ \Ex_{t}\leftegin{align\*} \sum_{n=0}^{T-t} {\DiscAlt}^{n} \uFunc({\cLvl}_{t+n})\right].
   \end{equation}
 \end{verbatimwrite}
 \input{./Equations/MaxProb.tex}\unskip
@@ -216,7 +216,7 @@ For now, we will assume that income evolves according to: \ifthenelse{\boolean{M
 \end{verbatimwrite}
 \input{./Equations/ExogVars.tex}\unskip
 
-% \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Assumption on $\TranShkEmp$ implies $\Ex_{t}[\TranShkEmp_{t+1}] = 1$.}}{} Using the fact about lognormally distributed variables \handoutM{ELogNorm}\footnote{This fact is referred to as \texttt{ELogNorm} in the handout \handoutM{MathFactsList}, in the references as \cite{MathFacts}; further citation to facts in that handout will be referenced simply by the name used in the handout for the fact in question, e.g.\ \handoutM{LogELogNorm} is the name of the fact that implies that $\log \Ex[{\TranShkEmp}]=0$.} that if $\log \EPrem \sim \mathcal{N}(\eprem,\sigma_{\eprem}^{2})$ then $\log \Ex[{\EPrem}] = \eprem +\sigma_{\eprem}^{2}/2$, our assumption about the distribution of the transitory shock guarantees that $\log \Ex[{\TranShkEmp}] = 0$ which means that $\Ex[{\TranShkEmp}]$=1 (the mean value of the transitory shock is 1).
+% \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Assumption on $\TranShkEmp$ implies $\Ex_{t}egin{align\*}\TranShkEmp_{t+1}] = 1$.}}{} Using the fact about lognormally distributed variables \handoutM{ELogNorm}\footnote{This fact is referred to as \texttt{ELogNorm} in the handout \handoutM{MathFactsList}, in the references as \cite{MathFacts}; further citation to facts in that handout will be referenced simply by the name used in the handout for the fact in question, e.g.\ \handoutM{LogELogNorm} is the name of the fact that implies that $\log \Exegin{align\*}{\TranShkEmp}]=0$.} that if $\log \EPrem \sim \mathcal{N}(\eprem,\sigma_{\eprem}^{2})$ then $\log \Exegin{align\*}{\EPrem}] = \eprem +\sigma_{\eprem}^{2}/2$, our assumption about the distribution of the transitory shock guarantees that $\log \Exegin{align\*}{\TranShkEmp}] = 0$ which means that $\Exegin{align\*}{\TranShkEmp}]$=1 (the mean value of the transitory shock is 1).
 Equation \eqref{eq:permincgrow} indicates that we are allowing for a predictable average profile of income growth over the lifetime $\{\PermGroFac\}_{0}^{T}$ (to capture typical career wage paths, pension arrangements, etc).\footnote{This equation assumes that there are no shocks to permanent income.  A large literature finds that, in reality, permanent (or at least extremely highly persistent) shocks exist and are quite large; such shocks therefore need to be incorporated into any `serious' model (that is, one that hopes to match and explain empirical data), but the treatment of permanent shocks clutters the exposition without adding much to the intuition, so permanent shocks are omitted from the analysis until the last section of the notes, which shows how to match the model with empirical micro data.  For a full treatment of the theory including permanent shocks, see \cite{BufferStockTheory}.}  %\ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny However, note the $t$    subscript indicating that a life cycle profile is possible. It's    fairly easy to modify this to allow permanent shocks as well.}}{}
 Finally, the utility function is of the
 Constant Relative Risk Aversion (CRRA), form, $\uFunc(\bullet) = \bullet^{1-\CRRA}/(1-\CRRA)$.
@@ -225,7 +225,7 @@ It is well known that this problem can be rewritten in recursive (Bellman) form
 \begin{verbatimwrite}{./Equations/vrecurse.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
         {\vLvl}
-_{t}(\mLvl_{t},\pLvl_{t})  & = \max_{\cLvl_{t}}~ \uFunc(\cLvl_{t}) + {\DiscAlt}\Ex_{t}[ {\vLvl}
+_{t}(\mLvl_{t},\pLvl_{t})  & = \max_{\cLvl_{t}}~ \uFunc(\cLvl_{t}) + {\DiscAlt}\Ex_{t}egin{align\*} {\vLvl}
 _{t+1}({\mLvl}_{t+1},\pLvl_{t+1})]\label{eq:vrecurse}
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
@@ -266,7 +266,7 @@ Now define a new optimization problem:\ifthenelse{\boolean{MyNotes}}{\marginpar{
 \begin{verbatimwrite}{./Equations/vNormed.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
         \null{\vFunc}_{t}({m}_{t})  & = \max_{{c}_{t}} ~~ \uFunc({c}_{t})+
-        {\DiscFac}\Ex_{t}[ \PermGroFac_{t+1}^{1-\CRRA}\null{\vFunc}_{t+1}({m}_{t+1})] \label{vtNorm}
+        {\DiscFac}\Ex_{t}egin{align\*} \PermGroFac_{t+1}^{1-\CRRA}\null{\vFunc}_{t+1}({m}_{t+1})] \label{vtNorm}
         \\         & \text{s.t.} &   \\
         {a}_{t}    & = {m}_{t}-{c}_{t} 
         \\      {m}_{t+1}  & = \underbrace{\left(\Rfree/\PermGroFac_{t+1}\right)}_{\equiv \RNrm_{t+1}}{a}_{t}+\TranShkEmp_{t+1} .
@@ -304,12 +304,12 @@ For some problems it will not be obvious that there is an appropriate `normalizi
 
 The first order condition for \eqref{vtNorm} with respect to ${c}_{t}$ is
 \begin{equation}\begin{gathered}\begin{aligned}
-      \uFunc^{{c}}({c}_{t})  & = \Ex_{t}[\DiscFac \RNrm_{t+1}\PermGroFac_{t+1}^{1-\CRRA}\null{\vFunc}^{{m}}_{t+1}({m}_{t+1})]  \label{eq:upceqEvtp1}
-      \\                        & =  \Ex_{t}[\DiscFac\Rfree\phantom{._{t+1}}\PermGroFac_{t+1}^{\phantom{1}-\CRRA}\null{\vFunc}^{{m}}_{t+1}({m}_{t+1})] 
+      \uFunc^{{c}}({c}_{t})  & = \Ex_{t}egin{align\*}\DiscFac \RNrm_{t+1}\PermGroFac_{t+1}^{1-\CRRA}\null{\vFunc}^{{m}}_{t+1}({m}_{t+1})]  \label{eq:upceqEvtp1}
+      \\                        & =  \Ex_{t}egin{align\*}\DiscFac\Rfree\phantom{._{t+1}}\PermGroFac_{t+1}^{\phantom{1}-\CRRA}\null{\vFunc}^{{m}}_{t+1}({m}_{t+1})] 
     \end{aligned}\end{gathered}\end{equation}
 and because the \handoutC{Envelope} theorem tells us that
 \begin{equation}\begin{gathered}\begin{aligned}
-      \null{\vFunc}^{{m}}_{t}({m}_{t})  & =  \Ex_{t} [\DiscFac\Rfree\PermGroFac_{t+1}^{-\CRRA}\null{\vFunc}^{{m}}_{t+1}({m}_{t+1})] \label{eq:envelope}
+      \null{\vFunc}^{{m}}_{t}({m}_{t})  & =  \Ex_{t} egin{align\*}\DiscFac\Rfree\PermGroFac_{t+1}^{-\CRRA}\null{\vFunc}^{{m}}_{t+1}({m}_{t+1})] \label{eq:envelope}
     \end{aligned}\end{gathered}\end{equation}
 we can substitute the LHS of \eqref{eq:envelope} for the RHS of
 (\ref{eq:upceqEvtp1}) to get
@@ -327,7 +327,7 @@ while substituting the LHS in equation (\ref{eq:upceqEvtp1})
 gives us the Euler equation for consumption
 \begin{verbatimwrite}{./Equations/cEuler.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
-        \uFunc^{{c}}({c}_{t})  & = \Ex_{t}[\DiscFac\Rfree \PermGroFac_{t+1}^{-\CRRA}\uFunc^{{c}}({c}_{t+1})]. \label{eq:cEuler}
+        \uFunc^{{c}}({c}_{t})  & = \Ex_{t}egin{align\*}\DiscFac\Rfree \PermGroFac_{t+1}^{-\CRRA}\uFunc^{{c}}({c}_{t+1})]. \label{eq:cEuler}
                                   \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 
@@ -342,7 +342,7 @@ gives us the Euler equation for consumption
 \input{./subfile-stage-notation}
 \begin{verbatimwrite}{./Equations/vBegStge}
   \begin{equation}\begin{gathered}\begin{aligned}
-\vBegStge(\kNrm_{\stge}) & = \Ex_{\BegStge}[\vMidStge(\overbrace{\kNrm_{\stge} \Rnorm_{\stge} + \TranShkEmp_{\stge}}^{=\mNrm_{\stge}})]  \label{eq:vBegStge}
+\vBegStge(\kNrm_{\stge}) & = \Ex_{\BegStge}egin{align\*}\vMidStge(\overbrace{\kNrm_{\stge} \Rnorm_{\stge} + \TranShkEmp_{\stge}}^{=\mNrm_{\stge}})]  \label{eq:vBegStge}
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/vBegStge}\unskip
@@ -365,17 +365,17 @@ where the last line illustrates the notation for addressing the beginning {\move
 Putting all this together, we can write the `continuation value' function from the perspective of the end of the {\interval} $\stge$ as 
 \begin{verbatimwrite}{./Equations/vEndtdefn.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
-        \vEndStge({a}_{\stge})  & = \Ex_{\stge}[\DiscFac \PermGroFac_{\stge+1}^{1-\CRRA}\null{\vFunc}_{\stge+1}(\RNrm_{\stge+1} {a}_{\stge}+{\TranShkEmp}_{\stge+1})]  \label{eq:vEndtdefn}
+        \vEndStge({a}_{\stge})  & = \Ex_{\stge}egin{align\*}\DiscFac \PermGroFac_{\stge+1}^{1-\CRRA}\null{\vFunc}_{\stge+1}(\RNrm_{\stge+1} {a}_{\stge}+{\TranShkEmp}_{\stge+1})]  \label{eq:vEndtdefn}
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/vEndtdefn.tex}\unskip
 because it returns the expected $t+1$ value associated with ending {\interval} $\stge$ with any given amount of assets.  Differentiating with respect to $\aNrm$, we get 
 \begin{equation}\begin{gathered}\begin{aligned}
-      {\vPEndStge}({a}_{\stge})  & = \Ex_{\stge}[\DiscFac \Rfree \PermGroFac_{\stge+1}^{-\CRRA} \null{\vFunc}_{\stge+1}^{{m}}(\RNrm_{\stge+1}{a}_{\stge}+{\TranShkEmp}_{\stge+1})]  \label{eq:vEndPrimetdefn}
+      {\vPEndStge}({a}_{\stge})  & = \Ex_{\stge}egin{align\*}\DiscFac \Rfree \PermGroFac_{\stge+1}^{-\CRRA} \null{\vFunc}_{\stge+1}^{{m}}(\RNrm_{\stge+1}{a}_{\stge}+{\TranShkEmp}_{\stge+1})]  \label{eq:vEndPrimetdefn}
     \end{aligned}\end{gathered}\end{equation}
 or, substituting from equation (\ref{eq:upctp1EqVpxtp1}),
 \begin{equation}\begin{gathered}\begin{aligned}
-      \vPEndStge({a}_{\stge})  & = \Ex_{\stge}\left[\DiscFac \Rfree \PermGroFac_{\stge+1}^{-\CRRA} \uFunc^{{c}}\left(\cFunc_{\stge+1}(\RNrm_{\stge+1} {a}_{\stge}+{\TranShkEmp}_{\stge+1})\right)\right].  \label{eq:vEndPrimetOfc}
+      \vPEndStge({a}_{\stge})  & = \Ex_{\stge}\leftegin{align\*}\DiscFac \Rfree \PermGroFac_{\stge+1}^{-\CRRA} \uFunc^{{c}}\left(\cFunc_{\stge+1}(\RNrm_{\stge+1} {a}_{\stge}+{\TranShkEmp}_{\stge+1})\right)\right].  \label{eq:vEndPrimetOfc}
     \end{aligned}\end{gathered}\end{equation}
 Finally, note for future use that the first order condition
 (\ref{eq:upceqEvtp1}) can now be rewritten compactly as
@@ -403,7 +403,7 @@ The \texttt{resources} module is also used repeatedly throughout the notebook. T
 The problem in the second-to-last period of life is:
 \begin{equation*}\begin{gathered}\begin{aligned}
       \null{\vFunc}_{T-1}({m}_{T-1})  & = \max_{{c}_{T-1}} ~~ \uFunc({c}_{T-1}) +
-      \DiscFac \Ex_{T-1} \left[\PermGroFac_{T}^{1-\CRRA}\null{\vFunc}_{T}(({m}_{T-1} - {c}_{T-1})\RNrm_{T} + \TranShkEmp_{T})\right],
+      \DiscFac \Ex_{T-1} \leftegin{align\*}\PermGroFac_{T}^{1-\CRRA}\null{\vFunc}_{T}(({m}_{T-1} - {c}_{T-1})\RNrm_{T} + \TranShkEmp_{T})\right],
     \end{aligned}\end{gathered}\end{equation*}
 and using (1) the fact that $\vFunc_{T}=\uFunc(c)$; (2) the definition of $\uFunc(c)$; (3) the
 definition of the expectations operator, and (4) the fact that $\PermGroFac_{T}$ is nonstochastic, this becomes
@@ -423,7 +423,7 @@ In principle, the maximization implicitly defines a function $\cFunc_{T-1}({m}_{
 \subsection{Discretizing the Distribution}
 Our first time-saving trick is therefore to construct a discrete approximation to the lognormal distribution that can be used in place of numerical integration.  That is, we want to approximate the expectation of a function $g(\TranShkEmp)$ by value at set of $n_{\TranShkEmp}$ points $\TranShkEmp_{i}$, each of which is given an associated probability weight $w_{i}$:
 \begin{equation*}\begin{gathered}\begin{aligned}
-      \Ex[g(\TranShkEmp)] & = \int_{\TranShkEmpMin}^{\TranShkEmpMax}g(\TranShkEmp)d\FDist(\TranShkEmp) \\
+      \Exegin{align\*}g(\TranShkEmp)] & = \int_{\TranShkEmpMin}^{\TranShkEmpMax}g(\TranShkEmp)d\FDist(\TranShkEmp) \\
       & \approx \sum_{\TranShkEmp = 1}^{n}w_{i}g(\TranShkEmp_{i})
     \end{aligned}\end{gathered}\end{equation*}
 because adding $n$ weighted values to each other is enormously faster than general-purpose numerical integration.
@@ -432,16 +432,16 @@ Such a procedure is called a `quadrature' method of integration; \cite{Tanaka201
 
 We calculate such an $n$-point approximation as follows.
 
-Define a set of points from $\sharp_{0}$ to $\sharp_{n_{\TranShkEmp}}$ on the $[0,1]$ interval
+Define a set of points from $\sharp_{0}$ to $\sharp_{n_{\TranShkEmp}}$ on the $egin{align\*}0,1]$ interval
 as the elements of the set $\sharp = \{0,1/n,2/n, \ldots,1\}$.\footnote{These points define intervals that constitute a partition of the domain of $\FDist$.}  Call the inverse of the $\TranShkEmp$ distribution $\FDist^{-1}_{\phantom{\TranShkEmp}}$, and define the
 points $\sharp^{-1}_{i} = \FDist^{-1}_{\phantom{\TranShkEmp}}(\sharp_{i})$.  Then
 the conditional mean of $\TranShkEmp$ in each of the intervals numbered 1 to $n$ is:
 \begin{equation}\begin{gathered}\begin{aligned}
-      \TranShkEmp_{i} \equiv \Ex[\TranShkEmp | \sharp_{i-1}^{-1} \leq \TranShkEmp < \sharp_{i}^{-1}]  & = \int_{\sharp^{-1}_{i-1}}^{\sharp^{-1}_{i}} \vartheta ~ d\FDist_{\phantom{\TranShkEmp}}(\vartheta)  .
+      \TranShkEmp_{i} \equiv \Exegin{align\*}\TranShkEmp | \sharp_{i-1}^{-1} \leq \TranShkEmp < \sharp_{i}^{-1}]  & = \int_{\sharp^{-1}_{i-1}}^{\sharp^{-1}_{i}} \vartheta ~ d\FDist_{\phantom{\TranShkEmp}}(\vartheta)  .
     \end{aligned}\end{gathered}\end{equation}
 
 The method is illustrated in Figure~\ref{fig:discreteapprox}.  The solid continuous curve represents
-the ``true'' CDF $\FDist(\TranShkEmp)$ for a lognormal distribution such that $\Ex[\TranShkEmp] = 1$, $\sigma_{\TranShkEmp} = 0.1$.  The short vertical line segments represent the $n_{\TranShkEmp}$
+the ``true'' CDF $\FDist(\TranShkEmp)$ for a lognormal distribution such that $\Exegin{align\*}\TranShkEmp] = 1$, $\sigma_{\TranShkEmp} = 0.1$.  The short vertical line segments represent the $n_{\TranShkEmp}$
 equiprobable values of $\TranShkEmp_{i}$ which are used to approximate this
 distribution.\footnote{More sophisticated approximation methods exist
   (e.g.\ Gauss-Hermite quadrature; see \cite{kopecky2010finite} for a discussion of other alternatives), but the method described here is easy to understand, quick to calculate, and has additional advantages briefly described in the
@@ -449,7 +449,7 @@ distribution.\footnote{More sophisticated approximation methods exist
 \begin{verbatimwrite}{\econtexRoot/Figures/discreteApprox.tex}
   \hypertarget{discreteApprox}{}
   \begin{figure}
-    \includegraphics[width=6in]{./Figures/discreteApprox}
+    \includegraphicsegin{align\*}width=6in]{./Figures/discreteApprox}
     \caption{Equiprobable Discrete Approximation to Lognormal Distribution $\FDist$}
     \label{fig:discreteapprox}
   \end{figure}
@@ -509,14 +509,14 @@ plots of the $\Alt{\cFunc}_{T-1}$ and $\Alt{\vFunc}_{T-1}$
 
 \hypertarget{PlotcTm1Simple}{}
 \begin{figure}
-  \centerline{\includegraphics[width=6in]{./Figures/PlotcTm1Simple}}
+  \centerline{\includegraphicsegin{align\*}width=6in]{./Figures/PlotcTm1Simple}}
   \caption{$\cFunc_{T-1}({m}_{T-1})$ (solid) versus $\Alt{\cFunc}_{T-1}({m}_{T-1})$ (dashed)}
   \label{fig:PlotcTm1Simple}
 \end{figure}
 
 \hypertarget{PlotvTm1Simple}{}
 \begin{figure}
-  \centerline{\includegraphics[width=6in]{./Figures/PlotVTm1Simple}}
+  \centerline{\includegraphicsegin{align\*}width=6in]{./Figures/PlotVTm1Simple}}
   \caption{$\vFunc_{T-1}$ (solid) versus $\Alt{\vFunc}_{T-1}({m}_{T-1})$ (dashed)}
   \label{fig:PlotVTm1Simple}
 \end{figure}
@@ -562,14 +562,14 @@ ${m}_{T-1}=1$.
 
 \hypertarget{PlotOTm1RawVSInt}{}
 \begin{figure}
-  \centerline{\includegraphics[width=6in]{./Figures/PlotOTm1RawVSInt}}
+  \centerline{\includegraphicsegin{align\*}width=6in]{./Figures/PlotOTm1RawVSInt}}
   \caption{End-Of-Period Value $\vFunc_{T^{+}-1}({a}_{T-1})$ (solid) versus $\Alt{\vFunc}_{T^{+}-1}({a}_{T-1})$ (dashed)}
   \label{fig:PlotOTm1RawVSInt}
 \end{figure}
 
 \hypertarget{PlotComparecTm1AB}{}
 \begin{figure}
-  \centerline{\includegraphics[width=6in]{./Figures/PlotComparecTm1AB}}
+  \centerline{\includegraphicsegin{align\*}width=6in]{./Figures/PlotComparecTm1AB}}
   \caption{$\cFunc_{T-1}({m}_{T-1})$ (solid) versus $\Alt{\cFunc}_{T-1}({m}_{T-1})$ (dashed)}
   \label{fig:PlotComparecTm1AB}
 \end{figure}
@@ -601,7 +601,7 @@ utility function\ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny
       marginal} value function are likely to work better.}}{} exhibits
 risk aversion because with a stochastic ${c}$,
 \begin{equation}
-  \Ex[-({c} - \cancel{c})^{2}] < - (\Ex[{c}] - \cancel{c})^{2}
+  \Exegin{align\*}-({c} - \cancel{c})^{2}] < - (\Exegin{align\*}{c}] - \cancel{c})^{2}
 \end{equation}
 where $\cancel{c}$ is the `bliss point'. However, unlike the CRRA utility function,
 with quadratic utility the consumption/saving \textit{behavior} of consumers
@@ -609,7 +609,7 @@ is unaffected by risk since behavior is determined by the first order condition,
 depends on \textit{marginal} utility, and when utility is quadratic, marginal utility is unaffected
 by risk:
 \begin{equation}
-  \Ex[-2({c} - \cancel{c})] = - 2(\Ex[{c}] - \cancel{c}).
+  \Exegin{align\*}-2({c} - \cancel{c})] = - 2(\Exegin{align\*}{c}] - \cancel{c}).
 \end{equation}
 
 Intuitively, if one's goal is to accurately capture choices
@@ -622,7 +622,7 @@ of the value function.
 The first order condition of the maximization problem in period $T-1$ is:
 \begin{verbatimwrite}{./Equations/FOCTm1.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
-        \uFunc^{{c}}({c}_{T-1})       & = \DiscFac \Ex_{T-1} [\PermGroFac_{T}^{-\CRRA}\Rfree \uFunc^{{c}}({c}_{T})]  %\label{eq:focraw}
+        \uFunc^{{c}}({c}_{T-1})       & = \DiscFac \Ex_{T-1} egin{align\*}\PermGroFac_{T}^{-\CRRA}\Rfree \uFunc^{{c}}({c}_{T})]  %\label{eq:focraw}
         \\      {c}_{T-1}^{-\CRRA}   & = \Rfree \DiscFac \left(\frac{1}{n_{\TranShkEmp}}\right) \sum_{i=1}^{n_{\TranShkEmp}} \PermGroFac_{T}^{-\CRRA}\left(\Rfree ({m}_{T-1}-{c}_{T-1}) + \TranShkEmp_{i}\right)^{-\CRRA} \label{eq:FOCTm1}.
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
@@ -630,7 +630,7 @@ The first order condition of the maximization problem in period $T-1$ is:
 \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Go from the first to the last equation in \eqref{eq:FOCTm1} by substituting $\uFunc(c)=c^{-\CRRA}$ and use the approximation to the integral.}}{}
 \hypertarget{PlotuPrimeVSOPrime}{}
 \begin{figure}
-  \centerline{\includegraphics[width=6in]{./Figures/PlotuPrimeVSOPrime}}
+  \centerline{\includegraphicsegin{align\*}width=6in]{./Figures/PlotuPrimeVSOPrime}}
   \caption{$\uFunc^{{c}}(c)$ versus $\vFunc_{T^{+}-1}^{{a}}(3-c), \vFunc_{T^{+}-1}^{{a}}(4-c), \Alt{\vFunc}_{T^{+}-1}^{{a}}(3-c), \Alt{\vFunc}_{T^{+}-1}^{{a}}(4-c)$}
   \label{fig:PlotuPrimeVSOPrime}
 \end{figure}
@@ -710,7 +710,7 @@ interpolating function that fits this set of points.
 
 \hypertarget{PlotOPRawVSFOC}{}
 \begin{figure}
-  \centerline{\includegraphics[width=6in]{./Figures/PlotOPRawVSFOC}}
+  \centerline{\includegraphicsegin{align\*}width=6in]{./Figures/PlotOPRawVSFOC}}
   \caption{$\vFunc_{T^{+}-1}^{{a}}({a}_{T-1})$ versus $\Alt{\vFunc}_{T^{+}-1}^{{a}}({a}_{T-1})$}
   \label{fig:PlotOPRawVSFOC}
 \end{figure}
@@ -733,7 +733,7 @@ value function (short dashes).
 
 \hypertarget{PlotcTm1ABC}{}
 \begin{figure}
-  \centerline{\includegraphics[width=6in]{./Figures/PlotcTm1ABC}}
+  \centerline{\includegraphicsegin{align\*}width=6in]{./Figures/PlotcTm1ABC}}
   \caption{$\cFunc_{T-1}({m}_{T-1})$ (solid) Versus Two Methods for Constructing $\Alt{\cFunc}_{T-1}({m}_{T-1})$}
   \label{fig:PlotcTm1ABC}
 \end{figure}
@@ -786,7 +786,7 @@ Of course, this is a highly nonlinear
 function.  However, if we raise both sides of \eqref{eq:vPLin} to the
 power $(-1/\CRRA)$ the result is a linear function:
 \begin{equation}\begin{gathered}\begin{aligned}
-      [\vFunc^{{m}}_{T-1}({m}_{T-1})]^{-1/\CRRA}  & = \frac{{m}_{T-1}+1}{2}  .
+      egin{align\*}\vFunc^{{m}}_{T-1}({m}_{T-1})]^{-1/\CRRA}  & = \frac{{m}_{T-1}+1}{2}  .
     \end{aligned}\end{gathered}\end{equation}
 This is a specific example of a general phenomenon: A theoretical
 literature cited in~\cite{ckConcavity} establishes that under
@@ -884,7 +884,7 @@ approximating $\vFunc^{{a}}_{T^{+}-1}$ function is evaluated at
 some value less than the first element in \texttt{aVec}, the
 approximating function will linearly extrapolate the slope that
 characterized the lowest segment of the piecewise linear approximation
-(between \texttt{aVec[0]} and \texttt{aVec[1]}), a
+(between \texttt{aVecegin{align\*}0]} and \texttt{aVecegin{align\*}1]}), a
 procedure that will return a positive finite number, even if the
 requested ${a}_{T-1}$ point is below $\underline{a}_{T-1}$.  This means that the
 precautionary saving motive is understated, and by an arbitrarily
@@ -908,7 +908,7 @@ which can be seen in the defined lists
 
 \hypertarget{GothVInvVSGothC}{}
 \begin{figure}
-  \centerline{\includegraphics[width=6in]{./Figures/GothVInvVSGothC}}
+  \centerline{\includegraphicsegin{align\*}width=6in]{./Figures/GothVInvVSGothC}}
   \caption{$\cFunc_{T^{+}-1}({a}_{T-1})$ versus $\Alt{\cFunc}_{T^{+}-1}({a}_{T-1})$}
   \label{fig:GothVInvVSGothC}
 \end{figure}
@@ -918,7 +918,7 @@ From there, we plot the lists that have been appended with the natural borrowing
 
 Figure~\ref{fig:GothVVSGothCInv} similarly shows that when we generate
 $\Alt{\Alt{\vFunc}}_{T^{+}-1}^{\prime}({a}_{T-1})$ as
-$[\Alt{\cFunc}_{T^{+}-1}({a}_{T-1})]^{-\CRRA}$ (dashed line) we
+$egin{align\*}\Alt{\cFunc}_{T^{+}-1}({a}_{T-1})]^{-\CRRA}$ (dashed line) we
 obtain a \textit{much} closer approximation to the true function
 $\vFunc^{{a}}_{T^{+}-1}({a}_{T-1})$ (solid line) than we did in
 the previous program which did not do the
@@ -927,7 +927,7 @@ associated figure is produced.
 
 \hypertarget{GothVVSGothCInv}{}
 \begin{figure}
-  \centerline{\includegraphics[width=6in]{./Figures/GothVVSGothCInv}}
+  \centerline{\includegraphicsegin{align\*}width=6in]{./Figures/GothVVSGothCInv}}
   \caption{$\vFunc^{{a}}_{T^{+}-1}({a}_{T-1})$ vs. $\Alt{\Alt{\vFunc}}_{T^{+}-1}^{\prime}({a}_{T-1})$ Constructed Using $\Alt{\cFunc}_{T^{+}-1}({a}_{T-1})$}
   \label{fig:GothVVSGothCInv}
 \end{figure}
@@ -986,7 +986,7 @@ procedure generates a set of gridpoints that is naturally dense right
 around the parts of the function with the greatest nonlinearity).
 \hypertarget{PlotComparecTm1AD}{}
 \begin{figure}
-  \centerline{\includegraphics[width=6in]{./Figures/PlotComparecTm1AD}}
+  \centerline{\includegraphicsegin{align\*}width=6in]{./Figures/PlotComparecTm1AD}}
   \caption{$\cFunc_{T-1}({m}_{T-1})$ (solid) versus $\Alt{\cFunc}_{T-1}({m}_{T-1})$ (dashed)}
   \label{fig:ComparecTm1AD}
 \end{figure}
@@ -1021,7 +1021,7 @@ absolute gap between points).
 
 \hypertarget{GothVInvVSGothCEEE}{}
 \begin{figure}
-  \centerline{\includegraphics[width=6in]{./Figures/GothVInvVSGothCEEE}}
+  \centerline{\includegraphicsegin{align\*}width=6in]{./Figures/GothVInvVSGothCEEE}}
   \caption{$\cFunc_{T^{+}-1}({a}_{T-1})$ versus
     $\Alt{\cFunc}_{T^{+}-1}({a}_{T-1})$, Multi-Exponential \texttt{aVec}}
   \label{fig:GothVInvVSGothCEE}
@@ -1030,7 +1030,7 @@ absolute gap between points).
 
 \hypertarget{GothVVSGothCInvEEE}{}
 \begin{figure}
-  \includegraphics[width=6in]{./Figures/GothVVSGothCInvEEE}
+  \includegraphicsegin{align\*}width=6in]{./Figures/GothVVSGothCInvEEE}
   \caption{$\vFunc^{{a}}_{T^{+}-1}({a}_{T-1})$ vs.
     $\Alt{\Alt{\vFunc}}_{T^{+}-1}^{\prime}({a}_{T-1})$, Multi-Exponential \texttt{aVec}}
   \label{fig:GothVVSGothCInvEE}
@@ -1067,7 +1067,7 @@ grid.
 
   \hypertarget{ExtrapProblemPlot}{}
   \begin{figure}
-    \includegraphics[width=6in]{./Figures/ExtrapProblemPlot}
+    \includegraphicsegin{align\*}width=6in]{./Figures/ExtrapProblemPlot}
     \caption{For Large Enough ${m}_{T-1}$, Predicted Precautionary Saving is Negative (Oops!)}
     \label{fig:ExtrapProblem}
   \end{figure}
@@ -1092,8 +1092,8 @@ grid.
   of a `risk optimist:' a consumer who believes with perfect confidence
   that the shocks will always take the value 
   \PermShkOn
-  {1, $\TranShkEmp_{t+n} = \Ex[\TranShkEmp]=1~\forall~n>0$ and $\PermShk_{t+n} = \Ex[\PermShk]=1~\forall~n>0$.}
-  {1, $\TranShkEmp_{t+n} = \Ex[\TranShkEmp]=1~\forall~n>0$.}
+  {1, $\TranShkEmp_{t+n} = \Exegin{align\*}\TranShkEmp]=1~\forall~n>0$ and $\PermShk_{t+n} = \Exegin{align\*}\PermShk]=1~\forall~n>0$.}
+  {1, $\TranShkEmp_{t+n} = \Exegin{align\*}\TranShkEmp]=1~\forall~n>0$.}
   The solution to a perfect foresight problem of this kind takes the
   form\footnote{For a derivation, see \cite{BufferStockTheory}; $\MPCmin_{t}$ is defined therein as the MPC of the perfect foresight consumer with horizon $T-t$.}
 \end{verbatimwrite}
@@ -1171,7 +1171,7 @@ grid.
 \begin{verbatimwrite}{\econtexRoot/Figures/IntExpFOCInvPesReaOptNeedHiPlot.tex}
   \hypertarget{IntExpFOCInvPesReaOptNeedHiPlot}{}
   \begin{figure}
-    \includegraphics[width=6in]{./Figures/IntExpFOCInvPesReaOptNeedHiPlot}
+    \includegraphicsegin{align\*}width=6in]{./Figures/IntExpFOCInvPesReaOptNeedHiPlot}
     \caption{Moderation Illustrated: $\underline{\cFunc}_{T-1} < \Alt{\cFunc}_{T-1} < \bar{\cFunc}_{T-1}$}
     \label{fig:IntExpFOCInvPesReaOptNeedHiPlot}
   \end{figure}
@@ -1252,7 +1252,7 @@ grid.
     divergence evident in Figure~\ref{fig:ExtrapProblem}.}{}
   \hypertarget{ExtrapProblemSolvedPlot}{}
   \begin{figure}
-    \includegraphics[width=6in]{./Figures/ExtrapProblemSolvedPlot}
+    \includegraphicsegin{align\*}width=6in]{./Figures/ExtrapProblemSolvedPlot}
     \caption{Extrapolated $\Alt{\Hi{\cFunc}}_{T-1}$ Constructed Using the Method of Moderation}
     \label{fig:ExtrapProblemSolved}
   \end{figure}
@@ -1329,7 +1329,7 @@ Designating $\Alt{\Hi{\cFunc}}_{T-1}$ as the approximated consumption rule obtai
 
 \hypertarget{IntExpFOCInvPesReaOptGapPlot}{}
 \begin{figure}
-  \includegraphics[width=6in]{./Figures/IntExpFOCInvPesReaOptGapPlot}
+  \includegraphicsegin{align\*}width=6in]{./Figures/IntExpFOCInvPesReaOptGapPlot}
   \caption{Difference Between True $\cFunc_{T-1}$ and $\Alt{\Hi{\cFunc}}_{T-1}$ Is Minuscule}
   \label{fig:IntExpFOCInvPesReaOptGapPlot}
 \end{figure}
@@ -1477,14 +1477,14 @@ Designating $\Alt{\Hi{\cFunc}}_{T-1}$ as the approximated consumption rule obtai
 
     \hypertarget{IntExpFOCInvPesReaOptNeed45Plot}{}
     \begin{figure}
-      \includegraphics[width=6in]{./Figures/IntExpFOCInvPesReaOptNeed45Plot}
+      \includegraphicsegin{align\*}width=6in]{./Figures/IntExpFOCInvPesReaOptNeed45Plot}
       \caption{45 Degree Line as Another Upper Bound}
       \label{fig:IntExpFOCInvPesReaOptNeed45Plot}
     \end{figure}
 
     \hypertarget{IntExpFOCInvPesReaOptNeed45ValuePlot}{}
     \begin{figure}
-      \includegraphics[width=6in]{./Figures/IntExpFOCInvPesReaOptNeed45ValuePlot}
+      \includegraphicsegin{align\*}width=6in]{./Figures/IntExpFOCInvPesReaOptNeed45ValuePlot}
       \caption{A Constrained Optimist's Value Function as Another Upper Bound}
       \label{fig:IntExpFOCInvPesReaOptNeed45ValuePlot}
     \end{figure}
@@ -1572,7 +1572,7 @@ Designating $\Alt{\Hi{\cFunc}}_{T-1}$ as the approximated consumption rule obtai
     In practice, in our problem the difference due to this refinement is displayed in Figure \ref{fig:IntExpFOCInvPesReaOpt45GapPlot}.
     \hypertarget{IntExpFOCInvPesReaOpt45GapPlot}{}
     \begin{figure}
-      \includegraphics[width=6in]{./Figures/IntExpFOCInvPesReaOpt45GapPlot}
+      \includegraphicsegin{align\*}width=6in]{./Figures/IntExpFOCInvPesReaOpt45GapPlot}
       \caption{Difference Between $\Alt{\Hi{\cFunc}}_{L, T-1}$ and $\Alt{\Hi{\cFunc}}_{H,T-1}$ is Small}
       \label{fig:IntExpFOCInvPesReaOpt45GapPlot}
     \end{figure}
@@ -1635,7 +1635,7 @@ This case is reasonably straightforward because \cite{merton:restat} and \cite{s
 that for a consumer without labor income (or with perfectly forecastable labor income) the consumption
 function is linear, with an infinite-horizon MPC\footnote{See \handoutC{CRRA-RateRisk} for a derivation.}
 \begin{equation}\begin{gathered}\begin{aligned}
-      \MPC  & = 1- \left(\DiscFac  \Ex_{t}[\Risky_{t+1}^{1-\CRRA}]\right)^{1/\CRRA} \label{eq:MPCExact}
+      \MPC  & = 1- \left(\DiscFac  \Ex_{t}egin{align\*}\Risky_{t+1}^{1-\CRRA}]\right)^{1/\CRRA} \label{eq:MPCExact}
     \end{aligned}\end{gathered}\end{equation}
 and in this case the previous analysis applies once we substitute this MPC for the one that characterizes 
 the perfect foresight problem without rate-of-return risk.  
@@ -1653,7 +1653,7 @@ The consumer's problem in this case now has two state variables, $\mNrm_{t}$ and
 is described by
 \begin{equation}\begin{gathered}\begin{aligned}
       \null{\vFunc}_{t}({m}_{t},\risky_{t})  & = \max_{{c}_{t}} ~ \uFunc({c}_{t})+
-      \Ex_{t}[{\DiscFac}_{t+1}\PermGroFac_{t+1}^{1-\CRRA}\null{\vFunc}_{t+1}({m}_{t+1},\risky_{t+1})] \label{vtNormRisky}
+      \Ex_{t}egin{align\*}{\DiscFac}_{t+1}\PermGroFac_{t+1}^{1-\CRRA}\null{\vFunc}_{t+1}({m}_{t+1},\risky_{t+1})] \label{vtNormRisky}
       \\         & \text{s.t.} &   \nonumber \\
       {a}_{t}    & = {m}_{t}-{c}_{t} \nonumber
       \\      \risky_{t+1}-\risky  & = (\risky_{t}-\risky)\gamma + \epsilon_{t+1} \notag
@@ -1662,7 +1662,7 @@ is described by
     \end{aligned}\end{gathered}\end{equation}
 
 % Kiichi: I will need you to read the literature and figure out how exactly we want to choose the Markov points and transition probabilities.
-% When done, you will fill in the [how] text below.
+% When done, you will fill in the egin{align\*}how] text below.
 
 We approximate the AR(1) process by a Markov transition matrix using standard techniques.  The stochastic interest factor is allowed to take 
 on 11 values centered around the steady-state value $\risky$.  Given this Markov transition matrix,
@@ -1686,7 +1686,7 @@ zero.\footnote{The word artificial is chosen only because of its clarity in dist
   this from the case of the `natural' borrowing constraint examined above; no derogation is
   intended -- constraints of this kind certainly exist in the real world.}  The problem then becomes
 \begin{equation*}\begin{gathered}\begin{aligned}
-      {\vFunc}_{T-1}({m}_{T-1})  & = \max_{\cNrm_{T-1}} ~~ \uFunc({c}_{T-1}) + \Ex_{T-1} [\DiscFac \PermGroFac_{T}^{1-\CRRA}{\vFunc}_{T}({m}_{T})] \label{eq:ConstrArt}
+      {\vFunc}_{T-1}({m}_{T-1})  & = \max_{\cNrm_{T-1}} ~~ \uFunc({c}_{T-1}) + \Ex_{T-1} egin{align\*}\DiscFac \PermGroFac_{T}^{1-\CRRA}{\vFunc}_{T}({m}_{T})] \label{eq:ConstrArt}
       \\ & \mbox{s.t.}&  \nonumber
       \\ {a}_{T-1}  & = {m}_{T-1} - {c}_{T-1}
       \\ {m}_{T}  & = \RNrm_{T} {a}_{T-1} + \TranShkEmp_{T}
@@ -1707,7 +1707,7 @@ returning the level of ${c}_{T-1}$ that satisfies \eqref{eq:cUnc}.
 Then the approximated constrained optimal consumption function will be
 \begin{verbatimwrite}{./Equations/LiqCons.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
-        \grave{\cFunc}_{T-1}({m}_{T-1})  & = \min[{m}_{T-1},\grave{\cFunc}^{\ast}_{T-1}({m}_{T-1})] \label{eq:LiqCons}.
+        \grave{\cFunc}_{T-1}({m}_{T-1})  & = \minegin{align\*}{m}_{T-1},\grave{\cFunc}^{\ast}_{T-1}({m}_{T-1})] \label{eq:LiqCons}.
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/LiqCons.tex}\unskip
@@ -1744,7 +1744,7 @@ constraint stops binding is:\footnote{The logic here repeats an insight from \ci
 
 \hypertarget{cVScCon}{}
 \begin{figure}
-  \includegraphics[width=6in]{./Figures/cVScCon}
+  \includegraphicsegin{align\*}width=6in]{./Figures/cVScCon}
   \caption{Constrained (solid) and Unconstrained (dashed) Consumption}
   \label{fig:cVScCon}
 \end{figure}
@@ -1793,7 +1793,7 @@ simplifies things a bit because now we can always consider an
 
 Recall now equations~(\ref{eq:vEndPrimetOfc}) and (\ref{eq:upEqbetaOp}):
 \begin{equation*}\begin{gathered}\begin{aligned}
-      \vPEndStge({a}_{t})  & = \Ex_{t}[\DiscFac \Rfree \PermGroFac_{t+1}^{-\CRRA}
+      \vPEndStge({a}_{t})  & = \Ex_{t}egin{align\*}\DiscFac \Rfree \PermGroFac_{t+1}^{-\CRRA}
       \uFunc^{{c}}(\cFunc_{t+1}(\RNrm_{t+1} {a}_{t}+{\TranShkEmp}_{t+1}))]
       \\\uFunc^{{c}}({c}_{t})   & = \vEndStge^{\prime}({m}_{t}-{c}_{t}).
     \end{aligned}\end{gathered}\end{equation*}
@@ -1815,7 +1815,7 @@ no difficulties.)
   \begin{verbatimwrite}{./Equations/vEndeq.tex}
     \begin{equation}\begin{gathered}\begin{aligned}
           \cFunc_{\overline{t},i}  & = \left(\vEndStge^{\prime}({a}_{t,i})\right)^{-1/\CRRA},
-          \\                             & = \left(\DiscFac \Ex_{t} \left[\Rfree \PermGroFac_{t+1}^{-\CRRA}(\grave{\cFunc}_{t+1}(\RNrm_{t+1} {a}_{t,i} +      {\TranShkEmp}_{t+1}))^{-\CRRA}\right]\right)^{-1/\CRRA}, \label{eq:vEndeq}
+          \\                             & = \left(\DiscFac \Ex_{t} \leftegin{align\*}\Rfree \PermGroFac_{t+1}^{-\CRRA}(\grave{\cFunc}_{t+1}(\RNrm_{t+1} {a}_{t,i} +      {\TranShkEmp}_{t+1}))^{-\CRRA}\right]\right)^{-1/\CRRA}, \label{eq:vEndeq}
           \MPCMatch{\\        \cFunc^{a}_{\overline{t},i}  & = -(1/\CRRA)\left(\vEndStge^{\prime}({a}_{t,i})\right)^{-1-1/\CRRA} \vEndStge^{\prime\prime}(\aNrm_{t,i}),}{}
         \end{aligned}\end{gathered}\end{equation}
   \end{verbatimwrite}
@@ -1866,7 +1866,7 @@ satisfied by the baseline parameter values being used here.
 
 \hypertarget{PlotCFuncsConverge}{}
 \begin{figure}
-  \includegraphics[width=6in]{./Figures/PlotCFuncsConverge}
+  \includegraphicsegin{align\*}width=6in]{./Figures/PlotCFuncsConverge}
   \caption{Converging $\Alt{\cFunc}_{T-n}({\mNrm})$ Functions as $n$ Increases}
   \label{fig:PlotCFuncsConverge}
 \end{figure}
@@ -1915,9 +1915,9 @@ satisfied by the baseline parameter values being used here.
   Bellman's equation for this problem (imposing liquidity constraints again) is
   \begin{equation}\begin{gathered}\begin{aligned}
         {\vFunc}_{t}({m}_{t},h_{t-1})  & = \max_{\{{c}_{t}\}}  \{\uFunc({c}_{t},h_{t-1}) +
-        \Ex_{t}[\DiscFac  {\vFunc}_{t+1}({m}_{t+1},h_{t}) ]\}
+        \Ex_{t}egin{align\*}\DiscFac  {\vFunc}_{t+1}({m}_{t+1},h_{t}) ]\}
         \\ & \text{s.t.} & \nonumber \\
-        {m}_{t+1}  & = [{m}_{t}-{c}_{t}]\RNrm_{t+1} + \TranShkEmp_{t+1}\\
+        {m}_{t+1}  & = egin{align\*}{m}_{t}-{c}_{t}]\RNrm_{t+1} + \TranShkEmp_{t+1}\\
         h_{t}  & = h_{t-1} + \MPS ({c}_{t} - h_{t-1} ) \\
         {c}_{t} & \leq  {m}_{t} .
       \end{aligned}\end{gathered}\end{equation}
@@ -1930,12 +1930,12 @@ satisfied by the baseline parameter values being used here.
   involves both the level of assets ${a}_{t}$ and the level of the habit
   stock $h_{t}$:
   \begin{equation}\begin{gathered}\begin{aligned}
-        \vEndStge({a}_{t},h_{t})  & = \Ex_{t}[\DiscFac {v}_{t+1}(\RNrm_{t+1} {a}_{t}+{\TranShkEmp}_{t+1},h_{t}))]
+        \vEndStge({a}_{t},h_{t})  & = \Ex_{t}egin{align\*}\DiscFac {v}_{t+1}(\RNrm_{t+1} {a}_{t}+{\TranShkEmp}_{t+1},h_{t}))]
       \end{aligned}\end{gathered}\end{equation}
   For future reference note that the derivatives are
   \begin{equation}\begin{gathered}\begin{aligned}
-        \vEndStge^{{a}}  & = \DiscFac \Ex_{t} [\RNrm_{t+1} {v}_{t+1}^{m}] \label{eq:vEndsdefn} \\
-        \vEndStge^{h}  & = \DiscFac \Ex_{t} [{\vFunc}_{t+1}^{h}] \label{eq:vEndhdefn}
+        \vEndStge^{{a}}  & = \DiscFac \Ex_{t} egin{align\*}\RNrm_{t+1} {v}_{t+1}^{m}] \label{eq:vEndsdefn} \\
+        \vEndStge^{h}  & = \DiscFac \Ex_{t} egin{align\*}{\vFunc}_{t+1}^{h}] \label{eq:vEndhdefn}
       \end{aligned}\end{gathered}\end{equation}
   and the maximization problem can be rewritten
   \begin{equation}\begin{gathered}\begin{aligned}
@@ -1975,28 +1975,28 @@ satisfied by the baseline parameter values being used here.
       bit more today, tomorrow's habit stock will be larger by $\MPS$,
       which will make you worse off.}}{}
   \begin{equation}\begin{gathered}\begin{aligned}
-        0  & = \uFunc^{c}_{t} + \DiscFac \Ex_{t} \left[{\vFunc}^{m}_{t+1}(-\Rfree)+{\vFunc}^{h}_{t+1} \MPS\right]  \\
-        \uFunc^{c}_{t}  & = \DiscFac \Ex_{t} [\RNrm_{t+1} {\vFunc}_{t+1}^{m}-\MPS {\vFunc}_{t+1}^{h}] \label{eq:ctfoc}
-        \\            & = \left[\vEndStge^{{a}}-\MPS \vEndStge^{h} \right].
+        0  & = \uFunc^{c}_{t} + \DiscFac \Ex_{t} \leftegin{align\*}{\vFunc}^{m}_{t+1}(-\Rfree)+{\vFunc}^{h}_{t+1} \MPS\right]  \\
+        \uFunc^{c}_{t}  & = \DiscFac \Ex_{t} egin{align\*}\RNrm_{t+1} {\vFunc}_{t+1}^{m}-\MPS {\vFunc}_{t+1}^{h}] \label{eq:ctfoc}
+        \\            & = \leftegin{align\*}\vEndStge^{{a}}-\MPS \vEndStge^{h} \right].
         % ({c}_{t}h_{t-1}^{-\gamma})^{-\CRRA}h_{t-1}^{-\gamma}  & = \DiscFac \Ex_{t} \left(\RNrm_{t+1} {\vFunc}^{m}_{t+1}-{\vFunc}^{h}_{t+1} \MPS\right) \label{eq:directfoc} \\
         % {c}_{t}^{-\CRRA}  & = h_{t-1}^{\gamma-\gamma\CRRA}\DiscFac \Ex_{t} \left(\RNrm_{t+1} {\vFunc}^{m}_{t+1}-{\vFunc}^{h}_{t+1} \MPS\right)
       \end{aligned}\end{gathered}\end{equation}
   Substituting the definition of $u_{t}^{c}$:
   \begin{equation}\begin{gathered}\begin{aligned}
-        {c}_{t}^{-\CRRA}h_{t-1}^{\CRRA\gamma-\gamma}  & = \left[\vEndStge^{{a}}-\MPS \vEndStge^{h} \right]
-        \\  {c}_{t}                                     & = \left[h_{t-1}^{\gamma-\CRRA\gamma} \left(\vEndStge^{{a}}-\MPS \vEndStge^{h} \right) \right]^{-1/\CRRA} \label{eq:habitsfoc}.
+        {c}_{t}^{-\CRRA}h_{t-1}^{\CRRA\gamma-\gamma}  & = \leftegin{align\*}\vEndStge^{{a}}-\MPS \vEndStge^{h} \right]
+        \\  {c}_{t}                                     & = \leftegin{align\*}h_{t-1}^{\gamma-\CRRA\gamma} \left(\vEndStge^{{a}}-\MPS \vEndStge^{h} \right) \right]^{-1/\CRRA} \label{eq:habitsfoc}.
       \end{aligned}\end{gathered}\end{equation}
   and the liquidity constraint implies that if the $\check{c}_{t}$ which
   satisfies this equation is larger than ${m}_{t}$ the consumer spends
   ${m}_{t}$ rather than $\check{c}_{t}$.  The point at which the liquidity
   constraint becomes binding is therefore implicitly defined by the equation
   \begin{equation}\begin{gathered}\begin{aligned}
-        {m}_{t}  & = \left[h_{t-1}^{\gamma-\CRRA\gamma} \left(\vEndStge^{{a}}(0,h_{t-1}+\MPS({m}_{t}-h_{t-1}))-\MPS \vEndStge^{h}(0,h_{t-1}+\MPS({m}_{t}-h_{t-1}))\right)  \right]^{-1/\CRRA}, \label{eq:LCbindsHabits}
+        {m}_{t}  & = \leftegin{align\*}h_{t-1}^{\gamma-\CRRA\gamma} \left(\vEndStge^{{a}}(0,h_{t-1}+\MPS({m}_{t}-h_{t-1}))-\MPS \vEndStge^{h}(0,h_{t-1}+\MPS({m}_{t}-h_{t-1}))\right)  \right]^{-1/\CRRA}, \label{eq:LCbindsHabits}
       \end{aligned}\end{gathered}\end{equation}
   or incorporating the transition equation for
   and $h_{t-1}$ that
   \begin{equation}\begin{gathered}\begin{aligned}
-        {c}_{t}  & = \left[h_{t-1}^{\gamma-\CRRA\gamma}
+        {c}_{t}  & = \leftegin{align\*}h_{t-1}^{\gamma-\CRRA\gamma}
           \left(\vEndStge^{{a}}({m}_{t}-{c}_{t},h_{t-1}+\MPS({c}_{t}-h_{t-1}))
             -\MPS \vEndStge^{h}({m}_{t}-{c}_{t},h_{t-1}+\MPS({c}_{t}-h_{t-1})\right)
         \right]^{-1/\CRRA}. \nonumber
@@ -2035,7 +2035,7 @@ satisfied by the baseline parameter values being used here.
   \{\{{a}_{1},h_{1}\},\{{a}_{1},h_{2}\},\ldots,\{{a}_{m},h_{n_{\TranShkEmp}}\}\}$,
   we find the set of values of ${\cNrm}_{i}$ that satisfy
   \begin{equation}\begin{gathered}\begin{aligned}
-        {\cNrm}_{k}^{\ell}  & = \left[(h_{k}^{\ell})^{\gamma-\CRRA\gamma}
+        {\cNrm}_{k}^{\ell}  & = \leftegin{align\*}(h_{k}^{\ell})^{\gamma-\CRRA\gamma}
           \left(\vEndStge^{{a}}({a}_{k}^{\ell},h_{k}^{\ell}
             +\MPS({\cNrm}_{k}^{\ell}-h_{k}^{\ell}))
             -\MPS
@@ -2097,13 +2097,13 @@ satisfied by the baseline parameter values being used here.
   The Envelope theorem on ${m}_{t}$ says:
   \begin{equation}\begin{gathered}\begin{aligned}
         {\vFunc}^{m}_{t}  & = \frac{\partial {\vFunc}_{t}}{\partial {m}_{t}} + \overbrace{\frac{\partial {\vFunc}_{t}}{\partial {c}_{t}}}^{=0}\frac{\partial {c}_{t}}{\partial {m}_{t}} \label{eq:vxt} \\
-        {\vFunc}_{t}^{m}  & = \DiscFac  \Ex_{t} [\RNrm_{t+1} {\vFunc}_{t+1}^{m}] \label{eq:envelopex}
+        {\vFunc}_{t}^{m}  & = \DiscFac  \Ex_{t} egin{align\*}\RNrm_{t+1} {\vFunc}_{t+1}^{m}] \label{eq:envelopex}
       \end{aligned}\end{gathered}\end{equation}
 
   Substituting this into the FOC equation~(\ref{eq:ctfoc}) gives
   \begin{equation}\begin{gathered}\begin{aligned}
-        \uFunc^{c}_{t}  & = {\vFunc}_{t}^{m}-\Ex_{t}[\DiscFac \MPS {\vFunc}_{t+1}^{h}] \label{eq:ctfocsubx}
-        \\ {\vFunc}_{t}^{m}  & = \uFunc^{c}_{t}+\Ex_{t}[\DiscFac \MPS {\vFunc}_{t+1}^{h}] \label{eq:vtfoc}
+        \uFunc^{c}_{t}  & = {\vFunc}_{t}^{m}-\Ex_{t}egin{align\*}\DiscFac \MPS {\vFunc}_{t+1}^{h}] \label{eq:ctfocsubx}
+        \\ {\vFunc}_{t}^{m}  & = \uFunc^{c}_{t}+\Ex_{t}egin{align\*}\DiscFac \MPS {\vFunc}_{t+1}^{h}] \label{eq:vtfoc}
         \\            & = \uFunc^{c}_{t}+\MPS \vEndStge^{h} \label{eq:vxtformula}.
       \end{aligned}\end{gathered}\end{equation}
 
@@ -2111,12 +2111,12 @@ satisfied by the baseline parameter values being used here.
   rewrite Bellman's equation:
   \begin{equation}\begin{gathered}\begin{aligned}
         {\vFunc}_{t}({m}_{t},h_{t-1})  & = \uFunc({c}_{t},h_{t-1}) +  \DiscFac \Ex_{t}
-        \left[{\vFunc}_{t+1}(({m}_{t}-{c}_{t})\RNrm_{t+1}+{\TranShkEmp}_{t+1},h_{t-1}+\MPS({c}_{t}-h_{t-1}))
+        \leftegin{align\*}{\vFunc}_{t+1}(({m}_{t}-{c}_{t})\RNrm_{t+1}+{\TranShkEmp}_{t+1},h_{t-1}+\MPS({c}_{t}-h_{t-1}))
         \right] \nonumber
       \end{aligned}\end{gathered}\end{equation}
   Substituting in the fact that ${c}_{t}={m}_{t}$ (because the consumer is constrained)
   \begin{equation}\begin{gathered}\begin{aligned}
-        {\vFunc}_{t}({m}_{t},h_{t-1})  & = \uFunc({c}_{t},h_{t-1}) +  \Ex_{t}\left[\DiscFac
+        {\vFunc}_{t}({m}_{t},h_{t-1})  & = \uFunc({c}_{t},h_{t-1}) +  \Ex_{t}\leftegin{align\*}\DiscFac
           {\vFunc}_{t+1}({\TranShkEmp}_{t+1},h_{t-1}+\MPS({c}_{t}-h_{t-1}))\right]
         \nonumber
       \end{aligned}\end{gathered}\end{equation}
@@ -2125,7 +2125,7 @@ satisfied by the baseline parameter values being used here.
   equation (\ref{eq:vxt}) becomes
   \begin{equation}\begin{gathered}\begin{aligned}
         {\vFunc}_{t}^{m}   & =  \frac{\partial {\vFunc}_{t}}{\partial {c}_{t}}
-        \\              & = \uFunc_{t}^{c} + \DiscFac \Ex_{t} [\MPS {\vFunc}_{t+1}^{h}]
+        \\              & = \uFunc_{t}^{c} + \DiscFac \Ex_{t} egin{align\*}\MPS {\vFunc}_{t+1}^{h}]
       \end{aligned}\end{gathered}\end{equation}
   which is identical to the expression (\ref{eq:vtfoc}) for ${\vFunc}_{t}^{m}$
   for the unconstrained consumer.
@@ -2133,8 +2133,8 @@ satisfied by the baseline parameter values being used here.
   The Envelope theorem for $h_{t-1}$ says:
   \begin{equation}\begin{gathered}\begin{aligned}
         {\vFunc}_{t}^{h}  & = \frac{\partial {\vFunc}_{t}}{\partial h_{t-1}} + \overbrace{\frac{\partial {\vFunc}_{t}}{\partial {c}_{t}}}^{=0}\frac{\partial {c}_{t}}{\partial h_{t-1}} \nonumber
-        \\  & = \uFunc^{h}_{t} + \DiscFac \Ex_{t} \left[{\vFunc}_{t+1}^{h}\frac{\partial h_{t}}{\partial h_{t-1}} \right]\nonumber
-        \\  & = \uFunc^{h}_{t} + \DiscFac \Ex_{t} [(1-\MPS) {\vFunc}_{t+1}^{h}] \nonumber
+        \\  & = \uFunc^{h}_{t} + \DiscFac \Ex_{t} \leftegin{align\*}{\vFunc}_{t+1}^{h}\frac{\partial h_{t}}{\partial h_{t-1}} \right]\nonumber
+        \\  & = \uFunc^{h}_{t} + \DiscFac \Ex_{t} egin{align\*}(1-\MPS) {\vFunc}_{t+1}^{h}] \nonumber
         \\  & = \uFunc^{h}_{t} + (1-\MPS) \vEndStge^{h} \label{eq:vhtformula}
       \end{aligned}\end{gathered}\end{equation}
   % & = -\gamma {c}_{t}^{1-\CRRA} h_{t-1}^{\gamma \CRRA - \gamma -1} + (1-\MPS) \DiscFac \Ex_{t} {\vFunc}_{t+1}^{h} \label{eq:vhtfoc}
@@ -2167,7 +2167,7 @@ satisfied by the baseline parameter values being used here.
   original problem without habits.  For example, the transformed utility
   function for the last period of life would be
   \begin{equation}\begin{gathered}\begin{aligned}
-        n_{T}^{c}  & = \left[\uFunc^{c}_{T}\right]^{-1/\CRRA}
+        n_{T}^{c}  & = \leftegin{align\*}\uFunc^{c}_{T}\right]^{-1/\CRRA}
         \\        & = {c}_{T}h_{T-1}^{\gamma(1/\CRRA-1)}.
       \end{aligned}\end{gathered}\end{equation}
 
@@ -2183,7 +2183,7 @@ satisfied by the baseline parameter values being used here.
   so the natural normalization procedure is to define
   \begin{equation}\begin{gathered}\begin{aligned}
         \Lambda_{t}^{h} 
-        & =                           \left[\frac{h_{t-1}^{1-\gamma(\CRRA-1)}{\vFunc}_{t}^{h}}{-\gamma}\right]^{1/(1-\CRRA)}
+        & =                           \leftegin{align\*}\frac{h_{t-1}^{1-\gamma(\CRRA-1)}{\vFunc}_{t}^{h}}{-\gamma}\right]^{1/(1-\CRRA)}
       \end{aligned}\end{gathered}\end{equation}
   and similarly for $\vEndStge^{h}$.
 
@@ -2206,11 +2206,11 @@ satisfied by the baseline parameter values being used here.
           ({c}_{T}/h_{T-1})\right)  \\
         {c}_{T-1} 
         & =                     ({m}_{T-1}-{c}_{T-1})\left(\frac{h_{T-1}}{h_{T-2}}\right)^{\gamma(1/\CRRA-1)}\left(1 +
-          \gamma \MPS \left[\frac{{m}_{T-1}-{c}_{T-1}}{(1-\MPS)h_{T-2}+\MPS
+          \gamma \MPS \leftegin{align\*}\frac{{m}_{T-1}-{c}_{T-1}}{(1-\MPS)h_{T-2}+\MPS
               {c}_{T-1}}\right]\right)^{-1/\CRRA}
         \\      1 
         & =                     \left(\frac{{m}_{T-1}-{c}_{T-1}}{{c}_{T-1}}\right)\left(\frac{(1-\MPS)h_{T-2}+\MPS {c}_{T-1}}{h_{T-2}}\right)^{\gamma(1/\CRRA-1)}\left(1 +
-          \gamma \MPS \left[\frac{{m}_{T-1}-{c}_{T-1}}{(1-\MPS)h_{T-2}+\MPS
+          \gamma \MPS \leftegin{align\*}\frac{{m}_{T-1}-{c}_{T-1}}{(1-\MPS)h_{T-2}+\MPS
               {c}_{T-1}}\right]\right)^{-1/\CRRA} \nonumber
         \\ \label{eq:oneeq}
       \end{aligned}\end{gathered}\end{equation}
@@ -2225,7 +2225,7 @@ satisfied by the baseline parameter values being used here.
   \begin{equation*}\begin{gathered}\begin{aligned}
         1  & = ({m}_{T-1}/{c}_{T-1})\left(\frac{\MPS
             {c}_{T-1}}{h_{T-2}}\right)^{\gamma(1/\CRRA-1)}\left(\gamma
-          \left[\frac{{m}_{T-1}}{{c}_{T-1}}\right]\right)^{-1/\CRRA}
+          \leftegin{align\*}\frac{{m}_{T-1}}{{c}_{T-1}}\right]\right)^{-1/\CRRA}
         \\    
         & =                 {c}_{T-1}^{\gamma(1/\CRRA-1)-1+1/\CRRA}h_{T-2}^{-\gamma(1/\CRRA-1)}\MPS^{\gamma(1/\CRRA-1)}(\gamma {m}_{T-1})^{-1/\CRRA}
         \\    
@@ -2275,12 +2275,12 @@ satisfied by the baseline parameter values being used here.
 
   The combined transformations for the various variables are thus
   \begin{equation}\begin{gathered}\begin{aligned}
-        \cFunc_{\overline{t}}^{{a}}({a}_{t},h_{t})        & = [\vEndStge^{{a}}({a}_{t},h_{t})]^{-1/\CRRA} h_{t}^{\gamma(1-1/\CRRA)} \label{eq:vEndstransform} \\
-        \Lambda_{t}^{m}({m}_{t},h_{t-1})   & = [{\vFunc}_{t}^{m}({m}_{t},h_{t-1})]^{-1/\CRRA} h_{t-1}^{\gamma(1-1/\CRRA)} \label{eq:vxtransform} \\
+        \cFunc_{\overline{t}}^{{a}}({a}_{t},h_{t})        & = egin{align\*}\vEndStge^{{a}}({a}_{t},h_{t})]^{-1/\CRRA} h_{t}^{\gamma(1-1/\CRRA)} \label{eq:vEndstransform} \\
+        \Lambda_{t}^{m}({m}_{t},h_{t-1})   & = egin{align\*}{\vFunc}_{t}^{m}({m}_{t},h_{t-1})]^{-1/\CRRA} h_{t-1}^{\gamma(1-1/\CRRA)} \label{eq:vxtransform} \\
         \cFunc_{\overline{t}}^{h}({a}_{t},h_{t})       
-        & =                                                  [-h_{t}^{1-\gamma(\CRRA-1)}\vEndStge^{h}({a}_{t},h_{t})/\gamma]^{1/(1-\CRRA)}  \label{eq:vEndhtransform}
-        \\      \Lambda_{t}^{h}({m}_{t},h_{t-1})   & = [-h_{t-1}^{1-\gamma(\CRRA-1)}{\vFunc}_{t}^{h}({m}_{t},h_{t-1})/\gamma]^{1/(1-\CRRA)} \label{eq:vhtransform}
-        \\      \Lambda_{t}({m}_{t},h_{t-1})       & = [(1-\CRRA)
+        & =                                                  egin{align\*}-h_{t}^{1-\gamma(\CRRA-1)}\vEndStge^{h}({a}_{t},h_{t})/\gamma]^{1/(1-\CRRA)}  \label{eq:vEndhtransform}
+        \\      \Lambda_{t}^{h}({m}_{t},h_{t-1})   & = egin{align\*}-h_{t-1}^{1-\gamma(\CRRA-1)}{\vFunc}_{t}^{h}({m}_{t},h_{t-1})/\gamma]^{1/(1-\CRRA)} \label{eq:vhtransform}
+        \\      \Lambda_{t}({m}_{t},h_{t-1})       & = egin{align\*}(1-\CRRA)
         {\vFunc}_{t}({m}_{t},h_{t-1})]^{1/(1-\CRRA)} h_{t-1}^{\gamma}\label{eq:vtransform}
         \\  \chi({m}_{t},h_{t-1})       & = \cFunc({m}_{t},h_{t-1})h_{t-1}^{-\gamma/(1+\gamma)}(h_{t-1}+\mu)^{\gamma/(1+\gamma)}.
       \end{aligned}\end{gathered}\end{equation}
@@ -2321,14 +2321,14 @@ satisfied by the baseline parameter values being used here.
     \begin{equation}\begin{gathered}\begin{aligned}
           \cEndFunc_{k,t}^{{a}}  & = (h_{k}^{\ell})^{\gamma(1-1/\CRRA)}
           \left(\DiscFac \Ex_{t}
-            \left[
+            \leftegin{align\*}
               \RNrm_{t+1} (\hat{\vFunc}_{t+1}^{m}(\RNrm_{t+1} s^{\ell}_{k} +
               {\TranShkEmp}_{t+1},h^{\ell}_{k}))
             \right]
           \right)^{-1/\CRRA}
           \\      \cEndFunc_{k,t}^{h} 
           & =                                         \left(-(h_{k}^{\ell})^{1-\gamma(\CRRA-1)} \DiscFac \Ex_{t}
-            \left[
+            \leftegin{align\*}
               \hat{\vFunc}_{t+1}^{h}(\RNrm_{t+1} s^{\ell}_{k} +
               {\TranShkEmp}_{t+1},h^{\ell}_{k})
             \right]/\gamma
@@ -2350,7 +2350,7 @@ satisfied by the baseline parameter values being used here.
       with this ${a}_{i}$ and $h_{j}$ from the formula in equation
       \eqref{eq:habitsfoc}:
       \begin{equation}
-        {\cNrm}_{i} = \left[h_{j}^{\gamma-\CRRA \gamma}
+        {\cNrm}_{i} = \leftegin{align\*}h_{j}^{\gamma-\CRRA \gamma}
           (\vEndStge^{{a}}({a}_{i},(1-\MPS) h_{j}+ {\cNrm}_{i})
           -\MPS \vEndStge^{h}({a}_{i},(1-\MPS)
           h_{j}+{\cNrm}_{i}))\right]^{-1/\CRRA} \nonumber
@@ -2358,7 +2358,7 @@ satisfied by the baseline parameter values being used here.
 
     \item Construct ${m}_{i} = {\cNrm}_{i}+{a}_{i}$
 
-    \item Construct \texttt{ct[mt,j]} as a linear interpolation of the
+    \item Construct \texttt{ctegin{align\*}mt,j]} as a linear interpolation of the
       $\{{m}_{i},{\cNrm}_{i}\}$
     \end{itemize}
   \end{enumerate}
@@ -2402,7 +2402,7 @@ and the maximization problem is
 \begin{verbatimwrite}{./Equations/PortProb.tex}
   \begin{equation*}\begin{gathered}\begin{aligned}
         {\vFunc}_{t}({m}_{t})  & = \max_{\{{c}_{t},\varsigma_{t}\}}   ~~ \uFunc({c}_{t}) +  \DiscFac
-        \Ex_{t}[{\vFunc}_{t+1}({m}_{t+1})]
+        \Ex_{t}egin{align\*}{\vFunc}_{t+1}({m}_{t+1})]
         \\      & \text{s.t.} & \nonumber
         \\      \Rport_{t+1}  & = \Rfree + (\Risky_{t+1}-\Rfree) \varsigma_{t}
         \\      {m}_{t+1}  & = ({m}_{t}-{c}_{t})\Rport_{t+1} + \TranShkEmp_{t+1}
@@ -2412,7 +2412,7 @@ and the maximization problem is
 \input{./Equations/PortProb.tex}\unskip
 or, more compactly,
 \begin{equation*}\begin{gathered}\begin{aligned}
-      {\vFunc}_{t}({m}_{t})  & = \max_{\{\cFunc_{t},\varsigma_{t}\}} ~~  \uFunc({c}_{t}) +  \Ex_{t}[\DiscFac {\vFunc}_{t+1}(({m}_{t}-{c}_{t}){\Rport}_{t+1} +        {\TranShkEmp}_{t+1})]
+      {\vFunc}_{t}({m}_{t})  & = \max_{\{\cFunc_{t},\varsigma_{t}\}} ~~  \uFunc({c}_{t}) +  \Ex_{t}egin{align\*}\DiscFac {\vFunc}_{t+1}(({m}_{t}-{c}_{t}){\Rport}_{t+1} +        {\TranShkEmp}_{t+1})]
       \\                       & \text{s.t.} & \nonumber
       \\ 0 \leq & \varsigma_{t} \leq 1
       .
@@ -2423,7 +2423,7 @@ with the only difference being that the nonstochastic interest factor
 $\Rfree$ is now replaced by ${\Rport}_{t+1}$,
 \begin{verbatimwrite}{./Equations/valfuncFOCRtilde.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
-        \uFunc^{{c}}({c}_{t})  & = \DiscFac \Ex_{t} [{\Rport}_{t+1} \vFunc^{{m}}_{t+1}({m}_{t+1})] \label{eq:valfuncFOCRtilde},
+        \uFunc^{{c}}({c}_{t})  & = \DiscFac \Ex_{t} egin{align\*}{\Rport}_{t+1} \vFunc^{{m}}_{t+1}({m}_{t+1})] \label{eq:valfuncFOCRtilde},
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/valfuncFOCRtilde.tex}\unskip
@@ -2431,7 +2431,7 @@ and the Envelope theorem derivation remains the same,
 yielding the Euler equation for consumption
 \begin{verbatimwrite}{./Equations/EulercRiskyR.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
-        \uFunc^{{c}}({c}_{t})  & = \Ex_{t}[\DiscFac {\Rport}_{t+1} \uFunc^{{c}}({c}_{t+1})]. \label{eq:EulercRiskyR}
+        \uFunc^{{c}}({c}_{t})  & = \Ex_{t}egin{align\*}\DiscFac {\Rport}_{t+1} \uFunc^{{c}}({c}_{t+1})]. \label{eq:EulercRiskyR}
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/EulercRiskyR.tex}\unskip
@@ -2439,8 +2439,8 @@ yielding the Euler equation for consumption
 The first order condition with respect to the risky portfolio share is
 \begin{verbatimwrite}{./Equations/FOCw.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
-        0  & = \Ex_{t}[{\vFunc}_{t+1}^{{m}}({m}_{t+1})(\Risky_{t+1}-\Rfree){a}_{t}] \notag
-        \\         & = {a}_{t}\Ex_{t}\left[\uFunc^{{c}}\left(\cFunc_{t+1}({m}_{t+1})\right)(\Risky_{t+1}-\Rfree)\right] \label{eq:FOCw}.
+        0  & = \Ex_{t}egin{align\*}{\vFunc}_{t+1}^{{m}}({m}_{t+1})(\Risky_{t+1}-\Rfree){a}_{t}] \notag
+        \\         & = {a}_{t}\Ex_{t}\leftegin{align\*}\uFunc^{{c}}\left(\cFunc_{t+1}({m}_{t+1})\right)(\Risky_{t+1}-\Rfree)\right] \label{eq:FOCw}.
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/FOCw.tex}\unskip
@@ -2453,12 +2453,12 @@ variables, because expected end-of-period value will depend not just
 on how much the agent saves, but also on how the saved assets are
 allocated between the risky and riskless assets.  Thus we define
 \begin{equation*}\begin{gathered}\begin{aligned}
-      \vEndStge({a}_{t},\varsigma_{t})  & = \Ex_{t}[\DiscFac {\vFunc}_{t+1}({m}_{t+1})]
+      \vEndStge({a}_{t},\varsigma_{t})  & = \Ex_{t}egin{align\*}\DiscFac {\vFunc}_{t+1}({m}_{t+1})]
     \end{aligned}\end{gathered}\end{equation*}
 which has derivatives
 \begin{equation}\begin{gathered}\begin{aligned}
-      \vEndStge^{{a}}  & = \Ex_{t}[\DiscFac {\Rport}_{t+1}{\vFunc}_{t+1}^{m}({m}_{t+1})] = \Ex_{t}[\DiscFac {\Rport}_{t+1}{\uFunc}_{t+1}^{{c}}(\cFunc_{t+1}({m}_{t+1}))]
-      \\      \vEndStge^{\varsigma}  & = \Ex_{t}[\DiscFac (\Risky_{t+1}-\Rfree){\vFunc}_{t+1}^{m}({m}_{t+1})  ]a_{t} = \Ex_{t}[\DiscFac (\Risky_{t+1}-\Rfree){\uFunc}_{t+1}^{{c}}(\cFunc_{t+1}({m}_{t+1}))  ]a_{t} \notag
+      \vEndStge^{{a}}  & = \Ex_{t}egin{align\*}\DiscFac {\Rport}_{t+1}{\vFunc}_{t+1}^{m}({m}_{t+1})] = \Ex_{t}egin{align\*}\DiscFac {\Rport}_{t+1}{\uFunc}_{t+1}^{{c}}(\cFunc_{t+1}({m}_{t+1}))]
+      \\      \vEndStge^{\varsigma}  & = \Ex_{t}egin{align\*}\DiscFac (\Risky_{t+1}-\Rfree){\vFunc}_{t+1}^{m}({m}_{t+1})  ]a_{t} = \Ex_{t}egin{align\*}\DiscFac (\Risky_{t+1}-\Rfree){\uFunc}_{t+1}^{{c}}(\cFunc_{t+1}({m}_{t+1}))  ]a_{t} \notag
     \end{aligned}\end{gathered}\end{equation}
 implying that the first order conditions (\ref{eq:EulercRiskyR}) and
 (\ref{eq:FOCw}) can be rewritten
@@ -2473,7 +2473,7 @@ Our first step is to specify the stochastic process for $\Risky_{t+1}$.
 We follow the common practice of assuming that returns are
 lognormally distributed, $\log \Risky \sim
 \mathcal{N}(\eprem+\rfree-\sigma^{2}_{\eprem}/2,\sigma^{2}_{\eprem})$ where $\eprem$ is the equity premium
-over the returns $\rfree$ available on the riskless asset.\footnote{This guarantees that $\Ex[\Risky] = \EPrem$ is invariant to the choice of $\sigma^{2}_{\eprem}$; see \handoutM{LogELogNorm}.}
+over the returns $\rfree$ available on the riskless asset.\footnote{This guarantees that $\Exegin{align\*}\Risky] = \EPrem$ is invariant to the choice of $\sigma^{2}_{\eprem}$; see \handoutM{LogELogNorm}.}
 
 As with labor income uncertainty, it is necessary to discretize the
 rate-of-return risk in order to have a problem that is soluble in a
@@ -2596,14 +2596,14 @@ riskless form.
 
 \hypertarget{PlotctMultContr}{}
 \begin{figure}
-  \includegraphics[width=6in]{./Figures/PlotctMultContr}
+  \includegraphicsegin{align\*}width=6in]{./Figures/PlotctMultContr}
   \caption{$\cFunc({m}_{1})$ With Portfolio Choice}
   \label{fig:PlotctMultContr}
 \end{figure}
 
 \hypertarget{PlotRiskySharetOfat}{}
 \begin{figure}
-  \includegraphics[width=6in]{./Figures/PlotRiskySharetOfat}
+  \includegraphicsegin{align\*}width=6in]{./Figures/PlotRiskySharetOfat}
   \caption{Portfolio Share in Risky Assets in First Period $\varsigma({a})$}
   \label{fig:PlotRiskySharetOfat}
 \end{figure}
@@ -2640,7 +2640,7 @@ enough' has been found.
 A natural metric is defined by the unique `target' level of wealth that \cite{BufferStockTheory} proves
 will exist in problems of this kind \href{https://llorracc.github.io/BufferStockTheory#GICNrm}{under certain conditions}: The $\mTrgNrm$ such that
 \begin{equation}
-  \Ex_t [{\mNrm}_{t+1}/\mNrm_t] = 1 \mbox{~if~} \mNrm_t = \mTrgNrm  \label{eq:mTrgNrmet}
+  \Ex_t egin{align\*}{\mNrm}_{t+1}/\mNrm_t] = 1 \mbox{~if~} \mNrm_t = \mTrgNrm  \label{eq:mTrgNrmet}
 \end{equation}
 where the accent is meant to signify that this is the value
 that other $\mNrm$'s `point to.'
@@ -2673,7 +2673,7 @@ function has converged for all practical purposes.
   \begin{equation}\begin{gathered}\begin{aligned}
         \bar{\cFunc}({m}_{t})  & = \overbrace{(1-\Rfree^{-1}(\Rfree
           \DiscFac)^{1/\CRRA})}^{\equiv
-          \underline{\MPC}}\left[{m}_{t}-1+\left(\frac{1}{1-1/\Rfree}\right)\right]
+          \underline{\MPC}}\leftegin{align\*}{m}_{t}-1+\left(\frac{1}{1-1/\Rfree}\right)\right]
         \label{eq:pfinfhorc}
       \end{aligned}\end{gathered}\end{equation}
   where $\underline{\MPC}$ is the MPC in the
@@ -2747,7 +2747,7 @@ moments.  %(The code for the structural estimation is in the self-containedsubfo
 Realistic calibration of a life cycle model needs to take into account a few things that we omitted from the bare-bones model described above. For example, the whole point of the life cycle model is that life is finite, so we need to include a realistic treatment of life expectancy; this is done easily enough, by assuming that utility accrues only if you live, so effectively the rising mortality rate with age is treated as an extra reason for discounting the future.  Similarly, we may want to capture the demographic evolution of the household (e.g., arrival and departure of kids).  A common way to handle that, too, is by modifying the discount factor (arrival of a kid might increase the total utility of the household by, say, 0.2, so if the `pure' rate of time preference were $1.0$ the `household-size-adjusted' discount factor might be 1.2.  We therefore modify the model presented above to allow age-varying discount factors that capture both mortality and family-size changes (we just adopt the factors used by \cite{cagettiWprofiles} directly), with the probability of remaining alive between $t$ and $t+n$ captured by $\Alive$ and with $\hat{\DiscFac}$ now reflecting all the age-varying discount factor adjustments (mortality, family-size, etc).  Using $\beth$ (the Hebrew cognate of $\beta$) for the `pure' time preference factor, the value function for the revised problem is
 \begin{verbatimwrite}{./Equations/lifecyclemax.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
-\vFunc_{t}(\pLvl_{t},\mLvl_{t}) & =    \max_{\{\cFunc\}_{t}^{T}}~~ \uFunc(\cLvl_{t})+\Ex_{t}\left[\sum_{n=1}^{T-t} {\beth}^{n} \Alive_{t}^{t+n}\hat{\DiscFac}_{t}^{t+n} \uFunc(\cLvl_{t+n}) \right]   \label{eq:lifecyclemax}
+\vFunc_{t}(\pLvl_{t},\mLvl_{t}) & =    \max_{\{\cFunc\}_{t}^{T}}~~ \uFunc(\cLvl_{t})+\Ex_{t}\leftegin{align\*}\sum_{n=1}^{T-t} {\beth}^{n} \Alive_{t}^{t+n}\hat{\DiscFac}_{t}^{t+n} \uFunc(\cLvl_{t+n}) \right]   \label{eq:lifecyclemax}
 \end{aligned}\end{gathered}  \end{equation}
 \end{verbatimwrite}
 \input{./Equations/lifecyclemax.tex}\unskip
@@ -2795,13 +2795,13 @@ The parameter values for the shocks are taken from Carroll~\citeyearpar{carroll:
   Carroll and Samwick~\citeyearpar{carroll&samwick:nature} ($=0.197=\sqrt{0.039}$) which is used by Cagetti~\citeyearpar{cagettiWprofiles}. The reason for this choice is that Carroll and Samwick~\citeyearpar{carroll&samwick:nature} themselves argue that their estimate of $\sigma_{\TranShkEmp }$ is almost certainly increased by measurement error.} The income growth profile $\PermGroFac_{t}$ is from Carroll~\citeyearpar{carrollBSLCPIH} and the values of $\Alive_{t}$ and $\hat{\DiscFac}_{t}$ are obtained from Cagetti~\citeyearpar{cagettiWprofiles} (Figure \ref{fig:TimeVaryingParam}).\footnote{The income growth profile is the one used by Caroll for operatives. Cagetti computes the time-varying discount factor by educational groups using the methodology proposed by Attanasio et al.~\citeyearpar{AttanasioBanksMeghirWeber} and the survival probabilities from the 1995 Life Tables (National Center for Health Statistics 1998).} The interest rate is assumed to equal $1.03$. The model parameters are included in Table \ref{table:StrEstParams}.
 
 \hypertarget{PlotTimeVaryingParam}{}
-\begin{figure}[h]
-  \includegraphics[width=6in]{./Figures/PlotTimeVaryingParam}
+\begin{figure}egin{align\*}h]
+  \includegraphicsegin{align\*}width=6in]{./Figures/PlotTimeVaryingParam}
   \caption{Time Varying Parameters}
   \label{fig:TimeVaryingParam}
 \end{figure}
 
-\begin{table}[h]
+\begin{table}egin{align\*}h]
   \caption{Parameter Values}\label{table:StrEstParams}
   \begin{center}
     \begin{tabular}{ccl}
@@ -2853,7 +2853,7 @@ As explained in section \ref{sec:normalization}, it is convenient to work with t
 \begin{verbatimwrite}{./Equations/LifeCycleMaxNormed.tex}
   \begin{equation*}\begin{gathered}\begin{aligned}
         {\vFunc}_{t}({m}_{t})  & = \max_{{c}_{t}}~~~ \uFunc({c}_{t})+\beth\Alive_{t+1}\hat{\DiscFac}_{t+1}
-          \Ex_{t}[(\PermShk_{t+1}\PermGroFac_{t+1})^{1-\CRRA}{\vFunc}_{t+1}({m}_{t+1})]   \\
+          \Ex_{t}egin{align\*}(\PermShk_{t+1}\PermGroFac_{t+1})^{1-\CRRA}{\vFunc}_{t+1}({m}_{t+1})]   \\
         & \text{s.t.} &   \nonumber \\
         {a}_{t}    & = {m}_{t}-{c}_{t} \nonumber
         \\      {m}_{t+1}  & = {a}_{t}\underbrace{\left(\frac{\Rfree}{\PermShk_{t+1}\PermGroFac_{t+1}}\right)}_{\equiv \RNrm_{t+1}}+ ~\TranShkEmp_{t+1}
@@ -2863,7 +2863,7 @@ As explained in section \ref{sec:normalization}, it is convenient to work with t
 with the first order condition:
 \begin{verbatimwrite}{./Equations/FOCLifeCycle}
 \begin{equation}\begin{gathered}\begin{aligned}
-      \uFunc^{{c}}({c}_{t}) & = \beth\Alive_{t+1}\hat{\DiscFac}_{t+1}\Rfree \Ex_{t}\left[\uFunc^{{c}}\left(\PermShk_{t+1}\PermGroFac_{t+1}\cFunc_{t+1}\left({a}_{t}\RNrm_{t+1}+\TranShkEmp_{t+1}\right)\right)\right]\label{eq:FOCLifeCycle}
+      \uFunc^{{c}}({c}_{t}) & = \beth\Alive_{t+1}\hat{\DiscFac}_{t+1}\Rfree \Ex_{t}\leftegin{align\*}\uFunc^{{c}}\left(\PermShk_{t+1}\PermGroFac_{t+1}\cFunc_{t+1}\left({a}_{t}\RNrm_{t+1}+\TranShkEmp_{t+1}\right)\right)\right]\label{eq:FOCLifeCycle}
       .
     \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
@@ -2975,8 +2975,8 @@ More details on the SCF data are included in appendix \ref{app:SCFdata}.
 
 \hypertarget{PlotMeanMedianSCFcollegeGrads}{}
 \begin{figure}
-  % \includegraphics[width=6in]{./Figures/PlotMeanMedianSCF}} % weird mean value
-  \includegraphics[width=6in]{./Figures/PlotMeanMedianSCFcollegeGrads}
+  % \includegraphicsegin{align\*}width=6in]{./Figures/PlotMeanMedianSCF}} % weird mean value
+  \includegraphicsegin{align\*}width=6in]{./Figures/PlotMeanMedianSCFcollegeGrads}
   \caption{Wealth to Permanent Income Ratios from SCF (means (dashed) and medians (solid))}
   \label{fig:MeanMedianSCF}
 \end{figure}
@@ -2993,8 +2993,8 @@ described in (\ref{eq:StructEstim}), which is necessary to perform the SMM estim
 
 %\begin{verbatimwrite}{./Equations/GapEmpiricalSimulatedMedians.tex}
 %  \begin{equation}\begin{gathered}\begin{aligned}
-%        \lefteqn{    \texttt{GapEmpiricalSimulatedMedians$[\CRRA,\beth]$:=}}    \nonumber \\
-%        &[&\texttt{ConstructcFuncLife$[\CRRA,\beth]$;}\nonumber\\
+%        \lefteqn{    \texttt{GapEmpiricalSimulatedMedians$egin{align\*}\CRRA,\beth]$:=}}    \nonumber \\
+%        &egin{align\*}&\texttt{ConstructcFuncLife$egin{align\*}\CRRA,\beth]$;}\nonumber\\
 %        &\texttt{Simulate;}\nonumber\\
 %        &\sum\limits_{i}^{N}\weight _{i}\left|\varsigma_{i}^{\tau }-\mathbf{s}^{\tau}(\xi )\right| \nonumber\\
 %        &];&\nonumber
@@ -3067,7 +3067,7 @@ agents by setting the positional arguments \texttt{estimate\_model} and
 
 
 \begin{verbatimwrite}{./Tables/EstResults.tex}
-  \begin{table}[h]
+  \begin{table}egin{align\*}h]
     \caption{Estimation Results}\label{tab:EstResults}
     \center
     \begin{tabular}{cc}
@@ -3114,7 +3114,7 @@ our estimates of these parameters under the alternative assumption that the data
 
 \hypertarget{PlotSensitivityMeasure}{}
 \begin{figure}
-  \includegraphics[width=6in]{./Figures/Sensitivity.pdf}
+  \includegraphicsegin{align\*}width=6in]{./Figures/Sensitivity.pdf}
   \caption{Sensitivty of Estimates $\{\CRRA,{\beth}\}$ regarding Alternative Mismeasurement Assumptions.}
   \label{fig:PlotSensitivityMeasure}
 \end{figure}
@@ -3139,7 +3139,7 @@ The set of techniques, and associated programs, described in these notes represe
 
 \hypertarget{PlotContourMedianStrEst}{}
 \begin{figure}
-  \includegraphics[width=6in]{./Figures/SMMcontour.pdf}
+  \includegraphicsegin{align\*}width=6in]{./Figures/SMMcontour.pdf}
   \caption{Contour Plot (larger values are shown lighter) with $\{\CRRA,{\beth}\}$ Estimates (red dot).}
   \label{fig:PlotContourMedianStrEst}
 \end{figure}
@@ -3181,13 +3181,13 @@ this ratio is used for the estimation.\footnote{Please refer to the archive code
 
 \vfill\clearpage
 
-\write18{if [ ! -f \texname.bib ]; then touch \texname.bib  ; fi}\write18{if [ ! -f \texname-Add.bib ]; then touch \texname-Add.bib  ; fi}\bibliography{economics,\texname,\texname-Add}
+\write18{if egin{align\*} ! -f \texname.bib ]; then touch \texname.bib  ; fi}\write18{if egin{align\*} ! -f \texname-Add.bib ]; then touch \texname-Add.bib  ; fi}\bibliography{economics,\texname,\texname-Add}
 
 \trp{
 \pagebreak
-\hypertarget{Appendices}{} % Allows link to [url-of-paper]#Appendices
+\hypertarget{Appendices}{} % Allows link to egin{align\*}url-of-paper]#Appendices
 \ifthenelse{\boolean{Web}}{}{% Web version has no page headers
-  \chead[Appendices]{Appendices}      % but PDF version does
+  \cheadegin{align\*}Appendices]{Appendices}      % but PDF version does
   \appendixpage % Reset formatting for appendices
 } 
 \appendix
