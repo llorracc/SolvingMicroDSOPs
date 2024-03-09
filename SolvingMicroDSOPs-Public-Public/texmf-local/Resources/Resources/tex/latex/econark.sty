@@ -1,0 +1,343 @@
+% Style file with stuff that should be available for any latex doc in Econ-ARK
+
+% Get references right whether compiled as subfile or main file
+% https://tex.stackexchange.com/questions/463699/proper-reference-numbers-with-subfiles
+\newcommand\labelprefix{}
+\newcommand\localorexternallabel[1]{% Removing this comment breaks the command
+  \expandafter\ifx\csname r@#1\endcsname\relax
+  \labelprefix
+  \fi #1% Removing this comment breaks the command
+}
+
+% Appendices and body are subfiles
+\RequirePackage{subfiles}
+\RequirePackage{xmpincl} % mathstat.dal..ca/~sellinger/pdfa
+
+% Get all the packages from the American Mathematical Society
+\RequirePackage{amsmath,amsfonts,amsmath,amsthm}
+
+% Command to define a label only if it does not yet exist (suppresses misleading
+% warnings when material created in subfiles is read in while references already
+% exist from master document)
+\makeatletter
+\newcommand{\iflabelexists}[3]{\@ifundefined{r@#1}{\G@refundefinedtrue{#3}}{#2}}
+\makeatother
+
+% Home of Econ-ARK
+\providecommand{\ARKurl}{\href{https://econ-ark.org}{{Econ-ARK}}}
+
+% Define various generically useful terms and items
+\providecommand{\avg}{\bar}
+\providecommand{\cov}{}\renewcommand{\cov}{\textup{cov}}
+\providecommand{\Abve}{\bar}
+\providecommand{\Belw}{\underline}
+\providecommand{\CDF}{\mathcal{F}}
+\providecommand{\GroFac}{\Omega} % Generic for growth factor
+\providecommand{\GroRte}{\omega} % Generic for growth rate 
+\providecommand{\Lvl}{\mathbf}   % Levels of variables are bold
+
+% Constrained
+\newcommand{\cnstr}[1]{\grave{#1}}
+
+\newcommand{\BalGroFac}{\check} % Balanced growth factor
+\newcommand{\BalGroRte}{\tilde} % Balanced growth rate (log change)
+\newcommand{\TargetNrm}{\hat}   % Target 
+\newcommand{\ABalLvl}{\BalGroFac{\ALvl}} % m where mLvl grows by PermGroFac
+\newcommand{\mBalLvl}{\BalGroFac{\mNrm}} % m where mLvl grows by PermGroFac
+\newcommand{\MBalLvl}{\BalGroFac{\MNrm}} % m where MLvl grows by PermGroFac
+\newcommand{\mBalLog}{\BalGroRte{\mNrm}} % m where mLog grows by PermGroRte
+\newcommand{\mTrgNrm}{\TargetNrm{\mNrm}} % m where E[m_{t+1}]=m_{t}
+
+% Levels are boldface
+\providecommand{\aLvl}{\mathbf{a}}
+\providecommand{\bLvl}{\mathbf{b}}
+\providecommand{\cLvl}{\mathbf{c}}
+\providecommand{\dLvl}{\mathbf{d}}
+\providecommand{\eLvl}{\mathbf{e}}
+\providecommand{\fLvl}{\mathbf{f}}
+\providecommand{\gLvl}{\mathbf{g}}
+\providecommand{\hLvl}{\mathbf{h}}
+\providecommand{\iLvl}{\mathbf{i}}
+\providecommand{\jLvl}{\mathbf{j}}
+\providecommand{\kLvl}{\mathbf{k}}
+\providecommand{\mLvl}{\mathbf{m}}
+\providecommand{\nLvl}{\mathbf{n}}
+\providecommand{\pLvl}{\mathbf{p}}
+\providecommand{\qLvl}{\mathbf{q}}
+\providecommand{\rLvl}{\mathbf{r}}
+\providecommand{\sLvl}{\mathbf{s}}
+\providecommand{\tLvl}{\mathbf{t}}
+\providecommand{\uLvl}{\mathbf{u}}
+\providecommand{\vLvl}{\mathbf{v}}
+\providecommand{\wLvl}{\mathbf{w}}
+\providecommand{\xLvl}{\mathbf{x}}
+\providecommand{\yLvl}{\mathbf{y}}
+\providecommand{\zLvl}{\mathbf{z}}
+
+\providecommand{\ALvl}{\mathbf{A}}
+\providecommand{\BLvl}{\mathbf{B}}
+\providecommand{\CLvl}{\mathbf{C}}
+\providecommand{\DLvl}{\mathbf{D}}
+\providecommand{\ELvl}{\mathbf{E}}
+\providecommand{\FLvl}{\mathbf{F}}
+\providecommand{\GLvl}{\mathbf{G}}
+\providecommand{\HLvl}{\mathbf{H}}
+\providecommand{\ILvl}{\mathbf{I}}
+\providecommand{\JLvl}{\mathbf{J}}
+\providecommand{\KLvl}{\mathbf{K}}
+\providecommand{\LLvl}{\mathbf{L}}
+\providecommand{\MLvl}{\mathbf{M}}
+\providecommand{\NLvl}{\mathbf{N}}
+\providecommand{\OLvl}{\mathbf{O}}
+\providecommand{\PLvl}{\mathbf{P}}
+\providecommand{\QLvl}{\mathbf{Q}}
+\providecommand{\RLvl}{\mathbf{R}}
+\providecommand{\SLvl}{\mathbf{S}}
+\providecommand{\TLvl}{\mathbf{T}}
+\providecommand{\ULvl}{\mathbf{U}}
+\providecommand{\VLvl}{\mathbf{V}}
+\providecommand{\WLvl}{\mathbf{W}}
+\providecommand{\XLvl}{\mathbf{X}}
+\providecommand{\YLvl}{\mathbf{Y}}
+\providecommand{\ZLvl}{\mathbf{Z}}
+
+% Functions are Roman not italicized
+\providecommand{\aFunc}{\mathrm{a}}
+\providecommand{\bFunc}{\mathrm{b}}
+\providecommand{\cFunc}{\mathrm{c}}
+\providecommand{\dFunc}{\mathrm{d}}
+\providecommand{\eFunc}{\mathrm{e}}
+\providecommand{\fFunc}{\mathrm{f}}
+\providecommand{\hFunc}{\mathrm{h}}
+\providecommand{\iFunc}{\mathrm{i}}
+\providecommand{\jFunc}{\mathrm{j}}
+\providecommand{\kFunc}{\mathrm{k}}
+\providecommand{\mFunc}{\mathrm{m}}
+\providecommand{\nFunc}{\mathrm{n}}
+\providecommand{\pFunc}{\mathrm{p}}
+\providecommand{\sFunc}{\mathrm{s}}
+\providecommand{\rFunc}{\mathrm{r}}
+\providecommand{\uFunc}{\mathrm{u}}
+\providecommand{\vFunc}{\mathrm{v}}
+\providecommand{\wFunc}{\mathrm{w}}
+\providecommand{\xFunc}{\mathrm{x}}
+\providecommand{\yFunc}{\mathrm{y}}
+\providecommand{\zFunc}{\mathrm{z}}
+
+\providecommand{\AFunc}{\mathrm{A}}
+\providecommand{\BFunc}{\mathrm{B}}
+\providecommand{\CFunc}{\mathrm{C}}
+\providecommand{\DFunc}{\mathrm{D}}
+\providecommand{\EFunc}{\mathrm{E}}
+\providecommand{\FFunc}{\mathrm{F}}
+\providecommand{\GFunc}{\mathrm{G}}
+\providecommand{\HFunc}{\mathrm{H}}
+\providecommand{\IFunc}{\mathrm{I}}
+\providecommand{\JFunc}{\mathrm{J}}
+\providecommand{\KFunc}{\mathrm{K}}
+\providecommand{\LFunc}{\mathrm{L}}
+\providecommand{\MFunc}{\mathrm{M}}
+\providecommand{\NFunc}{\mathrm{N}}
+\providecommand{\OFunc}{\mathrm{O}}
+\providecommand{\PFunc}{\mathrm{P}}
+\providecommand{\QFunc}{\mathrm{Q}}
+\providecommand{\RFunc}{\mathrm{R}}
+\providecommand{\SFunc}{\mathrm{S}}
+\providecommand{\TFunc}{\mathrm{T}}
+\providecommand{\UFunc}{\mathrm{U}}
+\providecommand{\VFunc}{\mathrm{V}}
+\providecommand{\WFunc}{\mathrm{W}}
+\providecommand{\XFunc}{\mathrm{X}}
+\providecommand{\YFunc}{\mathrm{Y}}
+\providecommand{\ZFunc}{\mathrm{Z}}
+
+% Ratios to permanent income are normal face
+\providecommand{\aNrm}{a}
+\providecommand{\bNrm}{b}
+\providecommand{\cNrm}{c}
+\providecommand{\dNrm}{d}
+\providecommand{\eNrm}{e}
+\providecommand{\fNrm}{f}
+\providecommand{\hNrm}{h}
+\providecommand{\iNrm}{i}
+\providecommand{\jNrm}{j}
+\providecommand{\kNrm}{k}
+\providecommand{\mNrm}{m}
+\providecommand{\pNrm}{p}
+\providecommand{\rNrm}{s}
+\providecommand{\sNrm}{s}
+\providecommand{\vNrm}{v}
+\providecommand{\yNrm}{y}
+\providecommand{\zNrm}{z}
+
+\providecommand{\ANrm}{A}
+\providecommand{\BNrm}{B}
+\providecommand{\CNrm}{C}
+\providecommand{\DNrm}{D}
+\providecommand{\ENrm}{E}
+\providecommand{\FNrm}{F}
+\providecommand{\HNrm}{H}
+\providecommand{\INrm}{I}
+\providecommand{\JNrm}{J}
+\providecommand{\KNrm}{K}
+\providecommand{\MNrm}{M}
+\providecommand{\PNrm}{P}
+\providecommand{\SNrm}{S}
+\providecommand{\VNrm}{V}
+\providecommand{\YNrm}{Y}
+\providecommand{\ZNrm}{Z}
+
+\providecommand{\RNrm}{\mathcal{R}}
+% Ind and Agg varaibles begin with lower case
+\providecommand{\tranShkInd}{\theta} % 
+\providecommand{\tranShkAgg}{\Theta} % 
+\providecommand{\permShkInd}{\psi}   % 
+\providecommand{\permShkAgg}{\Psi}   % 
+\providecommand{\tranShkAgg}{\Theta} % 
+\providecommand{\tranShkIndStd}{\sigma_{\tranShkInd}}     % 
+\providecommand{\tranShkIndVar}{\sigma^{2}_{\tranShkInd}} % 
+\providecommand{\tranShkAggStd}{\sigma_{\tranShkAgg}}     %
+\providecommand{\tranShkAggVar}{\sigma^{2}_{\tranShkAgg}} %
+
+% Combo variables (combining Ind and Agg) 
+\providecommand{\PermShk}{\mathbf{\Psi}}
+\providecommand{\PermShkStd}{\sigma_{\PermShk}}
+\providecommand{\PermShkVar}{\sigma^{2}_{\PermShk}}
+\providecommand{\PermLvl}{\pLvl}
+\providecommand{\PermLvlAgg}{\PLvl}
+
+% More specialized variables
+\providecommand{\TranShkAll}{\pmb{\xi}} 
+\providecommand{\TranShk}{\TranShk}       
+\providecommand{\TranShkMin}{\underline{\xi}}
+\providecommand{\TranShkMax}{\overline{\xi}}
+\providecommand{\TranShkStd}{\sigma_{\TranShk}}
+\providecommand{\TranShkVar}{\sigma^{2}_{\TranShk}}
+\providecommand{\TranShkEmp}{\pmb{\theta}}    
+\providecommand{\TranShkEmpMin}{\underline{\TranShkEmp}}    
+\providecommand{\TranShkEmpMax}{\overline{\TranShkEmp}}    
+\providecommand{\IncUnemp}{\mu}  % Income in unemployment
+
+\providecommand{\permLvlAgg}{\mathrm{P}}      % 
+\providecommand{\permLvlInd}{\mathrm{p}}      % 
+
+\providecommand{\MPCmin}{{\uline{\kappa}}}
+\providecommand{\MPCmax}{{\bar{\kappa}}}
+\providecommand{\MPCmaxmax}{{\bar{\bar{\kappa}}}}
+\providecommand{\MPCmaxmin}{{\hat{\underline{\kappa}}}}
+\providecommand{\MPCminmin}{{\underline{\kappa}}}
+\providecommand{\Opt}{{\tilde}}
+\providecommand{\Opt}{}
+\renewcommand{\Opt}{\tilde}
+\providecommand{\permGroFacAgg}{\mathrm{G}}
+\providecommand{\permGroFacInd}{\mathsf{G}}
+\providecommand{\PermGroFac}{\mathcal{G}}
+\providecommand{\PermGroFacAdj}{\underline{\PermGroFac}}
+\providecommand{\PermGroFacuAdj}{\underline{\underline{\PermGroFac}}}
+\providecommand{\PermGroRte}{\varphi}
+
+\providecommand{\Alive}{\mathcal{L}}\renewcommand{\Alive}{\mathcal{L}}
+\providecommand{\RfreeAgg}{}\renewcommand{\RfreeAgg}{\Agg{\Rfree}}
+
+\providecommand{\DeprFac}{{\daleth}}
+\providecommand{\deprRte}{{\delta}} % 
+\providecommand{\DiscFac}{\beta}
+\providecommand{\DiscFacAlt}{\beth}
+\providecommand{\DiscAltuAdj}{{\underline{\underline{\beth}}}}
+\providecommand{\DiscAlt}{{\beth}}
+\providecommand{\DiscFacRaw}{\beta}
+\providecommand{\DiscFacLiv}{\underline{\DiscFacRaw}}
+\providecommand{\discRte}{\vartheta} % 
+
+\providecommand{\APFac}{\text{\pmb{\Thorn}}} % Former \Pat
+\providecommand{\APFacDefn}{\hyperlink{APFacDefn}{\textrm{APF}}}
+
+\providecommand{\GPFacRaw}{\APFac_{\PermGroFac}}
+\providecommand{\GPFacNrm}{\APFac_{\PermGroFacAdj}}
+\providecommand{\RPFac}{\APFac_{\Rfree}}
+
+\providecommand{\RPRte}{\text{\thorn}_{\rfree}}
+\providecommand{\GPRte}{\text{\thorn}_{\PermGroRte}}
+\providecommand{\APRte}{\text{\thorn}}
+
+
+\providecommand{\EPermShkInv}{\Ex[\PermShk^{-1}]}  % Formerly EpShkInv
+\providecommand{\InvEPermShkInv}{\underline{\PermShk}} % Formerly InvEpShkInv
+\providecommand{\uInvEuPermShk}{\underline{\underline{\PermShk}}} % Formerly {\uInvEpShkuInv}
+
+\providecommand{\RfreeEff}{\bar{\Rfree}} % Blanchard-adjusted interest rate
+
+\newcommand{\PopnGroFac}{\Xi}
+\newcommand{\PopnGroRte}{\xi}
+\newcommand{\PopnLvl}{\pmb{\mathrm{N}}}
+  
+\providecommand{\LivPrb}{\Alive}
+\providecommand{\livPrb}{\ell}
+
+\providecommand{\cncl}{}
+\renewcommand\cncl[1]{{\cancel{#1}}}
+
+\providecommand{\pNotZero}{(1-\pZero)}
+
+
+\providecommand{\CARA}{{\alpha}}
+\providecommand{\CRRA}{{\rho}}
+\providecommand{\diePrb}{{\mathsf{d}}} % Continuous time death rate 
+\providecommand{\DiePrb}{{\mathsf{D}}} % Discrete-time one-period death rate
+\providecommand{\Ex}{{\mathbb{E}}} % Expectations operator defined in econtex.cls
+\providecommand{\Mean}{{\mathbb{M}}} % Mean
+\providecommand{\MPC}{{\kappa}}
+\providecommand{\MPCFunc}{\pmb{\kappa}}
+\providecommand{\pZero}{{\wp}}
+
+\providecommand{\rfree}{{\mathsf{r}}}   % The net return rate on the safe asset
+\providecommand{\Rfree}{{\mathsf{R}}}   % The return factor on the safe asset 
+\providecommand{\RSave}{{\underline{\Rfree}}}
+\providecommand{\rsave}{{\underline{\rfree}}}
+\providecommand{\RBoro}{{\bar{\Rfree}}}
+\providecommand{\rboro}{{\bar{\rfree}}}
+
+\providecommand{\Risky}{{\mathbf{R}}}  % The return factor on the risky asset
+\providecommand{\risky}{{\mathbf{r}}}  % The arithmetic return rate E[\Risky] - 1
+\providecommand{\riskyELog}{\risky}     % The arithmetic return rate \Risky - 1
+\providecommand{\riskyELev}{\boldsymbol{r}} % The geometric  return rate \log \Risky
+\providecommand{\riskyshare}{{\varsigma}}
+\providecommand{\riskyvar}{\sigma^{2}_{\risky}}
+\providecommand{\Rport}{\mathfrak{R}}    % Portfolio -weighted return
+\providecommand{\rport}{\mathfrak{r}}
+
+\providecommand{\uPPP}{{{\mathrm{u}^{\prime\prime\prime}}}}
+\providecommand{\uPP}{{{\mathrm{u}^{\prime\prime}}}}
+\providecommand{\uP}{{{\mathrm{u}^{\prime}}}}
+\providecommand{\util}{u}
+
+\providecommand{\Kap}{{K}}
+\providecommand{\kap}{{k}}
+
+\providecommand{\leiShare}{{\zeta}} % 
+
+\providecommand{\MPSmin}{\pZero^{1/\CRRA} \RPFac}
+\providecommand{\MPSmax}{\RPFac}
+
+\providecommand{\PDV}{{\mathbb{P}}} % 
+\providecommand{\Wage}{{\mathsf{W}}}
+\providecommand{\wage}{{\mathsf{w}}}
+
+\providecommand{\TaxLev}{T}
+\providecommand{\Tax}{}
+\providecommand{\TaxFree}{{\cancel{\Tax}}}
+
+\providecommand{\Alt}{\grave}
+
+\providecommand{\urate}{{\mho}}
+\providecommand{\erate}{{\cancel{\mho}}}
+\providecommand{\unins}{{\zeta}}
+
+\providecommand{\Labor}{\mathrm{L}}
+\providecommand{\Labor}{\ell}
+
+\providecommand{\EEndMap}{{\mathsf{E}}}
+\providecommand{\TMap}{\mathscr{T}}
+
+\providecommand{\CEndFunc}{{\mathfrak{C}}}
+\providecommand{\cEndFunc}{{\mathfrak{c}}}
