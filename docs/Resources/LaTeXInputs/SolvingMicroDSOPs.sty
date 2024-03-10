@@ -1,0 +1,50 @@
+% Define a few objects that are unique to this paper
+% Allow different actions depending on whether document is being processed as
+% subfile or being process as standalone
+\providecommand{\onlyinsubfile}{}\renewcommand{\onlyinsubfile}[1]{#1}
+\providecommand{\notinsubfile}{}\renewcommand{\notinsubfile}[1]{}
+
+% Control whether subsection is displayed at top of page of PDF 
+\newboolean{showPageHead}
+\setboolean{showPageHead}{true}
+
+% Declare registers for manipulation of tables (to fit page)
+\newsavebox{\TblBox}
+\newlength{\TblShrunk}
+\newsavebox{\TblShrunkBox}
+
+
+\providecommand{\aboveMin}{\blacktriangle}
+\providecommand{\Hi}{\hat}
+\providecommand{\chiFunc}{\pmb{\chi}}
+\usepackage{\LaTeXInputs/pdfsuppressruntime}
+
+\newcommand{\BegStge}{{t-}}
+\newcommand{\BegStgep}{{t+1-}}
+\newcommand{\MidStge}{{t~}}
+\newcommand{\EndStge}{{t+}}
+% \renewcommand{\BegStge}{{\underline{t}}}
+% \renewcommand{\BegStgep}{{\underline{t+1}}}
+% \renewcommand{\MidStge}{{t}}
+% \renewcommand{\EndStge}{\overline{t}}
+\renewcommand{\BegStge}{\stge_{-}}
+\renewcommand{\BegStgep}{\stge_{-}+1}
+\renewcommand{\MidStge}{{\stge{\tiny\sim}}}
+\renewcommand{\EndStge}{{\stge}^{+}}
+\renewcommand{\BegStge}{-\stge}
+\renewcommand{\BegStgep}{-\stge+1}
+\renewcommand{\MidStge}{{\sim\stge}}
+\renewcommand{\EndStge}{+{\stge}}
+\newcommand{\vBegStge}{\vFunc_{\BegStge}}
+\newcommand{\vBegStgep}{\vFunc_{\BegStgep}}
+\newcommand{\vMidStge}{\vFunc_{\MidStge}}
+\newcommand{\vEndStge}{\vFunc_{\EndStge}}
+\newcommand{\cEndStge}{\cFunc_{\EndStge}}
+\newcommand{\vPEndStge}{\vFunc^{{a}}_{\EndStge}}
+
+
+\providecommand{\stge}{s}
+\renewcommand{\stge}{s}
+
+\providecommand{\interval}{stage}
+\renewcommand{\interval}{stage}
