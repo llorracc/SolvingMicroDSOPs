@@ -1,3 +1,5 @@
+% Style file with stuff that should be available for any latex doc in Econ-ARK
+
 % Get references right whether compiled as subfile or main file
 % https://tex.stackexchange.com/questions/463699/proper-reference-numbers-with-subfiles
 \newcommand\labelprefix{}
@@ -9,6 +11,10 @@
 
 % Appendices and body are subfiles
 \RequirePackage{subfiles}
+\RequirePackage{xmpincl} % mathstat.dal..ca/~sellinger/pdfa
+
+% Get all the packages from the American Mathematical Society
+\RequirePackage{amsmath,amsfonts,amsmath,amsthm}
 
 % Command to define a label only if it does not yet exist (suppresses misleading
 % warnings when material created in subfiles is read in while references already
@@ -17,13 +23,14 @@
 \newcommand{\iflabelexists}[3]{\@ifundefined{r@#1}{\G@refundefinedtrue{#3}}{#2}}
 \makeatother
 
-\providecommand{\ARKurl}{\href{https://econ-ark.org}{Econ-ARK}}
+% Home of Econ-ARK
+\providecommand{\ARKurl}{\href{https://econ-ark.org}{{Econ-ARK}}}
 
 % Define various generically useful terms and items
 \providecommand{\avg}{\bar}
 \providecommand{\cov}{}\renewcommand{\cov}{\textup{cov}}
 \providecommand{\Abve}{\bar}
-\providecommand{\Belw}{\ushort}
+\providecommand{\Belw}{\underline}
 \providecommand{\CDF}{\mathcal{F}}
 \providecommand{\GroFac}{\Omega} % Generic for growth factor
 \providecommand{\GroRte}{\omega} % Generic for growth rate 
@@ -41,30 +48,6 @@
 \newcommand{\mBalLog}{\BalGroRte{\mNrm}} % m where mLog grows by PermGroRte
 \newcommand{\mTrgNrm}{\TargetNrm{\mNrm}} % m where E[m_{t+1}]=m_{t}
 
-% Create links to explanations in text
-\newcommand{\BSTpaperLink}{https://\owner.github.io/BufferStockTheory/BufferStockTheory3.html} % Frame 3
-
-% Suffix of Defn indicates reference to text name and source doc definition
-\newcommand{\FHWC}{\hyperlink{FHWC}{\textrm{FHWC}}}
-%\newcommand{\FHWFacDefn}{\hyperlink{FHWFacDefn}{\textrm{FHWF}}}
-\newcommand{\FHWFacDefn}{\hyperlink{FHWFacDefn}{\textrm{FHWF}}}
-\newcommand{\GICRaw}{\hyperlink{GICRaw}{\textrm{GIC}}}
-\newcommand{\GPFacRawDefn}{\hyperlink{GPFacRawDefn}{\textrm{GPF}}}
-\newcommand{\GPFacModDefn}{\hyperlink{GPFacModDefn}{\textrm{GPF-Mod}}}
-\newcommand{\GICMod}{\hyperlink{GICMod}{\textrm{GIC-Mod}}}
-\newcommand{\GICHarm}{\hyperlink{GICHarm}{\textrm{GIC-Harm}}}
-\newcommand{\GICSdl}{\hyperlink{GICSdl}{\textrm{GIC-Szeidl}}}
-\newcommand{\RIC}{\hyperlink{RIC}{\textrm{RIC}}}
-\newcommand{\PFFVAC}{\hyperlink{PFFVAC}{\textrm{PF-FVAC}}}
-\newcommand{\PFVAFacDefn}{\hyperlink{PFVAFacDefn}{\textrm{PF-VAF}}}
-\newcommand{\FVAC}{\hyperlink{FVAC}{\textrm{FVAC}}}
-\newcommand{\VAFacDefn}{\hyperlink{VAFacDefn}{\textrm{VAF}}}
-\newcommand{\APFacDefn}{\hyperlink{APFacDefn}{\textrm{APF}}}
-\newcommand{\RPFacDefn}{\hyperlink{RPFacDefn}{\textrm{RPF}}}
-\newcommand{\AIC}{\hyperlink{AIC}{\textrm{AIC}}}
-\newcommand{\WRPFacDefn}{\hyperlink{WRPFacDefn}{\textrm{WRPF}}}
-\newcommand{\WRIC}{\hyperlink{WRIC}{\textrm{WRIC}}}
-
 % Levels are boldface
 \providecommand{\aLvl}{\mathbf{a}}
 \providecommand{\bLvl}{\mathbf{b}}
@@ -72,15 +55,22 @@
 \providecommand{\dLvl}{\mathbf{d}}
 \providecommand{\eLvl}{\mathbf{e}}
 \providecommand{\fLvl}{\mathbf{f}}
+\providecommand{\gLvl}{\mathbf{g}}
 \providecommand{\hLvl}{\mathbf{h}}
 \providecommand{\iLvl}{\mathbf{i}}
 \providecommand{\jLvl}{\mathbf{j}}
 \providecommand{\kLvl}{\mathbf{k}}
 \providecommand{\mLvl}{\mathbf{m}}
+\providecommand{\nLvl}{\mathbf{n}}
 \providecommand{\pLvl}{\mathbf{p}}
-\providecommand{\sLvl}{\mathbf{s}}
+\providecommand{\qLvl}{\mathbf{q}}
 \providecommand{\rLvl}{\mathbf{r}}
+\providecommand{\sLvl}{\mathbf{s}}
+\providecommand{\tLvl}{\mathbf{t}}
+\providecommand{\uLvl}{\mathbf{u}}
 \providecommand{\vLvl}{\mathbf{v}}
+\providecommand{\wLvl}{\mathbf{w}}
+\providecommand{\xLvl}{\mathbf{x}}
 \providecommand{\yLvl}{\mathbf{y}}
 \providecommand{\zLvl}{\mathbf{z}}
 
@@ -199,17 +189,15 @@
 
 \providecommand{\RNrm}{\mathcal{R}}
 % Ind and Agg varaibles begin with lower case
-\providecommand{\tranShkInd}{\theta} % Formerly tranShkInd
-\providecommand{\tranShkAgg}{\Theta} % Formerly TranShkAgg
-\providecommand{\permShkInd}{\psi}   % Formerly PermShkInd
-\providecommand{\permShkAgg}{\Psi}   % Formerly PermShkAgg
-\providecommand{\tranShkAgg}{\Theta} % Formerly TranShkAgg
-\providecommand{\permShkInd}{\psi}   % Formerly PermShkInd
-\providecommand{\permShkAgg}{\Psi}   % Formerly PermShkAgg
-\providecommand{\tranShkIndStd}{\sigma_{\tranShkInd}} % Formerly tranShkInd
-\providecommand{\tranShkIndVar}{\sigma^{2}_{\tranShkInd}} % Formerly tranShkInd
-\providecommand{\tranShkAggStd}{\sigma_{\tranShkAgg}} % Formerly tranShkAgg
-\providecommand{\tranShkAggVar}{\sigma^{2}_{\tranShkAgg}} % Formerly tranShkInd
+\providecommand{\tranShkInd}{\theta} % 
+\providecommand{\tranShkAgg}{\Theta} % 
+\providecommand{\permShkInd}{\psi}   % 
+\providecommand{\permShkAgg}{\Psi}   % 
+\providecommand{\tranShkAgg}{\Theta} % 
+\providecommand{\tranShkIndStd}{\sigma_{\tranShkInd}}     % 
+\providecommand{\tranShkIndVar}{\sigma^{2}_{\tranShkInd}} % 
+\providecommand{\tranShkAggStd}{\sigma_{\tranShkAgg}}     %
+\providecommand{\tranShkAggVar}{\sigma^{2}_{\tranShkAgg}} %
 
 % Combo variables (combining Ind and Agg) 
 \providecommand{\PermShk}{\mathbf{\Psi}}
@@ -219,17 +207,19 @@
 \providecommand{\PermLvlAgg}{\PLvl}
 
 % More specialized variables
-\providecommand{\TranShk}{\pmb{\xi}}       
+\providecommand{\TranShkAll}{\pmb{\xi}} 
+\providecommand{\TranShk}{\TranShk}       
+\providecommand{\TranShkMin}{\underline{\xi}}
+\providecommand{\TranShkMax}{\overline{\xi}}
 \providecommand{\TranShkStd}{\sigma_{\TranShk}}
 \providecommand{\TranShkVar}{\sigma^{2}_{\TranShk}}
-\providecommand{\TranShkEmp}{\pmb{\theta}}    % Former tShkEmp
-\providecommand{\TranShkEmpMin}{\underline{\TranShkEmp}}    % Former tShkEmp
-\providecommand{\TranShkEmpMax}{\overline{\TranShkEmp}}    % Former tShkEmp
-\providecommand{\TranShkAll}{\pmb{\xi}} % Former tShkAll
+\providecommand{\TranShkEmp}{\pmb{\theta}}    
+\providecommand{\TranShkEmpMin}{\underline{\TranShkEmp}}    
+\providecommand{\TranShkEmpMax}{\overline{\TranShkEmp}}    
 \providecommand{\IncUnemp}{\mu}  % Income in unemployment
 
-\providecommand{\permLvlAgg}{\mathrm{P}}      % Formerly PermLvlAgg
-\providecommand{\permLvlInd}{\mathrm{p}}      % Formerly permLvlInd
+\providecommand{\permLvlAgg}{\mathrm{P}}      % 
+\providecommand{\permLvlInd}{\mathrm{p}}      % 
 
 \providecommand{\MPCmin}{{\uline{\kappa}}}
 \providecommand{\MPCmax}{{\bar{\kappa}}}
@@ -249,15 +239,15 @@
 \providecommand{\Alive}{\mathcal{L}}\renewcommand{\Alive}{\mathcal{L}}
 \providecommand{\RfreeAgg}{}\renewcommand{\RfreeAgg}{\Agg{\Rfree}}
 
-\providecommand{\DeprFac}{\ensuremath{\daleth}}
-\providecommand{\deprRte}{\ensuremath{\delta}} % New 
+\providecommand{\DeprFac}{{\daleth}}
+\providecommand{\deprRte}{{\delta}} % 
 \providecommand{\DiscFac}{\beta}
 \providecommand{\DiscFacAlt}{\beth}
 \providecommand{\DiscAltuAdj}{{\underline{\underline{\beth}}}}
 \providecommand{\DiscAlt}{{\beth}}
 \providecommand{\DiscFacRaw}{\beta}
 \providecommand{\DiscFacLiv}{\underline{\DiscFacRaw}}
-\providecommand{\discRte}{\ensuremath{\tau}} % New
+\providecommand{\discRte}{\vartheta} % 
 
 \providecommand{\APFac}{\text{\pmb{\Thorn}}} % Former \Pat
 \providecommand{\APFacDefn}{\hyperlink{APFacDefn}{\textrm{APF}}}
@@ -290,29 +280,31 @@
 \providecommand{\pNotZero}{(1-\pZero)}
 
 
-\providecommand{\CARA}{\ensuremath{\alpha}}
+\providecommand{\CARA}{{\alpha}}
 \providecommand{\CRRA}{{\rho}}
-\providecommand{\diePrb}{\ensuremath{\mathsf{d}}} % Continuous time death rate 
-\providecommand{\DiePrb}{\ensuremath{\mathsf{D}}} % Discrete-time one-period death rate
+\providecommand{\diePrb}{{\mathsf{d}}} % Continuous time death rate 
+\providecommand{\DiePrb}{{\mathsf{D}}} % Discrete-time one-period death rate
 \providecommand{\Ex}{{\mathbb{E}}} % Expectations operator defined in econtex.cls
 \providecommand{\Mean}{{\mathbb{M}}} % Mean
 \providecommand{\MPC}{{\kappa}}
 \providecommand{\MPCFunc}{\pmb{\kappa}}
 \providecommand{\pZero}{{\wp}}
 
-\providecommand{\rfree}{{\mathsf{r}}}   % The net return on the safe asset at an annual rate
-\providecommand{\Rfree}{{\mathsf{R}}}   % The return factor on the safe asset - unfortunately mathfrak fonts don't come through for tth
-\providecommand{\RSave}{\ensuremath{\underline{\Rfree}}}
-\providecommand{\rsave}{\ensuremath{\underline{\rfree}}}
-\providecommand{\RBoro}{\ensuremath{\bar{\Rfree}}}
-\providecommand{\rboro}{\ensuremath{\bar{\rfree}}}
+\providecommand{\rfree}{{\mathsf{r}}}   % The net return rate on the safe asset
+\providecommand{\Rfree}{{\mathsf{R}}}   % The return factor on the safe asset 
+\providecommand{\RSave}{{\underline{\Rfree}}}
+\providecommand{\rsave}{{\underline{\rfree}}}
+\providecommand{\RBoro}{{\bar{\Rfree}}}
+\providecommand{\rboro}{{\bar{\rfree}}}
 
-
-\providecommand{\Risky}{\ensuremath{\mathbf{R}}}    % The return on the risky asset
-\providecommand{\risky}{\ensuremath{\mathbf{r}}}  % The net return on the risky asset annual rate 
-\providecommand{\riskyshare}{\ensuremath{\varsigma}}
-\providecommand{\Rport}{\ensuremath{\mathbb{R}}}    % Portfolio -weighted return
-\providecommand{\rport}{\ensuremath{\mathbb{r}}}  
+\providecommand{\Risky}{{\mathbf{R}}}  % The return factor on the risky asset
+\providecommand{\risky}{{\mathbf{r}}}  % The arithmetic return rate E[\Risky] - 1
+\providecommand{\riskyELog}{\risky}     % The arithmetic return rate \Risky - 1
+\providecommand{\riskyELev}{\boldsymbol{r}} % The geometric  return rate \log \Risky
+\providecommand{\riskyshare}{{\varsigma}}
+\providecommand{\riskyvar}{\sigma^{2}_{\risky}}
+\providecommand{\Rport}{\mathfrak{R}}    % Portfolio -weighted return
+\providecommand{\rport}{\mathfrak{r}}
 
 \providecommand{\uPPP}{{{\mathrm{u}^{\prime\prime\prime}}}}
 \providecommand{\uPP}{{{\mathrm{u}^{\prime\prime}}}}
@@ -322,30 +314,30 @@
 \providecommand{\Kap}{{K}}
 \providecommand{\kap}{{k}}
 
-\providecommand{\leiShare}{\ensuremath{\zeta}} % 
+\providecommand{\leiShare}{{\zeta}} % 
 
 \providecommand{\MPSmin}{\pZero^{1/\CRRA} \RPFac}
 \providecommand{\MPSmax}{\RPFac}
 
-\providecommand{\PDV}{\ensuremath{\mathbb{P}}} % PDV
-\providecommand{\Wage}{\ensuremath{\mathsf{W}}}
-\providecommand{\wage}{\ensuremath{\mathsf{w}}}
+\providecommand{\PDV}{{\mathbb{P}}} % 
+\providecommand{\Wage}{{\mathsf{W}}}
+\providecommand{\wage}{{\mathsf{w}}}
 
 \providecommand{\TaxLev}{T}
 \providecommand{\Tax}{}
-\providecommand{\TaxFree}{\ensuremath{\cancel{\Tax}}}
+\providecommand{\TaxFree}{{\cancel{\Tax}}}
 
 \providecommand{\Alt}{\grave}
 
-\providecommand{\urate}{\ensuremath{\mho}}
-\providecommand{\erate}{\ensuremath{\cancel{\mho}}}
-\providecommand{\unins}{\ensuremath{\zeta}}
+\providecommand{\urate}{{\mho}}
+\providecommand{\erate}{{\cancel{\mho}}}
+\providecommand{\unins}{{\zeta}}
 
 \providecommand{\Labor}{\mathrm{L}}
 \providecommand{\Labor}{\ell}
 
-\providecommand{\EEndMap}{\ensuremath{\mathsf{E}}}
+\providecommand{\EEndMap}{{\mathsf{E}}}
 \providecommand{\TMap}{\mathscr{T}}
 
-\providecommand{\CEndFunc}{\ensuremath{\mathfrak{C}}}
-\providecommand{\cEndFunc}{\ensuremath{\mathfrak{c}}}
+\providecommand{\CEndFunc}{{\mathfrak{C}}}
+\providecommand{\cEndFunc}{{\mathfrak{c}}}

@@ -205,6 +205,8 @@ The consumer's goal is to maximize discounted utility from consumption over the 
   \end{equation}
 \end{verbatimwrite}
 \input{./Equations/MaxProb.tex}\unskip
+
+\write18{if [ ! -f \texname.bib ]; then touch \texname.bib  ; fi}\write18{if [ ! -f \texname-Add.bib ]; then touch \texname-Add.bib  ; fi}\bibliography{economics,\texname,\texname-Add}
 \end{document}
 
 For now, we will assume that income evolves according to: \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Subscript on permanent income allows pattern of income growth over the lifetime.}}{}

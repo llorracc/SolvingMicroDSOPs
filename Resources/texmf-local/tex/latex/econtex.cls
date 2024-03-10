@@ -33,7 +33,7 @@
 \RequirePackage{snapshot} % Creates list of external files used by a LaTeX document
 \RequirePackage{ifthen}
 \RequirePackage{changepage}
-
+\RequirePackage{currfile}   % define macros to produce the filename and path
 % If unspecified whether pdf output (instead of dvi) is being used, determine that it SHOULD be
 \newif\ifdvi\dvitrue
 \@ifundefined{pdfoutput}{}{\ifnum\pdfoutput>0 \dvifalse\fi}
@@ -200,6 +200,7 @@
   {\mbox{\textsuperscript{\tiny\@thefnmark}}} % Restore footnote defn after titlepage redefines it
   \ifdvi
   \else
+  \providecommand{\ushort}{}
   \renewcommand{\ushort}{\underline} % ushort seems to not work properly for tex4ht (which compiles using dvi)
   \fi
 }
