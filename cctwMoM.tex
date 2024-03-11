@@ -170,7 +170,7 @@ grows by a constant factor $\PermGroFac$ and is not subject to stochastic shocks
 (The generalization to the case with permanent shocks is 
 straightforward.)
 
-\bibliography{\econtexRoot/SolvingMicroDSOPs,economics}\end{document}\endinput
+\write18{if [ ! -f \texname.bib ]; then touch \texname.bib  ; fi}\write18{if [ ! -f \texname-Add.bib ]; then touch \texname-Add.bib  ; fi}\bibliography{economics,\texname,\texname-Add}\end{document}\endinput
 
 \hypertarget{Benchmark}{}
 \section{Benchmark: The Method of Endogenous Gridpoints}
@@ -262,8 +262,7 @@ substantial improvements in accuracy and stability of solutions.
 
 
 \vfill\clearpage
-
-\bibliography{\econtexRoot/SolvingMicroDSOPs,economics}\end{document}\endinput
+\write18{if [ ! -f \texname.bib ]; then touch \texname.bib  ; fi}\write18{if [ ! -f \texname-Add.bib ]; then touch \texname-Add.bib  ; fi}\bibliography{economics,\texname,\texname-Add}\end{document}\endinput
 
 % Local Variables:
 % TeX-master-file: t
