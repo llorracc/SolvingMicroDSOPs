@@ -141,7 +141,7 @@
   *{file}   {ulasy.fd}    {1998/08/17 v2.2e}
   *{file}   {uwasy.fd}    {2020/01/19 v2.4}
   *{file}   {t1cmtt.fd}   {2023/04/13 v2.5m}
-  *{file}   {./subfile-the-problem.texinput}{0000/00/00 v0.0}
+  *{file}   {./subfile-the-problem-private.texinput}{0000/00/00 v0.0}
   *{file}   {./Equations/MaxProb.tex}{0000/00/00 v0.0}
   *{file}   {SolvingMicroDSOPs.bbl}{0000/00/00 v0.0}
 }
