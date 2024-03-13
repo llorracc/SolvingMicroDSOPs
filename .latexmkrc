@@ -9,5 +9,5 @@ $rc_report = 1;
 $pdflatex="pdflatex -interaction=nonstopmode %O %S";
 @default_files = ('SolvingMicroDSOPs.tex','cctwMoM.tex','SolvingMicroDSOPs-Slides');
 $aux_out_dir_report = 1;
-$silent  = 0;
+$silent  = 1;
 warn "PATH = '$ENV{PATH}'\n";
