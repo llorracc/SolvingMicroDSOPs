@@ -175,7 +175,7 @@ Cagetti~\citeyearpar{cagettiWprofiles}).  % The tricks and techniques used in so
 \hypertarget{the-problem}{}
 \section{The Problem}\label{sec:the-problem}
 
-\begin{verbatimwrite}{./subfile-the-problem-private.texinput}
+\begin{verbatimwrite}{./Excerpts/the-problem.texinput}
 The usual analysis of dynamic stochastic programming problems packs a great many events (intertemporal choice, stochastic shocks, intertemporal returns, income growth, and more) into a small number of steps and variables. For the detailed analysis here, we will be careful to disarticulate everything that happens in the problem explicitly into separate steps so that each element can be scrutinized and understood in isolation.
 
 We are interested in the behavior a consumer who begins {\interval} $t$ with a certain amount of `capital' $\kLvl_{t}$, which is immediately rewarded by a return factor $\Rfree_{t}$ with the proceeds deposited in a \textbf{b}ank account \textbf{b}alance:
@@ -197,7 +197,7 @@ which are available to be spent on consumption $\cLvl_{t}$.
 
 The consumer's goal is to maximize discounted utility from consumption over the rest of a lifetime whose last {\interval} is date $T$:
 \end{verbatimwrite}
-\input{./subfile-the-problem-private.texinput}
+\input{./Excerpts/the-problem.texinput}
 
 \begin{verbatimwrite}{./Equations/MaxProb.tex}
   \begin{equation}\label{eq:MaxProb}
@@ -334,14 +334,14 @@ gives us the Euler equation for consumption
 \end{verbatimwrite}
 
 \input{./Equations/cEuler.tex}\unskip
-\begin{verbatimwrite}{./subfile-stages-private}  Although our focus so far has been on the consumer's consumption problem once $\mNrm$ is known, for constructing the computational solution it will be useful to distinguish a sequence of three {\moves} (we use the word `\moves' to capture the fact that we are not really thinking of these as occurring at different moments in time -- only that we are putting the things that happen within a given moment into an ordered sequence).  The first {\move} captures calculations that need to be performed before the shocks are realized, the middle {\move} is after shocks have been realized but before the consumption decision has been made (this corresponds to the timing of $\vFunc$ in the treatment above), and the final {\move} captures the situation \textit{after} the consumption decision has been made.
+\begin{verbatimwrite}{./Excerpts/stages.texinput}  Although our focus so far has been on the consumer's consumption problem once $\mNrm$ is known, for constructing the computational solution it will be useful to distinguish a sequence of three {\moves} (we use the word `\moves' to capture the fact that we are not really thinking of these as occurring at different moments in time -- only that we are putting the things that happen within a given moment into an ordered sequence).  The first {\move} captures calculations that need to be performed before the shocks are realized, the middle {\move} is after shocks have been realized but before the consumption decision has been made (this corresponds to the timing of $\vFunc$ in the treatment above), and the final {\move} captures the situation \textit{after} the consumption decision has been made.
 \end{verbatimwrite}
-\input{./subfile-stages-private}
+\input{./Excerpts/stages.texinput}
 
-\begin{verbatimwrite}{./subfile-stage-notation-private}
+\begin{verbatimwrite}{./Excerpts/stage-notation.texinput}
   We need to define notation for these three {\moves} within a {\interval}. We will use $\BegStge$ as a marker for the {\move} before shocks have been realized, $\MidStge$ to indicate the move in which the choice is made, and $\EndStge$ as the indicator for the situation once the choice has been made.
 \end{verbatimwrite}
-\input{./subfile-stage-notation-private}
+\input{./Excerpts/stage-notation.texinput}
 \begin{verbatimwrite}{./Equations/vBegStge}
   \begin{equation}\begin{gathered}\begin{aligned}
 \vBegStge(\kNrm_{\stge}) & = \Ex_{\BegStge}[\vMidStge(\overbrace{\kNrm_{\stge} \Rnorm_{\stge} + \TranShkEmp_{\stge}}^{=\mNrm_{\stge}})]  \label{eq:vBegStge}
