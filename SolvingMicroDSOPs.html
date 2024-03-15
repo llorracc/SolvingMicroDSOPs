@@ -1,0 +1,517 @@
+<!DOCTYPE html> 
+<html lang="en" xml:lang="en" > 
+<head>
+  <title>Solution Methods for Microeconomic
+Dynamic Stochastic Optimization Problems</title> 
+<meta  charset="utf-8" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="SolvingMicroDSOPs.css" /> 
+<meta name="src" content="SolvingMicroDSOPs.tex"> 
+</head><body 
+>
+<!--l. 71--><p class="noindent" >                                                                  <span 
+class="ecrm-0600">SolvingMicroDSOPs, March 15,</span>
+<span 
+class="ecrm-0600">2024</span>
+  <div class="maketitle">
+<h2 class="titleHead">Solution Methods for Microeconomic<br />
+Dynamic Stochastic Optimization Problems</h2>
+<div class="date" >2023-03-16</div>
+<span 
+class="ecrm-0600"> </span>
+ <div class="author" ><span 
+class="ecrm-1440">Christopher D. Carroll</span><sup class="textsuperscript"><span 
+class="ecrm-0600">1</span></sup></div>
+<br />
+</div>
+<!--l. 87--><p class="noindent" >Note: The code associated with this document should work (though the Matlab
+code may be out of date), but has been superceded by the set of tools available
+in the  <a 
+href="https://github.com/econ-ark/HARK" >Econ-ARK</a> toolkit, more speciﬁcally the  <a 
+href="https://github.com/econ-ark/HARK" >HARK Framework</a>. The SMM
+estimation code at the end has speciﬁcally been superceded by the  <a 
+href="https://econ-ark.org/materials/solvingmicrodsops?launch" >SolvingMicroDSOPs</a>
+<a 
+href="https://github.com/econ-ark/REMARK" >REMARK</a>
+<!--l. 90--><p class="indent" >  <a 
+ id="Abstract"></a> <section role="doc-abstract" class="abstract"> 
+
+<!--l. 91--><p class="noindent" > <br 
+class="newline" />_____________________________________________________________________________________
+<!--l. 91--><p class="noindent" ><span 
+class="ecbx-1200">Abstract</span><br 
+class="newline" />   <span 
+class="ecrm-1095">These notes describe tools for solving microeconomic dynamic stochastic optimization problems,</span>
+<span 
+class="ecrm-1095">and show how to use those tools for eﬃciently estimating a standard life cycle consumption/saving</span>
+<span 
+class="ecrm-1095">model using microeconomic data. No attempt is made at a systematic overview of the many possible</span>
+<span 
+class="ecrm-1095">technical choices; instead, I present a speciﬁc set of methods that have proven useful in my own work</span>
+<span 
+class="ecrm-1095">(and explain why other popular methods, such as value function iteration, are a bad idea). Paired</span>
+<span 
+class="ecrm-1095">with these notes is </span><span 
+class="ecti-1095">Mathematica</span><span 
+class="ecrm-1095">, Matlab, and Python software that solves the problems described in</span>
+<span 
+class="ecrm-1095">the text.   </span><br 
+class="newline" />
+        <blockquote class="quote">
+                     <dl class="list2"><dt class="list">
+<span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> Keywords</span><span 
+class="ecbx-1200"> </span></dt><dd 
+class="list">
+                 <!--l. 93--><p class="noindent" >Dynamic  Stochastic  Optimization,  Method  of  Simulated
+                   Moments, Structural Estimation
+                   </dd><dt class="list">
+<span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> JEL codes</span><span 
+class="ecbx-1200"> </span></dt><dd 
+class="list">
+                 <!--l. 93--><p class="noindent" >E21, F41</dd></dl>
+                                                                                     
+                                                                                     
+      </blockquote>
+</section>
+<div class="center" 
+>
+<!--l. 96--><p class="noindent" >
+<table  
+cellpadding="0" border="0"  
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:75;" 
+class="tabbing"><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> PDF:</span><span 
+class="ectt-1000">  </span></td><td  
+class="tabbing"></td><td  
+class="tabbing"><a 
+href="https://github.com/llorracc/SolvingMicroDSOPs/blob/master/SolvingMicroDSOPs.pdf" class="url" ><span 
+class="ectt-1000">https://github.com/llorracc/SolvingMicroDSOPs/blob/master/SolvingMicroDSOPs.pdf</span></a>
+</td></tr></table>
+<!--l. 98--><p class="noindent" ><table  
+cellpadding="0" border="0"  
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:75;" 
+class="tabbing"><span 
+class="ectt-1000"> Slides:</span><span 
+class="ectt-1000">  </span></td><td  
+class="tabbing"></td><td  
+class="tabbing"><a 
+href="https://github.com/llorracc/SolvingMicroDSOPs/blob/master/SolvingMicroDSOPs-Slides.pdf" class="url" ><span 
+class="ectt-1000">https://github.com/llorracc/SolvingMicroDSOPs/blob/master/SolvingMicroDSOPs-Slides.pdf</span></a></td></tr></table>
+<!--l. 99--><p class="noindent" >                                <table  
+cellpadding="0" border="0"  
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:75;" 
+class="tabbing"><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> Web:</span><span 
+class="ectt-1000">  </span></td><td  
+class="tabbing"></td><td  
+class="tabbing"><a 
+href="https://llorracc.github.io/SolvingMicroDSOPs" class="url" ><span 
+class="ectt-1000">https://llorracc.github.io/SolvingMicroDSOPs</span></a></td></tr></table>
+<!--l. 100--><p class="noindent" >              <table  
+cellpadding="0" border="0"  
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:75;" 
+class="tabbing"><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> Code:</span><span 
+class="ectt-1000">  </span></td><td  
+class="tabbing"></td><td  
+class="tabbing"><a 
+href="https://github.com/llorracc/SolvingMicroDSOPs/tree/master/Code" class="url" ><span 
+class="ectt-1000">https://github.com/llorracc/SolvingMicroDSOPs/tree/master/Code</span></a></td></tr></table>
+<!--l. 101--><p class="noindent" >                               <table  
+cellpadding="0" border="0"  
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:75;" 
+class="tabbing"><span 
+class="ectt-1000">Archive:</span><span 
+class="ectt-1000">  </span></td><td  
+class="tabbing"></td><td  
+class="tabbing"><a 
+href="https://github.com/llorracc/SolvingMicroDSOPs" class="url" ><span 
+class="ectt-1000">https://github.com/llorracc/SolvingMicroDSOPs</span></a></td></tr></table>
+<!--l. 102--><p class="noindent" >     <table  
+cellpadding="0" border="0"  
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:75;" 
+class="tabbing"><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">  </span></td><td  
+class="tabbing"></td><td  
+class="tabbing"><span 
+class="ecti-1000">(Contains LaTeX code for this document and software producing ﬁgures and results)</span></td></tr></table>
+<!--l. 104--><p class="noindent" >
+</div>
+<!--l. 111--><p class="indent" >  <span class="footnote-mark"><sup class="textsuperscript"></sup></span>
+<!--l. 113--><p class="indent" >  <span class="footnote-mark"><sup class="textsuperscript"></sup></span>
+      <sup class="textsuperscript"></sup>
+<!--l. 110--><p class="indent" >  <sup class="textsuperscript"><span 
+class="ecrm-0600">1</span></sup><span 
+class="ecrm-1000">Carroll: Department of Economics, Johns Hopkins University, Baltimore, MD,</span>
+<a 
+href="http://www.econ2.jhu.edu/people/ccarroll/" class="url" ><span 
+class="ectt-1000">http://www.econ2.jhu.edu/people/ccarroll/</span></a><span 
+class="ecrm-1000">,  </span><a 
+href="mailto:ccarroll@jhu.edu" ><span 
+class="ectt-1000">ccarroll@jhu.edu</span></a><span 
+class="ecrm-1000">, Phone: (410) 516-7602</span><span 
+class="ecrm-1000"> </span><span 
+class="ecrm-1000"> </span><span 
+class="ecrm-1000"> </span><span 
+class="ecrm-1000"> </span>
+      <sup class="textsuperscript"></sup><span 
+class="ecrm-1000">The notes were originally written for my Advanced Topics in Macroeconomic Theory class at</span>
+<span 
+class="ecrm-1000">Johns Hopkins University; instructors elsewhere are welcome to use them for teaching purposes. Relative</span>
+<span 
+class="ecrm-1000">to earlier drafts, this version incorporates several improvements related to new results in the paper</span>
+<a 
+href="http://econ-ark.github.io/BufferStockTheory" ><span 
+class="ecrm-1000">“Theoretical Foundations of Buﬀer Stock Saving”</span></a> <span 
+class="ecrm-1000">(especially tools for approximating the consumption</span>
+<span 
+class="ecrm-1000">and value functions). Like the last major draft, it also builds on material in “The Method of Endogenous</span>
+<span 
+class="ecrm-1000">Gridpoints  for  Solving  Dynamic  Stochastic  Optimization  Problems”   published  in  </span><span 
+class="ecti-1000">Economics</span>
+<span 
+class="ecti-1000">Letters</span><span 
+class="ecrm-1000">,  available  at  </span><a 
+href="http://www.econ2.jhu.edu/people/ccarroll/EndogenousArchive.zip" class="url" ><span 
+class="ectt-1000">http://www.econ2.jhu.edu/people/ccarroll/EndogenousArchive.zip</span></a><span 
+class="ecrm-1000">,  and</span>
+<span 
+class="ecrm-1000">by  including  sample  code  for  a  method  of  simulated  moments  estimation  of  the  life  cycle</span>
+<span 
+class="ecrm-1000">model  </span><span 
+class="ecti-1000">a  la  </span><a 
+href="#XgpLifecycle"><span 
+class="ecrm-1000">Gourinchas  and  Parker</span></a><span 
+class="ecrm-1000"> (</span><a 
+href="#XgpLifecycle"><span 
+class="ecrm-1000">2002</span></a><span 
+class="ecrm-1000">)  and  Cagetti</span><span 
+class="ecrm-1000"> (</span><a 
+href="#XcagettiWprofiles"><span 
+class="ecrm-1000">2003</span></a><span 
+class="ecrm-1000">).  Background  derivations,  notation,</span>
+<span 
+class="ecrm-1000">and   related   subjects   are   treated   in   my   class   notes   for   ﬁrst   year   macro,   available   at</span>
+<a 
+href="http://www.econ2.jhu.edu/people/ccarroll/public/lecturenotes/consumption" class="url" ><span 
+class="ectt-1000">http://www.econ2.jhu.edu/people/ccarroll/public/lecturenotes/consumption</span></a><span 
+class="ecrm-1000">.  I  am  grateful</span>
+<span 
+class="ecrm-1000">to several generations of graduate students in helping me to reﬁne these notes, to Marc Chan for help</span>
+<span 
+class="ecrm-1000">in updating the text and software to be consistent with </span><a 
+href="#XcarrollEGM"><span 
+class="ecrm-1000">Carroll</span></a><span 
+class="ecrm-1000"> (</span><a 
+href="#XcarrollEGM"><span 
+class="ecrm-1000">2006</span></a><span 
+class="ecrm-1000">), to Kiichi Tokuoka for drafting</span>
+<span 
+class="ecrm-1000">the section on structural estimation, to Damiano Sandri for exceptionally insightful help in revising and</span>
+<span 
+class="ecrm-1000">updating the method of simulated moments estimation section, and to Weifeng Wu and Metin Uyanik</span>
+<span 
+class="ecrm-1000">for revising to be consistent with the ‘method of moderation’ and other improvements. All errors are</span>
+<span 
+class="ecrm-1000">my own. This document can be cited as </span><a 
+href="#XSolvingMicroDSOPs"><span 
+class="ecrm-1000">Carroll</span></a><span 
+class="ecrm-1000"> (</span><a 
+href="#XSolvingMicroDSOPs"><span 
+class="ecrm-1000">2023</span></a><span 
+class="ecrm-1000">) in the references.</span>
+                                                                                     
+                                                                                     
+<!--l. 122--><p class="indent" >  <a 
+ id="Introduction"></a>
+  <h3 class="sectionHead"><span class="titlemark">1  </span> <a 
+ id="x1-10001"></a>Introduction</h3>
+<!--l. 125--><p class="noindent" >Calculating the mathematically optimal amount to save is remarkably diﬃcult. Under
+well-founded assumptions about the nature of risk (and attitudes toward risk), the problem
+cannot be solved analytically; computational solutions are the only option. To avoid having to
+solve this hard problem, past generations of economists showed impressive ingenuity in
+reformulating the question. Budding graduate students are still taught a host of tricks
+whose purpose is partly to avoid the resort to numerical solutions: Quadratic or
+Constant Absolute Risk Aversion utility, perfect markets, perfect insurance, perfect
+foresight, the “timeless perspective,” the restriction of uncertainty to very special
+kinds,<span class="footnote-mark"><a 
+href="SolvingMicroDSOPs2.html#fn1x0"><sup class="textsuperscript">1</sup></a></span><a 
+ id="x1-1001f1"></a>  
+and more.
+<!--l. 127--><p class="indent" >  The motivation for these reformulations is to exchange an intractable general problem for a
+tractable speciﬁc alternative. Unfortunately, the burgeoning literature on numerical solutions
+has shown that the features that yield tractability also profoundly change the essence of the
+solution. These tricks are excuses to solve a problem that has deﬁned away the central
+diﬃculty: Understanding the proper role of uncertainty (and other complexities like
+constraints) in optimal intertemporal choice.
+<!--l. 137--><p class="indent" >  These points are not unique to the consumption/saving problem; the same propositions
+apply to almost any question that involves both intertemporal choice and uncertainty,
+including many aspects of the behavior of ﬁrms and governments.
+<!--l. 144--><p class="indent" >  These lecture notes provide a gentle introduction to a particular set of solution tools and
+show how they can be used to solve some canonical problems in consumption choice and
+portfolio allocation. Speciﬁcally, the notes describe and solve optimization problems for a
+consumer facing uninsurable idiosyncratic risk to nonﬁnancial income (e.g., labor or transfer
+income),<span class="footnote-mark"><a 
+href="SolvingMicroDSOPs3.html#fn2x0"><sup class="textsuperscript">2</sup></a></span><a 
+ id="x1-1003f2"></a>  
+with detailed intuitive discussion of the various mathematical and computational techniques
+that, together, speed the solution by many orders of magnitude compared to “brute
+force” methods. The problem is solved with and without liquidity constraints, and
+the inﬁnite horizon solution is obtained as the limit of the ﬁnite horizon solution.
+After the basic consumption/saving problem with a deterministic interest rate is
+                                                                                     
+                                                                                     
+described and solved, an extension with portfolio choice between a riskless and a
+risky asset is also solved. Finally, a simple example is presented of how to use these
+methods (via the statistical ‘method of simulated moments’ or MSM; sometimes called
+‘simulated method of moments’ or SMM) to estimate structural parameters like
+the coeﬃcient of relative risk aversion (<span 
+class="ecti-1200">a la </span>Gourinchas and Parker (<a 
+href="#XgpLifecycle">2002</a>) and
+Cagetti (<a 
+href="#XcagettiWprofiles">2003</a>)).
+<!--l. 175--><p class="indent" >  <a 
+ id="the-problem"></a>
+  <h3 class="sectionHead"><span class="titlemark">2  </span> <a 
+ id="x1-20002"></a>The Problem</h3>
+<!--l. 1--><p class="noindent" >The usual analysis of dynamic stochastic programming problems packs a great many
+events (intertemporal choice, stochastic shocks, intertemporal returns, income growth,
+and more) into a small number of steps and variables. For the detailed analysis
+here, we will be careful to disarticulate everything that happens in the problem
+explicitly into separate steps so that each element can be scrutinized and understood in
+isolation.
+<!--l. 3--><p class="indent" >  We are interested in the behavior a consumer who begins period <img 
+src="SolvingMicroDSOPs0x.svg" alt="t  " class="math";align="absmiddle"> with a certain amount
+of ‘capital’ <img 
+src="SolvingMicroDSOPs1x.svg" alt="kt  " class="math";align="absmiddle">, which is immediately rewarded by a return factor <img 
+src="SolvingMicroDSOPs2x.svg" alt="Rt  " class="math";align="absmiddle"> with the proceeds
+deposited in a <span 
+class="ecbx-1200">b</span>ank account <span 
+class="ecbx-1200">b</span>alance:
+  <table 
+class="equation"><tr><td>
+  <div class="math-display" >
+<img 
+src="SolvingMicroDSOPs3x.svg" alt="bt = ktRt.
+" class="math-display" ><a 
+ id="x1-2001r1"></a></div>
+  </td><td class="equation-label">(1)</td></tr></table>
+<!--l. 6--><p class="nopar" >
+<!--l. 5--><p class="noindent" >
+  <h3 class="likesectionHead"><a 
+ id="x1-3000"></a>References</h3>
+<!--l. 5--><p class="noindent" >
+  <div class="thebibliography">
+                                                                                     
+                                                                                     
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XcagettiWprofiles"></a><span class="bibsp">   </span></span><span 
+class="eccc1200-"><span 
+class="small-caps">C</span><span 
+class="small-caps">a</span><span 
+class="small-caps">g</span><span 
+class="small-caps">e</span><span 
+class="small-caps">t</span><span 
+class="small-caps">t</span><span 
+class="small-caps">i</span><span 
+class="small-caps">,</span>  <span 
+class="small-caps">M</span><span 
+class="small-caps">a</span><span 
+class="small-caps">r</span><span 
+class="small-caps">c</span><span 
+class="small-caps">o</span>  </span>(2003):  “Wealth  Accumulation  Over  the  Life  Cycle  and
+  Precautionary Savings,” <span 
+class="ecti-1200">Journal of Business and Economic Statistics</span>, 21(3), 339–353.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XcarrollEGM"></a><span class="bibsp">   </span></span><span 
+class="eccc1200-"><span 
+class="small-caps">C</span><span 
+class="small-caps">a</span><span 
+class="small-caps">r</span><span 
+class="small-caps">r</span><span 
+class="small-caps">o</span><span 
+class="small-caps">l</span><span 
+class="small-caps">l</span><span 
+class="small-caps">,</span> <span 
+class="small-caps">C</span><span 
+class="small-caps">h</span><span 
+class="small-caps">r</span><span 
+class="small-caps">i</span><span 
+class="small-caps">s</span><span 
+class="small-caps">t</span><span 
+class="small-caps">o</span><span 
+class="small-caps">p</span><span 
+class="small-caps">h</span><span 
+class="small-caps">e</span><span 
+class="small-caps">r</span></span><span 
+class="eccc1200-"> <span 
+class="small-caps">D</span><span 
+class="small-caps">.</span> </span>(2006): “The Method of Endogenous Gridpoints for
+  Solving
+  Dynamic  Stochastic  Optimization  Problems,”  <span 
+class="ecti-1200">Economics  Letters</span>,  91(3),  312–320,
+  <a 
+href="https://www.econ2.jhu.edu/people/ccarroll/EndogenousGridpoints.pdf" class="url" ><span 
+class="ectt-1200">https://www.econ2.jhu.edu/people/ccarroll/EndogenousGridpoints.pdf</span></a>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XSolvingMicroDSOPs"></a><span class="bibsp">   </span></span>__________<span 
+class="eccc1200-">   </span>(2023):   “Solving   Microeconomic   Dynamic   Stochastic   Optimization
+  Problems,” <span 
+class="ecti-1200">Econ-ARK REMARK</span>.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XgpLifecycle"></a><span class="bibsp">   </span></span><span 
+class="eccc1200-"><span 
+class="small-caps">G</span><span 
+class="small-caps">o</span><span 
+class="small-caps">u</span><span 
+class="small-caps">r</span><span 
+class="small-caps">i</span><span 
+class="small-caps">n</span><span 
+class="small-caps">c</span><span 
+class="small-caps">h</span><span 
+class="small-caps">a</span><span 
+class="small-caps">s</span><span 
+class="small-caps">,</span> <span 
+class="small-caps">P</span><span 
+class="small-caps">i</span><span 
+class="small-caps">e</span><span 
+class="small-caps">r</span><span 
+class="small-caps">r</span><span 
+class="small-caps">e</span><span 
+class="small-caps">-</span><span 
+class="small-caps">O</span><span 
+class="small-caps">l</span><span 
+class="small-caps">i</span><span 
+class="small-caps">v</span><span 
+class="small-caps">i</span><span 
+class="small-caps">e</span><span 
+class="small-caps">r</span><span 
+class="small-caps">,</span> <span 
+class="small-caps">a</span><span 
+class="small-caps">n</span><span 
+class="small-caps">d</span> <span 
+class="small-caps">J</span><span 
+class="small-caps">o</span><span 
+class="small-caps">n</span><span 
+class="small-caps">a</span><span 
+class="small-caps">t</span><span 
+class="small-caps">h</span><span 
+class="small-caps">a</span><span 
+class="small-caps">n</span> <span 
+class="small-caps">P</span><span 
+class="small-caps">a</span><span 
+class="small-caps">r</span><span 
+class="small-caps">k</span><span 
+class="small-caps">e</span><span 
+class="small-caps">r</span> </span>(2002): “Consumption
+  Over the Life Cycle,” <span 
+class="ecti-1200">Econometrica</span>, 70(1), 47–89.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xmerton:restat"></a><span class="bibsp">   </span></span><span 
+class="eccc1200-"><span 
+class="small-caps">M</span><span 
+class="small-caps">e</span><span 
+class="small-caps">r</span><span 
+class="small-caps">t</span><span 
+class="small-caps">o</span><span 
+class="small-caps">n</span><span 
+class="small-caps">,</span> <span 
+class="small-caps">R</span><span 
+class="small-caps">o</span><span 
+class="small-caps">b</span><span 
+class="small-caps">e</span><span 
+class="small-caps">r</span><span 
+class="small-caps">t</span></span><span 
+class="eccc1200-"> <span 
+class="small-caps">C</span><span 
+class="small-caps">.</span> </span>(1969): “Lifetime Portfolio Selection under Uncertainty: The
+  Continuous Time Case,” <span 
+class="ecti-1200">Review of Economics and Statistics</span>, 51, 247–257.
+  </p>
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="Xsamuelson:portfolio"></a><span class="bibsp">   </span></span><span 
+class="eccc1200-"><span 
+class="small-caps">S</span><span 
+class="small-caps">a</span><span 
+class="small-caps">m</span><span 
+class="small-caps">u</span><span 
+class="small-caps">e</span><span 
+class="small-caps">l</span><span 
+class="small-caps">s</span><span 
+class="small-caps">o</span><span 
+class="small-caps">n</span><span 
+class="small-caps">,</span> <span 
+class="small-caps">P</span><span 
+class="small-caps">a</span><span 
+class="small-caps">u</span><span 
+class="small-caps">l</span></span><span 
+class="eccc1200-"> <span 
+class="small-caps">A</span><span 
+class="small-caps">.</span> </span>(1969): “Lifetime Portfolio Selection by Dynamic Stochastic
+  Programming,” <span 
+class="ecti-1200">Review of Economics and Statistics</span>, 51, 239–46.
+</p>
+  </div>
+   
+</body> 
+</html>
+                                                                                     
+
+
