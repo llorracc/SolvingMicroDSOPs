@@ -148,6 +148,9 @@ labor income risk and rate-of-return risk.}{.}
 
 We assume that truly optimal behavior in the problem facing the consumer who understands all his risks is captured by
 \import{./Equations/}{MaxProb.tex}
+
+\write18{if [ ! -f \texname.bib ]; then touch \texname.bib  ; fi}\write18{if [ ! -f \texname-Add.bib ]; then touch \texname-Add.bib  ; fi}\bibliography{economics,\texname,\texname-Add}\end{document}\endinput
+
 subject to
 \import{./Equations/}{DBCLevelStart.tex}
 where
@@ -170,7 +173,7 @@ grows by a constant factor $\PermGroFac$ and is not subject to stochastic shocks
 (The generalization to the case with permanent shocks is 
 straightforward.)
 
-\write18{if [ ! -f \texname.bib ]; then touch \texname.bib  ; fi}\write18{if [ ! -f \texname-Add.bib ]; then touch \texname-Add.bib  ; fi}\bibliography{economics,\texname,\texname-Add}\end{document}\endinput
+
 
 \hypertarget{Benchmark}{}
 \section{Benchmark: The Method of Endogenous Gridpoints}
