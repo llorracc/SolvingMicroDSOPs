@@ -180,5 +180,34 @@
   *{file}   {t1cmtt.fd}   {2019/12/16 v2.5j}
   *{file}   {t1cmtt.fd}   {2019/12/16 v2.5j}
   *{file}   {./Equations/MaxProb.tex}{0000/00/00 v0.0}
+  *{file}   {./Equations/DBCLevelStart.tex}{0000/00/00 v0.0}
+  *{file}   {./Equations/Defns.tex}{0000/00/00 v0.0}
+  *{file}   {./Equations/ExogVars.tex}{0000/00/00 v0.0}
+  *{file}   {./Equations/vNormed.tex}{0000/00/00 v0.0}
+  *{file}   {./Equations/cEuler.tex}{0000/00/00 v0.0}
+  *{file}   {././cctwMoM/EndogGptsProbs.tex}{0000/00/00 v0.0}
+  *{file}   {././cctwMoM/MoM-Prelims.tex}{0000/00/00 v0.0}
+  *{file}   {ueuf.fd}     {2013/01/14 v3.01}
+  *{file}   {ueuf.fd}     {2013/01/14 v3.01}
+  *{file}   {./Equations/cFuncAbove.tex}{0000/00/00 v0.0}
+  *{file}   {././cctwMoM/MoM-Words.tex}{0000/00/00 v0.0}
+  *{file}   {./Figures/IntExpFOCInvPesReaOptNeedHiPlot.tex}{0000/00/00 v0.0}
+  *{file}   {././cctwMoM/MoM-Words-Rest.tex}{0000/00/00 v0.0}
+  *{file}   {./Equations/MoM-Inequalities.tex}{0000/00/00 v0.0}
+  *{file}   {././cctwMoM/MoM-Inequalities-Describe.tex}{0000/00/00 v0.0}
+  *{file}   {./Equations/MoM-KoppaOfMu.tex}{0000/00/00 v0.0}
+  *{file}   {././cctwMoM/MoM-KoppaOfMu-Describe.tex}{0000/00/00 v0.0}
+  *{file}   {./Equations/cFuncHi.tex}{0000/00/00 v0.0}
+  *{file}   {././cctwMoM/MoM-End.tex}{0000/00/00 v0.0}
+  *{file}   {././cctwMoM/value-Intro.tex}{0000/00/00 v0.0}
+  *{file}   {./Equations/vFuncPF.tex}{0000/00/00 v0.0}
+  *{file}   {././cctwMoM/value-Rest.tex}{0000/00/00 v0.0}
+  *{file}   {././cctwMoM/Tighter.tex}{0000/00/00 v0.0}
+  *{file}   {./Equations/mtCusp.tex}{0000/00/00 v0.0}
+  *{file}   {./Equations/TighterUpperBound.tex}{0000/00/00 v0.0}
+  *{file}   {./Equations/koppaLo.tex}{0000/00/00 v0.0}
+  *{file}   {././cctwMoM/TighterThreeFuncs.tex}{0000/00/00 v0.0}
+  *{file}   {./Equations/TighterThreeEqns.tex}{0000/00/00 v0.0}
+  *{file}   {././cctwMoM/TighterThreeFuncsExplain.tex}{0000/00/00 v0.0}
   *{file}   {cctwMoM.bbl} {0000/00/00 v0.0}
 }
