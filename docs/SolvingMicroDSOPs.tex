@@ -211,7 +211,7 @@ For now, we will assume that income evolves according to: \ifthenelse{\boolean{M
 \begin{verbatimwrite}{./Equations/ExogVars.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
 %        \Rfree_{t}   & = \Rfree~\forall~t & \text{- constant interest factor = $1+\rfree$}  
-         \pLvl_{t+1}  & = \PermGroFac_{t+1}\pLvl_{t} &   \text{- permanent labor income dynamics} \label{eq:permincgrow} 
+         \pLvl_{t+1}  & = \PermGroFac_{t+1}\pLvl_{t}    \text{- permanent labor income dynamics} \label{eq:permincgrow} 
         \\ \log ~ \TranShkEmp_{t+n} & \sim ~\mathcal{N}(-\sigma_{\TranShkEmp}^{2}/2,\sigma_{\TranShkEmp}^{2}) & \text{- lognormal transitory shocks}~\forall~n>0 
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
@@ -268,7 +268,7 @@ Now define a new optimization problem:\ifthenelse{\boolean{MyNotes}}{\marginpar{
   \begin{equation}\begin{gathered}\begin{aligned}
         \null{\vFunc}_{t}({m}_{t})  & = \max_{{c}_{t}} ~~ \uFunc({c}_{t})+
         {\DiscFac}\Ex_{t}[ \PermGroFac_{t+1}^{1-\CRRA}\null{\vFunc}_{t+1}({m}_{t+1})] \label{vtNorm}
-        \\         & \text{s.t.} &   \\
+        \\         & \text{s.t.}   \\
         {a}_{t}    & = {m}_{t}-{c}_{t} 
         \\      {m}_{t+1}  & = \underbrace{\left(\Rfree/\PermGroFac_{t+1}\right)}_{\equiv \RNrm_{t+1}}{a}_{t}+\TranShkEmp_{t+1} .
       \end{aligned}\end{gathered}\end{equation}
@@ -1188,7 +1188,7 @@ grid.
 \begin{verbatimwrite}{./Equations/MoM-Inequalities.tex}
   \begin{center}
     \begin{tabular}{rcl}
-      $ \aboveMin \mNrm_{t} \MPCmin_{t} < $ & $ \cFunc_{t}(\ushort{m}_{t}+\aboveMin \mNrm_{t}) $ & $< (\aboveMin \mNrm_{t}+\aboveMin \hEnd_{t})\MPCmin_{t} $
+      $ \aboveMin \mNrm_{t} \MPCmin_{t} < $ & $ \cFunc_{t}(\ushort{m}_{t}+\aboveMin \mNrm_{t}) $  $< (\aboveMin \mNrm_{t}+\aboveMin \hEnd_{t})\MPCmin_{t} $
       \\  $- \aboveMin \mNrm_{t} \MPCmin_{t} > $ & $ -\cFunc_{t}(\ushort{m}_{t}+\aboveMin \mNrm_{t}) $ & $> -(\aboveMin \mNrm_{t}+\aboveMin \hEnd_{t})\MPCmin_{t} $
       \\  $ \aboveMin \hEnd_{t} \MPCmin_{t} > $ & $ \bar{\cFunc}_{t}(\ushort{m}_{t}+\aboveMin \mNrm_{t})-\cFunc_{t}(\ushort{m}_{t}+\aboveMin \mNrm_{t}) $ & $> 0$
       \\  $1 > $ & $ \underbrace{\left(\frac{\bar{\cFunc}_{t}(\ushort{m}_{t}+\aboveMin \mNrm_{t})-\cFunc_{t}(\ushort{m}_{t}+\aboveMin \mNrm_{t})}{\aboveMin \hEnd_{t} \MPCmin_{t}}\right)}_{\equiv \Hi{\koppa}_{t}} $ & $> 0$
@@ -1655,7 +1655,7 @@ is described by
 \begin{equation}\begin{gathered}\begin{aligned}
       \null{\vFunc}_{t}({m}_{t},\risky_{t})  & = \max_{{c}_{t}} ~ \uFunc({c}_{t})+
       \Ex_{t}[{\DiscFac}_{t+1}\PermGroFac_{t+1}^{1-\CRRA}\null{\vFunc}_{t+1}({m}_{t+1},\risky_{t+1})] \label{vtNormRisky}
-      \\         & \text{s.t.} &   \nonumber \\
+      \\         & \text{s.t.}   \nonumber \\
       {a}_{t}    & = {m}_{t}-{c}_{t} \nonumber
       \\      \risky_{t+1}-\risky  & = (\risky_{t}-\risky)\gamma + \epsilon_{t+1} \notag
       \\      \Risky_{t+1}  & = \exp(\risky_{t+1}) \notag
@@ -1688,7 +1688,7 @@ zero.\footnote{The word artificial is chosen only because of its clarity in dist
   intended -- constraints of this kind certainly exist in the real world.}  The problem then becomes
 \begin{equation*}\begin{gathered}\begin{aligned}
       {\vFunc}_{T-1}({m}_{T-1})  & = \max_{\cNrm_{T-1}} ~~ \uFunc({c}_{T-1}) + \Ex_{T-1} [\DiscFac \PermGroFac_{T}^{1-\CRRA}{\vFunc}_{T}({m}_{T})] \label{eq:ConstrArt}
-      \\ & \mbox{s.t.}&  \nonumber
+      \\ & \mbox{s.t.}  \nonumber
       \\ {a}_{T-1}  & = {m}_{T-1} - {c}_{T-1}
       \\ {m}_{T}  & = \RNrm_{T} {a}_{T-1} + \TranShkEmp_{T}
       \\ {a}_{T-1} & \geq 0 .
@@ -1917,7 +1917,7 @@ satisfied by the baseline parameter values being used here.
   \begin{equation}\begin{gathered}\begin{aligned}
         {\vFunc}_{t}({m}_{t},h_{t-1})  & = \max_{\{{c}_{t}\}}  \{\uFunc({c}_{t},h_{t-1}) +
         \Ex_{t}[\DiscFac  {\vFunc}_{t+1}({m}_{t+1},h_{t}) ]\}
-        \\ & \text{s.t.} & \nonumber \\
+        \\ & \text{s.t.} \nonumber \\
         {m}_{t+1}  & = [{m}_{t}-{c}_{t}]\RNrm_{t+1} + \TranShkEmp_{t+1}\\
         h_{t}  & = h_{t-1} + \MPS ({c}_{t} - h_{t-1} ) \\
         {c}_{t} & \leq  {m}_{t} .
@@ -1945,7 +1945,7 @@ satisfied by the baseline parameter values being used here.
         \uFunc({c}_{t},h_{t-1})  +  \DiscFac
         \vEndStge({m}_{t}-{c}_{t},h_{t-1}+\MPS({c}_{t}-h_{t-1}))
         % \}
-        \\        & \text{s.t.} & \nonumber
+        \\        & \text{s.t.} \nonumber
         \\  {c}_{t} & \leq  {m}_{t}.
       \end{aligned}\end{gathered}\end{equation}
 
@@ -2404,7 +2404,7 @@ and the maximization problem is
   \begin{equation*}\begin{gathered}\begin{aligned}
         {\vFunc}_{t}({m}_{t})  & = \max_{\{{c}_{t},\varsigma_{t}\}}   ~~ \uFunc({c}_{t}) +  \DiscFac
         \Ex_{t}[{\vFunc}_{t+1}({m}_{t+1})]
-        \\      & \text{s.t.} & \nonumber
+        \\      & \text{s.t.} \nonumber
         \\      \Rport_{t+1}  & = \Rfree + (\Risky_{t+1}-\Rfree) \varsigma_{t}
         \\      {m}_{t+1}  & = ({m}_{t}-{c}_{t})\Rport_{t+1} + \TranShkEmp_{t+1}
         \\  0       \leq & \varsigma_{t}  \leq 1, \label{eq:noshorts}
@@ -2414,7 +2414,7 @@ and the maximization problem is
 or, more compactly,
 \begin{equation*}\begin{gathered}\begin{aligned}
       {\vFunc}_{t}({m}_{t})  & = \max_{\{\cFunc_{t},\varsigma_{t}\}} ~~  \uFunc({c}_{t}) +  \Ex_{t}[\DiscFac {\vFunc}_{t+1}(({m}_{t}-{c}_{t}){\Rport}_{t+1} +        {\TranShkEmp}_{t+1})]
-      \\                       & \text{s.t.} & \nonumber
+      \\                       & \text{s.t.} \nonumber
       \\ 0 \leq & \varsigma_{t} \leq 1
       .
     \end{aligned}\end{gathered}\end{equation*}
@@ -2524,7 +2524,7 @@ solve.  There is a better way.  Define the problem
 \renewcommand{\vOpt}{\overset{*}{\vFunc}}
 \begin{equation}\begin{gathered}\begin{aligned}
       \Opt{\vFunc}_{\overline{t}}({a}_{t})  & = \max_{\varsigma_{t}} ~~  \vEndStge({a}_{t},\varsigma_{t})
-      \\      & \text{s.t.} & \nonumber
+      \\      & \text{s.t.} \nonumber
       \\      0 \leq & \varsigma_{t} \leq 1
     \end{aligned}\end{gathered}\end{equation}
 where the tilde over $\Opt{\vFunc}(a)$ indicates that this is the $\vFunc$ that has been optimized with
@@ -2855,7 +2855,7 @@ As explained in section \ref{sec:normalization}, it is convenient to work with t
   \begin{equation*}\begin{gathered}\begin{aligned}
         {\vFunc}_{t}({m}_{t})  & = \max_{{c}_{t}}~~~ \uFunc({c}_{t})+\beth\Alive_{t+1}\hat{\DiscFac}_{t+1}
           \Ex_{t}[(\PermShk_{t+1}\PermGroFac_{t+1})^{1-\CRRA}{\vFunc}_{t+1}({m}_{t+1})]   \\
-        & \text{s.t.} &   \nonumber \\
+        & \text{s.t.}   \nonumber \\
         {a}_{t}    & = {m}_{t}-{c}_{t} \nonumber
         \\      {m}_{t+1}  & = {a}_{t}\underbrace{\left(\frac{\Rfree}{\PermShk_{t+1}\PermGroFac_{t+1}}\right)}_{\equiv \RNrm_{t+1}}+ ~\TranShkEmp_{t+1}
       \end{aligned}\end{gathered}\end{equation*}
