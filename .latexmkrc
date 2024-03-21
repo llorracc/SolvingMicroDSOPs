@@ -7,7 +7,7 @@ $pdf_mode = 1;
 $out_dir = '.';
 $rc_report = 1;
 $pdflatex="pdflatex -interaction=nonstopmode %O %S";
-@default_files = ('SolvingMicroDSOPs','cctwMoM');
+@default_files = ('HAFiscal');
 $aux_out_dir_report = 1;
 $silent  = 1;
 #warn "PATH = '$ENV{PATH}'\n";
