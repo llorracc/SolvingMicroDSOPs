@@ -85,8 +85,6 @@
   *{package}{nccfoots}    {2005/02/03 v1.2}
   *{package}{perpage}     {2014/10/25 v2.0}
   *{package}{xr-hyper}    {2024-01-20 v7.01h}
-  *{package}{./Resources/LaTeXInputs/SolvingMicroDSOPs}{0000/00/00 v0.0}
-  *{package}{./Resources/LaTeXInputs/pdfsuppressruntime}{0000/00/00 v0.0}
   *{package}{./Resources/texmf-local/tex/latex/econark}{0000/00/00 v0.0}
   *{package}{subfiles}    {2020/11/14 v2.2}
   *{package}{import}      {2020/04/01 v6.2}
@@ -121,6 +119,8 @@
   *{package}{atveryend-ltx}{2020/08/19 v1.0a}
   *{package}{rerunfilecheck}{2022-07-10 v1.10}
   *{package}{uniquecounter}{2019/12/15 v1.4}
+  *{package}{./Resources/LaTeXInputs/local}{0000/00/00 v0.0}
+  *{package}{./Resources/LaTeXInputs/pdfsuppressruntime}{0000/00/00 v0.0}
   *{package}{scrlayer-scrpage}{2023/07/07 v3.41}
   *{package}{scrlayer}    {2023/07/07 v3.41}
   *{package}{caption}     {2023/08/05 v3.6o}

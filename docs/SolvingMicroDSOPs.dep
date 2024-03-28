@@ -92,8 +92,6 @@
   *{package}{nccfoots}    {2005/02/03 v1.2}
   *{package}{perpage}     {2014/10/25 v2.0}
   *{package}{xr-hyper}    {2024-01-20 v7.01h}
-  *{package}{./Resources/LaTeXInputs/SolvingMicroDSOPs}{0000/00/00 v0.0}
-  *{package}{./Resources/LaTeXInputs/pdfsuppressruntime}{0000/00/00 v0.0}
   *{package}{./Resources/texmf-local/tex/latex/econark}{0000/00/00 v0.0}
   *{package}{subfiles}    {2020/11/14 v2.2}
   *{package}{import}      {2020/04/01 v6.2}
@@ -130,6 +128,8 @@
   *{package}{atbegshi-ltx}{2021/01/10 v1.0c}
   *{file}   {htex4ht.def} {2024-01-20 v7.01h}
   *{file}   {htex4ht.def} {2024-01-20 v7.01h}
+  *{package}{./Resources/LaTeXInputs/local}{0000/00/00 v0.0}
+  *{package}{./Resources/LaTeXInputs/pdfsuppressruntime}{0000/00/00 v0.0}
   *{package}{./Resources/texmf-local/tex/latex/econtexShortcuts}{0000/00/00 v0.0}
   *{file}   {ifthen.4ht}  {0000/00/00 v0.0}
   *{file}   {changepage.4ht}{0000/00/00 v0.0}
