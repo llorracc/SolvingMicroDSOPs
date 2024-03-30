@@ -1,0 +1,518 @@
+% -*- mode: LaTeX; TeX-PDF-mode: t; -*- # Tell emacs the file type (for syntax)
+\input{./.econtexRoot}\documentclass[\econtexRoot/SolvingMicroDSOPs]{subfiles}
+\input{./.econtexRoot}\input{\LaTeXInputs/econtex_onlyinsubfile}
+\onlyinsubfile{\externaldocument{../SolvingMicroDSOPs}} % Get xrefs -- esp to appendix -- from main file; only works properly if main file has already been compiled;
+
+\begin{document}
+% \Habits{
+\hypertarget{Multiple-State-Variables}{}
+\section{Multiple State Variables}
+We now wish to consider how the problem changes if there are multiple
+state variables rather than just a single state variable.  The example
+we will use will be the case where the utility from consumption
+depends on the size of a `habit stock' which represents an average of
+past levels of consumption.  Formally, the goal is to
+\begin{equation}
+  \max \left\{ \sum_{s=t}^{T} \DiscFac^{s-t} \uFunc({c}_{s},h_{s-1}) \right\}
+\end{equation}
+Now there are two state variables in the problem at time $t$, the
+level of assets ${m}_{t}$ and the level of the habit stock $h_{t-1}$,
+where the accumulation equation for ${m}_{t}$ is the same as before and
+the transition equation for habits is
+\begin{equation}\begin{gathered}\begin{aligned}
+  h_{t}  & = h_{t-1} + \MPS({c}_{t}-h_{t-1}).
+\end{aligned}\end{gathered}\end{equation}
+That is, the habit stock at the end of this period is equal to the
+habit stock at the end of last period plus a proportion of the gap
+between the level of consumption chosen this period and the level of
+the habit stock from last period.  In other words, habits `catch up'
+to consumption at rate $\MPS$.
+
+Assume that the utility function is given by
+\begin{equation}
+  \uFunc({c}_{t},h_{t-1}) = \frac{({c}_{t}/h_{t-1}^{\gamma})^{1-\CRRA}}{1-\CRRA}.
+\end{equation}
+Now that $u_{t}$ has two arguments we need to be able to distinguish
+between the derivatives with respect to each argument.  Our notation
+will be that the derivative of $u_{t}$ with respect to ${c}_{t}$ is
+$u_{t}^{c}({c}_{t},h_{t-1})$ or $u_{t}^{c}$ for short, and analogously
+for $u_{t}^{h}$.  Thus we have
+\begin{equation}\begin{gathered}\begin{aligned}
+  \uFunc^{c}_{t}  & = ({c}_{t} h_{t-1}^{-\gamma})^{-\CRRA}h_{t-1}^{-\gamma}  \\
+                  & = {c}_{t}^{-\CRRA}h_{t-1}^{\CRRA\gamma-\gamma}  \\
+  \uFunc^{h}_{t}  & = -\gamma ({c}_{t} h_{t-1}^{-\gamma})^{-\CRRA} {c}_{t} h_{t-1}^{-\gamma-1} \\
+                  & = -\gamma {c}_{t}^{1-\CRRA}h_{t-1}^{\gamma\CRRA - \gamma -
+                    1} = -\gamma ({c}_{t}/h_{t-1}) \uFunc^{c}_{t}.
+\end{aligned}\end{gathered}\end{equation}
+
+Bellman's equation for this problem (imposing liquidity constraints again) is
+\begin{equation}\begin{gathered}\begin{aligned}
+  {\vFunc}_{t}({m}_{t},h_{t-1})  & = \max_{\{{c}_{t}\}}  \{\uFunc({c}_{t},h_{t-1}) +
+                                   \Ex_{t}[\DiscFac  {\vFunc}_{t+1}({m}_{t+1},h_{t}) ]\}
+  \\ & \text{s.t.} \nonumber \\
+  {m}_{t+1}  & = [{m}_{t}-{c}_{t}]\RNrm_{t+1} + \TranShkEmp_{t+1}\\
+  h_{t}  & = h_{t-1} + \MPS ({c}_{t} - h_{t-1} ) \\
+  {c}_{t} & \leq  {m}_{t} .
+\end{aligned}\end{gathered}\end{equation}
+
+As was done for utility above, define the derivatives of ${\vFunc}_{t}$ with
+respect to each argument as ${\vFunc}_{t}^{m}({m}_{t},h_{t-1})$ (${\vFunc}_{t}^{m}$
+for short) and ${\vFunc}_{t}^{h}$.  Also as above, we want to
+define a function which corresponds to the expectation of the value of
+ending period $t$ in a given position, but now the `position'
+involves both the level of assets ${a}_{t}$ and the level of the habit
+stock $h_{t}$:
+\begin{equation}\begin{gathered}\begin{aligned}
+  \vEndStge({a}_{t},h_{t})  & = \Ex_{t}[\DiscFac {v}_{t+1}(\RNrm_{t+1} {a}_{t}+{\TranShkEmp}_{t+1},h_{t}))]
+\end{aligned}\end{gathered}\end{equation}
+For future reference note that the derivatives are
+\begin{equation}\begin{gathered}\begin{aligned}
+  \vEndStge^{{a}}  & = \DiscFac \Ex_{t} [\RNrm_{t+1} {v}_{t+1}^{m}] \label{eq:vEndsdefn} \\
+  \vEndStge^{h}  & = \DiscFac \Ex_{t} [{\vFunc}_{t+1}^{h}] 
+\end{aligned}\end{gathered}\end{equation}
+and the maximization problem can be rewritten
+\begin{equation}\begin{gathered}\begin{aligned}
+  {\vFunc}_{t}({m}_{t},h_{t-1})
+  & =                                         \max_{\{{c}_{t}\}} %\{
+    \uFunc({c}_{t},h_{t-1})  +  \DiscFac
+    \vEndStge({m}_{t}-{c}_{t},h_{t-1}+\MPS({c}_{t}-h_{t-1}))
+    % \}
+  \\        & \text{s.t.} \nonumber
+  \\  {c}_{t} & \leq  {m}_{t}.
+\end{aligned}\end{gathered}\end{equation}
+
+\hypertarget{The-Strategy}{}
+\subsection{The Strategy}
+
+This problem will be solved by a generalization of the strategy used
+to solve the one-state problem.  Previously, with a period-$t+1$
+consumption function in hand, we started by calculating
+$\vFunc^{a}_{i}$ at the set of $n$ gridpoints ${a}_{i}$
+contained in the variable \texttt{aVec}.  Now we will need to
+have a grid of possible values for habits $h_{j}$ as well (in the
+variable \texttt{hVec}) with, say, $m$ gridpoints.  We will then
+calculate the values of $\vEndStge^{{a}}$ and $\vEndStge^{h}$
+at all \textit{combinations} of the ${a}_{i}$ and $h_{j}$
+gridpoints, for a total of $m \times n$ datapoints.  Finally, with
+these results in hand, we can obtain the corresponding values of
+consumption and construct the approximating interpolation to the
+consumption function.
+
+\hypertarget{Optimality-Conditions}{}
+\subsection{Optimality Conditions}
+\hypertarget{The-First-Orrder-Condition-for-c}{}
+\subsubsection{The First Order Condition for ${c}_{t}$}
+The FOC for this problem with respect to ${c}_{t}$ is:
+\ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny The $-\MPS
+    \vEndStge^{h}_{t}$ term reflects the fact that if you consume a
+    bit more today, tomorrow's habit stock will be larger by $\MPS$,
+    which will make you worse off.}}{}
+\begin{equation}\begin{gathered}\begin{aligned}
+  0  & = \uFunc^{c}_{t} + \DiscFac \Ex_{t} \left[{\vFunc}^{m}_{t+1}(-\Rfree)+{\vFunc}^{h}_{t+1} \MPS\right]  \\
+  \uFunc^{c}_{t}  & = \DiscFac \Ex_{t} [\RNrm_{t+1} {\vFunc}_{t+1}^{m}-\MPS {\vFunc}_{t+1}^{h}] \label{eq:ctfoc}
+  \\            & = \left[\vEndStge^{{a}}-\MPS \vEndStge^{h} \right].
+  % ({c}_{t}h_{t-1}^{-\gamma})^{-\CRRA}h_{t-1}^{-\gamma}  & = \DiscFac \Ex_{t} \left(\RNrm_{t+1} {\vFunc}^{m}_{t+1}-{\vFunc}^{h}_{t+1} \MPS\right) \label{eq:directfoc} \\
+  % {c}_{t}^{-\CRRA}  & = h_{t-1}^{\gamma-\gamma\CRRA}\DiscFac \Ex_{t} \left(\RNrm_{t+1} {\vFunc}^{m}_{t+1}-{\vFunc}^{h}_{t+1} \MPS\right)
+\end{aligned}\end{gathered}\end{equation}
+Substituting the definition of $u_{t}^{c}$:
+\begin{equation}\begin{gathered}\begin{aligned}
+  {c}_{t}^{-\CRRA}h_{t-1}^{\CRRA\gamma-\gamma}  & = \left[\vEndStge^{{a}}-\MPS \vEndStge^{h} \right]
+  \\  {c}_{t}                                     & = \left[h_{t-1}^{\gamma-\CRRA\gamma} \left(\vEndStge^{{a}}-\MPS \vEndStge^{h} \right) \right]^{-1/\CRRA} \label{eq:habitsfoc}.
+\end{aligned}\end{gathered}\end{equation}
+and the liquidity constraint implies that if the $\check{c}_{t}$ which
+satisfies this equation is larger than ${m}_{t}$ the consumer spends
+${m}_{t}$ rather than $\check{c}_{t}$.  The point at which the liquidity
+constraint becomes binding is therefore implicitly defined by the equation
+\begin{equation}\begin{gathered}\begin{aligned}
+  {m}_{t}  & = \left[h_{t-1}^{\gamma-\CRRA\gamma} \left(\vEndStge^{{a}}(0,h_{t-1}+\MPS({m}_{t}-h_{t-1}))-\MPS \vEndStge^{h}(0,h_{t-1}+\MPS({m}_{t}-h_{t-1}))\right)  \right]^{-1/\CRRA}, \label{eq:LCbindsHabits}
+\end{aligned}\end{gathered}\end{equation}
+or incorporating the transition equation for
+and $h_{t-1}$ that
+\begin{equation}\begin{gathered}\begin{aligned}
+  {c}_{t}  & = \left[h_{t-1}^{\gamma-\CRRA\gamma}
+             \left(\vEndStge^{{a}}({m}_{t}-{c}_{t},h_{t-1}+\MPS({c}_{t}-h_{t-1}))
+             -\MPS \vEndStge^{h}({m}_{t}-{c}_{t},h_{t-1}+\MPS({c}_{t}-h_{t-1})\right)
+             \right]^{-1/\CRRA}. \nonumber
+\end{aligned}\end{gathered}\end{equation}
+
+This equation could be solved for a given grid of ${m}_{t}$ and
+$h_{t-1}$ values to yield the two-dimensional matrix of values
+necessary to construct an interpolating approximation to the
+consumption function.  However, note that the value of ${m}_{t}$ at
+which the constraint becomes binding depends on the level of
+$h_{t-1}$.  This causes a problem, because the built-in {Mathematica}
+interpolation algorithms require multidimensional interpolations to
+contain a value for every possible combination of the independent
+variables.  Thus, we would need to add each of the $m$ binding
+points to the \texttt{mVec} variable, and to pair \textit{all} of
+those bindingpoints to \textit{each} possible value in \texttt{hVec}.
+This would immediately increase the number of points in the ${m}$
+dimension by $m$, so the total number of gridpoints would now be
+$(n+m) \times m$.  Thus this strategy would require increasing the
+size of the matrix of interpolating values by a \textit{factor} of $m$
+with a corresponding serious slowdown in computational speed.
+
+Fortunately, there is a way to get around this problem.  To
+understand it, start by noticing the translation in this context of
+the trick used to solve the one-dimensional consumption problem.
+Recall that there the trick was to start with the grid of values in
+\texttt{aVec} and find the unique ${\cNrm}_{i}$, and
+consequently ${m}_{i}={a}_{i}+{\cNrm}_{i}$, associated with
+each ${a}_{i}$ thus constructing the set of ${\cNrm}_{i}$ and
+${m}_{i}$ values without solving a maximization problem or
+numerically finding a root.  Here, the most effective strategy is to
+use \texttt{aVec} to define a set of ${a}_{t}$ values but use
+\texttt{hVec} to define a set of values for $h_{t-1}$, with the
+transition equation determining the $h_{t}$ to be paired with the
+given ${a}_{t}$.  That is, defining the set $\mathcal{L} =
+\{\{{a}_{1},h_{1}\},\{{a}_{1},h_{2}\},\ldots,\{{a}_{m},h_{n_{\TranShkEmp}}\}\}$,
+we find the set of values of ${\cNrm}_{i}$ that satisfy
+\begin{equation}\begin{gathered}\begin{aligned}
+  {\cNrm}_{k}^{\ell}  & = \left[(h_{k}^{\ell})^{\gamma-\CRRA\gamma}
+                        \left(\vEndStge^{{a}}({a}_{k}^{\ell},h_{k}^{\ell}
+                        +\MPS({\cNrm}_{k}^{\ell}-h_{k}^{\ell}))
+                        -\MPS
+                        \vEndStge^{h}({a}_{k}^{\ell},h_{k}^{\ell}+\MPS({\cNrm}_{k}^{\ell}-h_{k}^{\ell})\right)
+                        \right]^{-1/\CRRA}. \nonumber
+\end{aligned}\end{gathered}\end{equation}
+and the budget constraint again gives us the ${m}_{k}^{\ell}$
+associated with the given $\{{a}_{t},h_{t-1}\}$ pair.
+
+However, there is a problem: {Mathematica}'s built-in two-dimensional
+interpolation routines require a complete set of values of ${c}_{t}$
+for \textit{each distinct} $\{{m}_{k},h_{j}\}$ pair.  But the list of
+${m}_{k}$ gridpoints associated with each distinct point in
+\texttt{hVec} will be different.  Thus to use the built-in routines
+it would be necessary to take the union of all the ${m}_{k}$
+produced and then construct values of ${\cNrm}_{k}$ for each of
+these.  If there are $m$ values in \texttt{aVec}, this would
+mean solving the problem at a total of $m \times m \times n$
+girdpoints, only $m \times n$ of which would have been produced
+during the first-round procedure.
+
+There is a a much better solution: Manual interpolation.  This works
+as follows.  For each distinct value of $h_{t,i}$ the value of
+${\cNrm}_{t,i}$ associated with each given ${a}_{t,i}$ is
+calculated as before, starting with ${a}_{1,t}=0$ which yields
+the value of ${m}_{t,i}$ and ${\cNrm}_{t,i}$ at which the
+constraint begins to bind for this combination of ${a}_{t,i}$
+and $h_{t,i}$.  Then an \texttt{InterpolatingFunction} is
+constructed as before.
+
+Thus we will have a collection of $j$ interpolating consumption
+functions, one for each value in \texttt{hVec}.  Denote these
+functions by $\Alt{\Hi{\cFunc}}_{t}({m}_{t},j)$.
+
+Now consider how to estimate $\cFunc_{t}({m}_{t},h_{t})$ for arbitrary
+${m}_{t}$ and $h_{t}$.  Define $\underline{h}_{t}$ as the value, and
+$\underline{j}_{t}$ as the index of the nearest \texttt{hVec} point
+below $h_{t}$ and define $\bar{h}_{t}$ analogously for the nearest
+gridpoint above $h_{t}$.  Then we define our approximation to the
+consumption function as
+\begin{displaymath}
+  \Alt{\Hi{\cFunc}}_{t}({m}_{t},h_{t}) =
+  \Alt{\Hi{\cFunc}}({m}_{t},\underline{j})+\left(\frac{h_{t}-\underline{h}_{t}}
+    {\bar{h}_{t}-\underline{h}_{t}}\right)
+  \left(\Alt{\Hi{\cFunc}}({m}_{t},\overline{j})
+    -\Alt{\Hi{\cFunc}}({m}_{t},\underline{j})\right)
+\end{displaymath}
+with points outside the \texttt{hVec} points constructed by
+extrapolation.
+
+Note that a liquidity constraint is again incorporated at almost
+zero cost: Simply make sure that the lowest value in
+\texttt{aVec} is 0, and append the point $\{0.,0.\}$ as the
+bottommost point in each of the lists of $\{{m}_{t},{c}_{t}\}$
+assoicated with the various values in \texttt{hVec}.
+
+\hypertarget{Applying-the-Envelope-Theorem}{}
+\subsubsection{Applying the Envelope Theorem}
+The Envelope theorem on ${m}_{t}$ says:
+\begin{equation}\begin{gathered}\begin{aligned}
+  {\vFunc}^{m}_{t}  & = \frac{\partial {\vFunc}_{t}}{\partial {m}_{t}} + \overbrace{\frac{\partial {\vFunc}_{t}}{\partial {c}_{t}}}^{=0}\frac{\partial {c}_{t}}{\partial {m}_{t}} \label{eq:vxt} \\ % old \label{eq:envelopex}
+  {\vFunc}_{t}^{m}  & = \DiscFac  \Ex_{t} [\RNrm_{t+1} {\vFunc}_{t+1}^{m}] 
+\end{aligned}\end{gathered}\end{equation}
+
+Substituting this into the FOC equation~(\ref{eq:ctfoc}) gives
+\begin{equation}\begin{gathered}\begin{aligned}
+  \uFunc^{c}_{t}  & = {\vFunc}_{t}^{m}-\Ex_{t}[\DiscFac \MPS {\vFunc}_{t+1}^{h}] % old \label{eq:ctfocsubx}
+  \\ {\vFunc}_{t}^{m}  & = \uFunc^{c}_{t}+\Ex_{t}[\DiscFac \MPS {\vFunc}_{t+1}^{h}] \label{eq:vtfoc}
+  \\            & = \uFunc^{c}_{t}+\MPS \vEndStge^{h} % old \label{eq:vxtformula}.
+\end{aligned}\end{gathered}\end{equation}
+
+What if the consumer is liquidity constrained?  It is useful here to \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny By `is constrained' I mean the constraint is binding right now.}}{}
+rewrite Bellman's equation:
+\begin{equation}\begin{gathered}\begin{aligned}
+  {\vFunc}_{t}({m}_{t},h_{t-1})  & = \uFunc({c}_{t},h_{t-1}) +  \DiscFac \Ex_{t}
+                                   \left[{\vFunc}_{t+1}(({m}_{t}-{c}_{t})\RNrm_{t+1}+{\TranShkEmp}_{t+1},h_{t-1}+\MPS({c}_{t}-h_{t-1}))
+                                   \right] \nonumber
+\end{aligned}\end{gathered}\end{equation}
+Substituting in the fact that ${c}_{t}={m}_{t}$ (because the consumer is constrained)
+\begin{equation}\begin{gathered}\begin{aligned}
+  {\vFunc}_{t}({m}_{t},h_{t-1})  & = \uFunc({c}_{t},h_{t-1}) +  \Ex_{t}\left[\DiscFac
+                                   {\vFunc}_{t+1}({\TranShkEmp}_{t+1},h_{t-1}+\MPS({c}_{t}-h_{t-1}))\right]
+                                   \nonumber
+\end{aligned}\end{gathered}\end{equation}
+Thus $\partial {\vFunc}_{t}/\partial {m}_{t} = 0$, and because the liquidity
+constraint implies that $\partial {c}_{t}/\partial {m}_{t} = 1$,
+equation (\ref{eq:vxt}) becomes
+\begin{equation}\begin{gathered}\begin{aligned}
+  {\vFunc}_{t}^{m}   & =  \frac{\partial {\vFunc}_{t}}{\partial {c}_{t}}
+  \\              & = \uFunc_{t}^{c} + \DiscFac \Ex_{t} [\MPS {\vFunc}_{t+1}^{h}]
+\end{aligned}\end{gathered}\end{equation}
+which is identical to the expression (\ref{eq:vtfoc}) for ${\vFunc}_{t}^{m}$
+for the unconstrained consumer.
+
+The Envelope theorem for $h_{t-1}$ says:
+\begin{equation}\begin{gathered}\begin{aligned}
+  {\vFunc}_{t}^{h}  & = \frac{\partial {\vFunc}_{t}}{\partial h_{t-1}} + \overbrace{\frac{\partial {\vFunc}_{t}}{\partial {c}_{t}}}^{=0}\frac{\partial {c}_{t}}{\partial h_{t-1}} \nonumber
+  \\  & = \uFunc^{h}_{t} + \DiscFac \Ex_{t} \left[{\vFunc}_{t+1}^{h}\frac{\partial h_{t}}{\partial h_{t-1}} \right]\nonumber
+  \\  & = \uFunc^{h}_{t} + \DiscFac \Ex_{t} [(1-\MPS) {\vFunc}_{t+1}^{h}] \nonumber
+  \\  & = \uFunc^{h}_{t} + (1-\MPS) \vEndStge^{h} \label{eq:vhtformula}
+\end{aligned}\end{gathered}\end{equation}
+% & = -\gamma {c}_{t}^{1-\CRRA} h_{t-1}^{\gamma \CRRA - \gamma -1} + (1-\MPS) \DiscFac \Ex_{t} {\vFunc}_{t+1}^{h} \label{eq:vhtfoc}
+What if the consumer is constrained?  In that case while $\partial
+{\vFunc}_{t}/\partial {c}_{t} \neq 0$, $\partial {c}_{t}/\partial h_{t-1} = 0$, so as
+with ${\vFunc}_{t}^{m}$ the constraint has no effect on the expression for ${\vFunc}^{h}_{t}$.
+
+\hypertarget{Transforamtions}{}
+\subsection{Transformations}
+
+In the time-separable consumption problem, there was a unique
+transformation that allowed us to unwind much of the linearity
+attributable to the curvature of the utility function; this was
+possible because that problem has an analytical solution in the
+perfect foresight case, and because the problem is one with a single
+state variable.
+
+In the habits model, neither of these conditions is true, and
+consequently the appropriate transformation strategy is not obvious.
+To see this, consider the last period of life and suppose there is no
+uncertainty.  Then ${\vFunc}_{\dcsn(T)}^{m} = \uFunc_{T}^{c}$ will be of the form
+${c}_{T}^{-\CRRA}h_{T-1}^{\CRRA \gamma - \gamma}$, while ${\vFunc}_{\dcsn(T)}^{h} =
+\uFunc^{h}$ will be something of the form $-\gamma
+{c}_{T}^{1-\CRRA}h_{T-1}^{\gamma\CRRA-\gamma-1}$.  It is possible to
+exponentiate either of these equations to make it linear in one or the
+other of ${c}$ or $h$, but not both.
+
+However, there is a two-step procedure that solves the problem.  In
+the first step, the object in question is transformed as in the
+original problem without habits.  For example, the transformed utility
+function for the last period of life would be
+\begin{equation}\begin{gathered}\begin{aligned}
+  n_{T}^{c}  & = \left[\uFunc^{c}_{T}\right]^{-1/\CRRA}
+  \\        & = {c}_{T}h_{T-1}^{\gamma(1/\CRRA-1)}.
+\end{aligned}\end{gathered}\end{equation}
+
+This leaves us with an equation that is linear in ${c}_{T}$ but
+nonlinear in $h_{T-1}$.  So now we do a second transformation:
+dividing the $n_{T}$ function by $h_{T-1}^{\gamma(1/\CRRA-1)}$.  This
+yields a function $\hat{n_{\TranShkEmp}}_{T}^{c}$ that can be transformed back into
+$\uFunc^{c}_{T}$ on demand, but is itself linear in ${c}_{t}.$  Analogously,
+in the last period of life the marginal value of habits is given by
+\begin{equation*}\begin{gathered}\begin{aligned}
+  {\vFunc}_{\dcsn(T)}^{h}  & = -\gamma {c}_{T}^{1-\CRRA}h_{T-1}^{\gamma(\CRRA-1)-1}
+\end{aligned}\end{gathered}\end{equation*}
+so the natural normalization procedure is to define
+\begin{equation}\begin{gathered}\begin{aligned}
+  \Lambda_{t}^{h}
+  & =                           \left[\frac{h_{t-1}^{1-\gamma(\CRRA-1)}{\vFunc}_{t}^{h}}{-\gamma}\right]^{1/(1-\CRRA)}
+\end{aligned}\end{gathered}\end{equation}
+and similarly for $\vEndStge^{h}$.
+
+
+\hypertarget{Transforming-cFunc}{}
+\subsection{Transforming $\cFunc(\bullet,h_{t-1})$}
+
+The habits problem presents an additional difficulty: the consumption
+function is highly nonlinear in $h_{t-1}$ for a given ${m}_{t}$.   To
+see this, start with the first order condition for the problem in the
+second-to-last period of life (setting $\DiscFac = \RNrm_{t+1} = 1$ and assuming
+away uncertainty for transparency):
+\begin{equation}\begin{gathered}\begin{aligned}
+  \uFunc_{t}^{c}    & = \uFunc_{t+1}^{c} - \MPS {\vFunc}_{t+1}^{h}
+  \\      \uFunc_{T-1}^{c}  & = \uFunc_{T}^{c} - \MPS \uFunc_{T}^{h}
+  \\   & =  \uFunc_{T}^{c}\left(1 + \gamma \MPS
+         ({c}_{T}/h_{T-1})\right)
+  \\      {c}_{T-1}^{-\CRRA}
+                    & =                                      {c}_{T}^{-\CRRA}\left(\frac{h_{T-1}}{h_{T-2}}\right)^{\gamma(\CRRA-1)}\left(1 + \gamma \MPS
+                      ({c}_{T}/h_{T-1})\right)  \\
+  {c}_{T-1}
+                    & =                     ({m}_{T-1}-{c}_{T-1})\left(\frac{h_{T-1}}{h_{T-2}}\right)^{\gamma(1/\CRRA-1)}\left(1 +
+                      \gamma \MPS \left[\frac{{m}_{T-1}-{c}_{T-1}}{(1-\MPS)h_{T-2}+\MPS
+                      {c}_{T-1}}\right]\right)^{-1/\CRRA}
+  \\      1
+                    & =                     \left(\frac{{m}_{T-1}-{c}_{T-1}}{{c}_{T-1}}\right)\left(\frac{(1-\MPS)h_{T-2}+\MPS {c}_{T-1}}{h_{T-2}}\right)^{\gamma(1/\CRRA-1)}\left(1 +
+                      \gamma \MPS \left[\frac{{m}_{T-1}-{c}_{T-1}}{(1-\MPS)h_{T-2}+\MPS
+                      {c}_{T-1}}\right]\right)^{-1/\CRRA} \nonumber
+  \\ \label{eq:oneeq}
+\end{aligned}\end{gathered}\end{equation}
+
+Now conjecture that for fixed ${m}_{T-1}$
+\begin{equation}
+  \lim_{h_{T-1} \rightarrow 0} {c}_{T-1} = \mu h_{T-2}^{m}
+  \label{eq:mueq}
+\end{equation}
+for some $\mu<1, \mu>1$.  Then the limit of \eqref{eq:oneeq} as $h_{T-2}
+\rightarrow \infty$ is given by
+\begin{equation*}\begin{gathered}\begin{aligned}
+  1  & = ({m}_{T-1}/{c}_{T-1})\left(\frac{\MPS
+       {c}_{T-1}}{h_{T-2}}\right)^{\gamma(1/\CRRA-1)}\left(\gamma
+       \left[\frac{{m}_{T-1}}{{c}_{T-1}}\right]\right)^{-1/\CRRA}
+  \\
+     & =                 {c}_{T-1}^{\gamma(1/\CRRA-1)-1+1/\CRRA}h_{T-2}^{-\gamma(1/\CRRA-1)}\MPS^{\gamma(1/\CRRA-1)}(\gamma {m}_{T-1})^{-1/\CRRA}
+  \\
+     & =                 {c}_{T-1}^{(1+\gamma)(1/\CRRA-1)}h_{T-2}^{-\gamma(1/\CRRA-1)}\MPS^{\gamma(1/\CRRA-1)}(\gamma {m}_{T-1})^{-1/\CRRA}
+  \\
+     & =                 {c}_{T-1}^{(1+\gamma)}h_{T-2}^{-\gamma}\MPS^{\gamma}(\gamma {m}_{T-1})^{1/(\CRRA-1)}
+  \\ {c}_{T-1}    & = h_{T-2}^{\gamma/(1+\gamma)}\MPS^{-\gamma}(\gamma
+                    {m}_{T-1})^{\frac{1}{(\gamma+1)(\CRRA-1)}}
+\end{aligned}\end{gathered}\end{equation*}
+which confirms the conjecture \eqref{eq:mueq}.  On the other hand,
+suppose that we postulate that
+\begin{equation}
+  \lim_{h_{T-2} \rightarrow \infty} {c}_{T-1} = \kappa.
+  \label{eq:kappaguess}
+\end{equation}
+
+Under this conjecture, the limit of the RHS of \eqref{eq:oneeq} as
+$h_{T-2} \rightarrow \infty$ is
+\begin{equation*}\begin{gathered}\begin{aligned}
+  \kappa
+  & =                  (1-\kappa)\left(1-\MPS\right)^{\gamma(1/\CRRA-1)}
+  \\      \kappa\left(1+(1-\MPS)^{\gamma(1/\CRRA-1)}\right)  & = \left(1-\MPS\right)^{\gamma(1/\CRRA-1)}
+  \\      \kappa
+  & =                          \left(\frac{\left(1-\MPS\right)^{\gamma(1/\CRRA-1)}}
+    {1+(1-\MPS)^{\gamma(1/\CRRA-1)}}\right)
+\end{aligned}\end{gathered}\end{equation*}
+confirming conjecture \eqref{eq:kappaguess}.
+
+This combination of results indicates that the consumption function
+must be globally strongly nonlinear in $h_{T-1}$ (a nonlinearity which
+also arises in successive earlier periods $T-2$ and so on).
+
+If we wish to normalize the consumption rule by something that will
+help to make it approximately linear, that normalizing function will
+need approach proportionality to $h_{t-1}^{\gamma/(1+\gamma)}$ as
+$h_{t-1}$ goes to zero but approach a constant as $h_{t-1}$ approaches
+infinity.  The function
+\begin{equation}
+  n(h_{t-1}) =
+  h_{t-1}^{\gamma/(1+\gamma)}(h_{t-1}+\mu)^{-\gamma/(1+\gamma)}
+\end{equation}
+has precisely these characteristics for $\mu>0$.  Some
+experimentation with possible values of $\mu$ led to the conclusion
+that under the baseline parameter values this function does a good job
+of linearizing the relationship between consumption and $h_{t-1}$ for
+a value of $\mu = 0.04$.
+
+The combined transformations for the various variables are thus
+\begin{equation}\begin{gathered}\begin{aligned}
+  \cFunc_{\overline{t}}^{{a}}({a}_{t},h_{t})        & = [\vEndStge^{{a}}({a}_{t},h_{t})]^{-1/\CRRA} h_{t}^{\gamma(1-1/\CRRA)} %\label{eq:vEndstransform} \\
+  \Lambda_{t}^{m}({m}_{t},h_{t-1})   & = [{\vFunc}_{t}^{m}({m}_{t},h_{t-1})]^{-1/\CRRA} h_{t-1}^{\gamma(1-1/\CRRA)} % old \label{eq:vxtransform} \\
+  \cFunc_{\overline{t}}^{h}({a}_{t},h_{t})
+                                                    & =                                                  [-h_{t}^{1-\gamma(\CRRA-1)}\vEndStge^{h}({a}_{t},h_{t})/\gamma]^{1/(1-\CRRA)}  \label{eq:vEndhtransform}
+  \\      \Lambda_{t}^{h}({m}_{t},h_{t-1})   & = [-h_{t-1}^{1-\gamma(\CRRA-1)}{\vFunc}_{t}^{h}({m}_{t},h_{t-1})/\gamma]^{1/(1-\CRRA)} % \old \label{eq:vhtransform}
+  \\      \Lambda_{t}({m}_{t},h_{t-1})       & = [(1-\CRRA)
+                                               {\vFunc}_{t}({m}_{t},h_{t-1})]^{1/(1-\CRRA)} h_{t-1}^{\gamma} % old \label{eq:vtransform}
+  \\  \chi({m}_{t},h_{t-1})       & = \cFunc({m}_{t},h_{t-1})h_{t-1}^{-\gamma/(1+\gamma)}(h_{t-1}+\mu)^{\gamma/(1+\gamma)}.
+\end{aligned}\end{gathered}\end{equation}
+where these are the functions that are actually approximated by
+interpolation and the objects of interest (like the consumption
+function) are obtained by reversing the transformations.
+
+\hypertarget{The-Program}{}
+\subsection{The Program}
+The consumption problem with habit formation is solved in
+\texttt{habits.m}, whose structure closely follows that of
+\texttt{multiperiod.m}.
+
+Assuming the problem has been solved up to period $t+1$ (and thus we
+have numerical functions $\hat{\vFunc}_{t+1}^{m}({m}_{t+1},h_{t})$ and
+$\hat{\vFunc}_{t+1}^{h}({m}_{t+1},h_{t})$),
+\begin{enumerate}
+
+\item Form a list called \texttt{ArgArray} of all possible
+  combinations of the values in \texttt{aVec} and
+  \texttt{hVec}, and index the components of that list by $k$.  Thus
+  if there are $m$ points in both grids we have \texttt{ArgArray}=
+  $\{\{{a}_{1},h_{1}\}$, $\{{a}_{1},h_{2}\},\ldots$,
+  $\{{a}_{1},h_{m}\}$, $\{{a}_{2},h_{1}\}$,
+  $\{{a}_{2},h_{2}\},\ldots$, $\{{a}_{2},h_{m}\},
+  \{{a}_{m},h_{1}\}$, $\{{a}_{m},h_{2}\},\ldots$,
+  $\{{a}_{m},h_{m}\}\}$.  Designate this list as $\mathcal{L}$
+  with individual members $\{\ell_{1}, \ell_{2}, \ldots \ell_{m \times
+    m}\}$.  Finally, define the notation $\bullet^{\ell}_{k}$ to mean
+  ``the value of $\bullet$ associated with the $k$th element of the
+  list $\mathcal{L}$; e.g. $h^{\ell}_{1} = h_{1}$, $h^{\ell}_{2} =
+  h_{2}$, and ${a}^{\ell}_{2}={a}_{1}$.''
+
+  Now at each of the $k$ locations in \texttt{ArgArray} calculate the
+  value of $\cFunc_{\overline{t}}^{{a}}$ and $\cFunc_{\overline{t}}^{h}$ (from
+  equations (\ref{eq:vEndsdefn}) and (\ref{eq:vEndhdefn})) and
+  \eqref{eq:vEndstransform} and \eqref{eq:vEndhtransform},
+  \begin{equation}\begin{gathered}\begin{aligned}
+    \cFunc_{k,t}^{{a}}  & = (h_{k}^{\ell})^{\gamma(1-1/\CRRA)}
+                             \left(\DiscFac \Ex_{t}
+                             \left[
+                             \RNrm_{t+1} (\hat{\vFunc}_{t+1}^{m}(\RNrm_{t+1} s^{\ell}_{k} +
+                             {\TranShkEmp}_{t+1},h^{\ell}_{k}))
+                             \right]
+                             \right)^{-1/\CRRA}
+    \\      \cFunc_{k,t}^{h}
+                           & =                                         \left(-(h_{k}^{\ell})^{1-\gamma(\CRRA-1)} \DiscFac \Ex_{t}
+                             \left[
+                             \hat{\vFunc}_{t+1}^{h}(\RNrm_{t+1} s^{\ell}_{k} +
+                             {\TranShkEmp}_{t+1},h^{\ell}_{k})
+                             \right]/\gamma
+                             \right)^{1/(1-\CRRA)},
+  \end{aligned}\end{gathered}\end{equation}
+generating lists of values
+$\cFunc^{a}_{k,t}$,$\cFunc^{h}_{k,t}$.
+
+\item Construct interpolating functions $\hat{\cFunc}^{a}_{t}({a}_{t},h_{t})$
+  and $\hat{\cFunc }^{h}_{t}({a}_{t},h_{t})$, from which we can
+  obtain $\hat{\vFunc}_{\EndStge}^{a}$ and $\hat{\vFunc}_{\EndStge}^{h}$
+  via the inverse of the transformations (\ref{eq:vEndstransform})
+  and (\ref{eq:vEndhtransform}).
+
+\item Loop over the $m$ values of $h$ in \texttt{hVec}, indexing them
+  by $j$; for each $j$:
+  \begin{itemize}
+  \item Loop over ${a}_{i}$ finding the optimal ${c}_{a}$ associated
+    with this ${a}_{i}$ and $h_{j}$ from the formula in equation
+    \eqref{eq:habitsfoc}:
+    \begin{equation}
+      {\cNrm}_{i} = \left[h_{j}^{\gamma-\CRRA \gamma}
+        (\vEndStge^{{a}}({a}_{i},(1-\MPS) h_{j}+ {\cNrm}_{i})
+        -\MPS \vEndStge^{h}({a}_{i},(1-\MPS)
+        h_{j}+{\cNrm}_{i}))\right]^{-1/\CRRA} \nonumber
+    \end{equation}
+
+  \item Construct ${m}_{i} = {\cNrm}_{i}+{a}_{i}$
+
+  \item Construct \texttt{ct[mt,j]} as a linear interpolation of the
+    $\{{m}_{i},{\cNrm}_{i}\}$
+  \end{itemize}
+\end{enumerate}
+
+With $\Alt{\Hi{\cFunc}}_{t}({m}_{t},h_{t-1})$, $\hat{\vFunc}_{\EndStge}^{{a}}$
+and $\hat{\vFunc}_{\EndStge}^{h}$ in hand we can obtain ${\vFunc}^{m}_{t}$
+and ${\vFunc}^{h}_{t}$ from \eqref{eq:vtfoc} and
+\eqref{eq:vhtformula}. Thus we have generated $\Alt{\Hi{\cFunc}}_{t}$,
+$\hat{\vFunc}^{m}_{t}$ and $\hat{\vFunc}^{h}_{t}$ from $\hat{\vFunc}^{a}_{t+1}$ and
+$\hat{\vFunc}^{h}_{t+1}$, and we can continue the iteration indefinitely.
+
+The problem is solved in the program \texttt{habits.m}.  Details of
+the {Mathematica}~implementation follow those described above for
+\texttt{multiperiod.m} closely, and so need not be described here.
+The program generates a three-D figure showing the consumption rule
+$\cFunc_{t}({m}_{t},h_{t-1})$ for the first period of `life.'  The figure
+behaves as one would expect: consumption is increasing in the level
+of resources and in the level of the habit stock.\footnote{For a
+  detailed analysis of some of the properties of this habit formation
+  model, see Carroll~\citeyearpar{carroll:RiskyHabits}}
+
+
+% }{}
+\end{document}
