@@ -4,6 +4,7 @@
 \providecommand{\onlyinsubfile}{}\renewcommand{\onlyinsubfile}[1]{#1}
 \providecommand{\notinsubfile}{}\renewcommand{\notinsubfile}[1]{}
 
+\usepackage{listings}
 \usepackage{mathtools}
 \usepackage{accents,xr-hyper}
 \usepackage{\econark}
@@ -80,10 +81,16 @@
 \newcommand{\vBegStge}{\vFunc_{\BegStge}}
 \newcommand{\vBegStgep}{\vFunc_{\BegStgep}}
 \newcommand{\vMidStge}{\vFunc_{\MidStge}}
+\newcommand{\vMidStgem}{\vFunc_{\MidStgem}}
 \newcommand{\vEndStge}{\vFunc_{\EndStge}}
 \newcommand{\vEndStgem}{\vFunc_{\EndStgem}}
 \newcommand{\cEndStge}{\cFunc_{\EndStge}}
 \newcommand{\vPEndStge}{\vFunc^{{a}}_{\EndStge}}
+\newcommand{\vPMidStge}{\vFunc^{{m}}_{\MidStge}}
+\newcommand{\vPBegStge}{\vFunc^{{k}}_{\BegStge}}
+\newcommand{\vPEndStgep}{\vFunc^{{a}}_{\EndStgep}}
+\newcommand{\vPMidStgep}{\vFunc^{{m}}_{\MidStgep}}
+\newcommand{\vPBegStgep}{\vFunc^{{k}}_{\BegStgep}}
 
 
 \providecommand{\stge}{s}
@@ -135,3 +142,4 @@
 \newcommand{\ExEndStge}{\Ex_{\EndStge}}
 \newcommand{\ExBegStge}{\Ex_{\BegStge}}
 
+\newcommand{\vct}[1]{\tilde{\pmb{#1}}}

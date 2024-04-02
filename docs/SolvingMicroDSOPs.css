@@ -7,6 +7,7 @@
 .cmmi-5{font-size:41%;font-style: italic;}
 .cmmi-7{font-size:58%;font-style: italic;}
 .cmmi-10{font-size:83%;font-style: italic;}
+.cmsy-5{font-size:41%;}
 .cmsy-7{font-size:58%;}
 .cmsy-10{font-size:83%;}
 .ecti-1200{ font-style: italic;}
@@ -57,20 +58,6 @@
 .msbm-10{font-size:83%;}
 .ecrm-1095{font-size:83%;}
 .ecrm-1000{font-size:83%;}
-.ecti-1095{font-size:83%; font-style: italic;}
-.ecti-1095{ font-style: italic;}
-.ecti-1095{ font-style: italic;}
-.ecti-1095{ font-style: italic;}
-.ecti-1095{ font-style: italic;}
-.ecti-1095{ font-style: italic;}
-.ecti-1095{ font-style: italic;}
-.ecti-1095{ font-style: italic;}
-.ecti-1095{ font-style: italic;}
-.ecti-1095{ font-style: italic;}
-.ecti-1095{ font-style: italic;}
-.ecti-1095{ font-style: italic;}
-.ecti-1095{ font-style: italic;}
-.ecti-1095{ font-style: italic;}
 .ectt-1000{font-size:83%; font-family: monospace,monospace;}
 .ectt-1000{ font-family: monospace,monospace;}
 .ectt-1000{ font-family: monospace,monospace;}
@@ -85,6 +72,20 @@
 .ectt-1000{ font-family: monospace,monospace;}
 .ectt-1000{ font-family: monospace,monospace;}
 .ectt-1000{ font-family: monospace,monospace;}
+.ecti-1095{font-size:83%; font-style: italic;}
+.ecti-1095{ font-style: italic;}
+.ecti-1095{ font-style: italic;}
+.ecti-1095{ font-style: italic;}
+.ecti-1095{ font-style: italic;}
+.ecti-1095{ font-style: italic;}
+.ecti-1095{ font-style: italic;}
+.ecti-1095{ font-style: italic;}
+.ecti-1095{ font-style: italic;}
+.ecti-1095{ font-style: italic;}
+.ecti-1095{ font-style: italic;}
+.ecti-1095{ font-style: italic;}
+.ecti-1095{ font-style: italic;}
+.ecti-1095{ font-style: italic;}
 .ecti-1000{font-size:83%; font-style: italic;}
 .ecti-1000{ font-style: italic;}
 .ecti-1000{ font-style: italic;}
@@ -143,7 +144,10 @@
 .cmbx-10{ font-weight: bold;}
 .cmss-10{font-size:83%;  font-family: sans-serif;}
 .cmss-10{  font-family: sans-serif;}
-.eufm-10x-x-80{font-size:66%;}
+.cmtt-12{font-family: monospace,monospace;}
+.cmtt-12{font-family: monospace,monospace;}
+.cmtt-8{font-size:66%;font-family: monospace,monospace;}
+.cmtt-8{font-family: monospace,monospace;}
 .fibr-84x-x-80{font-size:66%;}
 .eusm-10x-x-80{font-size:66%;}
 .small-caps{font-variant: small-caps; }

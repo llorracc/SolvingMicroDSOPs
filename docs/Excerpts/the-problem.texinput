@@ -12,10 +12,10 @@
   \end{aligned}\end{gathered}\end{equation}
 whose whose expectation is 1 (that is, before realization of the transitory shock, the consumer's expectation is that actual income will on average be equal to permanent income $\pLvl_{t}$).
 
-The combination of bank balances $\bLvl$ and income $\yLvl$ define's the consumer's `market resources' (sometimes called `cash-on-hand', following~\cite{deatonUnderstandingC}):
+The combination of bank balances $\bLvl$ and income $\yLvl$ define's the consumer's `market resources' (sometimes called `cash-on-hand,' following~\cite{deatonUnderstandingC}):
 \begin{equation}\begin{gathered}\begin{aligned}
   \mLvl_{t} & = \bLvl_{t}+\yLvl_{t} \label{eq:mLvl},
 \end{aligned}\end{gathered}\end{equation}
-which are available to be spent on consumption $\cLvl_{t}$.
+available to be spent on consumption $\cLvl_{t}$ (even for a consumer subject to a liquidity constraint $\cLvl \leq \mLvl$).
 
-The consumer's goal is to maximize discounted utility from consumption over the rest of a lifetime whose last {\interval} is date $T$:
+The consumer's goal is to maximize discounted utility from consumption over the rest of a lifetime ending at date $T$:
