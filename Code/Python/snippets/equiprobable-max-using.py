@@ -1,2 +1,1 @@
-# This snippet shows code that solves for the c 
-# that maximizes value
+# The code that corresponds to evaluation of the discretized max problem is

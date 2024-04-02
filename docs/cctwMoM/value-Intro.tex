@@ -1,12 +1,14 @@
 
   Often it is useful to know the value function as well as the consumption rule.  Fortunately, many of the tricks used when solving for the consumption rule have a direct analogue in approximation of the value function.
 
-  Consider the perfect foresight (or ``optimist's'') problem in period $T-1$.  Using the fact that in a perfect foresight model the growth factor for consumption is $(\Rfree \DiscFac)^{1/\CRRA}$, we can use the fact that $\cNrm_{T} = (\Rfree \DiscFac)^{1/\CRRA} \cNrm_{T-1}$ to calculate the value function in period $T-1$:
+  Consider the perfect foresight (or ``optimist's'') problem in period $T-1$:
   \begin{equation*}\begin{gathered}\begin{aligned}
         \bar{\vFunc}_{T-1}({m}_{T-1})  & \equiv  \uFunc(\cNrm_{T-1})+\DiscFac \uFunc(\cNrm_{T})
-        \\  & = \uFunc(\cNrm_{T-1})\left(1+\DiscFac ((\DiscFac\Rfree)^{1/\CRRA})^{1-\CRRA}\right)
-        \\  & = \uFunc(\cNrm_{T-1})\left(1+\DiscFac (\DiscFac\Rfree)^{1/\CRRA-1}\right)
-        \\  & = \uFunc(\cNrm_{T-1})\left(1+(\DiscFac\Rfree)^{1/\CRRA}/\Rfree\right)
-        \\  & = \uFunc(\cNrm_{T-1})\underbrace{\mbox{PDV}_{t}^{T}(\cNrm)/\cNrm_{T-1}}_{\equiv \PDVCoverc_{t}^{T}}
+        \\  & = \uFunc(\cNrm_{T-1})\left(1+\DiscFac ((\DiscFac_{T}\Rfree)^{1/\CRRA})^{1-\CRRA}\right)
+        \\  & = \uFunc(\cNrm_{T-1})\left(1+\DiscFac (\DiscFac_{T}\Rfree)^{1/\CRRA-1}\right)
+        \\  & = \uFunc(\cNrm_{T-1})\left(1+(\DiscFac_{T}\Rfree)^{1/\CRRA}/\Rfree\right)
+        \\  & = \uFunc(\cNrm_{T-1})\underbrace{\mbox{PDV}_{t}^{T}(\cNrm)/\cNrm_{T-1}}_{\equiv \mathbb{C}_{t}^{T}}
       \end{aligned}\end{gathered}\end{equation*}
-  where $\PDVCoverc_{t}^{T}=\mbox{PDV}_{t}^{T}(\cNrm)$ is the present discounted value of consumption. Using the fact demonstrated in \cite{BufferStockTheory} that $\PDVCoverc_{t}=\MPC^{-1}_{t}$, a similar function can be constructed recursively for earlier periods, yielding the general expression \hypertarget{vFuncPF}{}
+  where $\mathbb{C}_{t}^{T}=\mbox{PDV}_{t}^{T}(\cNrm)$ is the present discounted value of consumption.
+  A similar function can be constructed recursively for earlier periods, yielding
+  the general expression \hypertarget{vFuncPF}{}
