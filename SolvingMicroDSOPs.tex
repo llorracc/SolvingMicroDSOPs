@@ -494,13 +494,14 @@ distribution.\footnote{More sophisticated approximation methods exist
 \begin{verbatimwrite}{\econtexRoot/Figures/discreteApprox.tex}
   \hypertarget{discreteApprox}{}
   \begin{figure}
-    \includegraphics[width=6in]{./Figures/discreteApprox}
+    \includegraphics[width=0.8\textwidth]{./Figures/discreteApprox}
     \caption{Equiprobable Discrete Approximation to Lognormal Distribution $\FDist$}
     \label{fig:discreteapprox}
   \end{figure}
 \end{verbatimwrite}
 \input{\econtexRoot/Figures/discreteApprox.tex}\unskip
-% \write18{cat \econtexRoot/Figures/discreteApprox.tex >> \econtexRoot/Figures/SolvingMicroDSOPs-Figures-List.tex}
+\write18{cat \econtexRoot/Figures/discreteApprox.tex >> \econtexRoot/Figures/SolvingMicroDSOPs-Figures-List.tex}
+\write18{if [ ! -f \texname.bib ]; then touch \texname.bib  ; fi}\write18{if [ ! -f \texname-Add.bib ]; then touch \texname-Add.bib  ; fi}\bibliography{economics,\texname,\texname-Add} \end{document}\endinput
 
 
 \lstset{basicstyle=\ttfamily\footnotesize,breaklines=true,language=Python,frame=single}
