@@ -757,12 +757,12 @@ u (ct) = v t→ (mt − ct).
  id="x1-6010r20"></a></div>
   </td><td class="equation-label">(20)</td></tr></table>
 <!--l. 4--><p class="nopar" >
-<!--l. 440--><p class="indent" >  <a 
+<!--l. 441--><p class="indent" >  <a 
  id="Solving-the-Next-To-Last-Period"></a>
   <h3 class="sectionHead"><span class="titlemark">5  </span> <a 
  id="x1-70005"></a>Solving the Next-to-Last Period</h3>                                                   <span 
 class="ecrm-0600">{sec:NextToLast}</span>
-<!--l. 446--><p class="noindent" >For convenience assuming that <img 
+<!--l. 447--><p class="noindent" >For convenience assuming that <img 
 src="SolvingMicroDSOPs67x.svg" alt="𝒢 =  1  " class="math";align="absmiddle"> so that the <img 
 src="SolvingMicroDSOPs68x.svg" alt="𝒢 " class="math";align="absmiddle"> terms disappear from the earlier
 derivations, the problem in the second-to-last period of life can now be expressed
@@ -778,10 +778,10 @@ v   (m    ) = max   u (c    ) + β 𝔼     ⌈v  ((m    −  c   )ℛ   + 𝜃 
                                                       mT
 " class="math-display" ></div>
   </td></tr></table>
-<!--l. 450--><p class="nopar" >where <img 
+<!--l. 451--><p class="nopar" >where <img 
 src="SolvingMicroDSOPs70x.svg" alt="𝔼T −1→ " class="math";align="absmiddle"> indicates that the expectation is taken as of the end of period <img 
 src="SolvingMicroDSOPs71x.svg" alt="T − 1  " class="math";align="absmiddle">.
-<!--l. 453--><p class="indent" >  Using (1) the fact that <img 
+<!--l. 454--><p class="indent" >  Using (1) the fact that <img 
 src="SolvingMicroDSOPs72x.svg" alt="v  =  u(c )
   T      T  " class="math";align="absmiddle">; (2) the deﬁnition of <img 
 src="SolvingMicroDSOPs73x.svg" alt="u(c )
@@ -796,10 +796,10 @@ vT−1(mT − 1) = max    -T−1-+  β     ----T−1----T−1---T--------d ℱ(�
                cT−1   1 − ρ      0             1 − ρ
 " class="math-display" ></div>
   </td></tr></table>
-<!--l. 462--><p class="nopar" >where <img 
+<!--l. 463--><p class="nopar" >where <img 
 src="SolvingMicroDSOPs75x.svg" alt="ℱ " class="math";align="absmiddle"> is the cumulative distribution function for <img 
 src="SolvingMicroDSOPs76x.svg" alt="𝜃T  " class="math";align="absmiddle">.
-<!--l. 465--><p class="indent" >  The maximization implicitly deﬁnes a function <img 
+<!--l. 466--><p class="indent" >  The maximization implicitly deﬁnes a function <img 
 src="SolvingMicroDSOPs77x.svg" alt="cT− 1(mT  −1)  " class="math";align="absmiddle"> that yields optimal
 consumption in period <img 
 src="SolvingMicroDSOPs78x.svg" alt="T − 1  " class="math";align="absmiddle"> for any speciﬁc numerical level of resources like <img 
@@ -815,11 +815,11 @@ over the interval <img
 src="SolvingMicroDSOPs83x.svg" alt="(0,∞ )  " class="math";align="absmiddle"> must be calculated numerically, and numerical integration is <span 
 class="ecti-1200">very</span>
 slow (especially over an unbounded domain!).
-<!--l. 467--><p class="indent" >  <a 
+<!--l. 468--><p class="indent" >  <a 
  id="Discretizing-the-Distribution"></a>
   <h4 class="subsectionHead"><span class="titlemark">5.1  </span> <a 
  id="x1-80005.1"></a>Discretizing the Distribution</h4>
-<!--l. 469--><p class="noindent" >Our ﬁrst speedup trick is therefore to construct a discrete approximation to the
+<!--l. 470--><p class="noindent" >Our ﬁrst speedup trick is therefore to construct a discrete approximation to the
 lognormal distribution that can be used in place of numerical integration. That is, we
 want to approximate the expectation over <img 
 src="SolvingMicroDSOPs84x.svg" alt="𝜃  " class="math";align="absmiddle"> of a function <img 
@@ -842,10 +842,10 @@ src="SolvingMicroDSOPs89x.svg" alt="             -
            𝜃=1
 " class="math-display" ></div>
   </td></tr></table>
-<!--l. 473--><p class="nopar" >(because adding <img 
+<!--l. 474--><p class="nopar" >(because adding <img 
 src="SolvingMicroDSOPs90x.svg" alt="n  " class="math";align="absmiddle"> weighted values to each other is enormously faster than general-purpose
 numerical integration).
-<!--l. 476--><p class="indent" >  Such a procedure is called a ‘quadrature’ method of integration; <a 
+<!--l. 477--><p class="indent" >  Such a procedure is called a ‘quadrature’ method of integration; <a 
 href="#XTanaka2013-bc">Tanaka and Toda</a> (<a 
 href="#XTanaka2013-bc">2013</a>)
 survey a number of options, but for our purposes we choose the one which is easiest to
@@ -855,9 +855,9 @@ src="SolvingMicroDSOPs91x.svg" alt="𝜃i  " class="math";align="absmiddle"> has
                                                                                      
 an equal probability, equal to <img 
 src="SolvingMicroDSOPs92x.svg" alt="1∕n𝜃  " class="math";align="absmiddle">).
-<!--l. 478--><p class="indent" >  We calculate such an <img 
+<!--l. 479--><p class="indent" >  We calculate such an <img 
 src="SolvingMicroDSOPs93x.svg" alt="n  " class="math";align="absmiddle">-point approximation as follows.
-<!--l. 480--><p class="indent" >  Deﬁne a set of points from <img 
+<!--l. 481--><p class="indent" >  Deﬁne a set of points from <img 
 src="SolvingMicroDSOPs94x.svg" alt="♯0   " class="math";align="absmiddle"> to <img 
 src="SolvingMicroDSOPs95x.svg" alt="♯n
   𝜃   " class="math";align="absmiddle"> on the <img 
@@ -885,12 +885,12 @@ src="SolvingMicroDSOPs104x.svg" alt="                          ∫  ♯−i1
 " class="math-display" ><a 
  id="x1-8003r21"></a></div>
   </td><td class="equation-label">(21)</td></tr></table>
-<!--l. 486--><p class="nopar" >and when the integral is evaluated numerically for each <img 
+<!--l. 487--><p class="nopar" >and when the integral is evaluated numerically for each <img 
 src="SolvingMicroDSOPs105x.svg" alt="i  " class="math";align="absmiddle"> the result is a set of values of <img 
 src="SolvingMicroDSOPs106x.svg" alt="𝜃  " class="math";align="absmiddle">
 that correspond to the mean value in each of the <img 
 src="SolvingMicroDSOPs107x.svg" alt="n  " class="math";align="absmiddle"> intervals.
-<!--l. 489--><p class="indent" >  The method is illustrated in Figure <a 
+<!--l. 490--><p class="indent" >  The method is illustrated in Figure <a 
 href="#x1-80061">1<!--tex4ht:ref: fig:discreteapprox --></a>. The solid continuous curve represents the “true” CDF
 <img 
 src="SolvingMicroDSOPs108x.svg" alt="ℱ (𝜃)  " class="math";align="absmiddle"> for a lognormal distribution such that <img 
@@ -923,7 +923,7 @@ class="ecrm-0600">{ﬁg:discreteapprox}</span>
   </div>
   <h3 class="likesectionHead"><a 
  id="x1-9000"></a>References</h3>
-<!--l. 5--><p class="noindent" >
+<!--l. 6--><p class="noindent" >
   <div class="thebibliography">
   <p class="bibitem" ><span class="biblabel">
 <a 
