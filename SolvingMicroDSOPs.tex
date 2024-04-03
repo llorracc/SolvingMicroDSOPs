@@ -383,12 +383,12 @@ For future reference, it may be useful here to write the distinct value function
 \end{verbatimwrite}
 \input{./Equations/vMidStep}\unskip
 and
-\begin{verbatimwrite}{./Equations/vEndStep}
+\begin{verbatimwrite}{./Equations/vEndtdefn}
   \begin{equation}\begin{gathered}\begin{aligned}
-\vEndStep(\aNrm_{\stge}) & = \DiscFac \vBegStepp(\underbrace{\kNrm_{\stge+1}}_{=\aNrm_{\stge}}) \label{eq:vEndStep}
+\vEndStep(\aNrm_{\stge}) & = \DiscFac \vBegStepp(\underbrace{\kNrm_{\stge+1}}_{=\aNrm_{\stge}}) \label{eq:vEndtdefn}
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
-\input{./Equations/vEndStep}\unskip
+\input{./Equations/vEndtdefn}\unskip
 where the last line illustrates the notation for addressing the beginning {\move} of the successor {\interval}.
 
 %Now note that in equation \eqref{eq:upctp1EqVpxtp1} neither ${m}_{\stge}$ nor ${c}_{\stge}$ has any \textit{direct} effect on $\null{\vFunc}_{\stge+1}$ - only the difference between them (i.e.\ unconsumed market resources or `assets' ${a}_t$) matters.  It is therefore possible (and will turn out to be convenient) to define a function\footnote{The peculiar letter designating our new function is pronounced `Gothic v'.  Letters in this font will be used for end-of-period quantities.}  \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Define $\Alt{\vEndStep}({a}_{\stge})$.}}{}
@@ -398,16 +398,12 @@ Putting all this together, from the perspective of the beginning of {\interval} 
 \begin{verbatimwrite}{./Equations/vBegtpdefn.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
         \vBegStepp({k}_{\stge+1})  & = \Ex_{\BegStepp}[\phantom{\Rfree}\vNormedPermGroFacp\null{\vFunc}_{\MidStepp}(\RNrm_{\stge+1}{k}_{\stge}+{\TranShkEmp}_{\stge+1})]  \label{eq:vFuncBegtpdefn}
+\\  {\vPBegStepp}({k}_{\stge+1})  & = \Ex_{\BegStepp}[\Rfree \PermGroFac_{\stge+1}^{\phantom{1}-\CRRA} \null{\vFunc}_{\MidStepp}^{{m}}({m}_{\stge+1})]
   \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}\unskip
 \input{./Equations/vBegtpdefn}\unskip
-and 
-\begin{verbatimwrite}{./Equations/vEndtdefn.tex}
-  \begin{equation}\begin{gathered}\begin{aligned}
-    \vEndStep({a}_{\stge})  & = \DiscFac \vBegStep({a}_{\stge+1})  \label{eq:vEndtdefn}
-  \end{aligned}\end{gathered}\end{equation} \end{verbatimwrite}
-\input{./Equations/vEndtdefn.tex}\unskip
 because they return the expected $t+1$ value and marginal value associated with arriving in {\interval} $\stge+1$ with any given amount of \textbf{k}apital.  %Differentiating with respect to $\aNrm$, we get
+%\begin{verbatimwrite}{./Equations/vEndtdefn.tex}  \begin{equation}\begin{gathered}\begin{aligned}    \vEndStep({a}_{\stge})  & = \DiscFac \vBegStepp_{\stge+1}({a}_{\stge}) \label{eq:vEndtdefn}   \end{aligned}\end{gathered}\end{equation} \end{verbatimwrite}\input{./Equations/vEndtdefn.tex}\unskip
 %Differentiating with respect to $\kNrm_{t+1}$, we get
 % \begin{equation}\begin{gathered}\begin{aligned}
 %   {\vPBegStepp}({k}_{\stge})  & = \DiscFac \Ex_{\BegStepp}[\Rfree \PermGroFac_{\stge+1}^{-\CRRA} \null{\vFunc}_{\MidStepp}^{{m}}({m}_{\stge})]
