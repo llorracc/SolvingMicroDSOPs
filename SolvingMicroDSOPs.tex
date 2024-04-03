@@ -48,6 +48,7 @@
 \setboolean{MyNotes}{false} 
 
 \provideboolean{ToFix}\setboolean{ToFix}{true}
+\newcommand{\ifFix}{\ifthenelse{\boolean{ToFix}}}
 %\setboolean{ToFix}{false} 
 
 % To compile the Habits subfile, go to the Subfiles directory
@@ -267,24 +268,25 @@ $\vFunc_{T}({m}_{T}) = \uFunc({m}_{T})$.\footnote{Nonbold value is bold value di
 Now define a new optimization problem:\ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Note that in mathematical terms, the $\PermGroFac_{t+1}^{1-\CRRA} {\DiscAlt}$ term is basically just a time-varying discount factor.}}{}
 \begin{verbatimwrite}{./Equations/vNormed.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
-        \null{\vFunc}_{t}({m}_{t})  & = \max_{{c}_{t}} ~~ \uFunc({c}_{t})+
-        {\DiscFac}\Ex_{t}[ \PermGroFac_{t+1}^{1-\CRRA}\null{\vFunc}_{t+1}({m}_{t+1})] \label{eq:vNormed}
-        \\         & \text{s.t.}   \\
-    {a}_{t}    & = {m}_{t}-{c}_{t}
-\\  {k}_{t+1}  & = {a}_{t}                 
-        \\      {m}_{t+1}  & = \underbrace{\left(\Rfree/\PermGroFac_{t+1}\right)}_{\equiv \RNrm_{t+1}}{k}_{t+1}+\TranShkEmp_{t+1},
+        \null{\vFunc}_{t}({m}_{t}) & = \max_{{c}_{t}} ~~ \uFunc({c}_{t})+
+        {\DiscFac}\Ex_{t}[ \PermGroFac_{t+1}^{1-\CRRA}\null{\vFunc}_{t+1}({m}_{t+1})] \label{eq:vNormed} \\
+                                   & \text{s.t.}   \\
+      {a}_{t}                      & = {m}_{t}-{c}_{t} \\
+      {k}_{t+1}                    & = {a}_{t} \\
+      {b}_{t+1}                    & = \underbrace{\left(\Rfree/\PermGroFac_{t+1}\right)}_{\equiv \RNrm_{t+1}}{k}_{t+1} \\
+      {m}_{t+1}                    & = {b}_{t+1}+\TranShkEmp_{t+1},
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/vNormed.tex}\unskip
 where the last equation is the normalized version of the transition equation for $\mLvl_{t+1}$.\footnote{Derivation:
   \begin{equation*}\begin{gathered}\begin{aligned}
-        \mLvl_{t+1}/\pLvl_{t+1}  & = (\mLvl_{t}-\cLvl_{t})\Rfree/\pLvl_{t+1} + {\yLvl}_{t+1}/\pLvl_{t+1}
-        \\      {m}_{t+1}  & = \left(\frac{\mLvl_{t}}{\pLvl_{t}} - \frac{\cLvl_{t}}{\pLvl_{t}}\right)\Rfree\frac{\pLvl_{t}}{\pLvl_{t+1}} + \frac{{\yLvl}_{t+1}}{\pLvl_{t+1}}
-        \\        & = \underbrace{({m}_{t} - {c}_{t})}_{{a}_{t}}(\Rfree/\PermGroFac_{t+1}) + \TranShkEmp_{t+1}.
+        \mLvl_{t+1}/\pLvl_{t+1}              & = (\mLvl_{t}-\cLvl_{t})\Rfree/\pLvl_{t+1} + {\yLvl}_{t+1}/\pLvl_{t+1}
+        \\      {m}_{t+1}                    & = \left(\frac{\mLvl_{t}}{\pLvl_{t}} - \frac{\cLvl_{t}}{\pLvl_{t}}\right)\Rfree\frac{\pLvl_{t}}{\pLvl_{t+1}} + \frac{{\yLvl}_{t+1}}{\pLvl_{t+1}}
+        \\                                   & = \underbrace{({m}_{t} - {c}_{t})}_{{a}_{t}}(\Rfree/\PermGroFac_{t+1}) + \TranShkEmp_{t+1}.
       \end{aligned}\end{gathered}\end{equation*}
 }  Then it is easy to see that for $t=T-1$,
 \begin{equation*}\begin{gathered}\begin{aligned}
-      {\vLvl}_{T-1}(\mLvl_{T-1},\pLvl_{T-1})  & =  \pLvl_{T-1}^{1-\CRRA}\null{\vFunc}_{T-1}({m}_{T-1})
+      {\vLvl}_{T-1}(\mLvl_{T-1},\pLvl_{T-1}) & =  \pLvl_{T-1}^{1-\CRRA}\null{\vFunc}_{T-1}({m}_{T-1})
     \end{aligned}\end{gathered}\end{equation*}
 and so on back to all earlier periods.  Hence, if we solve the problem \eqref{eq:vNormed}
 which (when optimal consumption is being chosen) has only a single state variable $\mNrm_{t}$, we can obtain the levels of the value function, consumption, and all other variables
@@ -306,7 +308,7 @@ For some problems it will not be obvious that there is an appropriate `normalizi
 \subsection{Steps}
 %Since we have dissected the problem into individual steps, if we are to discuss each of the steps separately we need a notation to signal which step we are discussing.
 
-  The preceding analysis made some implicit assumptions about what was known when; difficulty intuiting or inferring those implicit assumptions is a common stumbling block for students trying to this material.
+%  The preceding analysis made some implicit assumptions about what was known when; difficulty intuiting or inferring those implicit assumptions is a common stumbling block for students trying to learn this material.
 
 Generically, we want to think of the Bellman problem itself as having three {\moves}:
 \begin{enumerate}
@@ -318,14 +320,18 @@ Generically, we want to think of the Bellman problem itself as having three {\mo
   The (implicit) default assumption is often to think of the step of the problem where the agent is solving a decision problem as defining the unique moment at which the problem is defined.  This is what implicitly was done above, when (for example) in \eqref{eq:vNormed} we related current value $\vFunc_{t}$ to the expectation of future value $\vFunc_{t+1}$.
   
   When we want to refer to a specific step within period $t$ we will do so by preceding it by an indicator character:
+%  \mbox{% Only known way to center the table in HTML version
   \begin{center}
+    \mbox{
   \begin{tabular}{r|c|l|l}
-    Step     & Indicator & Example & Explanation \\ \hline
+    Step     & Indicator & Usage & Explanation \\ \hline
   \Arrival    & ${\large \arvl}$ & $\vBegStep({\kNrm}_{t})$ & value of entering $t$ (before shocks)
 \\  \Decision & (blank/none) & $\vMidStep({\mNrm}_{t})$ & value of $t$-decision (after shocks)
 \\  \Continuation & ${\large \cntn}$ & $\vEndStep({\aNrm}_{t})$ & value of outgoing state (after decision)
   \end{tabular}
+  }
 \end{center}
+%}%
 
 This notation allows us to capture the fact that the value of the consumer's circumstances can be computed at any of the three steps (and is a function of a different state variable at each step).
 
@@ -634,7 +640,7 @@ ${m}_{T-1}=1$.
   \label{fig:PlotComparecTm1AB}
 \end{figure}
 
-\ifthenelse{\boolean{ToFix}}{\marginpar{\tiny In all figs, replace gothic notation with notation corresponding to the notebook.}}{}
+\ifFix{\marginpar{\tiny In all figs, replace gothic h with notation corresponding to the lecture notes.}}
 
 Nevertheless, the consumption rule obtained when the approximating $\Alt{\vFunc}_{\EndStepm}({a}_{T-1})$
 is used\ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Don't skip the 2-3-3-4
@@ -878,13 +884,19 @@ This is the appropriate moment to ask an awkward question we have so far
 neglected: How should a function like $\Alt{\cFunc}_{\EndStepm}$
 be evaluated outside the range of points spanned by
 $\{\mathtt{{a}_{T-1}[1],...,{a}_{T-1}[n]}\}$ for which we have calculated
-the corresponding $\cFunc_{\EndStepm}$ gridpoints used to produce our
+the corresponding $\cFunc_{\EndStepm}$ values used to produce our
 linearly interpolating approximation $\Alt{\cFunc}_{\EndStepm}$?
 
-\newcommand{\aVecMin}{a_{0}}\newcommand{\cMin}{c_{0}}
-The easiest answer would be linear extrapolation; for example, if the bottommost gridpoint is $\aVecMin = \vctr{{a}}\mathtt{_{T-1}[1]}$ and the corresponding level of consumption is $\cMin = \cFunc_{\EndStepm}(a_0)$ we could calculate the `marginal propensity to have consumed' $\varkappa_{0}=\Alt{\cFunc}_{\EndStepm}^{{a}}(\aVecMin)$ and construct the approximation as the linear extrapolation below $\aVecMin$:
+For most piecewise-linear interpolation implementations, when the interplating function
+is evaluated at a point outside the provided range of values used to construct the
+function, the algorithm silently performs extrapolation under the assumption that the
+slope of the function remains the same beyond the measured boundaries as within the nearest
+piecewise segment to the point.
+
+\newcommand{\aVecMin}{a_{1}}\newcommand{\cMin}{c_{1}}
+The easiest answer would be linear extrapolation; for example, if the bottommost gridpoint is $\aVecMin = \vctr{{a}}\mathtt{_{T-1}[1]}$ and the corresponding level of consumption is $\cMin = \cFunc_{\EndStepm}(a_1)$ we could calculate the `marginal propensity to have consumed' $\varkappa_{1}=\Alt{\cFunc}_{\EndStepm}^{{a}}(\aVecMin)$ and construct the approximation as the linear extrapolation below $\aVecMin$:
 \begin{equation}\begin{gathered}\begin{aligned}
-      \Alt{\cFunc}_{\EndStepm}({a}_{T-1})  &  \equiv \cMin + ({a}_{T-1}-\aVecMin)\varkappa_{0}  \label{eq:ExtrapLin}
+      \Alt{\cFunc}_{\EndStepm}({a}_{T-1})  &  \equiv \cMin + ({a}_{T-1}-\aVecMin)\varkappa_{1}  \label{eq:ExtrapLin}
     \end{aligned}\end{gathered}\end{equation}
 for values of ${a}_{T-1} < \aVecMin$ %, where $\Alt{\cFunc}_{\EndStepm}^{{a}}(\aVecMin)$ is the derivative of the $\Alt{\cFunc}_{\EndStepm}$ function at the bottommost gridpoint.
 To see that this approach will lead us into difficulties, consider what happens to the true (not approximated) $\vFunc^{{a}}_{\EndStepm}({a}_{T-1})$ as ${a}_{T-1}$ approaches the value
@@ -906,11 +918,10 @@ if the consumer borrows an amount greater than or equal to
 $\underline{\TranShkEmp}\RNrm_{T}^{-1}$ (that is, if the consumer ends
 $T-1$ with ${a}_{T-1} \leq -\underline{\TranShkEmp}\RNrm_{T}^{-1}$) and
 then draws the worst possible income shock in period $T$, they will have
-to consume zero in period $T$ (or a negative amount), which yields
-$-\infty$ utility and $\infty$ marginal utility (resp.\ undefined utility
-and undefined marginal utility).
+to consume zero in period $T$, which yields
+$-\infty$ utility and $\infty$ marginal utility.
 
-These reflections teach us that the consumer faces a
+These reflections reveal that the consumer faces a
 `self-imposed' (or `natural') borrowing constraint (which springs from the
 precautionary motive): They will never borrow an amount greater
 than or equal to $\underline{\TranShkEmp}\RNrm_{T}^{-1}$ (that is,
@@ -929,15 +940,18 @@ yield some finite amount of utility.\footnote{Though it is very unclear what a
 
 This self-imposed constraint cannot be captured well when the
 $\vFunc^{{a}}_{\EndStepm}$ function is approximated by a piecewise
-linear function like $\Alt{\vFunc}^{{m}}_{\EndStepm}$, because there is no chance that the linear extrapolation below $a_{0}$ will correctly predict $\vFunc^{{a}}_{\EndStepm}(\underline{a}_{T-1})=\infty.$ To see what
+linear function like $\Alt{\vFunc}^{{m}}_{\EndStepm}$, because there is no chance that the linear extrapolation below $\aMin$ will correctly predict $\vFunc^{{a}}_{\EndStepm}(\underline{a}_{T-1})=\infty.$ To see what
 will happen instead, note first that if we are approximating $\vFunc^{{a}}_{\EndStepm}$ the smallest value in
 \texttt{aVec} must be greater than $\underline{a}_{T-1}$
-(because the expectation for any gridpoint $\leq \underline{a}_{T-1}$ is undefined).  Then when the
+(because the expectation for any ${a}_{\stge-1} \leq \underline{a}_{T-1}$ is undefined).
+
+
+Then when the
 approximating $\vFunc^{{a}}_{\EndStepm}$ function is evaluated at
 some value less than the first element in \texttt{aVec}, the
 approximating function will linearly extrapolate the slope that
 characterized the lowest segment of the piecewise linear approximation
-(between \texttt{aVec[0]} and \texttt{aVec[1]}), a
+(between \texttt{aVec[1]} and \texttt{aVec[2]}), a
 procedure that will return a positive finite number, even if the
 requested ${a}_{T-1}$ point is below $\underline{a}_{T-1}$.  This means that the
 precautionary saving motive is understated, and by an arbitrarily
@@ -1409,7 +1423,7 @@ Designating $\Alt{\Hi{\cFunc}}_{T-1}$ as the approximated consumption rule obtai
   \begin{equation*}\begin{gathered}\begin{aligned}
         \bar{\vFunc}_{T-1}({m}_{T-1})  & \equiv  \uFunc(\cNrm_{T-1})+\DiscFac \uFunc(\cNrm_{T})
         \\  & = \uFunc(\cNrm_{T-1})\left(1+\DiscFac ((\DiscFac\Rfree)^{1/\CRRA})^{1-\CRRA}\right)
-        \\  & = \uFunc(\cNrm_{T-1})\left(1+\DiscFac (\DiscFac\Rfree)^{1/\CRRA-1}\right)
+%        \\  & = \uFunc(\cNrm_{T-1})\left(1+\DiscFac (\DiscFac\Rfree)^{1/\CRRA-1}\right)
         \\  & = \uFunc(\cNrm_{T-1})\left(1+(\DiscFac\Rfree)^{1/\CRRA}/\Rfree\right)
         \\  & = \uFunc(\cNrm_{T-1})\underbrace{\mbox{PDV}_{t}^{T}(\cNrm)/\cNrm_{T-1}}_{\equiv \PDVCoverc_{T-1}^{T}}
       \end{aligned}\end{gathered}\end{equation*}
