@@ -481,3 +481,7 @@ dmypy.json
 
 .idea
 _region_.tex
+
+#
+condaenv
+.condaenv
