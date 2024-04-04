@@ -4,7 +4,6 @@
 \usepackage{import}
 \usepackage{\econark}
 \usepackage{\LaTeXInputs/SolvingMicroDSOPs}
- 
 
 % RiskyR
 \provideboolean{RiskyR}
@@ -148,7 +147,7 @@ labor income risk and rate-of-return risk.}{.}
 
 We assume that truly optimal behavior in the problem facing the consumer who understands all his risks is captured by
 \import{./Equations/}{MaxProb.tex}
-\write18{if [ ! -f \texname.bib ]; then touch \texname.bib  ; fi}\write18{if [ ! -f \texname-Add.bib ]; then touch \texname-Add.bib  ; fi}\bibliography{economics,\texname,\texname-Add}\end{document}\endinput
+%\write18{if [ ! -f \texname.bib ]; then touch \texname.bib  ; fi}\write18{if [ ! -f \texname-Add.bib ]; then touch \texname-Add.bib  ; fi}\bibliography{economics,\texname,\texname-Add}\end{document}\endinput
 subject to
 \import{./Equations/}{DBCLevelStart.tex}
 where
@@ -200,7 +199,29 @@ $\mRat$ near the infinite-horizon target value.  (See those notes for details).
 \hypertarget{The-Consumption-Function}{}
 \subsubsection{The Consumption Function}
 
-\import{\econtexRoot/}{cctwMoM/MoM-Prelims.tex}
+% \import{\econtexRoot/}{cctwMoM/MoM-Prelims.tex}
+
+\begin{verbatimwrite}{./cctwMoM/MoM-Prelims.tex}
+  As a preliminary to our solution, define $\hNrm_{\EndStep}$ as
+  end-of-period human wealth (the present discounted value
+  of future labor income) for a perfect foresight version of the problem
+  of a `risk optimist:' a period-$t$ consumer who believes with perfect confidence
+  that the shocks will always take their expected value of 
+  \PermShkOn
+  {1, $\TranShkEmp_{t+n} = \Ex[\TranShkEmp]=1~\forall~n>0$ and $\PermShk_{t+n} = \Ex[\PermShk]=1~\forall~n>0$.}
+  {1, $\TranShkEmp_{t+n} = \Ex[\TranShkEmp]=1~\forall~n>0$.}
+  The solution to a perfect foresight problem of this kind takes the
+  form\footnote{For a derivation, see \cite{BufferStockTheory}; $\MPCmin_{t}$ is defined therein as the MPC of the perfect foresight consumer with horizon $T-t$.}
+\end{verbatimwrite}
+\input{./cctwMoM/MoM-Prelims.tex}\unskip
+\begin{verbatimwrite}{./Equations/cFuncAbove.tex}
+  \begin{equation}\begin{gathered}\begin{aligned}
+        \cFuncAbove_{t}(\mNrm_{t})  & = (\mNrm_{t} + \hNrm_{\EndStep})\MPCmin_{t} \label{eq:cFuncAbove}
+      \end{aligned}\end{gathered}\end{equation}
+  for a constant minimal marginal propensity to consume $\MPCmin_{t}$ given below.
+\end{verbatimwrite}
+\input{./Equations/cFuncAbove.tex}\unskip
+
 \import{./Equations/}{cFuncAbove.tex} 
 \import{\econtexRoot/}{cctwMoM/MoM-Words.tex}
 

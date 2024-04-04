@@ -91,6 +91,16 @@
   *{package}{manyfoot}    {2019/08/03 v1.11}
   *{package}{nccfoots}    {2005/02/03 v1.2}
   *{package}{perpage}     {2014/10/25 v2.0}
+  *{package}{./Resources/LaTeXInputs/local}{0000/00/00 v0.0}
+  *{package}{listings}    {2024/02/21 v1.10}
+  *{package}{lstpatch}    {2024/02/21 v1.10}
+  *{package}{lstpatch}    {2024/02/21 v1.10}
+  *{package}{lstmisc}     {2024/02/21 v1.10}
+  *{package}{lstmisc}     {2024/02/21 v1.10}
+  *{file}   {listings.cfg}{2024/02/21 v1.10}
+  *{file}   {listings.cfg}{2024/02/21 v1.10}
+  *{package}{mathtools}   {2022/06/29 v1.29}
+  *{package}{mhsetup}     {2021/03/18 v1.4}
   *{package}{xr-hyper}    {2024-01-20 v7.01h}
   *{package}{./Resources/texmf-local/tex/latex/econark}{0000/00/00 v0.0}
   *{package}{subfiles}    {2020/11/14 v2.2}
@@ -128,9 +138,11 @@
   *{package}{atbegshi-ltx}{2021/01/10 v1.0c}
   *{file}   {htex4ht.def} {2024-01-20 v7.01h}
   *{file}   {htex4ht.def} {2024-01-20 v7.01h}
-  *{package}{./Resources/LaTeXInputs/local}{0000/00/00 v0.0}
   *{package}{./Resources/LaTeXInputs/pdfsuppressruntime}{0000/00/00 v0.0}
+  *{file}   {./Resources/LaTeXInputs/owner.tex}{0000/00/00 v0.0}
   *{package}{./Resources/texmf-local/tex/latex/econtexShortcuts}{0000/00/00 v0.0}
+  *{package}{switches}    {0000/00/00 v0.0}
+  *{package}{showlabels}  {2022/07/18 v1.9.2}
   *{file}   {ifthen.4ht}  {0000/00/00 v0.0}
   *{file}   {changepage.4ht}{0000/00/00 v0.0}
   *{file}   {scrartcl.4ht}{0000/00/00 v0.0}
@@ -165,6 +177,8 @@
   *{file}   {url.4ht}     {0000/00/00 v0.0}
   *{file}   {natbib.4ht}  {0000/00/00 v0.0}
   *{file}   {footmisc.4ht}{0000/00/00 v0.0}
+  *{file}   {listings.4ht}{0000/00/00 v0.0}
+  *{file}   {mathtools.4ht}{0000/00/00 v0.0}
   *{file}   {xr-hyper.4ht}{0000/00/00 v0.0}
   *{file}   {subfiles.4ht}{0000/00/00 v0.0}
   *{file}   {ushort.4ht}  {0000/00/00 v0.0}
@@ -189,65 +203,5 @@
   *{file}   {t1cmtt.fd}   {2023/04/13 v2.5m}
   *{file}   {t1cmtt.fd}   {2023/04/13 v2.5m}
   *{file}   {./Excerpts/the-problem.texinput}{0000/00/00 v0.0}
-  *{file}   {./Equations/MaxProb.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/ExogVars.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/vrecurse.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/vNormed.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/Envelope.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/cEuler.tex}{0000/00/00 v0.0}
-  *{file}   {./Excerpts/stages.texinput}{0000/00/00 v0.0}
-  *{file}   {./Excerpts/stage-notation.texinput}{0000/00/00 v0.0}
-  *{file}   {./Equations/vBegStge.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/vMidStge.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/vEndStge.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/vEndtdefn.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/upEqbetaOp.tex}{0000/00/00 v0.0}
-  *{file}   {./Figures/discreteApprox.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/vDiscrete.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/vEndTm1.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/FOCTm1.tex}{0000/00/00 v0.0}
-  *{file}   {ueuf.fd}     {2013/01/14 v3.01}
-  *{file}   {ueuf.fd}     {2013/01/14 v3.01}
-  *{file}   {./cctwMoM/EndogGptsProbs.tex}{0000/00/00 v0.0}
-  *{file}   {./cctwMoM/MoM-Prelims.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/cFuncAbove.tex}{0000/00/00 v0.0}
-  *{file}   {./cctwMoM/MoM-Words.tex}{0000/00/00 v0.0}
-  *{file}   {./Figures//IntExpFOCInvPesReaOptNeedHiPlot.tex}{0000/00/00 v0.0}
-  *{file}   {./cctwMoM/MoM-Words-Rest.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/MoM-Inequalities.tex}{0000/00/00 v0.0}
-  *{file}   {./cctwMoM/MoM-Inequalities-Describe.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/MoM-KoppaOfMu.tex}{0000/00/00 v0.0}
-  *{file}   {./cctwMoM/MoM-KoppaOfMu-Describe.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/cFuncHi.tex}{0000/00/00 v0.0}
-  *{file}   {./cctwMoM/MoM-End.tex}{0000/00/00 v0.0}
-  *{file}   {./cctwMoM/value-Intro.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/vFuncPF.tex}{0000/00/00 v0.0}
-  *{file}   {./cctwMoM/value-Rest.tex}{0000/00/00 v0.0}
-  *{file}   {./cctwMoM/Tighter.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/mtCusp.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/TighterUpperBound.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/koppaLo.tex}{0000/00/00 v0.0}
-  *{file}   {./cctwMoM/TighterThreeFuncs.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/TighterThreeEqns.tex}{0000/00/00 v0.0}
-  *{file}   {./cctwMoM/TighterThreeFuncsExplain.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/distRisky.tex}{0000/00/00 v0.0}
-  *{file}   {ueus.fd}     {2013/01/14 v3.01}
-  *{file}   {ueus.fd}     {2013/01/14 v3.01}
-  *{file}   {./Equations/LiqCons.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/vEndeq.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/Rport.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/PortProb.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/valfuncFOCRtilde.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/EulercRiskyR.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/FOCw.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/lifecyclemax.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/dbc-with-permshk.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/subjectTo.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/shocks-for-lifecycle.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/LifeCycleMaxNormed.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/FOCLifeCycle.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/naivePowell.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/StructEstim.tex}{0000/00/00 v0.0}
-  *{file}   {./Tables/EstResults.tex}{0000/00/00 v0.0}
   *{file}   {SolvingMicroDSOPs.bbl}{0000/00/00 v0.0}
 }
