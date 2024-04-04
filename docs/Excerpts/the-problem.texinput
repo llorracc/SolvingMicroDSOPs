@@ -1,4 +1,4 @@
-      The usual analysis of dynamic stochastic programming problems packs a great many events (intertemporal choice, stochastic shocks, intertemporal returns, income growth, and more) into a single step in which the agent makes an optimal choice taking account of all the elements above. For the detailed analysis here, we will be careful to disarticulate everything that happens in the problem explicitly into separate steps so that each element can be scrutinized and understood in isolation.
+      The usual analysis of dynamic stochastic programming problems packs a great many events (intertemporal choice, stochastic shocks, intertemporal returns, income growth, the taking of expectations, and more) into a single step in which the agent makes an optimal choice taking account of all of these elements. For the detailed analysis here, we will be careful to disarticulate everything that happens in the problem explicitly into separate steps so that each element can be scrutinized and understood in isolation.
 
       We are interested in the behavior a consumer who begins {\interval} $t$ with a certain amount of `capital' $\kLvl_{t}$, which is immediately rewarded by a return factor $\Rfree_{t}$ with the proceeds deposited in a \textbf{b}ank account \textbf{b}alance:
       \begin{equation}\begin{gathered}\begin{aligned}
@@ -12,10 +12,10 @@
   \end{aligned}\end{gathered}\end{equation}
 whose whose expectation is 1 (that is, before realization of the transitory shock, the consumer's expectation is that actual income will on average be equal to permanent income $\pLvl_{t}$).
 
-The combination of bank balances $\bLvl$ and income $\yLvl$ define's the consumer's `market resources' (sometimes called `cash-on-hand', following~\cite{deatonUnderstandingC}):
+The combination of bank balances $\bLvl$ and income $\yLvl$ define's the consumer's `market resources' (sometimes called `cash-on-hand,' following~\cite{deatonUnderstandingC}):
 \begin{equation}\begin{gathered}\begin{aligned}
   \mLvl_{t} & = \bLvl_{t}+\yLvl_{t} \label{eq:mLvl},
 \end{aligned}\end{gathered}\end{equation}
-which are available to be spent on consumption $\cLvl_{t}$.
+available to be spent on consumption $\cLvl_{t}$ for a consumer subject to a liquidity constraint that requires $\cLvl \leq \mLvl$.
 
-The consumer's goal is to maximize discounted utility from consumption over the rest of a lifetime whose last {\interval} is date $T$:
+The consumer's goal is to maximize discounted utility from consumption over the rest of a lifetime ending at date $T$:

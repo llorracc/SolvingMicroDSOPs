@@ -207,7 +207,7 @@ using the FOC:
 \frametitle{Trick: Interpolate a Consumption Rule}
 
 \begin{enumerate}
-\item Define a grid of points $\vec{\mRat}$ (indexed $\mRat[i]$)
+\item Define a grid of points $\vctr{\mRat}$ (indexed $\mRat[i]$)
 \item Use numerical rootfinder to solve 
 $\util^{\prime}(\cNrm) = \vEnd^{\prime}_{t}(\mRat[i]-\cNrm)$
 \begin{itemize}
@@ -229,7 +229,7 @@ $\util^{\prime}(\cNrm) = \vEnd^{\prime}_{t}(\mRat[i]-\cNrm)$
 \begin{frame}[label=DiscretizeEqn]
 \frametitle{Trick: Interpolate a Consumption Rule}
 
-Example: $\vec{\mRat}_{T-1} = \{0.,1.,2.,3.,4.\}$ (solid is `correct' soln)
+Example: $\vctr{\mRat}_{T-1} = \{0.,1.,2.,3.,4.\}$ (solid is `correct' soln)
 
 \includegraphics[width=4.0in]{./Figures/PlotcTm1Simple.pdf}
 
@@ -240,7 +240,7 @@ Example: $\vec{\mRat}_{T-1} = \{0.,1.,2.,3.,4.\}$ (solid is `correct' soln)
 
 Numerical search for values of $\cNrm_{T-1}$ satisfying
 $\util^{\prime}(\cNrm) = \vEnd^{\prime}_{t}(\mRat[i]-\cNrm)$ at, say,
-6 gridpoints of $\vec{\mRat}_{T-1}$ may require hundreds or even thousands of
+6 gridpoints of $\vctr{\mRat}_{T-1}$ may require hundreds or even thousands of
 evaluations of
 \begin{equation}\begin{gathered}\begin{aligned}
         \vEnd^{\prime}_{T-1}(\overbrace{{m}_{T-1}-{\cNrm}_{T-1}}^{\aRat_{T-1}})  & =   \Discount_{T} \PermGroFac_{T}^{1-\CRRA}\left(\frac{1}{n}\right)\sum_{i=1}^{n}   \left( \RNrm_{T} {a}_{T-1} + \TranShkEmp_{i}\right)^{-\CRRA} \notag
@@ -256,7 +256,7 @@ evaluations of
 \begin{frame}[label=vApprox]
 \frametitle{Solution: Approximate $\vEnd$?}
 
-\pause Given $\{\vec{\aRat}_{T-1},\vec{\vEnd}_{T-1}\}$, an approximate function $\grave{\vEnd}_{T-1}$ 
+\pause Given $\{\vctr{\aRat}_{T-1},\vctr{\vEnd}_{T-1}\}$, an approximate function $\grave{\vEnd}_{T-1}$ 
 can be constructed by linear interpolation among the points:
 
 \includegraphics[width=4in]{./Figures/PlotOTm1RawVsInt.pdf}
@@ -294,7 +294,7 @@ Better ... but still violates first two principles:
 \pause 
 
 \begin{itemize}
-\item Define vector of {\it end-of-period} asset values $\vec{\aRat}$
+\item Define vector of {\it end-of-period} asset values $\vctr{\aRat}$
 \item For each $\aRat[j]$ compute $\vEnd_{t}^{\prime}(\aRat[j])$
 \end{itemize}
 
@@ -316,7 +316,7 @@ But the DBC says
 \end{aligned}\end{gathered}\end{equation}
 
 \pause 
-So computing $\vEnd_{t}^{\prime}$ at a vector of $\vec{\aRat}$ values has produced for us the corresponding $\vec{\cNrm}$ and $\vec{\mRat}$ 
+So computing $\vEnd_{t}^{\prime}$ at a vector of $\vctr{\aRat}$ values has produced for us the corresponding $\vctr{\cNrm}$ and $\vctr{\mRat}$ 
 values at virtually no cost!  
 
 \pause 
@@ -411,7 +411,7 @@ and using chain rule it is easy to show that
 \begin{frame}
 \frametitle{To Implement: Modify Prior Procedures in Two Ways}
 \begin{enumerate}
-\item Construct $\vec{\cFunc}^{\mRat}_{t}$ along with $\vec{\cFunc}_{t}$ in EGM algorithm
+\item Construct $\vctr{\cFunc}^{\mRat}_{t}$ along with $\vctr{\cFunc}_{t}$ in EGM algorithm
 \item Approximate $\cFunc_{t}(m)$ using piecewise Hermite polynomial
 \begin{itemize}
 \item Exact match to both level and derivative at set of points
@@ -432,12 +432,12 @@ Consider what happens as ${a}_{T-1}$ approaches $\underline{a}_{T-1}\equiv-\unde
 \\  & = \infty
 \end{aligned}\end{gathered}\end{equation*}
 
-This means our lowest value in $\vec{\aRat}_{T-1}$ should be $> \underline{\aRat}_{T-1}$.  
+This means our lowest value in $\vctr{\aRat}_{T-1}$ should be $> \underline{\aRat}_{T-1}$.  
 
 \medskip
 Suppose we construct $\Alt{\cFunc}$ by linear interpolation:
 \begin{equation*}\begin{gathered}\begin{aligned}
-  \Alt{\cFunc}_{T-1}(\mRat)  & = \Alt{\cFunc}_{T-1}(\vec{\mRat}_{T-1}[1])+\Alt{\cFunc}_{T-1}^{\prime}(\vec{\mRat}_{T-1}[1])({\mRat}-\vec{\mRat}_{T-1}[1]) \label{eq:ExtrapLin}
+  \Alt{\cFunc}_{T-1}(\mRat)  & = \Alt{\cFunc}_{T-1}(\vctr{\mRat}_{T-1}[1])+\Alt{\cFunc}_{T-1}^{\prime}(\vctr{\mRat}_{T-1}[1])({\mRat}-\vctr{\mRat}_{T-1}[1]) \label{eq:ExtrapLin}
 \end{aligned}\end{gathered}\end{equation*}
 
 True $\cFunc$ is strictly concave 
@@ -457,11 +457,11 @@ Theory says that
 \medskip 
 
 \begin{enumerate}
-\item Redefine $\vec{\aRat}$ {\it relative} to $\uline{\aRat}_{T-1}$
-\item Construct corresponding $\vec{\mRat}_{T-1}$ and $\vec{\cNrm}_{T-1}$
-\item Prepend $\uline{\mRat}_{T-1}$ to $\vec{\mRat}_{T-1}$
-\item Prepend $0.$ to $\vec{\cNrm}_{T-1}$
-\item Prepend $\MPCmax_{T-1}$ to $\vec{\MPC}_{T-1}$
+\item Redefine $\vctr{\aRat}$ {\it relative} to $\uline{\aRat}_{T-1}$
+\item Construct corresponding $\vctr{\mRat}_{T-1}$ and $\vctr{\cNrm}_{T-1}$
+\item Prepend $\uline{\mRat}_{T-1}$ to $\vctr{\mRat}_{T-1}$
+\item Prepend $0.$ to $\vctr{\cNrm}_{T-1}$
+\item Prepend $\MPCmax_{T-1}$ to $\vctr{\MPC}_{T-1}$
 \end{enumerate}
 then proceed as before.
 
@@ -520,8 +520,8 @@ Point where constraint makes transition from binding to not is
 
 Procedure is very easy:
 \begin{itemize}
-\item Add $0.$ as first point in $\vec{\aRat}$
-\item $\Rightarrow \vec{\mRat}[1] = \mRat_{T-1}^{\#}$
+\item Add $0.$ as first point in $\vctr{\aRat}$
+\item $\Rightarrow \vctr{\mRat}[1] = \mRat_{T-1}^{\#}$
 \item Above $\mRat_{T-1}^{\#}$, $\grave{\cFunc}_{T-1}(\mRat)$ obtained as before
 \item Below $\mRat_{T-1}^{\#}$, $\grave{\cFunc}_{T-1}(\mRat)=\mRat$
 \end{itemize}
@@ -543,7 +543,7 @@ Procedure is very easy:
 \begin{enumerate}
 \item Construct 
 \input{./Equations/vEndeq.tex}
-\item Call the result $\vec{\cNrm}_{t}$ and generate the corresponding $\vec{\mRat}_{t}=\vec{\cNrm}_{t}+\vec{\aRat}_{t}$
+\item Call the result $\vctr{\cNrm}_{t}$ and generate the corresponding $\vctr{\mRat}_{t}=\vctr{\cNrm}_{t}+\vctr{\aRat}_{t}$
 \item Interpolate to create $\grave{\cNrm}_{t}(\mRat)$
 \end{enumerate}
 
@@ -624,12 +624,12 @@ the solution to have converged when
 \end{frame}
 
 \begin{frame}
-\frametitle{Trick: Coarse then Fine $\vec{\aRat}_{T-1}$}
+\frametitle{Trick: Coarse then Fine $\vctr{\aRat}_{T-1}$}
 
 \begin{enumerate}
-\item Start with coarse grid for $\vec{\aRat}$ (say, 5 gridpoints)
+\item Start with coarse grid for $\vctr{\aRat}$ (say, 5 gridpoints)
 \item Solve to convergence; call period of convergence $n$
-\item Construct finer grid for $\vec{\aRat}$ (say, 20 points)
+\item Construct finer grid for $\vctr{\aRat}$ (say, 20 points)
 \item Solve for period $T-n-1$ assuming $\Alt{\cFunc}_{T-n}$ 
 \item Continue to convergence
 \end{enumerate}
