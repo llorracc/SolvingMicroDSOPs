@@ -1,14 +1,5 @@
  
 /* start css.sty */
-.cmex-10{font-size:83%;}
-.line-10{font-size:83%;}
-.cmr-7{font-size:58%;}
-.cmr-10{font-size:83%;}
-.cmmi-5{font-size:41%;font-style: italic;}
-.cmmi-7{font-size:58%;font-style: italic;}
-.cmmi-10{font-size:83%;font-style: italic;}
-.cmsy-7{font-size:58%;}
-.cmsy-10{font-size:83%;}
 .ecti-1200{ font-style: italic;}
 .ecti-1200{ font-style: italic;}
 .ecti-1200{ font-style: italic;}
@@ -21,12 +12,6 @@
 .ecti-1200{ font-style: italic;}
 .ecti-1200{ font-style: italic;}
 .ecti-1200{ font-style: italic;}
-.ecti-1200{ font-style: italic;}
-.ecti-1200{ font-style: italic;}
-.ecti-1200{ font-style: italic;}
-.ecbx-1200{ font-weight: bold;}
-.ecbx-1200{ font-weight: bold;}
-.ecbx-1200{ font-weight: bold;}
 .ecbx-1200{ font-weight: bold;}
 .ecbx-1200{ font-weight: bold;}
 .ecbx-1200{ font-weight: bold;}
@@ -40,7 +25,6 @@
 .ecbx-1200{ font-weight: bold;}
 .ecbx-1200{ font-weight: bold;}
 .ecrm-0600{font-size:50%;}
-.ecrm-2074{font-size:166%;}
 .ecbx-2074{font-size:166%; font-weight: bold;}
 .ecbx-2074{ font-weight: bold;}
 .ecbx-2074{ font-weight: bold;}
@@ -53,17 +37,10 @@
 .ecbx-2074{ font-weight: bold;}
 .ecbx-2074{ font-weight: bold;}
 .ecbx-2074{ font-weight: bold;}
-.ecbx-2074{ font-weight: bold;}
-.ecbx-2074{ font-weight: bold;}
-.ecbx-2074{ font-weight: bold;}
 .ecrm-1440{font-size:116%;}
-.msbm-10{font-size:83%;}
 .ecrm-1095{font-size:83%;}
 .ecrm-1000{font-size:83%;}
 .ectt-1000{font-size:83%; font-family: monospace,monospace;}
-.ectt-1000{ font-family: monospace,monospace;}
-.ectt-1000{ font-family: monospace,monospace;}
-.ectt-1000{ font-family: monospace,monospace;}
 .ectt-1000{ font-family: monospace,monospace;}
 .ectt-1000{ font-family: monospace,monospace;}
 .ectt-1000{ font-family: monospace,monospace;}
@@ -87,9 +64,6 @@
 .ecti-1095{ font-style: italic;}
 .ecti-1095{ font-style: italic;}
 .ecti-1095{ font-style: italic;}
-.ecti-1095{ font-style: italic;}
-.ecti-1095{ font-style: italic;}
-.ecti-1095{ font-style: italic;}
 .ecti-1000{font-size:83%; font-style: italic;}
 .ecti-1000{ font-style: italic;}
 .ecti-1000{ font-style: italic;}
@@ -102,24 +76,6 @@
 .ecti-1000{ font-style: italic;}
 .ecti-1000{ font-style: italic;}
 .ecti-1000{ font-style: italic;}
-.ecti-1000{ font-style: italic;}
-.ecti-1000{ font-style: italic;}
-.ecti-1000{ font-style: italic;}
-.ecbx-1000{font-size:83%; font-weight: bold;}
-.ecbx-1000{ font-weight: bold;}
-.ecbx-1000{ font-weight: bold;}
-.ecbx-1000{ font-weight: bold;}
-.ecbx-1000{ font-weight: bold;}
-.ecbx-1000{ font-weight: bold;}
-.ecbx-1000{ font-weight: bold;}
-.ecbx-1000{ font-weight: bold;}
-.ecbx-1000{ font-weight: bold;}
-.ecbx-1000{ font-weight: bold;}
-.ecbx-1000{ font-weight: bold;}
-.ecbx-1000{ font-weight: bold;}
-.ecbx-1000{ font-weight: bold;}
-.ecbx-1000{ font-weight: bold;}
-.ecbx-1000{ font-weight: bold;}
 .ectt-1200{ font-family: monospace,monospace;}
 .ectt-1200{ font-family: monospace,monospace;}
 .ectt-1200{ font-family: monospace,monospace;}
@@ -132,48 +88,11 @@
 .ectt-1200{ font-family: monospace,monospace;}
 .ectt-1200{ font-family: monospace,monospace;}
 .ectt-1200{ font-family: monospace,monospace;}
-.ectt-1200{ font-family: monospace,monospace;}
-.ectt-1200{ font-family: monospace,monospace;}
-.ectt-1200{ font-family: monospace,monospace;}
-.cmr-8{font-size:66%;}
-.cmr-6{font-size:50%;}
 .cmmi-12{font-style: italic;}
 .cmmi-8{font-size:66%;font-style: italic;}
-.cmmi-6{font-size:50%;font-style: italic;}
-.cmsy-8{font-size:66%;}
-.cmsy-6{font-size:50%;}
 .cmbx-12{ font-weight: bold;}
-.cmbx-12{ font-weight: bold;}
-.cmbx-12{ font-weight: bold;}
-.cmbx-8{font-size:66%; font-weight: bold;}
-.cmbx-8{ font-weight: bold;}
-.cmbx-8{ font-weight: bold;}
 .cmss-12{  font-family: sans-serif;}
-.cmss-12{  font-family: sans-serif;}
-.cmbx-10{font-size:83%; font-weight: bold;}
-.cmbx-10{ font-weight: bold;}
-.cmbx-10{ font-weight: bold;}
-.cmss-10{font-size:83%;  font-family: sans-serif;}
-.cmss-10{  font-family: sans-serif;}
-.ecit-1000{font-size:83%; font-style: italic; font-family: monospace,monospace;}
-.ecit-1000{ font-style: italic; font-family: monospace,monospace;}
-.ecit-1000{ font-style: italic; font-family: monospace,monospace;}
-.ecit-1000{ font-style: italic; font-family: monospace,monospace;}
-.ecit-1000{ font-style: italic; font-family: monospace,monospace;}
-.ecit-1000{ font-style: italic; font-family: monospace,monospace;}
-.ecit-1000{ font-style: italic; font-family: monospace,monospace;}
-.ecit-1000{ font-style: italic; font-family: monospace,monospace;}
-.ecit-1000{ font-style: italic; font-family: monospace,monospace;}
-.ecit-1000{ font-style: italic; font-family: monospace,monospace;}
-.ecit-1000{ font-style: italic; font-family: monospace,monospace;}
-.ecit-1000{ font-style: italic; font-family: monospace,monospace;}
-.ecit-1000{ font-style: italic; font-family: monospace,monospace;}
-.ecit-1000{ font-style: italic; font-family: monospace,monospace;}
-.ecit-1000{ font-style: italic; font-family: monospace,monospace;}
-.cmtt-12{font-family: monospace,monospace;}
-.cmtt-12{font-family: monospace,monospace;}
-.cmtt-8{font-size:66%;font-family: monospace,monospace;}
-.cmtt-8{font-family: monospace,monospace;}
+.small-caps{font-variant: small-caps; }
 p{margin-top:0;margin-bottom:0}
 p.indent{text-indent:0;}
 p + p{margin-top:1em;}
