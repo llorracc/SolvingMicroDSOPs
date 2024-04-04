@@ -2,10 +2,6 @@
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/econ-ark/SolvingMicroDSOPs/HEAD)
 
-## Installation
-
-See the instructions at https://econ-ark.org/materials/SolvingMicroDSOPs
-
 ## Structure
 
 - [Jupyter notebook](./Code/Python/SolvingMicroDSOP-Python.ipynb) corresponding to the SolvingMicroDSOPs lecture notes
