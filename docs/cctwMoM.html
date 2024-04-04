@@ -1,0 +1,226 @@
+<!DOCTYPE html> 
+<html lang="en" xml:lang="en" > 
+<head>
+  <title>The Method of Moderation</title> 
+<meta  charset="utf-8" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="cctwMoM.css" /> 
+<meta name="src" content="cctwMoM.tex"> 
+</head><body 
+>
+  <div class="maketitle">
+<h2 class="titleHead">The Method of Moderation</h2>
+<div class="date" >March 28, 2024</div>
+<span 
+class="ecrm-0600"> </span>
+ <div class="author" ><span 
+class="ecrm-1440">Christopher D. Carroll</span><sup class="textsuperscript"><span 
+class="ecrm-0600">1</span></sup>
+<br /> <span 
+class="ecrm-1095">JHU </span><br class="and" /><span 
+class="ecrm-1440">Karsten Chipeniuk</span>
+<br />  <span 
+class="ecrm-1095">RBNZ </span><br class="and" /><span 
+class="ecrm-1440">Kiichi Tokuoka</span><sup class="textsuperscript"><span 
+class="ecrm-0600">2</span></sup>
+<br />     <span 
+class="ecrm-1095">ECB </span><br class="and" /><span 
+class="ecrm-1440">Weifeng Wu</span><sup class="textsuperscript"><span 
+class="ecrm-0600">3</span></sup>
+<br />         <span 
+class="ecrm-1095">Fannie Mae </span></div><br />
+</div>
+  <section role="doc-abstract" class="abstract"> 
+
+<!--l. 72--><p class="noindent" > <br 
+class="newline" />_____________________________________________________________________________________
+<!--l. 72--><p class="noindent" ><span 
+class="ecbx-1200">Abstract</span><br 
+class="newline" />   <span 
+class="ecrm-1095">In a risky world, a pessimist assumes the worst will happen. Someone who ignores risk altogether</span>
+<span 
+class="ecrm-1095">is an optimist. Consumption decisions are mathematically simple for both the pessimist and the</span>
+<span 
+class="ecrm-1095">optimist because both behave as if they live in a riskless world. A realist (that is, someone</span>
+<span 
+class="ecrm-1095">who wants to respond optimally to risk) faces a much more diﬃcult problem, but (under</span>
+<span 
+class="ecrm-1095">standard conditions) will choose a level of spending somewhere between pessimist’s and the</span>
+<span 
+class="ecrm-1095">optimist’s. We use this fact to redeﬁne the space in which the realist searches for optimal</span>
+<span 
+class="ecrm-1095">consumption rules. The resulting solution accurately represents the numerical consumption</span>
+<span 
+class="ecrm-1095">rule over the entire interval of feasible wealth values with remarkably few computations.</span>
+<br 
+class="newline" />
+        <blockquote class="quote">
+                     <dl class="list2"><dt class="list">
+<span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> Keywords</span><span 
+class="ecbx-1200"> </span></dt><dd 
+class="list">
+                 <!--l. 74--><p class="noindent" >Dynamic Stochastic Optimization
+                   </dd><dt class="list">
+<span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> </span><span 
+class="ecbx-1200"> JEL codes</span><span 
+class="ecbx-1200"> </span></dt><dd 
+class="list">
+                 <!--l. 74--><p class="noindent" >FillInLater</dd></dl>
+        </blockquote>
+</section>
+<!--l. 95--><p class="indent" >   <span class="footnote-mark"><sup class="textsuperscript"></sup></span>
+        <sup class="textsuperscript"></sup><!--l. 92--><p class="indent" > <sup class="textsuperscript">
+<span 
+class="ecrm-0600">1</span></sup><span 
+class="ecrm-1000">Carroll: Department of Economics, Johns Hopkins University, Baltimore, MD,</span>
+                                                                                     
+                                                                                     
+<!--l. 102--><p class="indent" >
+<a 
+href="http://econ.jhu.edu/people/ccarroll/" class="url" ><span 
+class="ectt-1000">http://econ.jhu.edu/people/ccarroll/</span></a><span 
+class="ecrm-1000">,  </span><a 
+href="mailto:ccarroll@jhu.edu" ><span 
+class="ectt-1000">ccarroll@jhu.edu</span></a><span 
+class="ecrm-1000"> </span><span 
+class="ecrm-1000"> </span><span 
+class="ecrm-1000"> </span><span 
+class="ecrm-1000">  </span><sup class="textsuperscript"><span 
+class="ecrm-0600">2</span></sup><span 
+class="ecrm-1000">Tokuoka: International Monetary</span>
+<span 
+class="ecrm-1000">Fund, Washington, DC,  </span><a 
+href="mailto:ktokuoka@imf.org" ><span 
+class="ectt-1000">ktokuoka@imf.org</span></a><span 
+class="ecrm-1000"> </span><span 
+class="ecrm-1000"> </span><span 
+class="ecrm-1000"> </span><span 
+class="ecrm-1000">  </span><sup class="textsuperscript"><span 
+class="ecrm-0600">3</span></sup><span 
+class="ecrm-1000">Wu: Weifeng Wu, Fanie Mae, Washington DC,</span>
+<a 
+href="mailto:weifeng_wu@fanniemae.com" ><span 
+class="ecrm-1000">.</span></a><span 
+class="ecrm-1000"> </span><span 
+class="ecrm-1000"> </span><span 
+class="ecrm-1000"> </span><span 
+class="ecrm-1000"> </span>
+                                                                                     
+                                                                                     
+<!--l. 107--><p class="indent" >  <a 
+ id="Introduction"></a>
+  <h3 class="sectionHead"><span class="titlemark">1  </span> <a 
+ id="x1-10001"></a>Introduction</h3>
+<!--l. 110--><p class="noindent" >Solving a consumption, investment, portfolio choice, or similar intertemporal optimization
+problem using numerical methods generally requires the modeler to choose how to
+represent a policy or value function. In the stochastic case, where analytical solutions
+are generally not available, a common approach is to use low-order polynominal
+splines that exactly match the function (and maybe some derivatives) at a ﬁnite
+set of gridpoints, and then to assume that interpolated or extrapolated versions
+of that spline represent the function well at the continuous inﬁnity of unmatched
+points.
+<!--l. 120--><p class="indent" >  This paper argues that a better approach in the standard consumption problem is to rely
+upon the fact that without uncertainty, the optimal consumption function has a simple
+analytical solution. The key insight is that, under standard assumptions, the consumer who
+faces an uninsurable labor income risk will consume less than a consumer with the same path
+for expected income but who does not perceive any uncertainty as being attached to that
+future income. The ‘realistic’ consumer, who  <span 
+class="ecti-1200">does </span>perceive the risks, will engage in
+‘precautionary saving,’ so the perfect foresight riskless solution provides an upper bound to
+the solution that will actually be optimal. A lower bound is provided by the behavior of a
+consumer who has the subjective belief that the future level of income will be the worst that it
+can possibly be. This consumer, too, behaves according to the convenient analytical perfect
+foresight solution, but his certainty is that of a pessimist perfectly conﬁdent in his
+pessimism.
+<!--l. 136--><p class="indent" >  Using results from <a 
+href="#XBufferStockTheory">Carroll</a> (<a 
+href="#XBufferStockTheory">2023</a>), we show how to use these upper and lower bounds to
+tightly constrain the shape and characteristics of the solution to problem of the ‘realist.’
+Imposition of these constraints can clarify and speed the solution of the realist’s
+problem.
+<!--l. 141--><p class="indent" >  After showing how to use the method in the baseline case, we show how reﬁne it to
+encompass an even tighter theoretical bound.
+<!--l. 146--><p class="indent" >  <a 
+ id="The-Realists-Problem"></a>
+  <h3 class="sectionHead"><span class="titlemark">2  </span> <a 
+ id="x1-20002"></a>The Realist’s Problem</h3>
+<!--l. 149--><p class="noindent" >We assume that truly optimal behavior in the problem facing the consumer who understands
+all his risks is captured by
+  <table 
+class="equation"><tr><td>
+                                                                                     
+                                                                                     
+  <div class="math-display" >
+<img 
+src="cctwMoM0x.svg" alt="        [T −t          ]
+         ∑    n
+max  𝔼t      β  u(ct+n ) .
+          n=0
+" class="math-display" ><a 
+ id="x1-2001r1"></a></div>
+  </td><td class="equation-label">(1)</td></tr></table>
+<!--l. 3--><p class="nopar" >
+  <h3 class="likesectionHead"><a 
+ id="x1-3000"></a>References</h3>
+<!--l. 5--><p class="noindent" >
+  <div class="thebibliography">
+  <p class="bibitem" ><span class="biblabel">
+<a 
+ id="XBufferStockTheory"></a><span class="bibsp">   </span></span><span 
+class="eccc1200-"><span 
+class="small-caps">C</span><span 
+class="small-caps">a</span><span 
+class="small-caps">r</span><span 
+class="small-caps">r</span><span 
+class="small-caps">o</span><span 
+class="small-caps">l</span><span 
+class="small-caps">l</span><span 
+class="small-caps">,</span>  <span 
+class="small-caps">C</span><span 
+class="small-caps">h</span><span 
+class="small-caps">r</span><span 
+class="small-caps">i</span><span 
+class="small-caps">s</span><span 
+class="small-caps">t</span><span 
+class="small-caps">o</span><span 
+class="small-caps">p</span><span 
+class="small-caps">h</span><span 
+class="small-caps">e</span><span 
+class="small-caps">r</span></span><span 
+class="eccc1200-"> <span 
+class="small-caps">D</span><span 
+class="small-caps">.</span>  </span>(2023):  “Theoretical  Foundations  of  Buﬀer  Stock
+  Saving,” <span 
+class="ecti-1200">Revise and Resubmit, Quantitative Economics</span>.
+</p>
+  </div>
+   
+</body> 
+</html>
+                                                                                     
+
+
