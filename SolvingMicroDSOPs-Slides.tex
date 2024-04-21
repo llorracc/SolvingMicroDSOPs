@@ -1,53 +1,23 @@
+% -*- mode: LaTeX; TeX-PDF-mode: t; -*- # Tell emacs the file type (for syntax)
 \input{./.econtexRoot}\documentclass{beamer}
-\usepackage{import}
-\usepackage{ulem}
+\newcommand{\texname}{SolvingMicroDSOPs-Slides}
+
 \usepackage[Overlays]{optional}
-\usepackage{ifthen}
+\usepackage{Resources/LaTeXInputs/local}
+\usepackage{ulem}   % used in slides
+
 \usepackage{\econtexShortcuts}
-%\usepackage{bbm}
-\providecommand{\Ex}{\ensuremath{\mathbb{E}}} % Expectations operator defined in econtex.cls
-\usepackage{\LaTeXInputs/SolvingMicroDSOPs}
-\usepackage{econark}
-% if this is uncommented, bullets are shown step by step; comment out to make printable version
+\usepackage{\econark}
+
+% if this is uncommented, bullets are shown step by step; comment out to make printable version:
 \beamerdefaultoverlayspecification{<+->}
 
-% MPCMatch
-\provideboolean{MPCMatchVersion}
-\setboolean{MPCMatchVersion}{true}
-\setboolean{MPCMatchVersion}{false}
-\newcommand{\MPCMatch}{\ifthenelse{\boolean{MPCMatchVersion}}}
-
-\newboolean{DiscountSubOn}
-\setboolean{DiscountSubOn}{false}
-\providecommand{\TimeFactor}{\Discount}
-\ifthenelse{\boolean{DiscountSubOn}}{\Discount_{t+1}}{}
-\newcommand{\ifTimeSubT}{}
-\ifthenelse{\boolean{DiscountSubOn}}{\renewcommand{\ifTimeSubT}{_{T}}}{}
-\newcommand{\ifTimeSubNext}{}
-\ifthenelse{\boolean{DiscountSubOn}}{\renewcommand{\ifTimeSubNext}{_{t+1}}}{}
-
-\newboolean{RfreeSubOn}
-\setboolean{RfreeSubOn}{false}
-\providecommand{\R}{\Rfree}
-\ifthenelse{\boolean{RfreeSubOn}}{\Rfree_{t+1}}{}
-
-\usepackage{ifthen}
-\newboolean{WithOverlays}
-\setboolean{WithOverlays}{true}
-\usepackage{optional}
+\usepackage{\texname-options}
+% if invoked from shell with option NoOverlays, make printable version
+% (no partial slides where bullets unfold)
 \opt{NoOverlays}{\setboolean{WithOverlays}{false}\beamerdefaultoverlayspecification{}}
-\usepackage{moreverb}
-
-\usepackage{cancel}
-\usepackage{econtexShortcuts}
-\usepackage{wasysym}
-%\usepackage{dcolumn}
-% \usepackage[notocbib]{apacite}
-%\renewcommand{\frametitle}{\textbf\frametitle}
-
 
 % Jirka's definitions
-\usepackage[authoryear]{natbib}
 \definecolor{jirkasred}{rgb}{0.9,0,0}
 \newcommand{\jemph}[1]{{\color{jirkasred}#1}}
 \def\newblock{\hskip .11em plus .33em minus .07em}
@@ -59,9 +29,6 @@
   \setbeamercovered{transparent}
 }
 
-% if this is on, bullets are shown step by step
-% \beamerdefaultoverlayspecification{<+->}
-
 %\setbeamertemplate{navigation symbols}{}  % Take away navigation symbols
 
 \usetheme{Frankfurt}
@@ -69,8 +36,6 @@
 %_____________ Opening slide _______________________
 
 \begin{document}
-
-%\begin{verbatimwrite}{./SolvingMicroDSOPs-Slides-body.tex}
 
 \title[SolvingMicroDSOPs]{\textbf{Structural Estimation of Dynamic Stochastic\\ Optimizing Models of Intertemporal Choice \\ \LARGE{For Dummies!}}}
 \author[Carroll]{Christopher Carroll\inst{1}}
@@ -457,9 +422,9 @@ Theory says that
 \medskip 
 
 \begin{enumerate}
-\item Redefine $\vctr{\aRat}$ {\it relative} to $\uline{\aRat}_{T-1}$
+\item Redefine $\vctr{\aRat}$ {\it relative} to $\underline{\aRat}_{T-1}$
 \item Construct corresponding $\vctr{\mRat}_{T-1}$ and $\vctr{\cNrm}_{T-1}$
-\item Prepend $\uline{\mRat}_{T-1}$ to $\vctr{\mRat}_{T-1}$
+\item Prepend $\underline{\mRat}_{T-1}$ to $\vctr{\mRat}_{T-1}$
 \item Prepend $0.$ to $\vctr{\cNrm}_{T-1}$
 \item Prepend $\MPCmax_{T-1}$ to $\vctr{\MPC}_{T-1}$
 \end{enumerate}
@@ -478,7 +443,7 @@ Grid Spacing: Uniform
 
 \begin{frame}
 \frametitle{Trick: Improving the $\aRat$ Grid}
-Grid Spacing: Same $\{\uline{\aRat},\bar{\aRat}\}$ But Triple Exponential $e^{e^{e^{...}}}$ Growth
+Grid Spacing: Same $\{\underline{\aRat},\bar{\aRat}\}$ But Triple Exponential $e^{e^{e^{...}}}$ Growth
 
 \includegraphics[width=4in]{./Figures/GothVInvVSGothCEEE.pdf}
 

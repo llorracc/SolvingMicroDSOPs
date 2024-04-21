@@ -1,0 +1,53 @@
+\input{./.econtexRoot}\documentclass[SolvingMicroDSOPs]{subfiles}
+\input{subfile-start}
+
+\begin{document}
+\hypertarget{normalization}{}
+\section{Normalization}\label{sec:normalization}
+
+The single most powerful method for speeding the solution of such models is to redefine the problem in a way that reduces the number of state variables (if at all possible).  In the consumption context, the obvious idea is to see whether the problem can be rewritten in terms of the ratio of various variables to permanent noncapital (`labor') income $\pLvl_{\prd}$ (henceforth for brevity, `permanent income.')
+
+%\renewcommand{\prd}{T}
+In the last {\interval} of life, there is no future, ${\vLvl}_{\trmT+1} = 0$, so the optimal plan is to consume everything:
+\begin{equation}\begin{gathered}\begin{aligned}
+      {\vLvl}_{\prdT}(\mLvl_{\prdT},\pLvl_{\prdT})  & = \frac{\mLvl_{\prdT}^{1-\CRRA}}{1-\CRRA}. \label{eq:levelTm1}
+    \end{aligned}\end{gathered}\end{equation}
+Now define nonbold variables as the bold variable divided by the level of permanent income in the same period, so that, for example, ${m}_{\prdT}=\mLvl_{\prdT}/\pLvl_{\prdT}$; and define $\vFunc_{\prdT}({m}_{\prdT}) = \uFunc({m}_{\prdT})$.\footnote{Nonbold value is bold value divided by $\pLvl^{1-\CRRA}$ rather than $\pLvl$.}  For our CRRA utility function, $\uFunc(xy)=x^{1-\CRRA}\uFunc(y)$, so (\ref{eq:levelTm1}) can be rewritten as
+\begin{equation}\begin{gathered}\begin{aligned}
+      {\vLvl}_{\prdT}(\mLvl_{\prdT},\pLvl_{\prdT}) & = \pLvl_{\prdT}^{1-\CRRA}\frac{{m}_{\prdT}^{1-\CRRA}}{1-\CRRA}                       \\
+                                                & = (\pLvl_{\prdT-1}\PermGroFac_{\prdT})^{1-\CRRA}\frac{{m}_{\prdT}^{1-\CRRA}}{1-\CRRA} \\
+                                                &= \pLvl_{\prdT-1}^{1-\CRRA}\PermGroFac_{\prdT}^{1-\CRRA}\vFunc_{\prdT}({m}_{\prdT}). \label{eq:vT}
+    \end{aligned}\end{gathered}\end{equation}
+
+%\renewcommand{\prd}{t}
+Now define a new (dissected) optimization problem:
+\begin{verbatimwrite}{./Equations/vNormed.tex}
+  \begin{equation}\begin{gathered}\begin{aligned}
+        {\vFunc}_{\prd}({m}_{\prd}) & = \max_{{c}_{\prd}} ~~ \uFunc({c}_{\prd})+
+        {\DiscFac}\Ex_{\prd}[ \PermGroFac_{\prd+1}^{1-\CRRA}{\vFunc}_{\prd+1}({m}_{\prd+1})] \label{eq:vNormed}                   \\
+                                         & \text{s.t.}                                                                                 \\
+        {a}_{\prd}                       & = {m}_{\prd}-{c}_{\prd}                                                                     \\
+        {k}_{\prd+1}                     & = {a}_{\prd}                                                                                \\
+        {b}_{\prd+1}                     & = \underbrace{\left(\Rfree/\PermGroFac_{\prd+1}\right)}_{\equiv \RNrm_{\prd+1}}{k}_{\prd+1} \\
+        {m}_{t+1}                        & = {b}_{t+1}+\TranShkEmp_{t+1},
+      \end{aligned}\end{gathered}\end{equation}
+\end{verbatimwrite}
+\input{./Equations/vNormed.tex}\unskip
+where division by the $\PermGroFac$ in second-to-last equation to yield a normalized return factor $\RNrm$ is the consequence of the fact that we have divided $\prd+1$ level variables by $\pLvl_{\prd+1}=\PermGroFac\pLvl_{\prd}$.
+
+%\renewcommand{\prd}{T}
+Then it is easy to see that for $\prdT-1$, 
+\begin{equation*}\begin{gathered}\begin{aligned}
+      {\vLvl}_{\prdT-1}(\mLvl_{\prdT-1},\pLvl_{\prdT-1}) & =  \pLvl_{\prdT-1}^{1-\CRRA}{\vFunc}_{\prdT-1}({m}_{\prdT-1})
+    \end{aligned}\end{gathered}\end{equation*}
+and so on back to all earlier periods.  Hence, if we solve the problem \eqref{eq:vNormed} which has only a single state variable $\mNrm_{\prdT-1}$, we can obtain the levels of the value function, consumption, and all other variables from the corresponding permanent-income-normalized solution objects by multiplying each by $\pLvl_{\prdT}$, e.g.\ ${\cFunc}_{\prdT}(\mLvl_{\prdT},\pLvl_{\prdT})=\pLvl_{\prdT}\cFunc_{\prdT}(\mLvl_{\prdT}/\pLvl_{\prdT})$ (or, for the value function, ${\vLvl} _{\prdT}({\mLvl}_{\prdT},\pLvl_{\prdT}) = \pLvl_{\prdT}^{1-\CRRA}\vFunc_{\prdT}({m}_{\prdT}))$.  We have thus reduced the problem from two continuous state variables to one (and thereby enormously simplified its solution).
+
+%\renewcommand{\prd}{t}
+For future reference it will be useful to write the problem \eqref{eq:vNormed} in the traditional way, by substituting ${b}_{\prdt+1},{k}_{\prdt+1},$ and ${a}_{\prdt}$ into ${m}_{t+1}$:
+\begin{equation}\begin{gathered}\begin{aligned}
+      {\vFunc}_{\prdt}({m}_{\prdt}) & = \max_{\cNrmMaxPrdt} ~~ \uFunc(\cNrmMaxPrdt)+
+      {\DiscFac}\Ex_{\prdt}[ \PermGroFac_{\prdt+1}^{1-\CRRA}{\vFunc}_{\prdt+1}(\overbrace{({m}_{t}-\cNrmMaxPrdt)(\Rfree/\PermGroFac_{t+1})+\TranShkEmp_{t+1}}^{{m}_{t+1}})] \label{eq:vusual}
+    \end{aligned}\end{gathered}\end{equation}
+whose (relative) complexity illustrates one reason that dissection is useful.
+
+\end{document}

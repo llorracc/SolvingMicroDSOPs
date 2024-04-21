@@ -1,56 +1,31 @@
 % -*- mode: LaTeX; TeX-PDF-mode: t; -*- # Tell emacs the file type (for syntax)
-\input{./.econtexRoot}\documentclass[titlepage,abstract]{\econtex}
-\newcommand{\texname}{cctwMoM}
-\usepackage{import}
-\usepackage{\econark}
-\usepackage{\LaTeXInputs/SolvingMicroDSOPs}
+\input{./.econtexRoot}         % Set paths (like, \LaTeXInputs)
+\newcommand{\texname}{cctwMoM} % Keyname for the paper
+\documentclass[titlepage,abstract, headings=optiontotocandhead]{Resources/texmf-local/tex/latex/econtex}
 
-% RiskyR
-\provideboolean{RiskyR}
-\setboolean{RiskyR}{true}
-\setboolean{RiskyR}{false}
-\newcommand{\IfRiskyR}{\ifthenelse{\boolean{RiskyR}}}
-
-% Include permanent shocks?
-\provideboolean{PermShkVersion}
-%\setboolean{PermShkVersion}{true}
-\setboolean{PermShkVersion}{false}
-\newcommand{\PermShkOn}{\ifthenelse{\boolean{PermShkVersion}}}
-
-% MPCMatch
-\provideboolean{MPCMatchVersion}
-\setboolean{MPCMatchVersion}{false}
-\newcommand{\MPCMatch}{\ifthenelse{\boolean{MPCMatchVersion}}}
-
-\provideboolean{MoMVersion}
-\setboolean{MoMVersion}{true}
-\newcommand{\MoM}{\ifthenelse{\boolean{MoMVersion}}}
-
-\provideboolean{ctwVersion}
-\setboolean{ctwVersion}{true}
-\newcommand{\ctw}{\ifthenelse{\boolean{ctwVersion}}}
-
-
-\usepackage{\econtexSetup}\usepackage{\econtexShortcuts}
-\write18{rm    ./Figures/List.tex }
-\write18{touch ./Figures/List.tex }
+\usepackage{Resources/LaTeXInputs/local}            % LaTeX config in Resources/LaTeXInputs
+\input{cctwMoM-options} % booleans that control whether certain features are on or off
 
 \hypersetup{colorlinks=true,
-            pdfauthor={Christopher D. Carroll <ccarroll@jhu.edu>, Kiichi Tokuoka <ktokuoka <ktokuoka@imf.org>, Weifeng Wu <wwu19@jhu.edu> },
-            pdftitle={The Method of Moderation},
-            pdfsubject={Dynamic Stochastic Optimization Theory; Lecture Notes},
-            pdfkeywords={Numerical Methods, Software},
-            pdfproducer = {LaTeX with hyperref and thumbpdf},
-            pdfcreator = {pdflatex}
-            }
+  pdfauthor={Christopher D. Carroll <ccarroll@jhu.edu>, Kiichi Tokuoka <ktokuoka <ktokuoka@imf.org>, Weifeng Wu <wwu19@jhu.edu> },
+  pdftitle={The Method of Moderation},
+  pdfsubject={Dynamic Stochastic Optimization Theory; Lecture Notes},
+  pdfkeywords={Numerical Methods, Software},
+  pdfproducer = {LaTeX with hyperref and thumbpdf},
+  pdfcreator = {pdflatex}
+}
 
 \begin{verbatimwrite}{./\texname.title}
-The Method of Moderation
+  The Method of Moderation
 \end{verbatimwrite}
 
-\bibliographystyle{\econtexBibStyle}\begin{document}
+\bibliographystyle{Resources/texmf-local/bibtex/bst/econtex.bst}
+\begin{document}
 
-%\hfill {\small WuW Thesis Version}
+% Redefine \onlyinsubfile command defined in local.sty file:
+% This lets any submaterial called from here know that it is not standalone
+% If not called from here and IS standalone, can make bib (or other content)
+\renewcommand{\onlyinsubfile}[1]{}\renewcommand{\notinsubfile}[1]{#1}
 
 \title{The Method of Moderation}
 
@@ -58,9 +33,9 @@ The Method of Moderation
   \and
   Karsten Chipeniuk \\ {\small RBNZ}
   \and 
-Kiichi Tokuoka\num \\ {\small ECB}
-\and
-Weifeng Wu\num \\ {\small Fannie Mae}
+  Kiichi Tokuoka\num \\ {\small ECB}
+  \and
+  Weifeng Wu\num \\ {\small Fannie Mae}
 }
 
 \keywords{Dynamic Stochastic Optimization}
@@ -68,29 +43,30 @@ Weifeng Wu\num \\ {\small Fannie Mae}
 
 \maketitle
 
+\hypertarget{abstract}{}
 \begin{abstract}
   In a risky world, a pessimist assumes the worst will happen.  Someone who ignores risk altogether is an optimist.  Consumption decisions are mathematically simple for both the pessimist and the optimist because both behave as if they live in a riskless world.  A realist (that is, someone who wants to respond optimally to risk) faces a much more difficult problem, but (under standard conditions) will choose a level of spending somewhere between pessimist's and the optimist's.  We use this fact to redefine the space in which the realist searches for optimal consumption rules.  The resulting solution accurately represents the numerical consumption rule over the entire interval of feasible wealth values with remarkably few computations.
 \end{abstract}
 
 % \begin{small}
-% \parbox{\textwidth}{
-% \begin{center}
-% \begin{tabbing}
-% \texttt{Archive:~} \= \= \url{http://econ.jhu.edu/people/ccarroll/papers/ctwMoM.pdf} \kill \\  % This line establishes the locations of the tabs, but is not printed because of the \kill directive
-% \texttt{~~~~PDF:~} \> \> \url{http://econ.jhu.edu/people/ccarroll/papers/ctwMoM.pdf} \\
-% \texttt{~Slides:~} \> \> \url{http://econ.jhu.edu/people/ccarroll/papers/ctwMoM-Slides.pdf} \\
-% \texttt{~~~~Web:~} \> \> \url{http://econ.jhu.edu/people/ccarroll/papers/ctwMoM/} \\
-% \texttt{Archive:~} \> \> \url{http://econ.jhu.edu/people/ccarroll/papers/ctwMoM.zip} \\
-% %\texttt{~~~~~~~~~} \> \> \textit{(Contains data and estimation software producing paper's results)}
-% \end{tabbing}
-% \end{center}
+%   \parbox{\textwidth}{
+%   \begin{center}
+%     \begin{tabbing}
+%       \texttt{Archive:~} \= \= \url{http://econ.jhu.edu/people/ccarroll/papers/ctwMoM.pdf} \kill \\  % This line establishes the locations of the tabs, but is not printed because of the \kill directive
+%       \texttt{~~~~PDF:~} \> \> \url{http://econ.jhu.edu/people/ccarroll/papers/ctwMoM.pdf} \\
+%       \texttt{~Slides:~} \> \> \url{http://econ.jhu.edu/people/ccarroll/papers/ctwMoM-Slides.pdf} \\
+%       \texttt{~~~~Web:~} \> \> \url{http://econ.jhu.edu/people/ccarroll/papers/ctwMoM/} \\
+%       \texttt{Archive:~} \> \> \url{http://econ.jhu.edu/people/ccarroll/papers/ctwMoM.zip} \\
+% %       \texttt{~~~~~~~~~} \> \> \textit{(Contains data and estimation software producing paper's results)}
+%     \end{tabbing}
+%   \end{center}
 % }
 % \end{small}
 
 \begin{authorsinfo}
-\name{Carroll: Department of Economics, Johns Hopkins University, Baltimore, MD, \url{http://econ.jhu.edu/people/ccarroll/}, \href{mailto:ccarroll@jhu.edu}{\texttt{ccarroll@jhu.edu}}}
-\name{Tokuoka: International Monetary Fund, Washington, DC, \href{mailto:ktokuoka@imf.org}{\texttt{ktokuoka@imf.org}}}
-\name{Wu: Weifeng Wu, Fanie Mae, Washington DC, \href{mailto:weifeng\_wu@fanniemae.com}.}
+  \name{Carroll: Department of Economics, Johns Hopkins University, Baltimore, MD, \url{http://econ.jhu.edu/people/ccarroll/}, \href{mailto:ccarroll@jhu.edu}{\texttt{ccarroll@jhu.edu}}}
+  \name{Tokuoka: International Monetary Fund, Washington, DC, \href{mailto:ktokuoka@imf.org}{\texttt{ktokuoka@imf.org}}}
+  \name{Wu: Weifeng Wu, Fanie Mae, Washington DC, \href{mailto:weifeng\_wu@fanniemae.com}.}
 \end{authorsinfo}
 
 \thanks{The views presented in this paper are those of the authors, and should not be attributed to the International Monetary Fund, its Executive Board, or management, or to the European Central Bank.}
@@ -103,188 +79,119 @@ Weifeng Wu\num \\ {\small Fannie Mae}
 
 \renewcommand{\DiscAlt}{\beta} % Erase the distinction between the alternative and the standard discount factor
 
-\hypertarget{Introduction}{}
+\hypertarget{introduction}{}
 \section{Introduction}\label{sec:Intro}
 
-Solving a consumption, investment, portfolio choice, or similar
-intertemporal optimization problem using numerical methods generally
-requires the modeler to choose how to represent a policy or value
-function.  In the stochastic case, where analytical solutions are
-generally not available, a common approach is to use low-order
-polynominal splines that exactly match the function (and maybe some
-derivatives) at a finite set of gridpoints, and then to assume that
-interpolated or extrapolated versions of that 
-spline represent the function well at the continuous infinity of unmatched points.
+Solving a consumption, investment, portfolio choice, or similar intertemporal optimization problem using numerical methods generally requires the modeler to choose how to represent a policy or value function.  In the stochastic case, where analytical solutions are generally not available, a common approach is to use low-order polynominal splines that exactly match the function (and maybe some derivatives) at a finite set of gridpoints, and then to assume that interpolated or extrapolated versions of that spline represent the function well at the continuous infinity of unmatched points.
 
-This paper argues that a better approach in the standard consumption 
-problem is to rely upon the fact that without uncertainty, the optimal consumption
-function has a simple analytical solution.  The key insight is that,
-under standard assumptions, the consumer who faces an uninsurable
-labor income risk will consume less than a consumer with the same path
-for expected income but who does not perceive any uncertainty as being
-attached to that future income.  The `realistic' consumer, who \textit{
-  does} perceive the risks, will engage in `precautionary saving,' so
-the perfect foresight riskless solution provides an upper bound to the
-solution that will actually be optimal.  A lower bound is provided by
-the behavior of a consumer who has the subjective belief that the
-future level of income will be the worst that it can possibly be.
-This consumer, too, behaves according to the convenient analytical perfect
-foresight solution, but his certainty is that of a pessimist 
-perfectly confident in his pessimism.
+This paper argues that a better approach in the standard consumption problem is to rely upon the fact that without uncertainty, the optimal consumption function has a simple analytical solution.  The key insight is that, under standard assumptions, the consumer who faces an uninsurable labor income risk will consume less than a consumer with the same path for expected income but who does not perceive any uncertainty as being attached to that future income.  The `realistic' consumer, who \textit{ does} perceive the risks, will engage in `precautionary saving,' so the perfect foresight riskless solution provides an upper bound to the solution that will actually be optimal.  A lower bound is provided by the behavior of a consumer who has the subjective belief that the future level of income will be the worst that it can possibly be.  This consumer, too, behaves according to the convenient analytical perfect foresight solution, but his certainty is that of a pessimist perfectly confident in his pessimism.
 
-Using results from \cite{BufferStockTheory}, we show how to use these
-upper and lower bounds to tightly constrain the shape and
-characteristics of the solution to problem of the `realist.'  Imposition
-of these constraints can clarify and speed the solution of the realist's problem.
+Using results from \cite{BufferStockTheory}, we show how to use these upper and lower bounds to tightly constrain the shape and characteristics of the solution to problem of the `realist.'  Imposition of these constraints can clarify and speed the solution of the realist's problem.
 
-After showing how to use the method in the baseline case, we show how
-refine it to encompass an even tighter theoretical bound\IfRiskyR{, and 
-how to extend it to solve a problem in which the consumer faces both 
-labor income risk and rate-of-return risk.}{.}  
+After showing how to use the method in the baseline case, we show how refine it to encompass an even tighter theoretical bound\IfRiskyR{, and how to extend it to solve a problem in which the consumer faces both labor income risk and rate-of-return risk.}{.}
 
-\hypertarget{The-Realists-Problem}{}
+\hypertarget{the-realists-problem}{}
 \section{The Realist's Problem}
 
 We assume that truly optimal behavior in the problem facing the consumer who understands all his risks is captured by
-\import{./Equations/}{MaxProb.tex}
-%\write18{if [ ! -f \texname.bib ]; then touch \texname.bib  ; fi}\write18{if [ ! -f \texname-Add.bib ]; then touch \texname-Add.bib  ; fi}\bibliography{economics,\texname,\texname-Add}\end{document}\endinput
+\input{./Equations/MaxProb.tex}
+\notinsubfile{\input{Resources/LaTeXInputs/bibliography_blend}} \end{document}\endinput
 subject to
-\import{./Equations/}{DBCLevelStart.tex}
+\input{./Equations/DBCLevelStart.tex}
 where
-\import{./Equations/}{Defns.tex}
+\input{./Equations/Defns.tex}
 and the exogenous variables evolve according to 
-\import{./Equations/}{ExogVars.tex}
+\input{./Equations/ExogVars.tex}
 
-It turns out (see \cite{SolvingMicroDSOPs} for a proof) that this
-problem can be rewritten in a more convenient form in
-which choice and state variables are normalized by the level of
-permanent income, e.g., using nonbold font for normalized variables, $\mRat_{t}=\cLev_{t}/\pLev_{t}$.  When that is
-done, the Bellman equation for the transformed version of the consumer's problem is 
-\import{./Equations/}{vNormed.tex}
-and because we have not imposed a liquidity constraint, the solution 
-satisfies the Euler equation
-\import{./Equations/}{cEuler.tex}
+It turns out (see \cite{SolvingMicroDSOPs} for a proof) that this problem can be rewritten in a more convenient form in which choice and state variables are normalized by the level of permanent income, e.g., using nonbold font for normalized variables, $\mRat_{t}=\cLev_{t}/\pLev_{t}$.  When that is done, the Bellman equation for the transformed version of the consumer's problem is \input{./Equations/vNormed.tex} and because we have not imposed a liquidity constraint, the solution satisfies the Euler equation \input{./Equations/cEuler.tex}
 
-For the remainder of the paper we will assume that permanent income $\pLev_{t}$ 
-grows by a constant factor $\PermGroFac$ and is not subject to stochastic shocks.  
-(The generalization to the case with permanent shocks is 
-straightforward.)
+For the remainder of the paper we will assume that permanent income $\pLev_{t}$ grows by a constant factor $\PermGroFac$ and is not subject to stochastic shocks.  (The generalization to the case with permanent shocks is straightforward.)
 
-
-
-\hypertarget{Benchmark}{}
+\hypertarget{benchmark}{}
 \section{Benchmark: The Method of Endogenous Gridpoints}
 
-For comparison to our new solution method, we use the endogenous
-gridpoints solution to the microeconomic problem presented in
-\cite{carrollEGM}.  That method computes the level of
-consumption at a set of gridpoints for market resources $\mRat$ that
-are determined endogenously using the Euler equation.  The consumption
-function is then constructed by linear interpolation among the
-gridpoints thus found.
+For comparison to our new solution method, we use the endogenous gridpoints solution to the microeconomic problem presented in \cite{carrollEGM}.  That method computes the level of consumption at a set of gridpoints for market resources $\mRat$ that are determined endogenously using the Euler equation.  The consumption function is then constructed by linear interpolation among the gridpoints thus found.
 
-\cite{SolvingMicroDSOPs} describes a specific calibration of the model and
-constructs a solution using five gridpoints chosen to 
-capture the structure of the consumption function reasonably well at values of
-$\mRat$ near the infinite-horizon target value.  (See those notes for details).  
+\cite{SolvingMicroDSOPs} describes a specific calibration of the model and constructs a solution using five gridpoints chosen to capture the structure of the consumption function reasonably well at values of $\mRat$ near the infinite-horizon target value.  (See those notes for details).
 
-\import{\econtexRoot}{cctwMoM/EndogGptsProbs.tex}
+\input{cctwMoM/EndogGptsProbs.tex}
 
-\hypertarget{The-Method-Of-Moderation}{}
+\hypertarget{the-method-of-moderation}{}
 \section{The Method of Moderation}
 
-\hypertarget{The-Optimist-The-Pessimist-and-the-Realist}{}
+\hypertarget{the-optimist-the-pessimist-and-the-realist}{}
 \subsection{The Optimist, the Pessimist, and the Realist}
 
-\hypertarget{The-Consumption-Function}{}
+\hypertarget{the-consumption-function}{}
 \subsubsection{The Consumption Function}
 
-% \import{\econtexRoot/}{cctwMoM/MoM-Prelims.tex}
-
 \begin{verbatimwrite}{./cctwMoM/MoM-Prelims.tex}
-  As a preliminary to our solution, define $\hNrm_{\EndStep}$ as
-  end-of-period human wealth (the present discounted value
-  of future labor income) for a perfect foresight version of the problem
-  of a `risk optimist:' a period-$t$ consumer who believes with perfect confidence
-  that the shocks will always take their expected value of 
-  \PermShkOn
-  {1, $\TranShkEmp_{t+n} = \Ex[\TranShkEmp]=1~\forall~n>0$ and $\PermShk_{t+n} = \Ex[\PermShk]=1~\forall~n>0$.}
-  {1, $\TranShkEmp_{t+n} = \Ex[\TranShkEmp]=1~\forall~n>0$.}
-  The solution to a perfect foresight problem of this kind takes the
-  form\footnote{For a derivation, see \cite{BufferStockTheory}; $\MPCmin_{t}$ is defined therein as the MPC of the perfect foresight consumer with horizon $T-t$.}
+  As a preliminary to our solution, define $\hNrm_{\EndStp}$ as end-of-period human wealth (the present discounted value of future labor income) for a perfect foresight version of the problem of a `risk optimist:' a period-$t$ consumer who believes with perfect confidence that the shocks will always take their expected value of \PermShkOn {1, $\TranShkEmp_{t+n} = \Ex[\TranShkEmp]=1~\forall~n>0$ and $\PermShk_{t+n} = \Ex[\PermShk]=1~\forall~n>0$.}  {1, $\TranShkEmp_{t+n} = \Ex[\TranShkEmp]=1~\forall~n>0$.}  The solution to a perfect foresight problem of this kind takes the form\footnote{For a derivation, see \cite{BufferStockTheory}; $\MPCmin_{t}$ is defined therein as the MPC of the perfect foresight consumer with horizon $T-t$.}
 \end{verbatimwrite}
 \input{./cctwMoM/MoM-Prelims.tex}\unskip
 \begin{verbatimwrite}{./Equations/cFuncAbove.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
-        \cFuncAbove_{t}(\mNrm_{t})  & = (\mNrm_{t} + \hNrm_{\EndStep})\MPCmin_{t} \label{eq:cFuncAbove}
+        \cFuncAbove_{t}(\mNrm_{t})  & = (\mNrm_{t} + \hNrm_{\EndStp})\MPCmin_{t} \label{eq:cFuncAbove}
       \end{aligned}\end{gathered}\end{equation}
   for a constant minimal marginal propensity to consume $\MPCmin_{t}$ given below.
 \end{verbatimwrite}
 \input{./Equations/cFuncAbove.tex}\unskip
 
-\import{./Equations/}{cFuncAbove.tex} 
-\import{\econtexRoot/}{cctwMoM/MoM-Words.tex}
+\input{./Equations/cFuncAbove.tex} 
+\input{cctwMoM/MoM-Words.tex}
 
 \import{./Figures/}{IntExpFOCInvPesReaOptNeedHiPlot.tex}
-\import{\econtexRoot/}{cctwMoM/MoM-Words-Rest.tex}
-\import{./Equations/}{MoM-Inequalities.tex}
-\import{\econtexRoot/}{cctwMoM/MoM-Inequalities-Describe.tex}
-\import{./Equations/}{MoM-KoppaOfMu.tex}
-\import{\econtexRoot/}{cctwMoM/MoM-KoppaOfMu-Describe.tex}
-\import{./Equations/}{cFuncHi.tex}
-\import{\econtexRoot/}{cctwMoM/MoM-End.tex}
 
+\input{cctwMoM/MoM-Words-Rest.tex}
+\input{./Equations/MoM-Inequalities.tex}
+\input{cctwMoM/MoM-Inequalities-Describe.tex}
+\input{./Equations/MoM-KoppaOfMu.tex}
+\input{cctwMoM/MoM-KoppaOfMu-Describe.tex}
+\input{./Equations/cFuncHi.tex}
+\input{cctwMoM/MoM-End.tex}
+
+\hypertarget{the-value-function}{}
 \subsubsection{The Value Function}
 
-\import{\econtexRoot/}{cctwMoM/value-Intro.tex} % Can't nest verbatimwrites so must split value.tex up into parts
-\import{./Equations/}{vFuncPF.tex} % This is the perfect foresight solution 
-\import{\econtexRoot/}{cctwMoM/value-Rest.tex} % Remainder of the text
+\input{cctwMoM/value-Intro.tex} % Can't nest verbatimwrites so must split value.tex up into parts
+\input{./Equations/vFuncPF.tex} % This is the perfect foresight solution 
+\input{cctwMoM/value-Rest.tex} % Remainder of the text
 
 \section{Extensions}
 
+\hypertarget{a-tighter-upper-bound}{}
 \subsection{A Tighter Upper Bound}
-\import{\econtexRoot/}{cctwMoM/Tighter.tex}
-\import{./Equations/}{mtCusp.tex}
-\import{./Equations/}{TighterUpperBound.tex}
-\import{./Equations/}{koppaLo.tex}
-\import{\econtexRoot/}{cctwMoM/TighterThreeFuncs.tex}
-\import{./Equations/}{TighterThreeEqns.tex}
-\import{\econtexRoot/}{cctwMoM/TighterThreeFuncsExplain.tex}
+\input{cctwMoM/Tighter.tex}
+\input{./Equations/mtCusp.tex}
+\input{./Equations/TighterUpperBound.tex}
+\input{./Equations/koppaLo.tex}
+\input{cctwMoM/TighterThreeFuncs.tex}
+\input{./Equations/TighterThreeEqns.tex}
+\input{cctwMoM/TighterThreeFuncsExplain.tex}
 
 \begin{figure}
-\includegraphics[width=6in]{./Figures/IntExpFOCInvPesReaOptNeed45Plot}
+  \includegraphics[width=6in]{./Figures/IntExpFOCInvPesReaOptNeed45Plot}
 \end{figure}
 
 \IfRiskyR{
-  \hypertarget{Stochastic-Rate-of-Return}{}
-\subsection{Stochastic Rate of Return}
-\import{\econtexRoot/}{cctwMoM/StochasticR-Intro.tex} 
+  \hypertarget{stochastic-rate-of-return}{}
+  \subsection{Stochastic Rate of Return}
+  \input{cctwMoM/StochasticR-Intro.tex} 
 
-The easiest case is where the interest factor is i.i.d.,
-\import{./Equations/}{distRisky.tex} 
-\noindent because in this case \cite{merton:restat} and \cite{samuelson:portfolio} showed
-that for a consumer without labor income (or with perfectly forecastable labor income) the consumption
-function is linear, with an MPC\footnote{See \handoutC{CRRA-RateRisk} for a derivation.}
-\import{\econtexRoot/}{cctwMoM/R-IID-MertonSamuelson.tex} 
-\import{\econtexRoot/}{cctwMoM/R-AR1.tex} 
+  The easiest case is where the interest factor is i.i.d., \input{./Equations/distRisky.tex} \noindent because in this case \cite{merton:restat} and \cite{samuelson:portfolio} showed that for a consumer without labor income (or with perfectly forecastable labor income) the consumption function is linear, with an MPC.\footnote{See \handoutC{CRRA-RateRisk} for a derivation.}
+  \input{cctwMoM/R-IID-MertonSamuelson.tex} 
+  \input{cctwMoM/R-AR1.tex} 
 }{}
 
-%\subsection{Habits}
+% \subsection{Habits}
 
-
+\hypertarget{conclusion}{}
 \section{Conclusion}
 
-The method proposed here is not universally applicable.  For example,
-the method cannot be used for problems for which upper and lower
-bounds to the `true' solution are not known.  But many problems do 
-have obvious upper and lower bounds, and in those cases (as in the 
-consumption example used in the paper), the method may result in 
-substantial improvements in accuracy and stability of solutions.
-
-
+The method proposed here is not universally applicable.  For example, the method cannot be used for problems for which upper and lower bounds to the `true' solution are not known.  But many problems do have obvious upper and lower bounds, and in those cases (as in the consumption example used in the paper), the method may result in substantial improvements in accuracy and stability of solutions.
 
 \vfill\clearpage
-\write18{if [ ! -f \texname.bib ]; then touch \texname.bib  ; fi}\write18{if [ ! -f \texname-Add.bib ]; then touch \texname-Add.bib  ; fi}\bibliography{economics,\texname,\texname-Add}\end{document}\endinput
+\notinsubfile{\input{Resources/LaTeXInputs/bibliography_blend}} \end{document}\endinput
 
 % Local Variables:
 % TeX-master-file: t

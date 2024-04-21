@@ -1,0 +1,7 @@
+% econtexRoot gets obliterated by the documentclass command 
+%\input{./.econtexRoot}\documentclass[SolvingMicroDSOPs]{subfiles}
+\input{./.econtexRoot}\input{Resources/LaTeXInputs/econtex_onlyinsubfile}
+
+% Get xrefs; only works properly if main file has already been successfully compiled
+\onlyinsubfile{\externaldocument{SolvingMicroDSOPs}} 
+

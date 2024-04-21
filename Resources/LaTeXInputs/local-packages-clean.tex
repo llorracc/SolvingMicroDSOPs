@@ -1,0 +1,30 @@
+% Define a few objects that are unique to this paper
+% Allow different actions depending on whether document is being processed as
+% subfile or being process as standalone
+
+% \usepackage{import} % used in slides and cctwMoM
+\usepackage{Resources/LaTeXInputs/pdfsuppressruntime} % prevent timestamp
+
+\usepackage[authoryear]{natbib}
+\usepackage{listings}
+\usepackage{mathtools}
+\usepackage{accents,xr-hyper}
+\usepackage{\econark}
+\usepackage{dcolumn}       % seems to need to come after hyperref
+\usepackage{moreverb}      % Used in slides
+\usepackage{\econtexSetup} % Gets, configures often-used packages
+
+% \usepackage{econtexSetup} sets boolean Web=true if compilation type is dvi
+% also includes hyperref
+\provideboolean{showPageHead}{}
+\ifthenelse{\boolean{Web}}{
+  \setboolean{showPageHead}{false}
+}{ % {pdf}
+  \setboolean{showPageHead}{true}
+  \usepackage{scrlayer-scrpage} %  Package for page headers if PDF
+  \usepackage{caption} % allow suppression of appendix figures in NoAppendix PDF
+} 
+
+\usepackage{\econtexShortcuts}
+\usepackage{subfiles}
+

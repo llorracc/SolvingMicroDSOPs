@@ -5,8 +5,8 @@
   Figure~\ref{fig:ExtrapProblem} demonstrates the point by plotting
   the amount of precautionary saving implied by a linear extrapolation
   of our approximated consumption rule (the consumption of the perfect
-  foresight consumer $\cFuncAbove_{T-1}$ minus our approximation to
-  optimal consumption under uncertainty, $\Alt{\cFunc}_{T-1}$).
+  foresight consumer $\cFuncAbove_{\prd-1}$ minus our approximation to
+  optimal consumption under uncertainty, $\Aprx{\cFunc}_{\prd-1}$).
   Although theory proves that precautionary saving is always positive,
   the linearly extrapolated numerical approximation eventually
   predicts negative precautionary saving (at the point in the figure
@@ -15,17 +15,8 @@
   \hypertarget{ExtrapProblemPlot}{}
   \begin{figure}
     \includegraphics[width=6in]{./Figures/ExtrapProblemPlot}
-    \caption{For Large Enough ${m}_{T-1}$, Predicted Precautionary Saving is Negative (Oops!)}
+    \caption{For Large Enough ${m}_{\prd-1}$, Predicted Precautionary Saving is Negative (Oops!)}
     \label{fig:ExtrapProblem}
   \end{figure}
 
-  This error cannot be fixed by extending the upper gridpoint; in the
-  presence of serious uncertainty, the consumption rule will need to be
-  evaluated outside of \textit{any} prespecified grid (because starting
-  from the top gridpoint, a large enough realization of the uncertain
-  variable will push next period's realization of assets above that
-  top; a similar argument applies below the bottom gridpoint).  While a judicious extrapolation technique can prevent this
-  problem from being fatal (for example by carefully excluding negative
-  precautionary saving), the problem is often dealt with using inelegant
-  methods whose implications for the accuracy of the solution are
-  difficult to gauge.
+  This error cannot be fixed by extending the upper gridpoint; in the presence of serious uncertainty, the consumption rule will need to be evaluated outside of \textit{any} prespecified grid (because starting from the top gridpoint, a large enough realization of the uncertain variable will push next period's realization of assets above that top; a similar argument applies below the bottom gridpoint).  While a judicious extrapolation technique can prevent this problem from being fatal (for example by carefully excluding negative precautionary saving), the problem is often dealt with using inelegant methods whose implications for the accuracy of the solution are difficult to gauge.

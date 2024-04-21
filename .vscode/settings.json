@@ -1,0 +1,22 @@
+{
+    "terminal.integrated.env.osx": {
+        "PYTHONPATH": "${workspaceFolder}"
+      },
+      "l13Diff.enablePreview": true,
+      "l13Diff.exclude": [
+        "**/.DS_Store",
+        "**/.git",
+        "**/.hg",
+        "**/.svn",
+        "**/CVS",
+        "**/node_modules",
+        "**/.aux"
+      ],
+      "l13Diff.abortOnError": false,
+      "security.workspace.trust.untrustedFiles": "open",
+      "git.openRepositoryInParentFolders": "always",
+      "diffEditor.codeLens": true,
+      "latex-workshop.linting.lacheck.enabled": false,
+    "latex-workshop.check.duplicatedLabels.enabled": false,
+    "intellisense.update.aggressive.enabled": false
+    }

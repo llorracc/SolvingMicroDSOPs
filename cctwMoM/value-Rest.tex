@@ -1,15 +1,15 @@
   \MPCMatch{with derivative
     \begin{equation*}\begin{gathered}\begin{aligned}
-          \bar{\vInv}_{t}^{m}  & = (\mathbb{C}_{t}^{T})^{1/(1-\CRRA)}\MPCmin_{t},
-          \\  & = \MPCmin_{t}^{-\CRRA/(1-\CRRA)} % 20190820
+          \bar{\vInv}_{\prd}^{m}  & = (\mathbb{C}_{\prd}^{T})^{1/(1-\CRRA)}\MPCmin_{\prd},
+          \\  & = \MPCmin_{\prd}^{-\CRRA/(1-\CRRA)} % 20190820
         \end{aligned}\end{gathered}\end{equation*}}{}
-  and since $\PDVCoverc_{t}^{T}$ is a constant while the consumption
-  function is linear, $\bar{\vInv}_{t}$ will also be linear.
+  and since $\PDVCoverc_{\prd}^{T}$ is a constant while the consumption
+  function is linear, $\bar{\vInv}_{\prd}$ will also be linear.
 
   We apply the same transformation to the value function for the problem with uncertainty (the ``realist's'' problem)\MPCMatch{ and differentiate}:
   \begin{equation*}\begin{gathered}\begin{aligned}
-        \bar{\vInv}_{t}  & = \left((1-\CRRA)\bar{\vFunc}_{t}({m}_{t})\right)^{1/(1-\CRRA)}
-        \MPCMatch{\\ \bar{\vInv}^{m}_{t}  & = \left((1-\CRRA)\bar{\vFunc}_{t}({m}_{t})\right)^{-1+1/(1-\CRRA)}\bar{\vFunc}_{t}^{m}({m}_{t})}{}
+        \bar{\vInv}_{\prd}  & = \left((1-\CRRA)\bar{\vFunc}_{\prd}({m}_{\prd})\right)^{1/(1-\CRRA)}
+        \MPCMatch{\\ \bar{\vInv}^{m}_{\prd}  & = \left((1-\CRRA)\bar{\vFunc}_{\prd}({m}_{\prd})\right)^{-1+1/(1-\CRRA)}\bar{\vFunc}_{\prd}^{m}({m}_{\prd})}{}
       \end{aligned}\end{gathered}\end{equation*}
   and an excellent approximation to the value function can be obtained by
   calculating the values of $\bar{\vInv}$ at the same gridpoints used by the
@@ -20,43 +20,38 @@
   an upper bound for the ${\vInv}$ function in the presence of uncertainty, and the value function
   for the pessimist is a lower bound. Analogously to \eqref{eq:koppa}, define an upper-case
   \begin{equation}\begin{gathered}\begin{aligned}
-        \hat{\Koppa}_{t}(\mu_{t})   & = \left(\frac{\bar{\vInv}_{t}(\ushort{m}_{t}+e^{\mu_{t}})-\vInv_{t}(\ushort{m}_{t}+e^{\mu_{t}})}{\aboveMin \hNrm_{\EndStep} \MPCmin_{t} (\PDVCoverc_{t}^{T})^{1/(1-\CRRA)}}\right) \label{eq:Koppa}
+        \hat{\Koppa}_{\prd}(\mu_{\prd})   & = \left(\frac{\bar{\vInv}_{\prd}(\ushort{m}_{\prd}+e^{\mu_{\prd}})-\vInv_{\prd}(\ushort{m}_{\prd}+e^{\mu_{\prd}})}{\aboveMin \hNrm_{\EndStp} \MPCmin_{\prd} (\PDVCoverc_{\prd}^{T})^{1/(1-\CRRA)}}\right) \label{eq:Koppa}
       \end{aligned}\end{gathered}\end{equation}
   \MPCMatch{with derivative (dropping arguments)
     \begin{equation}\begin{gathered}\begin{aligned}
-          \hat{\Koppa}_{t}^{\mu}   & = (\aboveMin \hNrm_{\EndStep} \MPCmin_{t} (\PDVCoverc_{t}^{T})^{1/(1-\CRRA)})^{-1}e^{\mu_{t}}\left(\bar{\vInv}^{m}_{t}-\vInv^{m}_{t}\right) \label{eq:KoppaPrime}
-          % \\  & =  (\aboveMin \hNrm_{\EndStep} \MPCmin_{t})^{-1}e^{\mu_{t}}\left((\PDVCoverc_{t}^{T})^{1/(1-\CRRA)}\MPCmin_{t}-\left((1-\CRRA)\vFunc_{t}({m}_{t})\right)^{-1+1/(1-\CRRA)}\vFunc_{t}^{m}({m}_{t})\right)  \notag
+          \hat{\Koppa}_{\prd}^{\mu}   & = (\aboveMin \hNrm_{\EndStp} \MPCmin_{\prd} (\PDVCoverc_{\prd}^{T})^{1/(1-\CRRA)})^{-1}e^{\mu_{\prd}}\left(\bar{\vInv}^{m}_{\prd}-\vInv^{m}_{\prd}\right) \label{eq:KoppaPrime}
+          % \\  & =  (\aboveMin \hNrm_{\EndStp} \MPCmin_{\prd})^{-1}e^{\mu_{\prd}}\left((\PDVCoverc_{\prd}^{T})^{1/(1-\CRRA)}\MPCmin_{\prd}-\left((1-\CRRA)\vFunc_{\prd}({m}_{\prd})\right)^{-1+1/(1-\CRRA)}\vFunc_{\prd}^{m}({m}_{\prd})\right)  \notag
         \end{aligned}\end{gathered}\end{equation}}{}
   and an upper-case version of the $\chiFunc$ equation in \eqref{eq:chi}:
   \begin{equation}\begin{gathered}\begin{aligned}
-        \hat{\Chi}_{t}(\mu_{t})  & = \log \left(\frac{1-\hat{\Koppa}_{t}(\mu_{t})}{\hat{\Koppa}_{t}(\mu_{t})}\right)
-        \\  & = \log \left(1/\hat{\Koppa}_{t}(\mu_{t})-1\right) \label{eq:Chi}
+        \hat{\Chi}_{\prd}(\mu_{\prd})  & = \log \left(\frac{1-\hat{\Koppa}_{\prd}(\mu_{\prd})}{\hat{\Koppa}_{\prd}(\mu_{\prd})}\right)
+        \\  & = \log \left(1/\hat{\Koppa}_{\prd}(\mu_{\prd})-1\right) \label{eq:Chi}
       \end{aligned}\end{gathered}\end{equation}
   \MPCMatch{with corresponding derivative
     \begin{equation}\begin{gathered}\begin{aligned}
-          \hat{\Chi}_{t}^{\mu}  & = \left(\frac{-\hat{\Koppa}_{t}^{\mu}/\hat{\Koppa}_{t}^{2}}{1/\hat{\Koppa}_{t}-1}\right)
+          \hat{\Chi}_{\prd}^{\mu}  & = \left(\frac{-\hat{\Koppa}_{\prd}^{\mu}/\hat{\Koppa}_{\prd}^{2}}{1/\hat{\Koppa}_{\prd}-1}\right)
         \end{aligned}\end{gathered}\end{equation}}{}
   and if we approximate these objects then invert them (as above with
   the $\Hi{\koppa}$ and $\Hi{\chiFunc}$ functions) we obtain a very high-quality
   approximation to our inverted value function at the same points for
   which we have our approximated value function:
   \begin{equation}\begin{gathered}\begin{aligned}
-        \hat{\vInv}_{t}  & = \bar{\vInv}_{t}-\overbrace{\left(\frac{1}{1+\exp(\hat{\Chi}_{t})}\right)}^{=\hat{\Koppa}_{t}} \aboveMin \hNrm_{\EndStep} \MPCmin_{t} (\PDVCoverc_{t}^{T})^{1/(1-\CRRA) }
+        \hat{\vInv}_{\prd}  & = \bar{\vInv}_{\prd}-\overbrace{\left(\frac{1}{1+\exp(\hat{\Chi}_{\prd})}\right)}^{=\hat{\Koppa}_{\prd}} \aboveMin \hNrm_{\EndStp} \MPCmin_{\prd} (\PDVCoverc_{\prd}^{T})^{1/(1-\CRRA) }
       \end{aligned}\end{gathered}\end{equation}
   from which we obtain our approximation to the value function\MPCMatch{ and its derivatives~}~as \hypertarget{vHatFunc}{}
   \begin{equation}\begin{gathered}\begin{aligned}
-        \hat{\vFunc}_{t}  & = \uFunc(\hat{\vInv}_{t})
-        \\  \hat{\vFunc}^{m}_{t}  & = \uFunc^{{c}}(\hat{\vInv}_{t}) \hat{\vInv}^{m}
-        \MPCMatch{\\  \hat{\vFunc}^{mm}_{t}  & = \uFunc^{{c}{c}}(\hat{\vInv}_{t}) (\hat{\vInv}^{m})^{2} + \uFunc^{{c}}(\hat{\vInv}_{t})\hat{\vInv}^{mm}}{}
-.
+        \hat{\vFunc}_{\prd}  & = \uFunc(\hat{\vInv}_{\prd})
+        \\  \hat{\vFunc}^{m}_{\prd}  & = \uFunc^{{c}}(\hat{\vInv}_{\prd}) \hat{\vInv}^{m}
+        \MPCMatch{\\  \hat{\vFunc}^{mm}_{\prd}  & = \uFunc^{{c}{c}}(\hat{\vInv}_{\prd}) (\hat{\vInv}^{m})^{2} + \uFunc^{{c}}(\hat{\vInv}_{\prd})\hat{\vInv}^{mm}}{}
+        .
       \end{aligned}\end{gathered}\end{equation}
 
-  Although a linear interpolation that matches the level of $\vInv$ at
-  the gridpoints is simple, a Hermite interpolation that matches both
-  the level and the derivative of the $\bar{\vInv}_{t}$ function at the
-  gridpoints has the considerable virtue that the $\bar{\vFunc}_{t}$ derived from it numerically satisfies
-  the envelope theorem at each of the gridpoints for which the problem
-  has been solved.
+  Although a linear interpolation that matches the level of $\vInv$ at the gridpoints is simple, a Hermite interpolation that matches both the level and the derivative of the $\bar{\vInv}_{\prd}$ function at the gridpoints has the considerable virtue that the $\bar{\vFunc}_{\prd}$ derived from it numerically satisfies the envelope theorem at each of the gridpoints for which the problem has been solved.
 
   \MPCMatch{If we use the double-derivative calculated above to produce a higher-order Hermite polynomial, our approximation will also match
     marginal propensity to consume at the gridpoints; this would

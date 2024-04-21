@@ -1,0 +1,124 @@
+\input{./.econtexRoot}\documentclass[SolvingMicroDSOPs]{subfiles}
+
+\begin{document}
+
+\hypertarget{the-usual-theory}{}
+\section{The Usual Theory, and a Bit More Notation}\label{sec:the-usual-theory}
+
+%\renewcommand{\prd}{t}
+
+\subsection{Steps}
+
+Generically, we want to think of the Bellman solution as having three {\moves}:
+\begin{enumerate}
+\item \textbf{\Arrival}: Incoming state variables (e.g., $\kNrm_{\prd}$) are known, but any shocks associated with the period have not been realized and decision(s) have not yet been made
+\item \textbf{\Decision}: All exogenous variables (like income shocks, rate of return shocks, and predictable income growth $\PermGroFac$) have been realized (so that, e.g., $\mNrm_{\prd}$'s value is known) and the agent solves the optimization problem
+\item \textbf{\Continuation}: After all decisions have been made, their consequences are revealed by evaluation of the continuing-value function at the values of the `outgoing' state variables.
+\end{enumerate}
+
+In the standard treatment in the literature, the (implicit) default assumption is that the {\move} where the agent is solving a decision problem is the unique moment at which the problem is defined.  This is what implicitly was done above, when (for example) in \eqref{eq:vNormed} we related the value $\vFunc_{\prd}$ of the current decision to the explicit expectation of the future value $\vFunc_{\prd+1}$.  The idea, here, though, is to encapsulate the current period's problem as a standalone object, which is solvable contingent on some exogenously-provided continuation-value function $\vEnd({a})$.
+
+When we want to refer to a specific {\move} within period $t$ we will do so by modifying its {\interval} subscript with an indicator character:
+\begin{center}
+%  \mbox{%
+    \begin{tabular}{r|c|c|l|l}
+      Stp          & Indicator               & State          & Usage                       & Explanation                                \\ \hline
+      {\Arrival}      & ${\arvl}$ prefix & $\kNrm_{\prd}$ & $\vBeg({\kNrm}_{\prd})$ & value at entry to $\prd$ (before shocks) \\
+      {\Decision}     & (blank/none)            & $\mNrm_{\prd}$ & $\vMid({\mNrm}_{\prd})$ & value of $t$-decision (after shocks)       \\
+      {\Continuation} & ${\cntn}$ suffix & $\aNrm_{\prd}$ & $\vEnd({\aNrm}_{\prd})$ & value at exit (after decision)
+    \end{tabular}
+%  }
+\end{center}
+
+Notice that different steps of the problem have distinct state variables.  $\kNrm$ is the state at the beginning of the period because the shocks that yield $\mNrm$ from $\kNrm$ have not yet been realized. The state variable for the continuation {\move} is $\aNrm$ because after the consumption decision has been made the model assumes that all that matters is where you have ended up, not how you got there.
+
+\subsection{The Usual Theory, Notated}
+
+Using this new notation, the first order condition for \eqref{eq:vNormed} with respect to ${c}_{\prd}$ is
+\begin{equation}\begin{gathered}\begin{aligned}
+      \uFunc^{{c}}({c}_{\prd})  & = \ExEndStp[\DiscFac \RNrm_{\prd+1}\PermGroFac_{\prd+1}^{1-\CRRA}{\vFunc}^{{m}}_{\MidStpNxt}({m}_{\prd+1})]  \label{eq:upceqEvtp1}
+      \\                        & =  \ExEndStp[\DiscFac\Rfree\phantom{._{\prd+1}}\PermGroFac_{\prd+1}^{\phantom{1}-\CRRA}{\vFunc}^{{m}}_{\MidStpNxt}({m}_{\prd+1})]
+    \end{aligned}\end{gathered}\end{equation}
+and because the \handoutC{Envelope} theorem tells us that
+\begin{equation}\begin{gathered}\begin{aligned}
+      {\vFunc}^{{m}}_{\MidStp}({m}_{\prd})  & =  \Ex_{\BegStp} [\DiscFac\Rfree\PermGroFac_{\prd+1}^{-\CRRA}{\vFunc}^{{m}}_{\MidStpNxt}({m}_{\prd+1})] \label{eq:envelope}
+    \end{aligned}\end{gathered}\end{equation}
+we can substitute the LHS of \eqref{eq:envelope} for the RHS of
+(\ref{eq:upceqEvtp1}) to get
+\begin{verbatimwrite}{./Equations/Envelope.tex}
+  \begin{equation}\begin{gathered}\begin{aligned}
+        \uFunc^{{c}}({c}_{\prd})  & = {\vFunc}^{{m}}_{\MidStp}({m}_{\prd})\label{eq:upcteqvtp}
+      \end{aligned}\end{gathered}\end{equation}
+\end{verbatimwrite}
+\input{./Equations/Envelope.tex}\unskip
+and rolling forward one {\interval},
+\begin{equation}\begin{gathered}\begin{aligned}
+      \uFunc^{{c}}({c}_{\prd+1})  & = {\vFunc}^{{m}}_{\MidStpNxt}({a}_{\prd}\RNrm_{\prd+1}+\TranShkEmp_{\prd+1}) \label{eq:upctp1EqVpxtp1}
+    \end{aligned}\end{gathered}\end{equation}
+so that substituting the LHS in equation (\ref{eq:upceqEvtp1}) finally gives us the Euler equation for consumption:
+\begin{verbatimwrite}{./Equations/cEuler.tex}
+  \begin{equation}\begin{gathered}\begin{aligned}
+        \uFunc^{{c}}({c}_{\prd})  & = \ExEndStp[\DiscFac\Rfree \PermGroFac_{\prd+1}^{-\CRRA}\uFunc^{{c}}({c}_{\prd+1})] \label{eq:cEuler}.
+      \end{aligned}\end{gathered}\end{equation}
+\end{verbatimwrite}
+\input{./Equations/cEuler.tex}\unskip
+
+From the perspective of the beginning of {\interval} $\prd+1$ we can write the `arrival value' function and its first derivative as
+\begin{verbatimwrite}{./Equations/vBegtpdefn.tex}
+  \begin{equation}\begin{gathered}\begin{aligned}
+        \vBegStpNxt({k}_{\prd+1})    & = \Ex_{\BegStpNxt}[\phantom{\Rfree}\PermGroFacAdjVNxt{\vFunc}_{\MidStpNxt}(\overbrace{\RNrm_{\prd+1}{k}_{\prd+1}+{\TranShkEmp}_{\prd+1}}^{{m}_{\prd+1}})] \label{eq:vFuncBegtpdefn} \\
+        {\vPBegStpNxt}({k}_{\prd+1}) & = \Ex_{\BegStpNxt}[\Rfree \PermGroFac_{\prd+1}^{\phantom{1}-\CRRA} {\vFunc}_{\MidStpNxt}^{{m}}({m}_{\prd+1})]
+      \end{aligned}\end{gathered}\end{equation}
+\end{verbatimwrite}\unskip
+\input{./Equations/vBegtpdefn}\unskip
+because they return the expected $t+1$ value and marginal value associated with arriving in {\interval} $\prd+1$ with any given amount of \textit{k}apital.
+
+Finally, recalling that we obtain $\vEnd({a}_{\prd}) = \DiscFac \vBegStpNxt({k}_{\prd+1})$ using ${a}_{\prd} = {k}_{\prd+1}$, note for future use that we can write the Euler equation \eqref{eq:cEuler} more compactly as
+\begin{verbatimwrite}{./Equations/upEqbetaOp.tex}
+  \begin{equation}\begin{gathered}\begin{aligned}
+        \uFunc^{{c}}({c}_{\prd})   & = \vEnd^{{a}}({m}_{\prd}-{c}_{\prd}).
+        \label{eq:upEqbetaOp}
+      \end{aligned}\end{gathered}\end{equation}
+\end{verbatimwrite}
+\input{./Equations/upEqbetaOp.tex}\unskip
+
+%\providecommand{\prd}{}\renewcommand{\prd}{t}
+
+\hypertarget{summing-up}{}
+\subsection{Summing Up}\label{subsec:summing-up}
+For future reference, it will be useful here to write the full expressions for the distinct value functions at the {\Arrival} ($\BegMark$) and {\Decision} steps.  (Recall that $\vEnd(a)$ is provided to the solution algorithm as an input).
+
+There is no need to use our {\move}-identifying notation for the model's variables; $\kNrm$, for example, will have only one unique value over the course of the solution and therefore a notation like $\kNrm_{\EndStp}$ would be useless; the same is true of all other variables.  Given the continuation value function $\vEnd$, the problem can be written entirely without {\interval} subscripts:
+\begin{verbatimwrite}{./Equations/vBeg}
+  \begin{equation}\begin{gathered}\begin{aligned}
+        \vBeg(\kNrm_{\prd}) & = \ExBegStp[\vMid(\overbrace{\kNrm_{\prd} \Rnorm_{\prd} + \TranShkEmp_{\prd}}^{\mNrm_{\prd}})]  \label{eq:vBeg}
+      \end{aligned}\end{gathered}\end{equation}
+\end{verbatimwrite}
+\input{./Equations/vBeg}\unskip
+\begin{verbatimwrite}{./Equations/vMid}
+  \begin{equation}\begin{gathered}\begin{aligned}
+        \vMid(\mNrm_{\prd}) & = \max_{\{{c}\}}~~\uFunc({c}) +\ExMidStp[ \vEnd(\overbrace{\mNrm_{\prd}-{c}}^{a_{\prd}})] \label{eq:vMid}
+      \end{aligned}\end{gathered}\end{equation}
+\end{verbatimwrite}
+\input{./Equations/vMid}\unskip
+and
+\begin{verbatimwrite}{./Equations/vEndtdefn}
+  \begin{equation}\begin{gathered}\begin{aligned}
+        \vEnd(\aNrm) & = \DiscFac \vBegStpNxt(\overbrace{\kNrm_{\prd+1}}^{\aNrm}) \label{eq:vEndtdefn}
+      \end{aligned}\end{gathered}\end{equation}
+\end{verbatimwrite}
+\input{./Equations/vEndtdefn}\unskip
+
+\begin{comment}
+  \subsection{Implementation in Python}
+
+  The code implementing the tasks outlined each of the sections to come is available in the \texttt{\href{https://econ-ark.org/materials/SolvingMicroDSOPs}{SolvingMicroDSOPs}} jupyter notebook, written in \href{https://python.org}{Python}. The notebook imports various modules, including the standard \texttt{numpy} and \texttt{scipy} modules used for numerical methods in Python, as well as some user-defined modules designed to provide numerical solutions to the consumer's problem from the previous section. Before delving into the computational exercise, it is essential to touch on the practicality of these custom modules.
+
+  \subsubsection{Useful auxilliary files}
+
+  In this exercise, two primary user-defined modules are frequently imported and utilized. The first is the \texttt{gothic\_class} module, which contains functions describing the end-of-period value functions found in equations \eqref{eq:vBeg} - \eqref{eq:vEnd} (and the corresponding first and second derivatives). %The advantage of defining functions in the code which decompose the consumer's optimal behavior in a given period will become evident in section \ref{subsec:transformation}
+
+  The \texttt{resources} module is also used repeatedly throughout the notebook. This file has three primary objectives: (i) providing functions that discretize the continuous distributions from the theoretical model that describe the uncertainty a consumer faces, (ii) defining the utility function over consumption under a number of specifications, and (iii) enhancing the grid of end-of-period assets for which functions (such as those from the \texttt{gothic\_class} module) will be defined. These objectives will be discussed in greater detail and with respect to the numerical methods used to the problem in subsequent sections of this document.
+\end{comment}
+
+\end{document}

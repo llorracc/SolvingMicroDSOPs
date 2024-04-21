@@ -1,0 +1,332 @@
+\input{./.econtexRoot}\documentclass[SolvingMicroDSOPs]{subfiles}
+\input{subfile-start}
+
+\begin{document}
+\hypertarget{structural-estimation}{}
+\section{Structural Estimation}\label{sec:structural-estimation}
+
+This section describes how to use the methods developed above to
+structurally estimate a life-cycle consumption model, following
+closely the work of
+\cite{cagettiWprofiles}.\footnote{Similar structural
+  estimation exercises have been also performed by
+  \cite{palumbo:medical} and \cite{gpLifecycle}.} The key idea of
+structural estimation is to look for the parameter values (for the
+time preference rate, relative risk aversion, or other parameters)
+which lead to the best possible match between simulated and empirical
+moments.  %(The code for the structural estimation is in the self-containedsubfolder \texttt{StructuralEstimation} in the Matlab and {\Mma} directories.)
+
+\hypertarget{life-cycle-model}{}
+\subsection{Life Cycle Model}\label{subsec:life-cycle-model}
+\newcommand{\byage}{\hat}
+
+Realistic calibration of a life cycle model needs to take into account a few things that we omitted from the bare-bones model described above. For example, the whole point of the life cycle model is that life is finite, so we need to include a realistic treatment of life expectancy; this is done easily enough, by assuming that utility accrues only if you live, so effectively the rising mortality rate with age is treated as an extra reason for discounting the future.  Similarly, we may want to capture the demographic evolution of the household (e.g., arrival and departure of kids).  A common way to handle that, too, is by modifying the discount factor (arrival of a kid might increase the total utility of the household by, say, 0.2, so if the `pure' rate of time preference were $1.0$ the `household-size-adjusted' discount factor might be 1.2.  We therefore modify the model presented above to allow age-varying discount factors that capture both mortality and family-size changes (we just adopt the factors used by \cite{cagettiWprofiles} directly), with the probability of remaining alive between $t$ and $t+n$ captured by $\Alive$ and with $\hat{\DiscFac}$ now reflecting all the age-varying discount factor adjustments (mortality, family-size, etc).  Using $\beth$ (the Hebrew cognate of $\beta$) for the `pure' time preference factor, the value function for the revised problem is
+\begin{verbatimwrite}{./Equations/lifecyclemax.tex}
+  \begin{equation}\begin{gathered}\begin{aligned}
+        \vFunc_{\prd}(\pLvl_{\prd},\mLvl_{\prd}) & =    \max_{\{\cFunc\}_{\prd}^{T}}~~ \uFunc(\cLvl_{\prd})+\ExEndStp\left[\sum_{n=1}^{T-t} {\beth}^{n} \Alive_{\prd}^{t+n}\hat{\DiscFac}_{\prd}^{t+n} \uFunc(\cLvl_{t+n}) \right]   \label{eq:lifecyclemax}
+      \end{aligned}\end{gathered}  \end{equation}
+\end{verbatimwrite}
+\input{./Equations/lifecyclemax.tex}\unskip
+subject to the constraints
+\begin{verbatimwrite}{./Equations/dbc-with-permshk}
+  \begin{equation*}\begin{gathered}\begin{aligned}
+        \aLvl_{\prd}  & = \mLvl_{\prd}-\cLvl_{\prd}
+        \\      \pLvl_{\prd+1}  & = \PermGroFac_{\prd+1}\pLvl_{\prd}\Psi_{\prd+1}
+        \\      \yLvl_{\prd+1}  & = \pLvl_{\prd+1}\TranShkEmp _{\prd+1}
+        \\      \mLvl_{\prd+1}  & = \Rfree \aLvl_{\prd}+\yLvl_{\prd+1}
+      \end{aligned}\end{gathered}\end{equation*}
+\end{verbatimwrite}
+\input{./Equations/dbc-with-permshk}
+where
+\begin{verbatimwrite}{./Equations/subjectTo.tex}
+  \begin{equation*}\begin{gathered}\begin{aligned}
+        \Alive _{\prd}^{t+n} &:\text{probability to }\Alive\text{ive until age $t+n$ given alive at age $t$}
+        \\      \hat{\DiscFac}_{\prd}^{t+n} &:\text{age-varying discount factor between ages $t$ and $t+n$}
+        \\     \Psi_{\prd} &:\text{mean-one shock to permanent income}
+        \\     \beth &:\text{time-invariant `pure' discount factor}
+      \end{aligned}\end{gathered}\end{equation*}
+\end{verbatimwrite}
+\input{./Equations/subjectTo.tex}\unskip
+and all the other variables are defined as in section \ref{sec:the-problem}.
+
+Households start life at age $s=25$ and live with probability 1 until retirement
+($s=65$). Thereafter the survival probability shrinks every year and
+agents are dead by $s=91$ as assumed by Cagetti. % Note that in addition to a typical time-invariant discount factor $\beth$, there is a time-varying discount factor $\hat{\DiscFac}_{s}$ in (\ref{eq:lifecyclemax}) which can be used to capture the effect of age-varying demographic variables (e.g.\ changes in family size).
+
+\begin{verbatimwrite}{./Equations/shocks-for-lifecycle}
+  Transitory and permanent shocks are distributed as follows:
+  \begin{equation}\begin{gathered}\begin{aligned}
+        \Xi_{s} & =
+        \begin{cases}
+          0\phantom{/\pZero} & \text{with probability $\pZero>0$} \\
+          \TranShkEmp_{s}/\pZero      & \text{with probability $(1-\pZero)$, where $\log \TranShkEmp_{s}\thicksim \mathcal{N}(-\sigma_{\TranShkEmp}^{2}/2,\sigma_{\TranShkEmp}^{2})$}\\
+        \end{cases}\\
+        \log \PermShk_{s} &\thicksim \mathcal{N}(-\sigma_{\PermShk}^{2}/2,\sigma_{\PermShk}^{2})
+      \end{aligned}\end{gathered}\end{equation}
+  where $\pZero$ is the probability of unemployment (and unemployment shocks are turned off after retirement).
+\end{verbatimwrite}
+\input{./Equations/shocks-for-lifecycle}
+
+The parameter values for the shocks are taken from Carroll~\citeyearpar{carroll:brookings}, $\pZero=0.5/100$, $\sigma _{\TranShkEmp }=0.1$, and $\sigma_{\PermShk}=0.1$.\footnote{Note that $\sigma _{\TranShkEmp}=0.1$ is smaller than the estimate for college graduates estimated in
+  Carroll and Samwick~\citeyearpar{carroll&samwick:nature} ($=0.197=\sqrt{0.039}$) which is used by Cagetti~\citeyearpar{cagettiWprofiles}. The reason for this choice is that Carroll and Samwick~\citeyearpar{carroll&samwick:nature} themselves argue that their estimate of $\sigma_{\TranShkEmp }$ is almost certainly increased by measurement error.} The income growth profile $\PermGroFac_{\prd}$ is from Carroll~\citeyearpar{carrollBSLCPIH} and the values of $\Alive_{\prd}$ and $\hat{\DiscFac}_{\prd}$ are obtained from Cagetti~\citeyearpar{cagettiWprofiles} (Figure \ref{fig:TimeVaryingParam}).\footnote{The income growth profile is the one used by Caroll for operatives. Cagetti computes the time-varying discount factor by educational groups using the methodology proposed by Attanasio et al.~\citeyearpar{AttanasioBanksMeghirWeber} and the survival probabilities from the 1995 Life Tables (National Center for Health Statistics 1998).} The interest rate is assumed to equal $1.03$. The model parameters are included in Table \ref{table:StrEstParams}.
+
+\hypertarget{PlotTimeVaryingParam}{}
+\begin{figure}[h]
+  \includegraphics[width=6in]{./Figures/PlotTimeVaryingParam}
+  \caption{Time Varying Parameters}
+  \label{fig:TimeVaryingParam}
+\end{figure}
+
+\begin{table}[h]
+  \caption{Parameter Values}\label{table:StrEstParams}
+  \begin{center}
+    \begin{tabular}{ccl}
+      \hline\hline
+      $\sigma _{\TranShkEmp}$    & $0.1$ & Carroll~\citeyearpar{carroll:brookings}
+      \\ $\sigma _{\PermShk}$   & $0.1$ & Carroll~\citeyearpar{carroll:brookings}
+      \\ $\pZero$           & $0.005$  & Carroll~\citeyearpar{carroll:brookings}
+      \\ $\PermGroFac_{s}$        & figure \ref{fig:TimeVaryingParam} & Carroll~\citeyearpar{carrollBSLCPIH}
+      \\ $\hat{\DiscFac}_{s},\Alive_{s}$ & figure \ref{fig:TimeVaryingParam} & Cagetti~\citeyearpar{cagettiWprofiles}
+      \\$\Rfree$            & $1.03$  & Cagetti~\citeyearpar{cagettiWprofiles}\\
+      \hline
+    \end{tabular}
+  \end{center}
+\end{table}
+
+The structural estimation of the parameters ${\beth}$ and $\CRRA$ is carried out using
+the procedure specified in the following section, which is then implemented in
+the \texttt{StructEstimation.py} file. This file consists of two main components. The
+first section defines the objects required to execute the structural estimation procedure,
+while the second section executes the procedure and various optional
+experiments with their corresponding commands. The next section elaborates on the procedure
+and its accompanying code implementation in greater detail.
+
+\subsection{Estimation}
+
+When economists say that they are performing ``structural estimation''
+of a model like this, they mean that they have devised a
+formal procedure for searching for values for the parameters ${\beth}$
+and $\CRRA$ at which some measure of the model's outcome (like
+``median wealth by age'') is as close as possible to an empirical measure
+of the same thing. Here, we choose to match the median of the
+wealth to permanent income ratio across 7 age groups, from age $26-30$
+up to $56-60$.\footnote{\cite{cagettiWprofiles}
+  matches wealth levels rather than wealth to income ratios. We
+  believe it is more appropriate to match ratios both because the
+  ratios are the state variable in the theory and because empirical
+  moments for ratios of wealth to income are not influenced by the
+  method used to remove the effects of inflation and productivity
+  growth.} The choice of matching the medians rather the means is
+motivated by the fact that the wealth distribution is much more
+concentrated at the top than the model is capable of explaining using a single
+set of parameter values.  This means that in practice one must pick
+some portion of the population who one wants to match well; since the
+model has little hope of capturing the behavior of Bill Gates, but
+might conceivably match the behavior of Homer Simpson, we choose to
+match medians rather than means.
+
+As explained in section \ref{sec:normalization}, it is convenient to work with the normalized version of the model which can be written in Bellman form as:
+\begin{verbatimwrite}{./Equations/LifeCycleMaxNormed.tex}
+  \begin{equation*}\begin{gathered}\begin{aligned}
+        {\vFunc}_{\prd}({m}_{\prd})  & = \max_{{c}_{\prd}}~~~ \uFunc({c}_{\prd})+\beth\Alive_{\prd+1}\hat{\DiscFac}_{\prd+1}
+        \Ex_{\prd}[(\PermShk_{\prd+1}\PermGroFac_{\prd+1})^{1-\CRRA}{\vFunc}_{\prd+1}({m}_{\prd+1})]   \\
+        & \text{s.t.}   \nonumber \\
+        {a}_{\prd}    & = {m}_{\prd}-{c}_{\prd} \nonumber
+        \\      {m}_{\prd+1}  & = {a}_{\prd}\underbrace{\left(\frac{\Rfree}{\PermShk_{\prd+1}\PermGroFac_{\prd+1}}\right)}_{\equiv \RNrm_{\prd+1}}+ ~\TranShkEmp_{\prd+1}
+      \end{aligned}\end{gathered}\end{equation*}
+\end{verbatimwrite}
+\input{./Equations/LifeCycleMaxNormed.tex}\unskip
+with the first order condition:
+\begin{verbatimwrite}{./Equations/FOCLifeCycle}
+  \begin{equation}\begin{gathered}\begin{aligned}
+        \uFunc^{{c}}({c}_{\prd}) & = \beth\Alive_{\prd+1}\hat{\DiscFac}_{\prd+1}\Rfree \Ex_{\prd}\left[\uFunc^{{c}}\left(\PermShk_{\prd+1}\PermGroFac_{\prd+1}\cFunc_{\prd+1}\left({a}_{\prd}\RNrm_{\prd+1}+\TranShkEmp_{\prd+1}\right)\right)\right]\label{eq:FOCLifeCycle}
+        .
+      \end{aligned}\end{gathered}\end{equation}
+\end{verbatimwrite}
+\input{./Equations/FOCLifeCycle}
+
+The first substantive {\move} in this estimation procedure is
+to solve for the consumption functions at each age. We need to
+discretize the shock distribution and solve for the policy
+functions by backward induction using equation (\ref{eq:FOCLifeCycle})
+following the procedure in sections \ref{sec:solving-the-next} and
+`Recursion.' The latter routine
+is slightly complicated by the fact that we are considering a
+life-cycle model and therefore the growth rate of permanent income,
+the probability of death, the time-varying discount factor and the
+distribution of shocks will be different across the years. We thus
+must ensure that at each backward iteration the right parameter
+values are used.
+
+Correspondingly, the first part of the \texttt{StructEstimation.py} file begins by defining the agent type by inheriting from the baseline agent type \texttt{IndShockConsumerType}, with the modification to include time-varying discount factors. Next, an instance of this ``life-cycle'' consumer is created for the estimation procedure.  The number of periods for the life cycle of a given agent is set and, following Cagetti, ~\citeyearpar{cagettiWprofiles}, we initialize the wealth to income ratio of agents at age $25$ by randomly assigning the equal probability values to $0.17$, $0.50$ and $0.83$. In particular, we consider a population of agents at age 25 and follow their consumption and wealth accumulation dynamics as they reach the age of $60$, using the appropriate age-specific consumption functions and the age-varying parameters. The simulated medians are obtained by taking the medians of the wealth to income ratio of the $7$ age groups.
+
+To complete the creation of the consumer type needed for the simulation, a history of shocks is drawn for each agent across all periods by invoking the \texttt{make\_shock\_history} function. This involves discretizing the shock distribution for as many points as the number of agents we want to simulate and then randomly permuting this shock vector as many times as we need to simulate the model for. In this way, we obtain a time varying shock for each agent. This is much more time efficient than drawing at each time from the shock distribution a shock for each agent, and also ensures a stable distribution of shocks across the simulation periods even for a small number of agents. (Similarly, in order to speed up the process, at each backward iteration we compute the consumption function and other variables as a vector at once.)
+
+With the age-varying consumption functions derived from the life-cycle agent, we can proceed to generate simulated data and compute the corresponding medians.  Estimating the model involves comparing these simulated medians with empirical medians, measuring the model's success by calculating the difference between the two.  However, before performing the necessary steps of solving and simulating the model to generate simulated moments, it's important to note a difficulty in producing the target moments using the available data.
+
+Specifically, defining $\xi$ as the set of parameters
+to be estimated (in the current case $\xi =\{\CRRA ,{\beth}\}$), we could search for
+the parameter values which solve
+\begin{verbatimwrite}{./Equations/naivePowell.tex}
+  \begin{equation}
+    \begin{gathered}
+      \begin{aligned}
+        \min_{\xi} \sum_{\tau=1}^{7} |\Shr^{\tau} -\mathbf{s}^{\tau}(\xi)|  \label{eq:naivePowell}
+      \end{aligned}
+    \end{gathered}
+  \end{equation}
+\end{verbatimwrite}
+\input{./Equations/naivePowell.tex}\unskip
+where $\Shr^{\tau }$ and $\mathbf{s}^{\tau}$ are respectively the empirical
+and simulated medians of the wealth to permanent income ratio for age group $\tau$.
+A drawback of proceeding in this way is that it treats the empirically
+estimated medians as though they reflected perfect measurements of the
+truth. Imagine, however, that one of the age groups happened to have
+(in the consumer survey) four times as many data observations as
+another age group; then we would expect the median to be more
+precisely estimated for the age group with more observations; yet
+\eqref{eq:naivePowell} assigns equal importance to a deviation between
+the model and the data for all age groups.
+
+We can get around this problem (and a variety of others) by instead minimizing a slightly more complex object:
+\begin{verbatimwrite}{./Equations/StructEstim.tex}
+  \begin{equation}
+    \min_{\xi}\sum\limits_{i}^{N}\weight _{i}\left|\Shr_{i}^{\tau }-\mathbf{s}^{\tau}(\xi )\right|\label{eq:StructEstim}
+  \end{equation}
+\end{verbatimwrite}
+\input{./Equations/StructEstim.tex}\unskip
+where $\weight_{i}$ is the weight of household $i$ in the entire
+population,\footnote{The Survey of Consumer Finances includes many
+  more high-wealth households than exist in the population as a whole;
+  therefore if one wants to produce population-representative
+  statistics, one must be careful to weight each observation by the
+  factor that reflects its ``true'' weight in the population.} and
+$\Shr_{i}^{\tau }$ is the empirical wealth to permanent income
+ratio of household $i$ whose head belongs to age group
+$\tau$. $\weight _{i}$ is needed because unequal weight is assigned to
+each observation in the Survey of Consumer Finances (SCF). The
+absolute value is used since the formula is based on the fact that the
+median is the value that minimizes the sum of the absolute deviations
+from itself.
+
+% In the absence of observation specific weights, equation (\ref{eq:MinStructEstim}) can be simplified to require the minimization of the distance between the empirical and simulated medians.
+
+With this in mind, we turn our attention to the computation
+of the weighted median wealth target moments for each age cohort
+using this data from the 2004 Survery of Consumer Finances on household
+wealth. The objects necessary to accomplish this task are \texttt{weighted\_median} and
+\texttt{get\_targeted\_moments}. The actual data are taken from several waves of the SCF and the medians
+and means for each age category are plotted in figure \ref{fig:MeanMedianSCF}.
+More details on the SCF data are included in appendix \ref{app:scf-data}.
+
+\hypertarget{PlotMeanMedianSCFcollegeGrads}{}
+\begin{figure}
+  % \includegraphics[width=6in]{./Figures/PlotMeanMedianSCF}} % weird mean value
+  \includegraphics[width=6in]{./Figures/PlotMeanMedianSCFcollegeGrads}
+  \caption{Wealth to Permanent Income Ratios from SCF (means (dashed) and medians (solid))}
+  \label{fig:MeanMedianSCF}
+\end{figure}
+
+We now turn our attention to the the two key functions in this section of the code file. The first, \texttt{simulate\_moments}, executes the solving (\texttt{solve}) and simulation (\texttt{simulation}) steps for the defined life-cycle agent.  Subsequently, the function uses the agents' tracked levels of wealth based on their optimal consumption behavior to compute and store the simulated median wealth to income ratio for each age cohort. The second function, \texttt{smmObjectiveFxn}, calls the \texttt{simulate\_moments} function to create the objective function described in (\ref{eq:StructEstim}), which is necessary to perform the SMM estimation.
+
+
+% \begin{verbatimwrite}{./Equations/GapEmpiricalSimulatedMedians.tex}
+%   \begin{equation}\begin{gathered}\begin{aligned}
+%         \lefteqn{    \texttt{GapEmpiricalSimulatedMedians$[\CRRA,\beth]$:=}}    \nonumber \\
+%         &[&\texttt{ConstructcFuncLife$[\CRRA,\beth]$;}\nonumber\\
+%         &\texttt{Simulate;}\nonumber\\
+%         &\sum\limits_{i}^{N}\weight _{i}\left|\Shr_{i}^{\tau }-\mathbf{s}^{\tau}(\xi )\right| \nonumber\\
+%         &];&\nonumber
+%       \end{aligned}\end{gathered}\end{equation}
+% \end{verbatimwrite}
+% \input{./Equations/GapEmpiricalSimulatedMedians.tex}\unskip
+
+Thus, for a given pair of the parameters to be estimated, the single
+call to the function \texttt{smmObjectiveFxn} executes the following:
+\begin{enumerate}
+\item solves for the consumption functions for the life-cycle agent
+\item simulates the data and computes the simulated medians
+\item returns the value of equation (\ref{eq:StructEstim})
+\end{enumerate}
+
+We delegate the task of finding the coefficients that minimize the \texttt{smmObjectiveFxn} function to the \texttt{minimize\_nelder\_mead} function, which is defined elsewhere and called in the second part of this file.  This task can be quite slow and rather problematic if the \texttt{smmObjectiveFxn} function has very flat regions or sharp features. It is thus wise to verify the accuracy of the solution, for example by experimenting with a variety of alternative starting values for the parameter search.
+
+The final object defined in this first part of the \texttt{StructEstimation.py}
+file is \texttt{calculateStandardErrorsByBootstrap}. As the name suggsts, the
+purpose of this function is to compute the standard errors by bootstrap.\footnote{For a
+  treatment of the advantages of the bootstrap see
+  Horowitz~\citeyearpar{horowitzBootstrap}} This involves:
+\begin{enumerate}
+\item drawing new shocks for the simulation
+\item drawing a random sample (with replacement) of actual data from the SCF
+\item obtaining new estimates for $\CRRA$ and ${\beth}$
+\end{enumerate}
+We repeat the above procedure several times (\texttt{Bootstrap}) and
+take the standard deviation for each of the estimated parameters across the various bootstrap iterations.
+
+\subsubsection{An Aside to Computing Sensitivity Measures}\label{subsubsec:sensmeas}
+
+
+A common drawback in commonly used structural estimation procedures is a lack of transparency in its estimates.  As \cite{andrews2017measuring} notes, a researcher employing such structural empirical methods may be interested in how alternative assumptions (such as misspecification or measurement bias in the data) would ``change the moments of the data that the estimator uses as inputs, and how changes in these moments affect the estimates.'' The authors provide a measure of sensitivity for given estimator that makes it easy to map the effects of different assumptions on the moments into predictable bias in the estimates for non-linear models.
+
+In the language of \cite{andrews2017measuring}, section \ref{sec:structural-estimation} is aimed at providing an estimator $\xi =\{\CRRA ,{\beth}\}$ that has some true value $\xi_0 $ by assumption. Under the assumption $a_0$ of the researcher, the empirical targets computed from the SCF is measured accurately. These moments of the data are precisely what determine our estimate $\hat{\xi}$, which minimizes (\ref{eq:StructEstim}). Under alternative assumptions $a$, such that a given cohort is mismeasured in the survey, a different estimate is computed. Using the plug-in estimate provided by the authors, we can see quantitatively how our estimate changes under these alternative assumptions $a$ which correspond to mismeasurement in the median wealth to income ratio for a given age cohort.
+
+\subsection{Results}
+The second part of the file \texttt{StructEstimation.py}
+defines a function \texttt{main} which produces our $\CRRA$ and
+${\beth}$ estimates with standard errors using 10,000 simulated
+agents by setting the positional arguments \texttt{estimate\_model} and
+\texttt{compute\_standard\_errors} to true.\footnote{The procedure is: First we calculate the $\CRRA$ and
+  ${\beth}$ estimates as the minimizer of equation
+  (\ref{eq:StructEstim}) using the actual SCF data. Then, we apply the
+  \texttt{Bootstrap} function several times to obtain the standard
+  error of our estimates.} Results are reported in Table
+\ref{tab:EstResults}.\footnote{Differently from Cagetti
+  ~\citeyearpar{cagettiWprofiles} who estimates a different set of
+  parameters for college graduates, high school graduates and high
+  school dropouts graduates, we perform the structural estimation on
+  the full population.}
+
+
+\begin{verbatimwrite}{./Tables/EstResults.tex}
+  \begin{table}[h]
+    \caption{Estimation Results}\label{tab:EstResults}
+    \center
+    \begin{tabular}{cc}
+      \hline
+      $\CRRA $ & ${\beth}$\\
+      \hline
+      $3.69$ & $0.88$\\
+      $(0.047)$ & $(0.002)$\\
+      \hline
+    \end{tabular}
+  \end{table}
+\end{verbatimwrite}
+\input{./Tables/EstResults.tex}\unskip
+
+The literature on consumption and saving behavior over the lifecycle in the presenece of labor income uncertainty\footnote{For example, see \cite{gpLifecycle} for an exposition of this.} warns us to be careful in disentangling the effect of time preference and risk aversion when describing the optimal behavior of households in this setting.  Since the precautionary saving motive dominates in the early stages of life, the coefficient of relative risk aversion (as well as expected labor income growth) has a larger effect on optimal consumption and saving behavior through their magnitude relative to the interest rate. Over time, life-cycle considerations (such as saving for retirement) become more important and the time preference factor plays a larger role in determining optimal behavior for this cohort.
+
+Using the positional argument \texttt{compute\_sensitivity}, Figure \ref{fig:PlotSensitivityMeasure} provides a plot of the plug-in estimate of the sensitivity measure described in \ref{subsubsec:sensmeas}. As you can see from the figure the inverse relationship between $\rho$ and $\beth$ over the life-cycle is retained by the sensitivity measure. Specifically, under the alternative assumption that \textit{a particular cohort is mismeasured in the SCF dataset}, we see that the y-axis suggests that our estimate of $\rho$ and $\beth$ change in a predictable way.
+
+Suppose that there are not enough observations of the oldest cohort of households in the sample. Suppose further that the researcher predicts that adding more observations of these households to correct this mismeasurement would correspond to a higher median wealth to income ratio for this cohort. In this case, our estimate of the time preference factor should increase: the behavior of these older households is driven by their time preference, so a higher value of $\beth$ is required to match the affected wealth to income targets under this alternative assumption. Since risk aversion is less important in explaining the behavior of this cohort, a lower value of $\rho$ is required to match the affected empirical moments.
+
+To recap, the sensitivity measure not only matches our intuition about the inverse relationship between $\rho$ and $\beth$ over the life-cycle, but provides a quantitative estimate of what would happen to our estimates of these parameters under the alternative assumption that the data is mismeasured in some way.
+
+\hypertarget{PlotSensitivityMeasure}{}
+\begin{figure}
+  \includegraphics[width=6in]{./Figures/Sensitivity.pdf}
+  \caption{Sensitivty of Estimates $\{\CRRA,{\beth}\}$ regarding Alternative Mismeasurement Assumptions.}
+  \label{fig:PlotSensitivityMeasure}
+\end{figure}
+
+By setting the positional argument \texttt{make\_contour\_plot} to true, Figure \ref{fig:PlotContourMedianStrEst} shows the contour plot of the \texttt{smmObjectiveFxn} function and the parameter estimates. The contour plot shows equally spaced isoquants of the \texttt{smmObjectiveFxn} function, i.e.\ the pairs of $\CRRA$ and ${\beth}$ which lead to the same deviations between simulated and empirical medians (equivalent values of equation (\ref{eq:StructEstim})). Interestingly, there is a large rather flat region; or, more formally speaking, there exists a broad set of parameter pairs which leads to similar simulated wealth to income ratios. Intuitively, the flatter and larger is this region, the harder it is for the structural estimation procedure to precisely identify the parameters.
+
+
+\hypertarget{PlotContourMedianStrEst}{}
+\begin{figure}
+  \includegraphics[width=6in]{./Figures/SMMcontour.pdf}
+  \caption{Contour Plot (larger values are shown lighter) with $\{\CRRA,{\beth}\}$ Estimates (red dot).}
+  \label{fig:PlotContourMedianStrEst}
+\end{figure}
+
+\end{document}

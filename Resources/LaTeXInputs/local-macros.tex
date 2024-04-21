@@ -1,0 +1,180 @@
+% Define macros for this paper
+% Only works after \input{./.econtexRoot}
+\ProvidesPackage{alias-private}
+\providecommand{\onlyinsubfile}{}\renewcommand{\onlyinsubfile}[1]{#1}
+\providecommand{\notinsubfile}{}\renewcommand{\notinsubfile}[1]{}
+
+\providecommand{\aboveMin}{}\renewcommand{\aboveMin}{\blacktriangle}
+\providecommand{\chiFunc}{}\providecommand{\chiFunc}{\pmb{\chi}}
+
+% version for urls - [userGitHubID] or econ-ark
+\providecommand{\owner}{}\renewcommand{\owner}{llorracc}
+\input{Resources/LaTeXInputs/owner}
+
+\newcommand{\Arrival}{Arrival}\newcommand{\arvl}{\leftarrow}
+\newcommand{\Decision}{Decision}\newcommand{\dcsn}{\null}%{\sim}
+\newcommand{\Continuation}{Continuation}\newcommand{\cntn}{\rightarrow}%{\rightharpoonup}
+
+% providecommand then renewcommand works to redefine it
+% if it already exists
+
+\providecommand{\prdNxt}{}\renewcommand{\prdNxt}{\prdt+1}
+\providecommand{\prdLst}{}\renewcommand{\prdLst}{\prdt-1}
+\providecommand{\prdNxT}{}\renewcommand{\prdNxT}{\prdT+1}
+\providecommand{\prdLsT}{}\renewcommand{\prdLsT}{\prdT-1}
+
+\providecommand{\BegMark}{}\renewcommand{\BegMark}{\arvl}
+\providecommand{\BegStp}{}\renewcommand{\BegStp}{_\arvl\prd}
+\providecommand{\BegStpNxt}{}\renewcommand{\BegStpNxt}{_\arvl{(\prd+1)}}
+\providecommand{\BegStpLst}{}\renewcommand{\BegStpLst}{_\arvl\prd-1}
+\providecommand{\MidStp}{}\renewcommand{\MidStp}{{\prd}}
+\providecommand{\MidStpLst}{}\renewcommand{\MidStpLst}{{\prd-1}}
+\providecommand{\MidStpNxt}{}\renewcommand{\MidStpNxt}{{\prd+1}}
+\providecommand{\EndMark}{}\renewcommand{\EndMark}{\cntn}
+\providecommand{\EndStp}{}\renewcommand{\EndStp}{\prd_\cntn}
+\providecommand{\EndStpLst}{}\renewcommand{\EndStpLst}{{(\prd-1})_\cntn}
+\providecommand{\EndStpNxt}{}\renewcommand{\EndStpNxt}{(\prd+1_\cntn)}
+\newcommand{\vBeg}{\vFunc_{\BegStp}}
+\newcommand{\vBegStpNxt}{\vFunc_{\BegStpNxt}}
+\newcommand{\vMid}{\vFunc_{\MidStp}}
+\newcommand{\vMidStpNxt}{\vFunc_{\MidStpNxt}}
+\newcommand{\vEnd}{\vFunc_{\EndStp}}
+\newcommand{\vEndStpLst}{\vFunc_{\EndStpLst}}
+\newcommand{\cEndStp}{\cFunc_{\EndStp}}
+\newcommand{\vPEndStp}{\vFunc^{{a}}_{\EndStp}}
+\newcommand{\vPMidStp}{\vFunc^{{m}}_{\MidStp}}
+\newcommand{\vPBegStp}{\vFunc^{{k}}_{\BegStp}}
+\newcommand{\vPEndStpNxt}{\vFunc^{{a}}_{\EndStpNxt}}
+\newcommand{\vPMidStpNxt}{\vFunc^{{m}}_{\MidStpNxt}}
+\newcommand{\vPBegStpNxt}{\vFunc^{{k}}_{\BegStpNxt}}
+
+\providecommand{\step}{}\renewcommand{\step}{s}
+
+\providecommand{\PDVCoverc}{\mathbb{C}}
+
+\newcommand{\SMDSOPntbk}{\texttt{\href{https://econ-ark.org/materials/solvingmicrodsops?launch}{SolvingMicroDSOPs}}}
+\newcommand{\SMDSOPrepo}{\texttt{\href{https://github.com/\owner/SolvingMicroDSOPs}{SolvingMicroDSOPs}}}
+\newcommand{\EMDSOPrepo}{\texttt{\href{https://github.com/\owner/EstimatingMicroDSOPs}{EstimatingMicroDSOPs repo}}}
+
+\newcommand{\urlPDF}{\texttt{\href{https://github.com/\owner/SolvingMicroDSOPs/blob/master/SolvingMicroDSOPs.pdf}{https://github.com/\owner/SolvingMicroDSOPs/blob/master/SolvingMicroDSOPs.pdf}}}
+\newcommand{\urlSlides}{\texttt{\href{https://github.com/\owner/SolvingMicroDSOPs/blob/master/SolvingMicroDSOPs-Slides.pdf}{https://github.com/\owner/SolvingMicroDSOPs/blob/master/SolvingMicroDSOPs-Slides.pdf}}}
+\newcommand{\urlHTML}{\texttt{\href{https://\owner.github.io/SolvingMicroDSOPs}{https://\owner.github.io/SolvingMicroDSOPs}}}
+\newcommand{\urlCode}{\texttt{\href{https://github.com/\owner/SolvingMicroDSOPs/tree/master/Code}{https://github.com/\owner/SolvingMicroDSOPs/tree/master/Code}}}
+\newcommand{\urlRepo}{\texttt{\href{https://github.com/\owner/SolvingMicroDSOPs}{https://github.com/\owner/SolvingMicroDSOPs}}}
+
+% \newcommand{\Mma}{\textit{Mathematica}}
+\providecommand{\step}{}\renewcommand{\step}{t}
+\providecommand{\Stp}{}\renewcommand{\Stp}{T}
+% \providecommand{\move}{}\renewcommand{\move}{step}
+\providecommand{\move}{}\renewcommand{\move}{tock}
+% \providecommand{\moves}{}\renewcommand{\moves}{steps}
+\providecommand{\moves}{}\renewcommand{\moves}{tocks}
+\providecommand{\interval}{}\renewcommand{\interval}{period}
+
+\newcommand{\ExEndStp}{\Ex_{\EndStp}}
+\newcommand{\ExBegStp}{\Ex_{\BegStp}}
+\newcommand{\ExMidStp}{\Ex_{\MidStp}}
+
+\newcommand{\ExEndStpLst}{\Ex_{\EndStpLst}}
+\newcommand{\ExBegStpLst}{\Ex_{\BegStpLst}}
+\newcommand{\ExMidStpLst}{\Ex_{\MidStpLst}}
+
+\providecommand{\stigma}{}\renewcommand{\stigma}{\varsigma}
+\providecommand{\Shr}{}\renewcommand{\Shr}{\stigma}
+\providecommand{\Aprx}{}\renewcommand{\Aprx}{\Alt}
+
+\newcommand{\lqd}{\ell}
+\newcommand{\lqdcntn}{\ell_{\cntn}}
+\newcommand{\lqdarvl}{\ell_{\arvl}}
+
+\newcommand{\optml}[1]{\hat{#1}}
+
+% \newcommand{\prd}{t}
+\newcommand{\prdm}{({\prd-1})}
+% \newcommand{\vBegStgShr}{\vFunc_{_arvl\prd[\Shr}}
+
+
+\newcommand{\code}[1]{\ensuremath{\mathtt{#1}}} % code should be in tt font
+%\newcommand{\code}{\mathtt}
+
+% These allow turning on or off the growth factor for permanent income
+% (preserves symbolic derivations in LaTeX but makes them disappear)
+% value function growth normed by G^{1-\CRRA}
+\newcommand{\PermGroFacAdjV}{\PermGroFac_{\step}^{1-\CRRA}}
+\newcommand{\PermGroFacAdjVNxt}{\PermGroFac_{\step+1}^{1-\CRRA}}
+\providecommand{\PermGroFacAdjV}{}\renewcommand{\PermGroFacAdjV}{} % turn off
+% marginal utility growth normed by G^{-\CRRA}
+\newcommand{\PermGroFacAdjMu}{\PermGroFac_{\step}^{-\CRRA}}
+\newcommand{\PermGroFacAdjMuNxt}{\PermGroFac_{\step}^{-\CRRA}}
+\providecommand{\PermGroFacAdjMu}{}\renewcommand{\PermGroFacAdjMu}{} % turn off
+
+% To compile the Habits subfile, go to the Subfiles directory
+
+\newcommand{\trmT}{T}
+
+\providecommand{\VInv}{}\providecommand{\VInv}{}\renewcommand{\VInv}{{\Lambda}}
+\providecommand{\vInv}{}\providecommand{\vInv}{}\renewcommand{\vInv}{{\scriptstyle \VInv \displaystyle}}
+
+\providecommand{\NatBoroCnstra}{}\providecommand{\NatBoroCnstra}{}\renewcommand{\NatBoroCnstra}{\underline{a}}
+
+\providecommand{\DiscAlt}{}\renewcommand{\DiscAlt}{\beta} % Erase the distinction between the alternative and the standard discount factor
+
+\providecommand{\aVecCode}{}\renewcommand{\aVecCode}{\code{aVec}}
+\providecommand{\mVecCode}{}\renewcommand{\mVecCode}{\texttt{mVec}}
+\providecommand{\kVecCode}{}\renewcommand{\kVecCode}{\texttt{kVec}}
+\providecommand{\cVecCode}{}\renewcommand{\cVecCode}{\texttt{cVec}}
+
+\newcommand{\vctr}{\pmb}
+\newcommand{\mVec}{\texttt{mVec}}
+\newcommand{\aVec}{\texttt{aVec}}
+\newcommand{\vVec}{\texttt{vVec}}
+
+\newcommand{\arvlstepShr}{_\arvl\step[\Shr]}
+\newcommand{\stepShr}{\step[\Shr]}
+
+\newcommand{\vBegStgShr}{\vFunc_{_arvl\step[\Shr]}}
+\newcommand{\vMidStgShr}{\vFunc_{\stp[\Shr]}}
+\newcommand{\vEndStgShr}{\vFunc_{\stpcntn[\Shr]}}
+\newcommand{\dvdShrBeg}{\vFunc^{\Shr}_{_\arvl\prd[\Shr]}}
+\newcommand{\vShrMid}{\vFunc^{\Shr}_{\prd[\Shr]}}
+\newcommand{\vShrEnd}{\vFunc^{\Shr}_{\prd[\Shr]_\cntn}}
+\newcommand{\vVecShr}{\vctr{v}_{_\arvl\prd[\Shr]}}
+
+\newcommand{\prd}{t}
+\newcommand{\prdt}{t}
+\newcommand{\prdT}{T}
+
+\providecommand{\hEndMin}{\underline{\hNrm}}\renewcommand{\hEndMin}{\underline{\hNrm}}
+\newcommand{\TranShkEmpDummy}{\vartheta}
+
+\newcommand{\aVecMin}{{a}_{1}}\newcommand{\cMin}{{c}_{1}}
+\newcommand{\vctratm}{\vctr{{a}}_{\prd-1}}\renewcommand{\vctratm}{\vctr{a}}
+\providecommand{\TranShkEmpMin}{}\renewcommand{\TranShkEmpMin}{\underline{\TranShkEmp}}
+
+\newcommand{\cLst}{{c}_{\prdLst}}
+\newcommand{\cLsT}{{c}_{\prdLsT}}
+\newcommand{\mLst}{{m}_{\prdLst}}
+\newcommand{\mLsT}{{m}_{\prdLsT}}
+
+% Alternative definitions of these would restore the time subscript for c
+% in the max problem statements
+\newcommand{\cLvlMaxPrdT}{\cLvl}
+\newcommand{\cLvlMaxPrdt}{\cLvl}
+\newcommand{\cNrmMaxPrdT}{\cNrm}
+\newcommand{\cNrmMaxPrdt}{\cNrm}
+% \newcommand{\cLvlMaxPrd}{\cLvl_{\prd}}
+
+\ProvidesPackage{alias-private}
+\newcommand{\Paren}[1]{\left( #1 \right)}
+\newcommand{\DefEq}{\mathop{=}\limits^{\mathrm{def}}}
+\newcommand{\PDF}{p}
+\newcommand{\NMLPDF}[1]{\PDF_\mathrm{NML} \Paren{#1}}
+\newcommand{\ModelPDF}[2]{\PDF \Paren{#1: #2}}
+\newcommand{\Datum}{x}
+\newcommand{\DummyDatum}{\xi}
+\newcommand{\SampleCnt}{N}
+\newcommand{\Data}{\Datum^\SampleCnt}
+\newcommand{\DummyData}{\DummyDatum^\SampleCnt}
+\newcommand{\DummyDataSum}{\sum_{\DummyData}}
+\newcommand{\Parameter}{\theta}
+\newcommand{\MLE}[1]{\hat{\Parameter} \Paren{#1}}
