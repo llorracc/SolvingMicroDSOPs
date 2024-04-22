@@ -1,10 +1,10 @@
 % -*- mode: LaTeX; TeX-PDF-mode: t; -*- # Tell emacs the file type (for syntax)
 \input{./.econtexRoot}         % Set paths (like, \LaTeXInputs)
 \newcommand{\texname}{cctwMoM} % Keyname for the paper
-\documentclass[titlepage,abstract, headings=optiontotocandhead]{Resources/texmf-local/tex/latex/econtex}
+\documentclass[titlepage,abstract, headings=optiontotocandhead]{\econtex}
 
-\usepackage{Resources/LaTeXInputs/local}            % LaTeX config in Resources/LaTeXInputs
-\input{cctwMoM-options} % booleans that control whether certain features are on or off
+\usepackage{\local}            % LaTeX config in Resources/LaTeXInputs
+\usepackage{cctwMoM-options} % booleans that control whether certain features are on or off
 
 \hypersetup{colorlinks=true,
   pdfauthor={Christopher D. Carroll <ccarroll@jhu.edu>, Kiichi Tokuoka <ktokuoka <ktokuoka@imf.org>, Weifeng Wu <wwu19@jhu.edu> },
@@ -19,7 +19,7 @@
   The Method of Moderation
 \end{verbatimwrite}
 
-\bibliographystyle{Resources/texmf-local/bibtex/bst/econtex.bst}
+\bibliographystyle{\econtexBibStyle}
 \begin{document}
 
 % Redefine \onlyinsubfile command defined in local.sty file:
@@ -95,7 +95,7 @@ After showing how to use the method in the baseline case, we show how refine it 
 
 We assume that truly optimal behavior in the problem facing the consumer who understands all his risks is captured by
 \input{./Equations/MaxProb.tex}
-\notinsubfile{\input{Resources/LaTeXInputs/bibliography_blend}} \end{document}\endinput
+\notinsubfile{\input{\LaTeXInputs/bibliography_blend}} \end{document}\endinput
 subject to
 \input{./Equations/DBCLevelStart.tex}
 where
@@ -114,7 +114,7 @@ For comparison to our new solution method, we use the endogenous gridpoints solu
 
 \cite{SolvingMicroDSOPs} describes a specific calibration of the model and constructs a solution using five gridpoints chosen to capture the structure of the consumption function reasonably well at values of $\mRat$ near the infinite-horizon target value.  (See those notes for details).
 
-\input{cctwMoM/EndogGptsProbs.tex}
+\input{\econtexRoot/cctwMoM/EndogGptsProbs.tex}
 
 \hypertarget{the-method-of-moderation}{}
 \section{The Method of Moderation}
@@ -138,36 +138,36 @@ For comparison to our new solution method, we use the endogenous gridpoints solu
 \input{./Equations/cFuncAbove.tex}\unskip
 
 \input{./Equations/cFuncAbove.tex} 
-\input{cctwMoM/MoM-Words.tex}
+\input{\econtexRoot/cctwMoM/MoM-Words.tex}
 
 \import{./Figures/}{IntExpFOCInvPesReaOptNeedHiPlot.tex}
 
-\input{cctwMoM/MoM-Words-Rest.tex}
+\input{\econtexRoot/cctwMoM/MoM-Words-Rest.tex}
 \input{./Equations/MoM-Inequalities.tex}
-\input{cctwMoM/MoM-Inequalities-Describe.tex}
+\input{\econtexRoot/cctwMoM/MoM-Inequalities-Describe.tex}
 \input{./Equations/MoM-KoppaOfMu.tex}
-\input{cctwMoM/MoM-KoppaOfMu-Describe.tex}
+\input{\econtexRoot/cctwMoM/MoM-KoppaOfMu-Describe.tex}
 \input{./Equations/cFuncHi.tex}
-\input{cctwMoM/MoM-End.tex}
+\input{\econtexRoot/cctwMoM/MoM-End.tex}
 
 \hypertarget{the-value-function}{}
 \subsubsection{The Value Function}
 
-\input{cctwMoM/value-Intro.tex} % Can't nest verbatimwrites so must split value.tex up into parts
+\input{\econtexRoot/cctwMoM/value-Intro.tex} % Can't nest verbatimwrites so must split value.tex up into parts
 \input{./Equations/vFuncPF.tex} % This is the perfect foresight solution 
-\input{cctwMoM/value-Rest.tex} % Remainder of the text
+\input{\econtexRoot/cctwMoM/value-Rest.tex} % Remainder of the text
 
 \section{Extensions}
 
 \hypertarget{a-tighter-upper-bound}{}
 \subsection{A Tighter Upper Bound}
-\input{cctwMoM/Tighter.tex}
+\input{\econtexRoot/cctwMoM/Tighter.tex}
 \input{./Equations/mtCusp.tex}
 \input{./Equations/TighterUpperBound.tex}
 \input{./Equations/koppaLo.tex}
-\input{cctwMoM/TighterThreeFuncs.tex}
+\input{\econtexRoot/cctwMoM/TighterThreeFuncs.tex}
 \input{./Equations/TighterThreeEqns.tex}
-\input{cctwMoM/TighterThreeFuncsExplain.tex}
+\input{\econtexRoot/cctwMoM/TighterThreeFuncsExplain.tex}
 
 \begin{figure}
   \includegraphics[width=6in]{./Figures/IntExpFOCInvPesReaOptNeed45Plot}
@@ -176,11 +176,11 @@ For comparison to our new solution method, we use the endogenous gridpoints solu
 \IfRiskyR{
   \hypertarget{stochastic-rate-of-return}{}
   \subsection{Stochastic Rate of Return}
-  \input{cctwMoM/StochasticR-Intro.tex} 
+  \input{\econtexRoot/cctwMoM/StochasticR-Intro.tex} 
 
   The easiest case is where the interest factor is i.i.d., \input{./Equations/distRisky.tex} \noindent because in this case \cite{merton:restat} and \cite{samuelson:portfolio} showed that for a consumer without labor income (or with perfectly forecastable labor income) the consumption function is linear, with an MPC.\footnote{See \handoutC{CRRA-RateRisk} for a derivation.}
-  \input{cctwMoM/R-IID-MertonSamuelson.tex} 
-  \input{cctwMoM/R-AR1.tex} 
+  \input{\econtexRoot/cctwMoM/R-IID-MertonSamuelson.tex} 
+  \input{\econtexRoot/cctwMoM/R-AR1.tex} 
 }{}
 
 % \subsection{Habits}
@@ -191,7 +191,7 @@ For comparison to our new solution method, we use the endogenous gridpoints solu
 The method proposed here is not universally applicable.  For example, the method cannot be used for problems for which upper and lower bounds to the `true' solution are not known.  But many problems do have obvious upper and lower bounds, and in those cases (as in the consumption example used in the paper), the method may result in substantial improvements in accuracy and stability of solutions.
 
 \vfill\clearpage
-\notinsubfile{\input{Resources/LaTeXInputs/bibliography_blend}} \end{document}\endinput
+\notinsubfile{\input{\LaTeXInputs/bibliography_blend}} \end{document}\endinput
 
 % Local Variables:
 % TeX-master-file: t

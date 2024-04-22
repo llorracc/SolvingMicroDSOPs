@@ -1,4 +1,4 @@
-\input{./.econtexRoot}\documentclass[SolvingMicroDSOPs]{subfiles}
+\input{./.econtexRoot}\documentclass[\econtexRoot/SolvingMicroDSOPs]{subfiles}
 \input{subfile-start}
 
 \begin{document}
@@ -6,8 +6,6 @@
 \hypertarget{solving-the-next-to-last-period}{}
 \hypertarget{solving-the-next}{}
 \section{Solving the Next-to-Last Period}\label{sec:solving-the-next}
-
-\renewcommand{\cLsT}{c}
 
 To reduce clutter, we now temporarily assume that $\PermGroFac_{\prd}=1$ for all $\prd$, so that the $\PermGroFac$ terms from the earlier derivations disappear, and setting $t=T$ the problem in the second-to-last period of life can now be expressed as
 \begin{equation*}\begin{gathered}\begin{aligned}
@@ -56,7 +54,7 @@ the ``true'' CDF $\FDist(\TranShkEmp)$ for a lognormal distribution such that $\
 equiprobable values of $\TranShkEmp_{i}$ which are used to approximate this
 distribution.\footnote{More sophisticated approximation methods exist
   (e.g.\ Gauss-Hermite quadrature; see \cite{kopecky2010finite} for a discussion of other alternatives), but the method described here is easy to understand, quick to calculate, and has additional advantages briefly described in the discussion of simulation below.}
-\begin{verbatimwrite}{Figures/discreteApprox.tex}
+\begin{verbatimwrite}{\econtexRoot/Figures/discreteApprox.tex}
   \hypertarget{discreteApprox}{}
   \begin{figure}
     \includegraphics[width=0.8\textwidth]{./Figures/discreteApprox}
@@ -64,7 +62,7 @@ distribution.\footnote{More sophisticated approximation methods exist
     \label{fig:discreteapprox}
   \end{figure}
 \end{verbatimwrite}
-\input{Figures/discreteApprox.tex}\unskip
+\input{\econtexRoot/Figures/discreteApprox.tex}\unskip
 
 Because one of the purposes of these notes is to connect the math to the code that solves the math, we display here a brief snippet from the notebook that constructs these points.
 

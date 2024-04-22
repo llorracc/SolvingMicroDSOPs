@@ -8,7 +8,7 @@
 \setboolean{BothExist}{true}
 \setboolean{NeitherExists}{true}
 
-\IfFileExists{\econtexRoot/Add-Refs.bib}{
+\IfFileExists{./\texname-Add-Refs.bib}{
   % then
   \typeout{References in Add-Refs.bib will take precedence over those elsewhere}
   \setboolean{AddRefsExists}{true}
@@ -38,18 +38,19 @@
 
 \ifthenelse{\boolean{BothExist}}{
   % then use both
-  \typeout{bibliography{\econtexRoot/Add-Refs,\econtexRoot/\texname,economics}}
-  \bibliography{\econtexRoot/Add-Refs,\econtexRoot/\texname,economics}
+  \typeout{bibliography{./\texname-Add-Refs,./\texname,economics}}
+  \bibliography{./\texname-Add-Refs,./\texname,economics}
   % else both do not exist
 }{ % maybe neither does?
   \ifthenelse{\boolean{NeitherExists}}{
     \typeout{bibliography{\texname}}
     \bibliography{\texname}}{
     % no -- at least one exists
-    \ifthenelse{\boolean{AddRefsExists}}{
-      \typeout{bibliography{\econtexRoot/Add-Refs,\econtexRoot/\texname}}
-      \bibliography{\econtexRoot/Add-Refs,\econtexRoot/\texname}}{
-      \typeout{bibliography{\econtexRoot/\texname,economics}}
-      \bibliography{        \econtexRoot/\texname,economics}}
+    \ifthenelse{\boolean{AddRefsExists}}{% yes
+      \typeout{\bibliography{./\texname-Add-Refs,./\texname}}
+      \bibliography{./\texname-Add-Refs,./\texname}}
+      {% else \texname-Add-Refs does not exist 
+      \typeout{\bibliography{./\texname,economics}}
+      \bibliography{         ./\texname,economics}}
   } % end of picking the one that exists
 } % end of testing whether neither exists

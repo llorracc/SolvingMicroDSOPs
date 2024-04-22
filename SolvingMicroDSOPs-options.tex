@@ -17,12 +17,12 @@
 
 % Include or exclude Method of Moderation material 
 \provideboolean{MoMVersion}\setboolean{MoMVersion}{true}
-\setboolean{MoMVersion}{false}
+%\setboolean{MoMVersion}{false}
 \newcommand{\MoM}{\ifthenelse{\boolean{MoMVersion}}}
 
 % Get extra style stuff for cctwMoM
 \MoM{ % {cctw}
-  \usepackage{Resources/LaTeXInputs/cctwMoM} % {cctw}
+  \usepackage{\LaTeXInputs/cctwMoM} % {cctw}
 }{} % {cctw}
 
 % Versions with or without permanent shocks

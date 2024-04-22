@@ -1,8 +1,3 @@
-% -*- mode: LaTeX; TeX-PDF-mode: t; -*- # Tell emacs the file type (for syntax)
-\input{./.econtexRoot}\documentclass[\econtexRoot/SolvingMicroDSOPs]{subfiles}
-\input{subfile-start}
-
-\begin{document}
 % Redefine \onlyinsubfile command defined in local.sty file:
 % This lets any submaterial called from this doc know that it is not standalone
 %\renewcommand{\onlyinsubfile}[1]{}\renewcommand{\notinsubfile}[1]{#1}
@@ -20,7 +15,7 @@
 \maketitle
 \footnotesize
 
-\noindent  Note: The GitHub repo {\SMDSOPrepo} associated with this document contains python code that produces all results, from scratch, except for the last section on indirect inference.  The numerical results have been confirmed by showing that the answers that the raw python produces correspond to the answers produced by tools available in the \href{https://econ-ark.org}{Econ-ARK} toolkit, more specifically those in the {\HARKrepo} which has full {\HARKdocs}.  The MSM results at the end have have been superseded by tools in the {\EMDSOPrepo}.
+\noindent  Note: The GitHub repo {\texttt{\href{https://github.com/llorracc/SolvingMicroDSOPs}{SolvingMicroDSOPs}}} associated with this document contains python code that produces all results, from scratch, except for the last section on indirect inference.  The numerical results have been confirmed by showing that the answers that the raw python produces correspond to the answers produced by tools available in the \href{https://econ-ark.org}{Econ-ARK} toolkit, more specifically those in the {\HARKrepo} which has full {\HARKdocs}.  The MSM results at the end have have been superseded by tools in the {\texttt{\href{https://github.com/llorracc/EstimatingMicroDSOPs}{EstimatingMicroDSOPs repo}}}.
 
 \normalsize
 
@@ -33,11 +28,11 @@
 \begin{footnotesize}
   \begin{center}
     \begin{tabbing}
-      \texttt{~~~~PDF:~} \= \= {\urlPDF} \\
-      \texttt{~Slides:~} \> \> {\urlSlides} \\
-      \texttt{~~~~Web:~} \> \> {\urlHTML} \\
-      \texttt{~~~Code:~} \> \> {\urlCode} \\
-      \texttt{Archive:~} \> \> {\urlRepo} \\
+      \texttt{~~~~PDF:~} \= \= {\texttt{\href{https://github.com/llorracc/SolvingMicroDSOPs/blob/master/SolvingMicroDSOPs.pdf}{https://github.com/llorracc/SolvingMicroDSOPs/blob/master/SolvingMicroDSOPs.pdf}}} \\
+      \texttt{~Slides:~} \> \> {\texttt{\href{https://github.com/llorracc/SolvingMicroDSOPs/blob/master/SolvingMicroDSOPs-Slides.pdf}{https://github.com/llorracc/SolvingMicroDSOPs/blob/master/SolvingMicroDSOPs-Slides.pdf}}} \\
+      \texttt{~~~~Web:~} \> \> {\texttt{\href{https://llorracc.github.io/SolvingMicroDSOPs}{https://llorracc.github.io/SolvingMicroDSOPs}}} \\
+      \texttt{~~~Code:~} \> \> {\texttt{\href{https://github.com/llorracc/SolvingMicroDSOPs/tree/master/Code}{https://github.com/llorracc/SolvingMicroDSOPs/tree/master/Code}}} \\
+      \texttt{Archive:~} \> \> {\texttt{\href{https://github.com/llorracc/SolvingMicroDSOPs}{https://github.com/llorracc/SolvingMicroDSOPs}}} \\
       \texttt{~~~~~~~~~} \> \> \textit{(Contains LaTeX code for this document and software producing figures and results)}
     \end{tabbing}
   \end{center}
@@ -58,4 +53,3 @@
 \tableofcontents \addtocontents{toc}{\vspace{1em}}\newpage
 \fi
 \newpage\pagenumbering{arabic}
-\end{document}

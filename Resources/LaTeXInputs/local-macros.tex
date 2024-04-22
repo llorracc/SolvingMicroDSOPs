@@ -1,6 +1,19 @@
 % Define macros for this paper
 % Only works after \input{./.econtexRoot}
-\ProvidesPackage{alias-private}
+\ProvidesPackage{SolvingMicroDSOPs-private}
+
+
+\renewcommand{\econtexRoot}{.}
+\renewcommand{\packages}{\econtexRoot/Resources/texmf-local/tex/latex}
+\renewcommand{\econtex}{\packages/econtex}
+\renewcommand{\econark}{\econtexRoot/Resources/texmf-local/tex/latex/econark}
+\renewcommand{\econtexSetup}{\econtexRoot/Resources/texmf-local/tex/latex/econtexSetup}
+\renewcommand{\econtexShortcuts}{\econtexRoot/Resources/texmf-local/tex/latex/econtexShortcuts}
+\renewcommand{\econtexBibMake}{\econtexRoot/Resources/texmf-local/tex/latex/econtexBibMake}
+\renewcommand{\econtexBibStyle}{\econtexRoot/Resources/texmf-local/bibtex/bst/econtex}
+\renewcommand{\LaTeXInputs}{\econtexRoot/Resources/LaTeXInputs}
+\renewcommand{\local}{\LaTeXInputs/local}
+
 \providecommand{\onlyinsubfile}{}\renewcommand{\onlyinsubfile}[1]{#1}
 \providecommand{\notinsubfile}{}\renewcommand{\notinsubfile}[1]{}
 
@@ -9,7 +22,7 @@
 
 % version for urls - [userGitHubID] or econ-ark
 \providecommand{\owner}{}\renewcommand{\owner}{llorracc}
-\input{Resources/LaTeXInputs/owner}
+\input{\LaTeXInputs/owner}
 
 \newcommand{\Arrival}{Arrival}\newcommand{\arvl}{\leftarrow}
 \newcommand{\Decision}{Decision}\newcommand{\dcsn}{\null}%{\sim}
@@ -89,8 +102,8 @@
 
 \newcommand{\optml}[1]{\hat{#1}}
 
-% \newcommand{\prd}{t}
-\newcommand{\prdm}{({\prd-1})}
+\providecommand{\prd}{}\renewcommand{\prd}{t}
+\providecommand{\prdm}{}\renewcommand{\prdm}{({\prd-1})}
 % \newcommand{\vBegStgShr}{\vFunc_{_arvl\prd[\Shr}}
 
 
@@ -140,7 +153,7 @@
 \newcommand{\vShrEnd}{\vFunc^{\Shr}_{\prd[\Shr]_\cntn}}
 \newcommand{\vVecShr}{\vctr{v}_{_\arvl\prd[\Shr]}}
 
-\newcommand{\prd}{t}
+%\newcommand{\prd}{t}
 \newcommand{\prdt}{t}
 \newcommand{\prdT}{T}
 
@@ -164,17 +177,3 @@
 \newcommand{\cNrmMaxPrdt}{\cNrm}
 % \newcommand{\cLvlMaxPrd}{\cLvl_{\prd}}
 
-\ProvidesPackage{alias-private}
-\newcommand{\Paren}[1]{\left( #1 \right)}
-\newcommand{\DefEq}{\mathop{=}\limits^{\mathrm{def}}}
-\newcommand{\PDF}{p}
-\newcommand{\NMLPDF}[1]{\PDF_\mathrm{NML} \Paren{#1}}
-\newcommand{\ModelPDF}[2]{\PDF \Paren{#1: #2}}
-\newcommand{\Datum}{x}
-\newcommand{\DummyDatum}{\xi}
-\newcommand{\SampleCnt}{N}
-\newcommand{\Data}{\Datum^\SampleCnt}
-\newcommand{\DummyData}{\DummyDatum^\SampleCnt}
-\newcommand{\DummyDataSum}{\sum_{\DummyData}}
-\newcommand{\Parameter}{\theta}
-\newcommand{\MLE}[1]{\hat{\Parameter} \Paren{#1}}

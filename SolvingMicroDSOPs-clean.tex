@@ -1,41 +1,16 @@
 % -*- mode: LaTeX; TeX-PDF-mode: t; -*-  
-\input{./.econtexRoot}                   % Set paths (like, \LaTeXInputs)
-\newcommand{\texname}{SolvingMicroDSOPs} % Keyname for the paper
 \documentclass[titlepage, headings=optiontotocandhead]{Resources/texmf-local/tex/latex/econtex}
+\newcommand{\texname}{SolvingMicroDSOPs} % Keyname for the paper
+\usepackage{./.econtexRoot}                   % Set paths (like, \LaTeXInputs)
 
 % eval: (setq auctex-unicode-math t)
+% \usepackage{\LaTeXInputs/local-macros}
 
-% Define a few objects that are unique to this paper
-% Allow different actions depending on whether document is being processed as
-% subfile or being process as standalone
+% \input{\LaTeXInputs/local-packages} % LaTeX config in Resources/LaTeXInputs
+\usepackage{./Resources/LaTeXInputs/local-packages} % LaTeX config in Resources/LaTeXInputs
+% \providecommand{\onlyinsubfile}[1]{}\renewcommand{\onlyinsubfile}[1]{}
+% \providecommand{\notinsubfile}[1]{#1}\renewcommand{\notinsubfile}[1]{#1}
 
-% \usepackage{import} % used in slides and cctwMoM
-\usepackage{Resources/LaTeXInputs/pdfsuppressruntime} % prevent timestamp
-
-\usepackage[authoryear]{natbib}
-\usepackage{listings}
-\usepackage{mathtools}
-\usepackage{accents,xr-hyper}
-\usepackage{\econark}
-\usepackage{dcolumn}       % seems to need to come after hyperref
-\usepackage{moreverb}      % Used in slides
-\usepackage{\econtexSetup} % Gets, configures often-used packages
-
-% \usepackage{econtexSetup} sets boolean Web=true if compilation type is dvi
-% also includes hyperref
-\provideboolean{showPageHead}{}
-\ifthenelse{\boolean{Web}}{
-  \setboolean{showPageHead}{false}
-}{ % {pdf}
-  \setboolean{showPageHead}{true}
-  \usepackage{scrlayer-scrpage} %  Package for page headers if PDF
-  \usepackage{caption} % allow suppression of appendix figures in NoAppendix PDF
-} 
-
-\usepackage{\econtexShortcuts}
-\usepackage{subfiles}
-
- % LaTeX config in Resources/LaTeXInputs
 % Switches
 % Controls for which of various variant versions to create
 
@@ -55,12 +30,12 @@
 
 % Include or exclude Method of Moderation material 
 \provideboolean{MoMVersion}\setboolean{MoMVersion}{true}
-\setboolean{MoMVersion}{false}
+%\setboolean{MoMVersion}{false}
 \newcommand{\MoM}{\ifthenelse{\boolean{MoMVersion}}}
 
 % Get extra style stuff for cctwMoM
 \MoM{ % {cctw}
-  \usepackage{Resources/LaTeXInputs/cctwMoM} % {cctw}
+  \usepackage{./Resources/LaTeXInputs/cctwMoM} % {cctw}
 }{} % {cctw}
 
 % Versions with or without permanent shocks
@@ -104,10 +79,65 @@
   pdfpagelabels
 }
 
-\bibliographystyle{Resources/texmf-local/bibtex/bst/econtex.bst}
+\bibliographystyle{./Resources/texmf-local/bibtex/bst/econtex}
 \begin{document}
 
-%\input{sec_titlepage-input}
+% Redefine \onlyinsubfile command defined in local.sty file:
+% This lets any submaterial called from this doc know that it is not standalone
+%\renewcommand{\onlyinsubfile}[1]{}\renewcommand{\notinsubfile}[1]{#1}
+
+\pagenumbering{roman}
+
+\title{Solution Methods for Microeconomic \\ Dynamic Stochastic Optimization Problems}
+
+\author{Christopher D. Carroll\authNum}
+
+\keywords{Dynamic Stochastic Optimization, Method of Simulated Moments, Structural Estimation, Indirect Inference}
+\jelclass{E21, F41}
+
+\date{2024-04-20}
+\maketitle
+\footnotesize
+
+\noindent  Note: The GitHub repo {\texttt{\href{https://github.com/llorracc/SolvingMicroDSOPs}{SolvingMicroDSOPs}}} associated with this document contains python code that produces all results, from scratch, except for the last section on indirect inference.  The numerical results have been confirmed by showing that the answers that the raw python produces correspond to the answers produced by tools available in the \href{https://econ-ark.org}{Econ-ARK} toolkit, more specifically those in the {\HARKrepo} which has full {\HARKdocs}.  The MSM results at the end have have been superseded by tools in the {\texttt{\href{https://github.com/llorracc/EstimatingMicroDSOPs}{EstimatingMicroDSOPs repo}}}.
+
+\normalsize
+
+\hypertarget{abstract}{}
+\begin{abstract}
+  These notes describe tools for solving microeconomic dynamic stochastic optimization problems, and show how to use those tools for efficiently estimating a standard life cycle consumption/saving model using microeconomic data.  No attempt is made at a systematic overview of the many possible technical choices; instead, I present a specific set of methods that have proven useful in my own work (and explain why other popular methods, such as value function iteration, are a bad idea).  Paired with these notes is Python code that solves the problems described in the text.
+\end{abstract}
+
+% \ifthenelse{\boolean{Web}}{}{
+\begin{footnotesize}
+  \begin{center}
+    \begin{tabbing}
+      \texttt{~~~~PDF:~} \= \= {\texttt{\href{https://github.com/llorracc/SolvingMicroDSOPs/blob/master/SolvingMicroDSOPs.pdf}{https://github.com/llorracc/SolvingMicroDSOPs/blob/master/SolvingMicroDSOPs.pdf}}} \\
+      \texttt{~Slides:~} \> \> {\texttt{\href{https://github.com/llorracc/SolvingMicroDSOPs/blob/master/SolvingMicroDSOPs-Slides.pdf}{https://github.com/llorracc/SolvingMicroDSOPs/blob/master/SolvingMicroDSOPs-Slides.pdf}}} \\
+      \texttt{~~~~Web:~} \> \> {\texttt{\href{https://llorracc.github.io/SolvingMicroDSOPs}{https://llorracc.github.io/SolvingMicroDSOPs}}} \\
+      \texttt{~~~Code:~} \> \> {\texttt{\href{https://github.com/llorracc/SolvingMicroDSOPs/tree/master/Code}{https://github.com/llorracc/SolvingMicroDSOPs/tree/master/Code}}} \\
+      \texttt{Archive:~} \> \> {\texttt{\href{https://github.com/llorracc/SolvingMicroDSOPs}{https://github.com/llorracc/SolvingMicroDSOPs}}} \\
+      \texttt{~~~~~~~~~} \> \> \textit{(Contains LaTeX code for this document and software producing figures and results)}
+    \end{tabbing}
+  \end{center}
+\end{footnotesize}
+% }
+\begin{authorsinfo}
+  \name{Carroll: Department of Economics, Johns Hopkins University, Baltimore, MD, \\
+    \href{mailto:ccarroll@jhu.edu}{\texttt{ccarroll@jhu.edu}}}
+\end{authorsinfo}
+
+\thanksFooter{The notes were originally written for my Advanced Topics in Macroeconomic Theory class at Johns Hopkins University; instructors elsewhere are welcome to use them for teaching purposes.  Relative to earlier drafts, this version incorporates several improvements related to new results in the paper \href{http://econ-ark.github.io/BufferStockTheory}{``Theoretical Foundations of Buffer Stock Saving''} (especially tools for approximating the consumption and value functions).  Like the last major draft, it also builds on material in ``The Method of Endogenous Gridpoints for Solving Dynamic Stochastic Optimization Problems'' published in \textit{Economics Letters}, available at \url{http://www.econ2.jhu.edu/people/ccarroll/EndogenousArchive.zip}, and by including sample code for a method of simulated moments estimation of the life cycle model \textit{a la} \cite{gpLifecycle} and Cagetti~\citeyearpar{cagettiWprofiles}.  Background derivations, notation, and related subjects are treated in my class notes for first year macro, available at \url{http://www.econ2.jhu.edu/people/ccarroll/public/lecturenotes/consumption}.  I am grateful to several generations of graduate students in helping me to refine these notes, to Marc Chan for help in updating the text and software to be consistent with \cite{carrollEGM}, to Kiichi Tokuoka for drafting the section on structural estimation, to Damiano Sandri for exceptionally insightful help in revising and updating the method of simulated moments estimation section, and to Weifeng Wu and Metin Uyanik for revising to be consistent with the `method of moderation' and other improvements.  All errors are my own.  This document can be cited as \cite{SolvingMicroDSOPs} in the references.}
+
+\titlepagefinish
+%\setcounter{page}{1}
+
+\pagestyle{empty}
+\ifpdf % The table of contents does not work if not in pdf mode
+\tableofcontents \addtocontents{toc}{\vspace{1em}}\newpage
+\fi
+\newpage\pagenumbering{arabic}
+
 \hypertarget{introduction}{}
 \section{Introduction}\label{sec:introduction}
 
@@ -307,7 +337,7 @@ and
 
 
 %\input{sec_solving-the-next-input}
-\MoM{\subfile{method-of-moderation}}{}
+%\MoM{\subfile{sec_method-of-moderation}}{}
 % Habits go here: \input{./Subfiles-private/Habits}
 \hypertarget{multiple-control-variables}{}
 \section{Multiple Control Variables}
@@ -984,7 +1014,7 @@ Normal income levels in the SCF are before-tax figures. These before-tax permane
 \setboolean{BothExist}{true}
 \setboolean{NeitherExists}{true}
 
-\IfFileExists{\econtexRoot/Add-Refs.bib}{
+\IfFileExists{./\texname-Add-Refs.bib}{
   % then
   \typeout{References in Add-Refs.bib will take precedence over those elsewhere}
   \setboolean{AddRefsExists}{true}
@@ -1014,19 +1044,20 @@ Normal income levels in the SCF are before-tax figures. These before-tax permane
 
 \ifthenelse{\boolean{BothExist}}{
   % then use both
-  \typeout{bibliography{\econtexRoot/Add-Refs,\econtexRoot/\texname,economics}}
-  \bibliography{\econtexRoot/Add-Refs,\econtexRoot/\texname,economics}
+  \typeout{bibliography{./\texname-Add-Refs,./\texname,economics}}
+  \bibliography{./\texname-Add-Refs,./\texname,economics}
   % else both do not exist
 }{ % maybe neither does?
   \ifthenelse{\boolean{NeitherExists}}{
     \typeout{bibliography{\texname}}
     \bibliography{\texname}}{
     % no -- at least one exists
-    \ifthenelse{\boolean{AddRefsExists}}{
-      \typeout{bibliography{\econtexRoot/Add-Refs,\econtexRoot/\texname}}
-      \bibliography{\econtexRoot/Add-Refs,\econtexRoot/\texname}}{
-      \typeout{bibliography{\econtexRoot/\texname,economics}}
-      \bibliography{        \econtexRoot/\texname,economics}}
+    \ifthenelse{\boolean{AddRefsExists}}{% yes
+      \typeout{\bibliography{./\texname-Add-Refs,./\texname}}
+      \bibliography{./\texname-Add-Refs,./\texname}}
+      {% else \texname-Add-Refs does not exist 
+      \typeout{\bibliography{./\texname,economics}}
+      \bibliography{         ./\texname,economics}}
   } % end of picking the one that exists
 } % end of testing whether neither exists
 \end{document}\endinput

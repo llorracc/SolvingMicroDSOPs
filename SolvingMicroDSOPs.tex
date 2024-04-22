@@ -1,11 +1,16 @@
 % -*- mode: LaTeX; TeX-PDF-mode: t; -*-  
-\input{./.econtexRoot}                   % Set paths (like, \LaTeXInputs)
-\newcommand{\texname}{SolvingMicroDSOPs} % Keyname for the paper
 \documentclass[titlepage, headings=optiontotocandhead]{Resources/texmf-local/tex/latex/econtex}
+\newcommand{\texname}{SolvingMicroDSOPs} % Keyname for the paper
+\usepackage{./.econtexRoot}                   % Set paths (like, \LaTeXInputs)
 
 % eval: (setq auctex-unicode-math t)
-\usepackage{alias-private}
-\input{Resources/LaTeXInputs/local-packages} % LaTeX config in Resources/LaTeXInputs
+% \usepackage{\LaTeXInputs/local-macros}
+\usepackage{SolvingMicroDSOPs-private}
+% \input{\LaTeXInputs/local-packages} % LaTeX config in Resources/LaTeXInputs
+\usepackage{\LaTeXInputs/local-packages} % LaTeX config in Resources/LaTeXInputs
+% \providecommand{\onlyinsubfile}[1]{}\renewcommand{\onlyinsubfile}[1]{}
+% \providecommand{\notinsubfile}[1]{#1}\renewcommand{\notinsubfile}[1]{#1}
+
 \input{SolvingMicroDSOPs-options}            % booleans control whether certain features are on or off
 
 \hypersetup{colorlinks=true,
@@ -18,16 +23,16 @@
   pdfpagelabels
 }
 
-\bibliographystyle{Resources/texmf-local/bibtex/bst/econtex.bst}
+\bibliographystyle{\econtexBibStyle}
 \begin{document}
 
-%\input{sec_titlepage-input}
+\input{sec_titlepage-input}
 \input{sec_introduction-input}
 \input{sec_the-problem-input}
 \input{sec_normalization-input}
 \input{sec_the-usual-theory-input}
 %\input{sec_solving-the-next-input}
-\MoM{\subfile{method-of-moderation}}{}
+%\MoM{\subfile{sec_method-of-moderation}}{}
 % Habits go here: \input{./Subfiles-private/Habits}
 \input{sec_multiple-control-variables-input}
 \input{sec_the-infinite-horizon-input}
