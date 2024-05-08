@@ -5,8 +5,8 @@
 
 To reduce clutter, we now temporarily assume that $\PermGroFac_{t}=1$ for all $t$, so that the $\PermGroFac$ terms from the earlier derivations disappear, and setting $t=T$ the problem in the second-to-last period of life can now be expressed as
 \begin{equation}\begin{gathered}\begin{aligned}
-  {v}_{\MidPrdLsT}(\mStte)  & = \max_{\cCtrl} ~~ u(\cCtrl) +
-                              \vEndPrdLsT(\overbrace{\mStte-\cCtrl}^{\aStte})
+  {v}_{\MidPrdLsT}(\mStte)  & = \max_{c} ~~ u(c) +
+                              \vEndPrdLsT(\overbrace{\mStte-c}^{\aStte})
                               \label{eq:vEndTm1}
 \end{aligned}\end{gathered}\end{equation}
 where 
@@ -16,8 +16,8 @@ where
     \end{aligned}\end{gathered}\end{equation*}
 
 % \begin{equation*}\begin{gathered}\begin{aligned}
-%       {\vFunc}_{\prdLsT}(\mStte)  & = \max_{\cCtrl} ~~ \uFunc(\cCtrl) 
-%      + \DiscFac \Ex_{\EndPrdLsT} \left[\PermGroFacAdjV {\vFunc}_{\MidPrd}(\underbrace{(\mStte-\cCtrl)\RNrm_{\prdT} + \TranShkEmp_{\prdT}}_{{m}_{\prdT}})\right].
+%       {\vFunc}_{\prdLsT}(\mStte)  & = \max_{\cNrm} ~~ \uFunc(\cNrm) 
+%      + \DiscFac \Ex_{\EndPrdLsT} \left[\PermGroFacAdjV {\vFunc}_{\MidPrd}(\underbrace{(\mStte-\cNrm)\RNrm_{\prdT} + \TranShkEmp_{\prdT}}_{{m}_{\prdT}})\right].
 %     \end{aligned}\end{gathered}\end{equation*}
 
 
@@ -32,7 +32,7 @@ where $\FDist(\TranShkEmp)$ is the cumulative distribution function for ${\TranS
 
 This maximization problem implicitly defines a `local function' $\cFunc_{t-1}({m})$ that yields optimal consumption in period $t-1$ for any specific numerical level of resources like ${m}=1.7$.%  (When we need to use this function from some context outside of the local context in which it was solved, we can reference by its absolute index, $\cFunc_{\prdT-1}$).
 
-But because there is no general analytical solution to this problem, for any given ${m}$ we must use numerical computational tools to find the $\cCtrl$ that maximizes the expression.  This is excruciatingly slow because for every potential ${c}$ to be considered, a definite integral over the interval $(0,\infty)$ must be calculated numerically, and numerical integration is \textit{very} slow (especially over an unbounded domain!).
+But because there is no general analytical solution to this problem, for any given ${m}$ we must use numerical computational tools to find the $c$ that maximizes the expression.  This is excruciatingly slow because for every potential ${c}$ to be considered, a definite integral over the interval $(0,\infty)$ must be calculated numerically, and numerical integration is \textit{very} slow (especially over an unbounded domain!).
 
 \hypertarget{discretizing-the-distribution}{}
 \subsection{Discretizing the Distribution}
@@ -83,10 +83,10 @@ We now substitute our approximation \eqref{eq:vDiscrete} for $\vEndPrdLsT(a)$ in
 
 % so we can rewrite the maximization problem that defines the middle step of period {$\prdLst$} as
 %   \begin{equation}\begin{gathered}\begin{aligned}
-%         {\vFunc}_{\MidPrdLsT}(\mStte)   & = \max_{\cCtrl}
+%         {\vFunc}_{\MidPrdLsT}(\mStte)   & = \max_{\cNrm}
 %         \left\{
-%           \frac{\cCtrl^{1-\CRRA}}{1-\CRRA} +
-%           \vFunc_{\MidPrd}(\mStte-\cCtrl)
+%           \frac{\cNrm^{1-\CRRA}}{1-\CRRA} +
+%           \vFunc_{\MidPrd}(\mStte-\cNrm)
 %         \right\}.
 %         \label{eq:vEndTm1}
 %       \end{aligned}\end{gathered}\end{equation}
@@ -102,7 +102,7 @@ We now substitute our approximation \eqref{eq:vDiscrete} for $\vEndPrdLsT(a)$ in
 \hypertarget{the-approximate-consumption-and-value-functions}{}
 \subsection{The Approximate Consumption and Value Functions}
 
-Given any particular value of $\mStte$, a numerical maximization tool can now find the $\cCtrl$ that solves \eqref{eq:vEndTm1} in a reasonable amount of time.
+Given any particular value of $\mStte$, a numerical maximization tool can now find the $c$ that solves \eqref{eq:vEndTm1} in a reasonable amount of time.
 
 \begin{comment}
   % The {\SMDSOPntbk} notebook follows a series of steps to achieve this. Initially, parameter values for the coefficient of relative risk aversion (CRRA, $\rho$), the discount factor ($\beta$), the permanent income growth factor ($\PermGroFac$), and the risk-free interest rate ($R$ are specified in ``Define Parameters, Grids, and the  Utility Function.'')
@@ -144,7 +144,7 @@ plots of the constructed $\Aprx{\cFunc}_{t-1}$ and $\Aprx{v}_{t-1}$. While the $
 \subsection{Interpolating Expectations}
 
 
-Piecewise linear `spline' interpolation as described above works well for generating a good approximation to the true optimal consumption function. However, there is a clear inefficiency in the program: Since it uses equation \eqref{eq:vEndTm1}, for every value of $\mStte$ the program must calculate the utility consequences of various possible choices of $\cCtrl$ (and therefore $a_{t-1}$) as it searches for the best choice.
+Piecewise linear `spline' interpolation as described above works well for generating a good approximation to the true optimal consumption function. However, there is a clear inefficiency in the program: Since it uses equation \eqref{eq:vEndTm1}, for every value of $\mStte$ the program must calculate the utility consequences of various possible choices of $c$ (and therefore $a_{t-1}$) as it searches for the best choice.
 
 For any given index $j$ in $\vctr{m}[j]$, the algorithm, as it searches for the corresponding optimal $a$, the algorithm will end up  calculating $v_{\EndPrdLsT}(\tilde{a})$ for many $\tilde{a}$ values close to the optimal ${a}_{t-1}$.  Indeed, even when searching for the optimal ${a}$ for a \emph{different} ${m}$ (say $\vctr{m}[k]$ for $k \neq j$) the search process might compute $v_{\EndPrdLsT}({a})$ for an ${a}$ close to the correct optimal ${a}$ for $\vctr{m}[j]$. But if that difficult computation does not correspond to the exact solution to the $\vctr{m}[k]$ problem, it is discarded.  
 
@@ -170,7 +170,7 @@ Figure~\ref{fig:PlotOTm1RawVSInt} compares the true value function to the approx
 
 \Fix{\marginpar{\tiny In all figs, replace gothic h with notation corresponding to the lecture notes.}}
 
-Nevertheless, the consumption rule obtained when the approximating $\Aprx{v}_{({t-1})_\cntn}({a}_{t-1})$ is used instead of $v_{({t-1})_\cntn}({a}_{t-1})$ is surprisingly bad, as shown in figure \ref{fig:PlotComparecTm1AB}.  For example, when $\mStte$ goes from 2 to 3, $\Aprx{\cFunc}_{t-1}$ goes from about 1 to about 2, yet when $\mStte$ goes from 3 to 4, $\Aprx\cCtrl$ goes from about 2 to about 2.05.  The function fails even to be concave, which is distressing because Carroll and Kimball~\citeyearpar{ckConcavity} prove that the correct consumption function is strictly concave in a wide class of problems that includes this one.
+Nevertheless, the consumption rule obtained when the approximating $\Aprx{v}_{({t-1})_\cntn}({a}_{t-1})$ is used instead of $v_{({t-1})_\cntn}({a}_{t-1})$ is surprisingly bad, as shown in figure \ref{fig:PlotComparecTm1AB}.  For example, when $\mStte$ goes from 2 to 3, $\Aprx{\cFunc}_{t-1}$ goes from about 1 to about 2, yet when $\mStte$ goes from 3 to 4, $\Aprx c$ goes from about 2 to about 2.05.  The function fails even to be concave, which is distressing because Carroll and Kimball~\citeyearpar{ckConcavity} prove that the correct consumption function is strictly concave in a wide class of problems that includes this one.
 
 \hypertarget{value-function-versus-first-order-condition}{}
 \subsection{Value Function versus First Order Condition}\label{subsec:vVsuP}
@@ -202,8 +202,8 @@ of the value function.
 
 The first order condition of the maximization problem in period $T-1$ is:
   \begin{equation}\begin{gathered}\begin{aligned}
-        u^{{c}}(\cCtrl)       & = \beta \Ex_{\cntn(T-1)} [\PermGroFacAdjMu R u^{{c}}({c}_{t})]  %\label{eq:focraw}
-        \\      \cCtrl^{-\rho}   & = R \beta \left(\frac{1}{n_{\TranShkEmp}}\right) \sum_{i=1}^{n_{\TranShkEmp}} \PermGroFacAdjMu\left(R (\mStte-\cCtrl) + \TranShkEmp_{i}\right)^{-\rho} \label{eq:FOCTm1}.
+        u^{{c}}(c)       & = \beta \Ex_{\cntn(T-1)} [\PermGroFacAdjMu R u^{{c}}({c}_{t})]  %\label{eq:focraw}
+        \\      c^{-\rho}   & = R \beta \left(\frac{1}{n_{\TranShkEmp}}\right) \sum_{i=1}^{n_{\TranShkEmp}} \PermGroFacAdjMu\left(R (\mStte-c) + \TranShkEmp_{i}\right)^{-\rho} \label{eq:FOCTm1}.
       \end{aligned}\end{gathered}\end{equation}
 \hypertarget{PlotuPrimeVSOPrime}{}
 \begin{figure}
@@ -216,22 +216,22 @@ In the notebook, the ``Value Function versus the First Order Condition'' section
 
 
 The downward-sloping curve in Figure \ref{fig:PlotuPrimeVSOPrime}
-shows the value of $\cCtrl^{-\rho}$ for our baseline parameter values
-for $0 \leq \cCtrl \leq 4$ (the horizontal axis).  The solid
+shows the value of $c^{-\rho}$ for our baseline parameter values
+for $0 \leq c \leq 4$ (the horizontal axis).  The solid
 upward-sloping curve shows the value of the RHS of (\ref{eq:FOCTm1})
-as a function of $\cCtrl$ under the assumption that $\mStte=3$.
+as a function of $c$ under the assumption that $\mStte=3$.
 Constructing this figure is time-consuming, because for every
-value of $\cCtrl$ plotted we must calculate the RHS of
-(\ref{eq:FOCTm1}).  The value of $\cCtrl$ for which the RHS and LHS
+value of $c$ plotted we must calculate the RHS of
+(\ref{eq:FOCTm1}).  The value of $c$ for which the RHS and LHS
 of (\ref{eq:FOCTm1}) are equal is the optimal level of consumption
 given that $\mStte=3$, so the intersection of the downward-sloping
-and the upward-sloping curves gives the (approximated) optimal value of $\cCtrl$.
-As we can see, the two curves intersect just below $\cCtrl=2$.
+and the upward-sloping curves gives the (approximated) optimal value of $c$.
+As we can see, the two curves intersect just below $c=2$.
 Similarly, the upward-sloping dashed curve shows the expected value
 of the RHS of (\ref{eq:FOCTm1}) under the assumption that $\mStte=4$,
-and the intersection of this curve with $u^{{c}}(\cCtrl)$ yields the
+and the intersection of this curve with $u^{{c}}(c)$ yields the
 optimal level of consumption if $\mStte=4$.  These two curves
-intersect slightly below $\cCtrl=2.5$.  Thus, increasing $\mStte$
+intersect slightly below $c=2.5$.  Thus, increasing $\mStte$
 from 3 to 4 increases optimal consumption by about 0.5.
 
 Now consider the derivative of our function $\Aprx{v}_{({t-1})}({a}_{t-1})$.  Because we have
@@ -242,19 +242,19 @@ particular gridpoint is different, of course, from the slope above that gridpoin
 implies that the derivative of $\Aprx{v}_{({t-1})_\cntn}({a}_{t-1})$ follows a step function.
 
 The solid-line step function in Figure \ref{fig:PlotuPrimeVSOPrime} depicts the actual value of
-$\Aprx{v}_{({t-1})_\cntn}^{{a}}(3-\cCtrl)$.  When we attempt to find optimal values of
-$\cCtrl$ given $\mStte$ using $\Aprx{v}_{({t-1})_\cntn}({a}_{t-1})$, the numerical optimization routine will
-return the $\cCtrl$ for which
-$u^{{c}}(\cCtrl) = \Aprx{v}^{{a}}_{({t-1})_\cntn}(\mStte-\cCtrl)$.  Thus, for
-$\mStte=3$ the program will return the value of $\cCtrl$ for which the downward-sloping
-$u^{{c}}(\cCtrl)$ curve intersects with the
-$\Aprx{v}_{({t-1})_\cntn}^{{a}}(3-\cCtrl)$; as the diagram shows, this value is exactly equal to 2.
-Similarly, if we ask the routine to find the optimal $\cCtrl$ for $\mStte=4$, it finds the point of
-intersection of $u^{{c}}(\cCtrl)$ with $\Aprx{v}_{({t-1})_\cntn}^{{a}}(4-\cCtrl)$; and as the diagram shows, this
+$\Aprx{v}_{({t-1})_\cntn}^{{a}}(3-c)$.  When we attempt to find optimal values of
+$c$ given $\mStte$ using $\Aprx{v}_{({t-1})_\cntn}({a}_{t-1})$, the numerical optimization routine will
+return the $c$ for which
+$u^{{c}}(c) = \Aprx{v}^{{a}}_{({t-1})_\cntn}(\mStte-c)$.  Thus, for
+$\mStte=3$ the program will return the value of $c$ for which the downward-sloping
+$u^{{c}}(c)$ curve intersects with the
+$\Aprx{v}_{({t-1})_\cntn}^{{a}}(3-c)$; as the diagram shows, this value is exactly equal to 2.
+Similarly, if we ask the routine to find the optimal $c$ for $\mStte=4$, it finds the point of
+intersection of $u^{{c}}(c)$ with $\Aprx{v}_{({t-1})_\cntn}^{{a}}(4-c)$; and as the diagram shows, this
 intersection is only slightly above 2.  Hence, this figure illustrates why the numerical consumption
-function plotted earlier returned values very close to $\cCtrl=2$ for both $\mStte=3$ and $\mStte=4$.
+function plotted earlier returned values very close to $c=2$ for both $\mStte=3$ and $\mStte=4$.
 
-We would obviously obtain much better estimates of the point of intersection between $u^{{c}}(\cCtrl)$ and $v_{({t-1})_\cntn}^{{a}}(\mStte-\cCtrl)$ if our estimate of $\Aprx{v}^{{a}}_{({t-1})_\cntn}$ were not a step function.  In fact, we already know how to construct linear interpolations to functions, so the obvious next step is to construct a linear interpolating approximation to the \textit{expected marginal value of end-of-period assets function} at the points in $\vctr{a}$:
+We would obviously obtain much better estimates of the point of intersection between $u^{{c}}(c)$ and $v_{({t-1})_\cntn}^{{a}}(\mStte-c)$ if our estimate of $\Aprx{v}^{{a}}_{({t-1})_\cntn}$ were not a step function.  In fact, we already know how to construct linear interpolations to functions, so the obvious next step is to construct a linear interpolating approximation to the \textit{expected marginal value of end-of-period assets function} at the points in $\vctr{a}$:
 \begin{equation}\begin{gathered}\begin{aligned}
       v_{({t-1})_\cntn}^{{a}}(\vctr{a})  & =  \beta R \PermGroFacAdjMu \left(\frac{1}{n_{\TranShkEmp}}\right) \sum_{i=1}^{n_{\TranShkEmp}} \left(\RNrm_{t} \vctr{a} + \TranShkEmp_{i}\right)^{-\rho} \label{eq:vEndPrimeTm1}
     \end{aligned}\end{gathered}\end{equation}
@@ -269,7 +269,6 @@ interpolating function that fits this set of points.
   \caption{$v_{({t-1})_\cntn}^{{a}}({a}_{t-1})$ versus $\Aprx{v}_{({t-1})_\cntn}^{{a}}({a}_{t-1})$}
   \label{fig:PlotOPRawVSFOC}
 \end{figure}
-
 
 % This is done by making a call to the \texttt{InterpolatedUnivariateSpline} function, passing it \code{aVec} and \texttt{vpVec} as arguments. Note that in defining the list of values \texttt{vpVec}, we again make use of the predefined \texttt{gothic.VP\_Tminus1} function. These steps are the embodiment of equation~(\ref{eq:vEndPrimeTm1}), and construct the interpolation of the expected marginal value of end-of-period assets as described above.
 
@@ -302,7 +301,7 @@ will be $\TranShkEmp_{t} = 1$).  The final Euler equation (recall that we are st
 
 In the case we are now considering with no uncertainty and no liquidity constraints, the optimizing consumer does not care whether a unit of income is scheduled to be received in the future period $t$ or the current period $t-1$; there is perfect certainty that the income will be received, so the consumer treats its PDV as equivalent to a unit of current wealth.  Total resources available at the point when the consumption decision is made is therefore are comprised of two types: current market resources $\mStte$ and `human wealth' (the PDV of future income) of $h_{t-1}=1$ (because it is the value of human wealth as of the end of the period, there is only one more period of income of 1 left).
 
-The well-known optimal solution is to spend half of total lifetime resources in period $t-1$ and the remainder in period $t (=T)$.  Since total resources are known with certainty to be $\mStte+h_{t-1}= \mStte+1$, and since ${v}_{\MidStp}^{{m}}(\mStte) = u^{{c}}(\cCtrl)$, this implies that
+The well-known optimal solution is to spend half of total lifetime resources in period $t-1$ and the remainder in period $t (=T)$.  Since total resources are known with certainty to be $\mStte+h_{t-1}= \mStte+1$, and since ${v}_{\MidStp}^{{m}}(\mStte) = u^{{c}}(c)$, this implies that
 \begin{equation}
   v^{{m}}_{\MidStpLsT}(\mStte)  = \left(\frac{\mStte+1}{2}\right)^{-\rho} \label{eq:vPLin}.
 \end{equation}
@@ -336,79 +335,79 @@ What this means is that for any given ${a}$, if we can calculate the marginal va
     \end{aligned}\end{gathered}\end{equation}
 
 %\renewcommand{\prd}{T}
-Thus, for example, for period $\prdLsT$ our procedure is to calculate the vector of $\vctr{c}$ points on the consumed function:
+Thus, for example, for period $t-1$ our procedure is to calculate the vector of $\vctr{c}$ points on the consumed function:
 \begin{equation}\begin{gathered}\begin{aligned}
-      \vctr{c} & = \cFunc_{({\prdLsT})_\cntn}(\vctr{a}) \label{eq:consumedfnvecs}     
+      \vctr{c} & = \cFunc_{({t-1})_\cntn}(\vctr{a}) \label{eq:consumedfnvecs}     
     \end{aligned}\end{gathered}\end{equation}
-with the idea that we will construct an approximation of the consumed function $\Aprx{\cFunc}_{({\prdLsT})_\cntn}$ as the interpolating function connecting these $\{\vctr{a},\vctr{c}\}$ points.
+with the idea that we will construct an approximation of the consumed function $\Aprx{\cFunc}_{({t-1})_\cntn}$ as the interpolating function connecting these $\{\vctr{a},\vctr{c}\}$ points.
 
 \hypertarget{the-natural-borrowing-constraint-and-the-a-lower-bound}{}
-\subsection{The Natural Borrowing Constraint and the $a_{\prdLsT}$ Lower Bound} \label{subsec:LiqConstrSelfImposed}
+\subsection{The Natural Borrowing Constraint and the $a_{t-1}$ Lower Bound} \label{subsec:LiqConstrSelfImposed}
 
 %\renewcommand{\prd}{T} 
-This is the appropriate moment to ask an awkward question: How should an interpolated, approximated `consumed' function like $\Aprx{\cFunc}_{({\prdLsT})_\cntn}({a}_{\prdLsT})$ be extrapolated to return an estimated `consumed' amount when evaluated at an ${a}_{\prdLsT}$ outside the range spanned by $\{\vctr{{a}}[1],...,\vctr{a}[n]\}$?
+This is the appropriate moment to ask an awkward question: How should an interpolated, approximated `consumed' function like $\Aprx{\cFunc}_{({t-1})_\cntn}({a}_{t-1})$ be extrapolated to return an estimated `consumed' amount when evaluated at an ${a}_{t-1}$ outside the range spanned by $\{\vctr{{a}}[1],...,\vctr{a}[n]\}$?
 
 
-For most canned piecewise-linear interpolation tools like \href{https://docs.scipy.org/doc/scipy/tutorial/interpolate.html}{scipy.interpolate}, when the `interpolating' function is evaluated at a point outside the provided range, the algorithm extrapolates under the assumption that the slope of the function remains constant beyond its measured boundaries (that is, the slope is assumed to be equal to the slope of nearest piecewise segment \emph{within} the interpolated range); for example, if the bottommost gridpoint is $\aVecMin = \vctratm[1]$ and the corresponding consumed level is $\cMin = \cFunc_{({\prdLsT})_\cntn}(a_1)$ we could calculate the `marginal propensity to have consumed' $\varkappa_{1}=
-\Aprx{\cFunc}_{({\prdLsT})_\cntn}^{{a}}(\aVecMin)$ and construct the approximation as the linear extrapolation below $\vctratm[1]$ from:
+For most canned piecewise-linear interpolation tools like \href{https://docs.scipy.org/doc/scipy/tutorial/interpolate.html}{scipy.interpolate}, when the `interpolating' function is evaluated at a point outside the provided range, the algorithm extrapolates under the assumption that the slope of the function remains constant beyond its measured boundaries (that is, the slope is assumed to be equal to the slope of nearest piecewise segment \emph{within} the interpolated range); for example, if the bottommost gridpoint is $\aVecMin = \vctratm[1]$ and the corresponding consumed level is $\cMin = \cFunc_{({t-1})_\cntn}(a_1)$ we could calculate the `marginal propensity to have consumed' $\varkappa_{1}=
+\Aprx{\cFunc}_{({t-1})_\cntn}^{{a}}(\aVecMin)$ and construct the approximation as the linear extrapolation below $\vctratm[1]$ from:
 \begin{equation}\begin{gathered}\begin{aligned}
-      \Aprx{\cFunc}_{({\prdLsT})_\cntn}({a})  &  \equiv \cMin + ({a}-\aVecMin)\varkappa_{1}  \label{eq:ExtrapLin}.
+      \Aprx{\cFunc}_{({t-1})_\cntn}({a})  &  \equiv \cMin + ({a}-\aVecMin)\varkappa_{1}  \label{eq:ExtrapLin}.
     \end{aligned}\end{gathered}\end{equation}
 
-To see that this will lead us into difficulties, consider what happens to the true (not approximated) $v^{{a}}_{({\prdLsT})_\cntn}({a}_{\prdLsT})$ as ${a}_{\prdLsT}$ approaches a quantity we will call the `natural borrowing constraint': $\NatBoroCnstra_{\prdLsT}=-\underline{\TranShkEmp}\RNrm_{t}^{-1}$.  From
+To see that this will lead us into difficulties, consider what happens to the true (not approximated) $v^{{a}}_{({t-1})_\cntn}({a}_{t-1})$ as ${a}_{t-1}$ approaches a quantity we will call the `natural borrowing constraint': $\NatBoroCnstra_{t-1}=-\underline{\TranShkEmp}\RNrm_{t}^{-1}$.  From
 \eqref{eq:vEndPrimeTm1} we have
 \begin{equation}\begin{gathered}\begin{aligned}
-      \lim_{a \downarrow \NatBoroCnstra_{\prdLsT}} v^{{a}}_{({\prdLsT})_\cntn}(a)
-      & =                                                                                         \lim_{a \downarrow \NatBoroCnstra_{\prdLsT}} \beta R \PermGroFacAdjMu \left(\frac{1}{n_{\TranShkEmp}}\right) \sum_{i=1}^{n_{\TranShkEmp}} \left( a \RNrm_{t}+ \TranShkEmp_{i}\right)^{-\rho}.
+      \lim_{a \downarrow \NatBoroCnstra_{t-1}} v^{{a}}_{({t-1})_\cntn}(a)
+      & =                                                                                         \lim_{a \downarrow \NatBoroCnstra_{t-1}} \beta R \PermGroFacAdjMu \left(\frac{1}{n_{\TranShkEmp}}\right) \sum_{i=1}^{n_{\TranShkEmp}} \left( a \RNrm_{t}+ \TranShkEmp_{i}\right)^{-\rho}.
     \end{aligned}\end{gathered}\end{equation}
 
-But since $\TranShkEmpMin=\TranShkEmp_{1}$, exactly at $a=\NatBoroCnstra_{\prdLsT}$ the first term in the summation would be $(-\TranShkEmpMin+\TranShkEmp_{1})^{-\rho}=1/0^{\rho}$ which is infinity.  The reason is simple: $-\NatBoroCnstra_{\prdLsT}$ is the PDV, as of $\prdLsT$, of the \emph{minimum possible realization of income} in $t$ ($\RNrm_{t}\NatBoroCnstra_{\prdLsT} = -\TranShkEmp_{1}$).  Thus, if the consumer borrows an amount greater than or equal to $\underline{\TranShkEmp}\RNrm_{t}^{-1}$ (that is, if the consumer ends $\prdLsT$ with ${a}_{\prdLsT} \leq -\underline{\TranShkEmp}\RNrm_{t}^{-1}$) and then draws the worst possible income shock in period $t$, they will have to consume zero in period $t$, which yields $-\infty$ utility and $+\infty$ marginal utility.
+But since $\TranShkEmpMin=\TranShkEmp_{1}$, exactly at $a=\NatBoroCnstra_{t-1}$ the first term in the summation would be $(-\TranShkEmpMin+\TranShkEmp_{1})^{-\rho}=1/0^{\rho}$ which is infinity.  The reason is simple: $-\NatBoroCnstra_{t-1}$ is the PDV, as of $t-1$, of the \emph{minimum possible realization of income} in $t$ ($\RNrm_{t}\NatBoroCnstra_{t-1} = -\TranShkEmp_{1}$).  Thus, if the consumer borrows an amount greater than or equal to $\underline{\TranShkEmp}\RNrm_{t}^{-1}$ (that is, if the consumer ends $t-1$ with ${a}_{t-1} \leq -\underline{\TranShkEmp}\RNrm_{t}^{-1}$) and then draws the worst possible income shock in period $t$, they will have to consume zero in period $t$, which yields $-\infty$ utility and $+\infty$ marginal utility.
 
-As \cite{zeldesStochastic} first noticed, this means that the consumer faces a `self-imposed' (or, as above, `natural') borrowing constraint (which springs from the precautionary motive): They will never borrow an amount greater than or equal to $\underline{\TranShkEmp}\RNrm_{t}^{-1}$ (that is, assets will never reach the lower bound of $\NatBoroCnstra_{\prdLsT}$).  The constraint is `self-imposed' in the precise sense that if the utility function were different (say, Constant Absolute Risk Aversion), the consumer might be willing to borrow more than $\underline{\TranShkEmp}\RNrm_{t}^{-1}$ because a choice of zero or negative consumption in period $t$ would yield some finite amount of utility.\footnote{Though it is very unclear what a proper economic interpretation of negative consumption might be -- this is an important reason why CARA utility, like quadratic utility, is increasingly not used for serious quantitative work, though it is still useful for teaching purposes.}
+As \cite{zeldesStochastic} first noticed, this means that the consumer faces a `self-imposed' (or, as above, `natural') borrowing constraint (which springs from the precautionary motive): They will never borrow an amount greater than or equal to $\underline{\TranShkEmp}\RNrm_{t}^{-1}$ (that is, assets will never reach the lower bound of $\NatBoroCnstra_{t-1}$).  The constraint is `self-imposed' in the precise sense that if the utility function were different (say, Constant Absolute Risk Aversion), the consumer might be willing to borrow more than $\underline{\TranShkEmp}\RNrm_{t}^{-1}$ because a choice of zero or negative consumption in period $t$ would yield some finite amount of utility.\footnote{Though it is very unclear what a proper economic interpretation of negative consumption might be -- this is an important reason why CARA utility, like quadratic utility, is increasingly not used for serious quantitative work, though it is still useful for teaching purposes.}
 
 %\providecommand{\aMin}{\underline{\aNrm}}
-This self-imposed constraint cannot be captured well when the $v^{{a}}_{({\prdLsT})_\cntn}$ function is approximated by a piecewise linear function like $\Aprx{v}^{{m}}_{({\prdLsT})_\cntn}$, because it is impossible for the linear extrapolation below $\aMin$ to correctly predict $v^{{a}}_{({\prdLsT})_\cntn}(\NatBoroCnstra_{\prdLsT})=\infty.$ %To see what will happen instead, note first that if we are approximating $\vFunc^{{a}}_{({\prdLsT})_\cntn}$ the smallest value in \code{aVec} must be greater than $\NatBoroCnstra_{\prdLsT}$ (because the expectation for any ${a}_{\prdLsT} \leq \NatBoroCnstra_{\prdLsT}$ is undefined).
+This self-imposed constraint cannot be captured well when the $v^{{a}}_{({t-1})_\cntn}$ function is approximated by a piecewise linear function like $\Aprx{v}^{{m}}_{({t-1})_\cntn}$, because it is impossible for the linear extrapolation below $\aMin$ to correctly predict $v^{{a}}_{({t-1})_\cntn}(\NatBoroCnstra_{t-1})=\infty.$ %To see what will happen instead, note first that if we are approximating $\vFunc^{{a}}_{({\prdLsT})_\cntn}$ the smallest value in \code{aVec} must be greater than $\NatBoroCnstra_{\prdLsT}$ (because the expectation for any ${a}_{\prdLsT} \leq \NatBoroCnstra_{\prdLsT}$ is undefined).
 
 % When the approximating $\vFunc^{{a}}_{({\prdLsT})_\cntn}$ function is evaluated at some value less than the first element in \code{aVec}, a piecewise linear approximating function will linearly extrapolate the slope that characterized the lowest segment of the piecewise linear approximation (between \texttt{aVec[1]} and \texttt{aVec[2]}), a procedure that will return a positive finite number, even if the requested ${a}_{\prdLsT}$ point is below $\NatBoroCnstra_{\prdLsT}$.  This means that the precautionary saving motive is understated, and by an arbitrarily large amount as the level of assets approaches its true theoretical minimum $\NatBoroCnstra_{\prdLsT}$.
 
 %\renewcommand{\prd}{T}
-So, the marginal value of saving approaches infinity as $a \downarrow \NatBoroCnstra_{\prdLsT}=-\underline{\TranShkEmp}\RNrm_{t}^{-1}$.  But this implies that $\lim_{a \downarrow \NatBoroCnstra_{\prdLsT}} \cFunc_{({\prdLsT})_\cntn}(a) = (v^{{a}}_{({\prdLsT})_\cntn}(a))^{-1/\rho} = 0$; that is, as ${a}$ approaches its `natural borrowing constraint' minimum possible value, the corresponding amount of worst-case ${c}$ must approach \textit{its} lower bound: zero.
+So, the marginal value of saving approaches infinity as $a \downarrow \NatBoroCnstra_{t-1}=-\underline{\TranShkEmp}\RNrm_{t}^{-1}$.  But this implies that $\lim_{a \downarrow \NatBoroCnstra_{t-1}} \cFunc_{({t-1})_\cntn}(a) = (v^{{a}}_{({t-1})_\cntn}(a))^{-1/\rho} = 0$; that is, as ${a}$ approaches its `natural borrowing constraint' minimum possible value, the corresponding amount of worst-case ${c}$ must approach \textit{its} lower bound: zero.
 
-The upshot is a realization that all we need to do to address these problems is to prepend each of the $\vctr{a}_{\code{\prdLsT}}$ and $\vctr{c}_{\code{\prdLsT}}$ from \eqref{eq:consumedfnvecs} with an extra point so that the first element in the mapping that produces our interpolation function is $\{\NatBoroCnstra_{\prdLsT},0.\}$. This is done in section ``The Self-Imposed `Natural' Borrowing Constraint and the $a_{\prdLsT}$ Lower Bound'' of the notebook.%which can be seen in the defined lists \texttt{aVecBot} and \texttt{cVec3Bot}.
+The upshot is a realization that all we need to do to address these problems is to prepend each of the $\vctr{a}_{\code{t-1}}$ and $\vctr{c}_{\code{t-1}}$ from \eqref{eq:consumedfnvecs} with an extra point so that the first element in the mapping that produces our interpolation function is $\{\NatBoroCnstra_{t-1},0.\}$. This is done in section ``The Self-Imposed `Natural' Borrowing Constraint and the $a_{t-1}$ Lower Bound'' of the notebook.%which can be seen in the defined lists \texttt{aVecBot} and \texttt{cVec3Bot}.
 
 \Fix{\marginpar{\tiny The vertical axis should be relabeled - not gothic c anymore, instead $\vInv^{a}$}}{}
 
 \hypertarget{GothVInvVSGothC}{}
 \begin{figure}
   \centerline{\includegraphics[width=6in]{\FigDir/GothVInvVSGothC}}
-  \caption{True $\vInv^{{a}}_{({\prdLsT})_\cntn}(a)$ vs its approximation $\Aprx{\vInv}^{{a}}_{({\prdLsT})_\cntn}(a)$}
+  \caption{True $\vInv^{{a}}_{({t-1})_\cntn}(a)$ vs its approximation $\Aprx{\vInv}^{{a}}_{({t-1})_\cntn}(a)$}
   \label{fig:GothVInvVSGothC}
 \end{figure}
 % \caption{True $\cFunc_{({\prdLsT})_\cntn}(\aNrm)$ vs its approximation $\Aprx{\cFunc}_{({\prdLsT})_\cntn}(\aNrm)$}
 
-Figure \ref{fig:GothVInvVSGothC} shows the result. The solid line calculates the exact numerical value of the consumed function $\cFunc_{({\prdLsT})_\cntn}(a)$ while the dashed line is the linear interpolating approximation $\Aprx{\cFunc}_{({\prdLsT})_\cntn}(a).$ This figure illustrates the value of the transformation: The true function is close to linear, and so the linear approximation is almost indistinguishable from the true function except at the very lowest values of $a$.
+Figure \ref{fig:GothVInvVSGothC} shows the result. The solid line calculates the exact numerical value of the consumed function $\cFunc_{({t-1})_\cntn}(a)$ while the dashed line is the linear interpolating approximation $\Aprx{\cFunc}_{({t-1})_\cntn}(a).$ This figure illustrates the value of the transformation: The true function is close to linear, and so the linear approximation is almost indistinguishable from the true function except at the very lowest values of $a$.
 
-Figure~\ref{fig:GothVVSGothCInv} similarly shows that when we generate $\Aprx{\Aprx{v}}_{({\prdLsT})_\cntn}^{{a}}({a})$ using our augmented $[\Aprx{\cFunc}_{({\prdLsT})_\cntn}({a})]^{-\rho}$ (dashed line) we obtain a \textit{much} closer approximation to the true marginal value function $v^{{a}}_{({\prdLsT})_\cntn}({a})$ (solid line) than we obtained in the previous exercise which did not do the transformation (Figure~\ref{fig:PlotOPRawVSFOC}).\footnote{The vertical axis label uses $\mathfrak{v}^{\prime}$ as an alternative notation for what in these notes we designate as $v^{a}_{\EndStpLsT}$).  This will be fixed.}
+Figure~\ref{fig:GothVVSGothCInv} similarly shows that when we generate $\Aprx{\Aprx{v}}_{({t-1})_\cntn}^{{a}}({a})$ using our augmented $[\Aprx{\cFunc}_{({t-1})_\cntn}({a})]^{-\rho}$ (dashed line) we obtain a \textit{much} closer approximation to the true marginal value function $v^{{a}}_{({t-1})_\cntn}({a})$ (solid line) than we obtained in the previous exercise which did not do the transformation (Figure~\ref{fig:PlotOPRawVSFOC}).\footnote{The vertical axis label uses $\mathfrak{v}^{\prime}$ as an alternative notation for what in these notes we designate as $v^{a}_{\EndStpLsT}$).  This will be fixed.}
 \Fix{\marginpar{\tiny fix the problem articulated in the footnote}}{}
 
 \hypertarget{GothVVSGothCInv}{}
 \begin{figure}
   \centerline{\includegraphics[width=6in]{\FigDir/GothVVSGothCInv}}
-  \caption{True $v^{{a}}_{({\prdLsT})_\cntn}(a)$ vs. $\Aprx{\Aprx{v}}_{({\prdLsT})_\cntn}^{{a}}(a)$ Constructed Using $\Aprx{\cFunc}_{({\prdLsT})_\cntn}(a)$}
+  \caption{True $v^{{a}}_{({t-1})_\cntn}(a)$ vs. $\Aprx{\Aprx{v}}_{({t-1})_\cntn}^{{a}}(a)$ Constructed Using $\Aprx{\cFunc}_{({t-1})_\cntn}(a)$}
   \label{fig:GothVVSGothCInv}
 \end{figure}
 
 \hypertarget{the-method-of-endogenous-gridpoints}{}
 \subsection{The Method of Endogenous Gridpoints (`EGM')}\label{subsec:egm}
 
-The solution procedure we articulated above for finding ${\cFunc}_{\prdLsT}({m})$ still requires us, for each point in $\vctr{{m}}\code{_{\prdLsT}}$, to use a numerical rootfinding algorithm to search for the value of $\cCtrl$ that solves $u^{{c}}(\cCtrl) = v^{{a}}_{({\prdLsT})_\cntn}({m}-\cCtrl)$.  Though sections \ref{subsec:transformation} and \ref{subsec:LiqConstrSelfImposed} developed a highly efficient and accurate procedure to calculate $\Aprx{v}^{a}_{(\prdLsT)_\cntn}$, those approximations do nothing to eliminate the need for using a rootfinding operation for calculating, for an arbitrary ${m}$, the optimal ${c}$.  And rootfinding is a notoriously computation-intensive (that is, slow!) operation.
+The solution procedure we articulated above for finding ${\cFunc}_{t-1}({m})$ still requires us, for each point in $\vctr{{m}}\code{_{t-1}}$, to use a numerical rootfinding algorithm to search for the value of $c$ that solves $u^{{c}}(c) = v^{{a}}_{({t-1})_\cntn}({m}-c)$.  Though sections \ref{subsec:transformation} and \ref{subsec:LiqConstrSelfImposed} developed a highly efficient and accurate procedure to calculate $\Aprx{v}^{a}_{(t-1)_\cntn}$, those approximations do nothing to eliminate the need for using a rootfinding operation for calculating, for an arbitrary ${m}$, the optimal ${c}$.  And rootfinding is a notoriously computation-intensive (that is, slow!) operation.
 
-Fortunately, it turns out that there is a way to completely skip this slow rootfinding step.  The method can be understood by noting that we have already calculated, for a set of arbitrary values of $\vctr{a}=\vctr{{a}}\code{_{\prdLsT}}$, the corresponding $\vctr{c}$ values for which this $\vctr{a}$ is optimal.
+Fortunately, it turns out that there is a way to completely skip this slow rootfinding step.  The method can be understood by noting that we have already calculated, for a set of arbitrary values of $\vctr{a}=\vctr{{a}}\code{_{t-1}}$, the corresponding $\vctr{c}$ values for which this $\vctr{a}$ is optimal.
 
 
-But with mutually consistent values of $\vctr{{c}}\code{_{\prdLsT}}$ and $\vctr{{a}}\code{_{\prdLsT}}$ (consistent, in the sense that they are the unique optimal values that correspond to the solution to the problem), we can obtain the $\vctr{{m}}\code{_{\prdLsT}}$ vector that corresponds to both of them from
+But with mutually consistent values of $\vctr{{c}}\code{_{t-1}}$ and $\vctr{{a}}\code{_{t-1}}$ (consistent, in the sense that they are the unique optimal values that correspond to the solution to the problem), we can obtain the $\vctr{{m}}\code{_{t-1}}$ vector that corresponds to both of them from
 \begin{equation}\begin{gathered}\begin{aligned}
-      \vctr{{m}}\code{_{\prdLsT}}  & = {\vctr{{c}}\code{_{\prdLsT}}+\vctr{{a}}\code{_{\prdLsT}}}.
+      \vctr{{m}}\code{_{t-1}}  & = {\vctr{{c}}\code{_{t-1}}+\vctr{{a}}\code{_{t-1}}}.
     \end{aligned}\end{gathered}\end{equation}
 
 \ifthenelse{\boolean{ToFix}}{\marginpar{\tiny Rename gothic class, maybe to: EndPrd.  Also, harmonize the notation in the notebook in the paper - for example, everwhere in the text we use cNrm for normalized consumption, but for some reason it is capital C in the gothic function.}}{}
@@ -416,31 +415,31 @@ But with mutually consistent values of $\vctr{{c}}\code{_{\prdLsT}}$ and $\vctr{
 These ${m}$ gridpoints are ``endogenous'' in contrast to the usual solution method of specifying some \textit{ex-ante} (exogenous) grid of values of $\vctr{m}$ and then using a rootfinding routine to locate the corresponding optimal consumption vector $\vctr{c}$.
 
 
-This routine is performed in the ``Endogenous Gridpoints'' section of the notebook. First, the \texttt{gothic.C\_Tminus1} function is called for each of the pre-specfied values of end-of-period assets stored in \code{aVec}. These values of consumption and assets are used to produce the list of endogenous gridpoints, stored in the object \texttt{mVec\_egm}. With the $\vctr{\cFunc}$ values in hand, the notebook can generate a set of $\vctr{{m}}\code{_{\prdLsT}}$ and ${\vctr{{c}}\code{_{\prdLsT}}}$ pairs that can be interpolated between in order to yield $\Aprx{\cFunc}_{\MidStpLsT}(m)$ at virtually zero computational cost!\footnote{This is the essential point of \cite{carrollEGM}.} %This is done in the final line of code in this block, and the following code block produces the graph of the interpolated consumption function using this procedure.
+This routine is performed in the ``Endogenous Gridpoints'' section of the notebook. First, the \texttt{gothic.C\_Tminus1} function is called for each of the pre-specfied values of end-of-period assets stored in \code{aVec}. These values of consumption and assets are used to produce the list of endogenous gridpoints, stored in the object \texttt{mVec\_egm}. With the $\vctr{\cFunc}$ values in hand, the notebook can generate a set of $\vctr{{m}}\code{_{t-1}}$ and ${\vctr{{c}}\code{_{t-1}}}$ pairs that can be interpolated between in order to yield $\Aprx{\cFunc}_{\MidStpLsT}(m)$ at virtually zero computational cost!\footnote{This is the essential point of \cite{carrollEGM}.} %This is done in the final line of code in this block, and the following code block produces the graph of the interpolated consumption function using this procedure.
 
 \hypertarget{PlotComparecTm1AD}{}
 One might worry about whether the $\{{m},{c}\}$ points obtained in this way will provide a good representation of the consumption function as a whole, but in practice there are good reasons why they work well (basically, this procedure generates a set of gridpoints that is naturally dense right around the parts of the function with the greatest nonlinearity).
 \begin{figure}
   \centerline{\includegraphics[width=6in]{\FigDir/PlotComparecTm1AD}}
-  \caption{$\cFunc_{\prdLsT}({m})$ (solid) versus $\Aprx{\cFunc}_{\prdLsT}({m})$ (dashed)}
+  \caption{$\cFunc_{t-1}({m})$ (solid) versus $\Aprx{\cFunc}_{t-1}({m})$ (dashed)}
   \label{fig:ComparecTm1AD}
 \end{figure}
-Figure~\ref{fig:ComparecTm1AD} plots the actual consumption function ${\cFunc}_{\prdLsT}$ and the approximated consumption function $\Aprx{\cFunc}_{\prdLsT}$ derived by the method of endogenous grid points. Compared to the approximate consumption functions illustrated in Figure~\ref{fig:PlotcTm1ABC}, $\Aprx{\cFunc}_{\prdLsT}$ is quite close to the actual consumption function.
+Figure~\ref{fig:ComparecTm1AD} plots the actual consumption function ${\cFunc}_{t-1}$ and the approximated consumption function $\Aprx{\cFunc}_{t-1}$ derived by the method of endogenous grid points. Compared to the approximate consumption functions illustrated in Figure~\ref{fig:PlotcTm1ABC}, $\Aprx{\cFunc}_{t-1}$ is quite close to the actual consumption function.
 
 
 
 \hypertarget{improving-the-a-grid}{}
 \subsection{Improving the $a$ Grid}\label{subsec:improving-the-a-grid}
 
-Thus far, we have arbitrarily used $a$ gridpoints of $\{0.,1.,2.,3.,4.\}$ (augmented in the last subsection by $\NatBoroCnstra_{\prdLsT}$).  But it has been obvious from the figures that the approximated $\Aprx{\cFunc}_{({\prdLsT})_\cntn}$ function tends to be farthest from its true value at low values of ${a}$.  Combining this with our insight that $\NatBoroCnstra_{\prdLsT}$ is a lower bound, we are now in position to define a more deliberate method for constructing gridpoints for $a$ -- a method that yields values that are more densely spaced at low values of ${a}$ where the function is more nonlinear.
+Thus far, we have arbitrarily used $a$ gridpoints of $\{0.,1.,2.,3.,4.\}$ (augmented in the last subsection by $\NatBoroCnstra_{t-1}$).  But it has been obvious from the figures that the approximated $\Aprx{\cFunc}_{({t-1})_\cntn}$ function tends to be farthest from its true value at low values of ${a}$.  Combining this with our insight that $\NatBoroCnstra_{t-1}$ is a lower bound, we are now in position to define a more deliberate method for constructing gridpoints for $a$ -- a method that yields values that are more densely spaced at low values of ${a}$ where the function is more nonlinear.
 
 A pragmatic choice that works well is to find the values such that (1) the last value \textit{exceeds the lower bound} by the same amount $\bar a$ as our original maximum gridpoint (in our case, 4.); (2) we have the same number of gridpoints as before; and (3) the \textit{multi-exponential growth rate} (that is, $e^{e^{e^{...}}}$ for some number of exponentiations $n$ -- our default is 3) from each point to the next point is constant (instead of, as previously, imposing constancy of the absolute gap between points).
 
 \hypertarget{GothVInvVSGothCEEE}{}
 \begin{figure}
   \centerline{\includegraphics[width=6in]{\FigDir/GothVInvVSGothCEEE}}
-  \caption{$\cFunc_{({\prdLsT})_\cntn}(a)$ versus
-    $\Aprx{\cFunc}_{({\prdLsT})_\cntn}(a)$, Multi-Exponential \code{aVec}}
+  \caption{$\cFunc_{({t-1})_\cntn}(a)$ versus
+    $\Aprx{\cFunc}_{({t-1})_\cntn}(a)$, Multi-Exponential \code{aVec}}
   \label{fig:GothVInvVSGothCEE}
 \end{figure}
 
@@ -448,8 +447,8 @@ A pragmatic choice that works well is to find the values such that (1) the last 
 \hypertarget{GothVVSGothCInvEEE}{}
 \begin{figure}
   \includegraphics[width=6in]{\FigDir/GothVVSGothCInvEEE}
-  \caption{$v^{{a}}_{({\prdLsT})_\cntn}(a)$ vs.
-    $\Aprx{\Aprx{v}}_{({\prdLsT})_\cntn}^{{a}}(a)$, Multi-Exponential \code{aVec}}
+  \caption{$v^{{a}}_{({t-1})_\cntn}(a)$ vs.
+    $\Aprx{\Aprx{v}}_{({t-1})_\cntn}^{{a}}(a)$, Multi-Exponential \code{aVec}}
   \label{fig:GothVVSGothCInvEE}
 \end{figure}
 

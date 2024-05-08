@@ -2,21 +2,21 @@
 \hypertarget{notation}{}
 \section{Notation}\label{sec:notation}
 
-\subsection{\Intervals, \Stgs, \Moves}
+\subsection{Periods, Stages, Steps}
 
-The problem specified above assumes that the agent has only one decision problem to solve in any {\interval}.  In practice, it is increasingly common to model agents who have multiple choice {\stg}s per {\interval}; an agent's problem might have, say, a consumption decision (call it the $\cFunc$ {\stg}), a labor supply {\stg} (call it $\labor$) and a choice of what proportion $\Shr$ of their assets to invest in a risky asset (the portfolio-choice {\stg}).
+The problem specified above assumes that the agent has only one decision problem to solve in any {period}.  In practice, it is increasingly common to model agents who have multiple choice {stage}s per {period}; an agent's problem might have, say, a consumption decision (call it the $\cFunc$ {stage}), a labor supply {stage} (call it $\labor$) and a choice of what proportion $\Shr$ of their assets to invest in a risky asset (the portfolio-choice {stage}).
 
-The modeler might well want to explore whether the order in which the {\stg}s are solved makes any difference, either to the substantive results or to aspects of the computational solution like speed and accuracy.
+The modeler might well want to explore whether the order in which the {stage}s are solved makes any difference, either to the substantive results or to aspects of the computational solution like speed and accuracy.
 
-If, as in section \ref{sec:the-problem}, we hard-wire into the solution code for each {\stg} an assumption that its successor {\stg} will be something in particular (say, the consumption {\stg} assumes that the portfolio choice is next), then if we want to change the order of the {\stg}s (say, labor supply after consumption, followed by portfolio choice), we will need to re-hard-wire each of the stages to know particular things about its new successor (for example, the specifics of the distribution of the rate of return on the risky asset would need to be known by whatever {\stg} precedes the portfolio choice {\stg}).
+If, as in section \ref{sec:the-problem}, we hard-wire into the solution code for each {stage} an assumption that its successor {stage} will be something in particular (say, the consumption {stage} assumes that the portfolio choice is next), then if we want to change the order of the {stage}s (say, labor supply after consumption, followed by portfolio choice), we will need to re-hard-wire each of the stages to know particular things about its new successor (for example, the specifics of the distribution of the rate of return on the risky asset would need to be known by whatever {stage} precedes the portfolio choice {stage}).
 
 But one of the cardinal insights of Bellman's (1957, ``Dynamic Programming'') original work is that \emph{everything that matters} for the solution to the current problem is encoded in a `continuation-value function.' %that incorporates \texttt{everything about the future} that is important to solution of the present stage.  %This point is important for a number of reasons, but here we will focus on one problem of ignoring it. Actual solution of the maximization problem as specified in \eqref{eq:vNormed} requires the current agent to have knowledge not only of the successor value function, but also of other aspects of the problem like the distributions of the future period's stochastic shocks. So any solution to the problem that directly uses in \eqref{eq:vNormed} will need to hard-wire into itself the specifics of the successor problem.
 
-Using Bellman's insight, we describe here a framework for isolating the {\stg} problems within a {\interval} from each other, and the {\interval} from its successors in any future {\interval}; the advantage of this is that the isolated {\stg} and {\interval} problems will then be `modular': We can solve them in any order \textit{without changing any code}. After considering the {\stg}-order $[\ell,\cFunc,\Shr]$, the modeler can costlessly reorder the {\stg}s to consider, say, the order $[\ell,\Shr,\cFunc]$.\footnote{As long as the beginning-of-{\stg} and end-of-{\stg} value functions for the {\stg}s all depend on the same state variables; see the discussion in section \ref{sec:multiple-control-variables} for further discussion.}
+Using Bellman's insight, we describe here a framework for isolating the {stage} problems within a {period} from each other, and the {period} from its successors in any future {period}; the advantage of this is that the isolated {stage} and {period} problems will then be `modular': We can solve them in any order \textit{without changing any code}. After considering the {stage}-order $[\ell,\cFunc,\Shr]$, the modeler can costlessly reorder the {stage}s to consider, say, the order $[\ell,\Shr,\cFunc]$.\footnote{As long as the beginning-of-{stage} and end-of-{stage} value functions for the {stage}s all depend on the same state variables; see the discussion in section \ref{sec:multiple-control-variables} for further discussion.}
 
-\subsection{\Moves}
+\subsection{Steps}
 
-The key to the framework is distinguishing, within each {\stg}'s Bellman problem, three {\moves}:
+The key to the framework is distinguishing, within each {stage}'s Bellman problem, three {steps}:
 
 \begin{enumerate}
 \item \textbf{\Arrival}: Incoming state variables (e.g., $k$) are known, but any shocks associated with the period have not been realized and decision(s) have not yet been made
@@ -24,43 +24,43 @@ The key to the framework is distinguishing, within each {\stg}'s Bellman problem
 \item \textbf{\Continuation}: After all decisions have been made, their consequences are measured by evaluation of the continuing-value function at the values of the `outgoing' state variables (sometimes called `post-state' variables).
 \end{enumerate}
 
-%In the standard treatment in the literature, the (implicit) default assumption is that the {\move} where the agent is solving a decision problem is the unique {\move} at which the problem is defined.  This is what was done above, when (for example) in \eqref{eq:vNormed} we related the value $\vFunc$ of the current decision to the expectation of the future value $\vFunc_{\prd+1}$.  Here, instead, we want to encapsulate the current {\stg}'s problem as a standalone object, which is solved by taking as given an exogenously-provided continuation-value function (in our case, $\vEndStp(a)$).
+%In the standard treatment in the literature, the (implicit) default assumption is that the {step} where the agent is solving a decision problem is the unique {step} at which the problem is defined.  This is what was done above, when (for example) in \eqref{eq:vNormed} we related the value $\vFunc$ of the current decision to the expectation of the future value $\vFunc_{\prd+1}$.  Here, instead, we want to encapsulate the current {stage}'s problem as a standalone object, which is solved by taking as given an exogenously-provided continuation-value function (in our case, $\vEndStp(a)$).
 
-When we want to refer to a specific {\move} in the {\stg} we will do so by using an indicator which identifies that {\move}.  Here we use the consumption {\stg} problem described above to exemplify the usage:
+When we want to refer to a specific {step} in the {stage} we will do so by using an indicator which identifies that {step}.  Here we use the consumption {stage} problem described above to exemplify the usage:
 \begin{center}
 %  \mbox{%
     \begin{tabular}{r|c|c|l|l}
-      {\Move}         & Indicator               & State          & Usage                       & Explanation                                \\ \hline
-      {\Arrival}      & $ \arvl $ & $k$ & $\vBegStp({k})$ & value at entry to {\stg} (before shocks) \\
-      {\Decision}(s)  & (blank)            & $m$ & $\vMidStp(m)$ & value of {\stg}-decision (after shocks)       \\
+      {Step}         & Indicator               & State          & Usage                       & Explanation                                \\ \hline
+      {\Arrival}      & $ \arvl $ & $k$ & $\vBegStp({k})$ & value at entry to {stage} (before shocks) \\
+      {\Decision}(s)  & (blank)            & $m$ & $\vMidStp(m)$ & value of {stage}-decision (after shocks)       \\
       {\Continuation} & $ \cntn $ & $a$ & $\vEndStp({a})$ & value at exit (after decision) \\ \hline
     \end{tabular}
 %  }
   \end{center}
 
-  Notice that the value functions at different {\move}s of the {\stg} have distinct state variables.  Only $k$ is known at the beginning of the period, and other variables take on their values with equations like $b = k \RNrm$ and $m = b+\TranShkEmp.$  We will refer to such within-the-{\stg} creation of variables as {\evltns}.%  Thus, the consumption problem has two {\evltns}: from $\kNrm$ to $\mNrm$ and from $\mNrm$ to $\aNrm$.
+  Notice that the value functions at different {step}s of the {stage} have distinct state variables.  Only $k$ is known at the beginning of the period, and other variables take on their values with equations like $b = k \RNrm$ and $m = b+\TranShkEmp.$  We will refer to such within-the-{stage} creation of variables as {evolutions}.%  Thus, the consumption problem has two {evolutions}: from $\kNrm$ to $\mNrm$ and from $\mNrm$ to $\aNrm$.
 
-\subsection{\Trnsns}
-v
-  In the backward-induction world of Bellman solutions, to solve the problem of a particular {\interval} we must start with an end-of-{\interval} value function, which we designate by including the {\interval} indicator in the subscript:
+\subsection{Transitions}
+
+  In the backward-induction world of Bellman solutions, to solve the problem of a particular {period} we must start with an end-of-{period} value function, which we designate by including the {period} indicator in the subscript:
   \begin{equation}\begin{gathered}\begin{aligned}
         \vEndPrd(a) & \mapsto \beta \vBegPrdNxt(\overbrace{a}^{=k}), \label{eq:trns-single-prd}
   \end{aligned}\end{gathered}\end{equation}
-and we are not done solving the problem of the entire {\interval} until we have constructed a beginning-of-{\interval} value function $\vBegPrd(k)$.
+and we are not done solving the problem of the entire {period} until we have constructed a beginning-of-{period} value function $\vBegPrd(k)$.
 
-Once we are inside a {\stg}, we will also need an end-of-{\stg} value function.  For the last {\stg} in a {\interval} the end-of-{\stg} function is taken to be end-of-{\interval} value function:
+Once we are inside a {stage}, we will also need an end-of-{stage} value function.  For the last {stage} in a {period} the end-of-{stage} function is taken to be end-of-{period} value function:
   \begin{equation}\begin{gathered}\begin{aligned}
         \vEndStg(a) \mapsto \vEndPrd(a).
       \end{aligned}\end{gathered}\end{equation}
 
-One way to describe this is that when we are considering the solution to the current {\stg}, we will be working with what, in computer programming, is called a `local function' $\vEndStg(a)$ whose value at the beginning of the {\stg}-solution algorithm has been initialized to the value of a previously-computed `global function' $\vEndPrd(a)$ that had already been constructed by mapping itself to $\beta \vBegPrdNxt$ (equation \eqref{eq:trns-single-prd}).
+One way to describe this is that when we are considering the solution to the current {stage}, we will be working with what, in computer programming, is called a `local function' $\vEndStg(a)$ whose value at the beginning of the {stage}-solution algorithm has been initialized to the value of a previously-computed `global function' $\vEndPrd(a)$ that had already been constructed by mapping itself to $\beta \vBegPrdNxt$ (equation \eqref{eq:trns-single-prd}).
 \hypertarget{decision-problem}{}
 
 \subsection{The Decision Problem in the New Notation}\label{subsec:decision-problem}
 
 The {\Decision} problem can now be written much more cleanly than in equation \eqref{eq:vNormed}:
   \begin{equation}\begin{gathered}\begin{aligned}
-        v(m) & = \max_{c}~ u({c}) + v_{\cntn}(\overbrace{m-\cFunc}^{a}) \label{eq:vMid}
+        v(m) & = \max_{c}~ u({c}) + v_{_\cntn}(\overbrace{m-\cFunc}^{a}) \label{eq:vMid}
       \end{aligned}\end{gathered}\end{equation}
 whose first order condition with respect to $c$ is
 \begin{equation}\begin{gathered}\begin{aligned}
@@ -70,7 +70,9 @@ which is mathematically equivalent to the usual Euler equation for consumption. 
 
 Having defined these notational conventions, we are now ready to move to substance.
 
-\begin{comment}
+\begin{comment} %
+
+  %
   \subsection{Implementation in Python}
 
   The code implementing the tasks outlined each of the sections to come is available in the \texttt{\href{https://econ-ark.org/materials/SolvingMicroDSOPs}{SolvingMicroDSOPs}} jupyter notebook, written in \href{https://python.org}{Python}. The notebook imports various modules, including the standard \texttt{numpy} and \texttt{scipy} modules used for numerical methods in Python, as well as some user-defined modules designed to provide numerical solutions to the consumer's problem from the previous section. Before delving into the computational exercise, it is essential to touch on the practicality of these custom modules.

@@ -16,10 +16,15 @@
 % booleans control whether certain features are on or off:
 \input{SolvingMicroDSOPs-options}   
 
-% Characters to replace for prettification
+% Characters to replace for easier viewing
+\provideboolean{Cleanmacros}
 \setboolean{Cleanmacros}{false}
-  
 \ifClean{\usepackage{SolvingMicroDSOPs-private}}{}
+
+% Version to substitute primitive latex for everything
+\provideboolean{cleanclean}
+\setboolean{cleanclean}{false}
+\ifthenelse{\boolean{cleanclean}}{\usepackage{econark-clean-clean}}{}
 
 \hypersetup{colorlinks=true,
   pdfauthor={Christopher D. Carroll <ccarroll@jhu.edu>},

@@ -12,11 +12,8 @@ If we imagine the portfolio share decision as being made simultaneously with the
 \begin{equation}\begin{gathered}\begin{aligned}
       v_{t}({m})  & = \max_{\{\cFunc,\Shr\}} ~~  u({c}) + \ExMidPrd[\beta {v}_{t+1}(({m}-{c})\Rport(\Shr) + {\TranShkEmp}_{t+1})] \label{eq:Bellmanundated}
     \end{aligned}\end{gathered}\end{equation}
-where we have deliberately omitted the {\interval}-designating subscripts for $\Shr$ and the return factors to highlight the point that, once the consumption and $\Shr$ decisions have been made, it makes no difference to this equation whether the risky return factor $\Risky$ is revealed a nanosecond before the end of the current {\interval} or a nanosecond after the beginning of the successor {\interval}.
+where we have deliberately omitted the {period}-designating subscripts for $\Shr$ and the return factors to highlight the point that, once the consumption and $\Shr$ decisions have been made, it makes no difference to this equation whether the risky return factor $\Risky$ is revealed a nanosecond before the end of the current {period} or a nanosecond after the beginning of the successor {period}.
 
-%But as a notational choice, there is good reason to designate the realization as happening in $t+1$: A standard way of motivating stochastic returns and wages is to attribute them to ``productivity shocks'' and to assume that the productivity shock associated with a date is the one that affects the production function for that date.
-
-%\renewcommand{\prd}{t} % For the rest of the doc, use generic t vs t+1
 
 \begin{comment}
   Designating the return factor for the risky asset as $\Risky_{t+1}$, and using $\Shr_{t}$ to represent the proportion of the portfolio invested in this asset before the return is realized after the beginning of $t+1$, corresponding to an assumption that the consumer cannot be `net short' and cannot issue net equity), the overall return on the consumer's portfolio between $t$ and $t+1$ will be:
@@ -53,7 +50,7 @@ where we have deliberately omitted the {\interval}-designating subscripts for $\
 
   As before, we define $\vEnd$ as a function that yields the expected $t+1$ value of ending period $t$ with assets ${a}_{t}$.  However, now that there are two control variables, the expectation must be defined as a function of the chosen values of both of those variables, because expected end-of-period value will depend not just on how much the agent saves, but also on how the saved assets are allocated between the risky and riskless assets.  Thus we define
   \begin{equation*}\begin{gathered}\begin{aligned}
-        \vMidStp({a}_{t},\Shr_{t})  & = \beta {v}_{\arvlstepShr}({m}_{t+1})
+        \vMidStp({a}_{t},\Shr_{t})  & = \beta {v}_{\arvlStpShr}({m}_{t+1})
       \end{aligned}\end{gathered}\end{equation*}
   which has derivatives
   \begin{equation}\begin{gathered}\begin{aligned}
@@ -74,16 +71,16 @@ where we have deliberately omitted the {\interval}-designating subscripts for $\
 \end{comment}
 
 \hypertarget{stages-within-a-period}{}
-\subsection{{\Stg}s Within a {\Interval}}\label{subsec:stageswithin}
+\subsection{{Stage}s Within a {Period}}\label{subsec:stageswithin}
 
-which we will call the `consumption {\stg} $\cFunc$' and the `portfolio {\stg} $\Shr$.'  These could come in either order in the {\interval}: We designate the `portfolio choice first, then consumption' version by $[\Shr,\cFunc]$ and the `consumption choice first, then portfolio' as $[\cFunc,\Shr]$.
+which we will call the `consumption {stage} $\cFunc$' and the `portfolio {stage} $\Shr$.'  These could come in either order in the {period}: We designate the `portfolio choice first, then consumption' version by $[\Shr,\cFunc]$ and the `consumption choice first, then portfolio' as $[\cFunc,\Shr]$.
 
-In a problem with multiple {\stgs}, if we want to refer to a sub-{\move} of a particular {\stg} -- say, the {\Arrival} {\stg} of the portfolio {\stg} -- we simply add a {\stg}-indicator subscript (in square brackets) to the notation we have been using until now.  That is, the {\Arrival} {\stg} of the portfolio problem would be $v_{_\arvl[\Shr]}$.
+In a problem with multiple {stages}, if we want to refer to a sub-{step} of a particular {stage} -- say, the {\Arrival} {stage} of the portfolio {stage} -- we simply add a {stage}-indicator subscript (in square brackets) to the notation we have been using until now.  That is, the {\Arrival} {stage} of the portfolio problem would be $v_{_\arvl[\Shr]}$.
 
 \hypertarget{revised-consumers-problem}{}
 \subsubsection{The (Revised) Consumer's Problem}\label{subsubsec:revised-consumers-problem}
 
-A slight modification to the consumer's problem specified earlier is necessary to make the {\stg}s of the problem completely modular.  The difficulty with the earlier formulation is that it assumed that asset returns occurred in the middle {\move} of the consumption problem.  Our revised version of the consumption problem takes as its input state the amount of bank balances that have resulted from any prior portfolio decision.  The problem is therefore:
+A slight modification to the consumer's problem specified earlier is necessary to make the {stage}s of the problem completely modular.  The difficulty with the earlier formulation is that it assumed that asset returns occurred in the middle {step} of the consumption problem.  Our revised version of the consumption problem takes as its input state the amount of bank balances that have resulted from any prior portfolio decision.  The problem is therefore:
   \begin{equation}\begin{gathered}\begin{aligned}
  v_{[\cFunc]}(m) & =  \max_{c} ~~ u(c)+  v_{[\cFunc]_{_\cntn}}(\underbrace{m-c}_{a})             
 \\    v_{_\arvl[\cFunc]}(b) & = \Ex_{_\arvl[\cFunc]}\left[v_{[c]}(\overbrace{b+\TranShkEmp}^{m})\right] \label{eq:vBalances}
@@ -97,42 +94,42 @@ Consider the standalone problem of an `investor' whose continuation-value functi
 \begin{equation}\begin{gathered}\begin{aligned}
   v_{_\arvl[\Shr]}(w)  = & \max_{\Shr}~ \Ex_{\BegStp[\Shr]}\left[v_{[\Shr]_{_\cntn}}\overbrace{\left(\Rport(\Shr){w}\right)}^{\acute{w}}\right] \label{eq:vMidStpShr}
     \end{aligned}\end{gathered}\end{equation}
-where we have omitted any {\interval} designator like $t$ for the {\interval} in which this problem is solved because, with the continuation-value function defined already as $v_{[\Shr]_\cntn}(\acute{w})$, the problem is self-contained.  The solution to this problem will yield an optimal $\Shr$ decision rule $\optml{\Shr}(w).$  Finally, we can specify the value of an investor `arriving' with $w$ as the expected value that will be obtained when the investor invests optimally, generating the \textit{ex ante} optimal stochastic portfolio return factor $\optml{\Rport}(w)=\Rport(\optml{\Shr}(w))$:
+where we have omitted any {period} designator like $t$ for the {period} in which this problem is solved because, with the continuation-value function defined already as $v_{[\Shr]_\cntn}(\acute{w})$, the problem is self-contained.  The solution to this problem will yield an optimal $\Shr$ decision rule $\optml{\Shr}(w).$  Finally, we can specify the value of an investor `arriving' with $w$ as the expected value that will be obtained when the investor invests optimally, generating the \textit{ex ante} optimal stochastic portfolio return factor $\optml{\Rport}(w)=\Rport(\optml{\Shr}(w))$:
 \begin{equation}\begin{gathered}\begin{aligned}
-      v_{[\Shr]{_\arvl}}(w)  = & \Ex_{_\arvl}[v_{[\Shr]_\cntn}](\overbrace{\optml{\Rport}(w)}^{\acute{w}})].
+      v_{_\arvl[\Shr]}(w)  = & \Ex_{_\arvl}[v_{[\Shr]_\cntn}](\overbrace{\optml{\Rport}(w)}^{\acute{w}})].
 \end{aligned}\end{gathered}\end{equation}
 
 The reward for all this notational investment is that it is now clear that \emph{exactly the same code} for solving the portfolio share problem can be used in two distinct problems: a `beginning-of-period-returns' model and an `end-of-period-returns' model.
 
 \hypertarget{beginning-returns}{}
 \subsubsection{The `beginning-of-period returns' Problem}\label{subsubsec:beginning-returns}
-The beginning-returns problem effectively just inserts a portfolio choice that happens at a {\stg} immediately before the consumption {\stg} in the optimal consumption problem described in \eqref{eq:vBalances}, for which we had a beginning-of-{\stg} value function $v_{_\arvl[\cFunc]}(b)$.  The agent makes their portfolio share decision within the {\stg} but (obviously) before the risky returns $\Risky$ for the {\interval} have been realized.  So the problem's portfolio-choice {\stg} also takes $k$ as its initial state and solves the investor's problem outlined in section~\ref{subsubsec:investors-problem} above:
+The beginning-returns problem effectively just inserts a portfolio choice that happens at a {stage} immediately before the consumption {stage} in the optimal consumption problem described in \eqref{eq:vBalances}, for which we had a beginning-of-{stage} value function $v_{_\arvl[\cFunc]}(b)$.  The agent makes their portfolio share decision within the {stage} but (obviously) before the risky returns $\Risky$ for the {period} have been realized.  So the problem's portfolio-choice {stage} also takes $k$ as its initial state and solves the investor's problem outlined in section~\ref{subsubsec:investors-problem} above:
 \begin{equation}\begin{gathered}\begin{aligned}
-  v_{[\Shr]_\arvl}(k) & = \Ex_{[\Shr]_\arvl}[v_{[\Shr]_{_\cntn}}(\underbrace{k\optml{\Rport}}_{b})]
+  v_{_\arvl[\Shr]}(k) & = \Ex_{[_\arvl\Shr]}[v_{[\Shr]_{_\cntn}}(\underbrace{k\optml{\Rport}}_{b})]
 \\v_{[\Shr]_\cntn}(b)  & = v_{_\arvl[\cFunc]}(b)
     \end{aligned}\end{gathered}\end{equation}
 
-Since in this setup bank balances have been determined before the consumption problems starts, we need to rewrite the consumption {\stg}  as a function of bank balances that will have resulted from the portfolio investment $b$, combined with the income shocks $\TranShkEmp$:
+Since in this setup bank balances have been determined before the consumption problems starts, we need to rewrite the consumption {stage}  as a function of bank balances that will have resulted from the portfolio investment $b$, combined with the income shocks $\TranShkEmp$:
 \begin{equation}\begin{gathered}\begin{aligned}
       v_{_\arvl[\cFunc]}(b) = & \max_{\cFunc}~ u(c) + \Ex_{_\arvl[\cFunc]}[v_{[\cFunc]_\cntn}(\underbrace{\overbrace{b+\TranShkEmp}^{m}-c}_{a})]
     \end{aligned}\end{gathered}\end{equation}
-where, because the consumption {\stg} is the last {\stg} in the {\interval}, the continuatibon-value function for the $\cFunc$ {\stg} is just the continuation-value function for the period as a whole:
+where, because the consumption {stage} is the last {stage} in the {period}, the continuatibon-value function for the $\cFunc$ {stage} is just the continuation-value function for the period as a whole:
 \begin{equation}\begin{gathered}\begin{aligned}
       v_{[\cFunc]_\cntn}(a) = & v_{t_\cntn}(a)
     \end{aligned}\end{gathered}\end{equation}
-(and recall that $v_{t_\cntn}(a)$ is exogenously provided as an input to the {\interval}'s problem via the transition equation assumed earlier: $v_{t_\cntn}(a)=\beta v_{_\arvl(t+1)}(a)$).
+(and recall that $v_{t_\cntn}(a)$ is exogenously provided as an input to the {period}'s problem via the transition equation assumed earlier: $v_{t_\cntn}(a)=\beta v_{_\arvl(t+1)}(a)$).
 
 \subsubsection{The `end-of-period-returns' Problem}
 
-If the portfolio share and risky returns are realized at the end of the {\interval}, we need to move the portfolio choice {\stg} to immediately before the point at which returns are realized (and after the $\cFunc$ choice has been made).  The problem is the same as the portfolio problem defined above, except that the input for the investment {\stg} is the assets remaining after the consumption choice: $a$.  So, the portfolio {\stg} of the problem is
+If the portfolio share and risky returns are realized at the end of the {period}, we need to move the portfolio choice {stage} to immediately before the point at which returns are realized (and after the $\cFunc$ choice has been made).  The problem is the same as the portfolio problem defined above, except that the input for the investment {stage} is the assets remaining after the consumption choice: $a$.  So, the portfolio {stage} of the problem is
 \begin{equation}\begin{gathered}\begin{aligned}
   v_{_\arvl[\Shr]}(a) = & \Ex_{_\arvl[\Shr]}[v_{[\Shr]_{_\cntn}}(\underbrace{a\optml{\Rport}}_{k})] %= \Ex_{[\cFunc]_\arvl}[\vFunc_{}(\kNrm)]
     \end{aligned}\end{gathered}\end{equation}
-where we are designating the post-realization result of the investment as $k$, and since the $\Shr$-{\stg} is the last {\stg} of the problem the end-of-{\stg} $k$ becomes the end-of-{\interval} $k_{t}.$ 
+where we are designating the post-realization result of the investment as $k$, and since the $\Shr$-{stage} is the last {stage} of the problem the end-of-{stage} $k$ becomes the end-of-{period} $k_{t}.$ 
 
 The `state transition' equation between $t$ and $t+1$ is simply $b_{t+1} = k_{t}$ and the continuation-value function transition is $v_{t_\cntn}(k) \mapsto \beta v_{_\arvl(t+1)}(k)$ which reflects the above-mentioned point that there is no substantive difference between the two problems (their $v_{[\cFunc]}(m)$ value functions and $\cFunc(m)$ functions will be identical).
 
-(Note that we are assuming that there will be only one consumption function in the period, so no {\stg} subscript is necessary to pick out `the consumption function'). 
+(Note that we are assuming that there will be only one consumption function in the period, so no {stage} subscript is necessary to pick out `the consumption function'). 
 
 \subsubsection{Numerical Solution}
 we can solve it numerically for the optimal $\Shr$ at a vector of $\vctr{a}$ ({\aVecCode} in the code)  and then construct an approximated optimal portfolio share function $\Aprx{\optml{\Shr}}(a)$ as the interpolating function among the members of the $\{\vctr{a},\vctr{\Shr}\}$ mapping.  Having done this, we can now calculate a vector of values and marginal values that correspond to $\aVec$:
@@ -151,7 +148,7 @@ which, following a procedure identical to that in the EGM subsection \ref{subsec
 
 \subsubsection{The Point}\label{subsubsec:the-point}
 
-The upshot is that all we need to do is change some of the transition equations and we can use the same solution code (both for the $\Shr$-stage and the $\cFunc$-stage) to solve the problem with either assumption (beginning-of-period or end-of-period) about the timing of portfolio choice.  There is even an obvious notation for the two problems: $v_{_\arvl t[\Shr{c}]}$ can be the {\interval}-arrival value function for the version where the portfolio share is chosen at the beginning of the period, and $v_{_\arvl t[{c}\Shr]}$ is {\interval}-arrival value for the the problem where the share choice is at the end.
+The upshot is that all we need to do is change some of the transition equations and we can use the same solution code (both for the $\Shr$-stage and the $\cFunc$-stage) to solve the problem with either assumption (beginning-of-period or end-of-period) about the timing of portfolio choice.  There is even an obvious notation for the two problems: $v_{_\arvl t[\Shr{c}]}$ can be the {period}-arrival value function for the version where the portfolio share is chosen at the beginning of the period, and $v_{_\arvl t[{c}\Shr]}$ is {period}-arrival value for the the problem where the share choice is at the end.
 
 What is the benefit of writing effectively the identical problem in two different ways?  There are several:
 \begin{itemize}
@@ -166,55 +163,26 @@ What is the benefit of writing effectively the identical problem in two differen
   \end{itemize}
 \end{itemize}
 
-% the problem needs to be altered to bring the {\move}s involving the realization of risky returns into {\interval} $\prd$; the variable with which the agent ends the period is now ${\bNrm}_{\prd}$ and to avoid confusion with the prior model in which we assumed ${k}_{\prd+1}={a}_{\prd}$ we will now define $\kappa_{\prd+1}={\bNrm}_{\prd}$.  The continuation-value function for the $[\Shr]$ {\stg} now becomes
-% \begin{equation}\begin{gathered}\begin{aligned}
-%       \vFunc_{\prd[\Shr]_\cntn}({a}_{\prd}) & = \DiscFac \vFunc_{[\cFunc]_\arvl(\prd+1)}({\kappa}_{\prd+1})
-%     \end{aligned}\end{gathered}\end{equation}
-% while the dynamic budget constraint for ${m}$ changes to
-% \begin{equation}\begin{gathered}\begin{aligned}
-%       {m}_{\prd} & = {\kappa}_{\prd}+\TranShkEmp_{\prd}
-%     \end{aligned}\end{gathered}\end{equation}
-% and the problem in the decision step is now
-% \begin{equation}\begin{gathered}\begin{aligned}
-%       \vFunc_{\prd}({m}) & = \max_{{c}}~~\uFunc({c})+\Ex_{\prd}[\vFunc_{\prd_\cntn}({m}-{{c}})]
-%     \end{aligned}\end{gathered}\end{equation}
-% while value as a function of $\mNrm$ in the arrival step is now
-% \begin{equation}\begin{gathered}\begin{aligned}
-%       \vFunc_{_{\arvl}\prd}({\kappa}_{\prd}) & = \Ex_{_\arvl\prd}[\vFunc_{\prd}({m})]
-%     \end{aligned}\end{gathered}\end{equation}
-% which, \textit{mutatis mutandis}, is the same as in \eqref{eq:vNormed}.
+% % the problem needs to be altered to bring the {step}s involving the realization of risky returns into {period} $\prd$; the variable with which the agent ends the period is now ${\bNrm}_{\prd}$ and to avoid confusion with the prior model in which we assumed ${k}_{\prd+1}={a}_{\prd}$ we will now define $\kappa_{\prd+1}={\bNrm}_{\prd}$.  The continuation-value function for the $[\Shr]$ {stage} now becomes
+% % \begin{equation}\begin{gathered}\begin{aligned}
 
 
 
-
-% The second stage in the period will be the solution to the problem of a consumer solving an optimal portfolio choice problem before having made their consumption decision.
-
-% We continue to assume that the consumer enters period $t$ with the single state variable, $k_{\prd}.$  But (as before) the assumption is that this is before the $t$-dated shocks have been realized.  It is at this stage that the consumer makes their portfolio choice, knowing the degree of riskiness of the rate of return but not its period-$t$ realization.  Designating the `share-choice' stage by the control variable $\Shr$ which is the proportion of the portfolio to invest in the risky asset, %the problem's FOC in the new notation is (compare to  \eqref{eq:FOCShr}):
-
-% It will be convenient to designate a stage within a period by naming a given stage in period $\prd$ after the control variable chosen in the middle step of the stage; in this case $\prd[\Shr]$.  The consumer's problem at the $\Shr$ stage is
-% \begin{equation}\begin{gathered}\begin{aligned}
-%       \vFunc_{\arvlstepShr}({a}_{\prd})  & = \max_{\Shr}~\vMidStpStgShr({a}_{\prd},\Shr_{\prd}) \label{eq:vMidStpShr}
-%     \end{aligned}\end{gathered}\end{equation}
-% whose FOC in the new notation is (compare to  \eqref{eq:FOCShr}):
-% \begin{equation}\begin{gathered}\begin{aligned}
-%       0  & = \vShrMid({a}_{\prd},\Shr_{\prd}). \label{eq:vShrEnd}
-%     \end{aligned}\end{gathered}\end{equation}
 
 \subsection{Application}\label{subsec:MCApplication}
 
 
-In specifying the stochastic process for $\Risky_{t+1}$, we follow the common practice of assuming that returns are lognormally distributed, $\log \Risky \sim \Nrml(\eprem+r-\sigma^{2}_{\risky}/2,\sigma^{2}_{\risky})$ where $\eprem$ is the equity premium over the thin returns $r$ available on the riskless asset.\footnote{This guarantees that $\Ex[\Risky] = \EPrem$ is invariant to the choice of $\sigma^{2}_{\eprem}$; see \handoutM{LogELogNorm}.}
+In specifying the stochastic process for $\Risky_{t+1}$, we follow the common practice of assuming that returns are lognormally distributed, $\log \Risky \sim \Nrml(\eprem+r-\sigma^{2}_{\risky}/2,\sigma^{2}_{\risky})$ where $\eprem$ is the equity premium over the thin returns $r$ available on the riskless asset.\footnote{This guarantees that $\Ex[\Risky] = \EPrem/R$ is invariant to the choice of $\sigma^{2}_{\eprem}$; see \handoutM{LogELogNorm}.}
 
 As with labor income uncertainty, it is necessary to discretize the rate-of-return risk in order to have a problem that is soluble in a reasonable amount of time.  We follow the same procedure as for labor income uncertainty, generating a set of $n_{\risky}$ equiprobable shocks to the rate of return; in a slight abuse of notation, we will designate the portfolio-weighted return (contingent on the chosen portfolio share in equity, and potentially contingent on any other aspect of the consumer's problem) simply as $\Rport_{i,j}$ (where dependence on $i$ is allowed to permit the possibility of nonzero correlation between the return on the risky asset and the $\TranShkEmp$ shock to labor income (for example, in recessions the stock market falls and labor income also declines).
 
-
-The direct expressions for the derivatives of $\vEnd$ are
+The direct expressions for the derivatives of $\vEndStp$ are
 \begin{equation}\begin{gathered}\begin{aligned}
       \vEndStp^{{a}}({a}_{t},\Shr_{t})  & = \beta \left(\frac{1}{n_{\risky} n_{\TranShkEmp}}\right)\sum_{i=1}^{n_{\TranShkEmp}}\sum_{j=1}^{n_{\risky} }\Rport_{i,j} \left(\cFunc_{t+1}(\Rport_{i,j}{a}_{t}+\TranShkEmp_{i})\right)^{-\rho}
       \\      \vEndStp^{\Shr}({a}_{t},\Shr_{t})  & = \beta \left(\frac{1}{n_{\risky} n_{\TranShkEmp}}\right)\sum_{i=1}^{n_{\TranShkEmp}}\sum_{j=1}^{n_{\risky} }(\Risky_{i,j}-R)\left(\cFunc_{t+1}(\Rport_{i,j}{a}_{t}+\TranShkEmp_{i})\right)^{-\rho}.
     \end{aligned}\end{gathered}\end{equation}
 
-Writing these equations out explicitly makes a problem very apparent: For every different combination of $\{{a}_{t},\Shr_{t}\}$ that the routine wishes to consider, it must perform two double-summations of $n_{\risky} \times n_{\TranShkEmp}$ terms.  Once again, there is an inefficiency if it must perform these same calculations many times for the same or nearby values of $\{{a}_{t},\Shr_{t}\}$, and again the solution is to construct an approximation to the (inverses of the) derivatives of the $\vEnd$ function.
+Writing these equations out explicitly makes a problem very apparent: For every different combination of $\{{a}_{t},\Shr_{t}\}$ that the routine wishes to consider, it must perform two double-summations of $n_{\risky} \times n_{\TranShkEmp}$ terms.  Once again, there is an inefficiency if it must perform these same calculations many times for the same or nearby values of $\{{a}_{t},\Shr_{t}\}$, and again the solution is to construct an approximation to the (inverses of the) derivatives of the $\vEndStp$ function.
 
 Details of the construction of the interpolating approximations are given below; assume for the moment that we have the approximations $\Aprx{v}_{\EndStp}^{{a}}$ and $\Aprx{v}_{\EndStp}^{\Shr}$ in hand and we want to proceed.  As noted above in the discussion of \eqref{eq:Bellmanundated}, nonlinear equation solvers can find the solution to a set of simultaneous equations.  Thus we could ask one to solve
 \begin{equation}\begin{gathered}\begin{aligned}
@@ -226,10 +194,7 @@ maximization problems are difficult and sometimes quite slow to
 solve.
 
 There is a better way.  Define the problem
-%\providecommand{\Opt}{}
-%\renewcommand{\Opt}{\tilde}
-%\providecommand{\vOpt}{}
-%\renewcommand{\vOpt}{\overset{*}{\vFunc}}
+
 \begin{equation}\begin{gathered}\begin{aligned}
       \Opt{v}_{{t_\cntn}}({a}_{t})  & = \max_{\Shr_{t}} ~~  \vEndStp({a}_{t},\Shr_{t})
       \\      & \text{s.t.} \nonumber

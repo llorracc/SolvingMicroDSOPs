@@ -30,7 +30,7 @@ where $\FDist(\TranShkEmp)$ is the cumulative distribution function for ${\TranS
 \lstset{basicstyle=\ttfamily\footnotesize,breaklines=true,language=Python,frame=single}
 \lstinputlisting{./Code/Python/snippets/rawsolution.py}
 
-This maximization problem implicitly defines a `local function' $\cFunc_{t-1}({m})$ that yields optimal consumption in period $t-1$ for any specific numerical level of resources like $m=1.7$.%  (When we need to use this function from some context outside of the local context in which it was solved, we can reference by its absolute index, $\cFunc_{\prdT-1}$).
+This maximization problem implicitly defines a `local function' $\cFunc_{\prd-1}({m})$ that yields optimal consumption in period $t-1$ for any specific numerical level of resources like $m=1.7$.%  (When we need to use this function from some context outside of the local context in which it was solved, we can reference by its absolute index, $\cFunc_{\prdT-1}$).
 
 But because there is no general analytical solution to this problem, for any given $m$ we must use numerical computational tools to find the $\cCtrl$ that maximizes the expression.  This is excruciatingly slow because for every potential $c$ to be considered, a definite integral over the interval $(0,\infty)$ must be calculated numerically, and numerical integration is \textit{very} slow (especially over an unbounded domain!).
 
@@ -123,7 +123,7 @@ We can now apply our solution to \eqref{eq:vEndTm1} to each of the values in $\v
 This is accomplished in ``An Interpolated Consumption Function,'' which generates an interpolating function that we designate $\Aprx{\cFunc}_{\MidStpLsT}(\mStte)$. %When called with an $\mStte$ that is equal to one of the points in $\code{{{\mVec}\_int}}$, $\Aprx{\cFunc}_{\prdT-1}$ returns the associated value of $\vctr{c}_{\code{\prdT-1}}$, and when called with a value of $\mStte$ that is not exactly equal to one of the \texttt{mVec\_int}, returns the value of $c$ that reflects a linear interpolation between the $\vctr{c}_{\code{\prdT-1}}$ points associated with the two \texttt{mVec\_int} points immediately above and below $\mStte$.  
 
 Figures \ref{fig:PlotcTm1Simple} and~\ref{fig:PlotVTm1Simple} show
-plots of the constructed $\Aprx{\cFunc}_{t-1}$ and $\Aprx{v}_{t-1}$. While the $\Aprx{\cFunc}_{t-1}$ function looks very smooth, the fact that the $\Aprx{v}_{t-1}$ function is a set of line segments is very evident.  This figure provides the beginning of the intuition for why trying to approximate the value function directly is a bad idea (in this context).\footnote{For some problems, especially ones with discrete choices, value function approximation is unavoidable; nevertheless, even in such problems, the techniques sketched below can be very useful across much of the range over which the problem is defined.}
+plots of the constructed $\Aprx{\cFunc}_{\prd-1}$ and $\Aprx{v}_{\prd-1}$. While the $\Aprx{\cFunc}_{\prd-1}$ function looks very smooth, the fact that the $\Aprx{v}_{\prd-1}$ function is a set of line segments is very evident.  This figure provides the beginning of the intuition for why trying to approximate the value function directly is a bad idea (in this context).\footnote{For some problems, especially ones with discrete choices, value function approximation is unavoidable; nevertheless, even in such problems, the techniques sketched below can be very useful across much of the range over which the problem is defined.}
 
 \hypertarget{PlotcTm1Simple}{}
 \begin{figure}
@@ -145,11 +145,11 @@ plots of the constructed $\Aprx{\cFunc}_{t-1}$ and $\Aprx{v}_{t-1}$. While the $
 
 \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Good approximation in the sense that increasing the number of points makes no discernable difference.}}{}
 
-Piecewise linear `spline' interpolation as described above works well for generating a good approximation to the true optimal consumption function. However, there is a clear inefficiency in the program: Since it uses equation \eqref{eq:vEndTm1}, for every value of $\mStte$ the program must calculate the utility consequences of various possible choices of $\cCtrl$ (and therefore $a_{t-1}$) as it searches for the best choice.
+Piecewise linear `spline' interpolation as described above works well for generating a good approximation to the true optimal consumption function. However, there is a clear inefficiency in the program: Since it uses equation \eqref{eq:vEndTm1}, for every value of $\mStte$ the program must calculate the utility consequences of various possible choices of $\cCtrl$ (and therefore $a_{\prd-1}$) as it searches for the best choice.
 
-For any given index $j$ in $\vctr{m}[j]$, the algorithm, as it searches for the corresponding optimal $a$, the algorithm will end up  calculating $v_{\EndPrdLsT}(\tilde{a})$ for many $\tilde{a}$ values close to the optimal $a_{t-1}$.  Indeed, even when searching for the optimal $a$ for a \emph{different} $m$ (say $\vctr{m}[k]$ for $k \neq j$) the search process might compute $v_{\EndPrdLsT}(a)$ for an $a$ close to the correct optimal $a$ for $\vctr{m}[j]$. But if that difficult computation does not correspond to the exact solution to the $\vctr{m}[k]$ problem, it is discarded.  
+For any given index $j$ in $\vctr{m}[j]$, the algorithm, as it searches for the corresponding optimal $a$, the algorithm will end up  calculating $v_{\EndPrdLsT}(\tilde{a})$ for many $\tilde{a}$ values close to the optimal $a_{\prd-1}$.  Indeed, even when searching for the optimal $a$ for a \emph{different} $m$ (say $\vctr{m}[k]$ for $k \neq j$) the search process might compute $v_{\EndPrdLsT}(a)$ for an $a$ close to the correct optimal $a$ for $\vctr{m}[j]$. But if that difficult computation does not correspond to the exact solution to the $\vctr{m}[k]$ problem, it is discarded.  
 
-To avoid solving the problem independently over and over again for multitudes of values of $a$ that are close to each other, we can employ the same interpolation technique used above to construct a direct numerical approximation to the value function: Define a vector of possible values for end-of-period assets at time $t-1$, $\vctr{a}$ (\code{aVec} in the code). Next, construct $\vctr{v} = v_{\MidStpLsT}(\vctr{a})$ using equation (\ref{eq:vDiscrete}); then construct an approximation $\Aprx{v}_{({t-1})_\cntn}(a)$ by passing the vectors $\vctr{a}$ and $\vctr{v}$ as arguments to a piecewise-linear interpolator (e.g., the one in \texttt{scipy.interpolate}).%
+To avoid solving the problem independently over and over again for multitudes of values of $a$ that are close to each other, we can employ the same interpolation technique used above to construct a direct numerical approximation to the value function: Define a vector of possible values for end-of-period assets at time $t-1$, $\vctr{a}$ (\code{aVec} in the code). Next, construct $\vctr{v} = v_{\MidStpLsT}(\vctr{a})$ using equation (\ref{eq:vDiscrete}); then construct an approximation $\Aprx{v}_{({\prd-1})_\cntn}(a)$ by passing the vectors $\vctr{a}$ and $\vctr{v}$ as arguments to a piecewise-linear interpolator (e.g., the one in \texttt{scipy.interpolate}).%
 % (These lists contain the points of the $\vctr{a}_{{\prdT-1}}$ and $\vctr{v}_{{\prdT-1}}$ vectors, respectively.)
 
 The notebook section ``Interpolating Expectations,'' now interpolates the expected value of \textit{ending} the period with a given amount of assets.\footnote{What we are doing here is closely related to `the method of parameterized expectations' of \cite{denHaanMarcet:parameterized}; the only difference is that our method is essentially a nonparametric version.}  %The problem is solved in the same block with the remaining lines of code.
@@ -159,7 +159,7 @@ Figure~\ref{fig:PlotOTm1RawVSInt} compares the true value function to the approx
 \hypertarget{PlotOTm1RawVSInt}{}
 \begin{figure}
   \centerline{\includegraphics[width=6in]{\FigDir/PlotOTm1RawVSInt}}
-  \caption{End-Of-Period Value $v_{({t-1})_\cntn}(a_{t-1})$ (solid) versus $\Aprx{v}_{({T-1})_\cntn}(a_{T-1})$ (dashed)}
+  \caption{End-Of-Period Value $v_{({\prd-1})_\cntn}(a_{\prd-1})$ (solid) versus $\Aprx{v}_{({T-1})_\cntn}(a_{T-1})$ (dashed)}
   \label{fig:PlotOTm1RawVSInt}
 \end{figure}
 
@@ -173,7 +173,7 @@ Figure~\ref{fig:PlotOTm1RawVSInt} compares the true value function to the approx
 \Fix{\marginpar{\tiny In all figs, replace gothic h with notation corresponding to the lecture notes.}}
 
 % \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Don't skip the 2-3-3-4 example in the text - it will be used again in a moment.}}{}
-Nevertheless, the consumption rule obtained when the approximating $\Aprx{v}_{({t-1})_\cntn}(a_{t-1})$ is used instead of $v_{({t-1})_\cntn}(a_{t-1})$ is surprisingly bad, as shown in figure \ref{fig:PlotComparecTm1AB}.  For example, when $\mStte$ goes from 2 to 3, $\Aprx{\cFunc}_{t-1}$ goes from about 1 to about 2, yet when $\mStte$ goes from 3 to 4, $\Aprx\cCtrl$ goes from about 2 to about 2.05.  The function fails even to be concave, which is distressing because Carroll and Kimball~\citeyearpar{ckConcavity} prove that the correct consumption function is strictly concave in a wide class of problems that includes this one.
+Nevertheless, the consumption rule obtained when the approximating $\Aprx{v}_{({\prd-1})_\cntn}(a_{\prd-1})$ is used instead of $v_{({\prd-1})_\cntn}(a_{\prd-1})$ is surprisingly bad, as shown in figure \ref{fig:PlotComparecTm1AB}.  For example, when $\mStte$ goes from 2 to 3, $\Aprx{\cFunc}_{\prd-1}$ goes from about 1 to about 2, yet when $\mStte$ goes from 3 to 4, $\Aprx\cCtrl$ goes from about 2 to about 2.05.  The function fails even to be concave, which is distressing because Carroll and Kimball~\citeyearpar{ckConcavity} prove that the correct consumption function is strictly concave in a wide class of problems that includes this one.
 
 \hypertarget{value-function-versus-first-order-condition}{}
 \subsection{Value Function versus First Order Condition}\label{subsec:vVsuP}
@@ -241,47 +241,47 @@ from 3 to 4 increases optimal consumption by about 0.5.
 \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Flip back to Figure
     4 to make the point that $\Aprx{\vEnd}^{a}$ is a step
     function.}}{} Now consider the derivative of our function
-$\Aprx{v}_{({t-1})}(a_{t-1})$.  Because we have constructed
-$\Aprx{v}_{({t-1})}$ as a linear interpolation, the slope of
-$\Aprx{v}_{({t-1})}(a_{t-1})$ between any two adjacent
+$\Aprx{v}_{({\prd-1})}(a_{\prd-1})$.  Because we have constructed
+$\Aprx{v}_{({\prd-1})}$ as a linear interpolation, the slope of
+$\Aprx{v}_{({\prd-1})}(a_{\prd-1})$ between any two adjacent
 points $\{\vctr{a}[i],\vctr{},\vctr{a}[{i+1}]\}$ is constant.  The
 level of the slope immediately below any particular gridpoint is
 different, of course, from the slope above that gridpoint, a fact
 which implies that the derivative of
-$\Aprx{v}_{({t-1})_\cntn}(a_{t-1})$ follows a step function.
+$\Aprx{v}_{({\prd-1})_\cntn}(a_{\prd-1})$ follows a step function.
 
 The solid-line step function in Figure \ref{fig:PlotuPrimeVSOPrime}
 depicts the actual value of
-$\Aprx{v}_{({t-1})_\cntn}^{a}(3-\cCtrl)$.  When we attempt to find
+$\Aprx{v}_{({\prd-1})_\cntn}^{a}(3-\cCtrl)$.  When we attempt to find
 optimal values of $\cCtrl$ given $\mStte$ using
-$\Aprx{v}_{({t-1})_\cntn}(a_{t-1})$, the numerical optimization
+$\Aprx{v}_{({\prd-1})_\cntn}(a_{\prd-1})$, the numerical optimization
 routine will return the $\cCtrl$ for which $\uFunc^{c}(\cCtrl) =
-\Aprx{v}^{a}_{({t-1})_\cntn}(\mStte-\cCtrl)$.  Thus, for
+\Aprx{v}^{a}_{({\prd-1})_\cntn}(\mStte-\cCtrl)$.  Thus, for
 $\mStte=3$ the program will return the value of $\cCtrl$ for
 which the downward-sloping $\uFunc^{c}(\cCtrl)$ curve intersects with the
-$\Aprx{v}_{({t-1})_\cntn}^{a}(3-\cCtrl)$; as the diagram shows,
+$\Aprx{v}_{({\prd-1})_\cntn}^{a}(3-\cCtrl)$; as the diagram shows,
 this value is exactly equal to 2.  Similarly, if we ask the routine
 to find the optimal $\cCtrl$ for $\mStte=4$, it finds the point
 of intersection of $\uFunc^{c}(\cCtrl)$ with
-$\Aprx{v}_{({t-1})_\cntn}^{a}(4-\cCtrl)$; and as the diagram shows,
+$\Aprx{v}_{({\prd-1})_\cntn}^{a}(4-\cCtrl)$; and as the diagram shows,
 this intersection is only slightly above 2.  Hence, this figure
 illustrates why the numerical consumption function plotted earlier
 returned values very close to $\cCtrl=2$ for both $\mStte=3$ and
 $\mStte=4$.
 
-We would obviously obtain much better estimates of the point of intersection between $\uFunc^{c}(\cCtrl)$ and $v_{({t-1})_\cntn}^{a}(\mStte-\cCtrl)$ if our estimate of $\Aprx{v}^{a}_{({t-1})_\cntn}$ were not a step function.  In fact, we already know how to construct linear interpolations to functions, so the obvious next step is to construct a linear interpolating approximation to the \textit{expected marginal value of end-of-period assets function} at the points in $\vctr{a}$:
+We would obviously obtain much better estimates of the point of intersection between $\uFunc^{c}(\cCtrl)$ and $v_{({\prd-1})_\cntn}^{a}(\mStte-\cCtrl)$ if our estimate of $\Aprx{v}^{a}_{({\prd-1})_\cntn}$ were not a step function.  In fact, we already know how to construct linear interpolations to functions, so the obvious next step is to construct a linear interpolating approximation to the \textit{expected marginal value of end-of-period assets function} at the points in $\vctr{a}$:
 \begin{equation}\begin{gathered}\begin{aligned}
-      v_{({t-1})_\cntn}^{a}(\vctr{a})  & =  \beta R \PermGroFacAdjMu \left(\frac{1}{n_{\TranShkEmp}}\right) \sum_{i=1}^{n_{\TranShkEmp}} \left(\mathcal{R}_{t} \vctr{a} + \TranShkEmp_{i}\right)^{-\rho} \label{eq:vEndPrimeTm1}
+      v_{({\prd-1})_\cntn}^{a}(\vctr{a})  & =  \beta R \PermGroFacAdjMu \left(\frac{1}{n_{\TranShkEmp}}\right) \sum_{i=1}^{n_{\TranShkEmp}} \left(\mathcal{R}_{t} \vctr{a} + \TranShkEmp_{i}\right)^{-\rho} \label{eq:vEndPrimeTm1}
     \end{aligned}\end{gathered}\end{equation}
-yielding $\vctr{v}{^{a}_{({t-1})_\cntn}}$ (the vector of expected end-of-period-$(T-1)$ marginal values of assets corresponding to \code{aVec}),  %$\{\{\vctr{a}}\code{_{\prdT-1}},\vFunc_{({\prdT-1})_\cntn}^{a}(\vctr{{a}[1]}_{\prdT-1}\},\{\vctr{a}_{(T-1)},\vFunc_{({\prdT-1})_\cntn}^{a}\}\ldots\}$
+yielding $\vctr{v}{^{a}_{({\prd-1})_\cntn}}$ (the vector of expected end-of-period-$(T-1)$ marginal values of assets corresponding to \code{aVec}),  %$\{\{\vctr{a}}\code{_{\prdT-1}},\vFunc_{({\prdT-1})_\cntn}^{a}(\vctr{{a}[1]}_{\prdT-1}\},\{\vctr{a}_{(T-1)},\vFunc_{({\prdT-1})_\cntn}^{a}\}\ldots\}$
 and construct
-$\Aprx{v}_{({t-1})_\cntn}^{a}(a_{t-1})$ as the linear
+$\Aprx{v}_{({\prd-1})_\cntn}^{a}(a_{\prd-1})$ as the linear
 interpolating function that fits this set of points.
 
 \hypertarget{PlotOPRawVSFOC}{}
 \begin{figure}
   \centerline{\includegraphics[width=6in]{\FigDir/PlotOPRawVSFOC}}
-  \caption{$v_{({t-1})_\cntn}^{a}(a_{t-1})$ versus $\Aprx{v}_{({t-1})_\cntn}^{a}(a_{t-1})$}
+  \caption{$v_{({\prd-1})_\cntn}^{a}(a_{\prd-1})$ versus $\Aprx{v}_{({\prd-1})_\cntn}^{a}(a_{\prd-1})$}
   \label{fig:PlotOPRawVSFOC}
 \end{figure}
 
@@ -293,7 +293,7 @@ The results are shown in Figure \ref{fig:PlotOPRawVSFOC}.  The linear interpolat
 \hypertarget{PlotcTm1ABC}{}
 \begin{figure}
   \centerline{\includegraphics[width=6in]{\FigDir/PlotcTm1ABC}}
-  \caption{$\cFunc_{t-1}(\mStte)$ (solid) Versus Two Methods for Constructing $\Aprx{\cFunc}_{t-1}(\mStte)$}
+  \caption{$\cFunc_{\prd-1}(\mStte)$ (solid) Versus Two Methods for Constructing $\Aprx{\cFunc}_{\prd-1}(\mStte)$}
   \label{fig:PlotcTm1ABC}
 \end{figure}
 
@@ -303,7 +303,7 @@ The results are shown in Figure \ref{fig:PlotOPRawVSFOC}.  The linear interpolat
 Even the new-and-improved consumption function diverges notably from the true
 solution, especially at lower values of $m$.  That is because the
 linear interpolation does an increasingly poor job of capturing the
-nonlinearity of $v_{({t-1})_\cntn}^{a}(a_{t-1})$ at
+nonlinearity of $v_{({\prd-1})_\cntn}^{a}(a_{\prd-1})$ at
 lower and lower levels of $a$.
 
 This is where we unveil our next trick.  To understand the logic,
@@ -313,12 +313,12 @@ G_{t} = 1$ and there is no uncertainty
     carefully.}}{} (that is, we know for sure that income next period
 will be $\TranShkEmp_{t} = 1$).  The final Euler equation (recall that we are still assuming that $t=T$) is then:
 \begin{equation}\begin{gathered}\begin{aligned}
-      c_{t-1}^{-\rho}  & = c_{t}^{-\rho}.
+      c_{\prd-1}^{-\rho}  & = c_{t}^{-\rho}.
     \end{aligned}\end{gathered}\end{equation}
 
-In the case we are now considering with no uncertainty and no liquidity constraints, the optimizing consumer does not care whether a unit of income is scheduled to be received in the future period $t$ or the current period $t-1$; there is perfect certainty that the income will be received, so the consumer treats its PDV as equivalent to a unit of current wealth.  Total resources available at the point when the consumption decision is made is therefore are comprised of two types: current market resources $\mStte$ and `human wealth' (the PDV of future income) of $h_{t-1}=1$ (because it is the value of human wealth as of the end of the period, there is only one more period of income of 1 left).
+In the case we are now considering with no uncertainty and no liquidity constraints, the optimizing consumer does not care whether a unit of income is scheduled to be received in the future period $t$ or the current period $t-1$; there is perfect certainty that the income will be received, so the consumer treats its PDV as equivalent to a unit of current wealth.  Total resources available at the point when the consumption decision is made is therefore are comprised of two types: current market resources $\mStte$ and `human wealth' (the PDV of future income) of $h_{\prd-1}=1$ (because it is the value of human wealth as of the end of the period, there is only one more period of income of 1 left).
 
-The well-known optimal solution is to spend half of total lifetime resources in period $t-1$ and the remainder in period $t (=T)$.  Since total resources are known with certainty to be $\mStte+h_{t-1}= \mStte+1$, and since $v_{\MidStp}^{m}(\mStte) = \uFunc^{c}(\cCtrl)$, this implies that\ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Crucial point: this is \textit{marginal} value function in period $t-1$, which we were trying to approximate with a linear interpolating function earlier.}}{}
+The well-known optimal solution is to spend half of total lifetime resources in period $t-1$ and the remainder in period $t (=T)$.  Since total resources are known with certainty to be $\mStte+h_{\prd-1}= \mStte+1$, and since $v_{\MidStp}^{m}(\mStte) = \uFunc^{c}(\cCtrl)$, this implies that\ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Crucial point: this is \textit{marginal} value function in period $t-1$, which we were trying to approximate with a linear interpolating function earlier.}}{}
 \begin{equation}
   v^{m}_{\MidStpLsT}(\mStte)  = \left(\frac{\mStte+1}{2}\right)^{-\rho} \label{eq:vPLin}.
 \end{equation}

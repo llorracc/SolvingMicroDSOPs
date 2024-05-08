@@ -10,8 +10,8 @@
 To reduce clutter, we now temporarily assume that $\PermGroFac_{\prd}=1$ for all $\prd$, so that the $\PermGroFac$ terms from the earlier derivations disappear, and setting $t=T$ the problem in the second-to-last period of life can now be expressed as
 \begin{verbatimwrite}{./Equations/vEndTm1.tex}
 \begin{equation}\begin{gathered}\begin{aligned}
-  {\vFunc}_{\MidPrdLsT}(\mStte)  & = \max_{\cCtrl} ~~ \uFunc(\cCtrl) +
-                              \vEndPrdLsT(\overbrace{\mStte-\cCtrl}^{\aStte})
+  {\vFunc}_{\MidPrdLsT}(\mStte)  & = \max_{\cNrm} ~~ \uFunc(\cNrm) +
+                              \vEndPrdLsT(\overbrace{\mStte-\cNrm}^{\aStte})
                               \label{eq:vEndTm1}
 \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
@@ -23,8 +23,8 @@ where
     \end{aligned}\end{gathered}\end{equation*}
 
 % \begin{equation*}\begin{gathered}\begin{aligned}
-%       {\vFunc}_{\prdLsT}(\mStte)  & = \max_{\cCtrl} ~~ \uFunc(\cCtrl) 
-%      + \DiscFac \Ex_{\EndPrdLsT} \left[\PermGroFacAdjV {\vFunc}_{\MidPrd}(\underbrace{(\mStte-\cCtrl)\RNrm_{\prdT} + \TranShkEmp_{\prdT}}_{{m}_{\prdT}})\right].
+%       {\vFunc}_{\prdLsT}(\mStte)  & = \max_{\cNrm} ~~ \uFunc(\cNrm) 
+%      + \DiscFac \Ex_{\EndPrdLsT} \left[\PermGroFacAdjV {\vFunc}_{\MidPrd}(\underbrace{(\mStte-\cNrm)\RNrm_{\prdT} + \TranShkEmp_{\prdT}}_{{m}_{\prdT}})\right].
 %     \end{aligned}\end{gathered}\end{equation*}
 
 
@@ -39,7 +39,7 @@ where $\FDist(\TranShkEmp)$ is the cumulative distribution function for ${\TranS
 
 This maximization problem implicitly defines a `local function' $\cFunc_{\prdT-1}({\mNrm})$ that yields optimal consumption in period $\prdt-1$ for any specific numerical level of resources like ${m}=1.7$.%  (When we need to use this function from some context outside of the local context in which it was solved, we can reference by its absolute index, $\cFunc_{\prdT-1}$).
 
-But because there is no general analytical solution to this problem, for any given ${m}$ we must use numerical computational tools to find the $\cCtrl$ that maximizes the expression.  This is excruciatingly slow because for every potential ${c}$ to be considered, a definite integral over the interval $(0,\infty)$ must be calculated numerically, and numerical integration is \textit{very} slow (especially over an unbounded domain!).
+But because there is no general analytical solution to this problem, for any given ${m}$ we must use numerical computational tools to find the $\cNrm$ that maximizes the expression.  This is excruciatingly slow because for every potential ${c}$ to be considered, a definite integral over the interval $(0,\infty)$ must be calculated numerically, and numerical integration is \textit{very} slow (especially over an unbounded domain!).
 
 \hypertarget{discretizing-the-distribution}{}
 \subsection{Discretizing the Distribution}
@@ -97,10 +97,10 @@ We now substitute our approximation \eqref{eq:vDiscrete} for $\vEndPrdLsT(a)$ in
 % so we can rewrite the maximization problem that defines the middle step of period {$\prdLst$} as
 % \begin{verbatimwrite}{./Equations/vEndTm1.tex}
 %   \begin{equation}\begin{gathered}\begin{aligned}
-%         {\vFunc}_{\MidPrdLsT}(\mStte)   & = \max_{\cCtrl}
+%         {\vFunc}_{\MidPrdLsT}(\mStte)   & = \max_{\cNrm}
 %         \left\{
-%           \frac{\cCtrl^{1-\CRRA}}{1-\CRRA} +
-%           \vFunc_{\MidPrd}(\mStte-\cCtrl)
+%           \frac{\cNrm^{1-\CRRA}}{1-\CRRA} +
+%           \vFunc_{\MidPrd}(\mStte-\cNrm)
 %         \right\}.
 %         \label{eq:vEndTm1}
 %       \end{aligned}\end{gathered}\end{equation}
@@ -118,7 +118,7 @@ We now substitute our approximation \eqref{eq:vDiscrete} for $\vEndPrdLsT(a)$ in
 \hypertarget{the-approximate-consumption-and-value-functions}{}
 \subsection{The Approximate Consumption and Value Functions}
 
-Given any particular value of $\mStte$, a numerical maximization tool can now find the $\cCtrl$ that solves \eqref{eq:vEndTm1} in a reasonable amount of time.
+Given any particular value of $\mStte$, a numerical maximization tool can now find the $\cNrm$ that solves \eqref{eq:vEndTm1} in a reasonable amount of time.
 
 \begin{comment}
   % The {\SMDSOPntbk} notebook follows a series of steps to achieve this. Initially, parameter values for the coefficient of relative risk aversion (CRRA, $\rho$), the discount factor ($\beta$), the permanent income growth factor ($\PermGroFac$), and the risk-free interest rate ($R$ are specified in ``Define Parameters, Grids, and the  Utility Function.'')
@@ -160,7 +160,7 @@ plots of the constructed $\Aprx{\cFunc}_{\prdT-1}$ and $\Aprx{\vFunc}_{\prdT-1}$
 \subsection{Interpolating Expectations}
 
 
-Piecewise linear `spline' interpolation as described above works well for generating a good approximation to the true optimal consumption function. However, there is a clear inefficiency in the program: Since it uses equation \eqref{eq:vEndTm1}, for every value of $\mStte$ the program must calculate the utility consequences of various possible choices of $\cCtrl$ (and therefore $\aNrm_{\prdT-1}$) as it searches for the best choice.
+Piecewise linear `spline' interpolation as described above works well for generating a good approximation to the true optimal consumption function. However, there is a clear inefficiency in the program: Since it uses equation \eqref{eq:vEndTm1}, for every value of $\mStte$ the program must calculate the utility consequences of various possible choices of $\cNrm$ (and therefore $\aNrm_{\prdT-1}$) as it searches for the best choice.
 
 For any given index $j$ in $\vctr{m}[j]$, the algorithm, as it searches for the corresponding optimal $a$, the algorithm will end up  calculating $\vFunc_{\EndPrdLsT}(\tilde{a})$ for many $\tilde{a}$ values close to the optimal ${a}_{\prdT-1}$.  Indeed, even when searching for the optimal ${a}$ for a \emph{different} ${m}$ (say $\vctr{m}[k]$ for $k \neq j$) the search process might compute $\vFunc_{\EndPrdLsT}({a})$ for an ${a}$ close to the correct optimal ${a}$ for $\vctr{m}[j]$. But if that difficult computation does not correspond to the exact solution to the $\vctr{m}[k]$ problem, it is discarded.  
 
@@ -186,7 +186,7 @@ Figure~\ref{fig:PlotOTm1RawVSInt} compares the true value function to the approx
 
 \Fix{\marginpar{\tiny In all figs, replace gothic h with notation corresponding to the lecture notes.}}
 
-Nevertheless, the consumption rule obtained when the approximating $\Aprx{\vFunc}_{({\prdT-1})_\cntn}({a}_{\prdT-1})$ is used instead of $\vFunc_{({\prdT-1})_\cntn}({a}_{\prdT-1})$ is surprisingly bad, as shown in figure \ref{fig:PlotComparecTm1AB}.  For example, when $\mStte$ goes from 2 to 3, $\Aprx{\cFunc}_{\prdT-1}$ goes from about 1 to about 2, yet when $\mStte$ goes from 3 to 4, $\Aprx\cCtrl$ goes from about 2 to about 2.05.  The function fails even to be concave, which is distressing because Carroll and Kimball~\citeyearpar{ckConcavity} prove that the correct consumption function is strictly concave in a wide class of problems that includes this one.
+Nevertheless, the consumption rule obtained when the approximating $\Aprx{\vFunc}_{({\prdT-1})_\cntn}({a}_{\prdT-1})$ is used instead of $\vFunc_{({\prdT-1})_\cntn}({a}_{\prdT-1})$ is surprisingly bad, as shown in figure \ref{fig:PlotComparecTm1AB}.  For example, when $\mStte$ goes from 2 to 3, $\Aprx{\cFunc}_{\prdT-1}$ goes from about 1 to about 2, yet when $\mStte$ goes from 3 to 4, $\Aprx\cNrm$ goes from about 2 to about 2.05.  The function fails even to be concave, which is distressing because Carroll and Kimball~\citeyearpar{ckConcavity} prove that the correct consumption function is strictly concave in a wide class of problems that includes this one.
 
 \hypertarget{value-function-versus-first-order-condition}{}
 \subsection{Value Function versus First Order Condition}\label{subsec:vVsuP}
@@ -219,8 +219,8 @@ of the value function.
 The first order condition of the maximization problem in period $\trmT-1$ is:
 \begin{verbatimwrite}{./Equations/FOCTm1.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
-        \uFunc^{{c}}(\cCtrl)       & = \DiscFac \Ex_{\cntn(T-1)} [\PermGroFacAdjMu\Rfree \uFunc^{{c}}({c}_{\prdT})]  %\label{eq:focraw}
-        \\      \cCtrl^{-\CRRA}   & = \Rfree \DiscFac \left(\frac{1}{n_{\TranShkEmp}}\right) \sum_{i=1}^{n_{\TranShkEmp}} \PermGroFacAdjMu\left(\Rfree (\mStte-\cCtrl) + \TranShkEmp_{i}\right)^{-\CRRA} \label{eq:FOCTm1}.
+        \uFunc^{{c}}(\cNrm)       & = \DiscFac \Ex_{\cntn(T-1)} [\PermGroFacAdjMu\Rfree \uFunc^{{c}}({c}_{\prdT})]  %\label{eq:focraw}
+        \\      \cNrm^{-\CRRA}   & = \Rfree \DiscFac \left(\frac{1}{n_{\TranShkEmp}}\right) \sum_{i=1}^{n_{\TranShkEmp}} \PermGroFacAdjMu\left(\Rfree (\mStte-\cNrm) + \TranShkEmp_{i}\right)^{-\CRRA} \label{eq:FOCTm1}.
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/FOCTm1.tex}\unskip
@@ -235,22 +235,22 @@ In the notebook, the ``Value Function versus the First Order Condition'' section
 
 
 The downward-sloping curve in Figure \ref{fig:PlotuPrimeVSOPrime}
-shows the value of $\cCtrl^{-\CRRA}$ for our baseline parameter values
-for $0 \leq \cCtrl \leq 4$ (the horizontal axis).  The solid
+shows the value of $\cNrm^{-\CRRA}$ for our baseline parameter values
+for $0 \leq \cNrm \leq 4$ (the horizontal axis).  The solid
 upward-sloping curve shows the value of the RHS of (\ref{eq:FOCTm1})
-as a function of $\cCtrl$ under the assumption that $\mStte=3$.
+as a function of $\cNrm$ under the assumption that $\mStte=3$.
 Constructing this figure is time-consuming, because for every
-value of $\cCtrl$ plotted we must calculate the RHS of
-(\ref{eq:FOCTm1}).  The value of $\cCtrl$ for which the RHS and LHS
+value of $\cNrm$ plotted we must calculate the RHS of
+(\ref{eq:FOCTm1}).  The value of $\cNrm$ for which the RHS and LHS
 of (\ref{eq:FOCTm1}) are equal is the optimal level of consumption
 given that $\mStte=3$, so the intersection of the downward-sloping
-and the upward-sloping curves gives the (approximated) optimal value of $\cCtrl$.
-As we can see, the two curves intersect just below $\cCtrl=2$.
+and the upward-sloping curves gives the (approximated) optimal value of $\cNrm$.
+As we can see, the two curves intersect just below $\cNrm=2$.
 Similarly, the upward-sloping dashed curve shows the expected value
 of the RHS of (\ref{eq:FOCTm1}) under the assumption that $\mStte=4$,
-and the intersection of this curve with $\uFunc^{{c}}(\cCtrl)$ yields the
+and the intersection of this curve with $\uFunc^{{c}}(\cNrm)$ yields the
 optimal level of consumption if $\mStte=4$.  These two curves
-intersect slightly below $\cCtrl=2.5$.  Thus, increasing $\mStte$
+intersect slightly below $\cNrm=2.5$.  Thus, increasing $\mStte$
 from 3 to 4 increases optimal consumption by about 0.5.
 
 Now consider the derivative of our function $\Aprx{\vFunc}_{({\prdT-1})}({a}_{\prdT-1})$.  Because we have
@@ -261,19 +261,19 @@ particular gridpoint is different, of course, from the slope above that gridpoin
 implies that the derivative of $\Aprx{\vFunc}_{({\prdT-1})_\cntn}({a}_{\prdT-1})$ follows a step function.
 
 The solid-line step function in Figure \ref{fig:PlotuPrimeVSOPrime} depicts the actual value of
-$\Aprx{\vFunc}_{({\prdT-1})_\cntn}^{{a}}(3-\cCtrl)$.  When we attempt to find optimal values of
-$\cCtrl$ given $\mStte$ using $\Aprx{\vFunc}_{({\prdT-1})_\cntn}({a}_{\prdT-1})$, the numerical optimization routine will
-return the $\cCtrl$ for which
-$\uFunc^{{c}}(\cCtrl) = \Aprx{\vFunc}^{{a}}_{({\prdT-1})_\cntn}(\mStte-\cCtrl)$.  Thus, for
-$\mStte=3$ the program will return the value of $\cCtrl$ for which the downward-sloping
-$\uFunc^{{c}}(\cCtrl)$ curve intersects with the
-$\Aprx{\vFunc}_{({\prdT-1})_\cntn}^{{a}}(3-\cCtrl)$; as the diagram shows, this value is exactly equal to 2.
-Similarly, if we ask the routine to find the optimal $\cCtrl$ for $\mStte=4$, it finds the point of
-intersection of $\uFunc^{{c}}(\cCtrl)$ with $\Aprx{\vFunc}_{({\prdT-1})_\cntn}^{{a}}(4-\cCtrl)$; and as the diagram shows, this
+$\Aprx{\vFunc}_{({\prdT-1})_\cntn}^{{a}}(3-\cNrm)$.  When we attempt to find optimal values of
+$\cNrm$ given $\mStte$ using $\Aprx{\vFunc}_{({\prdT-1})_\cntn}({a}_{\prdT-1})$, the numerical optimization routine will
+return the $\cNrm$ for which
+$\uFunc^{{c}}(\cNrm) = \Aprx{\vFunc}^{{a}}_{({\prdT-1})_\cntn}(\mStte-\cNrm)$.  Thus, for
+$\mStte=3$ the program will return the value of $\cNrm$ for which the downward-sloping
+$\uFunc^{{c}}(\cNrm)$ curve intersects with the
+$\Aprx{\vFunc}_{({\prdT-1})_\cntn}^{{a}}(3-\cNrm)$; as the diagram shows, this value is exactly equal to 2.
+Similarly, if we ask the routine to find the optimal $\cNrm$ for $\mStte=4$, it finds the point of
+intersection of $\uFunc^{{c}}(\cNrm)$ with $\Aprx{\vFunc}_{({\prdT-1})_\cntn}^{{a}}(4-\cNrm)$; and as the diagram shows, this
 intersection is only slightly above 2.  Hence, this figure illustrates why the numerical consumption
-function plotted earlier returned values very close to $\cCtrl=2$ for both $\mStte=3$ and $\mStte=4$.
+function plotted earlier returned values very close to $\cNrm=2$ for both $\mStte=3$ and $\mStte=4$.
 
-We would obviously obtain much better estimates of the point of intersection between $\uFunc^{{c}}(\cCtrl)$ and $\vFunc_{({\prdT-1})_\cntn}^{{a}}(\mStte-\cCtrl)$ if our estimate of $\Aprx{\vFunc}^{{a}}_{({\prdT-1})_\cntn}$ were not a step function.  In fact, we already know how to construct linear interpolations to functions, so the obvious next step is to construct a linear interpolating approximation to the \textit{expected marginal value of end-of-period assets function} at the points in $\vctr{a}$:
+We would obviously obtain much better estimates of the point of intersection between $\uFunc^{{c}}(\cNrm)$ and $\vFunc_{({\prdT-1})_\cntn}^{{a}}(\mStte-\cNrm)$ if our estimate of $\Aprx{\vFunc}^{{a}}_{({\prdT-1})_\cntn}$ were not a step function.  In fact, we already know how to construct linear interpolations to functions, so the obvious next step is to construct a linear interpolating approximation to the \textit{expected marginal value of end-of-period assets function} at the points in $\vctr{a}$:
 \begin{equation}\begin{gathered}\begin{aligned}
       \vFunc_{({\prdT-1})_\cntn}^{{a}}(\vctr{a})  & =  \DiscFac \Rfree \PermGroFacAdjMu \left(\frac{1}{n_{\TranShkEmp}}\right) \sum_{i=1}^{n_{\TranShkEmp}} \left(\RNrm_{\prdT} \vctr{a} + \TranShkEmp_{i}\right)^{-\CRRA} \label{eq:vEndPrimeTm1}
     \end{aligned}\end{gathered}\end{equation}
@@ -288,7 +288,6 @@ interpolating function that fits this set of points.
   \caption{$\vFunc_{({\prdT-1})_\cntn}^{{a}}({a}_{\prdT-1})$ versus $\Aprx{\vFunc}_{({\prdT-1})_\cntn}^{{a}}({a}_{\prdT-1})$}
   \label{fig:PlotOPRawVSFOC}
 \end{figure}
-
 
 % This is done by making a call to the \texttt{InterpolatedUnivariateSpline} function, passing it \code{aVec} and \texttt{vpVec} as arguments. Note that in defining the list of values \texttt{vpVec}, we again make use of the predefined \texttt{gothic.VP\_Tminus1} function. These steps are the embodiment of equation~(\ref{eq:vEndPrimeTm1}), and construct the interpolation of the expected marginal value of end-of-period assets as described above.
 
@@ -321,7 +320,7 @@ will be $\TranShkEmp_{\prdT} = 1$).  The final Euler equation (recall that we ar
 
 In the case we are now considering with no uncertainty and no liquidity constraints, the optimizing consumer does not care whether a unit of income is scheduled to be received in the future period $\prdT$ or the current period $\prdT-1$; there is perfect certainty that the income will be received, so the consumer treats its PDV as equivalent to a unit of current wealth.  Total resources available at the point when the consumption decision is made is therefore are comprised of two types: current market resources $\mStte$ and `human wealth' (the PDV of future income) of $\hNrm_{\prdT-1}=1$ (because it is the value of human wealth as of the end of the period, there is only one more period of income of 1 left).
 
-The well-known optimal solution is to spend half of total lifetime resources in period $\prdT-1$ and the remainder in period $\prdT (=\trmT)$.  Since total resources are known with certainty to be $\mStte+\hNrm_{\prdT-1}= \mStte+1$, and since ${\vFunc}_{\MidStp}^{{m}}(\mStte) = \uFunc^{{c}}(\cCtrl)$, this implies that
+The well-known optimal solution is to spend half of total lifetime resources in period $\prdT-1$ and the remainder in period $\prdT (=\trmT)$.  Since total resources are known with certainty to be $\mStte+\hNrm_{\prdT-1}= \mStte+1$, and since ${\vFunc}_{\MidStp}^{{m}}(\mStte) = \uFunc^{{c}}(\cNrm)$, this implies that
 \begin{equation}
   \vFunc^{{m}}_{\MidStpLsT}(\mStte)  = \left(\frac{\mStte+1}{2}\right)^{-\CRRA} \label{eq:vPLin}.
 \end{equation}
@@ -420,7 +419,7 @@ Figure~\ref{fig:GothVVSGothCInv} similarly shows that when we generate $\Aprx{\A
 \hypertarget{the-method-of-endogenous-gridpoints}{}
 \subsection{The Method of Endogenous Gridpoints (`EGM')}\label{subsec:egm}
 
-The solution procedure we articulated above for finding ${\cFunc}_{\prdLsT}({m})$ still requires us, for each point in $\vctr{{m}}\code{_{\prdLsT}}$, to use a numerical rootfinding algorithm to search for the value of $\cCtrl$ that solves $\uFunc^{{c}}(\cCtrl) = \vFunc^{{a}}_{({\prdLsT})_\cntn}({m}-\cCtrl)$.  Though sections \ref{subsec:transformation} and \ref{subsec:LiqConstrSelfImposed} developed a highly efficient and accurate procedure to calculate $\Aprx{\vFunc}^{a}_{(\prdLsT)_\cntn}$, those approximations do nothing to eliminate the need for using a rootfinding operation for calculating, for an arbitrary ${m}$, the optimal ${c}$.  And rootfinding is a notoriously computation-intensive (that is, slow!) operation.
+The solution procedure we articulated above for finding ${\cFunc}_{\prdLsT}({m})$ still requires us, for each point in $\vctr{{m}}\code{_{\prdLsT}}$, to use a numerical rootfinding algorithm to search for the value of $\cNrm$ that solves $\uFunc^{{c}}(\cNrm) = \vFunc^{{a}}_{({\prdLsT})_\cntn}({m}-\cNrm)$.  Though sections \ref{subsec:transformation} and \ref{subsec:LiqConstrSelfImposed} developed a highly efficient and accurate procedure to calculate $\Aprx{\vFunc}^{a}_{(\prdLsT)_\cntn}$, those approximations do nothing to eliminate the need for using a rootfinding operation for calculating, for an arbitrary ${m}$, the optimal ${c}$.  And rootfinding is a notoriously computation-intensive (that is, slow!) operation.
 
 Fortunately, it turns out that there is a way to completely skip this slow rootfinding step.  The method can be understood by noting that we have already calculated, for a set of arbitrary values of $\vctr{a}=\vctr{{a}}\code{_{\prdLsT}}$, the corresponding $\vctr{c}$ values for which this $\vctr{a}$ is optimal.
 
