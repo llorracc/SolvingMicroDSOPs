@@ -288,16 +288,16 @@ The key to the framework is distinguishing, within each {stage}'s Bellman proble
 \item \textbf{\Continuation}: After all decisions have been made, their consequences are measured by evaluation of the continuing-value function at the values of the `outgoing' state variables (sometimes called `post-state' variables).
 \end{enumerate}
 
-%In the standard treatment in the literature, the (implicit) default assumption is that the {step} where the agent is solving a decision problem is the unique {step} at which the problem is defined.  This is what was done above, when (for example) in \eqref{eq:vNormed} we related the value $\vFunc$ of the current decision to the expectation of the future value $\vFunc_{\prd+1}$.  Here, instead, we want to encapsulate the current {stage}'s problem as a standalone object, which is solved by taking as given an exogenously-provided continuation-value function (in our case, $\vEndStp(a)$).
+%In the standard treatment in the literature, the (implicit) default assumption is that the {step} where the agent is solving a decision problem is the unique {step} at which the problem is defined.  This is what was done above, when (for example) in \eqref{eq:vNormed} we related the value $\vFunc$ of the current decision to the expectation of the future value $\vFunc_{\prd+1}$.  Here, instead, we want to encapsulate the current {stage}'s problem as a standalone object, which is solved by taking as given an exogenously-provided continuation-value function (in our case, $\vEndStg(a)$).
 
 When we want to refer to a specific {step} in the {stage} we will do so by using an indicator which identifies that {step}.  Here we use the consumption {stage} problem described above to exemplify the usage:
 \begin{center}
 %  \mbox{%
     \begin{tabular}{r|c|c|l|l}
       {Step}         & Indicator               & State          & Usage                       & Explanation                                \\ \hline
-      {\Arrival}      & $ \arvl $ & $k$ & $\vBegStp({k})$ & value at entry to {stage} (before shocks) \\
-      {\Decision}(s)  & (blank)            & $m$ & $\vMidStp(m)$ & value of {stage}-decision (after shocks)       \\
-      {\Continuation} & $ \cntn $ & $a$ & $\vEndStp({a})$ & value at exit (after decision) \\ \hline
+      {\Arrival}      & $ \arvl $ & $k$ & $\vBegStg({k})$ & value at entry to {stage} (before shocks) \\
+      {\Decision}(s)  & (blank)            & $m$ & $\vMidStg(m)$ & value of {stage}-decision (after shocks)       \\
+      {\Continuation} & $ \cntn $ & $a$ & $\vEndStg({a})$ & value at exit (after decision) \\ \hline
     \end{tabular}
 %  }
   \end{center}
@@ -328,7 +328,7 @@ The {\Decision} problem can now be written much more cleanly than in equation \e
       \end{aligned}\end{gathered}\end{equation}
 whose first order condition with respect to $c$ is
 \begin{equation}\begin{gathered}\begin{aligned}
-  u^{c}(c) &= \vEndStp^{a}(m-c)  \label{eq:upEqbetaOp} 
+  u^{c}(c) &= \vEndStg^{a}(m-c)  \label{eq:upEqbetaOp} 
 \end{aligned}\end{gathered}\end{equation}
 which is mathematically equivalent to the usual Euler equation for consumption.  (We will reuse this formulation when we turn to section~\ref{subsec:egm}.)
 
@@ -343,7 +343,7 @@ Having defined these notational conventions, we are now ready to move to substan
 
   \subsubsection{Useful auxilliary files}
 
-  In this exercise, two primary user-defined modules are frequently imported and utilized. The first is the \texttt{gothic\_class} module, which contains functions describing the end-of-period value functions found in equations \eqref{eq:vBegStp} - \eqref{eq:vEnd} (and the corresponding first and second derivatives). %The advantage of defining functions in the code which decompose the consumer's optimal behavior in a given period will become evident in section \ref{subsec:transformation}
+  In this exercise, two primary user-defined modules are frequently imported and utilized. The first is the \texttt{gothic\_class} module, which contains functions describing the end-of-period value functions found in equations \eqref{eq:vBegStg} - \eqref{eq:vEnd} (and the corresponding first and second derivatives). %The advantage of defining functions in the code which decompose the consumer's optimal behavior in a given period will become evident in section \ref{subsec:transformation}
 
   The \texttt{resources} module is also used repeatedly throughout the notebook. This file has three primary objectives: (i) providing functions that discretize the continuous distributions from the theoretical model that describe the uncertainty a consumer faces, (ii) defining the utility function over consumption under a number of specifications, and (iii) enhancing the grid of end-of-period assets for which functions (such as those from the \texttt{gothic\_class} module) will be defined. These objectives will be discussed in greater detail and with respect to the numerical methods used to the problem in subsequent sections of this document.
 \end{comment}
@@ -357,25 +357,25 @@ Having defined these notational conventions, we are now ready to move to substan
 
 To reduce clutter, we now temporarily assume that $\PermGroFac_{t}=1$ for all $t$, so that the $\PermGroFac$ terms from the earlier derivations disappear, and setting $t=T$ the problem in the second-to-last period of life can now be expressed as
 \begin{equation}\begin{gathered}\begin{aligned}
-  {v}_{\MidPrdLsT}(\mStte)  & = \max_{c} ~~ u(c) +
-                              \vEndPrdLsT(\overbrace{\mStte-c}^{\aStte})
+  {v}_{\MidPrdLsT}(m)  & = \max_{c} ~~ u(c) +
+                              \vEndPrdLsT(\overbrace{m-c}^{a})
                               \label{eq:vEndTm1}
 \end{aligned}\end{gathered}\end{equation}
 where 
 \begin{equation*}\begin{gathered}\begin{aligned}
-  {v}_{\EndPrdLsT}(\aStte)  & = \beta v_{\BegPrd}(\aStte) 
-\\                          & = \beta \Ex_{\BegPrd} \left[\PermGroFacAdjV {v}_{\MidPrd}(\underbrace{\aStte \RNrm_{t} + \TranShkEmp_{t}}_{{m}_{t}})\right]
+  {v}_{\EndPrdLsT}(a)  & = \beta v_{\BegPrd}(a) 
+\\                          & = \beta \Ex_{\BegPrd} \left[\PermGroFacAdjV {v}_{\MidPrd}(\underbrace{a \RNrm_{t} + \TranShkEmp_{t}}_{{m}_{t}})\right]
     \end{aligned}\end{gathered}\end{equation*}
 
 % \begin{equation*}\begin{gathered}\begin{aligned}
-%       {\vFunc}_{\prdLsT}(\mStte)  & = \max_{\cNrm} ~~ \uFunc(\cNrm) 
-%      + \DiscFac \Ex_{\EndPrdLsT} \left[\PermGroFacAdjV {\vFunc}_{\MidPrd}(\underbrace{(\mStte-\cNrm)\RNrm_{\prdT} + \TranShkEmp_{\prdT}}_{{m}_{\prdT}})\right].
+%       {\vFunc}_{\prdLsT}(\mNrm)  & = \max_{\cNrm} ~~ \uFunc(\cNrm) 
+%      + \DiscFac \Ex_{\EndPrdLsT} \left[\PermGroFacAdjV {\vFunc}_{\MidPrd}(\underbrace{(\mNrm-\cNrm)\RNrm_{\prdT} + \TranShkEmp_{\prdT}}_{{m}_{\prdT}})\right].
 %     \end{aligned}\end{gathered}\end{equation*}
 
 
 Using (0) $t=T$; (1) $v_{t}({m})=u({m})$; (2) the definition of $u({m})$; and (3) the definition of the expectations operator,  %\newcommand{\TranShkEmpDummy}{\vartheta}
 \begin{equation}\begin{gathered}\begin{aligned}
-      {v}_{\BegPrd}(\aStte)   & = \PermGroFacAdjV\int_{0}^{\infty} \frac{\left(\aStte \RNrm_{t}+ \TranShkEmpDummy\right)^{1-\rho}}{1-\rho}  d\FDist(\TranShkEmpDummy) \label{eq:NumDefInt}
+      {v}_{\BegPrd}(a)   & = \PermGroFacAdjV\int_{0}^{\infty} \frac{\left(a \RNrm_{t}+ \TranShkEmpDummy\right)^{1-\rho}}{1-\rho}  d\FDist(\TranShkEmpDummy) \label{eq:NumDefInt}
     \end{aligned}\end{gathered}\end{equation}
 where $\FDist(\TranShkEmp)$ is the cumulative distribution function for ${\TranShkEmp}$.
 
@@ -428,17 +428,17 @@ Because one of the purposes of these notes is to connect the math to the code th
 \lstinputlisting{./Code/Python/snippets/equiprobable-make.py}\nopagebreak
 
   \begin{equation}\begin{gathered}\begin{aligned}
-        v_{{\prdm}_\cntn}(\aStte)  & =   \beta \PermGroFacAdjV\left(\frac{1}{n_{\TranShkEmp}}\right)\sum_{i=1}^{n_{\TranShkEmp}}   \frac{\left(\RNrm_{t} \aStte + \TranShkEmp_{i}\right)^{1-\rho}}{1-\rho} \label{eq:vDiscrete}
+        v_{{t-1}_\cntn}(a)  & =   \beta \PermGroFacAdjV\left(\frac{1}{n_{\TranShkEmp}}\right)\sum_{i=1}^{n_{\TranShkEmp}}   \frac{\left(\RNrm_{t} a + \TranShkEmp_{i}\right)^{1-\rho}}{1-\rho} \label{eq:vDiscrete}
       \end{aligned}\end{gathered}\end{equation}
 
 We now substitute our approximation \eqref{eq:vDiscrete} for $\vEndPrdLsT(a)$ in \eqref{eq:vEndTm1} which is simply the sum of $n_{\TranShkEmp}$ numbers and is therefore easy to calculate (compared to the full-fledged numerical integration \eqref{eq:NumDefInt} that it replaces).
 
 % so we can rewrite the maximization problem that defines the middle step of period {$\prdLst$} as
 %   \begin{equation}\begin{gathered}\begin{aligned}
-%         {\vFunc}_{\MidPrdLsT}(\mStte)   & = \max_{\cNrm}
+%         {\vFunc}_{\MidPrdLsT}(\mNrm)   & = \max_{\cNrm}
 %         \left\{
 %           \frac{\cNrm^{1-\CRRA}}{1-\CRRA} +
-%           \vFunc_{\MidPrd}(\mStte-\cNrm)
+%           \vFunc_{\MidPrd}(\mNrm-\cNrm)
 %         \right\}.
 %         \label{eq:vEndTm1}
 %       \end{aligned}\end{gathered}\end{equation}
@@ -454,7 +454,7 @@ We now substitute our approximation \eqref{eq:vDiscrete} for $\vEndPrdLsT(a)$ in
 \hypertarget{the-approximate-consumption-and-value-functions}{}
 \subsection{The Approximate Consumption and Value Functions}
 
-Given any particular value of $\mStte$, a numerical maximization tool can now find the $c$ that solves \eqref{eq:vEndTm1} in a reasonable amount of time.
+Given any particular value of $m$, a numerical maximization tool can now find the $c$ that solves \eqref{eq:vEndTm1} in a reasonable amount of time.
 
 \begin{comment}
   % The {\SMDSOPntbk} notebook follows a series of steps to achieve this. Initially, parameter values for the coefficient of relative risk aversion (CRRA, $\rho$), the discount factor ($\beta$), the permanent income growth factor ($\PermGroFac$), and the risk-free interest rate ($R$ are specified in ``Define Parameters, Grids, and the  Utility Function.'')
@@ -472,7 +472,7 @@ The notebook code responsible for computing an estimated consumption function be
 
 We can now apply our solution to \eqref{eq:vEndTm1} to each of the values in $\vctr{m}$, generating a corresponding optimal $\vctr{c}$.  This is called `sampling' the consumption function.  Using the ordered pairs $\{\vctr{m},\vctr{c}\}$ we can create a piecewise linear `interpolating function' (a `spline') which when applied to any input $\vctr{m}[1] \leq {m} \leq \vctr{m}[-1]$ will yield the value of $c$ that corresponds to a linear `connect-the-dots' interpolation of the value of $c$ from the values of the two nearest computed $\{m,c\}$ points.\footnote{For a useful treatment of various kinds of interpolation appropriate for different questions, see } %
 
-This is accomplished in ``An Interpolated Consumption Function,'' which generates an interpolating function that we designate $\Aprx{\cFunc}_{\MidStpLsT}(\mStte)$. %When called with an $\mStte$ that is equal to one of the points in $\code{{{\mVec}\_int}}$, $\Aprx{\cFunc}_{\prdT-1}$ returns the associated value of $\vctr{{c}}_{\code{\prdT-1}}$, and when called with a value of $\mStte$ that is not exactly equal to one of the \texttt{mVec\_int}, returns the value of ${c}$ that reflects a linear interpolation between the $\vctr{{c}}_{\code{\prdT-1}}$ points associated with the two \texttt{mVec\_int} points immediately above and below $\mStte$.  
+This is accomplished in ``An Interpolated Consumption Function,'' which generates an interpolating function that we designate $\Aprx{\cFunc}_{\MidPrdLsT}(m)$. %When called with an $\mNrm$ that is equal to one of the points in $\code{{{\mVec}\_int}}$, $\Aprx{\cFunc}_{\prdT-1}$ returns the associated value of $\vctr{{c}}_{\code{\prdT-1}}$, and when called with a value of $\mNrm$ that is not exactly equal to one of the \texttt{mVec\_int}, returns the value of ${c}$ that reflects a linear interpolation between the $\vctr{{c}}_{\code{\prdT-1}}$ points associated with the two \texttt{mVec\_int} points immediately above and below $\mNrm$.  
 
 Figures \ref{fig:PlotcTm1Simple} and~\ref{fig:PlotVTm1Simple} show
 plots of the constructed $\Aprx{\cFunc}_{t-1}$ and $\Aprx{v}_{t-1}$. While the $\Aprx{\cFunc}_{t-1}$ function looks very smooth, the fact that the $\Aprx{v}_{t-1}$ function is a set of line segments is very evident.  This figure provides the beginning of the intuition for why trying to approximate the value function directly is a bad idea (in this context).\footnote{For some problems, especially ones with discrete choices, value function approximation is unavoidable; nevertheless, even in such problems, the techniques sketched below can be very useful across much of the range over which the problem is defined.}
@@ -480,14 +480,14 @@ plots of the constructed $\Aprx{\cFunc}_{t-1}$ and $\Aprx{v}_{t-1}$. While the $
 \hypertarget{PlotcTm1Simple}{}
 \begin{figure}
   \centerline{\includegraphics[width=6in]{\FigDir/PlotcTm1Simple}}
-  \caption{$\cFunc_{T-1}(\mStte)$ (solid) versus $\Aprx{\cFunc}_{T-1}(\mStte)$ (dashed)}
+  \caption{$\cFunc_{T-1}(m)$ (solid) versus $\Aprx{\cFunc}_{T-1}(m)$ (dashed)}
   \label{fig:PlotcTm1Simple}
 \end{figure}
 
 \hypertarget{PlotvTm1Simple}{}
 \begin{figure}
   \centerline{\includegraphics[width=6in]{\FigDir/PlotVTm1Simple}}
-  \caption{$v_{T-1}$ (solid) versus $\Aprx{v}_{T-1}(\mStte)$ (dashed)}
+  \caption{$v_{T-1}$ (solid) versus $\Aprx{v}_{T-1}(m)$ (dashed)}
   \label{fig:PlotVTm1Simple}
 \end{figure}
 
@@ -496,7 +496,7 @@ plots of the constructed $\Aprx{\cFunc}_{t-1}$ and $\Aprx{v}_{t-1}$. While the $
 \subsection{Interpolating Expectations}
 
 
-Piecewise linear `spline' interpolation as described above works well for generating a good approximation to the true optimal consumption function. However, there is a clear inefficiency in the program: Since it uses equation \eqref{eq:vEndTm1}, for every value of $\mStte$ the program must calculate the utility consequences of various possible choices of $c$ (and therefore $a_{t-1}$) as it searches for the best choice.
+Piecewise linear `spline' interpolation as described above works well for generating a good approximation to the true optimal consumption function. However, there is a clear inefficiency in the program: Since it uses equation \eqref{eq:vEndTm1}, for every value of $m$ the program must calculate the utility consequences of various possible choices of $c$ (and therefore $a_{t-1}$) as it searches for the best choice.
 
 For any given index $j$ in $\vctr{m}[j]$, the algorithm, as it searches for the corresponding optimal $a$, the algorithm will end up  calculating $v_{\EndPrdLsT}(\tilde{a})$ for many $\tilde{a}$ values close to the optimal ${a}_{t-1}$.  Indeed, even when searching for the optimal ${a}$ for a \emph{different} ${m}$ (say $\vctr{m}[k]$ for $k \neq j$) the search process might compute $v_{\EndPrdLsT}({a})$ for an ${a}$ close to the correct optimal ${a}$ for $\vctr{m}[j]$. But if that difficult computation does not correspond to the exact solution to the $\vctr{m}[k]$ problem, it is discarded.  
 
@@ -504,7 +504,7 @@ For any given index $j$ in $\vctr{m}[j]$, the algorithm, as it searches for the 
 
 The notebook section ``Interpolating Expectations,'' now interpolates the expected value of \textit{ending} the period with a given amount of assets.\footnote{What we are doing here is closely related to `the method of parameterized expectations' of \cite{denHaanMarcet:parameterized}; the only difference is that our method is essentially a nonparametric version.}  %The problem is solved in the same block with the remaining lines of code.
 
-Figure~\ref{fig:PlotOTm1RawVSInt} compares the true value function to the approximation produced by following the interpolation procedure; the approximated and exact functions are of course identical at the gridpoints of $\vctr{a}$ and they appear reasonably close except in the region below $\mStte=1$.
+Figure~\ref{fig:PlotOTm1RawVSInt} compares the true value function to the approximation produced by following the interpolation procedure; the approximated and exact functions are of course identical at the gridpoints of $\vctr{a}$ and they appear reasonably close except in the region below $m=1$.
 
 \hypertarget{PlotOTm1RawVSInt}{}
 \begin{figure}
@@ -516,13 +516,13 @@ Figure~\ref{fig:PlotOTm1RawVSInt} compares the true value function to the approx
 \hypertarget{PlotComparecTm1AB}{}
 \begin{figure}
   \centerline{\includegraphics[width=6in]{\FigDir/PlotComparecTm1AB}}
-  \caption{$\cFunc_{T-1}(\mStte)$ (solid) versus $\Aprx{\cFunc}_{T-1}(\mStte)$ (dashed)}
+  \caption{$\cFunc_{T-1}(m)$ (solid) versus $\Aprx{\cFunc}_{T-1}(m)$ (dashed)}
   \label{fig:PlotComparecTm1AB}
 \end{figure}
 
 \Fix{\marginpar{\tiny In all figs, replace gothic h with notation corresponding to the lecture notes.}}
 
-Nevertheless, the consumption rule obtained when the approximating $\Aprx{v}_{({t-1})_\cntn}({a}_{t-1})$ is used instead of $v_{({t-1})_\cntn}({a}_{t-1})$ is surprisingly bad, as shown in figure \ref{fig:PlotComparecTm1AB}.  For example, when $\mStte$ goes from 2 to 3, $\Aprx{\cFunc}_{t-1}$ goes from about 1 to about 2, yet when $\mStte$ goes from 3 to 4, $\Aprx c$ goes from about 2 to about 2.05.  The function fails even to be concave, which is distressing because Carroll and Kimball~\citeyearpar{ckConcavity} prove that the correct consumption function is strictly concave in a wide class of problems that includes this one.
+Nevertheless, the consumption rule obtained when the approximating $\Aprx{v}_{({t-1})_\cntn}({a}_{t-1})$ is used instead of $v_{({t-1})_\cntn}({a}_{t-1})$ is surprisingly bad, as shown in figure \ref{fig:PlotComparecTm1AB}.  For example, when $m$ goes from 2 to 3, $\Aprx{\cFunc}_{t-1}$ goes from about 1 to about 2, yet when $m$ goes from 3 to 4, $\Aprx c$ goes from about 2 to about 2.05.  The function fails even to be concave, which is distressing because Carroll and Kimball~\citeyearpar{ckConcavity} prove that the correct consumption function is strictly concave in a wide class of problems that includes this one.
 
 \hypertarget{value-function-versus-first-order-condition}{}
 \subsection{Value Function versus First Order Condition}\label{subsec:vVsuP}
@@ -555,7 +555,7 @@ of the value function.
 The first order condition of the maximization problem in period $T-1$ is:
   \begin{equation}\begin{gathered}\begin{aligned}
         u^{{c}}(c)       & = \beta \Ex_{\cntn(T-1)} [\PermGroFacAdjMu R u^{{c}}({c}_{t})]  %\label{eq:focraw}
-        \\      c^{-\rho}   & = R \beta \left(\frac{1}{n_{\TranShkEmp}}\right) \sum_{i=1}^{n_{\TranShkEmp}} \PermGroFacAdjMu\left(R (\mStte-c) + \TranShkEmp_{i}\right)^{-\rho} \label{eq:FOCTm1}.
+        \\      c^{-\rho}   & = R \beta \left(\frac{1}{n_{\TranShkEmp}}\right) \sum_{i=1}^{n_{\TranShkEmp}} \PermGroFacAdjMu\left(R (m-c) + \TranShkEmp_{i}\right)^{-\rho} \label{eq:FOCTm1}.
       \end{aligned}\end{gathered}\end{equation}
 \hypertarget{PlotuPrimeVSOPrime}{}
 \begin{figure}
@@ -571,19 +571,19 @@ The downward-sloping curve in Figure \ref{fig:PlotuPrimeVSOPrime}
 shows the value of $c^{-\rho}$ for our baseline parameter values
 for $0 \leq c \leq 4$ (the horizontal axis).  The solid
 upward-sloping curve shows the value of the RHS of (\ref{eq:FOCTm1})
-as a function of $c$ under the assumption that $\mStte=3$.
+as a function of $c$ under the assumption that $m=3$.
 Constructing this figure is time-consuming, because for every
 value of $c$ plotted we must calculate the RHS of
 (\ref{eq:FOCTm1}).  The value of $c$ for which the RHS and LHS
 of (\ref{eq:FOCTm1}) are equal is the optimal level of consumption
-given that $\mStte=3$, so the intersection of the downward-sloping
+given that $m=3$, so the intersection of the downward-sloping
 and the upward-sloping curves gives the (approximated) optimal value of $c$.
 As we can see, the two curves intersect just below $c=2$.
 Similarly, the upward-sloping dashed curve shows the expected value
-of the RHS of (\ref{eq:FOCTm1}) under the assumption that $\mStte=4$,
+of the RHS of (\ref{eq:FOCTm1}) under the assumption that $m=4$,
 and the intersection of this curve with $u^{{c}}(c)$ yields the
-optimal level of consumption if $\mStte=4$.  These two curves
-intersect slightly below $c=2.5$.  Thus, increasing $\mStte$
+optimal level of consumption if $m=4$.  These two curves
+intersect slightly below $c=2.5$.  Thus, increasing $m$
 from 3 to 4 increases optimal consumption by about 0.5.
 
 Now consider the derivative of our function $\Aprx{v}_{({t-1})}({a}_{t-1})$.  Because we have
@@ -595,18 +595,18 @@ implies that the derivative of $\Aprx{v}_{({t-1})_\cntn}({a}_{t-1})$ follows a s
 
 The solid-line step function in Figure \ref{fig:PlotuPrimeVSOPrime} depicts the actual value of
 $\Aprx{v}_{({t-1})_\cntn}^{{a}}(3-c)$.  When we attempt to find optimal values of
-$c$ given $\mStte$ using $\Aprx{v}_{({t-1})_\cntn}({a}_{t-1})$, the numerical optimization routine will
+$c$ given $m$ using $\Aprx{v}_{({t-1})_\cntn}({a}_{t-1})$, the numerical optimization routine will
 return the $c$ for which
-$u^{{c}}(c) = \Aprx{v}^{{a}}_{({t-1})_\cntn}(\mStte-c)$.  Thus, for
-$\mStte=3$ the program will return the value of $c$ for which the downward-sloping
+$u^{{c}}(c) = \Aprx{v}^{{a}}_{({t-1})_\cntn}(m-c)$.  Thus, for
+$m=3$ the program will return the value of $c$ for which the downward-sloping
 $u^{{c}}(c)$ curve intersects with the
 $\Aprx{v}_{({t-1})_\cntn}^{{a}}(3-c)$; as the diagram shows, this value is exactly equal to 2.
-Similarly, if we ask the routine to find the optimal $c$ for $\mStte=4$, it finds the point of
+Similarly, if we ask the routine to find the optimal $c$ for $m=4$, it finds the point of
 intersection of $u^{{c}}(c)$ with $\Aprx{v}_{({t-1})_\cntn}^{{a}}(4-c)$; and as the diagram shows, this
 intersection is only slightly above 2.  Hence, this figure illustrates why the numerical consumption
-function plotted earlier returned values very close to $c=2$ for both $\mStte=3$ and $\mStte=4$.
+function plotted earlier returned values very close to $c=2$ for both $m=3$ and $m=4$.
 
-We would obviously obtain much better estimates of the point of intersection between $u^{{c}}(c)$ and $v_{({t-1})_\cntn}^{{a}}(\mStte-c)$ if our estimate of $\Aprx{v}^{{a}}_{({t-1})_\cntn}$ were not a step function.  In fact, we already know how to construct linear interpolations to functions, so the obvious next step is to construct a linear interpolating approximation to the \textit{expected marginal value of end-of-period assets function} at the points in $\vctr{a}$:
+We would obviously obtain much better estimates of the point of intersection between $u^{{c}}(c)$ and $v_{({t-1})_\cntn}^{{a}}(m-c)$ if our estimate of $\Aprx{v}^{{a}}_{({t-1})_\cntn}$ were not a step function.  In fact, we already know how to construct linear interpolations to functions, so the obvious next step is to construct a linear interpolating approximation to the \textit{expected marginal value of end-of-period assets function} at the points in $\vctr{a}$:
 \begin{equation}\begin{gathered}\begin{aligned}
       v_{({t-1})_\cntn}^{{a}}(\vctr{a})  & =  \beta R \PermGroFacAdjMu \left(\frac{1}{n_{\TranShkEmp}}\right) \sum_{i=1}^{n_{\TranShkEmp}} \left(\RNrm_{t} \vctr{a} + \TranShkEmp_{i}\right)^{-\rho} \label{eq:vEndPrimeTm1}
     \end{aligned}\end{gathered}\end{equation}
@@ -629,7 +629,7 @@ The results are shown in Figure \ref{fig:PlotOPRawVSFOC}.  The linear interpolat
 \hypertarget{PlotcTm1ABC}{}
 \begin{figure}
   \centerline{\includegraphics[width=6in]{\FigDir/PlotcTm1ABC}}
-  \caption{$\cFunc_{t-1}(\mStte)$ (solid) Versus Two Methods for Constructing $\Aprx{\cFunc}_{t-1}(\mStte)$}
+  \caption{$\cFunc_{t-1}(m)$ (solid) Versus Two Methods for Constructing $\Aprx{\cFunc}_{t-1}(m)$}
   \label{fig:PlotcTm1ABC}
 \end{figure}
 
@@ -651,20 +651,20 @@ will be $\TranShkEmp_{t} = 1$).  The final Euler equation (recall that we are st
       c_{t-1}^{-\rho}  & = {c}_{t}^{-\rho}.
     \end{aligned}\end{gathered}\end{equation}
 
-In the case we are now considering with no uncertainty and no liquidity constraints, the optimizing consumer does not care whether a unit of income is scheduled to be received in the future period $t$ or the current period $t-1$; there is perfect certainty that the income will be received, so the consumer treats its PDV as equivalent to a unit of current wealth.  Total resources available at the point when the consumption decision is made is therefore are comprised of two types: current market resources $\mStte$ and `human wealth' (the PDV of future income) of $h_{t-1}=1$ (because it is the value of human wealth as of the end of the period, there is only one more period of income of 1 left).
+In the case we are now considering with no uncertainty and no liquidity constraints, the optimizing consumer does not care whether a unit of income is scheduled to be received in the future period $t$ or the current period $t-1$; there is perfect certainty that the income will be received, so the consumer treats its PDV as equivalent to a unit of current wealth.  Total resources available at the point when the consumption decision is made is therefore are comprised of two types: current market resources $m$ and `human wealth' (the PDV of future income) of $h_{t-1}=1$ (because it is the value of human wealth as of the end of the period, there is only one more period of income of 1 left).
 
-The well-known optimal solution is to spend half of total lifetime resources in period $t-1$ and the remainder in period $t (=T)$.  Since total resources are known with certainty to be $\mStte+h_{t-1}= \mStte+1$, and since ${v}_{\MidStp}^{{m}}(\mStte) = u^{{c}}(c)$, this implies that
+The well-known optimal solution is to spend half of total lifetime resources in period $t-1$ and the remainder in period $t (=T)$.  Since total resources are known with certainty to be $m+h_{t-1}= m+1$, and since ${v}_{\MidStg}^{{m}}(m) = u^{{c}}(c)$, this implies that
 \begin{equation}
-  v^{{m}}_{\MidStpLsT}(\mStte)  = \left(\frac{\mStte+1}{2}\right)^{-\rho} \label{eq:vPLin}.
+  v^{{m}}_{\MidPrdLsT}(m)  = \left(\frac{m+1}{2}\right)^{-\rho} \label{eq:vPLin}.
 \end{equation}
 Of course, this is a highly nonlinear function.  However, if we raise both sides of \eqref{eq:vPLin} to the power $(-1/\rho)$ the result is a linear function:
 \begin{equation}\begin{gathered}\begin{aligned}
-      % \vInv^{{m}}_{\prdT-1}(\mStte) \equiv
-      \left[v^{{m}}_{\MidStpLsT}(\mStte)\right]^{-1/\rho}  & = \frac{\mStte+1}{2}  .
+      % \vInv^{{m}}_{\prdT-1}(\mNrm) \equiv
+      \left[v^{{m}}_{\MidPrdLsT}(m)\right]^{-1/\rho}  & = \frac{m+1}{2}  .
     \end{aligned}\end{gathered}\end{equation}
 This is a specific example of a general phenomenon: A theoretical literature discussed in~\cite{ckConcavity} establishes that under perfect certainty, if the period-by-period marginal utility function is of the form $c_{t}^{-\rho}$, the marginal value function will be of the form $(\gamma {m}_{t}+\zeta)^{-\rho}$ for some constants $\{\gamma,\zeta\}$.  This means that if we were solving the perfect foresight problem numerically, we could always calculate a numerically exact (because linear) interpolation.
 
-To put the key insight in intuitive terms, the nonlinearity we are facing springs in large part from the fact that the marginal value function is highly nonlinear.  But we have a compelling solution to that problem, because the nonlinearity springs largely from the fact that we are raising something to the power $-\rho$.  In effect, we can `unwind' all of the nonlinearity owing to that operation and the remaining nonlinearity will not be nearly so great.  Specifically, applying the foregoing insights to the end-of-period value function $v^{{a}}_{\MidStpLst}(a)$, we can define an `inverse marginal value' function
+To put the key insight in intuitive terms, the nonlinearity we are facing springs in large part from the fact that the marginal value function is highly nonlinear.  But we have a compelling solution to that problem, because the nonlinearity springs largely from the fact that we are raising something to the power $-\rho$.  In effect, we can `unwind' all of the nonlinearity owing to that operation and the remaining nonlinearity will not be nearly so great.  Specifically, applying the foregoing insights to the end-of-period value function $v^{{a}}_{\MidPrdLsT}(a)$, we can define an `inverse marginal value' function
 \begin{equation}\begin{gathered}\begin{aligned}
       \vInv_{t_\cntn}^{a}({a})  & \equiv  \left(v^{{a}}_{t_\cntn}({a})\right)^{-1/\rho} \label{eq:cGoth}
     \end{aligned}\end{gathered}\end{equation}
@@ -674,10 +674,10 @@ which would be linear in the perfect foresight case.\footnote{There is a corresp
       [\Aprx{\vInv}_{t}^{a}({a})]^{-\rho}
     \end{aligned}\end{gathered}\end{equation}
 
-The most interesting thing about all of this, though, is that the $\vInv^{a}_{t}$ function has another interpretation. Recall our point in \eqref{eq:upEqbetaOp} that $u^{{c}}({c}_{t}) = \vEndStp^{{a}}({m}_{t}-{c}_{t})$.  Since with CRRA utility $u^{c}({c})=c^{-\rho}$, this can be rewritten
+The most interesting thing about all of this, though, is that the $\vInv^{a}_{t}$ function has another interpretation. Recall our point in \eqref{eq:upEqbetaOp} that $u^{{c}}({c}_{t}) = \vEndStg^{{a}}({m}_{t}-{c}_{t})$.  Since with CRRA utility $u^{c}({c})=c^{-\rho}$, this can be rewritten
 and inverted
 \begin{equation}\begin{gathered}\begin{aligned}
-      ({c}_{t})^{-\rho} & = \vEndStp^{{a}}({a}_{t})
+      ({c}_{t})^{-\rho} & = \vEndStg^{{a}}({a}_{t})
       \\ {c}_{t} & =      \left(\vEndPrd^{{a}}({a})\right)^{-1/\rho}.
     \end{aligned}\end{gathered}\end{equation}
 
@@ -739,7 +739,7 @@ The upshot is a realization that all we need to do to address these problems is 
 
 Figure \ref{fig:GothVInvVSGothC} shows the result. The solid line calculates the exact numerical value of the consumed function $\cFunc_{({t-1})_\cntn}(a)$ while the dashed line is the linear interpolating approximation $\Aprx{\cFunc}_{({t-1})_\cntn}(a).$ This figure illustrates the value of the transformation: The true function is close to linear, and so the linear approximation is almost indistinguishable from the true function except at the very lowest values of $a$.
 
-Figure~\ref{fig:GothVVSGothCInv} similarly shows that when we generate $\Aprx{\Aprx{v}}_{({t-1})_\cntn}^{{a}}({a})$ using our augmented $[\Aprx{\cFunc}_{({t-1})_\cntn}({a})]^{-\rho}$ (dashed line) we obtain a \textit{much} closer approximation to the true marginal value function $v^{{a}}_{({t-1})_\cntn}({a})$ (solid line) than we obtained in the previous exercise which did not do the transformation (Figure~\ref{fig:PlotOPRawVSFOC}).\footnote{The vertical axis label uses $\mathfrak{v}^{\prime}$ as an alternative notation for what in these notes we designate as $v^{a}_{\EndStpLsT}$).  This will be fixed.}
+Figure~\ref{fig:GothVVSGothCInv} similarly shows that when we generate $\Aprx{\Aprx{v}}_{({t-1})_\cntn}^{{a}}({a})$ using our augmented $[\Aprx{\cFunc}_{({t-1})_\cntn}({a})]^{-\rho}$ (dashed line) we obtain a \textit{much} closer approximation to the true marginal value function $v^{{a}}_{({t-1})_\cntn}({a})$ (solid line) than we obtained in the previous exercise which did not do the transformation (Figure~\ref{fig:PlotOPRawVSFOC}).\footnote{The vertical axis label uses $\mathfrak{v}^{\prime}$ as an alternative notation for what in these notes we designate as $v^{a}_{\EndPrdLsT}$).  This will be fixed.}
 \Fix{\marginpar{\tiny fix the problem articulated in the footnote}}{}
 
 \hypertarget{GothVVSGothCInv}{}
@@ -767,7 +767,7 @@ But with mutually consistent values of $\vctr{{c}}\code{_{t-1}}$ and $\vctr{{a}}
 These ${m}$ gridpoints are ``endogenous'' in contrast to the usual solution method of specifying some \textit{ex-ante} (exogenous) grid of values of $\vctr{m}$ and then using a rootfinding routine to locate the corresponding optimal consumption vector $\vctr{c}$.
 
 
-This routine is performed in the ``Endogenous Gridpoints'' section of the notebook. First, the \texttt{gothic.C\_Tminus1} function is called for each of the pre-specfied values of end-of-period assets stored in \code{aVec}. These values of consumption and assets are used to produce the list of endogenous gridpoints, stored in the object \texttt{mVec\_egm}. With the $\vctr{\cFunc}$ values in hand, the notebook can generate a set of $\vctr{{m}}\code{_{t-1}}$ and ${\vctr{{c}}\code{_{t-1}}}$ pairs that can be interpolated between in order to yield $\Aprx{\cFunc}_{\MidStpLsT}(m)$ at virtually zero computational cost!\footnote{This is the essential point of \cite{carrollEGM}.} %This is done in the final line of code in this block, and the following code block produces the graph of the interpolated consumption function using this procedure.
+This routine is performed in the ``Endogenous Gridpoints'' section of the notebook. First, the \texttt{gothic.C\_Tminus1} function is called for each of the pre-specfied values of end-of-period assets stored in \code{aVec}. These values of consumption and assets are used to produce the list of endogenous gridpoints, stored in the object \texttt{mVec\_egm}. With the $\vctr{\cFunc}$ values in hand, the notebook can generate a set of $\vctr{{m}}\code{_{t-1}}$ and ${\vctr{{c}}\code{_{t-1}}}$ pairs that can be interpolated between in order to yield $\Aprx{\cFunc}_{\MidPrdLsT}(m)$ at virtually zero computational cost!\footnote{This is the essential point of \cite{carrollEGM}.} %This is done in the final line of code in this block, and the following code block produces the graph of the interpolated consumption function using this procedure.
 
 \hypertarget{PlotComparecTm1AD}{}
 One might worry about whether the $\{{m},{c}\}$ points obtained in this way will provide a good representation of the consumption function as a whole, but in practice there are good reasons why they work well (basically, this procedure generates a set of gridpoints that is naturally dense right around the parts of the function with the greatest nonlinearity).
@@ -947,7 +947,7 @@ The new portfolio-share control variable is captured by the archaic Greek charac
     \end{aligned}\end{gathered}\end{equation}
 If we imagine the portfolio share decision as being made simultaneously with the $c$ decision, the traditional way of writing the problem is (substituting the budget constraint):
 \begin{equation}\begin{gathered}\begin{aligned}
-      v_{t}({m})  & = \max_{\{\cFunc,\Shr\}} ~~  u({c}) + \ExMidPrd[\beta {v}_{t+1}(({m}-{c})\Rport(\Shr) + {\TranShkEmp}_{t+1})] \label{eq:Bellmanundated}
+      v_{t}({m})  & = \max_{\{\cFunc,\Shr\}} ~~  u({c}) + \ExMidStg[\beta {v}_{t+1}(({m}-{c})\Rport(\Shr) + {\TranShkEmp}_{t+1})] \label{eq:Bellmanundated}
     \end{aligned}\end{gathered}\end{equation}
 where we have deliberately omitted the {period}-designating subscripts for $\Shr$ and the return factors to highlight the point that, once the consumption and $\Shr$ decisions have been made, it makes no difference to this equation whether the risky return factor $\Risky$ is revealed a nanosecond before the end of the current {period} or a nanosecond after the beginning of the successor {period}.
 
@@ -961,7 +961,7 @@ where we have deliberately omitted the {period}-designating subscripts for $\Shr
   and the maximization problem is
     \begin{equation*}\begin{gathered}\begin{aligned}
           {v}_{t}({m}_{t})  & = \max_{\{{c}_{t},\Shr_{t}\}}   ~~ u({c}_{t}) +  \beta
-          \ExEndStp[{v}_{t+1}({m}_{t+1})]
+          \ExEndStg[{v}_{t+1}({m}_{t+1})]
           \\      & \text{s.t.} \nonumber
           \\      \Rport_{t+1}  & = R + (\Risky_{t+1}-R) \Shr_{t}
           \\      {m}_{t+1}  & = ({m}_{t}-{c}_{t})\Rport_{t+1} + \TranShkEmp_{t+1}
@@ -970,40 +970,40 @@ where we have deliberately omitted the {period}-designating subscripts for $\Shr
 
   The first order condition with respect to ${c}_{t}$ is almost identical to that in the single-control problem, equation (\ref{eq:upceqEvtp1}); the only difference is that the nonstochastic interest factor $R$ is now replaced by the portfolio return ${\Rport}_{t+1}$,
     \begin{equation}\begin{gathered}\begin{aligned}
-          u^{{c}}({c}_{t})  & = \beta \ExEndStp [{\Rport}_{t+1} v^{{m}}_{t+1}({m}_{t+1})] \label{eq:valfuncFOCRtilde},
+          u^{{c}}({c}_{t})  & = \beta \ExEndStg [{\Rport}_{t+1} v^{{m}}_{t+1}({m}_{t+1})] \label{eq:valfuncFOCRtilde},
         \end{aligned}\end{gathered}\end{equation}
   and the Envelope theorem derivation remains the same, yielding the Euler equation for consumption
     \begin{equation}\begin{gathered}\begin{aligned}
-          u^{{c}}({c}_{t})  & = \ExEndStp[\beta {\Rport}_{t+1} u^{{c}}({c}_{t+1})]. \label{eq:EulercRiskyR}
+          u^{{c}}({c}_{t})  & = \ExEndStg[\beta {\Rport}_{t+1} u^{{c}}({c}_{t+1})]. \label{eq:EulercRiskyR}
         \end{aligned}\end{gathered}\end{equation}
 
   The first order condition with respect to the risky portfolio share is
     \begin{equation}\begin{gathered}\begin{aligned}
-          0  & = \ExEndStp[{v}_{\MidStpNxt}^{{m}}({m}_{t+1})(\Risky_{t+1}-R){a}_{t}] \notag
-          \\         & = \ExEndStp\left[u^{{c}}\left(\cFunc_{t+1}({m}_{t+1})\right)(\Risky_{t+1}-R)\right]{a}_{t} 
-          \\         & = \ExEndStp\left[u^{{c}}\left(\cFunc_{t+1}({m}_{t+1})\right)(\Risky_{t+1}-R)\right], \label{eq:FOCw}        
+          0  & = \ExEndStg[{v}_{\MidStgNxt}^{{m}}({m}_{t+1})(\Risky_{t+1}-R){a}_{t}] \notag
+          \\         & = \ExEndStg\left[u^{{c}}\left(\cFunc_{t+1}({m}_{t+1})\right)(\Risky_{t+1}-R)\right]{a}_{t} 
+          \\         & = \ExEndStg\left[u^{{c}}\left(\cFunc_{t+1}({m}_{t+1})\right)(\Risky_{t+1}-R)\right], \label{eq:FOCw}        
         \end{aligned}\end{gathered}\end{equation}
   where the last line follows because $0/a_{t}=0$.
 
   As before, we define $\vEnd$ as a function that yields the expected $t+1$ value of ending period $t$ with assets ${a}_{t}$.  However, now that there are two control variables, the expectation must be defined as a function of the chosen values of both of those variables, because expected end-of-period value will depend not just on how much the agent saves, but also on how the saved assets are allocated between the risky and riskless assets.  Thus we define
   \begin{equation*}\begin{gathered}\begin{aligned}
-        \vMidStp({a}_{t},\Shr_{t})  & = \beta {v}_{\arvlStpShr}({m}_{t+1})
+        \vMidStg({a}_{t},\Shr_{t})  & = \beta {v}_{\arvlStgShr}({m}_{t+1})
       \end{aligned}\end{gathered}\end{equation*}
   which has derivatives
   \begin{equation}\begin{gathered}\begin{aligned}
-        \vMidStp^{{a}}  & = \ExEndStp[\beta {\Rport}_{t+1}{v}_{t+1}^{m}({m}_{t+1})] = \ExEndStp[\beta {\Rport}_{t+1}{u}_{t+1}^{{c}}(\cFunc_{t+1}({m}_{t+1}))]
+        \vMidStg^{{a}}  & = \ExEndStg[\beta {\Rport}_{t+1}{v}_{t+1}^{m}({m}_{t+1})] = \ExEndStg[\beta {\Rport}_{t+1}{u}_{t+1}^{{c}}(\cFunc_{t+1}({m}_{t+1}))]
       \end{aligned}\end{gathered}\end{equation}
   \begin{equation}\begin{gathered}\begin{aligned}
-        \vMidStp^{\Shr}  & = \ExEndStp[\beta (\Risky_{t+1}-R){v}_{t+1}^{m}({m}_{t+1})  ]a_{t} = \ExEndStp[\beta (\Risky_{t+1}-R){u}_{t+1}^{{c}}(\cFunc_{t+1}({m}_{t+1}))  ]a_{t} \notag
+        \vMidStg^{\Shr}  & = \ExEndStg[\beta (\Risky_{t+1}-R){v}_{t+1}^{m}({m}_{t+1})  ]a_{t} = \ExEndStg[\beta (\Risky_{t+1}-R){u}_{t+1}^{{c}}(\cFunc_{t+1}({m}_{t+1}))  ]a_{t} \notag
       \end{aligned}\end{gathered}\end{equation}
   implying that the first order conditions (\ref{eq:EulercRiskyR}) and
   (\ref{eq:FOCw}) can be rewritten
   \begin{equation}\begin{gathered}\begin{aligned}
-        u^{{c}}({c}_{t})  & = \vMidStp^{{a}}({m}_{t}-{c}_{t},\Shr_{t}) \label{eq:FOCc}
+        u^{{c}}({c}_{t})  & = \vMidStg^{{a}}({m}_{t}-{c}_{t},\Shr_{t}) \label{eq:FOCc}
       \end{aligned}\end{gathered}\end{equation}
   and 
   \begin{equation}\begin{gathered}\begin{aligned}
-        0  & = v^{\Shr}_{\vMidStpStgShr}({a}_{t},\Shr_{t}). \label{eq:FOCShr}
+        0  & = v^{\Shr}_{\vMidStgStgShr}({a}_{t},\Shr_{t}). \label{eq:FOCShr}
       \end{aligned}\end{gathered}\end{equation}
 \end{comment}
 
@@ -1029,7 +1029,7 @@ A slight modification to the consumer's problem specified earlier is necessary t
 
 Consider the standalone problem of an `investor' whose continuation-value function $v_{[\Shr]_\cntn}$ depends on how much wealth $\acute{w}$ they end up after the realization of the stochastic $\Risky$ return.  The expected value that the investor will obtain from any combination of initial $w$ and their optimal choice of the portfolio share $\Shr$ is the expectation of the continuation-value function over the wealth that results from the portfolio choice:
 \begin{equation}\begin{gathered}\begin{aligned}
-  v_{_\arvl[\Shr]}(w)  = & \max_{\Shr}~ \Ex_{\BegStp[\Shr]}\left[v_{[\Shr]_{_\cntn}}\overbrace{\left(\Rport(\Shr){w}\right)}^{\acute{w}}\right] \label{eq:vMidStpShr}
+  v_{_\arvl[\Shr]}(w)  = & \max_{\Shr}~ \Ex_{\BegStg[\Shr]}\left[v_{[\Shr]_{_\cntn}}\overbrace{\left(\Rport(\Shr){w}\right)}^{\acute{w}}\right] \label{eq:vMidStgShr}
     \end{aligned}\end{gathered}\end{equation}
 where we have omitted any {period} designator like $t$ for the {period} in which this problem is solved because, with the continuation-value function defined already as $v_{[\Shr]_\cntn}(\acute{w})$, the problem is self-contained.  The solution to this problem will yield an optimal $\Shr$ decision rule $\optml{\Shr}(w).$  Finally, we can specify the value of an investor `arriving' with $w$ as the expected value that will be obtained when the investor invests optimally, generating the \textit{ex ante} optimal stochastic portfolio return factor $\optml{\Rport}(w)=\Rport(\optml{\Shr}(w))$:
 \begin{equation}\begin{gathered}\begin{aligned}
@@ -1113,15 +1113,15 @@ In specifying the stochastic process for $\Risky_{t+1}$, we follow the common pr
 
 As with labor income uncertainty, it is necessary to discretize the rate-of-return risk in order to have a problem that is soluble in a reasonable amount of time.  We follow the same procedure as for labor income uncertainty, generating a set of $n_{\risky}$ equiprobable shocks to the rate of return; in a slight abuse of notation, we will designate the portfolio-weighted return (contingent on the chosen portfolio share in equity, and potentially contingent on any other aspect of the consumer's problem) simply as $\Rport_{i,j}$ (where dependence on $i$ is allowed to permit the possibility of nonzero correlation between the return on the risky asset and the $\TranShkEmp$ shock to labor income (for example, in recessions the stock market falls and labor income also declines).
 
-The direct expressions for the derivatives of $\vEndStp$ are
+The direct expressions for the derivatives of $\vEndStg$ are
 \begin{equation}\begin{gathered}\begin{aligned}
-      \vEndStp^{{a}}({a}_{t},\Shr_{t})  & = \beta \left(\frac{1}{n_{\risky} n_{\TranShkEmp}}\right)\sum_{i=1}^{n_{\TranShkEmp}}\sum_{j=1}^{n_{\risky} }\Rport_{i,j} \left(\cFunc_{t+1}(\Rport_{i,j}{a}_{t}+\TranShkEmp_{i})\right)^{-\rho}
-      \\      \vEndStp^{\Shr}({a}_{t},\Shr_{t})  & = \beta \left(\frac{1}{n_{\risky} n_{\TranShkEmp}}\right)\sum_{i=1}^{n_{\TranShkEmp}}\sum_{j=1}^{n_{\risky} }(\Risky_{i,j}-R)\left(\cFunc_{t+1}(\Rport_{i,j}{a}_{t}+\TranShkEmp_{i})\right)^{-\rho}.
+      \vEndStg^{{a}}({a}_{t},\Shr_{t})  & = \beta \left(\frac{1}{n_{\risky} n_{\TranShkEmp}}\right)\sum_{i=1}^{n_{\TranShkEmp}}\sum_{j=1}^{n_{\risky} }\Rport_{i,j} \left(\cFunc_{t+1}(\Rport_{i,j}{a}_{t}+\TranShkEmp_{i})\right)^{-\rho}
+      \\      \vEndStg^{\Shr}({a}_{t},\Shr_{t})  & = \beta \left(\frac{1}{n_{\risky} n_{\TranShkEmp}}\right)\sum_{i=1}^{n_{\TranShkEmp}}\sum_{j=1}^{n_{\risky} }(\Risky_{i,j}-R)\left(\cFunc_{t+1}(\Rport_{i,j}{a}_{t}+\TranShkEmp_{i})\right)^{-\rho}.
     \end{aligned}\end{gathered}\end{equation}
 
-Writing these equations out explicitly makes a problem very apparent: For every different combination of $\{{a}_{t},\Shr_{t}\}$ that the routine wishes to consider, it must perform two double-summations of $n_{\risky} \times n_{\TranShkEmp}$ terms.  Once again, there is an inefficiency if it must perform these same calculations many times for the same or nearby values of $\{{a}_{t},\Shr_{t}\}$, and again the solution is to construct an approximation to the (inverses of the) derivatives of the $\vEndStp$ function.
+Writing these equations out explicitly makes a problem very apparent: For every different combination of $\{{a}_{t},\Shr_{t}\}$ that the routine wishes to consider, it must perform two double-summations of $n_{\risky} \times n_{\TranShkEmp}$ terms.  Once again, there is an inefficiency if it must perform these same calculations many times for the same or nearby values of $\{{a}_{t},\Shr_{t}\}$, and again the solution is to construct an approximation to the (inverses of the) derivatives of the $\vEndStg$ function.
 
-Details of the construction of the interpolating approximations are given below; assume for the moment that we have the approximations $\Aprx{v}_{\EndStp}^{{a}}$ and $\Aprx{v}_{\EndStp}^{\Shr}$ in hand and we want to proceed.  As noted above in the discussion of \eqref{eq:Bellmanundated}, nonlinear equation solvers can find the solution to a set of simultaneous equations.  Thus we could ask one to solve
+Details of the construction of the interpolating approximations are given below; assume for the moment that we have the approximations $\Aprx{v}_{\EndStg}^{{a}}$ and $\Aprx{v}_{\EndStg}^{\Shr}$ in hand and we want to proceed.  As noted above in the discussion of \eqref{eq:Bellmanundated}, nonlinear equation solvers can find the solution to a set of simultaneous equations.  Thus we could ask one to solve
 \begin{equation}\begin{gathered}\begin{aligned}
       {c}_{t}^{-\rho}  & = \Aprx{v}^{a}_{{t_\cntn}}({m}_{t}-{c}_{t},\Shr_{t}) %\label{eq:FOCwrtcMultContr}
       \\      0  & = \Aprx{v}^{\Shr}_{{t_\cntn}}({m}_{t}-{c}_{t},\Shr_{t}) \label{eq:FOCwrtw}
@@ -1133,11 +1133,11 @@ solve.
 There is a better way.  Define the problem
 
 \begin{equation}\begin{gathered}\begin{aligned}
-      \Opt{v}_{{t_\cntn}}({a}_{t})  & = \max_{\Shr_{t}} ~~  \vEndStp({a}_{t},\Shr_{t})
+      \Opt{v}_{{t_\cntn}}({a}_{t})  & = \max_{\Shr_{t}} ~~  \vEndStg({a}_{t},\Shr_{t})
       \\      & \text{s.t.} \nonumber
       \\      0 \leq & \Shr_{t} \leq 1
     \end{aligned}\end{gathered}\end{equation}
-where the tilde over $\Opt{v}(a)$ indicates that this is the $v$ that has been optimized with respect to all of the arguments other than the one still present (${a}_{t}$).  We solve this problem for the set of gridpoints in \code{aVec} and use the results to construct the interpolating function $\Aprx{\Opt{v}}_{t}^{a}({a}_{t})$.\footnote{A faster solution could be obtained by, for each element in \code{aVec}, computing $\vEndStp^{\Shr}({m}_{t}-{c}_{t},\Shr)$ of a grid of values of $\Shr$, and then using an approximating interpolating function (rather than the full expectation) in the \texttt{FindRoot} command.  The associated speed improvement is fairly modest, however, so this route was not pursued.}  With this function in hand, we can use the first order condition from the single-control problem
+where the tilde over $\Opt{v}(a)$ indicates that this is the $v$ that has been optimized with respect to all of the arguments other than the one still present (${a}_{t}$).  We solve this problem for the set of gridpoints in \code{aVec} and use the results to construct the interpolating function $\Aprx{\Opt{v}}_{t}^{a}({a}_{t})$.\footnote{A faster solution could be obtained by, for each element in \code{aVec}, computing $\vEndStg^{\Shr}({m}_{t}-{c}_{t},\Shr)$ of a grid of values of $\Shr$, and then using an approximating interpolating function (rather than the full expectation) in the \texttt{FindRoot} command.  The associated speed improvement is fairly modest, however, so this route was not pursued.}  With this function in hand, we can use the first order condition from the single-control problem
 \begin{equation*}\begin{gathered}\begin{aligned}
       {c}_{t}^{-\rho}  & = \Aprx{\Opt{v}}_{t}^{{a}}({m}_{t}-{c}_{t})
     \end{aligned}\end{gathered}\end{equation*}

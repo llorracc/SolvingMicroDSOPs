@@ -131,7 +131,7 @@ Define
 \input{./Equations/vEndtdefn.tex}
 so 
 \begin{equation}\begin{gathered}\begin{aligned}
-  \vFunc_{t}(\mRat_{t})  & = \max_{\cNrm_{t}}~~ \util(\cNrm_{t}) + \vEndStp{t}(\mRat_{t}-\cNrm_{t})
+  \vFunc_{t}(\mRat_{t})  & = \max_{\cNrm_{t}}~~ \util(\cNrm_{t}) + \vEndStg{t}(\mRat_{t}-\cNrm_{t})
 \end{aligned}\end{gathered}\end{equation}
 with FOC
 \input{./Equations/upEqbetaOp.tex}
@@ -155,7 +155,7 @@ E.g.\ use an equiprobable 7-point distribution:\medskip\medskip
 \frametitle{Trick: Discretize the Risks}
 
 \begin{equation}\begin{gathered}\begin{aligned}
-        \vEndStp_{t}^{\prime}({a}_{t})  & =  \Discount \Rfree \PermGroFac_{t+1}^{-\CRRA} \left(\frac{1}{n}\right) \sum_{i=1}^{n} \util^{\prime}\left(\cFunc_{t+1}(\RNrm_{t+1} {a}_{t} + \TranShkEmp_{i})\right)
+        \vEndStg_{t}^{\prime}({a}_{t})  & =  \Discount \Rfree \PermGroFac_{t+1}^{-\CRRA} \left(\frac{1}{n}\right) \sum_{i=1}^{n} \util^{\prime}\left(\cFunc_{t+1}(\RNrm_{t+1} {a}_{t} + \TranShkEmp_{i})\right)
 \end{aligned}\end{gathered}\end{equation}
 
 %\input{./Equations/vDiscrete.tex}
@@ -174,7 +174,7 @@ using the FOC:
 \begin{enumerate}
 \item Define a grid of points $\vctr{\mNrm}$ (indexed $\mRat[i]$)
 \item Use numerical rootfinder to solve 
-$\util^{\prime}(\cNrm) = \vEndStp^{\prime}_{t}(\mRat[i]-\cNrm)$
+$\util^{\prime}(\cNrm) = \vEndStg^{\prime}_{t}(\mRat[i]-\cNrm)$
 \begin{itemize}
 \item The $\cNrm$ that solves this becomes $\cNrm[i]$
 \end{itemize}
@@ -204,11 +204,11 @@ Example: $\vctr{\mNrm}_{T-1} = \{0.,1.,2.,3.,4.\}$ (solid is `correct' soln)
 \frametitle{Problem: Numerical Rootfinding is {\it Slow}}
 
 Numerical search for values of $\cNrm_{T-1}$ satisfying
-$\util^{\prime}(\cNrm) = \vEndStp^{\prime}_{t}(\mRat[i]-\cNrm)$ at, say,
+$\util^{\prime}(\cNrm) = \vEndStg^{\prime}_{t}(\mRat[i]-\cNrm)$ at, say,
 6 gridpoints of $\vctr{\mNrm}_{T-1}$ may require hundreds or even thousands of
 evaluations of
 \begin{equation}\begin{gathered}\begin{aligned}
-        \vEndStp^{\prime}_{T-1}(\overbrace{{m}_{T-1}-{\cNrm}_{T-1}}^{\aNrm_{T-1}})  & =   \Discount_{T} \PermGroFac_{T}^{1-\CRRA}\left(\frac{1}{n}\right)\sum_{i=1}^{n}   \left( \RNrm_{T} {a}_{T-1} + \TranShkEmp_{i}\right)^{-\CRRA} \notag
+        \vEndStg^{\prime}_{T-1}(\overbrace{{m}_{T-1}-{\cNrm}_{T-1}}^{\aNrm_{T-1}})  & =   \Discount_{T} \PermGroFac_{T}^{1-\CRRA}\left(\frac{1}{n}\right)\sum_{i=1}^{n}   \left( \RNrm_{T} {a}_{T-1} + \TranShkEmp_{i}\right)^{-\CRRA} \notag
 \end{aligned}\end{gathered}\end{equation}
 
 \end{frame}
@@ -242,7 +242,7 @@ is {\it much} faster,  but result is bad:
 
 
 \begin{frame}
-\frametitle{Approximate $\vEndStp_{t}^{\prime}(\aNrm)$?}
+\frametitle{Approximate $\vEndStg_{t}^{\prime}(\aNrm)$?}
 
 Better ... but still violates first two principles:
 \includegraphics[width=4in]{./Figures/PlotOPRawVSFOC.pdf}
@@ -260,16 +260,16 @@ Better ... but still violates first two principles:
 
 \begin{itemize}
 \item Define vector of {\it end-of-period} asset values $\vctr{\aNrm}$
-\item For each $\aNrm[j]$ compute $\vEndStp_{t}^{\prime}(\aNrm[j])$
+\item For each $\aNrm[j]$ compute $\vEndStg_{t}^{\prime}(\aNrm[j])$
 \end{itemize}
 
 \pause 
 
-Each of these $\vEndStp_{t}^{\prime}[j]$ corresponds to a unique
+Each of these $\vEndStg_{t}^{\prime}[j]$ corresponds to a unique
 $\cNrm[j]$ via FOC:
 \begin{equation}\begin{gathered}\begin{aligned}
-  \cNrm[j]^{-\CRRA}  & = \vEndStp_{t}^{\prime}(\aNrm[j])
-\\ \cNrm[j]  & = \left(\vEndStp_{t}^{\prime}(\aNrm[j])\right)^{-1/\CRRA}
+  \cNrm[j]^{-\CRRA}  & = \vEndStg_{t}^{\prime}(\aNrm[j])
+\\ \cNrm[j]  & = \left(\vEndStg_{t}^{\prime}(\aNrm[j])\right)^{-1/\CRRA}
 \end{aligned}\end{gathered}\end{equation}
 
 \pause 
@@ -281,7 +281,7 @@ But the DBC says
 \end{aligned}\end{gathered}\end{equation}
 
 \pause 
-So computing $\vEndStp_{t}^{\prime}$ at a vector of $\vctr{\aNrm}$ values has produced for us the corresponding $\vctr{\cNrm}$ and $\vctr{\mNrm}$ 
+So computing $\vEndStg_{t}^{\prime}$ at a vector of $\vctr{\aNrm}$ values has produced for us the corresponding $\vctr{\cNrm}$ and $\vctr{\mNrm}$ 
 values at virtually no cost!  
 
 \pause 
@@ -361,8 +361,8 @@ and then obtain your approximation from
 \pause 
 Define {\it consumed} function and its derivative as 
 \begin{equation}\begin{gathered}\begin{aligned}
-  \cEndFunc_{t}(\aNrm)  & = (\vEndStp^{\prime}_{t}(\aNrm))^{-1/\CRRA}
-\\ \cEndFunc_{t}^{\aNrm}(\aNrm)  & = -(1/\CRRA)\left(\vEndStp_{t}^{\prime}({a})\right)^{-1-1/\CRRA} \vEndStp_{t}^{\prime\prime}(\aNrm) 
+  \cEndFunc_{t}(\aNrm)  & = (\vEndStg^{\prime}_{t}(\aNrm))^{-1/\CRRA}
+\\ \cEndFunc_{t}^{\aNrm}(\aNrm)  & = -(1/\CRRA)\left(\vEndStg_{t}^{\prime}({a})\right)^{-1-1/\CRRA} \vEndStg_{t}^{\prime\prime}(\aNrm) 
 \end{aligned}\end{gathered}\end{equation}
 
 \pause 
@@ -392,7 +392,7 @@ and using chain rule it is easy to show that
 
 Consider what happens as ${a}_{T-1}$ approaches $\underline{a}_{T-1}\equiv-\underline{\TranShkEmp}\RNrm_{T}^{-1}$,
 \begin{equation*}\begin{gathered}\begin{aligned}
-        \lim_{{\aNrm} \downarrow \underline{a}_{T-1}} \vEndStp{T-1}^{\prime}({\aNrm}) 
+        \lim_{{\aNrm} \downarrow \underline{a}_{T-1}} \vEndStg{T-1}^{\prime}({\aNrm}) 
 & =         \lim_{{\aNrm} \downarrow \underline{a}_{T-1}} \Discount \Rfree \PermGroFac_{T}^{-\CRRA} \left(\frac{1}{n}\right) \sum_{i=1}^{n} \left( {\aNrm} \RNrm_{T}+ \TranShkEmp_{i}\right)^{-\CRRA}
 \\  & = \infty
 \end{aligned}\end{gathered}\end{equation*}
@@ -478,8 +478,8 @@ Define $\grave{\cFunc}^{*}_{t}$ as soln to unconstrained problem.  Then
 
 Point where constraint makes transition from binding to not is
 \begin{equation*}\begin{gathered}\begin{aligned}
-    \util^{\prime}(\mRat_{T-1}^{\#})  & = \vEndStp^{\prime}_{T-1}(0.)
-\\  \mRat_{T-1}^{\#}  & = \left(\vEndStp^{\prime}_{T-1}(0.)\right)^{-1/\CRRA}
+    \util^{\prime}(\mRat_{T-1}^{\#})  & = \vEndStg^{\prime}_{T-1}(0.)
+\\  \mRat_{T-1}^{\#}  & = \left(\vEndStg^{\prime}_{T-1}(0.)\right)^{-1/\CRRA}
 \end{aligned}\end{gathered}\end{equation*}
 \pause\medskip
 

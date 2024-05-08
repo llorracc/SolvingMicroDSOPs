@@ -3,8 +3,11 @@
 \newcommand{\texname}{cctwMoM} % Keyname for the paper
 \usepackage{./.econtexRoot}         % Set paths (like, \LaTeXInputs)
 
-\usepackage{SolvingMicroDSOPs-private}
+\usepackage{\LaTeXInputs/local-macros}   % defns for this project
+\usepackage{\packages/econark}           % econark defns
 \usepackage{\LaTeXInputs/local-packages} % LaTeX config in Resources/LaTeXInputs
+\usepackage{\LaTeXInputs/cctwMoM} % LaTeX config in Resources/LaTeXInputs
+
 \input{cctwMoM-options} % booleans that control whether certain features are on or off
 
 \hypersetup{colorlinks=true,
@@ -77,8 +80,8 @@
 
 \pagebreak\newpage
 
-
-\renewcommand{\DiscAlt}{\beta} % Erase the distinction between the alternative and the standard discount factor
+\end{document}
+%\renewcommand{\DiscAlt}{\beta} % Erase the distinction between the alternative and the standard discount factor
 
 \hypertarget{introduction}{}
 \section{Introduction}\label{sec:Intro}

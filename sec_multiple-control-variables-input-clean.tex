@@ -10,7 +10,7 @@ The new portfolio-share control variable is captured by the archaic Greek charac
     \end{aligned}\end{gathered}\end{equation}
 If we imagine the portfolio share decision as being made simultaneously with the $c$ decision, the traditional way of writing the problem is (substituting the budget constraint):
 \begin{equation}\begin{gathered}\begin{aligned}
-      v_{t}({m})  & = \max_{\{\cFunc,\Shr\}} ~~  u({c}) + \ExMidPrd[\beta {v}_{t+1}(({m}-{c})\Rport(\Shr) + {\TranShkEmp}_{t+1})] \label{eq:Bellmanundated}
+      v_{t}({m})  & = \max_{\{\cFunc,\Shr\}} ~~  u({c}) + \ExMidStg[\beta {v}_{t+1}(({m}-{c})\Rport(\Shr) + {\TranShkEmp}_{t+1})] \label{eq:Bellmanundated}
     \end{aligned}\end{gathered}\end{equation}
 where we have deliberately omitted the {period}-designating subscripts for $\Shr$ and the return factors to highlight the point that, once the consumption and $\Shr$ decisions have been made, it makes no difference to this equation whether the risky return factor $\Risky$ is revealed a nanosecond before the end of the current {period} or a nanosecond after the beginning of the successor {period}.
 
@@ -24,7 +24,7 @@ where we have deliberately omitted the {period}-designating subscripts for $\Shr
   and the maximization problem is
     \begin{equation*}\begin{gathered}\begin{aligned}
           {v}_{t}({m}_{t})  & = \max_{\{{c}_{t},\Shr_{t}\}}   ~~ u({c}_{t}) +  \beta
-          \ExEndStp[{v}_{t+1}({m}_{t+1})]
+          \ExEndStg[{v}_{t+1}({m}_{t+1})]
           \\      & \text{s.t.} \nonumber
           \\      \Rport_{t+1}  & = R + (\Risky_{t+1}-R) \Shr_{t}
           \\      {m}_{t+1}  & = ({m}_{t}-{c}_{t})\Rport_{t+1} + \TranShkEmp_{t+1}
@@ -33,40 +33,40 @@ where we have deliberately omitted the {period}-designating subscripts for $\Shr
 
   The first order condition with respect to ${c}_{t}$ is almost identical to that in the single-control problem, equation (\ref{eq:upceqEvtp1}); the only difference is that the nonstochastic interest factor $R$ is now replaced by the portfolio return ${\Rport}_{t+1}$,
     \begin{equation}\begin{gathered}\begin{aligned}
-          u^{{c}}({c}_{t})  & = \beta \ExEndStp [{\Rport}_{t+1} v^{{m}}_{t+1}({m}_{t+1})] \label{eq:valfuncFOCRtilde},
+          u^{{c}}({c}_{t})  & = \beta \ExEndStg [{\Rport}_{t+1} v^{{m}}_{t+1}({m}_{t+1})] \label{eq:valfuncFOCRtilde},
         \end{aligned}\end{gathered}\end{equation}
   and the Envelope theorem derivation remains the same, yielding the Euler equation for consumption
     \begin{equation}\begin{gathered}\begin{aligned}
-          u^{{c}}({c}_{t})  & = \ExEndStp[\beta {\Rport}_{t+1} u^{{c}}({c}_{t+1})]. \label{eq:EulercRiskyR}
+          u^{{c}}({c}_{t})  & = \ExEndStg[\beta {\Rport}_{t+1} u^{{c}}({c}_{t+1})]. \label{eq:EulercRiskyR}
         \end{aligned}\end{gathered}\end{equation}
 
   The first order condition with respect to the risky portfolio share is
     \begin{equation}\begin{gathered}\begin{aligned}
-          0  & = \ExEndStp[{v}_{\MidStpNxt}^{{m}}({m}_{t+1})(\Risky_{t+1}-R){a}_{t}] \notag
-          \\         & = \ExEndStp\left[u^{{c}}\left(\cFunc_{t+1}({m}_{t+1})\right)(\Risky_{t+1}-R)\right]{a}_{t} 
-          \\         & = \ExEndStp\left[u^{{c}}\left(\cFunc_{t+1}({m}_{t+1})\right)(\Risky_{t+1}-R)\right], \label{eq:FOCw}        
+          0  & = \ExEndStg[{v}_{\MidStgNxt}^{{m}}({m}_{t+1})(\Risky_{t+1}-R){a}_{t}] \notag
+          \\         & = \ExEndStg\left[u^{{c}}\left(\cFunc_{t+1}({m}_{t+1})\right)(\Risky_{t+1}-R)\right]{a}_{t} 
+          \\         & = \ExEndStg\left[u^{{c}}\left(\cFunc_{t+1}({m}_{t+1})\right)(\Risky_{t+1}-R)\right], \label{eq:FOCw}        
         \end{aligned}\end{gathered}\end{equation}
   where the last line follows because $0/a_{t}=0$.
 
   As before, we define $\vEnd$ as a function that yields the expected $t+1$ value of ending period $t$ with assets ${a}_{t}$.  However, now that there are two control variables, the expectation must be defined as a function of the chosen values of both of those variables, because expected end-of-period value will depend not just on how much the agent saves, but also on how the saved assets are allocated between the risky and riskless assets.  Thus we define
   \begin{equation*}\begin{gathered}\begin{aligned}
-        \vMidStp({a}_{t},\Shr_{t})  & = \beta {v}_{\arvlStpShr}({m}_{t+1})
+        \vMidStg({a}_{t},\Shr_{t})  & = \beta {v}_{\arvlStgShr}({m}_{t+1})
       \end{aligned}\end{gathered}\end{equation*}
   which has derivatives
   \begin{equation}\begin{gathered}\begin{aligned}
-        \vMidStp^{{a}}  & = \ExEndStp[\beta {\Rport}_{t+1}{v}_{t+1}^{m}({m}_{t+1})] = \ExEndStp[\beta {\Rport}_{t+1}{u}_{t+1}^{{c}}(\cFunc_{t+1}({m}_{t+1}))]
+        \vMidStg^{{a}}  & = \ExEndStg[\beta {\Rport}_{t+1}{v}_{t+1}^{m}({m}_{t+1})] = \ExEndStg[\beta {\Rport}_{t+1}{u}_{t+1}^{{c}}(\cFunc_{t+1}({m}_{t+1}))]
       \end{aligned}\end{gathered}\end{equation}
   \begin{equation}\begin{gathered}\begin{aligned}
-        \vMidStp^{\Shr}  & = \ExEndStp[\beta (\Risky_{t+1}-R){v}_{t+1}^{m}({m}_{t+1})  ]a_{t} = \ExEndStp[\beta (\Risky_{t+1}-R){u}_{t+1}^{{c}}(\cFunc_{t+1}({m}_{t+1}))  ]a_{t} \notag
+        \vMidStg^{\Shr}  & = \ExEndStg[\beta (\Risky_{t+1}-R){v}_{t+1}^{m}({m}_{t+1})  ]a_{t} = \ExEndStg[\beta (\Risky_{t+1}-R){u}_{t+1}^{{c}}(\cFunc_{t+1}({m}_{t+1}))  ]a_{t} \notag
       \end{aligned}\end{gathered}\end{equation}
   implying that the first order conditions (\ref{eq:EulercRiskyR}) and
   (\ref{eq:FOCw}) can be rewritten
   \begin{equation}\begin{gathered}\begin{aligned}
-        u^{{c}}({c}_{t})  & = \vMidStp^{{a}}({m}_{t}-{c}_{t},\Shr_{t}) \label{eq:FOCc}
+        u^{{c}}({c}_{t})  & = \vMidStg^{{a}}({m}_{t}-{c}_{t},\Shr_{t}) \label{eq:FOCc}
       \end{aligned}\end{gathered}\end{equation}
   and 
   \begin{equation}\begin{gathered}\begin{aligned}
-        0  & = v^{\Shr}_{\vMidStpStgShr}({a}_{t},\Shr_{t}). \label{eq:FOCShr}
+        0  & = v^{\Shr}_{\vMidStgStgShr}({a}_{t},\Shr_{t}). \label{eq:FOCShr}
       \end{aligned}\end{gathered}\end{equation}
 \end{comment}
 
@@ -92,7 +92,7 @@ A slight modification to the consumer's problem specified earlier is necessary t
 
 Consider the standalone problem of an `investor' whose continuation-value function $v_{[\Shr]_\cntn}$ depends on how much wealth $\acute{w}$ they end up after the realization of the stochastic $\Risky$ return.  The expected value that the investor will obtain from any combination of initial $w$ and their optimal choice of the portfolio share $\Shr$ is the expectation of the continuation-value function over the wealth that results from the portfolio choice:
 \begin{equation}\begin{gathered}\begin{aligned}
-  v_{_\arvl[\Shr]}(w)  = & \max_{\Shr}~ \Ex_{\BegStp[\Shr]}\left[v_{[\Shr]_{_\cntn}}\overbrace{\left(\Rport(\Shr){w}\right)}^{\acute{w}}\right] \label{eq:vMidStpShr}
+  v_{_\arvl[\Shr]}(w)  = & \max_{\Shr}~ \Ex_{\BegStg[\Shr]}\left[v_{[\Shr]_{_\cntn}}\overbrace{\left(\Rport(\Shr){w}\right)}^{\acute{w}}\right] \label{eq:vMidStgShr}
     \end{aligned}\end{gathered}\end{equation}
 where we have omitted any {period} designator like $t$ for the {period} in which this problem is solved because, with the continuation-value function defined already as $v_{[\Shr]_\cntn}(\acute{w})$, the problem is self-contained.  The solution to this problem will yield an optimal $\Shr$ decision rule $\optml{\Shr}(w).$  Finally, we can specify the value of an investor `arriving' with $w$ as the expected value that will be obtained when the investor invests optimally, generating the \textit{ex ante} optimal stochastic portfolio return factor $\optml{\Rport}(w)=\Rport(\optml{\Shr}(w))$:
 \begin{equation}\begin{gathered}\begin{aligned}
@@ -176,15 +176,15 @@ In specifying the stochastic process for $\Risky_{t+1}$, we follow the common pr
 
 As with labor income uncertainty, it is necessary to discretize the rate-of-return risk in order to have a problem that is soluble in a reasonable amount of time.  We follow the same procedure as for labor income uncertainty, generating a set of $n_{\risky}$ equiprobable shocks to the rate of return; in a slight abuse of notation, we will designate the portfolio-weighted return (contingent on the chosen portfolio share in equity, and potentially contingent on any other aspect of the consumer's problem) simply as $\Rport_{i,j}$ (where dependence on $i$ is allowed to permit the possibility of nonzero correlation between the return on the risky asset and the $\TranShkEmp$ shock to labor income (for example, in recessions the stock market falls and labor income also declines).
 
-The direct expressions for the derivatives of $\vEndStp$ are
+The direct expressions for the derivatives of $\vEndStg$ are
 \begin{equation}\begin{gathered}\begin{aligned}
-      \vEndStp^{{a}}({a}_{t},\Shr_{t})  & = \beta \left(\frac{1}{n_{\risky} n_{\TranShkEmp}}\right)\sum_{i=1}^{n_{\TranShkEmp}}\sum_{j=1}^{n_{\risky} }\Rport_{i,j} \left(\cFunc_{t+1}(\Rport_{i,j}{a}_{t}+\TranShkEmp_{i})\right)^{-\rho}
-      \\      \vEndStp^{\Shr}({a}_{t},\Shr_{t})  & = \beta \left(\frac{1}{n_{\risky} n_{\TranShkEmp}}\right)\sum_{i=1}^{n_{\TranShkEmp}}\sum_{j=1}^{n_{\risky} }(\Risky_{i,j}-R)\left(\cFunc_{t+1}(\Rport_{i,j}{a}_{t}+\TranShkEmp_{i})\right)^{-\rho}.
+      \vEndStg^{{a}}({a}_{t},\Shr_{t})  & = \beta \left(\frac{1}{n_{\risky} n_{\TranShkEmp}}\right)\sum_{i=1}^{n_{\TranShkEmp}}\sum_{j=1}^{n_{\risky} }\Rport_{i,j} \left(\cFunc_{t+1}(\Rport_{i,j}{a}_{t}+\TranShkEmp_{i})\right)^{-\rho}
+      \\      \vEndStg^{\Shr}({a}_{t},\Shr_{t})  & = \beta \left(\frac{1}{n_{\risky} n_{\TranShkEmp}}\right)\sum_{i=1}^{n_{\TranShkEmp}}\sum_{j=1}^{n_{\risky} }(\Risky_{i,j}-R)\left(\cFunc_{t+1}(\Rport_{i,j}{a}_{t}+\TranShkEmp_{i})\right)^{-\rho}.
     \end{aligned}\end{gathered}\end{equation}
 
-Writing these equations out explicitly makes a problem very apparent: For every different combination of $\{{a}_{t},\Shr_{t}\}$ that the routine wishes to consider, it must perform two double-summations of $n_{\risky} \times n_{\TranShkEmp}$ terms.  Once again, there is an inefficiency if it must perform these same calculations many times for the same or nearby values of $\{{a}_{t},\Shr_{t}\}$, and again the solution is to construct an approximation to the (inverses of the) derivatives of the $\vEndStp$ function.
+Writing these equations out explicitly makes a problem very apparent: For every different combination of $\{{a}_{t},\Shr_{t}\}$ that the routine wishes to consider, it must perform two double-summations of $n_{\risky} \times n_{\TranShkEmp}$ terms.  Once again, there is an inefficiency if it must perform these same calculations many times for the same or nearby values of $\{{a}_{t},\Shr_{t}\}$, and again the solution is to construct an approximation to the (inverses of the) derivatives of the $\vEndStg$ function.
 
-Details of the construction of the interpolating approximations are given below; assume for the moment that we have the approximations $\Aprx{v}_{\EndStp}^{{a}}$ and $\Aprx{v}_{\EndStp}^{\Shr}$ in hand and we want to proceed.  As noted above in the discussion of \eqref{eq:Bellmanundated}, nonlinear equation solvers can find the solution to a set of simultaneous equations.  Thus we could ask one to solve
+Details of the construction of the interpolating approximations are given below; assume for the moment that we have the approximations $\Aprx{v}_{\EndStg}^{{a}}$ and $\Aprx{v}_{\EndStg}^{\Shr}$ in hand and we want to proceed.  As noted above in the discussion of \eqref{eq:Bellmanundated}, nonlinear equation solvers can find the solution to a set of simultaneous equations.  Thus we could ask one to solve
 \begin{equation}\begin{gathered}\begin{aligned}
       {c}_{t}^{-\rho}  & = \Aprx{v}^{a}_{{t_\cntn}}({m}_{t}-{c}_{t},\Shr_{t}) %\label{eq:FOCwrtcMultContr}
       \\      0  & = \Aprx{v}^{\Shr}_{{t_\cntn}}({m}_{t}-{c}_{t},\Shr_{t}) \label{eq:FOCwrtw}
@@ -196,11 +196,11 @@ solve.
 There is a better way.  Define the problem
 
 \begin{equation}\begin{gathered}\begin{aligned}
-      \Opt{v}_{{t_\cntn}}({a}_{t})  & = \max_{\Shr_{t}} ~~  \vEndStp({a}_{t},\Shr_{t})
+      \Opt{v}_{{t_\cntn}}({a}_{t})  & = \max_{\Shr_{t}} ~~  \vEndStg({a}_{t},\Shr_{t})
       \\      & \text{s.t.} \nonumber
       \\      0 \leq & \Shr_{t} \leq 1
     \end{aligned}\end{gathered}\end{equation}
-where the tilde over $\Opt{v}(a)$ indicates that this is the $v$ that has been optimized with respect to all of the arguments other than the one still present (${a}_{t}$).  We solve this problem for the set of gridpoints in \code{aVec} and use the results to construct the interpolating function $\Aprx{\Opt{v}}_{t}^{a}({a}_{t})$.\footnote{A faster solution could be obtained by, for each element in \code{aVec}, computing $\vEndStp^{\Shr}({m}_{t}-{c}_{t},\Shr)$ of a grid of values of $\Shr$, and then using an approximating interpolating function (rather than the full expectation) in the \texttt{FindRoot} command.  The associated speed improvement is fairly modest, however, so this route was not pursued.}  With this function in hand, we can use the first order condition from the single-control problem
+where the tilde over $\Opt{v}(a)$ indicates that this is the $v$ that has been optimized with respect to all of the arguments other than the one still present (${a}_{t}$).  We solve this problem for the set of gridpoints in \code{aVec} and use the results to construct the interpolating function $\Aprx{\Opt{v}}_{t}^{a}({a}_{t})$.\footnote{A faster solution could be obtained by, for each element in \code{aVec}, computing $\vEndStg^{\Shr}({m}_{t}-{c}_{t},\Shr)$ of a grid of values of $\Shr$, and then using an approximating interpolating function (rather than the full expectation) in the \texttt{FindRoot} command.  The associated speed improvement is fairly modest, however, so this route was not pursued.}  With this function in hand, we can use the first order condition from the single-control problem
 \begin{equation*}\begin{gathered}\begin{aligned}
       {c}_{t}^{-\rho}  & = \Aprx{\Opt{v}}_{t}^{{a}}({m}_{t}-{c}_{t})
     \end{aligned}\end{gathered}\end{equation*}

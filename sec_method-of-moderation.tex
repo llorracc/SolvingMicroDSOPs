@@ -700,9 +700,9 @@ simplifies things a bit because now we can always consider an
 
 Recall now equations~(\ref{eq:vEndPrimeTm1}) and (\ref{eq:upEqbetaOp}):
 \begin{equation*}\begin{gathered}\begin{aligned}
-      \vPEndStp({a}_{\prd})  & = \Ex_{\BegStp}[\DiscFac \Rfree \PermGroFac_{\prd+1}^{-\CRRA}
+      \vPEndStg({a}_{\prd})  & = \Ex_{\BegStp}[\DiscFac \Rfree \PermGroFac_{\prd+1}^{-\CRRA}
       \uFunc^{{c}}(\cFunc_{\prd+1}(\RNrm_{\prd+1} {a}_{\prd}+{\TranShkEmp}_{\prd+1}))]
-      \\\uFunc^{{c}}({c}_{\prd})   & = \vEndStp^{{a}}({m}_{\prd}-{c}_{\prd}).
+      \\\uFunc^{{c}}({c}_{\prd})   & = \vEndStg^{{a}}({m}_{\prd}-{c}_{\prd}).
     \end{aligned}\end{gathered}\end{equation*}
 Assuming that the problem has been solved up to period $t+1$ (and thus assuming that we have an approximated $\Aprx{\cFunc}_{\prd+1}({m}_{\prd+1})$), our solution method essentially involves using these two equations in succession to work back progressively from period $\trmT-1$ to the beginning of life.  Stated generally, the method is as follows.  (Here, we use the original, rather than the ``refined,'' method for constructing consumption functions; the generalization of the algorithm below to use the refined method presents no difficulties.)
 
@@ -712,9 +712,9 @@ Assuming that the problem has been solved up to period $t+1$ (and thus assuming 
   of $\cFunc_{\overline{t}}({a}_{t,i})$ and $\cFunc_{\overline{t}}^{{a}}({a}_{t,i})$,
   \begin{verbatimwrite}{./Equations/vEndeq.tex}
     \begin{equation}\begin{gathered}\begin{aligned}
-          \cFunc_{\overline{t},i}  & = \left(\vEndStp^{{a}}({a}_{t,i})\right)^{-1/\CRRA},
+          \cFunc_{\overline{t},i}  & = \left(\vEndStg^{{a}}({a}_{t,i})\right)^{-1/\CRRA},
           \\                             & = \left(\DiscFac \Ex_{\BegStp} \left[\Rfree \PermGroFac_{\prd+1}^{-\CRRA}(\grave{\cFunc}_{\prd+1}(\RNrm_{\prd+1} {a}_{t,i} +      {\TranShkEmp}_{\prd+1}))^{-\CRRA}\right]\right)^{-1/\CRRA}, \label{eq:vEndeq}
-          \MPCMatch{\\        \cFunc^{a}_{\overline{t},i}  & = -(1/\CRRA)\left(\vEndStp^{{a}}({a}_{t,i})\right)^{-1-1/\CRRA} \vEndStp^{{a}{a}}(\aNrm_{t,i}),}{}
+          \MPCMatch{\\        \cFunc^{a}_{\overline{t},i}  & = -(1/\CRRA)\left(\vEndStg^{{a}}({a}_{t,i})\right)^{-1-1/\CRRA} \vEndStg^{{a}{a}}(\aNrm_{t,i}),}{}
         \end{aligned}\end{gathered}\end{equation}
   \end{verbatimwrite}
   \input{./Equations/vEndeq.tex} \unskip
