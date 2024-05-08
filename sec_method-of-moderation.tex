@@ -23,7 +23,7 @@
   \hypertarget{ExtrapProblemPlot}{}
   \begin{figure}
     \includegraphics[width=6in]{./Figures/ExtrapProblemPlot}
-    \caption{For Large Enough $m_{\prd-1}$, Predicted Precautionary Saving is Negative (Oops!)}
+    \caption{For Large Enough ${m}_{\prd-1}$, Predicted Precautionary Saving is Negative (Oops!)}
     \label{fig:ExtrapProblem}
   \end{figure}
 
@@ -60,26 +60,26 @@
 
   A first useful point is that, for the realist, a lower bound for the
   level of market resources is $\ushort{m}_{\prd} = -\hEndMin_{\EndStp}$, because
-  if $m_{\prd}$ equalled this value then there would be a positive finite
+  if ${m}_{\prd}$ equalled this value then there would be a positive finite
   chance (however small) of receiving \permShkOn
   {$\TranShkEmp_{t+n}=\TranShkEmpMin$ and $\permShk_{t+n}=\permShkMin$}
   {$\TranShkEmp_{t+n}=\TranShkEmpMin$}
   in
-  every future period, which would require the consumer to set $c_{\prd}$
+  every future period, which would require the consumer to set ${c}_{\prd}$
   to zero in order to guarantee that the intertemporal budget constraint
   holds\ctw{.}{~(this is the multiperiod generalization of the discussion in
     section \ref{subsec:LiqConstrSelfImposed} explaining the derivation of the `natural borrowing constraint' for period $\trmT-1$,
     $\ushort{a}_{\prd-1}$).}  Since consumption of zero yields negative
   infinite utility, the solution to realist consumer's problem is not well
-  defined for values of $m_{\prd} < \ushort{m}_{\prd}$, and the limiting
-  value of the realist's $c_t$ is zero as $m_{\prd} \downarrow \ushort{m}_{\prd}$.
+  defined for values of ${m}_{\prd} < \ushort{m}_{\prd}$, and the limiting
+  value of the realist's ${c}_t$ is zero as ${m}_{\prd} \downarrow \ushort{m}_{\prd}$.
 
   Given this result, it will be convenient to define `excess' market
   resources as the amount by which actual resources exceed the lower
   bound, and `excess' human wealth as the amount by which mean expected human wealth
   exceeds guaranteed minimum human wealth:
   \begin{equation*}\begin{gathered}\begin{aligned}
-        \aboveMin \mNrm_{\prd}  & = m_{\prd}+\overbrace{\hEndMin_{\EndStp}}^{=-\ushort{m}_{\prd}}
+        \aboveMin \mNrm_{\prd}  & = {m}_{\prd}+\overbrace{\hEndMin_{\EndStp}}^{=-\ushort{m}_{\prd}}
         \\  \aboveMin \hNrm_{\EndStp}  & = \hNrm_{\EndStp}-\hEndMin_{\EndStp}.
       \end{aligned}\end{gathered}\end{equation*}
 
@@ -89,7 +89,7 @@
   wealth to be equal to its minimum feasible value $\hEndMin_{\EndStp}$ with certainty, so
   consumption is given by the perfect foresight solution
   \begin{equation*}\begin{gathered}\begin{aligned}
-        \cFuncBelow_{\prd}(m_{\prd})  & = (m_{\prd}+\hEndMin_{\EndStp})\MPCmin_{\prd}
+        \cFuncBelow_{\prd}(m_{\prd})  & = ({m}_{\prd}+\hEndMin_{\EndStp})\MPCmin_{\prd}
         \\  & = \aboveMin \mNrm_{\prd}\MPCmin_{\prd}
         .
       \end{aligned}\end{gathered}\end{equation*}
@@ -97,7 +97,7 @@
   The `optimist,' on the other hand, pretends that there is no uncertainty
   about future income, and therefore consumes
   \begin{equation*}\begin{gathered}\begin{aligned}
-        \cFuncAbove_{\prd}(m_{\prd})  & = (m_{\prd} +\hEndMin_{\EndStp} - \hEndMin_{\EndStp} + \hNrm_{\EndStp} )\MPCmin_{\prd}
+        \cFuncAbove_{\prd}(m_{\prd})  & = ({m}_{\prd} +\hEndMin_{\EndStp} - \hEndMin_{\EndStp} + \hNrm_{\EndStp} )\MPCmin_{\prd}
         \\    & = (\aboveMin \mNrm_{\prd} + \aboveMin \hNrm_{\EndStp})\MPCmin_{\prd}
         \\      & = \cFuncBelow_{\prd}(m_{\prd})+\aboveMin \hNrm_{\EndStp} \MPCmin_{\prd}
         .
@@ -214,7 +214,7 @@ Until now, we have calculated the level of consumption at various different grid
 this problem
 is `smooth:' It
 exhibits a well-defined unique marginal propensity to consume at every
-positive value of $m$.  This suggests that we should calculate, not
+positive value of ${m}$.  This suggests that we should calculate, not
 just the level of consumption, but also the marginal propensity to
 consume (henceforth $\MPC$) at each gridpoint, and then find an
 interpolating approximation that smoothly matches both the level and the slope
@@ -237,15 +237,15 @@ consume (designated $\MPC$) at each of the gridpoints,
 $\cFunc^{\mNrm}_{\prd}$ (the vector of such values is
 $\vctr{\MPC}_{\prd}$).  These can be obtained by differentiating the
 Euler equation \eqref{eq:upEqbetaOp} (where we define
-$\mFunc_{\EndStp}(a) \equiv \cFunc_{\EndStp}(a)+{a}$, and drop the (a) arguments to reduce clutter):
+$\mFunc_{\EndStp}({a}) \equiv \cFunc_{\EndStp}({a})+{a}$, and drop the (a) arguments to reduce clutter):
 \begin{equation}\begin{gathered}\begin{aligned}
-      \uFunc^{c}(\cFunc_{\EndStp})   & = \hat{\vFunc}_{\EndStp}^{\aNrm}(\mFunc_{\EndStp}-\cFunc_{\EndStp}),
+      \uFunc^{{c}}({\cFunc}_{\EndStp})   & = \hat{\vFunc}_{\EndStp}^{\aNrm}(\mFunc_{\EndStp}-{\cFunc}_{\EndStp}),
     \end{aligned}\end{gathered}\end{equation}
 yielding a marginal propensity to
 \textit{have consumed} $\cFunc_{\EndStp}^{\aNrm}$ at each gridpoint:
 \begin{equation}\begin{gathered}\begin{aligned}
-      \uPP(\cEndStp)\cEndStp^{\aNrm}  & = \hat{\vFunc}_{\EndStp}^{\aNrm}(\mFunc_{\EndStp}-\cFunc_{\EndStp})
-      \\ \cEndStp^{\aNrm}  & = \hat{\vFunc}^{\aNrm}(\mFunc_{\EndStp}-\cFunc_{\EndStp})/\uPP(\cEndStp)
+      \uPP(\cEndStp)\cEndStp^{\aNrm}  & = \hat{\vFunc}_{\EndStp}^{\aNrm}(\mFunc_{\EndStp}-{\cFunc}_{\EndStp})
+      \\ \cEndStp^{\aNrm}  & = \hat{\vFunc}^{\aNrm}(\mFunc_{\EndStp}-{\cFunc}_{\EndStp})/\uPP(\cEndStp)
     \end{aligned}\end{gathered}\end{equation}
 and the marginal propensity to consume at the beginning of the period is obtained from the marginal propensity to have consumed by differentiating the identity with respect to $\aNrm$:
 \begin{equation*}\begin{gathered}\begin{aligned}
@@ -282,7 +282,7 @@ Designating $\Aprx{\Hi{\cFunc}}_{\prd-1}$ as the approximated consumption rule o
 
   Consider the perfect foresight (or ``optimist's'') problem in period $\trmT-1$.  Using the fact that in a perfect foresight model the growth factor for consumption is $(\Rfree \DiscFac)^{1/\CRRA}$, we can use the fact that $\cNrm_{\prd} = (\Rfree \DiscFac)^{1/\CRRA} \cNrm_{\prd-1}$ to calculate the value function in period $\trmT-1$:
   \begin{equation*}\begin{gathered}\begin{aligned}
-        \bar{\vFunc}_{\prd-1}(m_{\prd-1})  & \equiv  \uFunc(\cNrm_{\prd-1})+\DiscFac \uFunc(\cNrm_{\prd})
+        \bar{\vFunc}_{\prd-1}({m}_{\prd-1})  & \equiv  \uFunc(\cNrm_{\prd-1})+\DiscFac \uFunc(\cNrm_{\prd})
         \\  & = \uFunc(\cNrm_{\prd-1})\left(1+\DiscFac ((\DiscFac\Rfree)^{1/\CRRA})^{1-\CRRA}\right)
         % \\  & = \uFunc(\cNrm_{\prd-1})\left(1+\DiscFac (\DiscFac\Rfree)^{1/\CRRA-1}\right)
         \\  & = \uFunc(\cNrm_{\prd-1})\left(1+(\DiscFac\Rfree)^{1/\CRRA}/\Rfree\right)
@@ -293,7 +293,7 @@ Designating $\Aprx{\Hi{\cFunc}}_{\prd-1}$ as the approximated consumption rule o
 \input{./cctwMoM/value-Intro.tex}\unskip
 \begin{verbatimwrite}{./Equations/vFuncPF.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
-        \bar{\vFunc}_{\prd}(m_{\prd})  & = \uFunc(\bar{\cNrm}_{\prd})\PDVCoverc_{\prd}^{T}\label{eq:vFuncPF}
+        \bar{\vFunc}_{\prd}({m}_{\prd})  & = \uFunc(\bar{\cNrm}_{\prd})\PDVCoverc_{\prd}^{T}\label{eq:vFuncPF}
         \\  & = \uFunc(\bar{c}_{\prd}) \MPCmin_{\prd}^{-1} % 20190820
         \\  & = \uFunc((\aboveMin \mNrm_{\prd}+\aboveMin \hNrm_{\EndStp})\MPCmin_{\prd}) \MPCmin_{\prd}^{-1} % 20190820
         \\  & = \uFunc(\aboveMin \mNrm_{\prd}+\aboveMin \hNrm_{\EndStp})\MPCmin_{\prd}^{1-\CRRA} \MPCmin_{\prd}^{-1} % 20190820
@@ -311,7 +311,7 @@ Designating $\Aprx{\Hi{\cFunc}}_{\prd-1}$ as the approximated consumption rule o
 \begin{verbatimwrite}{./cctwMoM/value-Rest.tex}
   \MPCMatch{with derivative
     \begin{equation*}\begin{gathered}\begin{aligned}
-          \bar{\vInv}_{\prd}^m  & = (\mathbb{C}_{\prd}^{T})^{1/(1-\CRRA)}\MPCmin_{\prd},
+          \bar{\vInv}_{\prd}^{m}  & = (\mathbb{C}_{\prd}^{T})^{1/(1-\CRRA)}\MPCmin_{\prd},
           \\  & = \MPCmin_{\prd}^{-\CRRA/(1-\CRRA)} % 20190820
         \end{aligned}\end{gathered}\end{equation*}}{}
   and since $\PDVCoverc_{\prd}^{T}$ is a constant while the consumption
@@ -319,8 +319,8 @@ Designating $\Aprx{\Hi{\cFunc}}_{\prd-1}$ as the approximated consumption rule o
 
   We apply the same transformation to the value function for the problem with uncertainty (the ``realist's'' problem)\MPCMatch{ and differentiate}:
   \begin{equation*}\begin{gathered}\begin{aligned}
-        \bar{\vInv}_{\prd}  & = \left((1-\CRRA)\bar{\vFunc}_{\prd}(m_{\prd})\right)^{1/(1-\CRRA)}
-        \MPCMatch{\\ \bar{\vInv}^{m}_{\prd}  & = \left((1-\CRRA)\bar{\vFunc}_{\prd}(m_{\prd})\right)^{-1+1/(1-\CRRA)}\bar{\vFunc}_{\prd}^{m}(m_{\prd})}{}
+        \bar{\vInv}_{\prd}  & = \left((1-\CRRA)\bar{\vFunc}_{\prd}({m}_{\prd})\right)^{1/(1-\CRRA)}
+        \MPCMatch{\\ \bar{\vInv}^{m}_{\prd}  & = \left((1-\CRRA)\bar{\vFunc}_{\prd}({m}_{\prd})\right)^{-1+1/(1-\CRRA)}\bar{\vFunc}_{\prd}^{m}({m}_{\prd})}{}
       \end{aligned}\end{gathered}\end{equation*}
   and an excellent approximation to the value function can be obtained by
   calculating the values of $\bar{\vInv}$ at the same gridpoints used by the
@@ -336,7 +336,7 @@ Designating $\Aprx{\Hi{\cFunc}}_{\prd-1}$ as the approximated consumption rule o
   \MPCMatch{with derivative (dropping arguments)
     \begin{equation}\begin{gathered}\begin{aligned}
           \hat{\Koppa}_{\prd}^{\mu}   & = (\aboveMin \hNrm_{\EndStp} \MPCmin_{\prd} (\PDVCoverc_{\prd}^{T})^{1/(1-\CRRA)})^{-1}e^{\mu_{\prd}}\left(\bar{\vInv}^{m}_{\prd}-\vInv^{m}_{\prd}\right) \label{eq:KoppaPrime}
-          % \\  & =  (\aboveMin \hNrm_{\EndStp} \MPCmin_{\prd})^{-1}e^{\mu_{\prd}}\left((\PDVCoverc_{\prd}^{T})^{1/(1-\CRRA)}\MPCmin_{\prd}-\left((1-\CRRA)\vFunc_{\prd}(m_{\prd})\right)^{-1+1/(1-\CRRA)}\vFunc_{\prd}^{m}(m_{\prd})\right)  \notag
+          % \\  & =  (\aboveMin \hNrm_{\EndStp} \MPCmin_{\prd})^{-1}e^{\mu_{\prd}}\left((\PDVCoverc_{\prd}^{T})^{1/(1-\CRRA)}\MPCmin_{\prd}-\left((1-\CRRA)\vFunc_{\prd}({m}_{\prd})\right)^{-1+1/(1-\CRRA)}\vFunc_{\prd}^{m}({m}_{\prd})\right)  \notag
         \end{aligned}\end{gathered}\end{equation}}{}
   and an upper-case version of the $\chiFunc$ equation in \eqref{eq:chi}:
   \begin{equation}\begin{gathered}\begin{aligned}
@@ -357,8 +357,8 @@ Designating $\Aprx{\Hi{\cFunc}}_{\prd-1}$ as the approximated consumption rule o
   from which we obtain our approximation to the value function\MPCMatch{ and its derivatives~}~as \hypertarget{vHatFunc}{}
   \begin{equation}\begin{gathered}\begin{aligned}
         \hat{\vFunc}_{\prd}  & = \uFunc(\hat{\vInv}_{\prd})
-        \\  \hat{\vFunc}^{m}_{\prd}  & = \uFunc^{c}(\hat{\vInv}_{\prd}) \hat{\vInv}^{m}
-        \MPCMatch{\\  \hat{\vFunc}^{mm}_{\prd}  & = \uFunc^{c{c}}(\hat{\vInv}_{\prd}) (\hat{\vInv}^{m})^{2} + \uFunc^{c}(\hat{\vInv}_{\prd})\hat{\vInv}^{mm}}{}
+        \\  \hat{\vFunc}^{m}_{\prd}  & = \uFunc^{{c}}(\hat{\vInv}_{\prd}) \hat{\vInv}^{m}
+        \MPCMatch{\\  \hat{\vFunc}^{mm}_{\prd}  & = \uFunc^{{c}{c}}(\hat{\vInv}_{\prd}) (\hat{\vInv}^{m})^{2} + \uFunc^{{c}}(\hat{\vInv}_{\prd})\hat{\vInv}^{mm}}{}
         .
       \end{aligned}\end{gathered}\end{equation}
 
@@ -505,7 +505,7 @@ Designating $\Aprx{\Hi{\cFunc}}_{\prd-1}$ as the approximated consumption rule o
 
   Start with the fact that at the cusp point,
   \begin{equation*}\begin{gathered}\begin{aligned}
-        \bar{\vFunc}_{\prd}(\mtCusp)  & = \uFunc(\bar{\cNrm}_{\prd}(\mtCusp))\PDVCoverc_{\prd}^T \\
+        \bar{\vFunc}_{\prd}(\mtCusp)  & = \uFunc(\bar{\cNrm}_{\prd}(\mtCusp))\PDVCoverc_{\prd}^{T} \\
         & =  \uFunc(\aboveMin \mtCusp  \MPCmax_{\prd})\PDVCoverc_{\prd}^{T}
         .
       \end{aligned}\end{gathered}\end{equation*}
@@ -567,13 +567,13 @@ coefficient, and $\epsilon_{\prd+1}$ is the stochastic shock.
 The consumer's problem in this case now has two state variables, $\mNrm_{\prd}$ and $\risky_{\prd}$, and
 is described by
 \begin{equation}\begin{gathered}\begin{aligned}
-      \vFunc_{\prd}(m_{\prd},\risky_{\prd})  & = \max_{{c}_{\prd}} ~ \uFunc(c_{\prd})+
-      \Ex_{\BegStp}[{\DiscFac}_{\prd+1}\PermGroFacAdjV{\vFunc}_{\prd+1}(m_{\prd+1},\risky_{\prd+1})] \label{vNormedRisky}
+      {\vFunc}_{\prd}({m}_{\prd},\risky_{\prd})  & = \max_{{c}_{\prd}} ~ \uFunc({c}_{\prd})+
+      \Ex_{\BegStp}[{\DiscFac}_{\prd+1}\PermGroFacAdjV{\vFunc}_{\prd+1}({m}_{\prd+1},\risky_{\prd+1})] \label{vNormedRisky}
       \\         & \text{s.t.}   \nonumber \\
-      a_{\prd}    & = m_{\prd}-c_{\prd} \nonumber
+      {a}_{\prd}    & = {m}_{\prd}-{c}_{\prd} \nonumber
       \\      \risky_{\prd+1}-\risky  & = (\risky_{\prd}-\risky)\gamma + \epsilon_{\prd+1} \notag
       \\      \Risky_{\prd+1}  & = \exp(\risky_{\prd+1}) \notag
-      \\      m_{\prd+1}  & = \underbrace{\left(\Risky_{\prd+1}/\PermGroFac_{\prd+1}\right)}_{\equiv \Rprod_{\prd+1}}a_{\prd}+\TranShkEmp_{\prd+1} \nonumber.
+      \\      {m}_{\prd+1}  & = \underbrace{\left(\Risky_{\prd+1}/\PermGroFac_{\prd+1}\right)}_{\equiv \Rprod_{\prd+1}}{a}_{\prd}+\TranShkEmp_{\prd+1} \nonumber.
     \end{aligned}\end{gathered}\end{equation}
 
 % Kiichi: I will need you to read the literature and figure out how exactly we want to choose the Markov points and transition probabilities.
@@ -600,36 +600,31 @@ zero.\footnote{The word artificial is chosen only because of its clarity in dist
   this from the case of the `natural' borrowing constraint examined above; no derogation is
   intended -- constraints of this kind certainly exist in the real world.}  The problem then becomes
 \begin{equation*}\begin{gathered}\begin{aligned}
-      \vFunc_{\prd-1}(m_{\prd-1})  & = \max_{\cNrm_{\prd-1}} ~~ \uFunc(c_{\prd-1}) + \Ex_{\prd-1} [\DiscFac \PermGroFacAdjV{\vFunc}_{\cntn(T)}(m_{\prd})] \label{eq:ConstrArt}
+      {\vFunc}_{\prd-1}({m}_{\prd-1})  & = \max_{\cNrm_{\prd-1}} ~~ \uFunc({c}_{\prd-1}) + \Ex_{\prd-1} [\DiscFac \PermGroFacAdjV{\vFunc}_{\cntn(T)}({m}_{\prd})] \label{eq:ConstrArt}
       \\ & \mbox{s.t.}  \nonumber
-      \\ a_{\prd-1}  & = m_{\prd-1} - c_{\prd-1}
-      \\ m_{\prd}  & = \RNrm_{\prd} a_{\prd-1} + \TranShkEmp_{\prd}
-      \\ a_{\prd-1} & \geq 0 .
+      \\ {a}_{\prd-1}  & = {m}_{\prd-1} - {c}_{\prd-1}
+      \\ {m}_{\prd}  & = \RNrm_{\prd} {a}_{\prd-1} + \TranShkEmp_{\prd}
+      \\ {a}_{\prd-1} & \geq 0 .
     \end{aligned}\end{gathered}\end{equation*}
 
-\ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Constraint binds whenever you would like to consume more than current resources.}}{}
 
 By definition, the constraint will bind if the unconstrained consumer
 would choose a level of spending that would violate the constraint.
-Here, that means that the constraint binds if the $c_{\prd-1}$
+Here, that means that the constraint binds if the ${c}_{\prd-1}$
 that satisfies the unconstrained FOC
 \begin{equation}\begin{gathered}\begin{aligned}
-      c_{\prd-1}^{-\CRRA}  & = \vFunc^{a}_{({\prd-1})_\cntn}(m_{\prd-1}-c_{\prd-1}) \label{eq:cUnc}
+      {c}_{\prd-1}^{-\CRRA}  & = \vFunc^{{a}}_{({\prd-1})_\cntn}({m}_{\prd-1}-{c}_{\prd-1}) \label{eq:cUnc}
     \end{aligned}\end{gathered}\end{equation}
-is greater than $m_{\prd-1}$.  Call $\grave{\cFunc}^{\ast}_{\prd-1}$ the approximated function
-returning the level of $c_{\prd-1}$ that satisfies \eqref{eq:cUnc}.
+is greater than ${m}_{\prd-1}$.  Call $\grave{\cFunc}^{\ast}_{\prd-1}$ the approximated function
+returning the level of ${c}_{\prd-1}$ that satisfies \eqref{eq:cUnc}.
 Then the approximated constrained optimal consumption function will be
 \begin{verbatimwrite}{./Equations/LiqCons.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
-        \grave{\cFunc}_{\prd-1}(m_{\prd-1})  & = \min[{m}_{\prd-1},\grave{\cFunc}^{\ast}_{\prd-1}(m_{\prd-1})] \label{eq:LiqCons}.
+        \grave{\cFunc}_{\prd-1}({m}_{\prd-1})  & = \min[{m}_{\prd-1},\grave{\cFunc}^{\ast}_{\prd-1}({m}_{\prd-1})] \label{eq:LiqCons}.
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/LiqCons.tex}\unskip
 
-\ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Read this carefully
-    before class.  Intuition: consider discounted mv of saving zero.  If
-    consume everything and get the same $\uFunc^{c}$, then happy.  If
-    consumed $\TranShkEmp$ less, mv of saving would be $> \uFunc^{c}(c).$}}{}
 
 The introduction of the constraint also introduces a sharp
 nonlinearity in all of the functions at the point where the constraint
@@ -638,8 +633,8 @@ to numerically accurate it is useful to augment the grid of values of
 the state variable to include the exact value at which the constraint
 ceases to bind.  Fortunately, this is easy to calculate.  We know that
 when the constraint is binding the consumer is saving nothing, which
-yields marginal value of $\vFunc^{a}_{({\prd-1})_\cntn}(0)$. Further, when the
-constraint is binding, $c_{\prd-1} = m_{\prd-1}$.  Thus, the largest
+yields marginal value of $\vFunc^{{a}}_{({\prd-1})_\cntn}(0)$. Further, when the
+constraint is binding, ${c}_{\prd-1} = {m}_{\prd-1}$.  Thus, the largest
 value of consumption for which the constraint is binding will be the
 point for which the marginal utility of consumption is exactly equal
 to the (expected, discounted) marginal value of saving 0.  We know
@@ -648,11 +643,11 @@ function and so if the consumer were to consume $\tinyAmount$ more,
 the marginal utility of that extra consumption would be \textit{below}
 the (discounted, expected) marginal utility of saving, and thus the
 consumer would engage in positive saving and the constraint would no
-longer be binding.  Thus the level of $m_{\prd-1}$ at which the
+longer be binding.  Thus the level of ${m}_{\prd-1}$ at which the
 constraint stops binding is:\footnote{The logic here repeats an insight from \cite{deatonLiqConstr}.}
 \begin{equation}\begin{gathered}\begin{aligned}
-      \uFunc^{c}(m_{\prd-1})  & = \vFunc^{a}_{({\prd-1})_\cntn}(0)  \nonumber \\
-      m_{\prd-1}  & = (\vFunc^{a}_{({\prd-1})_\cntn}(0))^{(-1/\CRRA)}  \nonumber
+      \uFunc^{{c}}({m}_{\prd-1})  & = \vFunc^{{a}}_{({\prd-1})_\cntn}(0)  \nonumber \\
+      {m}_{\prd-1}  & = (\vFunc^{{a}}_{({\prd-1})_\cntn}(0))^{(-1/\CRRA)}  \nonumber
       \\        & = \cFunc_{({\prd-1})_\cntn}(0). \label{eq:LCbindsTm1}
     \end{aligned}\end{gathered}\end{equation}
 
@@ -699,30 +694,27 @@ As expected, the liquidity constraint only causes a divergence between the two f
 \subsection{Theory}
 Before we solve for periods earlier than $\trmT-1$, we assume for
 convenience that in each such period a liquidity constraint exists of
-the kind discussed above, preventing $c$ from exceeding $m$. This
+the kind discussed above, preventing ${c}$ from exceeding ${m}$. This
 simplifies things a bit because now we can always consider an
 \code{aVec} that starts with zero as its smallest element.
 
 Recall now equations~(\ref{eq:vEndPrimeTm1}) and (\ref{eq:upEqbetaOp}):
 \begin{equation*}\begin{gathered}\begin{aligned}
-      \vPEndStp(a_{\prd})  & = \Ex_{\BegStp}[\DiscFac \Rfree \PermGroFac_{\prd+1}^{-\CRRA}
-      \uFunc^{c}(\cFunc_{\prd+1}(\RNrm_{\prd+1} a_{\prd}+{\TranShkEmp}_{\prd+1}))]
-      \\\uFunc^{c}(c_{\prd})   & = \vEndStp^{a}(m_{\prd}-c_{\prd}).
+      \vPEndStp({a}_{\prd})  & = \Ex_{\BegStp}[\DiscFac \Rfree \PermGroFac_{\prd+1}^{-\CRRA}
+      \uFunc^{{c}}(\cFunc_{\prd+1}(\RNrm_{\prd+1} {a}_{\prd}+{\TranShkEmp}_{\prd+1}))]
+      \\\uFunc^{{c}}({c}_{\prd})   & = \vEndStp^{{a}}({m}_{\prd}-{c}_{\prd}).
     \end{aligned}\end{gathered}\end{equation*}
-Assuming that the problem has been solved up to period $t+1$ (and thus assuming that we have an approximated $\Aprx{\cFunc}_{\prd+1}(m_{\prd+1})$), our solution method essentially involves using these two equations in succession to work back progressively from period $\trmT-1$ to the beginning of life.  Stated generally, the method is as follows.  (Here, we use the original, rather than the ``refined,'' method for constructing consumption functions; the generalization of the algorithm below to use the refined method presents no difficulties.)
+Assuming that the problem has been solved up to period $t+1$ (and thus assuming that we have an approximated $\Aprx{\cFunc}_{\prd+1}({m}_{\prd+1})$), our solution method essentially involves using these two equations in succession to work back progressively from period $\trmT-1$ to the beginning of life.  Stated generally, the method is as follows.  (Here, we use the original, rather than the ``refined,'' method for constructing consumption functions; the generalization of the algorithm below to use the refined method presents no difficulties.)
 
 \begin{enumerate}
-  \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Point out that we
-      are defining $\vEndStp^{a}$ here by the literal summation
-      operation \eqref{eq:vEndeq}.}}{}
 
-\item For the grid of values $a_{t,i}$ in \texttt{aVec\_eee}, numerically calculate the values
-  of $\cFunc_{\overline{t}}(a_{t,i})$ and $\cFunc_{\overline{t}}^{a}(a_{t,i})$,
+\item For the grid of values ${a}_{t,i}$ in \texttt{aVec\_eee}, numerically calculate the values
+  of $\cFunc_{\overline{t}}({a}_{t,i})$ and $\cFunc_{\overline{t}}^{{a}}({a}_{t,i})$,
   \begin{verbatimwrite}{./Equations/vEndeq.tex}
     \begin{equation}\begin{gathered}\begin{aligned}
-          \cFunc_{\overline{t},i}  & = \left(\vEndStp^{a}(a_{t,i})\right)^{-1/\CRRA},
-          \\                             & = \left(\DiscFac \Ex_{\BegStp} \left[\Rfree \PermGroFac_{\prd+1}^{-\CRRA}(\grave{\cFunc}_{\prd+1}(\RNrm_{\prd+1} a_{t,i} +      {\TranShkEmp}_{\prd+1}))^{-\CRRA}\right]\right)^{-1/\CRRA}, \label{eq:vEndeq}
-          \MPCMatch{\\        \cFunc^{a}_{\overline{t},i}  & = -(1/\CRRA)\left(\vEndStp^{a}(a_{t,i})\right)^{-1-1/\CRRA} \vEndStp^{a{a}}(\aNrm_{t,i}),}{}
+          \cFunc_{\overline{t},i}  & = \left(\vEndStp^{{a}}({a}_{t,i})\right)^{-1/\CRRA},
+          \\                             & = \left(\DiscFac \Ex_{\BegStp} \left[\Rfree \PermGroFac_{\prd+1}^{-\CRRA}(\grave{\cFunc}_{\prd+1}(\RNrm_{\prd+1} {a}_{t,i} +      {\TranShkEmp}_{\prd+1}))^{-\CRRA}\right]\right)^{-1/\CRRA}, \label{eq:vEndeq}
+          \MPCMatch{\\        \cFunc^{a}_{\overline{t},i}  & = -(1/\CRRA)\left(\vEndStp^{{a}}({a}_{t,i})\right)^{-1-1/\CRRA} \vEndStp^{{a}{a}}(\aNrm_{t,i}),}{}
         \end{aligned}\end{gathered}\end{equation}
   \end{verbatimwrite}
   \input{./Equations/vEndeq.tex} \unskip
@@ -734,7 +726,7 @@ generating vectors of values $\vctr{\cFunc}_{\prd}$\MPCMatch{ and $\vctr{\cFunc}
 
 \item Construct an interpolating approximation $\Aprx{\chi}_{\prd}$ that\MPCMatch{ smoothly matches both the level and the slope}{the level} at those points.
 
-\item If we are to approximate the value function, construct a corresponding list of values of $\vctr{v}_{\prd}$, the levels\MPCMatch{ and first derivatives of $\vctr{\Koppa}_{\prd}$,}{,} and the levels\MPCMatch{ and first derivatives}{} of $\hat{\vctr{\Chi}}_{\prd}$; and construct an interpolating approximation function $\hat{\Chi}_{\prd}$ that matches those points.
+\item If we are to approximate the value function, construct a corresponding list of values of $\vctr{{v}}_{\prd}$, the levels\MPCMatch{ and first derivatives of $\vctr{\Koppa}_{\prd}$,}{,} and the levels\MPCMatch{ and first derivatives}{} of $\hat{\vctr{\Chi}}_{\prd}$; and construct an interpolating approximation function $\hat{\Chi}_{\prd}$ that matches those points.
 \end{enumerate}
 
 With $\Aprx{\chi}_{\prd}$ in hand, our approximate consumption function
@@ -743,6 +735,6 @@ and related equations.  With this consumption
 rule in hand, we can continue the backwards recursion to period $t-1$
 and so on back to the beginning of life.
 
-Note that this loop does not contain an item for constructing $\hat{\vFunc}_{\prd}^{a}(m_{\prd})$. This is because with $\Aprx{\Hi{\cFunc}}_{\prd}(m_{\prd})$ in hand, we simply \textit{define} $\hat{\vFunc}^{m}_{\prd}(m_{\prd}) = \uFunc^{c}(\Aprx{\Hi{\cFunc}}_{\prd}(m_{\prd}))$ so there is no need to construct interpolating approximations - the function arises `free' (or nearly so) from our constructed $\Aprx{\Hi{\cFunc}}_{\prd}(m_{\prd})$ via the usual envelope result (cf.\ \eqref{eq:envelope}).
+Note that this loop does not contain an item for constructing $\hat{\vFunc}_{\prd}^{{a}}({m}_{\prd})$. This is because with $\Aprx{\Hi{\cFunc}}_{\prd}({m}_{\prd})$ in hand, we simply \textit{define} $\hat{\vFunc}^{{m}}_{\prd}({m}_{\prd}) = \uFunc^{{c}}(\Aprx{\Hi{\cFunc}}_{\prd}({m}_{\prd}))$ so there is no need to construct interpolating approximations - the function arises `free' (or nearly so) from our constructed $\Aprx{\Hi{\cFunc}}_{\prd}({m}_{\prd})$ via the usual envelope result (cf.\ \eqref{eq:envelope}).
 
 \end{document}

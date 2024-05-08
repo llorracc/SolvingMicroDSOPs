@@ -7,13 +7,13 @@
 
 The single most powerful method for speeding the solution of such models is to redefine the problem in a way that reduces the number of state variables (if at all possible).  In the consumption context, the obvious idea is to see whether the problem can be rewritten in terms of the ratio of various variables to permanent noncapital (`labor') income $\pLvl_{\prd}$ (henceforth for brevity, `permanent income.')
 
-In the last {\interval} of life $\trmT$, there is no future, $\vLvl_{\trmT+1} = 0$, so the optimal plan is to consume everything:
+In the last {\interval} of life $\trmT$, there is no future, ${\vLvl}_{\trmT+1} = 0$, so the optimal plan is to consume everything:
 \begin{equation}\begin{gathered}\begin{aligned}
-      \vLvl_{\prdT}(\mLvl_{\prdT},\pLvl_{\prdT})  & = \frac{\mLvl_{\prdT}^{1-\CRRA}}{1-\CRRA}. \label{eq:levelTm1}
+      {\vLvl}_{\prdT}(\mLvl_{\prdT},\pLvl_{\prdT})  & = \frac{\mLvl_{\prdT}^{1-\CRRA}}{1-\CRRA}. \label{eq:levelTm1}
     \end{aligned}\end{gathered}\end{equation}
 Now define nonbold variables as the bold variable divided by the level of permanent income in the same period, so that, for example, ${\mNrm}_{\prdT}=\mLvl_{\prdT}/\pLvl_{\prdT}$; and define $\vFunc_{\prdT}({\mNrm}_{\prdT}) = \uFunc({\mNrm}_{\prdT})$.\footnote{Nonbold value is bold value divided by $\pLvl^{1-\CRRA}$ rather than $\pLvl$.}  For our CRRA utility function, $\uFunc(xy)=x^{1-\CRRA}\uFunc(y)$, so (\ref{eq:levelTm1}) can be rewritten as
 \begin{equation}\begin{gathered}\begin{aligned}
-      \vLvl_{\prdT}(\mLvl_{\prdT},\pLvl_{\prdT}) & = \pLvl_{\prdT}^{1-\CRRA}\frac{{\mNrm}_{\prdT}^{1-\CRRA}}{1-\CRRA}                       \\
+      {\vLvl}_{\prdT}(\mLvl_{\prdT},\pLvl_{\prdT}) & = \pLvl_{\prdT}^{1-\CRRA}\frac{{\mNrm}_{\prdT}^{1-\CRRA}}{1-\CRRA}                       \\
                                                 & = (\pLvl_{\prdT-1}\PermGroFac_{\prdT})^{1-\CRRA}\frac{{\mNrm}_{\prdT}^{1-\CRRA}}{1-\CRRA} \\
                                                 &= \pLvl_{\prdT-1}^{1-\CRRA}\PermGroFac_{\prdT}^{1-\CRRA}\vFunc_{\prdT}({\mNrm}_{\prdT}). \label{eq:vT}
     \end{aligned}\end{gathered}\end{equation}
@@ -21,7 +21,7 @@ Now define nonbold variables as the bold variable divided by the level of perman
 Now define a new optimization problem:
 \begin{verbatimwrite}{./Equations/vNormed.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
-        \vFunc_{\prd}({\mNrm}_{\prd}) & = \max_{{\cNrm}_{\prd}} ~~ \uFunc({\cNrm}_{\prd})+{\DiscFac}\Ex_{\prd}[ \PermGroFac_{\prd+1}^{1-\CRRA}\vFunc_{\prd+1}({\mNrm}_{\prd+1})] \label{eq:vNormed}                   \\
+        {\vFunc}_{\prd}({\mNrm}_{\prd}) & = \max_{{\cNrm}_{\prd}} ~~ \uFunc({\cNrm}_{\prd})+{\DiscFac}\Ex_{\prd}[ \PermGroFac_{\prd+1}^{1-\CRRA}{\vFunc}_{\prd+1}({\mNrm}_{\prd+1})] \label{eq:vNormed}                   \\
                                          & \text{s.t.}                                                                                 \\
         {\aNrm}_{\prd}                       & = {\mNrm}_{\prd}-{\cNrm}_{\prd}                                                                     \\
         {\kNrm}_{\prd+1}                     & = {\aNrm}_{\prd}                                                                                \\
@@ -34,9 +34,9 @@ where division by $\PermGroFac$ in second-to-last equation yields a normalized r
 
 Then it is easy to see that for $\prd=\trmT-1$, 
 \begin{equation*}\begin{gathered}\begin{aligned}
-      \vLvl_{\prd}(\mLvl_{\prd},\pLvl_{\prd}) & =  \pLvl_{\prd+1}^{1-\CRRA}\vFunc_{\prdt}({\mNrm}_{\prdt})
+      {\vLvl}_{\prd}(\mLvl_{\prd},\pLvl_{\prd}) & =  \pLvl_{\prd+1}^{1-\CRRA}{\vFunc}_{\prdt}({\mNrm}_{\prdt})
     \end{aligned}\end{gathered}\end{equation*}
-and so on back to all earlier periods.  Hence, if we solve the problem \eqref{eq:vNormed} which has only a single state variable $\mNrm_{\prd-1}$, we can obtain the levels of the value function, consumption, and all other variables from the corresponding permanent-income-normalized solution objects by multiplying each by $\pLvl_{\prd}$, e.g.\ $\cFunc_{\prd}(\mLvl_{\prd},\pLvl_{\prd})=\pLvl_{\prd}\cFunc_{\prd}(\mLvl_{\prd}/\pLvl_{\prd})$ (or, for the value function, $\vLvl _{\prd}(\mLvl_{\prd},\pLvl_{\prd}) = \pLvl_{\prd}^{1-\CRRA}\vFunc_{\prd}({\mNrm}_{\prd}))$.  We have thus reduced the problem from two continuous state variables to one (and thereby enormously simplified its solution).
+and so on back to all earlier periods.  Hence, if we solve the problem \eqref{eq:vNormed} which has only a single state variable $\mNrm_{\prd-1}$, we can obtain the levels of the value function, consumption, and all other variables from the corresponding permanent-income-normalized solution objects by multiplying each by $\pLvl_{\prd}$, e.g.\ ${\cFunc}_{\prd}(\mLvl_{\prd},\pLvl_{\prd})=\pLvl_{\prd}\cFunc_{\prd}(\mLvl_{\prd}/\pLvl_{\prd})$ (or, for the value function, ${\vLvl} _{\prd}({\mLvl}_{\prd},\pLvl_{\prd}) = \pLvl_{\prd}^{1-\CRRA}\vFunc_{\prd}({\mNrm}_{\prd}))$.  We have thus reduced the problem from two continuous state variables to one (and thereby enormously simplified its solution).
 
 For future reference it will also be useful to write the problem \eqref{eq:vNormed} in the traditional way, by substituting ${\bNrm}_{\prdt+1},{\kNrm}_{\prdt+1},$ and ${\aNrm}_{\prdt}$ into ${\mNrm}_{t+1}$:
 \begin{equation}\begin{gathered}\begin{aligned}

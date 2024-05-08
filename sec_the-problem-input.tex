@@ -24,7 +24,7 @@ available to be spent on consumption $\cLvl_{\prd}$ for a consumer subject to a 
 The consumer's goal is to maximize discounted utility from consumption over the rest of a lifetime ending at date $\trmT$:
 % chktex-file 36
   \begin{equation}\label{eq:MaxProb}
-    \max~\Ex_{\prd}\left[\sum_{n=0}^{\trmT-\prd}\DiscFac^{n} \uFunc(\cLvl_{\prd+n})\right].
+    \max~\Ex_{\prd}\left[\sum_{n=0}^{\trmT-\prd}\DiscFac^{n} \uFunc({\cLvl}_{\prd+n})\right].
   \end{equation}
 Income evolves according to:
   \begin{equation}\begin{gathered}\begin{aligned}
@@ -36,7 +36,7 @@ Equation \eqref{eq:permincgrow} indicates that we are allowing for a predictable
 
 It is well known that this problem can be rewritten in recursive (Bellman) form:
   \begin{equation}\begin{gathered}\begin{aligned}
-        \vFunc_{\prd}(\mLvl_{\prd},\pLvl_{\prd})  & = \max_{\cCtrl}~ \uFunc(\cCtrl) + \DiscFac \Ex_{\prd}[ \vFunc_{\prd+1}(\mLvl_{\prd+1},\pLvl_{\prd+1})]\label{eq:vrecurse}
+        \vFunc_{\prd}(\mLvl_{\prd},\pLvl_{\prd})  & = \max_{\cCtrl}~ \uFunc(\cCtrl) + \DiscFac \Ex_{\prd}[ \vFunc_{\prd+1}({\mLvl}_{\prd+1},\pLvl_{\prd+1})]\label{eq:vrecurse}
       \end{aligned}\end{gathered}\end{equation}
 subject to the Dynamic Budget Constraint (DBC) implicitly defined by equations~\eqref{eq:bLvl}-\eqref{eq:mLvl} and to the transition equation that defines next period's initial capital as this period's end-of-period assets:
 \begin{equation}\begin{gathered}\begin{aligned}

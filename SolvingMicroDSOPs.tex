@@ -9,16 +9,17 @@
 \usepackage{\packages/llorracc-handouts} % allow references to llorracc-handouts
 \usepackage{\LaTeXInputs/owner}          % llorracc or econ-ark?
 \usepackage{\LaTeXInputs/local-packages} % LaTeX config in Resources/LaTeXInputs
-%\input{unicode-subs-declare}% When unicode char encountered, translate 
-
-% Characters to replace for prettification
-\usepackage{SolvingMicroDSOPs-private}
 
 % Uncomment the line below to make a file with unicode compilable
 %\usepackage{\LaTeXInputs/unicode-subs-private} % sub unicode for default
 
 % booleans control whether certain features are on or off:
 \input{SolvingMicroDSOPs-options}   
+
+% Characters to replace for prettification
+\setboolean{Cleanmacros}{false}
+  
+\ifClean{\usepackage{SolvingMicroDSOPs-private}}{}
 
 \hypersetup{colorlinks=true,
   pdfauthor={Christopher D. Carroll <ccarroll@jhu.edu>},

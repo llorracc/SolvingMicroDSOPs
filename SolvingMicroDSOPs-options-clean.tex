@@ -34,9 +34,19 @@
 \provideboolean{MPCMatchVersion}\setboolean{MPCMatchVersion}{true}
 \newcommand{\MPCMatch}{\ifthenelse{\boolean{MPCMatchVersion}}}
 
-% margin notes -- to be deleted
+% mynotes
 \provideboolean{MyNotes}\setboolean{MyNotes}{true}
-\setboolean{MyNotes}{false} 
+%\setboolean{MyNotes}{false} 
+
+% margin notes
+\provideboolean{Margnote}\setboolean{Margnote}{true}
+% \setboolean{Margnote}{false}
+\newcommand{\ifMarg}{\ifthenelse{\Margnote}}
+
+% margin notes
+\provideboolean{Cleanmacros}\setboolean{Cleanmacros}{true}
+\setboolean{Cleanmacros}{false}
+\newcommand{\ifClean}{\ifthenelse{\boolean{Cleanmacros}}}
 
 % Show things that need fixing
 \provideboolean{ToFix}\setboolean{ToFix}{true}

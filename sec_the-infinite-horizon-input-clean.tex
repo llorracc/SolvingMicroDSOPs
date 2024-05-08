@@ -47,22 +47,22 @@ function has converged for all practical purposes.
   For the perfect foresight infinite horizon consumption problem,
   the solution is
   \begin{equation}\begin{gathered}\begin{aligned}
-        \bar{\cFunc}(m_{t})  & = \overbrace{(1-R^{-1}(R
+        \bar{\cFunc}({m}_{t})  & = \overbrace{(1-R^{-1}(R
           \beta)^{1/\rho})}^{\equiv
           \underline{\kappa}}\left[{m}_{t}-1+\left(\frac{1}{1-1/R}\right)\right]
         \label{eq:pfinfhorc}
       \end{aligned}\end{gathered}\end{equation}
   where $\underline{\kappa}$ is the MPC in the
   infinite-horizon perfect foresight problem.  In our baseline problem,
-  we set $G = \pLvl_{t} = 1$.  It is straightforward to show that the
+  we set $\PermGroFac = \pLvl_{t} = 1$.  It is straightforward to show that the
   infinite-horizon perfect-foresight value function and marginal value
   function are given by
   \begin{equation}\begin{gathered}\begin{aligned}
-        \bar{v}(m_{t})
-        & =                                 \left(\frac{\bar{\cFunc}(m_{t})^{1-\rho}}{
+        \bar{v}({m}_{t})
+        & =                                 \left(\frac{\bar{\cFunc}({m}_{t})^{1-\rho}}{
             (1-\rho)\underline{\kappa} }\right)
-        \\  \bar{v}^{m}(m_{t})  & =       (\bar{\cFunc}(m_{t}))^{-\rho}
-        \\  \Opt{v}^{m}(a_{t})  & = \beta R G_{t+1}^{-\rho} \bar{v}^{m}(\mathcal{R}_{t+1} a_{t}+1).
+        \\  \bar{v}^{{m}}({m}_{t})  & =       (\bar{\cFunc}({m}_{t}))^{-\rho}
+        \\  \Opt{v}^{{m}}({a}_{t})  & = \beta R \PermGroFac_{t+1}^{-\rho} \bar{v}^{{m}}(\RNrm_{t+1} {a}_{t}+1).
       \end{aligned}\end{gathered}\end{equation}
 
   % WW delete the text on 2011-06-21 because we no longer start from the infinite horizon perfect foresight solution.

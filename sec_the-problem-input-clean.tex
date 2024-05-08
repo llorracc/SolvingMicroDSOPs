@@ -24,19 +24,19 @@ available to be spent on consumption $\cLvl_{t}$ for a consumer subject to a liq
 The consumer's goal is to maximize discounted utility from consumption over the rest of a lifetime ending at date $T$:
 % chktex-file 36
   \begin{equation}\label{eq:MaxProb}
-    \max~\Ex_{t}\left[\sum_{n=0}^{T-t}\beta^{n} \uFunc(\cLvl_{t+n})\right].
+    \max~\Ex_{t}\left[\sum_{n=0}^{T-t}\beta^{n} u({\cLvl}_{t+n})\right].
   \end{equation}
 Income evolves according to:
   \begin{equation}\begin{gathered}\begin{aligned}
-        \pLvl_{t+1}   = G_{t+1}\pLvl_{t}                                        & \text{~~ -- permanent labor income dynamics} \label{eq:permincgrow}
+        \pLvl_{t+1}   = \PermGroFac_{t+1}\pLvl_{t}                                        & \text{~~ -- permanent labor income dynamics} \label{eq:permincgrow}
         \\ \log ~ \TranShkEmp_{t+n}  \sim ~\Nrml(-\std_{\TranShkEmp}^{2}/2,\std_{\TranShkEmp}^{2}) & \text{~~ -- lognormal transitory shocks}~\forall~n>0 .
       \end{aligned}\end{gathered}\end{equation}
 
-Equation \eqref{eq:permincgrow} indicates that we are allowing for a predictable average profile of income growth over the lifetime $\{G\}_{0}^{T}$ (to capture typical career wage paths, pension arrangements, etc).\footnote{For expositional and pedagogical purposes, this equation assumes that there are no shocks to permanent income (though they are trivial to add).  A large literature finds that, in reality, permanent (or at least extremely highly persistent) shocks exist and are quite large; such shocks therefore need to be incorporated into any `serious' model (that is, one that hopes to match and explain empirical data), but the treatment of permanent shocks clutters the exposition without adding much to the intuition, so permanent shocks are omitted from the analysis until the last section of the notes, which shows how to match the model with empirical micro data.  For a full treatment of the theory including permanent shocks, see \cite{BufferStockTheory}.}  Finally, the utility function is of the Constant Relative Risk Aversion (CRRA), form, $\uFunc(\bullet) = \bullet^{1-\rho}/(1-\rho)$.
+Equation \eqref{eq:permincgrow} indicates that we are allowing for a predictable average profile of income growth over the lifetime $\{\PermGroFac\}_{0}^{T}$ (to capture typical career wage paths, pension arrangements, etc).\footnote{For expositional and pedagogical purposes, this equation assumes that there are no shocks to permanent income (though they are trivial to add).  A large literature finds that, in reality, permanent (or at least extremely highly persistent) shocks exist and are quite large; such shocks therefore need to be incorporated into any `serious' model (that is, one that hopes to match and explain empirical data), but the treatment of permanent shocks clutters the exposition without adding much to the intuition, so permanent shocks are omitted from the analysis until the last section of the notes, which shows how to match the model with empirical micro data.  For a full treatment of the theory including permanent shocks, see \cite{BufferStockTheory}.}  Finally, the utility function is of the Constant Relative Risk Aversion (CRRA), form, $u(\bullet) = \bullet^{1-\rho}/(1-\rho)$.
 
 It is well known that this problem can be rewritten in recursive (Bellman) form:
   \begin{equation}\begin{gathered}\begin{aligned}
-        v_{t}(\mLvl_{t},\pLvl_{t})  & = \max_{\cCtrl}~ \uFunc(\cCtrl) + \beta \Ex_{t}[ v_{t+1}(\mLvl_{t+1},\pLvl_{t+1})]\label{eq:vrecurse}
+        v_{t}(\mLvl_{t},\pLvl_{t})  & = \max_{\cCtrl}~ u(\cCtrl) + \beta \Ex_{t}[ v_{t+1}({\mLvl}_{t+1},\pLvl_{t+1})]\label{eq:vrecurse}
       \end{aligned}\end{gathered}\end{equation}
 subject to the Dynamic Budget Constraint (DBC) implicitly defined by equations~\eqref{eq:bLvl}-\eqref{eq:mLvl} and to the transition equation that defines next period's initial capital as this period's end-of-period assets:
 \begin{equation}\begin{gathered}\begin{aligned}

@@ -29,7 +29,7 @@ The consumer's goal is to maximize discounted utility from consumption over the 
 % chktex-file 36
 \begin{verbatimwrite}{./Equations/MaxProb}
   \begin{equation}\label{eq:MaxProb}
-    \max~\Ex_{\prd}\left[\sum_{n=0}^{\trmT-\prd}\DiscFac^{n} \uFunc(\cLvl_{\prd+n})\right].
+    \max~\Ex_{\prd}\left[\sum_{n=0}^{\trmT-\prd}\DiscFac^{n} \uFunc({\cLvl}_{\prd+n})\right].
   \end{equation}
 \end{verbatimwrite}
 \input{./Equations/MaxProb}\unskip
@@ -47,7 +47,7 @@ Equation \eqref{eq:permincgrow} indicates that we are allowing for a predictable
 It is well known that this problem can be rewritten in recursive (Bellman) form:
 \begin{verbatimwrite}{./Equations/vrecurse}
   \begin{equation}\begin{gathered}\begin{aligned}
-        \vFunc_{\prd}(\mLvl_{\prd},\pLvl_{\prd})  & = \max_{\cCtrl}~ \uFunc(\cCtrl) + \DiscFac \Ex_{\prd}[ \vFunc_{\prd+1}(\mLvl_{\prd+1},\pLvl_{\prd+1})]\label{eq:vrecurse}
+        \vFunc_{\prd}(\mLvl_{\prd},\pLvl_{\prd})  & = \max_{\cCtrl}~ \uFunc(\cCtrl) + \DiscFac \Ex_{\prd}[ \vFunc_{\prd+1}({\mLvl}_{\prd+1},\pLvl_{\prd+1})]\label{eq:vrecurse}
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/vrecurse}\unskip

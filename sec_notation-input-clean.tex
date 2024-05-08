@@ -20,7 +20,7 @@ The key to the framework is distinguishing, within each {\stg}'s Bellman problem
 
 \begin{enumerate}
 \item \textbf{\Arrival}: Incoming state variables (e.g., $k$) are known, but any shocks associated with the period have not been realized and decision(s) have not yet been made
-\item \textbf{\Decision}: All exogenous variables (like income shocks, rate of return shocks, and predictable income growth $G$) have been realized (so that, e.g., $m$'s value is known) and the agent solves the optimization problem
+\item \textbf{\Decision}: All exogenous variables (like income shocks, rate of return shocks, and predictable income growth $\PermGroFac$) have been realized (so that, e.g., $m$'s value is known) and the agent solves the optimization problem
 \item \textbf{\Continuation}: After all decisions have been made, their consequences are measured by evaluation of the continuing-value function at the values of the `outgoing' state variables (sometimes called `post-state' variables).
 \end{enumerate}
 
@@ -38,7 +38,7 @@ When we want to refer to a specific {\move} in the {\stg} we will do so by using
 %  }
   \end{center}
 
-  Notice that the value functions at different {\move}s of the {\stg} have distinct state variables.  Only $k$ is known at the beginning of the period, and other variables take on their values with equations like $b = k \mathcal{R}$ and $m = b+\TranShkEmp.$  We will refer to such within-the-{\stg} creation of variables as {\evltns}.%  Thus, the consumption problem has two {\evltns}: from $\kNrm$ to $\mNrm$ and from $\mNrm$ to $\aNrm$.
+  Notice that the value functions at different {\move}s of the {\stg} have distinct state variables.  Only $k$ is known at the beginning of the period, and other variables take on their values with equations like $b = k \RNrm$ and $m = b+\TranShkEmp.$  We will refer to such within-the-{\stg} creation of variables as {\evltns}.%  Thus, the consumption problem has two {\evltns}: from $\kNrm$ to $\mNrm$ and from $\mNrm$ to $\aNrm$.
 
 \subsection{\Trnsns}
 v
@@ -60,18 +60,17 @@ One way to describe this is that when we are considering the solution to the cur
 
 The {\Decision} problem can now be written much more cleanly than in equation \eqref{eq:vNormed}:
   \begin{equation}\begin{gathered}\begin{aligned}
-        v(m) & = \max_{c}~ \uFunc({c}) + v_{\cntn}(\overbrace{m-\cFunc}^{a}) \label{eq:vMid}
+        v(m) & = \max_{c}~ u({c}) + v_{\cntn}(\overbrace{m-\cFunc}^{a}) \label{eq:vMid}
       \end{aligned}\end{gathered}\end{equation}
 whose first order condition with respect to $c$ is
 \begin{equation}\begin{gathered}\begin{aligned}
-  \uFunc^{c}(c) &= \vEndStp^{a}(m-c)  \label{eq:upEqbetaOp} 
+  u^{c}(c) &= \vEndStp^{a}(m-c)  \label{eq:upEqbetaOp} 
 \end{aligned}\end{gathered}\end{equation}
 which is mathematically equivalent to the usual Euler equation for consumption.  (We will reuse this formulation when we turn to section~\ref{subsec:egm}.)
 
 Having defined these notational conventions, we are now ready to move to substance.
 
 \begin{comment}
-  %
   \subsection{Implementation in Python}
 
   The code implementing the tasks outlined each of the sections to come is available in the \texttt{\href{https://econ-ark.org/materials/SolvingMicroDSOPs}{SolvingMicroDSOPs}} jupyter notebook, written in \href{https://python.org}{Python}. The notebook imports various modules, including the standard \texttt{numpy} and \texttt{scipy} modules used for numerical methods in Python, as well as some user-defined modules designed to provide numerical solutions to the consumer's problem from the previous section. Before delving into the computational exercise, it is essential to touch on the practicality of these custom modules.

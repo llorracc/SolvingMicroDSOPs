@@ -132,6 +132,8 @@
   *{file}   {supp-pdf.mkii}{0000/00/00 v0.0}
   *{package}{epstopdf-base}{2020-01-24 v2.11}
   *{file}   {epstopdf-sys.cfg}{2010/07/13 v1.3}
+  *{file}   {SolvingMicroDSOPs.out}{0000/00/00 v0.0}
+  *{file}   {SolvingMicroDSOPs.out}{0000/00/00 v0.0}
   *{package}{bookmark}    {2020-11-06 v1.29}
   *{file}   {bkm-pdftex.def}{2020-11-06 v1.29}
   *{file}   {sec_titlepage-input.tex}{0000/00/00 v0.0}
@@ -175,4 +177,5 @@
   *{file}   {./Figures/SMMcontour.pdf}{0000/00/00 v0.0}
   *{file}   {apndx_scf-data-input.tex}{0000/00/00 v0.0}
   *{file}   {Resources/LaTeXInputs/bibliography_blend.tex}{0000/00/00 v0.0}
+  *{file}   {SolvingMicroDSOPs.bbl}{0000/00/00 v0.0}
 }
