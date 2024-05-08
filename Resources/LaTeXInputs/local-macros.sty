@@ -108,6 +108,11 @@
 \providecommand{\Interval}{}\renewcommand{\Interval}{Tic}
 \providecommand{\intervals}{}\renewcommand{\intervals}{tics}
 \providecommand{\Intervals}{}\renewcommand{\Intervals}{Tics}
+\providecommand{\stg}{}\renewcommand{\stg}{tac}
+\providecommand{\Stg}{}\renewcommand{\Stg}{Tac}
+\providecommand{\stgs}{}\renewcommand{\stgs}{tacs}
+\providecommand{\Stgs}{}\renewcommand{\Stgs}{Tacs}
+
 
 \providecommand{\trnsn}{}\renewcommand{\trnsn}{transition}
 \providecommand{\Trnsn}{}\renewcommand{\Trnsn}{Transition}
@@ -118,12 +123,6 @@
 \providecommand{\Evltn}{}\renewcommand{\Evltn}{Evolution}
 \providecommand{\evltns}{}\renewcommand{\evltns}{evolutions}
 \providecommand{\Evltns}{}\renewcommand{\Evltns}{Evolutions}
-
-
-\providecommand{\stg}{}\renewcommand{\stg}{tac}
-\providecommand{\Stg}{}\renewcommand{\Stg}{Tac}
-\providecommand{\stgs}{}\renewcommand{\stgs}{tacs}
-\providecommand{\Stgs}{}\renewcommand{\Stgs}{Tacs}
 
 \newcommand{\ExEndStp}{\Ex_{\EndStp}}
 \newcommand{\ExBegStp}{\Ex_{\BegStp}}
@@ -236,7 +235,7 @@
 \newcommand{\cStgSub}{[\cStg]}
 \newcommand{\cStgSup}{\cStg}
 
-\newcommand{\cStgBeg}{\arvlc}
+\newcommand{\cStgBeg}{_\arvl{c}}
 \newcommand{\cStgMid}{[c]}
 \newcommand{\cStgEnd}{{c}\cntn}
 
@@ -246,7 +245,6 @@
 
 \renewcommand{\vBegStpNxt}{\vFunc^{\cStgBeg}_{\prd+1}}
 \newcommand{\cCtrl}{\cFunc}
-\newcommand{\mStte}{\mNrm} % m as a state variable
 
+\newcommand{\mStte}{\mNrm} % m as a state variable
 \newcommand{\aStte}{\aNrm}
-\newcommand{\cStte}{\cNrm}

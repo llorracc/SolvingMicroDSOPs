@@ -78,7 +78,8 @@ where we have deliberately omitted the {\interval}-designating subscripts for $\
 
 Solving simultaneously for the two variables $\Shr$ and $c$ can be computationally challenging.  Fortunately, there is a simple solution: Break the problem into two `{\stg}s'\footnote{cite mnw and ael papers.} 
 which we will call the `consumption {\stg} $\cFunc$' and the `portfolio {\stg} $\Shr$.'  These could come in either order in the {\interval}: We designate the `portfolio choice first, then consumption' version by $[\Shr,\cFunc]$ and the `consumption choice first, then portfolio' as $[\cFunc,\Shr]$.
-%Our tripartite dissection of the Bellman problem above into {\move}s was motivated partly by the need for a notation that can allow for construction of standalone Bellman `{\stg}s' whose only connection to the subsequent {\stg} is through the continuation-value function.
+
+In a problem with multiple {\stgs}, if we want to refer to a sub-{\move} of a particular {\stg} -- say, the {\Arrival} {\stg} of the portfolio {\stg} -- we simply add a {\stg}-indicator subscript (in square brackets) to the notation we have been using until now.  That is, the {\Arrival} {\stg} of the portfolio problem would be $\vFunc_{_\arvl[\Shr]}$.
 
 \hypertarget{revised-consumers-problem}{}
 \subsubsection{The (Revised) Consumer's Problem}\label{subsubsec:revised-consumers-problem}
@@ -95,7 +96,7 @@ A slight modification to the consumer's problem specified earlier is necessary t
 
 Consider the standalone problem of an `investor' whose continuation-value function $\vFunc_{[\Shr]_\cntn}$ depends on how much wealth $\wlthAftr$ they end up after the realization of the stochastic $\Risky$ return.  The expected value that the investor will obtain from any combination of initial $\wlthBefr$ and their optimal choice of the portfolio share $\Shr$ is the expectation of the continuation-value function over the wealth that results from the portfolio choice:
 \begin{equation}\begin{gathered}\begin{aligned}
-  \vFunc_{_\arvl[\Shr]}(\wlthBefr)  = & \max_{\Shr}~ \Ex_{\BegStp}\left[\vFunc_{[\Shr]_{_\cntn}}\overbrace{\left(\Rport(\Shr){\wlthBefr}\right)}^{\wlthAftr}\right] \label{eq:vMidStpShr}
+  \vFunc_{_\arvl[\Shr]}(\wlthBefr)  = & \max_{\Shr}~ \Ex_{\BegStp[\Shr]}\left[\vFunc_{[\Shr]_{_\cntn}}\overbrace{\left(\Rport(\Shr){\wlthBefr}\right)}^{\wlthAftr}\right] \label{eq:vMidStpShr}
     \end{aligned}\end{gathered}\end{equation}
 where we have omitted any {\interval} designator like $\prd$ for the {\interval} in which this problem is solved because, with the continuation-value function defined already as $\vFunc_{[\Shr]_\cntn}(\wlthAftr)$, the problem is self-contained.  The solution to this problem will yield an optimal $\Shr$ decision rule $\optml{\Shr}(\wlthBefr).$  Finally, we can specify the value of an investor `arriving' with $\wlthBefr$ as the expected value that will be obtained when the investor invests optimally, generating the \textit{ex ante} optimal stochastic portfolio return factor $\optml{\Rport}(\wlthBefr)=\Rport(\optml{\Shr}(\wlthBefr))$:
 \begin{equation}\begin{gathered}\begin{aligned}
@@ -112,9 +113,9 @@ The beginning-returns problem effectively just inserts a portfolio choice that h
 \\\vFunc_{[\Shr]_\cntn}(\bNrm)  & = \vFunc_{_\arvl[\cFunc]}(\bNrm)
     \end{aligned}\end{gathered}\end{equation}
 
-Since in this setup bank balances have been determined before the consumption problems starts, we need to rewrite the consumption {\stg}  as a function of bank balances that (stochastically) will have resulted from the portfolio investment $\bNrm$:
+Since in this setup bank balances have been determined before the consumption problems starts, we need to rewrite the consumption {\stg}  as a function of bank balances that will have resulted from the portfolio investment $\bNrm$, combined with the income shocks $\TranShkEmp$:
 \begin{equation}\begin{gathered}\begin{aligned}
-      \vFunc_{_\arvl[\cFunc]}(\bNrm) = & \max_{\cFunc}~ \uFunc(\cNrm) + \Ex_{[\cFunc]_\arvl}[\vFunc_{[\cFunc]_\cntn}(\underbrace{\overbrace{\bNrm+\TranShkEmp}^{\mNrm}-\cNrm}_{\aNrm})]
+      \vFunc_{_\arvl[\cFunc]}(\bNrm) = & \max_{\cFunc}~ \uFunc(\cNrm) + \Ex_{_\arvl[\cFunc]}[\vFunc_{[\cFunc]_\cntn}(\underbrace{\overbrace{\bNrm+\TranShkEmp}^{\mNrm}-\cNrm}_{\aNrm})]
     \end{aligned}\end{gathered}\end{equation}
 where, because the consumption {\stg} is the last {\stg} in the {\interval}, the continuatibon-value function for the $\cFunc$ {\stg} is just the continuation-value function for the period as a whole:
 \begin{equation}\begin{gathered}\begin{aligned}
@@ -130,7 +131,9 @@ If the portfolio share and risky returns are realized at the end of the {\interv
     \end{aligned}\end{gathered}\end{equation}
 where we are designating the post-realization result of the investment as $\kNrm$, and since the $\Shr$-{\stg} is the last {\stg} of the problem the end-of-{\stg} $\kNrm$ becomes the end-of-{\interval} $\kNrm_{\prd}.$ 
 
-The `state transition' equation between $\prd$ and $\prd+1$ is simply $\bNrm_{t+1} = \kNrm_{\prd}$ and the continuation-value function transition is $\vFunc_{\prd_\cntn}(\kNrm) \mapsto \vFunc_{_\arvl(\prd+1)}(\kNrm_{\prd+1})$ which reflects the above-mentioned point that there is no substantive difference between the two problems (their $\vFunc_{[\cFunc]}(\mNrm)$ value functions and $\cFunc(\mNrm)$ functions will be identical).
+The `state transition' equation between $\prd$ and $\prd+1$ is simply $\bNrm_{t+1} = \kNrm_{\prd}$ and the continuation-value function transition is $\vFunc_{\prd_\cntn}(\kNrm) \mapsto \DiscFac \vFunc_{_\arvl(\prd+1)}(\kNrm)$ which reflects the above-mentioned point that there is no substantive difference between the two problems (their $\vFunc_{[\cFunc]}(\mNrm)$ value functions and $\cFunc(\mNrm)$ functions will be identical).
+
+(Note that we are assuming that there will be only one consumption function in the period, so no {\stg} subscript is necessary to pick out `the consumption function'). 
 
 \subsubsection{Numerical Solution}
 While the investor's problem cannot be solved using the endogenous gridpoints method,\footnote{Because $\vShrEnd$ is not invertible with respect to $\Shr$, see [references to MNW and AEL's work].} 

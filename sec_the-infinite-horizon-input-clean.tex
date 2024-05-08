@@ -16,15 +16,15 @@ enough' has been found.
 A natural metric is defined by the unique `target' level of wealth that \cite{BufferStockTheory} proves
 will exist in problems of this kind \href{https://llorracc.github.io/BufferStockTheory#GICNrm}{under certain conditions}: The $\mTrgNrm$ such that
 \begin{equation}
-  \Ex_t [{\mNrm}_{\prd+1}/\mNrm_t] = 1 \mbox{~if~} \mNrm_t = \mTrgNrm  \label{eq:mTrgNrmet}
+  \Ex_t [{m}_{t+1}/m_t] = 1 \mbox{~if~} m_t = \mTrgNrm  \label{eq:mTrgNrmet}
 \end{equation}
 where the accent is meant to signify that this is the value
-that other $\mNrm$'s `point to.'
+that other $m$'s `point to.'
 
-Given a consumption rule $\cFunc(\mNrm)$ it is straightforward to find
+Given a consumption rule $\cFunc(m)$ it is straightforward to find
 the corresponding $\mTrgNrm$.  So for our problem, a solution is declared
 to have converged if the following criterion is met:
-$\left|\mTrgNrm_{\prd+1}-\mTrgNrm_{\prd}\right| < \epsilon$, where $\epsilon$ is
+$\left|\mTrgNrm_{t+1}-\mTrgNrm_{t}\right| < \epsilon$, where $\epsilon$ is
 a very small number and defines our degree of convergence tolerance.
 
 Similar criteria can obviously be specified for other problems.
@@ -47,22 +47,22 @@ function has converged for all practical purposes.
   For the perfect foresight infinite horizon consumption problem,
   the solution is
   \begin{equation}\begin{gathered}\begin{aligned}
-        \bar{\cFunc}(m_{\prd})  & = \overbrace{(1-\Rfree^{-1}(\Rfree
-          \DiscFac)^{1/\CRRA})}^{\equiv
-          \underline{\MPC}}\left[{m}_{\prd}-1+\left(\frac{1}{1-1/\Rfree}\right)\right]
+        \bar{\cFunc}(m_{t})  & = \overbrace{(1-R^{-1}(R
+          \beta)^{1/\rho})}^{\equiv
+          \underline{\kappa}}\left[{m}_{t}-1+\left(\frac{1}{1-1/R}\right)\right]
         \label{eq:pfinfhorc}
       \end{aligned}\end{gathered}\end{equation}
-  where $\underline{\MPC}$ is the MPC in the
+  where $\underline{\kappa}$ is the MPC in the
   infinite-horizon perfect foresight problem.  In our baseline problem,
-  we set $\PermGroFac = \pLvl_{\prd} = 1$.  It is straightforward to show that the
+  we set $G = \pLvl_{t} = 1$.  It is straightforward to show that the
   infinite-horizon perfect-foresight value function and marginal value
   function are given by
   \begin{equation}\begin{gathered}\begin{aligned}
-        \bar{\vFunc}(m_{\prd})
-        & =                                 \left(\frac{\bar{\cFunc}(m_{\prd})^{1-\CRRA}}{
-            (1-\CRRA)\underline{\MPC} }\right)
-        \\  \bar{\vFunc}^{m}(m_{\prd})  & =       (\bar{\cFunc}(m_{\prd}))^{-\CRRA}
-        \\  \Opt{\vFunc}^{m}(a_{\prd})  & = \DiscFac \Rfree \PermGroFac_{\prd+1}^{-\CRRA} \bar{\vFunc}^{m}(\RNrm_{\prd+1} a_{\prd}+1).
+        \bar{v}(m_{t})
+        & =                                 \left(\frac{\bar{\cFunc}(m_{t})^{1-\rho}}{
+            (1-\rho)\underline{\kappa} }\right)
+        \\  \bar{v}^{m}(m_{t})  & =       (\bar{\cFunc}(m_{t}))^{-\rho}
+        \\  \Opt{v}^{m}(a_{t})  & = \beta R G_{t+1}^{-\rho} \bar{v}^{m}(\mathcal{R}_{t+1} a_{t}+1).
       \end{aligned}\end{gathered}\end{equation}
 
   % WW delete the text on 2011-06-21 because we no longer start from the infinite horizon perfect foresight solution.

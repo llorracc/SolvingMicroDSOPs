@@ -15,7 +15,7 @@ If, as in section \ref{sec:the-problem}, we hard-wire into the solution code for
 
 But one of the cardinal insights of Bellman's (1957, ``Dynamic Programming'') original work is that \emph{everything that matters} for the solution to the current problem is encoded in a `continuation-value function.' %that incorporates \texttt{everything about the future} that is important to solution of the present stage.  %This point is important for a number of reasons, but here we will focus on one problem of ignoring it. Actual solution of the maximization problem as specified in \eqref{eq:vNormed} requires the current agent to have knowledge not only of the successor value function, but also of other aspects of the problem like the distributions of the future period's stochastic shocks. So any solution to the problem that directly uses in \eqref{eq:vNormed} will need to hard-wire into itself the specifics of the successor problem.
 
-Using Bellman's insight, we describe here a framework for isolating the {\stg} problems within a {\interval} from each other, and from their successors in any future {\interval}; the advantage of this is that the isolated problems will then be `modular': We can solve them in any order \textit{without changing any code}. After considering the {\stg}-order $[\ell,\cFunc,\Shr]$, the modeler can costlessly reorder the {\stg}s to consider, say, the order $[\ell,\Shr,\cFunc]$.\footnote{As long as the beginning-of-{\stg} and end-of-{\stg} value functions for the {\stg}s all depend on the same state variables; see the discussion in section \ref{sec:multiple-control-variables} for further discussion.}
+Using Bellman's insight, we describe here a framework for isolating the {\stg} problems within a {\interval} from each other, and the {\interval} from its successors in any future {\interval}; the advantage of this is that the isolated {\stg} and {\interval} problems will then be `modular': We can solve them in any order \textit{without changing any code}. After considering the {\stg}-order $[\ell,\cFunc,\Shr]$, the modeler can costlessly reorder the {\stg}s to consider, say, the order $[\ell,\Shr,\cFunc]$.\footnote{As long as the beginning-of-{\stg} and end-of-{\stg} value functions for the {\stg}s all depend on the same state variables; see the discussion in section \ref{sec:multiple-control-variables} for further discussion.}
 
 \subsection{\Moves}
 
@@ -33,10 +33,10 @@ When we want to refer to a specific {\move} in the {\stg} we will do so by using
 \begin{center}
 %  \mbox{%
     \begin{tabular}{r|c|c|l|l}
-      {\move}         & Indicator               & State          & Usage                       & Explanation                                \\ \hline
-      {\Arrival}      & $\arvl$ & $\kNrm$ & $\vBegStp({\kNrm})$ & value at entry to {\stg} (before shocks) \\
-      {\Decision}(s)  & (blank)            & $\mNrm$ & $\vMidStp({\mNrm})$ & value of {\stg}-decision (after shocks)       \\
-      {\Continuation} & $\cntn$ & $\aNrm$ & $\vEndStp({\aNrm})$ & value at exit (after decision) \\ \hline
+      {\Move}         & Indicator               & State          & Usage                       & Explanation                                \\ \hline
+      {\Arrival}      & $ \arvl $ & $\kNrm$ & $\vBegStp({\kNrm})$ & value at entry to {\stg} (before shocks) \\
+      {\Decision}(s)  & (blank)            & $\mNrm$ & $\vMidStp(\mNrm)$ & value of {\stg}-decision (after shocks)       \\
+      {\Continuation} & $ \cntn $ & $\aNrm$ & $\vEndStp({\aNrm})$ & value at exit (after decision) \\ \hline
     \end{tabular}
 %  }
   \end{center}
@@ -44,7 +44,7 @@ When we want to refer to a specific {\move} in the {\stg} we will do so by using
   Notice that the value functions at different {\move}s of the {\stg} have distinct state variables.  Only $\kNrm$ is known at the beginning of the period, and other variables take on their values with equations like $b = k \RNrm$ and $\mNrm = \bNrm+\TranShkEmp.$  We will refer to such within-the-{\stg} creation of variables as {\evltns}.%  Thus, the consumption problem has two {\evltns}: from $\kNrm$ to $\mNrm$ and from $\mNrm$ to $\aNrm$.
 
 \subsection{\Trnsns}
-
+v
   In the backward-induction world of Bellman solutions, to solve the problem of a particular {\interval} we must start with an end-of-{\interval} value function, which we designate by including the {\interval} indicator in the subscript:
   \begin{equation}\begin{gathered}\begin{aligned}
         \vEndPrd(\aNrm) & \mapsto \DiscFac \vBegPrdNxt(\overbrace{\aNrm}^{=\kNrm}), \label{eq:trns-single-prd}
@@ -56,36 +56,15 @@ Once we are inside a {\stg}, we will also need an end-of-{\stg} value function. 
         \vEndStg(\aNrm) \mapsto \vEndPrd(\aNrm).
       \end{aligned}\end{gathered}\end{equation}
 
-%   If we wanted to refer to a particular {\move} in a specific {\stg} we could also include the {\stg} in the subscript: $\vFunc_{_\arvl[\cFunc]}$ would return the value function at the arrival {\stg} of the current {\interval}'s problem.
-
-
-  
-%   ; for example the value functions for the beginning and end of period $\prd$ would be written $\vBegPrd(\kNrm)$ and $\vEndPrd(\aNrm)$.  (We have chosen to leave blank the indicator for the {\Decision} stage because under this choice the notation used in section \ref{sec:normalization} for specifying the problem (e.g., in equation \eqref{eq:vNormed}) will still be valid). But when describing the solution of a particular {\stg} there is no need to clutter the notation with the {\interval} subscripts.
-
-%   However, for self-contained solution of a {\stg}, the {\Continuation} value function must be provided as an input. In the single-{\stg} problem, using the prior assumption that $\kNrm_{\prd+1}=\aNrm_{\prd}$, the `transition' between periods $\prd$ and $\prd+1$ is
-%   \begin{equation}\begin{gathered}\begin{aligned}
-%         \vEndPrd(\aNrm) & \mapsto \DiscFac \vBegPrdNxt(\overbrace{\aNrm}^{=\kNrm}). \label{eq:trns-single-stg}
-%   \end{aligned}\end{gathered}\end{equation}
-% and there is also an implicit transition from the end-of-{\interval} to end-of-{\stg} value function:
-%   \begin{equation}\begin{gathered}\begin{aligned}
-%         \vEndStg(\aNrm) & \mapsto \vEndPrd(\aNrm). \label{eq:trns-prd-to-stg}
-%   \end{aligned}\end{gathered}\end{equation}
-
 One way to describe this is that when we are considering the solution to the current {\stg}, we will be working with what, in computer programming, is called a `local function' $\vEndStg(a)$ whose value at the beginning of the {\stg}-solution algorithm has been initialized to the value of a previously-computed `global function' $\vEndPrd(a)$ that had already been constructed by mapping itself to $\DiscFac \vBegPrdNxt$ (equation \eqref{eq:trns-single-prd}).
 \hypertarget{decision-problem}{}
 
 \subsection{The Decision Problem in the New Notation}\label{subsec:decision-problem}
 
-% Recall that the continuation-value function is provided exogenously; we therefore cannot write a general expression for how it is obtained.  In the special case presented in \eqref{eq:vNormed}, in which there is only one {\stg} per period and the problem is identical from {\interval} to {\interval}, we would know that we can construct the {\Continuation} value function from the {\Arrival} value function of the next period because in this case our assumption that $\kNrm_{\prd}=\aNrm_{\prd-1}$ means that our exogenous end-of-{\stg} value function for the only {\stg} of {\interval} $\prd-1$ is simply
-%   \begin{equation}\begin{gathered}\begin{aligned}
-%         \vFunc_{(\prd-1)_\cntn}(\aNrm) & = \DiscFac \vFunc_{_\arvl{\prd}}(\aNrm).
-%       \end{aligned}\end{gathered}\end{equation}
-
-%   Once we have the continuation-value function for the current {\stg} in hand, here is no need to use our {\interval}-identifying notation for the model's variables or the {\stg}'s functions; $\cNrm$, for example, will have only one unique value over the course of the {\stg} and therefore a notation like $\cNrm_{\EndStp}$ would be pointless.  The same is true of all other {\stg} variables and functions; thus, once we are solving the {\stg} problem we can write the end-of-stp value function without the {\prd-1} subscript, as $\vFunc_{_\cntn}(\aNrm).$
 The {\Decision} problem can now be written much more cleanly than in equation \eqref{eq:vNormed}:
 \begin{verbatimwrite}{./Equations/vMid}
   \begin{equation}\begin{gathered}\begin{aligned}
-        \vFunc(\mNrm) & = \max_{\cNrm}~~\uFunc({\cNrm}) +\vFunc_{\cntn}(\overbrace{\mNrm-\cFunc}^{\aNrm}) \label{eq:vMid}
+        \vFunc(\mNrm) & = \max_{\cNrm}~ \uFunc({\cNrm}) + \vFunc_{\cntn}(\overbrace{\mNrm-\cFunc}^{\aNrm}) \label{eq:vMid}
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/vMid}\unskip
@@ -97,7 +76,8 @@ which is mathematically equivalent to the usual Euler equation for consumption. 
 
 Having defined these notational conventions, we are now ready to move to substance.
 
-\begin{comment} %
+\begin{comment}
+  %
   \subsection{Implementation in Python}
 
   The code implementing the tasks outlined each of the sections to come is available in the \texttt{\href{https://econ-ark.org/materials/SolvingMicroDSOPs}{SolvingMicroDSOPs}} jupyter notebook, written in \href{https://python.org}{Python}. The notebook imports various modules, including the standard \texttt{numpy} and \texttt{scipy} modules used for numerical methods in Python, as well as some user-defined modules designed to provide numerical solutions to the consumer's problem from the previous section. Before delving into the computational exercise, it is essential to touch on the practicality of these custom modules.
