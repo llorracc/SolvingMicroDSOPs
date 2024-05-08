@@ -255,22 +255,22 @@ Hence we can define a list called $\yAccessibleLife$ that returns the maximum of
 
 With this in-mind, we can update the end-of-period human wealth terms:
 \begin{equation}\begin{gathered}\begin{aligned}
-          \hEndExpLife_{t}  & =  \sum_{s=t+1}^{T} (\prod_{\tau=t+1}^{s}\Gamma_{\tau} /R_{\tau}) \yExp_{s} \\
-          \hEndBorrowableLife_{t}  & =  \sum_{s=t+1}^{T} (\prod_{\tau=t+1}^{s}\Gamma_{\tau}/R_{\tau}) \yBorrowable_{s} \\
-          \hEndMinLife_{t}  & =  \sum_{s=t+1}^{T} (\prod_{\tau=t+1}^{s}\Gamma_{\tau}/R_{\tau}) \yMin_{s} \\
+          \hEndExpLife_{t}  & =  \sum_{s=t+1}^T (\prod_{\tau=t+1}^{s}\Gamma_{\tau} /R_{\tau}) \yExp_{s} \\
+          \hEndBorrowableLife_{t}  & =  \sum_{s=t+1}^T (\prod_{\tau=t+1}^{s}\Gamma_{\tau}/R_{\tau}) \yBorrowable_{s} \\
+          \hEndMinLife_{t}  & =  \sum_{s=t+1}^T (\prod_{\tau=t+1}^{s}\Gamma_{\tau}/R_{\tau}) \yMin_{s} \\
           \DeltahEndMinLife_{t}  & =  \hEndExpLife_{t} -  \hEndMinLife_{t}\\
-                           & =  \sum_{s=t+1}^{T} (\prod_{\tau=t+1}^{s}\Gamma_{\tau}/R_{\tau}) (\yExp_{s}-\yMin_{s}) \\
+                           & =  \sum_{s=t+1}^T (\prod_{\tau=t+1}^{s}\Gamma_{\tau}/R_{\tau}) (\yExp_{s}-\yMin_{s}) \\
           \DeltahEndBorrowableLife_{t}  & =  \hEndExpLife_{t} -  \hEndBorrowableLife_{t}\\
-                           & =  \sum_{s=t+1}^{T} (\prod_{\tau=t+1}^{s}\Gamma_{\tau}/R_{\tau}) (\yExp_{s}-\yBorrowable_{s}) \\
+                           & =  \sum_{s=t+1}^T (\prod_{\tau=t+1}^{s}\Gamma_{\tau}/R_{\tau}) (\yExp_{s}-\yBorrowable_{s}) \\
           \DeltahEndAccessibleLife_{t}  & =  \hEndExpLife_{t} -  \hEndAccessibleLife_{t}\\
                            & =  (\Gamma_{t+1}/R_{t+1}) (\yExp_{t+1}-\yAccessible_{t+1}) \\
-                          &  +\sum_{s=t+2}^{T} (\prod_{\tau=t+1}^{s}\Gamma_{\tau}/R_{\tau}) (\yExp_{s}-\yBorrowable_{s})
+                          &  +\sum_{s=t+2}^T (\prod_{\tau=t+1}^{s}\Gamma_{\tau}/R_{\tau}) (\yExp_{s}-\yBorrowable_{s})
 \end{aligned}\end{gathered}\end{equation}
 And in the middle of period we can update the elements of $\yExpLife$, $\yMinLife$, $\yBorrowableLife$. Then we go back to the beginning of period and define the beginning-of-period human wealth terms:
 \begin{equation}\begin{gathered}\begin{aligned}
-          \hExpLife_{t}  & =  \yExp_{t} + \sum_{s=t+1}^{T} (\prod_{\tau=t+1}^{s}\Gamma_{\tau} /R_{\tau}) \yExp_{s} \\
-          \hBorrowableLife_{t}  & =  \yBorrowable_{t} + \sum_{s=t+1}^{T} (\prod_{\tau=t+1}^{s}\Gamma_{\tau}/R_{\tau}) \yBorrowable_{s} \\
-          \hMinLife_{t}  & =  \yExp_{t} +\sum_{s=t+1}^{T} (\prod_{\tau=t+1}^{s}\Gamma_{\tau}/R_{\tau}) \yMin_{s}
+          \hExpLife_{t}  & =  \yExp_{t} + \sum_{s=t+1}^T (\prod_{\tau=t+1}^{s}\Gamma_{\tau} /R_{\tau}) \yExp_{s} \\
+          \hBorrowableLife_{t}  & =  \yBorrowable_{t} + \sum_{s=t+1}^T (\prod_{\tau=t+1}^{s}\Gamma_{\tau}/R_{\tau}) \yBorrowable_{s} \\
+          \hMinLife_{t}  & =  \yExp_{t} +\sum_{s=t+1}^T (\prod_{\tau=t+1}^{s}\Gamma_{\tau}/R_{\tau}) \yMin_{s}
 \end{aligned}\end{gathered}\end{equation}
 Therefore when we view things using this three-sub-period angle, we see a clear recursion:
 \begin{equation}\begin{gathered}\begin{aligned}
@@ -304,7 +304,7 @@ Now we are in a position to look at Section 5.2. Here the two-period problem is 
      \item first, \texttt{functions\_stable.m} defines five functions, which is to relate the consumption and value functions at the end of time $t$ ($\ensuremath{\mathfrak{v}}(a_{t})$, $\ensuremath{\mathfrak{v}}'(a_{t})$,
             $\ensuremath{\mathfrak{v}}''(a_{t})$, $\ensuremath{\mathfrak{c}}(a_{t})$ and $\ensuremath{\mathfrak{c}}'(a_{t})$) to the corresponding counterparts at the beginning of time $t+1$. The detailed derivations are as follows:
             \begin{equation}\begin{gathered}\begin{aligned}
-            m_{t+1, i}  & =  \frac{R}{\Gamma} {a}_{t} + \theta_{t+1, i} \\
+            m_{t+1, i}  & =  \frac{R}{\Gamma} a_{t} + \theta_{t+1, i} \\
             \ensuremath{\mathfrak{v}}_{t}(a_{t})  & = \beta \Gamma^{1-\rho} \left(\frac{1}{n}\right)\sum_{i=1}^{n} \ensuremath{\mathrm{v}}_{t+1}(m_{t+1, i}) \\
             \ensuremath{\mathrm{v}}_{t+1}'(m_{t+1, i})  & =  u\text{P}(\ensuremath{\mathrm{c}}_{t+1}(m_{t+1, i})\big) \\
             \ensuremath{\mathfrak{v}}_{t}'(a_{t})  & = \beta \Gamma^{1-\rho} \left(\frac{1}{n}\right)\sum_{i=1}^{n} \ensuremath{\mathrm{v}}_{t+1}'(m_{t+1, i}) R/\Gamma\\
@@ -385,18 +385,18 @@ The big change is in the definition of \texttt{SolveAnotherPeriod} function, whi
         \begin{equation}\begin{gathered}\begin{aligned}
         \cFunc  & =  \cEndFunc(a) \\
          & =  n\text{P}(\vEndFunc^{a}) \\
-        \cEndFunc^{a}  & = \frac{\partial (\vEndFunc^{a})^{-1/\rho}}{\partial a} \\
+        \cEndFunc^a  & = \frac{\partial (\vEndFunc^{a})^{-1/\rho}}{\partial a} \\
          & =  -\rho^{-1} (\vEndFunc^{a})^{-1/\rho-1} \vEndFunc^{aa} \\
          & =  \frac{\vEndFunc^{aa} }{u\text{PP}\big(
         n\text{P}(\vEndFunc^{a})\big)} \\
          & =  \frac{\vEndFunc^{aa} }{u\text{PP}(\cFunc)} \\
         \mFunc  & =  \cFunc + \aEndFunc \\
-        \mFunc^{a}  & =  \cEndFunc^{a} + 1 \\
-        \mFunc^{a}  & =  \kappa_{m}\mFunc^{a} + 1 \\
+        \mFunc^a  & =  \cEndFunc^a + 1 \\
+        \mFunc^a  & =  \kappa_{m}\mFunc^a + 1 \\
         \kappa_{m}  & =  \frac{\mFunc^{a}-1}{\mFunc^{a}} \\
          & =  \frac{\cEndFunc^{a}}{\cEndFunc^{a}+1}
         \end{aligned}\end{gathered}\end{equation}
-        \item It defines $\ensuremath{\blacktriangle {m}}$, $\mu$ and $\ensuremath{\ushort{\mathrm{c}}}$;
+        \item It defines $\ensuremath{\blacktrianglem}$, $\mu$ and $\ensuremath{\ushort{\mathrm{c}}}$;
         \item It generates the value vector and augments various vectors by including their lower bound value;
         \item It does linear interpolation to generate the value function, the consumption function and the consumed function.
         \end{itemize}
@@ -420,12 +420,12 @@ Second we look at \texttt{AddNewPeriodToSolvedLifeDatesPesReaOpt.m}, which is as
             \bar{\vInv}_{t} (m) &\equiv&
             \big((1-\rho)\bar{\vFunc}_{t} (m)\big)^{1/(1-\rho)} \\
              & = \bar{c}_{t}(m) (\vSum_{t}^{T})^{1/(1-\rho)} \\
-            \bar{\vInv}_{t}^{m} (m)  & = 
+            \bar{\vInv}_{t}^m (m)  & = 
             \kappaMin_{t} (\vSum_{t}^{T})^{1/(1-\rho)} \\
             \vInv_{t} (m) &\equiv&
             \big((1-\rho)\vFunc_{t} (m)\big)^{1/(1-\rho)} \\
-            \vInv_{t}^{m} (m)  & = 
-            \big((1-\rho)\vFunc_{t} (m)\big)^{1/(1-\rho)-1} \vFunc_{t}^{m} (m)\\
+            \vInv_{t}^m (m)  & = 
+            \big((1-\rho)\vFunc_{t} (m)\big)^{1/(1-\rho)-1} \vFunc_{t}^m (m)\\
              & = 
             \big((1-\rho)\vFunc_{t} (m)\big)^{1/(1-\rho)-1} u\text{P}\big(c_{t}(m)\big) \\
             \end{aligned}\end{gathered}\end{equation}
@@ -433,7 +433,7 @@ Second we look at \texttt{AddNewPeriodToSolvedLifeDatesPesReaOpt.m}, which is as
         \item It defines $\ensuremath{\Koppa}_{t}(\mu)$, $\ensuremath{\Koppa}_{t}^{\mu}(\mu)$, $\Chi_{t}(\mu)$ and $\Chi_{t}^{\mu}(\mu)$:
             \begin{equation}\begin{gathered}\begin{aligned}
             \Koppa_{t} (\mu)  & =  \frac{\bar{\VInv}_{t} (e^{\mu}) -\VInv_{t} (e^{\mu})}{\underline{\kappa}_{t} \Deltah_{t} (\vSum_{t}^{T})^{1/(1-\rho)}} \\
-            \Koppa_{t}^{\mu} (\mu)  & =  e^{\mu} \frac{\bar{\VInv}_{t}^{m} (m)- \VInv_{t}^{m} (m)}{\underline{\kappa}_{t} \Deltah_{t} (\vSum_{t})^{1/(1-\rho)}} \\
+            \Koppa_{t}^{\mu} (\mu)  & =  e^{\mu} \frac{\bar{\VInv}_{t}^m (m)- \VInv_{t}^m (m)}{\underline{\kappa}_{t} \Deltah_{t} (\vSum_{t})^{1/(1-\rho)}} \\
             \Chi_{t} (\mu)  & =  \log\Big(\frac{1-\Koppa_{t} (\mu)}{\Koppa_{t} (\mu) }\Big) \\
             \Chi_{t}^{\mu} (\mu)  & =  -\frac{\Koppa_{t}^{\mu}(\mu)}{\Koppa_{t} (\mu)\big(1-\koppa_{t} (\mu)\big)}
             \end{aligned}\end{gathered}\end{equation}
@@ -455,7 +455,7 @@ Third \texttt{functionsIntExpFOCInvPesReaOpt.m}, which is an overhaul of the def
             \hat{\kappa}_{t}(m_{t})  & =  \frac{\partial \hat{c}_{t}(m_{t})}{\partial m_{t}} \\
              & =  \ushort{\kappa}_{t}-\frac{\hat{\koppa}^{\mu}_{t}(\mu_{t})}{\blacktriangle m_{t}} \ushort{\kappa}_{t} \blacktriangle \mathfrak{h}_{t} \\
             \end{aligned}\end{gathered}\end{equation}
-        \item given the interpolated function $\hat{\Chi}_{t}(\mu_{t})$, we derive the value function and its first derivatives\footnote{In deriving the marginal value function, we use the Envelope Theorem directly. A more intuitive but cumbersome way will be $\hat{\vFunc}_{t}^{m} (m_{t}) = u\text{P}\big(\hat{\vInv}_{t}(m_{t})\big) \hat{\vInv}_{t}^{m} (m_{t})$.}:
+        \item given the interpolated function $\hat{\Chi}_{t}(\mu_{t})$, we derive the value function and its first derivatives\footnote{In deriving the marginal value function, we use the Envelope Theorem directly. A more intuitive but cumbersome way will be $\hat{\vFunc}_{t}^m (m_{t}) = u\text{P}\big(\hat{\vInv}_{t}(m_{t})\big) \hat{\vInv}_{t}^m (m_{t})$.}:
             \begin{equation}\begin{gathered}\begin{aligned}
             \hat{\Chi}^{\mu}_{t}(\mu)  & =  \frac{\partial \hat{\Chi}_{t}(\mu)}{\partial \mu} \\
             \hat{\Koppa}_{t} (\mu)  & =  \frac{1}{1+e^{\hat{\Chi}_{t}(\mu)}} \\
@@ -465,9 +465,9 @@ Third \texttt{functionsIntExpFOCInvPesReaOpt.m}, which is an overhaul of the def
             \blacktriangle m_{t}  & =  m_{t} + \ushort{\mathfrak{h}}_{t} \\
             \mu_{t}  & =  \log(\blacktriangle m_{t}) \\
             \hat{\vInv}_{t} (m_{t})  & =  \bar{\vInv}_{t}(m_{t})-\hat{\Koppa}_{t} (\mu_{t}) \ushort{\kappa}_{t} \blacktriangle \mathfrak{h}_{t} (\cPDVFunc_{t}^{T})^{1/(1-\rho)} \\
-            \hat{\vInv}_{t}^{m} (m_{t})  & =  \ushort{\kappa}_{t} (\cPDVFunc_{t}^{T})^{1/(1-\rho)}-\frac{\hat{\Koppa}_{t}^{\mu}(\mu_{t})}{\blacktriangle m_{t}} \ushort{\kappa}_{t} \blacktriangle \mathfrak{h}_{t} (\cPDVFunc_{t}^{T})^{1/(1-\rho)} \\
+            \hat{\vInv}_{t}^m (m_{t})  & =  \ushort{\kappa}_{t} (\cPDVFunc_{t}^{T})^{1/(1-\rho)}-\frac{\hat{\Koppa}_{t}^{\mu}(\mu_{t})}{\blacktriangle m_{t}} \ushort{\kappa}_{t} \blacktriangle \mathfrak{h}_{t} (\cPDVFunc_{t}^{T})^{1/(1-\rho)} \\
             \hat{\vFunc}_{t} (m_{t})  & =  u\big(\hat{\vInv}_{t}(m_{t})\big) \\
-            \hat{\vFunc}_{t}^{m} (m_{t})  & =  u\text{P}\big(\hat{c}_{t}(m_{t})\big)
+            \hat{\vFunc}_{t}^m (m_{t})  & =  u\text{P}\big(\hat{c}_{t}(m_{t})\big)
             \end{aligned}\end{gathered}\end{equation}
 \end{itemize}
 

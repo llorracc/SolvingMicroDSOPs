@@ -16,7 +16,7 @@ enough' has been found.
 A natural metric is defined by the unique `target' level of wealth that \cite{BufferStockTheory} proves
 will exist in problems of this kind \href{https://llorracc.github.io/BufferStockTheory#GICNrm}{under certain conditions}: The $\mTrgNrm$ such that
 \begin{equation}
-  \Ex_t [{\mNrm}_{t+1}/\mNrm_t] = 1 \mbox{~if~} \mNrm_t = \mTrgNrm  \label{eq:mTrgNrmet}
+  \Ex_t [{\mNrm}_{\prd+1}/\mNrm_t] = 1 \mbox{~if~} \mNrm_t = \mTrgNrm  \label{eq:mTrgNrmet}
 \end{equation}
 where the accent is meant to signify that this is the value
 that other $\mNrm$'s `point to.'
@@ -24,8 +24,8 @@ that other $\mNrm$'s `point to.'
 Given a consumption rule $\cFunc(\mNrm)$ it is straightforward to find
 the corresponding $\mTrgNrm$.  So for our problem, a solution is declared
 to have converged if the following criterion is met:
-$\left|\mTrgNrm_{t+1}-\mTrgNrm_{t}\right| < \epsilon$, where $\epsilon$ is
-a very small number and measures our degree of convergence tolerance.
+$\left|\mTrgNrm_{\prd+1}-\mTrgNrm_{\prd}\right| < \epsilon$, where $\epsilon$ is
+a very small number and defines our degree of convergence tolerance.
 
 Similar criteria can obviously be specified for other problems.
 However, it is always wise to plot successive function differences and
@@ -47,22 +47,22 @@ function has converged for all practical purposes.
   For the perfect foresight infinite horizon consumption problem,
   the solution is
   \begin{equation}\begin{gathered}\begin{aligned}
-        \bar{\cFunc}({m}_{t})  & = \overbrace{(1-\Rfree^{-1}(\Rfree
+        \bar{\cFunc}(m_{\prd})  & = \overbrace{(1-\Rfree^{-1}(\Rfree
           \DiscFac)^{1/\CRRA})}^{\equiv
-          \underline{\MPC}}\left[{m}_{t}-1+\left(\frac{1}{1-1/\Rfree}\right)\right]
+          \underline{\MPC}}\left[{m}_{\prd}-1+\left(\frac{1}{1-1/\Rfree}\right)\right]
         \label{eq:pfinfhorc}
       \end{aligned}\end{gathered}\end{equation}
   where $\underline{\MPC}$ is the MPC in the
   infinite-horizon perfect foresight problem.  In our baseline problem,
-  we set $\PermGroFac = \pLvl_{t} = 1$.  It is straightforward to show that the
+  we set $\PermGroFac = \pLvl_{\prd} = 1$.  It is straightforward to show that the
   infinite-horizon perfect-foresight value function and marginal value
   function are given by
   \begin{equation}\begin{gathered}\begin{aligned}
-        \bar{\vFunc}({m}_{t})
-        & =                                 \left(\frac{\bar{\cFunc}({m}_{t})^{1-\CRRA}}{
+        \bar{\vFunc}(m_{\prd})
+        & =                                 \left(\frac{\bar{\cFunc}(m_{\prd})^{1-\CRRA}}{
             (1-\CRRA)\underline{\MPC} }\right)
-        \\  \bar{\vFunc}^{{m}}({m}_{t})  & =       (\bar{\cFunc}({m}_{t}))^{-\CRRA}
-        \\  \Opt{\vFunc}^{{m}}({a}_{t})  & = \DiscFac \Rfree \PermGroFac_{t+1}^{-\CRRA} \bar{\vFunc}^{{m}}(\RNrm_{t+1} {a}_{t}+1).
+        \\  \bar{\vFunc}^{m}(m_{\prd})  & =       (\bar{\cFunc}(m_{\prd}))^{-\CRRA}
+        \\  \Opt{\vFunc}^{m}(a_{\prd})  & = \DiscFac \Rfree \PermGroFac_{\prd+1}^{-\CRRA} \bar{\vFunc}^{m}(\RNrm_{\prd+1} a_{\prd}+1).
       \end{aligned}\end{gathered}\end{equation}
 
   % WW delete the text on 2011-06-21 because we no longer start from the infinite horizon perfect foresight solution.
@@ -72,26 +72,26 @@ function has converged for all practical purposes.
 \end{comment}
 
 \begin{comment}% At suggestion of WW this section was deleted because the technique is obvious and can be captured by the footnote that has been added
-  \subsection{Coarse Then Fine \ensuremath{\mathtt{aVec}} }
+  \subsection{Coarse Then Fine \code{aVec} }
 
   The speed of each iteration is directly proportional to the number
   of gridpoints at which the problem must be solved.  Therefore
-  reducing the number of points in \ensuremath{\mathtt{aVec}} can increase
+  reducing the number of points in \code{aVec} can increase
   the speed of solution greatly.  Of course, this also decreases the
   accuracy of the solution.  However, once the converged solution is
-  obtained for a coarse \ensuremath{\mathtt{aVec}}, the density of the grid
+  obtained for a coarse \code{aVec}, the density of the grid
   can be increased and iteration can continue until a converged
-  solution is found for the finer \ensuremath{\mathtt{aVec}}.
+  solution is found for the finer \code{aVec}.
   % WW delete the text on 2011-06-21 because we no longer need a finer \code{aVec}. I add a footnote in next subsection instead.
 
   \subsection{Coarse then Fine \texttt{$\TranShkEmp$Vec}}
 
   The speed of solution is roughly proportionate\footnote{It is also
     true that the speed of each iteration is directly proportional to
-    the number of gridpoints in \ensuremath{\mathtt{aVec}}, at which the problem must
+    the number of gridpoints in \code{aVec}, at which the problem must
     be solved. However given our method of moderation, now the problem
     could be solved very precisely based on five gridpoints only. Hence
-    we do not pursue the process of ``Coarse then Fine \ensuremath{\mathtt{aVec}}.''}
+    we do not pursue the process of ``Coarse then Fine \code{aVec}.''}
   to the number of points used in approximating the distribution of
   shocks.  At least 3 gridpoints should probably be used as an initial
   minimum, and my experience is that increasing the number of gridpoints

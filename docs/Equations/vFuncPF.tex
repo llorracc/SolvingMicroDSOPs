@@ -1,14 +1,14 @@
   \begin{equation}\begin{gathered}\begin{aligned}
-        \bar{\vFunc}_{t}({m}_{t})  & = \uFunc(\bar{\cNrm}_{t})\PDVCoverc_{t}^{T}\label{eq:vFuncPF}
+        \bar{\vFunc}_{t}(m_{t})  & = \uFunc(\bar{\cNrm}_{t})\PDVCoverc_{t}^{T}\label{eq:vFuncPF}
         \\  & = \uFunc(\bar{c}_{t}) \MPCmin_{t}^{-1} % 20190820
-        \\  & = \uFunc((\aboveMin \mNrm_{t}+\aboveMin \hNrm_{\EndStep})\MPCmin_{t}) \MPCmin_{t}^{-1} % 20190820
-        \\  & = \uFunc(\aboveMin \mNrm_{t}+\aboveMin \hNrm_{\EndStep})\MPCmin_{t}^{1-\CRRA} \MPCmin_{t}^{-1} % 20190820
-        \\  & = \uFunc(\aboveMin \mNrm_{t}+\aboveMin \hNrm_{\EndStep})\MPCmin_{t}^{-\CRRA}  % 20190820
+        \\  & = \uFunc((\aboveMin \mNrm_{t}+\aboveMin \hNrm_{\EndStp})\MPCmin_{t}) \MPCmin_{t}^{-1} % 20190820
+        \\  & = \uFunc(\aboveMin \mNrm_{t}+\aboveMin \hNrm_{\EndStp})\MPCmin_{t}^{1-\CRRA} \MPCmin_{t}^{-1} % 20190820
+        \\  & = \uFunc(\aboveMin \mNrm_{t}+\aboveMin \hNrm_{\EndStp})\MPCmin_{t}^{-\CRRA}  % 20190820
       \end{aligned}\end{gathered}\end{equation}
 
   This can be transformed as
   \begin{equation*}\begin{gathered}\begin{aligned}
         \bar{\vInv}_{t}  & \equiv  \left((1-\CRRA)\bar{\vFunc}_{t}\right)^{1/(1-\CRRA)}
         \\  & = \cNrm_{t}(\PDVCoverc_{t}^{T})^{1/(1-\CRRA)}
-        \\  & = (\aboveMin \mNrm_{t}+\aboveMin \hNrm_{\EndStep})\MPCmin_{t}^{-\CRRA/(1-\CRRA)}   % 20190820
+        \\  & = (\aboveMin \mNrm_{t}+\aboveMin \hNrm_{\EndStp})\MPCmin_{t}^{-\CRRA/(1-\CRRA)}   % 20190820
       \end{aligned}\end{gathered}\end{equation*}

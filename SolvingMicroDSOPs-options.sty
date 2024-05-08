@@ -1,6 +1,4 @@
-% Switches
 % Controls for which of various variant versions to create
-
 
 \provideboolean{ctwVersion}\setboolean{ctwVersion}{false}\newcommand{\ctw}{\ifthenelse{\boolean{ctwVersion}}} % {cctw}
 \provideboolean{trpVersion}\setboolean{trpVersion}{false}\newcommand{\trp}{\ifthenelse{\boolean{trpVersion}}} % {trp}
@@ -53,4 +51,13 @@
 \provideboolean{verbon}\setboolean{verbon}{true}
 \newcommand{\onverb}{\ifthenelse{\boolean{verbon}}}
 
+\setboolean{showPageHead}{true}
+% \econtexSetup sets boolean variable 'Web' to true if making html not pdf
+\ifthenelse{\boolean{Web}}{ % then
+  \setboolean{showPageHead}{false} % no pages, so no page head, on web
+}{ % else not for web
+  \usepackage{scrlayer-scrpage} % Package for page headers if PDF
+  \automark[section]{section}
+  \usepackage{caption} % allow suppression of appendix figures in NoAppendix PDF
+}
   

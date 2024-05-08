@@ -1,0 +1,37 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{./.econtexRoot}              % Set paths (like, \LaTeXInputs)
+
+\usepackage{econark}
+\usepackage{\LaTeXInputs/local-macros}   % econark-generic
+\usepackage{SolvingMicroDSOPs-private}
+\usepackage{amssymb}
+\usepackage{unicode-math}
+
+\begin{document}
+Hello, World! Here is a Unicode character: ü
+%\newcommand{\umlaut}{ü}
+%\newcommand{\ü}{umlaut}
+
+%\ü
+
+\umlaut\umlaut
+
+%$\Ex$
+\end{document} \endinput
+
+
+\documentclass{article}
+\usepackage{./.econtexRoot}              % Set paths (like, \LaTeXInputs)
+
+\usepackage[utf8]{inputenc}
+\usepackage{econark}
+\usepackage{\LaTeXInputs/local-macros}   % econark-generic
+
+\usepackage{SolvingMicroDSOPs-private}
+
+\begin{document}
+\[
+  \Ex
+\]
+\end{document}\endinput

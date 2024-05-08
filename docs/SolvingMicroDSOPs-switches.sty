@@ -46,11 +46,11 @@
 % \setboolean{ToFix}{false} 
 \newcommand{\Fix}{\ifthenelse{\boolean{ToFix}}}
   % Turn on or off the permanent growth factor terms
-  \newcommand{\vNormedPermGroFac}{\PermGroFac_{\stge}^{1-\CRRA}}
-  \newcommand{\vNormedPermGroFacp}{\PermGroFac_{\stge+1}^{1-\CRRA}}
-  \renewcommand{\vNormedPermGroFac}{}
-  \newcommand{\uNormedPermGroFac}{\PermGroFac_{\stge}^{-\CRRA}}
-  \newcommand{\uNormedPermGroFacp}{\PermGroFac_{\stge}^{-\CRRA}}
-  \renewcommand{\uNormedPermGroFac}{}
+  \newcommand{\PermGroFacAdjV}{\PermGroFac_{\stp}^{1-\CRRA}}
+  \newcommand{\PermGroFacAdjVNxt}{\PermGroFac_{\stp+1}^{1-\CRRA}}
+  \renewcommand{\PermGroFacAdjV}{}
+  \newcommand{\PermGroFacAdjMu}{\PermGroFac_{\stp}^{-\CRRA}}
+  \newcommand{\PermGroFacAdjMuNext}{\PermGroFac_{\stp}^{-\CRRA}}
+  \renewcommand{\PermGroFacAdjMu}{}
 
   % To compile the Habits subfile, go to the Subfiles directory

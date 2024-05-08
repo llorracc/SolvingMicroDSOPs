@@ -145,7 +145,7 @@ The consumer's goal is to maximize discounted utility from consumption over the 
 
 \begin{verbatimwrite}{./Equations/MaxProb.tex}
   \begin{equation}\label{eq:MaxProb}
-    \max ~ \Ex_{t}\left[ \sum_{n=0}^{T-t} {\DiscAlt}^{n} \uFunc({\cLvl}_{t+n})\right].
+    \max ~ \Ex_{t}\left[ \sum_{n=0}^{T-t} {\DiscAlt}^{n} \uFunc(\cLvl_{t+n})\right].
   \end{equation}
 \end{verbatimwrite}
 \input{./Equations/MaxProb.tex}\unskip
@@ -166,9 +166,9 @@ Finally, the utility function is of the Constant Relative Risk Aversion (CRRA), 
 It is well known that this problem can be rewritten in recursive (Bellman) form
 \begin{verbatimwrite}{./Equations/vrecurse.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
-        {\vLvl}
-_{t}(\mLvl_{t},\pLvl_{t})  & = \max_{\cLvl_{t}}~ \uFunc(\cLvl_{t}) + {\DiscAlt}\Ex_{t}[ {\vLvl}
-_{t+1}({\mLvl}_{t+1},\pLvl_{t+1})]\label{eq:vrecurse}
+       \vLvl
+_{t}(\mLvl_{t},\pLvl_{t})  & = \max_{\cLvl_{t}}~ \uFunc(\cLvl_{t}) + {\DiscAlt}\Ex_{t}[\vLvl
+_{t+1}(\mLvl_{t+1},\pLvl_{t+1})]\label{eq:vrecurse}
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/vrecurse.tex}\unskip
@@ -185,52 +185,52 @@ and to the transition equation that defines next period's initial capital as thi
 
 \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Call this `curly V'.}}{}
 In the last {\interval} of life, there is no
-future, ${\vLvl}
+future, $\vLvl$
 _{T+1} = 0$, so
 the optimal plan is to consume everything:
 \begin{equation}\begin{gathered}\begin{aligned}
-      {\vLvl}
+     \vLvl
 _{T}(\mLvl_{T},\pLvl_{T})  & = \frac{\mLvl_{T}^{1-\CRRA}}{1-\CRRA}. \label{eq:levelTm1}
     \end{aligned}\end{gathered}\end{equation}
 Now define nonbold variables as the bold variable divided by
 the level of permanent income in the same period, so that, for
-example, ${m}_{T}=\mLvl_{T}/\pLvl_{T}$; and define
-$\vFunc_{T}({m}_{T}) = \uFunc({m}_{T})$.\footnote{Nonbold value is bold value divided by $\pLvl^{1-\CRRA}$ rather than $\pLvl$.}  For our CRRA utility function, $\uFunc(xy)=x^{1-\CRRA}\uFunc(y)$, so (\ref{eq:levelTm1}) can be rewritten as
+example, $m_{T}=\mLvl_{T}/\pLvl_{T}$; and define
+$\vFunc_{T}(m_{T}) = \uFunc(m_{T})$.\footnote{Nonbold value is bold value divided by $\pLvl^{1-\CRRA}$ rather than $\pLvl$.}  For our CRRA utility function, $\uFunc(xy)=x^{1-\CRRA}\uFunc(y)$, so (\ref{eq:levelTm1}) can be rewritten as
 \begin{equation}\begin{gathered}\begin{aligned}
-      {\vLvl}
+     \vLvl
       _{T}(\mLvl_{T},\pLvl_{T})  & = \pLvl_{T}^{1-\CRRA}\frac{{m}_{T}^{1-\CRRA}}{1-\CRRA}
       \\ &      = (\pLvl_{T-1}\PermGroFac_{T})^{1-\CRRA}\frac{{m}_{T}^{1-\CRRA}}{1-\CRRA}
-      \\ &= \pLvl_{T-1}^{1-\CRRA}\PermGroFac_{T}^{1-\CRRA}\vFunc_{T}({m}_{T}). \label{eq:vT}
+      \\ &= \pLvl_{T-1}^{1-\CRRA}\PermGroFac_{T}^{1-\CRRA}\vFunc_{T}(m_{T}). \label{eq:vT}
     \end{aligned}\end{gathered}\end{equation}
 
 Now define a new optimization problem:\ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Note that in mathematical terms, the $\PermGroFac_{t+1}^{1-\CRRA} {\DiscAlt}$ term is basically just a time-varying discount factor.}}{}
 \begin{verbatimwrite}{./Equations/vNormed.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
-        \null{\vFunc}_{t}({m}_{t}) & = \max_{{c}_{t}} ~~ \uFunc({c}_{t})+
-        {\DiscFac}\Ex_{t}[ \PermGroFac_{t+1}^{1-\CRRA}\null{\vFunc}_{t+1}({m}_{t+1})] \label{eq:vNormed} \\
+        \vFunc_{t}(m_{t}) & = \max_{{c}_{t}} ~~ \uFunc(c_{t})+
+       \DiscFac\Ex_{t}[ \PermGroFac_{t+1}^{1-\CRRA}\vFunc_{t+1}(m_{t+1})] \label{eq:vNormed} \\
                                    & \text{s.t.}   \\
-      {a}_{t}                      & = {m}_{t}-{c}_{t} \\
-      {k}_{t+1}                    & = {a}_{t} \\
-      {b}_{t+1}                    & = \underbrace{\left(\Rfree/\PermGroFac_{t+1}\right)}_{\equiv \RNrm_{t+1}}{k}_{t+1} \\
-      {m}_{t+1}                    & = {b}_{t+1}+\TranShkEmp_{t+1},
+      a_{t}                      & = m_{t}-c_{t} \\
+      k_{t+1}                    & = a_{t} \\
+      b_{t+1}                    & = \underbrace{\left(\Rfree/\PermGroFac_{t+1}\right)}_{\equiv \RNrm_{t+1}}k_{t+1} \\
+      m_{t+1}                    & = b_{t+1}+\TranShkEmp_{t+1},
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/vNormed.tex}\unskip
 where the last equation is the normalized version of the transition equation for $\mLvl_{t+1}$.\footnote{Derivation:
   \begin{equation*}\begin{gathered}\begin{aligned}
         \mLvl_{t+1}/\pLvl_{t+1}              & = (\mLvl_{t}-\cLvl_{t})\Rfree/\pLvl_{t+1} + {\yLvl}_{t+1}/\pLvl_{t+1}
-        \\      {m}_{t+1}                    & = \left(\frac{\mLvl_{t}}{\pLvl_{t}} - \frac{\cLvl_{t}}{\pLvl_{t}}\right)\Rfree\frac{\pLvl_{t}}{\pLvl_{t+1}} + \frac{{\yLvl}_{t+1}}{\pLvl_{t+1}}
-        \\                                   & = \underbrace{({m}_{t} - {c}_{t})}_{{a}_{t}}(\Rfree/\PermGroFac_{t+1}) + \TranShkEmp_{t+1}.
+        \\      m_{t+1}                    & = \left(\frac{\mLvl_{t}}{\pLvl_{t}} - \frac{\cLvl_{t}}{\pLvl_{t}}\right)\Rfree\frac{\pLvl_{t}}{\pLvl_{t+1}} + \frac{{\yLvl}_{t+1}}{\pLvl_{t+1}}
+        \\                                   & = \underbrace{(m_{t} - c_{t})}_{{a}_{t}}(\Rfree/\PermGroFac_{t+1}) + \TranShkEmp_{t+1}.
       \end{aligned}\end{gathered}\end{equation*}
 }  Then it is easy to see that for $t=T-1$,
 \begin{equation*}\begin{gathered}\begin{aligned}
-      {\vLvl}_{T-1}(\mLvl_{T-1},\pLvl_{T-1}) & =  \pLvl_{T-1}^{1-\CRRA}\null{\vFunc}_{T-1}({m}_{T-1})
+      \vLvl_{T-1}(\mLvl_{T-1},\pLvl_{T-1}) & =  \pLvl_{T-1}^{1-\CRRA}\vFunc_{T-1}(m_{T-1})
     \end{aligned}\end{gathered}\end{equation*}
 and so on back to all earlier periods.  Hence, if we solve the problem \eqref{eq:vNormed}
 which (when optimal consumption is being chosen) has only a single state variable $\mNrm_{t}$, we can obtain the levels of the value function, consumption, and all other variables
 from the corresponding permanent-income-normalized solution objects by multiplying each by $\pLvl_{t}$, e.g.\ ${\pmb{\cLvl}}
-_{t}(\mLvl_{t},\pLvl_{t})=\pLvl_{t}\cFunc_{t}(\mLvl_{t}/\pLvl_{t})$ (or, for the value function, ${\vLvl}
-_{t}({\mLvl}_{t},\pLvl_{t}) = \pLvl_{t}^{1-\CRRA}\vFunc_{t}({m}_{t}))$.  We have thus reduced the
+_{t}(\mLvl_{t},\pLvl_{t})=\pLvl_{t}\cFunc_{t}(\mLvl_{t}/\pLvl_{t})$ (or, for the value function, $\vLvl$
+_{t}(\mLvl_{t},\pLvl_{t}) = \pLvl_{t}^{1-\CRRA}\vFunc_{t}(m_{t}))$.  We have thus reduced the
 problem from two continuous state variables to one (and thereby enormously simplified its solution).
 
 For some problems it will not be obvious that there is an appropriate `normalizing' variable, but many problems can be normalized if sufficient thought is given.  For example, \cite{valencia:2006} shows how a bank's optimization problem can be normalized by the level of the bank's productivity.
@@ -262,9 +262,9 @@ Generically, we want to think of the Bellman problem itself as having three {\mo
     \mbox{
   \begin{tabular}{r|c|l|l}
     Step     & Indicator & Usage & Explanation \\ \hline
-  \Arrival    & ${\large \arvl}$ & $\vBegStep({\kNrm}_{t})$ & value of entering $t$ (before shocks)
-\\  \Decision & (blank/none) & $\vMidStep({\mNrm}_{t})$ & value of $t$-decision (after shocks)
-\\  \Continuation & ${\large \cntn}$ & $\vEndStep({\aNrm}_{t})$ & value of outgoing state (after decision)
+  \Arrival    & ${\large \arvl}$ & $\vBeg({\kNrm}_{t})$ & value of entering $t$ (before shocks)
+\\  \Decision & (blank/none) & $\vMid({\mNrm}_{t})$ & value of $t$-decision (after shocks)
+\\  \Continuation & ${\large \cntn}$ & $\vEnd({\aNrm}_{t})$ & value of outgoing state (after decision)
   \end{tabular}
   }
 \end{center}
@@ -272,36 +272,36 @@ Generically, we want to think of the Bellman problem itself as having three {\mo
 
 This notation allows us to capture the fact that the value of the consumer's circumstances can be computed at any of the three steps (and is a function of a different state variable at each step).
 
-Note that there is no need to use these subscripts for the model's variables; while a variable like $a_{t}=m_{t}-c_{t}$ takes on its value in the transition from the {\Decision} to the {\Continuation} step, ${a}$ will have only one unique value over the course of the period and therefore a notation like $\aNrm_{\BegStep}$ would be useless because the variable does not have a value until the continuation step is reached. Each variable in our problem has a unique value defined at some point during the period, so there is no ambiguity in referring to them with normal notation like $\aNrm_{t}$.
+Note that there is no need to use these subscripts for the model's variables; while a variable like $a_{t}=m_{t}-c_{t}$ takes on its value in the transition from the {\Decision} to the {\Continuation} step, $a$ will have only one unique value over the course of the period and therefore a notation like $\aNrm_{\BegStp}$ would be useless because the variable does not have a value until the continuation step is reached. Each variable in our problem has a unique value defined at some point during the period, so there is no ambiguity in referring to them with normal notation like $\aNrm_{t}$.
 
 \subsection{The Usual Theory}
 
-Using this new notation, the first order condition for \eqref{eq:vNormed} with respect to ${c}_{t}$ is
+Using this new notation, the first order condition for \eqref{eq:vNormed} with respect to $c_{t}$ is
 \begin{equation}\begin{gathered}\begin{aligned}
-      \uFunc^{{c}}({c}_{t})  & = \ExEndStep[\DiscFac \RNrm_{t+1}\PermGroFac_{t+1}^{1-\CRRA}\null{\vFunc}^{{m}}_{\MidStepp}({m}_{t+1})]  \label{eq:upceqEvtp1}
-      \\                        & =  \ExEndStep[\DiscFac\Rfree\phantom{._{t+1}}\PermGroFac_{t+1}^{\phantom{1}-\CRRA}\null{\vFunc}^{{m}}_{\MidStepp}({m}_{t+1})]
+      \uFunc^{c}(c_{t})  & = \ExEndStp[\DiscFac \RNrm_{t+1}\PermGroFac_{t+1}^{1-\CRRA}{\vFunc}^{m}_{\MidStpNxt}(m_{t+1})]  \label{eq:upceqEvtp1}
+      \\                        & =  \ExEndStp[\DiscFac\Rfree\phantom{._{t+1}}\PermGroFac_{t+1}^{\phantom{1}-\CRRA}{\vFunc}^{m}_{\MidStpNxt}(m_{t+1})]
     \end{aligned}\end{gathered}\end{equation}
 and because the \handoutC{Envelope} theorem tells us that
 \begin{equation}\begin{gathered}\begin{aligned}
-      \null{\vFunc}^{{m}}_{\MidStep}({m}_{t})  & =  \Ex_{\BegStep} [\DiscFac\Rfree\PermGroFac_{t+1}^{-\CRRA}\null{\vFunc}^{{m}}_{\MidStepp}({m}_{t+1})] \label{eq:envelope}
+     \vFunc^{m}_{\MidStp}(m_{t})  & =  \Ex_{\BegStp} [\DiscFac\Rfree\PermGroFac_{t+1}^{-\CRRA}{\vFunc}^{m}_{\MidStpNxt}(m_{t+1})] \label{eq:envelope}
     \end{aligned}\end{gathered}\end{equation}
 we can substitute the LHS of \eqref{eq:envelope} for the RHS of
 (\ref{eq:upceqEvtp1}) to get
 \begin{verbatimwrite}{./Equations/Envelope.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
-        \uFunc^{{c}}({c}_{t})  & = \null{\vFunc}^{{m}}_{\MidStep}({m}_{t})\label{eq:Envelope}
+        \uFunc^{c}(c_{t})  & =\vFunc^{m}_{\MidStp}(m_{t})\label{eq:Envelope}
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/Envelope.tex}\unskip
 and rolling forward one {\interval},
 \begin{equation}\begin{gathered}\begin{aligned}
-      \uFunc^{{c}}({c}_{t+1})  & = \null{\vFunc}^{{m}}_{\MidStepp}({a}_{t}\RNrm_{t+1}+\TranShkEmp_{t+1}) \label{eq:upctp1EqVpxtp1}
+      \uFunc^{c}(c_{t+1})  & =\vFunc^{m}_{\MidStpNxt}(a_{t}\RNrm_{t+1}+\TranShkEmp_{t+1}) \label{eq:upctp1EqVpxtp1}
     \end{aligned}\end{gathered}\end{equation}
 and substituting the LHS in equation (\ref{eq:upceqEvtp1})
 finally gives us the Euler equation for consumption:
 \begin{verbatimwrite}{./Equations/cEuler.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
-        \uFunc^{{c}}({c}_{t})  & = \ExEndStep[\DiscFac\Rfree \PermGroFac_{t+1}^{-\CRRA}\uFunc^{{c}}({c}_{t+1})]. \label{eq:cEuler}
+        \uFunc^{c}(c_{t})  & = \ExEndStp[\DiscFac\Rfree \PermGroFac_{t+1}^{-\CRRA}\uFunc^{c}(c_{t+1})]. \label{eq:cEuler}
                                   \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/cEuler.tex}\unskip
@@ -312,56 +312,56 @@ finally gives us the Euler equation for consumption:
 % \end{verbatimwrite}
 % \input{./Excerpts/stage-notation.texinput}
 For future reference, it may be useful here to write the distinct value functions at each step (using the transition equations from \eqref{eq:vNormed}):
-\begin{verbatimwrite}{./Equations/vBegStep}
+\begin{verbatimwrite}{./Equations/vBeg}
   \begin{equation}\begin{gathered}\begin{aligned}
-\vBegStep(\kNrm_{\stge}) & = \ExBegStep[\vMidStep(\overbrace{\kNrm_{\stge} \Rnorm_{\stge} + \TranShkEmp_{\stge}}^{=\mNrm_{\stge}})]  \label{eq:vBegStep}
+\vBeg(\kNrm_{\stp}) & = \ExBegStp[\vMid(\overbrace{\kNrm_{\stp} \Rnorm_{\stp} + \TranShkEmp_{\stp}}^{=\mNrm_{\stp}})]  \label{eq:vBeg}
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
-\input{./Equations/vBegStep}\unskip
-\begin{verbatimwrite}{./Equations/vMidStep}
+\input{./Equations/vBeg}\unskip
+\begin{verbatimwrite}{./Equations/vMid}
   \begin{equation}\begin{gathered}\begin{aligned}
-\vMidStep(\mNrm_{\stge}) & = \uFunc(\cFunc_{\stge}(\mNrm_{\stge})) + \vEndStep(\overbrace{\mNrm_{\stge}-\cNrm_{\stge}}^{\aNrm_{\stge}}) \label{eq:vMidStep}
+\vMid(\mNrm_{\stp}) & = \uFunc(\cFunc_{\stp}(\mNrm_{\stp})) + \vEnd(\overbrace{\mNrm_{\stp}-\cNrm_{\stp}}^{\aNrm_{\stp}}) \label{eq:vMid}
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
-\input{./Equations/vMidStep}\unskip
+\input{./Equations/vMid}\unskip
 and
 \begin{verbatimwrite}{./Equations/vEndtdefn}
   \begin{equation}\begin{gathered}\begin{aligned}
-\vEndStep(\aNrm_{\stge}) & = \DiscFac \vBegStepp(\underbrace{\kNrm_{\stge+1}}_{=\aNrm_{\stge}}) \label{eq:vEndtdefn}
+\vEnd(\aNrm_{\stp}) & = \DiscFac \vBegStpNxt(\underbrace{\kNrm_{\stp+1}}_{=\aNrm_{\stp}}) \label{eq:vEndtdefn}
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/vEndtdefn}\unskip
 where the last line illustrates the notation for addressing the beginning {\move} of the successor {\interval}.
 
-%Now note that in equation \eqref{eq:upctp1EqVpxtp1} neither ${m}_{\stge}$ nor ${c}_{\stge}$ has any \textit{direct} effect on $\null{\vFunc}_{\stge+1}$ - only the difference between them (i.e.\ unconsumed market resources or `assets' ${a}_t$) matters.  It is therefore possible (and will turn out to be convenient) to define a function\footnote{The peculiar letter designating our new function is pronounced `Gothic v'.  Letters in this font will be used for end-of-period quantities.}  \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Define $\Alt{\vEndStep}({a}_{\stge})$.}}{}
+%Now note that in equation \eqref{eq:upctp1EqVpxtp1} neither $m_{\stp}$ nor $c_{\stp}$ has any \textit{direct} effect on $\vFunc_{\stp+1}$ - only the difference between them (i.e.\ unconsumed market resources or `assets' $a_t$) matters.  It is therefore possible (and will turn out to be convenient) to define a function\footnote{The peculiar letter designating our new function is pronounced `Gothic v'.  Letters in this font will be used for end-of-period quantities.}  \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Define $\Alt{\vEnd}(a_{\stp})$.}}{}
 
-%Putting all this together, we can write the `continuation value' function from the perspective of the end of {\interval} $\stge$ as
-Putting all this together, from the perspective of the beginning of {\interval} $\stge+1$ we can write the `arrival value' function and its first derivative as
+%Putting all this together, we can write the `continuation value' function from the perspective of the end of {\interval} $\stp$ as
+Putting all this together, from the perspective of the beginning of {\interval} $\stp+1$ we can write the `arrival value' function and its first derivative as
 \begin{verbatimwrite}{./Equations/vBegtpdefn.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
-        \vBegStepp({k}_{\stge+1})  & = \Ex_{\BegStepp}[\phantom{\Rfree}\vNormedPermGroFacp\null{\vFunc}_{\MidStepp}(\RNrm_{\stge+1}{k}_{\stge}+{\TranShkEmp}_{\stge+1})]  \label{eq:vFuncBegtpdefn}
-\\  {\vPBegStepp}({k}_{\stge+1})  & = \Ex_{\BegStepp}[\Rfree \PermGroFac_{\stge+1}^{\phantom{1}-\CRRA} \null{\vFunc}_{\MidStepp}^{{m}}({m}_{\stge+1})]
+        \vBegStpNxt(k_{\stp+1})  & = \Ex_{\BegStpNxt}[\phantom{\Rfree}\PermGroFacAdjVNxt{\vFunc}_{\MidStpNxt}(\RNrm_{\stp+1}k_{\stp}+{\TranShkEmp}_{\stp+1})]  \label{eq:vFuncBegtpdefn}
+\\  {\vPBegStpNxt}(k_{\stp+1})  & = \Ex_{\BegStpNxt}[\Rfree \PermGroFac_{\stp+1}^{\phantom{1}-\CRRA} \vFunc_{\MidStpNxt}^{m}(m_{\stp+1})]
   \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}\unskip
 \input{./Equations/vBegtpdefn}\unskip
-because they return the expected $t+1$ value and marginal value associated with arriving in {\interval} $\stge+1$ with any given amount of \textbf{k}apital.  %Differentiating with respect to $\aNrm$, we get
-%\begin{verbatimwrite}{./Equations/vEndtdefn.tex}  \begin{equation}\begin{gathered}\begin{aligned}    \vEndStep({a}_{\stge})  & = \DiscFac \vBegStepp_{\stge+1}({a}_{\stge}) \label{eq:vEndtdefn}   \end{aligned}\end{gathered}\end{equation} \end{verbatimwrite}\input{./Equations/vEndtdefn.tex}\unskip
+because they return the expected $t+1$ value and marginal value associated with arriving in {\interval} $\stp+1$ with any given amount of \textbf{k}apital.  %Differentiating with respect to $\aNrm$, we get
+%\begin{verbatimwrite}{./Equations/vEndtdefn.tex}  \begin{equation}\begin{gathered}\begin{aligned}    \vEnd(a_{\stp})  & = \DiscFac \vBegStpNxt_{\stp+1}(a_{\stp}) \label{eq:vEndtdefn}   \end{aligned}\end{gathered}\end{equation} \end{verbatimwrite}\input{./Equations/vEndtdefn.tex}\unskip
 %Differentiating with respect to $\kNrm_{t+1}$, we get
 % \begin{equation}\begin{gathered}\begin{aligned}
-%   {\vPBegStepp}({k}_{\stge})  & = \DiscFac \Ex_{\BegStepp}[\Rfree \PermGroFac_{\stge+1}^{-\CRRA} \null{\vFunc}_{\MidStepp}^{{m}}({m}_{\stge})]
-% %\\   {\vPEndStep}({a}_{\stge})  & = \DiscFac \Ex_{\BegStepp}[\Rfree \PermGroFac_{\stge+1}^{-\CRRA} \null{\vFunc}_{\MidStepp}^{{m}}({m}_{\stge})]                               
+%   {\vPBegStpNxt}(k_{\stp})  & = \DiscFac \Ex_{\BegStpNxt}[\Rfree \PermGroFac_{\stp+1}^{-\CRRA} \vFunc_{\MidStpNxt}^{m}(m_{\stp})]
+% %\\   {\vPEndStp}(a_{\stp})  & = \DiscFac \Ex_{\BegStpNxt}[\Rfree \PermGroFac_{\stp+1}^{-\CRRA} \vFunc_{\MidStpNxt}^{m}(m_{\stp})]                               
 %     \end{aligned}\end{gathered}\end{equation}
 % or, substituting from equation (\ref{eq:upctp1EqVpxtp1}) (and dropping function arguments for clarity),
 % \begin{equation}\begin{gathered}\begin{aligned}
-% %  \vPEndStep({a}_{\stge})  & = \Ex_{\BegStepp}\left[\DiscFac \Rfree \PermGroFac_{\stge+1}^{-\CRRA} \uFunc^{{c}}\left(\cFunc_{\stge+1}(\RNrm_{\stge+1} {a}_{\stge}+{\TranShkEmp}_{\stge+1})\right)\right].  \label{eq:vEndPrimetOc}
-%       \vPEndStep\astge  & = \DiscFac \Ex_{\BegStepp}\left[\Rfree \PermGroFac_{\stge+1}^{-\CRRA} \uFunc^{{c}}\left(\cFunc_{\stge+1}\mstge\right)\right] .  \label{eq:vEndPrimetOfc}                             
-% \\                               & =  \DiscFac \Ex_{\BegStepp}[\vFunc^{{k}}_{\MidStepp}({k}_{\stge})]
+% %  \vPEndStp(a_{\stp})  & = \Ex_{\BegStpNxt}\left[\DiscFac \Rfree \PermGroFac_{\stp+1}^{-\CRRA} \uFunc^{c}\left(\cFunc_{\stp+1}(\RNrm_{\stp+1} a_{\stp}+{\TranShkEmp}_{\stp+1})\right)\right].  \label{eq:vEndPrimetOc}
+%       \vPEndStp\astp  & = \DiscFac \Ex_{\BegStpNxt}\left[\Rfree \PermGroFac_{\stp+1}^{-\CRRA} \uFunc^{c}\left(\cFunc_{\stp+1}\mstp\right)\right] .  \label{eq:vEndPrimetOfc}                             
+% \\                               & =  \DiscFac \Ex_{\BegStpNxt}[\vFunc^{k}_{\MidStpNxt}(k_{\stp})]
 %     \end{aligned}\end{gathered}\end{equation}
-Finally, note for future use that since ${k}_{t+1}={a}_{t}$ and $\vEndStep({a}_{t})=\DiscFac \vBegStepp({{k}_{t+1}})$, the first order condition 
+Finally, note for future use that since $k_{t+1}={a}_{t}$ and $\vEnd(a_{t})=\DiscFac \vBegStpNxt({{k}_{t+1}})$, the first order condition 
 (\ref{eq:upceqEvtp1}) can now be rewritten compactly as
 \begin{verbatimwrite}{./Equations/upEqbetaOp.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
-        \uFunc^{{c}}({c}_{\stge})   & = \vEndStep^{{a}}({m}_{\stge}-{c}_{\stge}).
+        \uFunc^{c}(c_{\stp})   & = \vEnd^{a}(m_{\stp}-c_{\stp}).
         \label{eq:upEqbetaOp}
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
@@ -374,7 +374,7 @@ The code implementing the tasks outlined each of the sections to come is availab
 
 \subsubsection{Useful auxilliary files}
 
-In this exercise, two primary user-defined modules are frequently imported and utilized. The first is the \texttt{gothic\_class} module, which contains functions describing the end-of-period value functions found in equations \eqref{eq:vBegStep} - \eqref{eq:vEndStep} (and the corresponding first and second derivatives). %The advantage of defining functions in the code which decompose the consumer's optimal behavior in a given period will become evident in section \ref{subsec:transformation}
+In this exercise, two primary user-defined modules are frequently imported and utilized. The first is the \texttt{gothic\_class} module, which contains functions describing the end-of-period value functions found in equations \eqref{eq:vBeg} - \eqref{eq:vEnd} (and the corresponding first and second derivatives). %The advantage of defining functions in the code which decompose the consumer's optimal behavior in a given period will become evident in section \ref{subsec:transformation}
 
 The \texttt{resources} module is also used repeatedly throughout the notebook. This file has three primary objectives: (i) providing functions that discretize the continuous distributions from the theoretical model that describe the uncertainty a consumer faces, (ii) defining the utility function over consumption under a number of specifications, and (iii) enhancing the grid of end-of-period assets for which functions (such as those from the \texttt{gothic\_class} module) will be defined. These objectives will be discussed in greater detail and with respect to the numerical methods used to the problem in subsequent sections of this document.
 \end{comment}
@@ -385,27 +385,27 @@ The \texttt{resources} module is also used repeatedly throughout the notebook. T
 \provideboolean{HideG}
 \setboolean{HideG}{true}
 %\newcommand{\ifHideG}{\ifthenelse{\boolean{hideG}}
-\renewcommand{\stge}{T}
+\renewcommand{\stp}{T}
 \ifthenelse{\boolean{HideG}}{For convenience assuming that $\PermGroFac=1$ so that the $\PermGroFac$ terms disappear from the earlier derivations, t}{T}he problem in the second-to-last period of life can now be expressed as
 \begin{equation*}\begin{gathered}\begin{aligned}
-      \null{\vFunc}_{\stge-1}({m}_{\stge-1})  & = \max_{{c}_{\stge-1}} ~~ \uFunc({c}_{\stge-1}) +
-      \DiscFac \Ex_{\EndStepm} \left[\vNormedPermGroFac{\vFunc}_{\MidStep}(\underbrace{({m}_{\stge-1}-{c}_{\stge-1})\RNrm_{\stge} + \TranShkEmp_{\stge}}_{{m}_{\stge}})\right],
+      \vFunc_{\stp-1}(m_{\stp-1})  & = \max_{{c}_{\stp-1}} ~~ \uFunc(c_{\stp-1}) +
+      \DiscFac \Ex_{\EndStpLst} \left[\PermGroFacAdjV{\vFunc}_{\MidStp}(\underbrace{(m_{\stp-1}-c_{\stp-1})\RNrm_{\stp} + \TranShkEmp_{\stp}}_{{m}_{\stp}})\right],
 \end{aligned}\end{gathered}\end{equation*}
-where $\Ex_{\EndStepm}$  indicates that the expectation is taken as of the end of period $\stge-1$.
+where $\Ex_{\EndStpLst}$  indicates that the expectation is taken as of the end of period $\stp-1$.
 
 Using (1) the fact that $\vFunc_{T}=\uFunc(c_{T})$; (2) the definition of $\uFunc(c_{T})$; (3) the
 definition of the expectations operator, this becomes: \newcommand{\TranShkEmpDummy}{\vartheta}
 \begin{equation*}\begin{gathered}\begin{aligned}
-      \null{\vFunc}_{T-1}({m}_{T-1})   & = \max_{{c}_{T-1}} ~~
+      \vFunc_{T-1}(m_{T-1})   & = \max_{{c}_{T-1}} ~~
       % \{
-      \frac{{c}_{T-1}^{1-\CRRA}}{1-\CRRA} + \DiscFac \vNormedPermGroFac\int_{0}^{\infty}
-      \frac{\left(({m}_{T-1}-{c}_{T-1})\RNrm_{T}+ \TranShkEmpDummy\right)^{1-\CRRA}}{1-\CRRA}
+      \frac{{c}_{T-1}^{1-\CRRA}}{1-\CRRA} + \DiscFac \PermGroFacAdjV\int_{0}^{\infty}
+      \frac{\left((m_{T-1}-c_{T-1})\RNrm_{T}+ \TranShkEmpDummy\right)^{1-\CRRA}}{1-\CRRA}
       d\FDist(\TranShkEmpDummy)
       % \}.
     \end{aligned}\end{gathered}\end{equation*}
 where $\FDist$ is the cumulative distribution function for ${\TranShkEmp}_{T}$.
 
-The maximization implicitly defines a function $\cFunc_{T-1}({m}_{T-1})$ that yields optimal consumption in period $T-1$ for any specific numerical level of resources like ${m}_{T-1}=1.7$.  But because there is no general analytical solution to this problem, for any given ${m}_{T-1}$ we must use numerical computational tools to find the ${c}_{T-1}$ that maximizes the expression.  This is excruciatingly slow because for every potential ${c}_{T-1}$ to be considered, a definite integral over the interval $(0,\infty)$ must be calculated numerically, and numerical integration is \textit{very} slow (especially over an unbounded domain!).
+The maximization implicitly defines a function $\cFunc_{T-1}(m_{T-1})$ that yields optimal consumption in period $T-1$ for any specific numerical level of resources like $m_{T-1}=1.7$.  But because there is no general analytical solution to this problem, for any given $m_{T-1}$ we must use numerical computational tools to find the $c_{T-1}$ that maximizes the expression.  This is excruciatingly slow because for every potential $c_{T-1}$ to be considered, a definite integral over the interval $(0,\infty)$ must be calculated numerically, and numerical integration is \textit{very} slow (especially over an unbounded domain!).
 
 \hypertarget{Discretizing-the-Distribution}{}
 \subsection{Discretizing the Distribution}
@@ -452,23 +452,23 @@ distribution.\footnote{More sophisticated approximation methods exist
 
 Because one of the purposes of these notes is to connect the math to the code that solves the math, we display here a brief snippet from the notebook that constructs these points:
 
-Substituting into our definition of $\vEndStepm$,
+Substituting into our definition of $\vEndStpLst$,
 \begin{verbatimwrite}{./Equations/vDiscrete.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
-        \vFunc_{\EndStepm}({a}_{\stge-1})  & =   \DiscFac \vNormedPermGroFac\left(\frac{1}{n_{\TranShkEmp}}\right)\sum_{i=1}^{n_{\TranShkEmp}}   \frac{\left(\RNrm_{\stge} {a}_{\stge} + \TranShkEmp_{i}\right)^{1-\CRRA}}{1-\CRRA} \label{eq:vDiscrete}
+        \vFunc_{\EndStpLst}(a_{\stp-1})  & =   \DiscFac \PermGroFacAdjV\left(\frac{1}{n_{\TranShkEmp}}\right)\sum_{i=1}^{n_{\TranShkEmp}}   \frac{\left(\RNrm_{\stp} a_{\stp} + \TranShkEmp_{i}\right)^{1-\CRRA}}{1-\CRRA} \label{eq:vDiscrete}
       \end{aligned}\end{gathered}\end{equation}
-\end{verbatimwrite}%\renewcommand{\stge}{t}
+\end{verbatimwrite}%\renewcommand{\stp}{t}
 \input{./Equations/vDiscrete}\unskip
 so we can rewrite the maximization problem that defines the middle stage of the period {$\dcsn$} as
-\begin{verbatimwrite}{./Equations/vEndTm1.tex}%\renewcommand{\stge}{T}
+\begin{verbatimwrite}{./Equations/vEndTm1.tex}%\renewcommand{\stp}{T}
   \begin{equation}\begin{gathered}\begin{aligned}
-        {\vFunc}_{\MidStepm}({m}_{\stge-1})   & = \max_{\cNrm_{\stge-1}}
+        \vFunc_{\MidStpLst}(m_{\stp-1})   & = \max_{\cNrm_{\stp-1}}
         \left\{
-          \frac{{c}_{\stge-1}^{1-\CRRA}}{1-\CRRA} +
-          \vFunc_{\BegStepm}({m}_{\stge-1}-{c}_{\stge-1})
+          \frac{{c}_{\stp-1}^{1-\CRRA}}{1-\CRRA} +
+          \vFunc_{\BegStpLst}(m_{\stp-1}-c_{\stp-1})
         \right\}.
         \label{eq:vEndTm1}
-      \end{aligned}\end{gathered}\end{equation}%\renewcommand{\stge}{t}
+      \end{aligned}\end{gathered}\end{equation}%\renewcommand{\stp}{t}
 \end{verbatimwrite}
 \input{./Equations/vEndTm1.tex}\unskip
 
@@ -483,7 +483,7 @@ A close look at the \texttt{DiscreteApproximation} class and its subclasses shou
 \hypertarget{The-Approximate-Consumption-and-Value-Functions}{}
 \subsection{The Approximate Consumption and Value Functions}
 
-Given a particular value of ${m}_{T-1}$, a numerical maximization routine can now find the ${c}_{T-1}$ that maximizes \eqref{eq:vEndTm1} in a reasonable amount of time.
+Given a particular value of $m_{T-1}$, a numerical maximization routine can now find the $c_{T-1}$ that maximizes \eqref{eq:vEndTm1} in a reasonable amount of time.
 
 \begin{comment}
 
@@ -495,17 +495,17 @@ After defining the utility function, the `natural borrowing constraint' is defin
 The heart of the program responsible for computing an estimated consumption function begins in ``Solving the Model by Value Function Maximization,'' where a grid characterizing the possible values of market resources ($m$) is initialized (in the code, various $m$ vectors have names beginning {\mVec}), and for each of the {\mVec} values, the consumption values $c$ that solve the minimization problem equivalent to \eqref{eq:vEndTm1} are computed.  We arbitrarily pick the first five integers as our five {\mVec}  gridpoints.  (That is, \texttt{mVec\_int}= $\{0.,1.,2.,3.,4.\}$.
 
 
-%Finally, the previously computed values of optimal ${c}$ and the grid of market resources are combined to generate a graph of the approximated consumption function for this specific instance of the problem. To reduce the computational challenge of solving the problem, the process is evaluated only at a small number of gridpoints.
+%Finally, the previously computed values of optimal $c$ and the grid of market resources are combined to generate a graph of the approximated consumption function for this specific instance of the problem. To reduce the computational challenge of solving the problem, the process is evaluated only at a small number of gridpoints.
 
 
 \hypertarget{an-interpolated-consumption-function}{}
 \subsection{An Interpolated Consumption Function} \label{subsec:LinInterp}
 
-Given a set of points on a function (in this case, the consumption function $\cFunc_{T-1}(\mNrm)$), we can create a piecewise linear `interpolating function' (a `spline') which when applied to an input ${m}$ will yield the value of $\cNrm$ that corresponds to a linear `connect-the-dots' interpolation of the value of $\cNrm$ from the points, creating a function that is an approximation of the function whose points have been sampled.
+Given a set of points on a function (in this case, the consumption function $\cFunc_{T-1}(\mNrm)$), we can create a piecewise linear `interpolating function' (a `spline') which when applied to an input $m$ will yield the value of $\cNrm$ that corresponds to a linear `connect-the-dots' interpolation of the value of $\cNrm$ from the points, creating a function that is an approximation of the function whose points have been sampled.
 
 This is accompished in ``An Interpolated Consumption Function,'' 
 %"where the \texttt{InterpolatedUnivariateSpline} function is called from the \texttt{scipy} module to"
-which defines an approximation to the consumption function $\Alt{\cFunc}_{\MidStep}({m}_{T-1})$. That is, when called with an ${m}_{T-1}$ that is equal to one of the points in {{\mVec}\_int}, $\Alt{\cFunc}_{T-1}$ returns the associated value of $\vctr{{c}}_{\mathtt{T-1}}$, and when called with a value of ${m}_{T-1}$ that is not exactly equal to one of the \texttt{mVec\_int}, returns the value of ${c}$ that reflects a linear interpolation between the $\vctr{{c}}_{\mathtt{T-1}}$ points associated with the two \texttt{mVec\_int} points immediately above and below ${m}_{T-1}$.  %Thus if the function is called with ${m}_{T-1} = 1.75$ and the nearest gridpoints \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Go to the optimal consumption figure and show the connect-the-dots; point out that it's more obvious for the ${\vFunc}_{T-1}$.}}{} are ${m}_{j,T-1}=1$ and ${m}_{k,T-1}=2$ then the value of ${c}_{T-1}$ returned by the function would be $(0.25 {c}_{j,T-1}+0.75 {c}_{k,T-1})$. We can define a numerical approximation to the value function $\Alt{\vFunc}_{T-1}({m}_{T-1})$ in an exactly analogous way.
+which defines an approximation to the consumption function $\Alt{\cFunc}_{\MidStp}(m_{T-1})$. That is, when called with an $m_{T-1}$ that is equal to one of the points in {{\mVec}\_int}, $\Alt{\cFunc}_{T-1}$ returns the associated value of $\vctr{c}_{\mathtt{T-1}}$, and when called with a value of $m_{T-1}$ that is not exactly equal to one of the \texttt{mVec\_int}, returns the value of $c$ that reflects a linear interpolation between the $\vctr{c}_{\mathtt{T-1}}$ points associated with the two \texttt{mVec\_int} points immediately above and below $m_{T-1}$.  %Thus if the function is called with $m_{T-1} = 1.75$ and the nearest gridpoints \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Go to the optimal consumption figure and show the connect-the-dots; point out that it's more obvious for the $\vFunc_{T-1}$.}}{} are $m_{j,T-1}=1$ and $m_{k,T-1}=2$ then the value of $c_{T-1}$ returned by the function would be $(0.25 c_{j,T-1}+0.75 c_{k,T-1})$. We can define a numerical approximation to the value function $\Alt{\vFunc}_{T-1}(m_{T-1})$ in an exactly analogous way.
 
 
 Figures \ref{fig:PlotcTm1Simple} and~\ref{fig:PlotVTm1Simple} show
@@ -514,14 +514,14 @@ plots of the constructed $\Alt{\cFunc}_{T-1}$ and $\Alt{\vFunc}_{T-1}$. While th
 \hypertarget{PlotcTm1Simple}{}
 \begin{figure}
   \centerline{\includegraphics[width=6in]{./Figures/PlotcTm1Simple}}
-  \caption{$\cFunc_{T-1}({m}_{T-1})$ (solid) versus $\Alt{\cFunc}_{T-1}({m}_{T-1})$ (dashed)}
+  \caption{$\cFunc_{T-1}(m_{T-1})$ (solid) versus $\Alt{\cFunc}_{T-1}(m_{T-1})$ (dashed)}
   \label{fig:PlotcTm1Simple}
 \end{figure}
 
 \hypertarget{PlotvTm1Simple}{}
 \begin{figure}
   \centerline{\includegraphics[width=6in]{./Figures/PlotVTm1Simple}}
-  \caption{$\vFunc_{T-1}$ (solid) versus $\Alt{\vFunc}_{T-1}({m}_{T-1})$ (dashed)}
+  \caption{$\vFunc_{T-1}$ (solid) versus $\Alt{\vFunc}_{T-1}(m_{T-1})$ (dashed)}
   \label{fig:PlotVTm1Simple}
 \end{figure}
 
@@ -530,22 +530,22 @@ plots of the constructed $\Alt{\cFunc}_{T-1}$ and $\Alt{\vFunc}_{T-1}$. While th
 
 \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Good approximation in the sense that increasing the number of points makes no discernable difference.}}{}
 
-Picewise linear `spline' interpolation as described above works well for generating a good approximation to the true optimal consumption function. However, there is a clear inefficiency in the program: Since it uses equation \eqref{eq:vEndTm1}, for every value of ${m}_{T-1}$ the program must calculate the utility consequences of various possible choices of $\cNrm_{T-1}$ as it searches for the best choice.
+Picewise linear `spline' interpolation as described above works well for generating a good approximation to the true optimal consumption function. However, there is a clear inefficiency in the program: Since it uses equation \eqref{eq:vEndTm1}, for every value of $m_{T-1}$ the program must calculate the utility consequences of various possible choices of $\cNrm_{T-1}$ as it searches for the best choice.
 
-For any given value of ${a}_{T-1}$, notice that there is a good chance that the program may end up calculating the corresponding $\vMidStep$ many times while maximizing utility from different ${m}_{T-1}$'s.  For example, it is possible that the program will calculate the value of ending the period with ${a}_{T-1}=0$ dozens of times.  It would be much more efficient if the program could make the calculation of $\vMidStep(0)$ once and then merely recall the value when it is needed again.
+For any given value of $a_{T-1}$, notice that there is a good chance that the program may end up calculating the corresponding $\vMid$ many times while maximizing utility from different $m_{T-1}$'s.  For example, it is possible that the program will calculate the value of ending the period with $a_{T-1}=0$ dozens of times.  It would be much more efficient if the program could make the calculation of $\vMid(0)$ once and then merely recall the value when it is needed again.
 
 Something like this can be achieved using the same interpolation technique used above
 to construct a direct numerical approximation to the value function:
 Define a vector of possible values for end-of-period assets at time $T-1$,
-$\vctr{{a}}_{\mathtt{T-1}}$
-(\texttt{aVec} in the code). %, designating the specific points $\vctr{{a}}\mathtt{[i]_{T-1}}$.
-%For each of these values in $\vctr{{a}}_{\mathtt{T-1}}$,
-Next, construct $\vctr{{v}}_{\mathtt{\MidStepm}} =
-\vFunc_{\MidStepm}(\vctr{{a}}_{\mathtt{T-1}})$ using equation
+$\vctr{a}_{\mathtt{T-1}}$
+(\texttt{aVec} in the code). %, designating the specific points $\vctr{a}\mathtt{[i]_{T-1}}$.
+%For each of these values in $\vctr{a}_{\mathtt{T-1}}$,
+Next, construct $\vctr{v}_{\mathtt{\MidStpLst}} =
+\vFunc_{\MidStpLst}(\vctr{a}_{\mathtt{T-1}})$ using equation
 (\ref{eq:vEndTm1}); then construct an
 %\texttt{InterpolatingUnivariateSpline} object %
-approximation $\Alt{\vFunc}_{\EndStepm}({a}_{T-1})$ by passing the lists \texttt{aVec} and \texttt{vVec} as arguments.
-These lists contain the points of the $\vctr{a}_{\mathtt{\stge-1}}$ and $\vctr{\vFunc}_{\mathtt{\stge-1}}$ vectors, respectively.
+approximation $\Alt{\vFunc}_{\EndStpLst}(a_{T-1})$ by passing the lists \texttt{aVec} and \texttt{vVec} as arguments.
+These lists contain the points of the $\vctr{a}_{\mathtt{\stp-1}}$ and $\vctr{\vFunc}_{\mathtt{\stp-1}}$ vectors, respectively.
 
 As seen in the section ``Interpolating Expectations,'' we are now interpolating for the function
 that reveals the expected value of \textit{ending} the period with a given amount
@@ -557,33 +557,33 @@ of assets.\footnote{What we are doing here is closely related to `the
 Figure~\ref{fig:PlotOTm1RawVSInt}
 compares the true value function to the
 approximation produced following the interpolation procedure; the functions are of course
-identical at the gridpoints of ${a}_{T-1}$ and they appear
+identical at the gridpoints of $a_{T-1}$ and they appear
 reasonably close except in the region below
-${m}_{T-1}=1$.
+$m_{T-1}=1$.
 
 \hypertarget{PlotOTm1RawVSInt}{}
 \begin{figure}
   \centerline{\includegraphics[width=6in]{./Figures/PlotOTm1RawVSInt}}
-  \caption{End-Of-Period Value $\vFunc_{\EndStepm}({a}_{T-1})$ (solid) versus $\Alt{\vFunc}_{\EndStepm}({a}_{T-1})$ (dashed)}
+  \caption{End-Of-Period Value $\vFunc_{\EndStpLst}(a_{T-1})$ (solid) versus $\Alt{\vFunc}_{\EndStpLst}(a_{T-1})$ (dashed)}
   \label{fig:PlotOTm1RawVSInt}
 \end{figure}
 
 \hypertarget{PlotComparecTm1AB}{}
 \begin{figure}
   \centerline{\includegraphics[width=6in]{./Figures/PlotComparecTm1AB}}
-  \caption{$\cFunc_{T-1}({m}_{T-1})$ (solid) versus $\Alt{\cFunc}_{T-1}({m}_{T-1})$ (dashed)}
+  \caption{$\cFunc_{T-1}(m_{T-1})$ (solid) versus $\Alt{\cFunc}_{T-1}(m_{T-1})$ (dashed)}
   \label{fig:PlotComparecTm1AB}
 \end{figure}
 
 \Fix{\marginpar{\tiny In all figs, replace gothic h with notation corresponding to the lecture notes.}}
 
-Nevertheless, the consumption rule obtained when the approximating $\Alt{\vFunc}_{\EndStepm}({a}_{T-1})$
+Nevertheless, the consumption rule obtained when the approximating $\Alt{\vFunc}_{\EndStpLst}(a_{T-1})$
 is used\ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Don't skip the 2-3-3-4
     example in the text - it will be used again in a moment.}}{}
-instead of $\vFunc_{\EndStepm}({a}_{T-1})$ is surprisingly bad, as
+instead of $\vFunc_{\EndStpLst}(a_{T-1})$ is surprisingly bad, as
 shown in figure \ref{fig:PlotComparecTm1AB}.  For example, when
-${m}_{T-1}$ goes from 2 to 3, $\Alt{\cFunc}_{T-1}$ goes from about 1
-to about 2, yet when ${m}_{T-1}$ goes from 3 to 4, $\Alt{\cNrm}_{T-1}$
+$m_{T-1}$ goes from 2 to 3, $\Alt{\cFunc}_{T-1}$ goes from about 1
+to about 2, yet when $m_{T-1}$ goes from 3 to 4, $\Alt{\cNrm}_{T-1}$
 goes from about 2 to about 2.05.  The function fails even to be
 strictly concave, which is distressing because Carroll and
 Kimball~\citeyearpar{ckConcavity} prove that the correct
@@ -602,17 +602,17 @@ utility function\ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny
     behavior that is governed by marginal utility or the marginal
     value function, numerical techniques that approximate the \textit{
       marginal} value function are likely to work better.}}{} exhibits
-risk aversion because with a stochastic ${c}$,
+risk aversion because with a stochastic $c$,
 \begin{equation}
-  \Ex[-({c} - \cancel{c})^{2}] < - (\Ex[{c}] - \cancel{c})^{2}
+  \Ex[-(c - \cancel{c})^{2}] < - (\Ex[c] - \cancel{c})^{2}
 \end{equation}
-(where $\cancel{c}$ is the `bliss point' which is assumed always to exceed feasible ${c}$). However, unlike the CRRA utility function,
+(where $\cancel{c}$ is the `bliss point' which is assumed always to exceed feasible $c$). However, unlike the CRRA utility function,
 with quadratic utility the consumption/saving \textit{behavior} of consumers
 is unaffected by risk since behavior is determined by the first order condition, which
 depends on \textit{marginal} utility, and when utility is quadratic, marginal utility is unaffected
 by risk:
 \begin{equation}
-  \Ex[-2({c} - \cancel{c})] = - 2(\Ex[{c}] - \cancel{c}).
+  \Ex[-2(c - \cancel{c})] = - 2(\Ex[c] - \cancel{c}).
 \end{equation}
 
 Intuitively, if one's goal is to accurately capture choices
@@ -625,8 +625,8 @@ of the value function.
 The first order condition of the maximization problem in period $T-1$ is:
 \begin{verbatimwrite}{./Equations/FOCTm1.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
-        \uFunc^{{c}}({c}_{T-1})       & = \DiscFac \Ex_{\cntn(T-1)} [\uNormedPermGroFac\Rfree \uFunc^{{c}}({c}_{T})]  %\label{eq:focraw}
-        \\      {c}_{T-1}^{-\CRRA}   & = \Rfree \DiscFac \left(\frac{1}{n_{\TranShkEmp}}\right) \sum_{i=1}^{n_{\TranShkEmp}} \uNormedPermGroFac\left(\Rfree ({m}_{T-1}-{c}_{T-1}) + \TranShkEmp_{i}\right)^{-\CRRA} \label{eq:FOCTm1}.
+        \uFunc^{c}(c_{T-1})       & = \DiscFac \Ex_{\cntn(T-1)} [\PermGroFacAdjMu\Rfree \uFunc^{c}(c_{T})]  %\label{eq:focraw}
+        \\      c_{T-1}^{-\CRRA}   & = \Rfree \DiscFac \left(\frac{1}{n_{\TranShkEmp}}\right) \sum_{i=1}^{n_{\TranShkEmp}} \PermGroFacAdjMu\left(\Rfree (m_{T-1}-c_{T-1}) + \TranShkEmp_{i}\right)^{-\CRRA} \label{eq:FOCTm1}.
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/FOCTm1.tex}\unskip
@@ -634,82 +634,82 @@ The first order condition of the maximization problem in period $T-1$ is:
 \hypertarget{PlotuPrimeVSOPrime}{}
 \begin{figure}
   \centerline{\includegraphics[width=6in]{./Figures/PlotuPrimeVSOPrime}}
-  \caption{$\uFunc^{{c}}(c)$ versus $\vFunc_{\EndStepm}^{{a}}(3-c), \vFunc_{\EndStepm}^{{a}}(4-c), \Alt{\vFunc}_{\EndStepm}^{{a}}(3-c), \Alt{\vFunc}_{\EndStepm}^{{a}}(4-c)$}
+  \caption{$\uFunc^{c}(c)$ versus $\vFunc_{\EndStpLst}^{a}(3-c), \vFunc_{\EndStpLst}^{a}(4-c), \Alt{\vFunc}_{\EndStpLst}^{a}(3-c), \Alt{\vFunc}_{\EndStpLst}^{a}(4-c)$}
   \label{fig:PlotuPrimeVSOPrime}
 \end{figure}
 
 In the notebook, the ``Value Function versus the First Order Condition'' section completes the task of finding the values of consumption which satisfy the first order condition in \eqref{eq:FOCTm1} using the \href{https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.brentq.html}{brentq} function from the \texttt{scipy} package. %Notice that the use of \texttt{u.prime} and \texttt{gothic.VP\_Tminus1} is possible since they are already defined in the \texttt{resources} and \texttt{gothic\_class} modules.
 
 The downward-sloping curve in Figure \ref{fig:PlotuPrimeVSOPrime}
-shows the value of ${c}_{T-1}^{-\CRRA}$ for our baseline parameter values
-for $0 \leq {c}_{T-1} \leq 4$ (the horizontal axis).  The solid
+shows the value of $c_{T-1}^{-\CRRA}$ for our baseline parameter values
+for $0 \leq c_{T-1} \leq 4$ (the horizontal axis).  The solid
 upward-sloping curve shows the value of the RHS of (\ref{eq:FOCTm1})
-as a function of ${c}_{T-1}$ under the assumption that ${m}_{T-1}=3$.
+as a function of $c_{T-1}$ under the assumption that $m_{T-1}=3$.
 Constructing this figure is time-consuming, because for every
-value of ${c}_{T-1}$ plotted we must calculate the RHS of
-(\ref{eq:FOCTm1}).  The value of ${c}_{T-1}$ for which the RHS and LHS
+value of $c_{T-1}$ plotted we must calculate the RHS of
+(\ref{eq:FOCTm1}).  The value of $c_{T-1}$ for which the RHS and LHS
 of (\ref{eq:FOCTm1}) are equal is the optimal level of consumption
-given that ${m}_{T-1}=3$, so the intersection of the downward-sloping
-and the upward-sloping curves gives the (approximated) optimal value of ${c}_{T-1}$.
-As we can see, the two curves intersect just below ${c}_{T-1}=2$.
+given that $m_{T-1}=3$, so the intersection of the downward-sloping
+and the upward-sloping curves gives the (approximated) optimal value of $c_{T-1}$.
+As we can see, the two curves intersect just below $c_{T-1}=2$.
 Similarly, the upward-sloping dashed curve shows the expected value
-of the RHS of (\ref{eq:FOCTm1}) under the assumption that ${m}_{T-1}=4$,
-and the intersection of this curve with $\uFunc^{{c}}({c}_{T-1})$ yields the
-optimal level of consumption if ${m}_{T-1}=4$.  These two curves
-intersect slightly below ${c}_{T-1}=2.5$.  Thus, increasing ${m}_{T-1}$
+of the RHS of (\ref{eq:FOCTm1}) under the assumption that $m_{T-1}=4$,
+and the intersection of this curve with $\uFunc^{c}(c_{T-1})$ yields the
+optimal level of consumption if $m_{T-1}=4$.  These two curves
+intersect slightly below $c_{T-1}=2.5$.  Thus, increasing $m_{T-1}$
 from 3 to 4 increases optimal consumption by about 0.5.
 
 \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Flip back to Figure
-    4 to make the point that $\Alt{\vEndStep}^{{a}}$ is a step
+    4 to make the point that $\Alt{\vEnd}^{a}$ is a step
     function.}}{} Now consider the derivative of our function
-$\Alt{\vFunc}_{\EndStepm}({a}_{T-1})$.  Because we have constructed
-$\Alt{\vFunc}_{\EndStepm}$ as a linear interpolation, the slope of
-$\Alt{\vFunc}_{\EndStepm}({a}_{T-1})$ between any two adjacent
+$\Alt{\vFunc}_{\EndStpLst}(a_{T-1})$.  Because we have constructed
+$\Alt{\vFunc}_{\EndStpLst}$ as a linear interpolation, the slope of
+$\Alt{\vFunc}_{\EndStpLst}(a_{T-1})$ between any two adjacent
 points $\{\vctr{a}[i],\vctr{},\vctr{a}[{i+1}]\}$ is constant.  The
 level of the slope immediately below any particular gridpoint is
 different, of course, from the slope above that gridpoint, a fact
 which implies that the derivative of
-$\Alt{\vFunc}_{\EndStepm}({a}_{T-1})$ follows a step function.
+$\Alt{\vFunc}_{\EndStpLst}(a_{T-1})$ follows a step function.
 
 The solid-line step function in Figure \ref{fig:PlotuPrimeVSOPrime}
 depicts the actual value of
-$\Alt{\vFunc}_{\EndStepm}^{{a}}(3-{c}_{T-1})$.  When we attempt to find
-optimal values of ${c}_{T-1}$ given ${m}_{T-1}$ using
-$\Alt{\vFunc}_{\EndStepm}({a}_{T-1})$, the numerical optimization
-routine will return the ${c}_{T-1}$ for which $\uFunc^{{c}}({c}_{T-1}) =
-\Alt{\vFunc}^{{a}}_{\EndStepm}({m}_{T-1}-{c}_{T-1})$.  Thus, for
-${m}_{T-1}=3$ the program will return the value of ${c}_{T-1}$ for
-which the downward-sloping $\uFunc^{{c}}({c}_{T-1})$ curve intersects with the
-$\Alt{\vFunc}_{\EndStepm}^{{a}}(3-{c}_{T-1})$; as the diagram shows,
+$\Alt{\vFunc}_{\EndStpLst}^{a}(3-c_{T-1})$.  When we attempt to find
+optimal values of $c_{T-1}$ given $m_{T-1}$ using
+$\Alt{\vFunc}_{\EndStpLst}(a_{T-1})$, the numerical optimization
+routine will return the $c_{T-1}$ for which $\uFunc^{c}(c_{T-1}) =
+\Alt{\vFunc}^{a}_{\EndStpLst}(m_{T-1}-c_{T-1})$.  Thus, for
+$m_{T-1}=3$ the program will return the value of $c_{T-1}$ for
+which the downward-sloping $\uFunc^{c}(c_{T-1})$ curve intersects with the
+$\Alt{\vFunc}_{\EndStpLst}^{a}(3-c_{T-1})$; as the diagram shows,
 this value is exactly equal to 2.  Similarly, if we ask the routine
-to find the optimal ${c}_{T-1}$ for ${m}_{T-1}=4$, it finds the point
-of intersection of $\uFunc^{{c}}({c}_{T-1})$ with
-$\Alt{\vFunc}_{\EndStepm}^{{a}}(4-{c}_{T-1})$; and as the diagram shows,
+to find the optimal $c_{T-1}$ for $m_{T-1}=4$, it finds the point
+of intersection of $\uFunc^{c}(c_{T-1})$ with
+$\Alt{\vFunc}_{\EndStpLst}^{a}(4-c_{T-1})$; and as the diagram shows,
 this intersection is only slightly above 2.  Hence, this figure
 illustrates why the numerical consumption function plotted earlier
-returned values very close to ${c}_{T-1}=2$ for both ${m}_{T-1}=3$ and
-${m}_{T-1}=4$.
+returned values very close to $c_{T-1}=2$ for both $m_{T-1}=3$ and
+$m_{T-1}=4$.
 
 We would obviously obtain much better estimates of the point of
-intersection between $\uFunc^{{c}}({c}_{T-1})$ and
-$\vFunc_{\EndStepm}^{{a}}({m}_{T-1}-{c}_{T-1})$ if our estimate of
-$\Alt{\vFunc}^{{a}}_{\EndStepm}$ were not a step function.  In
+intersection between $\uFunc^{c}(c_{T-1})$ and
+$\vFunc_{\EndStpLst}^{a}(m_{T-1}-c_{T-1})$ if our estimate of
+$\Alt{\vFunc}^{a}_{\EndStpLst}$ were not a step function.  In
 fact, we already know how to construct linear interpolations
 to functions, so the obvious next step is to construct a
 linear interpolating approximation to the \textit{expected marginal
-  value of end-of-period assets function} $\vFunc^{{a}}_{\EndStepm}$:
+  value of end-of-period assets function} $\vFunc^{a}_{\EndStpLst}$:
 \begin{equation}\begin{gathered}\begin{aligned}
-      \vFunc_{\EndStepm}^{{a}}({a}_{T-1})  & =  \DiscFac \Rfree \uNormedPermGroFac \left(\frac{1}{n_{\TranShkEmp}}\right) \sum_{i=1}^{n_{\TranShkEmp}} \left(\RNrm_{T} {a}_{T-1} + \TranShkEmp_{i}\right)^{-\CRRA} \label{eq:vEndPrimeTm1}
+      \vFunc_{\EndStpLst}^{a}(a_{T-1})  & =  \DiscFac \Rfree \PermGroFacAdjMu \left(\frac{1}{n_{\TranShkEmp}}\right) \sum_{i=1}^{n_{\TranShkEmp}} \left(\RNrm_{T} a_{T-1} + \TranShkEmp_{i}\right)^{-\CRRA} \label{eq:vEndPrimeTm1}
     \end{aligned}\end{gathered}\end{equation}
-at the points in \texttt{aVec} yielding $\vctr{{v}}\mathtt{^{a}_{\EndStepm}}$ (the vector of expected end-of-period-$(T-1)$ marginal values of assets corresponding to \texttt{aVec}),  %$\{\{\vctr{{a}}}\mathtt{_{T-1}},\vFunc_{\EndStepm}^{{a}}(\vctr{{a}[1]}_{T-1}\},\{\vctr{{a}}_{(T-1)},\vFunc_{\EndStepm}^{{a}}\}\ldots\}$
+at the points in \texttt{aVec} yielding $\vctr{v}\mathtt{^{a}_{\EndStpLst}}$ (the vector of expected end-of-period-$(T-1)$ marginal values of assets corresponding to \texttt{aVec}),  %$\{\{\vctr{a}}\mathtt{_{T-1}},\vFunc_{\EndStpLst}^{a}(\vctr{{a}[1]}_{T-1}\},\{\vctr{a}_{(T-1)},\vFunc_{\EndStpLst}^{a}\}\ldots\}$
  and construct
-$\Alt{\vFunc}_{\EndStepm}^{{a}}({a}_{T-1})$ as the linear
+$\Alt{\vFunc}_{\EndStpLst}^{a}(a_{T-1})$ as the linear
 interpolating function that fits this set of points.
 
 \hypertarget{PlotOPRawVSFOC}{}
 \begin{figure}
   \centerline{\includegraphics[width=6in]{./Figures/PlotOPRawVSFOC}}
-  \caption{$\vFunc_{\EndStepm}^{{a}}({a}_{T-1})$ versus $\Alt{\vFunc}_{\EndStepm}^{{a}}({a}_{T-1})$}
+  \caption{$\vFunc_{\EndStpLst}^{a}(a_{T-1})$ versus $\Alt{\vFunc}_{\EndStpLst}^{a}(a_{T-1})$}
   \label{fig:PlotOPRawVSFOC}
 \end{figure}
 
@@ -729,7 +729,7 @@ value function (short dashes).
 \hypertarget{PlotcTm1ABC}{}
 \begin{figure}
   \centerline{\includegraphics[width=6in]{./Figures/PlotcTm1ABC}}
-  \caption{$\cFunc_{T-1}({m}_{T-1})$ (solid) Versus Two Methods for Constructing $\Alt{\cFunc}_{T-1}({m}_{T-1})$}
+  \caption{$\cFunc_{T-1}(m_{T-1})$ (solid) Versus Two Methods for Constructing $\Alt{\cFunc}_{T-1}(m_{T-1})$}
   \label{fig:PlotcTm1ABC}
 \end{figure}
 
@@ -737,10 +737,10 @@ value function (short dashes).
 \subsection{Transformation}\label{subsec:transformation}
 
 Even the new-and-improved consumption function diverges notably from the true
-solution, especially at lower values of ${m}$.  That is because the
+solution, especially at lower values of $m$.  That is because the
 linear interpolation does an increasingly poor job of capturing the
-nonlinearity of $\vFunc_{\EndStepm}^{{a}}({a}_{T-1})$ at
-lower and lower levels of ${a}$.
+nonlinearity of $\vFunc_{\EndStpLst}^{a}(a_{T-1})$ at
+lower and lower levels of $a$.
 
 This is where we unveil our next trick.  To understand the logic,
 start by considering the case where $\RNrm_{T} = \DiscFac =
@@ -749,7 +749,7 @@ start by considering the case where $\RNrm_{T} = \DiscFac =
     carefully.}}{} (that is, we know for sure that income next period
 will be $\TranShkEmp_{T} = 1$).  The final Euler equation is then:
 \begin{equation}\begin{gathered}\begin{aligned}
-      {c}_{T-1}^{-\CRRA}  & = {c}_{T}^{-\CRRA}.
+      c_{T-1}^{-\CRRA}  & = c_{T}^{-\CRRA}.
     \end{aligned}\end{gathered}\end{equation}
 
 In the case we are now considering with no uncertainty and no liquidity
@@ -759,32 +759,32 @@ current period $T-1$; there is perfect certainty that the income will
 be received, so the consumer treats its PDV as equivalent to a unit of
 current wealth.  Total resources available at the point when the consumption
 decision is made is therefore are comprised of two types:
-current market resources ${m}_{T-1}$ and `human wealth' (the PDV of
-future income) of $\hNrm_{\EndStepm}=1$ (because it is the value of human wealth as of the end of the period, and there is only one more period of income of 1 left).
+current market resources $m_{T-1}$ and `human wealth' (the PDV of
+future income) of $\hNrm_{\EndStpLst}=1$ (because it is the value of human wealth as of the end of the period, and there is only one more period of income of 1 left).
 
 The optimal solution is to spend half of total lifetime resources in
 period $T-1$ and the remainder in period $T$.  Since total resources
 are known with certainty to be
-${m}_{T-1}+\hNrm_{\MidStepm}= {m}_{T-1}+1$, and since
-${\vFunc}_{\MidStep}^{{m}}({m}_{T-1}) = \uFunc^{{c}}({c}_{T-1})$ this
+$m_{T-1}+\hNrm_{\MidStpLst}= m_{T-1}+1$, and since
+$\vFunc_{\MidStp}^{m}(m_{T-1}) = \uFunc^{c}(c_{T-1})$ this
 implies that \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Crucial
     point: this is \textit{marginal} value function in period $T-1$,
     which we were trying to approximate with a linear interpolating
     function earlier.}}{}
 \begin{equation}
-  \vFunc^{{m}}_{\MidStepm}({m}_{T-1})  = \left(\frac{{m}_{T-1}+1}{2}\right)^{-\CRRA} \label{eq:vPLin}.
+  \vFunc^{m}_{\MidStpLst}(m_{T-1})  = \left(\frac{{m}_{T-1}+1}{2}\right)^{-\CRRA} \label{eq:vPLin}.
 \end{equation}
 Of course, this is a highly nonlinear
 function.  However, if we raise both sides of \eqref{eq:vPLin} to the
 power $(-1/\CRRA)$ the result is a linear function:
 \begin{equation}\begin{gathered}\begin{aligned}
-      [\vFunc^{{m}}_{\MidStepm}({m}_{T-1})]^{-1/\CRRA}  & = \frac{{m}_{T-1}+1}{2}  .
+      [\vFunc^{m}_{\MidStpLst}(m_{T-1})]^{-1/\CRRA}  & = \frac{{m}_{T-1}+1}{2}  .
     \end{aligned}\end{gathered}\end{equation}
 This is a specific example of a general phenomenon: A theoretical
 literature discussed in~\cite{ckConcavity} establishes that under
 perfect certainty, if the period-by-period marginal utility function
-is of the form ${c}_{t}^{-\CRRA}$, the marginal value function will be
-of the form $(\gamma {m}_{t}+\zeta)^{-\CRRA}$ for some constants
+is of the form $c_{t}^{-\CRRA}$, the marginal value function will be
+of the form $(\gamma m_{t}+\zeta)^{-\CRRA}$ for some constants
 $\{\gamma,\zeta\}$.  This means that if we were solving the perfect
 foresight problem numerically, we could always calculate a numerically
 exact (because linear) interpolation.
@@ -796,14 +796,14 @@ because the nonlinearity springs largely from the fact that we are raising
 something to the power $-\CRRA$.  In effect, we can `unwind' all of
 the nonlinearity owing to that operation and the remaining
 nonlinearity will not be nearly so great.  Specifically, applying the foregoing insights
-to the end-of-period value function $\vFunc^{{a}}_{\MidStepm}({a}_{T-1})$, we can define
+to the end-of-period value function $\vFunc^{a}_{\MidStpLst}(a_{T-1})$, we can define
 \begin{equation}\begin{gathered}\begin{aligned}
-      \cFunc_{\EndStepm}({a}_{T-1})  & \equiv  \left(\vFunc^{{a}}_{\EndStepm}({a}_{T-1})\right)^{-1/\CRRA} \label{eq:cGoth}
+      \cFunc_{\EndStpLst}(a_{T-1})  & \equiv  \left(\vFunc^{a}_{\EndStpLst}(a_{T-1})\right)^{-1/\CRRA} \label{eq:cGoth}
     \end{aligned}\end{gathered}\end{equation}
 which would be linear in the perfect foresight case.  Thus, our
-procedure is to calculate the values of $\cFunc_{\stge-1}$ at each
-of the $\vctr{{a}}_{\mathtt{\stge-1}}$ gridpoints, with the idea that we will construct
-$\Alt{\cFunc}_{\EndStepm}$ as the interpolating function connecting
+procedure is to calculate the values of $\cFunc_{\stp-1}$ at each
+of the $\vctr{a}_{\mathtt{\stp-1}}$ gridpoints, with the idea that we will construct
+$\Alt{\cFunc}_{\EndStpLst}$ as the interpolating function connecting
 these
 points.
 
@@ -816,11 +816,11 @@ Note that this is \emph{not} a consumption function.  It is a `consumed' functio
 
 
 This is the appropriate moment to ask an awkward question we have so far
-neglected: How should a function like $\Alt{\cFunc}_{\EndStepm}$
+neglected: How should a function like $\Alt{\cFunc}_{\EndStpLst}$
 be evaluated outside the range of points spanned by
-$\{\mathtt{{a}_{T-1}[1],...,{a}_{T-1}[n]}\}$ for which we have calculated
-the corresponding $\cFunc_{\EndStepm}$ values used to produce our
-linearly interpolating approximation $\Alt{\cFunc}_{\EndStepm}$?
+$\{\mathtt{{a}_{T-1}[1],...,a_{T-1}[n]}\}$ for which we have calculated
+the corresponding $\cFunc_{\EndStpLst}$ values used to produce our
+linearly interpolating approximation $\Alt{\cFunc}_{\EndStpLst}$?
 
 For most piecewise-linear interpolation implementations, when the interplating function
 is evaluated at a point outside the provided range of values used to construct the
@@ -829,29 +829,29 @@ slope of the function remains the same beyond the measured boundaries as within 
 piecewise segment to the point.
 
 \newcommand{\aVecMin}{a_{1}}\newcommand{\cMin}{c_{1}}
-The easiest answer would be linear extrapolation; for example, if the bottommost gridpoint is $\aVecMin = \vctr{{a}}\mathtt{_{T-1}[1]}$ and the corresponding level of consumption is $\cMin = \cFunc_{\EndStepm}(a_1)$ we could calculate the `marginal propensity to have consumed' $\varkappa_{1}=\Alt{\cFunc}_{\EndStepm}^{{a}}(\aVecMin)$ and construct the approximation as the linear extrapolation below $\aVecMin$:
+The easiest answer would be linear extrapolation; for example, if the bottommost gridpoint is $\aVecMin = \vctr{a}\mathtt{_{T-1}[1]}$ and the corresponding level of consumption is $\cMin = \cFunc_{\EndStpLst}(a_1)$ we could calculate the `marginal propensity to have consumed' $\varkappa_{1}=\Alt{\cFunc}_{\EndStpLst}^{a}(\aVecMin)$ and construct the approximation as the linear extrapolation below $\aVecMin$:
 \begin{equation}\begin{gathered}\begin{aligned}
-      \Alt{\cFunc}_{\EndStepm}({a}_{T-1})  &  \equiv \cMin + ({a}_{T-1}-\aVecMin)\varkappa_{1}  \label{eq:ExtrapLin}
+      \Alt{\cFunc}_{\EndStpLst}(a_{T-1})  &  \equiv \cMin + (a_{T-1}-\aVecMin)\varkappa_{1}  \label{eq:ExtrapLin}
     \end{aligned}\end{gathered}\end{equation}
-for values of ${a}_{T-1} < \aVecMin$ %, where $\Alt{\cFunc}_{\EndStepm}^{{a}}(\aVecMin)$ is the derivative of the $\Alt{\cFunc}_{\EndStepm}$ function at the bottommost gridpoint.
-To see that this approach will lead us into difficulties, consider what happens to the true (not approximated) $\vFunc^{{a}}_{\EndStepm}({a}_{T-1})$ as ${a}_{T-1}$ approaches the value
+for values of $a_{T-1} < \aVecMin$ %, where $\Alt{\cFunc}_{\EndStpLst}^{a}(\aVecMin)$ is the derivative of the $\Alt{\cFunc}_{\EndStpLst}$ function at the bottommost gridpoint.
+To see that this approach will lead us into difficulties, consider what happens to the true (not approximated) $\vFunc^{a}_{\EndStpLst}(a_{T-1})$ as $a_{T-1}$ approaches the value
 $\underline{a}_{T-1}=-\underline{\TranShkEmp}\RNrm_{T}^{-1}$.  From
 \eqref{eq:vEndPrimeTm1} we have
 \begin{equation}\begin{gathered}\begin{aligned}
-      \lim_{{a}_{T-1} \downarrow \underline{a}_{T-1}} \vFunc^{{a}}_{\EndStepm}({a}_{T-1})
-      & =                                                                                         \lim_{{a}_{T-1} \downarrow \underline{a}_{T-1}} \DiscFac \Rfree \uNormedPermGroFac \left(\frac{1}{n_{\TranShkEmp}}\right) \sum_{i=1}^{n_{\TranShkEmp}} \left( {a}_{T-1} \RNrm_{T}+ \TranShkEmp_{i}\right)^{-\CRRA}.
+      \lim_{{a}_{T-1} \downarrow \underline{a}_{T-1}} \vFunc^{a}_{\EndStpLst}(a_{T-1})
+      & =                                                                                         \lim_{{a}_{T-1} \downarrow \underline{a}_{T-1}} \DiscFac \Rfree \PermGroFacAdjMu \left(\frac{1}{n_{\TranShkEmp}}\right) \sum_{i=1}^{n_{\TranShkEmp}} \left( a_{T-1} \RNrm_{T}+ \TranShkEmp_{i}\right)^{-\CRRA}.
     \end{aligned}\end{gathered}\end{equation}
 
 \providecommand{\TranShkEmpMin}{}\renewcommand{\TranShkEmpMin}{\underline{\TranShkEmp}}
 But since $\TranShkEmpMin=\TranShkEmp_{1}$, exactly at
-${a}_{T-1}=\underline{a}_{T-1}$ the first term in the summation would
+$a_{T-1}=\underline{a}_{T-1}$ the first term in the summation would
 be $(-\TranShkEmpMin+\TranShkEmp_{1})^{-\CRRA}=1/0^{\CRRA}$ which is
 infinity.  The reason is simple: $-\underline{a}_{T-1}$ is
 the PDV, as of $T-1$, of the minimum possible realization of income in
 period $T$ ($\RNrm_{T}\underline{a}_{T-1} = -\TranShkEmp_{1}$).  Thus,
 if the consumer borrows an amount greater than or equal to
 $\underline{\TranShkEmp}\RNrm_{T}^{-1}$ (that is, if the consumer ends
-$T-1$ with ${a}_{T-1} \leq -\underline{\TranShkEmp}\RNrm_{T}^{-1}$) and
+$T-1$ with $a_{T-1} \leq -\underline{\TranShkEmp}\RNrm_{T}^{-1}$) and
 then draws the worst possible income shock in period $T$, they will have
 to consume zero in period $T$, which yields
 $-\infty$ utility and $\infty$ marginal utility.
@@ -874,31 +874,31 @@ yield some finite amount of utility.\footnote{Though it is very unclear what a
   still useful for teaching purposes.}
 
 This self-imposed constraint cannot be captured well when the
-$\vFunc^{{a}}_{\EndStepm}$ function is approximated by a piecewise
-linear function like $\Alt{\vFunc}^{{m}}_{\EndStepm}$, because there is no chance that the linear extrapolation below $\aMin$ will correctly predict $\vFunc^{{a}}_{\EndStepm}(\underline{a}_{T-1})=\infty.$ To see what
-will happen instead, note first that if we are approximating $\vFunc^{{a}}_{\EndStepm}$ the smallest value in
+$\vFunc^{a}_{\EndStpLst}$ function is approximated by a piecewise
+linear function like $\Alt{\vFunc}^{m}_{\EndStpLst}$, because there is no chance that the linear extrapolation below $\aMin$ will correctly predict $\vFunc^{a}_{\EndStpLst}(\underline{a}_{T-1})=\infty.$ To see what
+will happen instead, note first that if we are approximating $\vFunc^{a}_{\EndStpLst}$ the smallest value in
 \texttt{aVec} must be greater than $\underline{a}_{T-1}$
-(because the expectation for any ${a}_{\stge-1} \leq \underline{a}_{T-1}$ is undefined).
+(because the expectation for any $a_{\stp-1} \leq \underline{a}_{T-1}$ is undefined).
 
 
 Then when the
-approximating $\vFunc^{{a}}_{\EndStepm}$ function is evaluated at
+approximating $\vFunc^{a}_{\EndStpLst}$ function is evaluated at
 some value less than the first element in \texttt{aVec}, the
 approximating function will linearly extrapolate the slope that
 characterized the lowest segment of the piecewise linear approximation
 (between \texttt{aVec[1]} and \texttt{aVec[2]}), a
 procedure that will return a positive finite number, even if the
-requested ${a}_{T-1}$ point is below $\underline{a}_{T-1}$.  This means that the
+requested $a_{T-1}$ point is below $\underline{a}_{T-1}$.  This means that the
 precautionary saving motive is understated, and by an arbitrarily
 large amount as the level of assets approaches its true theoretical
 minimum $\underline{a}_{T-1}$.
 
-The foregoing logic demonstrates that the marginal value of saving approaches infinity as ${a}_{T-1} \downarrow
+The foregoing logic demonstrates that the marginal value of saving approaches infinity as $a_{T-1} \downarrow
 \underline{a}_{T-1}=-\underline{\TranShkEmp}\RNrm_{T}^{-1}$.  But this
 implies that $\lim_{{a}_{T-1} \downarrow \underline{a}_{T-1}}
-\cFunc_{\EndStepm}({a}_{T-1}) = (\vFunc^{{a}}_{\EndStepm}({a}_{T-1}))^{-1/\CRRA} = 0$;
-that is, as ${a}$ approaches its minimum possible value, the
-corresponding amount of ${c}$ must approach \textit{its} minimum possible value: zero.
+\cFunc_{\EndStpLst}(a_{T-1}) = (\vFunc^{a}_{\EndStpLst}(a_{T-1}))^{-1/\CRRA} = 0$;
+that is, as $a$ approaches its minimum possible value, the
+corresponding amount of $c$ must approach \textit{its} minimum possible value: zero.
 
 The upshot of this discussion is a realization that all we need to do is to
 augment each of the $\vctr{a}_{T-1}$ and $\vctr{c}_{T-1}$ vectors with an extra point so that the
@@ -909,25 +909,25 @@ $\{\underline{a}_{T-1},0.\}$. This is done in section
 \hypertarget{GothVInvVSGothC}{}
 \begin{figure}
   \centerline{\includegraphics[width=6in]{./Figures/GothVInvVSGothC}}
-  \caption{True $\cFunc_{\EndStepm}({a}_{T-1})$ vs its approximation $\Alt{\cFunc}_{\EndStepm}({a}_{T-1})$}
+  \caption{True $\cFunc_{\EndStpLst}(a_{T-1})$ vs its approximation $\Alt{\cFunc}_{\EndStpLst}(a_{T-1})$}
   \label{fig:GothVInvVSGothC}
 \end{figure}
 
 
-From there, we plot the lists that have been prepended with the natural borrowing contraint and the associated minimal level of consumption. Figure\ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny True $\cEndFunc$ is solid, linear approx is dashed.}}{} \ref{fig:GothVInvVSGothC} shows the result. The solid line calculates the exact numerical value of the consumed function $\cFunc_{\EndStepm}({a}_{T-1})$ while the dashed line is the linear interpolating approximation $\Alt{\cFunc}_{\EndStepm}({a}_{T-1}).$ This figure illustrates the value of the transformation: The true function is close to linear, and so the linear approximation is almost indistinguishable from the true function except at the very lowest values of ${a}_{T-1}$.
+From there, we plot the lists that have been prepended with the natural borrowing contraint and the associated minimal level of consumption. Figure\ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny True $\cEndFunc$ is solid, linear approx is dashed.}}{} \ref{fig:GothVInvVSGothC} shows the result. The solid line calculates the exact numerical value of the consumed function $\cFunc_{\EndStpLst}(a_{T-1})$ while the dashed line is the linear interpolating approximation $\Alt{\cFunc}_{\EndStpLst}(a_{T-1}).$ This figure illustrates the value of the transformation: The true function is close to linear, and so the linear approximation is almost indistinguishable from the true function except at the very lowest values of $a_{T-1}$.
 
 Figure~\ref{fig:GothVVSGothCInv} similarly shows that when we generate
-$\Alt{\Alt{\vFunc}}_{\EndStepm}^{{a}}({a})$ using our augmented 
-$[\Alt{\cFunc}_{\EndStepm}({a})]^{-\CRRA}$ (dashed line) we
+$\Alt{\Alt{\vFunc}}_{\EndStpLst}^{a}(a)$ using our augmented 
+$[\Alt{\cFunc}_{\EndStpLst}(a)]^{-\CRRA}$ (dashed line) we
 obtain a \textit{much} closer approximation to the true function
-$\vFunc^{{a}}_{\EndStepm}({a})$ (solid line) than we did in
+$\vFunc^{a}_{\EndStpLst}(a)$ (solid line) than we did in
 the previous program which did not do the
-transformation (Figure~\ref{fig:PlotOPRawVSFOC}). (The vertical axis label uses $\mathfrak{v}^{\prime}$ as an alternative notation for what in these notes we designate as $\vFunc^{a}_{\EndStep}$).
+transformation (Figure~\ref{fig:PlotOPRawVSFOC}). (The vertical axis label uses $\mathfrak{v}^{\prime}$ as an alternative notation for what in these notes we designate as $\vFunc^{a}_{\EndStp}$).
 
 \hypertarget{GothVVSGothCInv}{}
 \begin{figure}
   \centerline{\includegraphics[width=6in]{./Figures/GothVVSGothCInv}}
-  \caption{True $\vFunc^{{a}}_{\EndStepm}({a}_{T-1})$ vs. $\Alt{\Alt{\vFunc}}_{\EndStepm}^{{a}}({a}_{T-1})$ Constructed Using $\Alt{\cFunc}_{\EndStepm}({a}_{T-1})$}
+  \caption{True $\vFunc^{a}_{\EndStpLst}(a_{T-1})$ vs. $\Alt{\Alt{\vFunc}}_{\EndStpLst}^{a}(a_{T-1})$ Constructed Using $\Alt{\cFunc}_{\EndStpLst}(a_{T-1})$}
   \label{fig:GothVVSGothCInv}
 \end{figure}
 
@@ -936,17 +936,17 @@ transformation (Figure~\ref{fig:PlotOPRawVSFOC}). (The vertical axis label uses 
 \hypertarget{The-Method-of-Endogenous-Gridpoints}{}
 \subsection{The Method of Endogenous Gridpoints}
 
-Our solution procedure for ${\cFunc}_{T-1}$ still requires us, for each
-point in $\vctr{{m}}\mathtt{_{T-1}}$ ({\mVec} in the code), to use a
-numerical rootfinding algorithm to search for the value of ${c}_{T-1}$
-that solves $\uFunc^{{c}}({c}_{T-1}) =
-\vFunc^{{a}}_{\EndStepm}({m}_{T-1}-{c}_{T-1})$.  Unfortunately, rootfinding
+Our solution procedure for $\cFunc_{T-1}$ still requires us, for each
+point in $\vctr{m}\mathtt{_{T-1}}$ ({\mVec} in the code), to use a
+numerical rootfinding algorithm to search for the value of $c_{T-1}$
+that solves $\uFunc^{c}(c_{T-1}) =
+\vFunc^{a}_{\EndStpLst}(m_{T-1}-c_{T-1})$.  Unfortunately, rootfinding
 is a notoriously computation-intensive (that is, slow!) operation.
 
-It turns out that there is a way to completely skip the rootfinding step.  The method can be understood by noting that any arbitrary value of $\vctr{{a}}\mathtt{_{T-1}}$ (greater than its lower bound value $\aVecMin$) will be associated with \textit{some} marginal valuation as of the continuation ($\cntn$) stage of $T-1$ (that is, at the end of the period), and the further observation that it is trivial to find the value of ${c}$ that yields the same marginal valuation, using the first order condition,
+It turns out that there is a way to completely skip the rootfinding step.  The method can be understood by noting that any arbitrary value of $\vctr{a}\mathtt{_{T-1}}$ (greater than its lower bound value $\aVecMin$) will be associated with \textit{some} marginal valuation as of the continuation ($\cntn$) stage of $T-1$ (that is, at the end of the period), and the further observation that it is trivial to find the value of $c$ that yields the same marginal valuation, using the first order condition,
 \begin{equation}\begin{gathered}\begin{aligned}
-      \uFunc^{{c}}({\vctr{{\cNrm}}\mathtt{_{T-1}}})  & =
-                                       \vFunc^{{a}}_{\EndStepm}(\vctr{{a}}_{T-1}) \label{eq:eulerTm1}
+      \uFunc^{c}({\vctr{{\cNrm}}\mathtt{_{T-1}}})  & =
+                                       \vFunc^{a}_{\EndStpLst}(\vctr{a}_{T-1}) \label{eq:eulerTm1}
 \end{aligned}\end{gathered}\end{equation}
 by using the inverse of the marginal utility function,
 \begin{equation}\begin{gathered}\begin{aligned}
@@ -956,33 +956,33 @@ by using the inverse of the marginal utility function,
 which yields the level of consumption that corresponds to marginal utility of $\mu.$
 Using this to invert both sides of \eqref{eq:eulerTm1}, we get
 \begin{equation}\begin{gathered}\begin{aligned}
-       {\vctr{{\cNrm}}\mathtt{_{T-1}}}  & = \left(\vFunc^{{a}}_{\EndStepm}(\vctr{{a}}_{T-1})\right)^{-1/\CRRA}
-%      \\  & = (\vFunc^{{a}}_{\EndStepm}({a}_{T-1,i}))^{-1/\CRRA}
-%      \\  & \equiv  \cFunc_{\EndStepm}({a}_{T-1,i})
-%      \\  & \equiv  \cFunc_{\EndStepm,i}
+       {\vctr{{\cNrm}}\mathtt{_{T-1}}}  & = \left(\vFunc^{a}_{\EndStpLst}(\vctr{a}_{T-1})\right)^{-1/\CRRA}
+%      \\  & = (\vFunc^{a}_{\EndStpLst}(a_{T-1,i}))^{-1/\CRRA}
+%      \\  & \equiv  \cFunc_{\EndStpLst}(a_{T-1,i})
+%      \\  & \equiv  \cFunc_{\EndStpLst,i}
     \end{aligned}\end{gathered}\end{equation}
-where the $\cntn$ emphasizes that these are points on the `consumed' function (that is, the function that reveals how much an optimizing consumer must have consumed in order to end the period with ${a}_{T-1,i}$).
+where the $\cntn$ emphasizes that these are points on the `consumed' function (that is, the function that reveals how much an optimizing consumer must have consumed in order to end the period with $a_{T-1,i}$).
 
-But with mutually consistent values of $\vctr{{c}}\mathtt{_{T-1}}$ and $\vctr{{a}}\mathtt{_{T-1}}$ (consistent, in the sense that they are the unique optimal
+But with mutually consistent values of $\vctr{c}\mathtt{_{T-1}}$ and $\vctr{a}\mathtt{_{T-1}}$ (consistent, in the sense that they are the unique optimal
 values that correspond to the solution to the problem), we can
-obtain the $\vctr{{m}}\mathtt{_{T-1}}$ vector that corresponds to both of them from
+obtain the $\vctr{m}\mathtt{_{T-1}}$ vector that corresponds to both of them from
 \begin{equation}\begin{gathered}\begin{aligned}
-      \vctr{{m}}\mathtt{_{T-1}}  & = {\vctr{{\cNrm}}\mathtt{_{T-1}}+\vctr{{a}}\mathtt{_{T-1}}}.
+      \vctr{m}\mathtt{_{T-1}}  & = {\vctr{{\cNrm}}\mathtt{_{T-1}}+\vctr{a}\mathtt{_{T-1}}}.
     \end{aligned}\end{gathered}\end{equation}
 
-\ifthenelse{\boolean{ToFix}}{\marginpar{\tiny Rename gothic class: EndStep}}{}
+\ifthenelse{\boolean{ToFix}}{\marginpar{\tiny Rename gothic class: EndStp}}{}
 
 
-These ${m}_{T-1}$ gridpoints are ``endogenous'' in contrast to the usual solution method of
-specifying some \textit{ex-ante} grid of values of ${m}_{T-1}$ and then using a rootfinding
-routine to locate the corresponding optimal ${c}_{T-1}$. This routine is performed in the ``Endogenous Gridpoints'' section of the notebook. First, the \texttt{gothic.C\_Tminus1} function is called for each of the pre-specfied
+These $m_{T-1}$ gridpoints are ``endogenous'' in contrast to the usual solution method of
+specifying some \textit{ex-ante} grid of values of $m_{T-1}$ and then using a rootfinding
+routine to locate the corresponding optimal $c_{T-1}$. This routine is performed in the ``Endogenous Gridpoints'' section of the notebook. First, the \texttt{gothic.C\_Tminus1} function is called for each of the pre-specfied
 values of end-of-period assets stored in \texttt{aVec}. These values of consumption and assets
 are used to produce the list of endogenous gridpoints, stored in the object
-\texttt{mVec\_egm}. With the $\vctr{\cFunc}_{\EndStepm}$ values in hand, the notebook can generate a set of $\vctr{{m}}\mathtt{_{T-1}}$ and ${\vctr{{\cNrm}}\mathtt{_{T-1}}}$
+\texttt{mVec\_egm}. With the $\vctr{\cFunc}_{\EndStpLst}$ values in hand, the notebook can generate a set of $\vctr{m}\mathtt{_{T-1}}$ and ${\vctr{{\cNrm}}\mathtt{_{T-1}}}$
 pairs that can be interpolated between in order to yield
-$\Alt{\cFunc}_{\MidStepm}(m_{\stge-1})$ at virtually zero computational cost!\footnote{This is the essential point of \cite{carrollEGM}.} %This is done in the final line of code in this block, and the following code block produces the graph of the interpolated consumption function using this procedure.
+$\Alt{\cFunc}_{\MidStpLst}(m_{\stp-1})$ at virtually zero computational cost!\footnote{This is the essential point of \cite{carrollEGM}.} %This is done in the final line of code in this block, and the following code block produces the graph of the interpolated consumption function using this procedure.
 
-One might worry about whether the $\{{m},{c}\}$ points obtained in this way will provide a
+One might worry about whether the $\{{m},c\}$ points obtained in this way will provide a
 good representation of the consumption function as a whole, but in
 practice there are good reasons why they work well (basically, this
 procedure generates a set of gridpoints that is naturally dense right
@@ -990,17 +990,17 @@ around the parts of the function with the greatest nonlinearity).
 \hypertarget{PlotComparecTm1AD}{}
 \begin{figure}
   \centerline{\includegraphics[width=6in]{./Figures/PlotComparecTm1AD}}
-  \caption{$\cFunc_{T-1}({m}_{T-1})$ (solid) versus $\Alt{\cFunc}_{T-1}({m}_{T-1})$ (dashed)}
+  \caption{$\cFunc_{T-1}(m_{T-1})$ (solid) versus $\Alt{\cFunc}_{T-1}(m_{T-1})$ (dashed)}
   \label{fig:ComparecTm1AD}
 \end{figure}
 Figure~\ref{fig:ComparecTm1AD} plots the actual consumption function
-${\cFunc}_{T-1}$ and the approximated consumption function $\Alt{\cFunc}_{T-1}$
+$\cFunc_{T-1}$ and the approximated consumption function $\Alt{\cFunc}_{T-1}$
 derived by the method of endogenous grid points. Compared to the approximate consumption
 functions illustrated in Figure~\ref{fig:PlotcTm1ABC}, $\Alt{\cFunc}_{T-1}$ is quite close
 to the actual consumption function.
 
 
-\ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Different transformation for $\vFunc$ than for $\vFunc^{{a}}$.}}{}
+\ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Different transformation for $\vFunc$ than for $\vFunc^{a}$.}}{}
 
 \hypertarget{Improving-the-a-Grid}{}
 \subsection{Improving the $\aNrm$ Grid}
@@ -1008,12 +1008,12 @@ to the actual consumption function.
 Thus far, we have arbitrarily used $\aNrm$ gridpoints of
 $\{0.,1.,2.,3.,4.\}$ (augmented in the last subsection by
 $\underline{a}_{T-1}$).  But it has been obvious from the figures that
-the approximated $\Alt{\cFunc}_{\EndStepm}$ function tends to be farthest from its true
-value $\cFunc_{\EndStepm}$ at low values of ${a}$.  Combining this with our insight that
+the approximated $\Alt{\cFunc}_{\EndStpLst}$ function tends to be farthest from its true
+value $\cFunc_{\EndStpLst}$ at low values of $a$.  Combining this with our insight that
 $\underline{a}_{T-1}$ is a lower bound, we are now in position to
 define a more deliberate method for constructing gridpoints for
-${a}_{T-1}$ -- a method that yields values that are more densely
-spaced than the uniform grid at low values of ${a}$.  A pragmatic
+$a_{T-1}$ -- a method that yields values that are more densely
+spaced than the uniform grid at low values of $a$.  A pragmatic
 choice that works well is to find the values such that (1) the last
 value \textit{exceeds the lower bound} by the same amount $\bar{a}_{T-1}$
 as our original maximum gridpoint (in our case, 4.); (2) we have the
@@ -1025,8 +1025,8 @@ absolute gap between points).
 \hypertarget{GothVInvVSGothCEEE}{}
 \begin{figure}
   \centerline{\includegraphics[width=6in]{./Figures/GothVInvVSGothCEEE}}
-  \caption{$\cFunc_{\EndStepm}({a}_{T-1})$ versus
-    $\Alt{\cFunc}_{\EndStepm}({a}_{T-1})$, Multi-Exponential \texttt{aVec}}
+  \caption{$\cFunc_{\EndStpLst}(a_{T-1})$ versus
+    $\Alt{\cFunc}_{\EndStpLst}(a_{T-1})$, Multi-Exponential \texttt{aVec}}
   \label{fig:GothVInvVSGothCEE}
 \end{figure}
 
@@ -1034,8 +1034,8 @@ absolute gap between points).
 \hypertarget{GothVVSGothCInvEEE}{}
 \begin{figure}
   \includegraphics[width=6in]{./Figures/GothVVSGothCInvEEE}
-  \caption{$\vFunc^{{a}}_{\EndStepm}({a}_{T-1})$ vs.
-    $\Alt{\Alt{\vFunc}}_{\EndStepm}^{{a}}({a}_{T-1})$, Multi-Exponential \texttt{aVec}}
+  \caption{$\vFunc^{a}_{\EndStpLst}(a_{T-1})$ vs.
+    $\Alt{\Alt{\vFunc}}_{\EndStpLst}^{a}(a_{T-1})$, Multi-Exponential \texttt{aVec}}
   \label{fig:GothVVSGothCInvEE}
 \end{figure}
 
@@ -1071,7 +1071,7 @@ grid.
   \hypertarget{ExtrapProblemPlot}{}
   \begin{figure}
     \includegraphics[width=6in]{./Figures/ExtrapProblemPlot}
-    \caption{For Large Enough ${m}_{T-1}$, Predicted Precautionary Saving is Negative (Oops!)}
+    \caption{For Large Enough $m_{T-1}$, Predicted Precautionary Saving is Negative (Oops!)}
     \label{fig:ExtrapProblem}
   \end{figure}
 
@@ -1089,10 +1089,10 @@ grid.
 \input{./cctwMoM/EndogGptsProbs.tex}\unskip
 
 
-\renewcommand{\stge}{t} % For the rest of the doc, use generic t vs t+1
+\renewcommand{\stp}{t} % For the rest of the doc, use generic t vs t+1
 
 \begin{verbatimwrite}{./cctwMoM/MoM-Prelims.tex}
-  As a preliminary to our solution, define $\hNrm_{\EndStep}$ as
+  As a preliminary to our solution, define $\hNrm_{\EndStp}$ as
   end-of-period human wealth (the present discounted value
   of future labor income) for a perfect foresight version of the problem
   of a `risk optimist:' a period-$t$ consumer who believes with perfect confidence
@@ -1106,7 +1106,7 @@ grid.
 \input{./cctwMoM/MoM-Prelims.tex}\unskip
 \begin{verbatimwrite}{./Equations/cFuncAbove.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
-        \cFuncAbove_{t}(\mNrm_{t})  & = (\mNrm_{t} + \hNrm_{\EndStep})\MPCmin_{t} \label{eq:cFuncAbove}
+        \cFuncAbove_{t}(\mNrm_{t})  & = (\mNrm_{t} + \hNrm_{\EndStp})\MPCmin_{t} \label{eq:cFuncAbove}
       \end{aligned}\end{gathered}\end{equation}
   for a constant minimal marginal propensity to consume $\MPCmin_{t}$ given below.
 \end{verbatimwrite}
@@ -1115,7 +1115,7 @@ grid.
 \providecommand{\hEndMin}{\underline{\hNrm}}\renewcommand{\hEndMin}{\underline{\hNrm}}
 
 \begin{verbatimwrite}{./cctwMoM/MoM-Words.tex}
-  We similarly define $\hEndMin_{\EndStep}$ as `minimal human wealth,' the
+  We similarly define $\hEndMin_{\EndStp}$ as `minimal human wealth,' the
   present discounted value of labor income if the shocks were to take on
   their worst possible value in every future period \PermShkOn
   {$\TranShkEmp_{t+n} = \TranShkEmpMin ~\forall~n>0$ and $\PermShk_{t+n} =
@@ -1127,37 +1127,37 @@ grid.
     probabilities of the future risks and optimizes accordingly.}
 
   A first useful point is that, for the realist, a lower bound for the
-  level of market resources is $\ushort{m}_{t} = -\hEndMin_{\EndStep}$, because
-  if ${m}_{t}$ equalled this value then there would be a positive finite
+  level of market resources is $\ushort{m}_{t} = -\hEndMin_{\EndStp}$, because
+  if $m_{t}$ equalled this value then there would be a positive finite
   chance (however small) of receiving \PermShkOn
   {$\TranShkEmp_{t+n}=\TranShkEmpMin$ and $\PermShk_{t+n}=\PermShkMin$}
   {$\TranShkEmp_{t+n}=\TranShkEmpMin$}
   in
-  every future period, which would require the consumer to set ${c}_{t}$
+  every future period, which would require the consumer to set $c_{t}$
   to zero in order to guarantee that the intertemporal budget constraint
   holds\ctw{.}{~(this is the multiperiod generalization of the discussion in
     section \ref{subsec:LiqConstrSelfImposed} explaining the derivation of the `natural borrowing constraint' for period $T-1$,
     $\ushort{a}_{T-1}$).}  Since consumption of zero yields negative
   infinite utility, the solution to realist consumer's problem is not well
-  defined for values of ${m}_{t} < \ushort{m}_{t}$, and the limiting
-  value of the realist's ${c}_t$ is zero as ${m}_{t} \downarrow \ushort{m}_{t}$.
+  defined for values of $m_{t} < \ushort{m}_{t}$, and the limiting
+  value of the realist's $c_t$ is zero as $m_{t} \downarrow \ushort{m}_{t}$.
 
   Given this result, it will be convenient to define `excess' market
   resources as the amount by which actual resources exceed the lower
   bound, and `excess' human wealth as the amount by which mean expected human wealth
   exceeds guaranteed minimum human wealth:
   \begin{equation*}\begin{gathered}\begin{aligned}
-        \aboveMin \mNrm_{t}  & = {m}_{t}+\overbrace{\hEndMin_{\EndStep}}^{=-\ushort{m}_{t}}
-        \\  \aboveMin \hNrm_{\EndStep}  & = \hNrm_{\EndStep}-\hEndMin_{\EndStep}.
+        \aboveMin \mNrm_{t}  & = m_{t}+\overbrace{\hEndMin_{\EndStp}}^{=-\ushort{m}_{t}}
+        \\  \aboveMin \hNrm_{\EndStp}  & = \hNrm_{\EndStp}-\hEndMin_{\EndStp}.
       \end{aligned}\end{gathered}\end{equation*}
 
   We can now transparently define the optimal
   consumption rules for the two perfect foresight problems, those of the
   `optimist' and the `pessimist.'  The `pessimist' perceives human
-  wealth to be equal to its minimum feasible value $\hEndMin_{\EndStep}$ with certainty, so
+  wealth to be equal to its minimum feasible value $\hEndMin_{\EndStp}$ with certainty, so
   consumption is given by the perfect foresight solution
   \begin{equation*}\begin{gathered}\begin{aligned}
-        \cFuncBelow_{t}(m_{t})  & = ({m}_{t}+\hEndMin_{\EndStep})\MPCmin_{t}
+        \cFuncBelow_{t}(m_{t})  & = (m_{t}+\hEndMin_{\EndStp})\MPCmin_{t}
         \\  & = \aboveMin \mNrm_{t}\MPCmin_{t}
         .
       \end{aligned}\end{gathered}\end{equation*}
@@ -1165,9 +1165,9 @@ grid.
   The `optimist,' on the other hand, pretends that there is no uncertainty
   about future income, and therefore consumes
   \begin{equation*}\begin{gathered}\begin{aligned}
-        \cFuncAbove_{t}(m_{t})  & = ({m}_{t} +\hEndMin_{\EndStep} - \hEndMin_{\EndStep} + \hNrm_{\EndStep} )\MPCmin_{t}
-        \\    & = (\aboveMin \mNrm_{t} + \aboveMin \hNrm_{\EndStep})\MPCmin_{t}
-        \\      & = \cFuncBelow_{t}(m_{t})+\aboveMin \hNrm_{\EndStep} \MPCmin_{t}
+        \cFuncAbove_{t}(m_{t})  & = (m_{t} +\hEndMin_{\EndStp} - \hEndMin_{\EndStp} + \hNrm_{\EndStp} )\MPCmin_{t}
+        \\    & = (\aboveMin \mNrm_{t} + \aboveMin \hNrm_{\EndStp})\MPCmin_{t}
+        \\      & = \cFuncBelow_{t}(m_{t})+\aboveMin \hNrm_{\EndStp} \MPCmin_{t}
         .
       \end{aligned}\end{gathered}\end{equation*}
 
@@ -1197,10 +1197,10 @@ grid.
 
   \begin{center}
 \mbox{    \begin{tabular}{rcl}
-      $ \aboveMin \mNrm_{t} \MPCmin_{t} < $ & $ \cFunc_{t}(\ushort{m}_{t}+\aboveMin \mNrm_{t}) $  $< (\aboveMin \mNrm_{t}+\aboveMin \hNrm_{\EndStep})\MPCmin_{t} $
-      \\  $- \aboveMin \mNrm_{t} \MPCmin_{t} > $ & $ -\cFunc_{t}(\ushort{m}_{t}+\aboveMin \mNrm_{t}) $ & $> -(\aboveMin \mNrm_{t}+\aboveMin \hNrm_{\EndStep})\MPCmin_{t} $
-      \\  $ \aboveMin \hNrm_{\EndStep} \MPCmin_{t} > $ & $ \bar{\cFunc}_{t}(\ushort{m}_{t}+\aboveMin \mNrm_{t})-\cFunc_{t}(\ushort{m}_{t}+\aboveMin \mNrm_{t}) $ & $> 0$
-      \\  $1 > $ & $ \underbrace{\left(\frac{\bar{\cFunc}_{t}(\ushort{m}_{t}+\aboveMin \mNrm_{t})-\cFunc_{t}(\ushort{m}_{t}+\aboveMin \mNrm_{t})}{\aboveMin \hNrm_{\EndStep} \MPCmin_{t}}\right)}_{\equiv \Hi{\koppa}_{t}} $ & $> 0$
+      $ \aboveMin \mNrm_{t} \MPCmin_{t} < $ & $ \cFunc_{t}(\ushort{m}_{t}+\aboveMin \mNrm_{t}) $  $< (\aboveMin \mNrm_{t}+\aboveMin \hNrm_{\EndStp})\MPCmin_{t} $
+      \\  $- \aboveMin \mNrm_{t} \MPCmin_{t} > $ & $ -\cFunc_{t}(\ushort{m}_{t}+\aboveMin \mNrm_{t}) $ & $> -(\aboveMin \mNrm_{t}+\aboveMin \hNrm_{\EndStp})\MPCmin_{t} $
+      \\  $ \aboveMin \hNrm_{\EndStp} \MPCmin_{t} > $ & $ \bar{\cFunc}_{t}(\ushort{m}_{t}+\aboveMin \mNrm_{t})-\cFunc_{t}(\ushort{m}_{t}+\aboveMin \mNrm_{t}) $ & $> 0$
+      \\  $1 > $ & $ \underbrace{\left(\frac{\bar{\cFunc}_{t}(\ushort{m}_{t}+\aboveMin \mNrm_{t})-\cFunc_{t}(\ushort{m}_{t}+\aboveMin \mNrm_{t})}{\aboveMin \hNrm_{\EndStp} \MPCmin_{t}}\right)}_{\equiv \Hi{\koppa}_{t}} $ & $> 0$
 \end{tabular}
 }
   \end{center}
@@ -1221,7 +1221,7 @@ grid.
   Defining $\mu_{t} =
   \log \aboveMin \mNrm_{t}$ (which can range from $-\infty$ to $\infty$), the object in the middle of the last inequality is
   \begin{equation}\begin{gathered}\begin{aligned}
-        \Hi{\koppa}_{t}(\mu_{t})   & \equiv  \left(\frac{\bar{\cFunc}_{t}(\ushort{m}_{t}+e^{\mu_{t}})-\cFunc_{t}(\ushort{m}_{t}+e^{\mu_{t}})}{\aboveMin \hNrm_{\EndStep} \MPCmin_{t}}\right), \label{eq:koppa}
+        \Hi{\koppa}_{t}(\mu_{t})   & \equiv  \left(\frac{\bar{\cFunc}_{t}(\ushort{m}_{t}+e^{\mu_{t}})-\cFunc_{t}(\ushort{m}_{t}+e^{\mu_{t}})}{\aboveMin \hNrm_{\EndStp} \MPCmin_{t}}\right), \label{eq:koppa}
       \end{aligned}\end{gathered}\end{equation}
   and we now define
   \begin{equation}\begin{gathered}\begin{aligned}
@@ -1238,7 +1238,7 @@ grid.
 \input{./cctwMoM/MoM-KoppaOfMu-Describe.tex}\unskip
 \begin{verbatimwrite}{./Equations/cFuncHi.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
-        \Hi{\cFunc}_{t}  & = \bar{\cFunc}_{t}-\overbrace{\left(\frac{1}{1+\exp(\Hi{\chiFunc}_{t})}\right)}^{=\Hi{\koppa}_{t}} \aboveMin \hNrm_{\EndStep} \MPCmin_{t}. \label{eq:cFuncHi}
+        \Hi{\cFunc}_{t}  & = \bar{\cFunc}_{t}-\overbrace{\left(\frac{1}{1+\exp(\Hi{\chiFunc}_{t})}\right)}^{=\Hi{\koppa}_{t}} \aboveMin \hNrm_{\EndStp} \MPCmin_{t}. \label{eq:cFuncHi}
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/cFuncHi.tex}\unskip
@@ -1288,7 +1288,7 @@ the gridpoints where the slope of the function changes discretely.
 this problem
 is `smooth:' It
 exhibits a well-defined unique marginal propensity to consume at every
-positive value of ${m}$.  This suggests that we should calculate, not
+positive value of $m$.  This suggests that we should calculate, not
 just the level of consumption, but also the marginal propensity to
 consume (henceforth $\MPC$) at each gridpoint, and then find an
 interpolating approximation that smoothly matches both the level and the slope
@@ -1296,13 +1296,13 @@ at those points.
 
 This requires us to differentiate \eqref{eq:koppa} and \eqref{eq:chi}, yielding
 \begin{equation}\begin{gathered}\begin{aligned}
-      \Hi{\koppa}_{t}^{\mu}(\mu_{t})   & = (\aboveMin \hNrm_{\EndStep} \MPCmin_{t})^{-1}e^{\mu_{t}}\left(\MPCmin_{t}-\overbrace{\cFunc^{\mNrm}_{t}(\ushort{m}_{t}+e^{\mu_{t}})}^{\equiv \MPCFunc_{t}(\mNrm_{t})}\right)  \label{eq:koppaPrime}
+      \Hi{\koppa}_{t}^{\mu}(\mu_{t})   & = (\aboveMin \hNrm_{\EndStp} \MPCmin_{t})^{-1}e^{\mu_{t}}\left(\MPCmin_{t}-\overbrace{\cFunc^{\mNrm}_{t}(\ushort{m}_{t}+e^{\mu_{t}})}^{\equiv \MPCFunc_{t}(\mNrm_{t})}\right)  \label{eq:koppaPrime}
       \\ \Hi{\chiFunc}_{t}^{\mu}(\mu_{t})  & = \left(\frac{-\Hi{\koppa}_{t}^{\mu}(\mu_{t})/\Hi{\koppa}_{t}^{2}}{1/\Hi{\koppa}_{t}(\mu_{t})-1}\right)
     \end{aligned}\end{gathered}\end{equation}
 and (dropping arguments) with some algebra these can be combined to yield
 \begin{equation}\begin{gathered}\begin{aligned}
-      \Hi{\chiFunc}_{t}^{\mu}  & = \left(\frac{\MPCmin_{t} \aboveMin \mNrm_{t} \aboveMin \hNrm_{\EndStep} (\MPCmin_{t}-\MPC_{t})}
-        {(\cFuncAbove_{t}-\cFunc_{t})(\cFuncAbove_{t}-\cFunc_{t} - \MPCmin_{t} \aboveMin \hNrm_{\EndStep})}\right).
+      \Hi{\chiFunc}_{t}^{\mu}  & = \left(\frac{\MPCmin_{t} \aboveMin \mNrm_{t} \aboveMin \hNrm_{\EndStp} (\MPCmin_{t}-\MPC_{t})}
+        {(\cFuncAbove_{t}-\cFunc_{t})(\cFuncAbove_{t}-\cFunc_{t} - \MPCmin_{t} \aboveMin \hNrm_{\EndStp})}\right).
     \end{aligned}\end{gathered}\end{equation}
 
 To compute the vector of values of \eqref{eq:koppaPrime} corresponding
@@ -1311,25 +1311,25 @@ consume (designated $\MPC$) at each of the gridpoints,
 $\cFunc^{\mNrm}_{t}$ (the vector of such values is
 $\vctr{\MPC}_{t}$).  These can be obtained by differentiating the
 Euler equation \eqref{eq:upEqbetaOp} (where we define
-$\mFunc_{\EndStep}({a}) \equiv \cFunc_{\EndStep}({a})+{a}$, and drop the (a) arguments to reduce clutter):
+$\mFunc_{\EndStp}(a) \equiv \cFunc_{\EndStp}(a)+{a}$, and drop the (a) arguments to reduce clutter):
 \begin{equation}\begin{gathered}\begin{aligned}
-      \uFunc^{{c}}({\cFunc}_{\EndStep})   & = \hat{\vFunc}_{\EndStep}^{\aNrm}(\mFunc_{\EndStep}-{\cFunc}_{\EndStep}),
+      \uFunc^{c}(\cFunc_{\EndStp})   & = \hat{\vFunc}_{\EndStp}^{\aNrm}(\mFunc_{\EndStp}-\cFunc_{\EndStp}),
     \end{aligned}\end{gathered}\end{equation}
 yielding a marginal propensity to
-\textit{have consumed} $\cFunc_{\EndStep}^{\aNrm}$ at each gridpoint:
+\textit{have consumed} $\cFunc_{\EndStp}^{\aNrm}$ at each gridpoint:
 \begin{equation}\begin{gathered}\begin{aligned}
-      \uPP(\cEndStep)\cEndStep^{\aNrm}  & = \hat{\vFunc}_{\EndStep}^{\aNrm}(\mFunc_{\EndStep}-{\cFunc}_{\EndStep})
-      \\ \cEndStep^{\aNrm}  & = \hat{\vFunc}^{\aNrm}(\mFunc_{\EndStep}-{\cFunc}_{\EndStep})/\uPP(\cEndStep)
+      \uPP(\cEndStp)\cEndStp^{\aNrm}  & = \hat{\vFunc}_{\EndStp}^{\aNrm}(\mFunc_{\EndStp}-\cFunc_{\EndStp})
+      \\ \cEndStp^{\aNrm}  & = \hat{\vFunc}^{\aNrm}(\mFunc_{\EndStp}-\cFunc_{\EndStp})/\uPP(\cEndStp)
     \end{aligned}\end{gathered}\end{equation}
 and the marginal propensity to consume at the beginning of the period is obtained from the marginal propensity to have consumed by differentiating the identity with respect to $\aNrm$:
 \begin{equation*}\begin{gathered}\begin{aligned}
-      \cEndStep  & = \mFunc_{\EndStep} - \aNrm
-      \\ \cEndStep^{\aNrm}+1  & = \mFunc_{\EndStep}^{\aNrm}
+      \cEndStp  & = \mFunc_{\EndStp} - \aNrm
+      \\ \cEndStp^{\aNrm}+1  & = \mFunc_{\EndStp}^{\aNrm}
     \end{aligned}\end{gathered}\end{equation*}
-which, together with the chain rule $\cEndStep^{\aNrm}  = \cFunc^{\mNrm}_{\MidStep}\mFunc_{\EndStep}^{\aNrm}$, yields the MPC from
+which, together with the chain rule $\cEndStp^{\aNrm}  = \cFunc^{\mNrm}_{\MidStp}\mFunc_{\EndStp}^{\aNrm}$, yields the MPC from
 \begin{equation}\begin{gathered}\begin{aligned}
-      \cFunc^{\mNrm}(\overbrace{\cEndStep^{\aNrm}+1}^{=\mFunc_{\EndStep}^{\aNrm}})  & = \cEndStep^{\aNrm}
-      \\ \cFunc^{\mNrm}  & = \cEndStep^{\aNrm}/(1+\cEndStep^{\aNrm}) \label{eq:MPCfromMPTHC}.
+      \cFunc^{\mNrm}(\overbrace{\cEndStp^{\aNrm}+1}^{=\mFunc_{\EndStp}^{\aNrm}})  & = \cEndStp^{\aNrm}
+      \\ \cFunc^{\mNrm}  & = \cEndStp^{\aNrm}/(1+\cEndStp^{\aNrm}) \label{eq:MPCfromMPTHC}.
     \end{aligned}\end{gathered}\end{equation}
 
 
@@ -1356,7 +1356,7 @@ Designating $\Alt{\Hi{\cFunc}}_{T-1}$ as the approximated consumption rule obtai
 
   Consider the perfect foresight (or ``optimist's'') problem in period $T-1$.  Using the fact that in a perfect foresight model the growth factor for consumption is $(\Rfree \DiscFac)^{1/\CRRA}$, we can use the fact that $\cNrm_{T} = (\Rfree \DiscFac)^{1/\CRRA} \cNrm_{T-1}$ to calculate the value function in period $T-1$:
   \begin{equation*}\begin{gathered}\begin{aligned}
-        \bar{\vFunc}_{T-1}({m}_{T-1})  & \equiv  \uFunc(\cNrm_{T-1})+\DiscFac \uFunc(\cNrm_{T})
+        \bar{\vFunc}_{T-1}(m_{T-1})  & \equiv  \uFunc(\cNrm_{T-1})+\DiscFac \uFunc(\cNrm_{T})
         \\  & = \uFunc(\cNrm_{T-1})\left(1+\DiscFac ((\DiscFac\Rfree)^{1/\CRRA})^{1-\CRRA}\right)
 %        \\  & = \uFunc(\cNrm_{T-1})\left(1+\DiscFac (\DiscFac\Rfree)^{1/\CRRA-1}\right)
         \\  & = \uFunc(\cNrm_{T-1})\left(1+(\DiscFac\Rfree)^{1/\CRRA}/\Rfree\right)
@@ -1367,25 +1367,25 @@ Designating $\Alt{\Hi{\cFunc}}_{T-1}$ as the approximated consumption rule obtai
 \input{./cctwMoM/value-Intro.tex}\unskip
 \begin{verbatimwrite}{./Equations/vFuncPF.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
-        \bar{\vFunc}_{t}({m}_{t})  & = \uFunc(\bar{\cNrm}_{t})\PDVCoverc_{t}^{T}\label{eq:vFuncPF}
+        \bar{\vFunc}_{t}(m_{t})  & = \uFunc(\bar{\cNrm}_{t})\PDVCoverc_{t}^{T}\label{eq:vFuncPF}
         \\  & = \uFunc(\bar{c}_{t}) \MPCmin_{t}^{-1} % 20190820
-        \\  & = \uFunc((\aboveMin \mNrm_{t}+\aboveMin \hNrm_{\EndStep})\MPCmin_{t}) \MPCmin_{t}^{-1} % 20190820
-        \\  & = \uFunc(\aboveMin \mNrm_{t}+\aboveMin \hNrm_{\EndStep})\MPCmin_{t}^{1-\CRRA} \MPCmin_{t}^{-1} % 20190820
-        \\  & = \uFunc(\aboveMin \mNrm_{t}+\aboveMin \hNrm_{\EndStep})\MPCmin_{t}^{-\CRRA}  % 20190820
+        \\  & = \uFunc((\aboveMin \mNrm_{t}+\aboveMin \hNrm_{\EndStp})\MPCmin_{t}) \MPCmin_{t}^{-1} % 20190820
+        \\  & = \uFunc(\aboveMin \mNrm_{t}+\aboveMin \hNrm_{\EndStp})\MPCmin_{t}^{1-\CRRA} \MPCmin_{t}^{-1} % 20190820
+        \\  & = \uFunc(\aboveMin \mNrm_{t}+\aboveMin \hNrm_{\EndStp})\MPCmin_{t}^{-\CRRA}  % 20190820
       \end{aligned}\end{gathered}\end{equation}
 
   This can be transformed as
   \begin{equation*}\begin{gathered}\begin{aligned}
         \bar{\vInv}_{t}  & \equiv  \left((1-\CRRA)\bar{\vFunc}_{t}\right)^{1/(1-\CRRA)}
         \\  & = \cNrm_{t}(\PDVCoverc_{t}^{T})^{1/(1-\CRRA)}
-        \\  & = (\aboveMin \mNrm_{t}+\aboveMin \hNrm_{\EndStep})\MPCmin_{t}^{-\CRRA/(1-\CRRA)}   % 20190820
+        \\  & = (\aboveMin \mNrm_{t}+\aboveMin \hNrm_{\EndStp})\MPCmin_{t}^{-\CRRA/(1-\CRRA)}   % 20190820
       \end{aligned}\end{gathered}\end{equation*}
 \end{verbatimwrite}
 \input{./Equations/vFuncPF.tex}\unskip
 \begin{verbatimwrite}{./cctwMoM/value-Rest.tex}
   \MPCMatch{with derivative
     \begin{equation*}\begin{gathered}\begin{aligned}
-          \bar{\vInv}_{t}^{m}  & = (\mathbb{C}_{t}^{T})^{1/(1-\CRRA)}\MPCmin_{t},
+          \bar{\vInv}_{t}^m  & = (\mathbb{C}_{t}^{T})^{1/(1-\CRRA)}\MPCmin_{t},
           \\  & = \MPCmin_{t}^{-\CRRA/(1-\CRRA)} % 20190820
         \end{aligned}\end{gathered}\end{equation*}}{}
   and since $\PDVCoverc_{t}^{T}$ is a constant while the consumption
@@ -1393,8 +1393,8 @@ Designating $\Alt{\Hi{\cFunc}}_{T-1}$ as the approximated consumption rule obtai
 
   We apply the same transformation to the value function for the problem with uncertainty (the ``realist's'' problem)\MPCMatch{ and differentiate}:
   \begin{equation*}\begin{gathered}\begin{aligned}
-        \bar{\vInv}_{t}  & = \left((1-\CRRA)\bar{\vFunc}_{t}({m}_{t})\right)^{1/(1-\CRRA)}
-        \MPCMatch{\\ \bar{\vInv}^{m}_{t}  & = \left((1-\CRRA)\bar{\vFunc}_{t}({m}_{t})\right)^{-1+1/(1-\CRRA)}\bar{\vFunc}_{t}^{m}({m}_{t})}{}
+        \bar{\vInv}_{t}  & = \left((1-\CRRA)\bar{\vFunc}_{t}(m_{t})\right)^{1/(1-\CRRA)}
+        \MPCMatch{\\ \bar{\vInv}^{m}_{t}  & = \left((1-\CRRA)\bar{\vFunc}_{t}(m_{t})\right)^{-1+1/(1-\CRRA)}\bar{\vFunc}_{t}^{m}(m_{t})}{}
       \end{aligned}\end{gathered}\end{equation*}
   and an excellent approximation to the value function can be obtained by
   calculating the values of $\bar{\vInv}$ at the same gridpoints used by the
@@ -1405,12 +1405,12 @@ Designating $\Alt{\Hi{\cFunc}}_{T-1}$ as the approximated consumption rule obtai
   an upper bound for the ${\vInv}$ function in the presence of uncertainty, and the value function
   for the pessimist is a lower bound. Analogously to \eqref{eq:koppa}, define an upper-case
   \begin{equation}\begin{gathered}\begin{aligned}
-        \hat{\Koppa}_{t}(\mu_{t})   & = \left(\frac{\bar{\vInv}_{t}(\ushort{m}_{t}+e^{\mu_{t}})-\vInv_{t}(\ushort{m}_{t}+e^{\mu_{t}})}{\aboveMin \hNrm_{\EndStep} \MPCmin_{t} (\PDVCoverc_{t}^{T})^{1/(1-\CRRA)}}\right) \label{eq:Koppa}
+        \hat{\Koppa}_{t}(\mu_{t})   & = \left(\frac{\bar{\vInv}_{t}(\ushort{m}_{t}+e^{\mu_{t}})-\vInv_{t}(\ushort{m}_{t}+e^{\mu_{t}})}{\aboveMin \hNrm_{\EndStp} \MPCmin_{t} (\PDVCoverc_{t}^{T})^{1/(1-\CRRA)}}\right) \label{eq:Koppa}
       \end{aligned}\end{gathered}\end{equation}
   \MPCMatch{with derivative (dropping arguments)
     \begin{equation}\begin{gathered}\begin{aligned}
-          \hat{\Koppa}_{t}^{\mu}   & = (\aboveMin \hNrm_{\EndStep} \MPCmin_{t} (\PDVCoverc_{t}^{T})^{1/(1-\CRRA)})^{-1}e^{\mu_{t}}\left(\bar{\vInv}^{m}_{t}-\vInv^{m}_{t}\right) \label{eq:KoppaPrime}
-          % \\  & =  (\aboveMin \hNrm_{\EndStep} \MPCmin_{t})^{-1}e^{\mu_{t}}\left((\PDVCoverc_{t}^{T})^{1/(1-\CRRA)}\MPCmin_{t}-\left((1-\CRRA)\vFunc_{t}({m}_{t})\right)^{-1+1/(1-\CRRA)}\vFunc_{t}^{m}({m}_{t})\right)  \notag
+          \hat{\Koppa}_{t}^{\mu}   & = (\aboveMin \hNrm_{\EndStp} \MPCmin_{t} (\PDVCoverc_{t}^{T})^{1/(1-\CRRA)})^{-1}e^{\mu_{t}}\left(\bar{\vInv}^{m}_{t}-\vInv^{m}_{t}\right) \label{eq:KoppaPrime}
+          % \\  & =  (\aboveMin \hNrm_{\EndStp} \MPCmin_{t})^{-1}e^{\mu_{t}}\left((\PDVCoverc_{t}^{T})^{1/(1-\CRRA)}\MPCmin_{t}-\left((1-\CRRA)\vFunc_{t}(m_{t})\right)^{-1+1/(1-\CRRA)}\vFunc_{t}^{m}(m_{t})\right)  \notag
         \end{aligned}\end{gathered}\end{equation}}{}
   and an upper-case version of the $\chiFunc$ equation in \eqref{eq:chi}:
   \begin{equation}\begin{gathered}\begin{aligned}
@@ -1426,13 +1426,13 @@ Designating $\Alt{\Hi{\cFunc}}_{T-1}$ as the approximated consumption rule obtai
   approximation to our inverted value function at the same points for
   which we have our approximated value function:
   \begin{equation}\begin{gathered}\begin{aligned}
-        \hat{\vInv}_{t}  & = \bar{\vInv}_{t}-\overbrace{\left(\frac{1}{1+\exp(\hat{\Chi}_{t})}\right)}^{=\hat{\Koppa}_{t}} \aboveMin \hNrm_{\EndStep} \MPCmin_{t} (\PDVCoverc_{t}^{T})^{1/(1-\CRRA) }
+        \hat{\vInv}_{t}  & = \bar{\vInv}_{t}-\overbrace{\left(\frac{1}{1+\exp(\hat{\Chi}_{t})}\right)}^{=\hat{\Koppa}_{t}} \aboveMin \hNrm_{\EndStp} \MPCmin_{t} (\PDVCoverc_{t}^{T})^{1/(1-\CRRA) }
       \end{aligned}\end{gathered}\end{equation}
   from which we obtain our approximation to the value function\MPCMatch{ and its derivatives~}~as \hypertarget{vHatFunc}{}
   \begin{equation}\begin{gathered}\begin{aligned}
         \hat{\vFunc}_{t}  & = \uFunc(\hat{\vInv}_{t})
-        \\  \hat{\vFunc}^{m}_{t}  & = \uFunc^{{c}}(\hat{\vInv}_{t}) \hat{\vInv}^{m}
-        \MPCMatch{\\  \hat{\vFunc}^{mm}_{t}  & = \uFunc^{{c}{c}}(\hat{\vInv}_{t}) (\hat{\vInv}^{m})^{2} + \uFunc^{{c}}(\hat{\vInv}_{t})\hat{\vInv}^{mm}}{}
+        \\  \hat{\vFunc}^{m}_{t}  & = \uFunc^{c}(\hat{\vInv}_{t}) \hat{\vInv}^{m}
+        \MPCMatch{\\  \hat{\vFunc}^{mm}_{t}  & = \uFunc^{c{c}}(\hat{\vInv}_{t}) (\hat{\vInv}^{m})^{2} + \uFunc^{c}(\hat{\vInv}_{t})\hat{\vInv}^{mm}}{}
 .
       \end{aligned}\end{gathered}\end{equation}
 
@@ -1507,9 +1507,9 @@ Designating $\Alt{\Hi{\cFunc}}_{T-1}$ as the approximated consumption rule obtai
   Defining $\mtCusp$ as the `cusp' point where the two upper bounds
   intersect:
   \begin{equation*}\begin{gathered}\begin{aligned}
-        \left(\aboveMin \mtCusp+\aboveMin \hNrm_{\EndStep}\right)\MPCmin_{t}  & =  \MPCmax_{t} \aboveMin \mtCusp \\
-        \aboveMin \mtCusp  & =  \frac{\MPCmin_{t}\aboveMin \hNrm_{\EndStep}}{(1-\MPCmin_{t})\MPCmax_{t}} \\
-        \mtCusp  & =  \frac{\MPCmin_{t}\hNrm_{\EndStep}-\hEndMin_{\EndStep}}{(1-\MPCmin_{t})\MPCmax_{t}},
+        \left(\aboveMin \mtCusp+\aboveMin \hNrm_{\EndStp}\right)\MPCmin_{t}  & =  \MPCmax_{t} \aboveMin \mtCusp \\
+        \aboveMin \mtCusp  & =  \frac{\MPCmin_{t}\aboveMin \hNrm_{\EndStp}}{(1-\MPCmin_{t})\MPCmax_{t}} \\
+        \mtCusp  & =  \frac{\MPCmin_{t}\hNrm_{\EndStp}-\hEndMin_{\EndStp}}{(1-\MPCmin_{t})\MPCmax_{t}},
       \end{aligned}\end{gathered}\end{equation*}
 \end{verbatimwrite}
 \input{./Equations/mtCusp.tex}\unskip
@@ -1593,20 +1593,20 @@ Designating $\Alt{\Hi{\cFunc}}_{T-1}$ as the approximated consumption rule obtai
 
   Start with the fact that at the cusp point,
   \begin{equation*}\begin{gathered}\begin{aligned}
-        \bar{\vFunc}_{t}(\mtCusp)  & = \uFunc(\bar{\cNrm}_{t}(\mtCusp))\PDVCoverc_{t}^{T} \\
+        \bar{\vFunc}_{t}(\mtCusp)  & = \uFunc(\bar{\cNrm}_{t}(\mtCusp))\PDVCoverc_{t}^T \\
         & =  \uFunc(\aboveMin \mtCusp  \MPCmax_{t})\PDVCoverc_{t}^{T}
         .
       \end{aligned}\end{gathered}\end{equation*}
 
   But for \textit{all} $\mNrm_{t}$,
   \begin{equation*}\begin{gathered}\begin{aligned}
-        \bar{\vFunc}_{t}(\mNrm)  & = \uFunc(\bar{\cNrm}_{t}(\mNrm))+ \bar{\vEndStep}(\mNrm-\bar{\cNrm}_{t}(\mNrm)),
+        \bar{\vFunc}_{t}(\mNrm)  & = \uFunc(\bar{\cNrm}_{t}(\mNrm))+ \bar{\vEnd}(\mNrm-\bar{\cNrm}_{t}(\mNrm)),
       \end{aligned}\end{gathered}\end{equation*}
   and we assume that for the consumer below the cusp point consumption is given by $\MPCmax \aboveMin \mNrm_{t}$ so for $\mNrm_{t}< \mtCusp$
   \begin{equation*}\begin{gathered}\begin{aligned}
-        \bar{\vFunc}_{t}(\mNrm)  & = \uFunc( \MPCmax_{t} \aboveMin \mNrm)+ \bar{\vEndStep}((1-\MPCmax_{t})\aboveMin \mNrm),
+        \bar{\vFunc}_{t}(\mNrm)  & = \uFunc( \MPCmax_{t} \aboveMin \mNrm)+ \bar{\vEnd}((1-\MPCmax_{t})\aboveMin \mNrm),
       \end{aligned}\end{gathered}\end{equation*}
-  which is easy to compute because $\bar{\vEndStep}(\aNrm_{t}) = \DiscFac \bar{\vFunc}_{t+1}(\aNrm_{t}\RNrm+1)$
+  which is easy to compute because $\bar{\vEnd}(\aNrm_{t}) = \DiscFac \bar{\vFunc}_{t+1}(\aNrm_{t}\RNrm+1)$
   where $\bar{\vFunc}_{t}$ is as defined above because a consumer who ends the current period with assets exceeding
   the lower bound will not expect to be constrained next period.  (Recall again that we are merely constructing an object that is guaranteed to be an \textit{upper bound} for the value that the `realist' consumer will experience.)  At the gridpoints defined by the solution of the
   consumption problem can then construct
@@ -1641,7 +1641,7 @@ This case is reasonably straightforward because \cite{merton:restat} and \cite{s
 that for a consumer without labor income (or with perfectly forecastable labor income) the consumption
 function is linear, with an infinite-horizon MPC\footnote{See \handoutC{CRRA-RateRisk} for a derivation.}
 \begin{equation}\begin{gathered}\begin{aligned}
-      \MPC  & = 1- \left(\DiscFac  \Ex_{\BegStep}[\Risky_{t+1}^{1-\CRRA}]\right)^{1/\CRRA} \label{eq:MPCExact}
+      \MPC  & = 1- \left(\DiscFac  \Ex_{\BegStp}[\Risky_{t+1}^{1-\CRRA}]\right)^{1/\CRRA} \label{eq:MPCExact}
     \end{aligned}\end{gathered}\end{equation}
 and in this case the previous analysis applies once we substitute this MPC for the one that characterizes
 the perfect foresight problem without rate-of-return risk.
@@ -1658,13 +1658,13 @@ coefficient, and $\epsilon_{t+1}$ is the stochastic shock.
 The consumer's problem in this case now has two state variables, $\mNrm_{t}$ and $\risky_{t}$, and
 is described by
 \begin{equation}\begin{gathered}\begin{aligned}
-      \null{\vFunc}_{t}({m}_{t},\risky_{t})  & = \max_{{c}_{t}} ~ \uFunc({c}_{t})+
-      \Ex_{\BegStep}[{\DiscFac}_{t+1}\vNormedPermGroFac\null{\vFunc}_{t+1}({m}_{t+1},\risky_{t+1})] \label{vNormedRisky}
+      \vFunc_{t}(m_{t},\risky_{t})  & = \max_{{c}_{t}} ~ \uFunc(c_{t})+
+      \Ex_{\BegStp}[{\DiscFac}_{t+1}\PermGroFacAdjV{\vFunc}_{t+1}(m_{t+1},\risky_{t+1})] \label{vNormedRisky}
       \\         & \text{s.t.}   \nonumber \\
-      {a}_{t}    & = {m}_{t}-{c}_{t} \nonumber
+      a_{t}    & = m_{t}-c_{t} \nonumber
       \\      \risky_{t+1}-\risky  & = (\risky_{t}-\risky)\gamma + \epsilon_{t+1} \notag
       \\      \Risky_{t+1}  & = \exp(\risky_{t+1}) \notag
-      \\      {m}_{t+1}  & = \underbrace{\left(\Risky_{t+1}/\PermGroFac_{t+1}\right)}_{\equiv \Rprod_{t+1}}{a}_{t}+\TranShkEmp_{t+1} \nonumber.
+      \\      m_{t+1}  & = \underbrace{\left(\Risky_{t+1}/\PermGroFac_{t+1}\right)}_{\equiv \Rprod_{t+1}}a_{t}+\TranShkEmp_{t+1} \nonumber.
     \end{aligned}\end{gathered}\end{equation}
 
 % Kiichi: I will need you to read the literature and figure out how exactly we want to choose the Markov points and transition probabilities.
@@ -1691,36 +1691,36 @@ zero.\footnote{The word artificial is chosen only because of its clarity in dist
   this from the case of the `natural' borrowing constraint examined above; no derogation is
   intended -- constraints of this kind certainly exist in the real world.}  The problem then becomes
 \begin{equation*}\begin{gathered}\begin{aligned}
-      {\vFunc}_{T-1}({m}_{T-1})  & = \max_{\cNrm_{T-1}} ~~ \uFunc({c}_{T-1}) + \Ex_{T-1} [\DiscFac \vNormedPermGroFac{\vFunc}_{\cntn(T)}({m}_{T})] \label{eq:ConstrArt}
+      \vFunc_{T-1}(m_{T-1})  & = \max_{\cNrm_{T-1}} ~~ \uFunc(c_{T-1}) + \Ex_{T-1} [\DiscFac \PermGroFacAdjV{\vFunc}_{\cntn(T)}(m_{T})] \label{eq:ConstrArt}
       \\ & \mbox{s.t.}  \nonumber
-      \\ {a}_{T-1}  & = {m}_{T-1} - {c}_{T-1}
-      \\ {m}_{T}  & = \RNrm_{T} {a}_{T-1} + \TranShkEmp_{T}
-      \\ {a}_{T-1} & \geq 0 .
+      \\ a_{T-1}  & = m_{T-1} - c_{T-1}
+      \\ m_{T}  & = \RNrm_{T} a_{T-1} + \TranShkEmp_{T}
+      \\ a_{T-1} & \geq 0 .
     \end{aligned}\end{gathered}\end{equation*}
 
 \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Constraint binds whenever you would like to consume more than current resources.}}{}
 
 By definition, the constraint will bind if the unconstrained consumer
 would choose a level of spending that would violate the constraint.
-Here, that means that the constraint binds if the ${c}_{T-1}$
+Here, that means that the constraint binds if the $c_{T-1}$
 that satisfies the unconstrained FOC
 \begin{equation}\begin{gathered}\begin{aligned}
-      {c}_{T-1}^{-\CRRA}  & = \vFunc^{{a}}_{\EndStepm}({m}_{T-1}-{c}_{T-1}) \label{eq:cUnc}
+      c_{T-1}^{-\CRRA}  & = \vFunc^{a}_{\EndStpLst}(m_{T-1}-c_{T-1}) \label{eq:cUnc}
     \end{aligned}\end{gathered}\end{equation}
-is greater than ${m}_{T-1}$.  Call $\grave{\cFunc}^{\ast}_{T-1}$ the approximated function
-returning the level of ${c}_{T-1}$ that satisfies \eqref{eq:cUnc}.
+is greater than $m_{T-1}$.  Call $\grave{\cFunc}^{\ast}_{T-1}$ the approximated function
+returning the level of $c_{T-1}$ that satisfies \eqref{eq:cUnc}.
 Then the approximated constrained optimal consumption function will be
 \begin{verbatimwrite}{./Equations/LiqCons.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
-        \grave{\cFunc}_{T-1}({m}_{T-1})  & = \min[{m}_{T-1},\grave{\cFunc}^{\ast}_{T-1}({m}_{T-1})] \label{eq:LiqCons}.
+        \grave{\cFunc}_{T-1}(m_{T-1})  & = \min[{m}_{T-1},\grave{\cFunc}^{\ast}_{T-1}(m_{T-1})] \label{eq:LiqCons}.
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/LiqCons.tex}\unskip
 
 \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Read this carefully
     before class.  Intuition: consider discounted mv of saving zero.  If
-    consume everything and get the same $\uFunc^{{c}}$, then happy.  If
-    consumed $\TranShkEmp$ less, mv of saving would be $> \uFunc^{{c}}(c).$}}{}
+    consume everything and get the same $\uFunc^{c}$, then happy.  If
+    consumed $\TranShkEmp$ less, mv of saving would be $> \uFunc^{c}(c).$}}{}
 
 The introduction of the constraint also introduces a sharp
 nonlinearity in all of the functions at the point where the constraint
@@ -1729,8 +1729,8 @@ to numerically accurate it is useful to augment the grid of values of
 the state variable to include the exact value at which the constraint
 ceases to bind.  Fortunately, this is easy to calculate.  We know that
 when the constraint is binding the consumer is saving nothing, which
-yields marginal value of $\vFunc^{{a}}_{\EndStepm}(0)$. Further, when the
-constraint is binding, ${c}_{T-1} = {m}_{T-1}$.  Thus, the largest
+yields marginal value of $\vFunc^{a}_{\EndStpLst}(0)$. Further, when the
+constraint is binding, $c_{T-1} = m_{T-1}$.  Thus, the largest
 value of consumption for which the constraint is binding will be the
 point for which the marginal utility of consumption is exactly equal
 to the (expected, discounted) marginal value of saving 0.  We know
@@ -1739,12 +1739,12 @@ function and so if the consumer were to consume $\tinyAmount$ more,
 the marginal utility of that extra consumption would be \textit{below}
 the (discounted, expected) marginal utility of saving, and thus the
 consumer would engage in positive saving and the constraint would no
-longer be binding.  Thus the level of ${m}_{T-1}$ at which the
+longer be binding.  Thus the level of $m_{T-1}$ at which the
 constraint stops binding is:\footnote{The logic here repeats an insight from \cite{deatonLiqConstr}.}
 \begin{equation}\begin{gathered}\begin{aligned}
-      \uFunc^{{c}}({m}_{T-1})  & = \vFunc^{{a}}_{\EndStepm}(0)  \nonumber \\
-      {m}_{T-1}  & = (\vFunc^{{a}}_{\EndStepm}(0))^{(-1/\CRRA)}  \nonumber
-      \\        & = \cFunc_{\EndStepm}(0). \label{eq:LCbindsTm1}
+      \uFunc^{c}(m_{T-1})  & = \vFunc^{a}_{\EndStpLst}(0)  \nonumber \\
+      m_{T-1}  & = (\vFunc^{a}_{\EndStpLst}(0))^{(-1/\CRRA)}  \nonumber
+      \\        & = \cFunc_{\EndStpLst}(0). \label{eq:LCbindsTm1}
     \end{aligned}\end{gathered}\end{equation}
 
 \hypertarget{cVScCon}{}
@@ -1767,7 +1767,7 @@ The presence of the liquidity
 constraint requires three changes to the procedures outlined above:
 \begin{enumerate}
 \item We redefine
-  $\hEndMin_{\EndStep}$, which now is the PDV of receiving
+  $\hEndMin_{\EndStp}$, which now is the PDV of receiving
   $\TranShkEmp_{t+1}=\TranShkEmpMin$ next period and
   $\TranShkEmp_{t+n}=0~\forall~n>1$ -- that is, the pessimist believes he
   will receive nothing beyond period $t+1$
@@ -1792,18 +1792,18 @@ rule runs into the 45 degree line.
 \subsection{Theory}
 Before we solve for periods earlier than $T-1$, we assume for
 convenience that in each such period a liquidity constraint exists of
-the kind discussed above, preventing ${c}$ from exceeding ${m}$. This
+the kind discussed above, preventing $c$ from exceeding $m$. This
 simplifies things a bit because now we can always consider an
 \texttt{aVec} that starts with zero as its smallest element.
 
 Recall now equations~(\ref{eq:vEndPrimeTm1}) and (\ref{eq:upEqbetaOp}):
 \begin{equation*}\begin{gathered}\begin{aligned}
-      \vPEndStep({a}_{t})  & = \Ex_{\BegStep}[\DiscFac \Rfree \PermGroFac_{t+1}^{-\CRRA}
-      \uFunc^{{c}}(\cFunc_{t+1}(\RNrm_{t+1} {a}_{t}+{\TranShkEmp}_{t+1}))]
-      \\\uFunc^{{c}}({c}_{t})   & = \vEndStep^{{a}}({m}_{t}-{c}_{t}).
+      \vPEndStp(a_{t})  & = \Ex_{\BegStp}[\DiscFac \Rfree \PermGroFac_{t+1}^{-\CRRA}
+      \uFunc^{c}(\cFunc_{t+1}(\RNrm_{t+1} a_{t}+{\TranShkEmp}_{t+1}))]
+      \\\uFunc^{c}(c_{t})   & = \vEnd^{a}(m_{t}-c_{t}).
     \end{aligned}\end{gathered}\end{equation*}
 Assuming that the problem has been solved up to period $t+1$ (and thus
-assuming that we have an approximated $\Alt{\cFunc}_{t+1}({m}_{t+1})$), our solution method essentially
+assuming that we have an approximated $\Alt{\cFunc}_{t+1}(m_{t+1})$), our solution method essentially
 involves using these two equations in succession to work back
 progressively from period $T-1$ to the beginning of life.  Stated
 generally, the method is as follows.  (Here, we use the original, rather than the ``refined,'' method for
@@ -1812,16 +1812,16 @@ no difficulties.)
 
 \begin{enumerate}
   \ifthenelse{\boolean{MyNotes}}{\marginpar{\tiny Point out that we
-      are defining $\vEndStep^{{a}}$ here by the literal summation
+      are defining $\vEnd^{a}$ here by the literal summation
       operation \eqref{eq:vEndeq}.}}{}
 
-\item For the grid of values ${a}_{t,i}$ in \texttt{aVec\_eee}, numerically calculate the values
-  of $\cFunc_{\overline{t}}({a}_{t,i})$ and $\cFunc_{\overline{t}}^{{a}}({a}_{t,i})$,
+\item For the grid of values $a_{t,i}$ in \texttt{aVec\_eee}, numerically calculate the values
+  of $\cFunc_{\overline{t}}(a_{t,i})$ and $\cFunc_{\overline{t}}^{a}(a_{t,i})$,
   \begin{verbatimwrite}{./Equations/vEndeq.tex}
     \begin{equation}\begin{gathered}\begin{aligned}
-          \cFunc_{\overline{t},i}  & = \left(\vEndStep^{{a}}({a}_{t,i})\right)^{-1/\CRRA},
-          \\                             & = \left(\DiscFac \Ex_{\BegStep} \left[\Rfree \PermGroFac_{t+1}^{-\CRRA}(\grave{\cFunc}_{t+1}(\RNrm_{t+1} {a}_{t,i} +      {\TranShkEmp}_{t+1}))^{-\CRRA}\right]\right)^{-1/\CRRA}, \label{eq:vEndeq}
-          \MPCMatch{\\        \cFunc^{a}_{\overline{t},i}  & = -(1/\CRRA)\left(\vEndStep^{{a}}({a}_{t,i})\right)^{-1-1/\CRRA} \vEndStep^{{a}{a}}(\aNrm_{t,i}),}{}
+          \cFunc_{\overline{t},i}  & = \left(\vEnd^{a}(a_{t,i})\right)^{-1/\CRRA},
+          \\                             & = \left(\DiscFac \Ex_{\BegStp} \left[\Rfree \PermGroFac_{t+1}^{-\CRRA}(\grave{\cFunc}_{t+1}(\RNrm_{t+1} a_{t,i} +      {\TranShkEmp}_{t+1}))^{-\CRRA}\right]\right)^{-1/\CRRA}, \label{eq:vEndeq}
+          \MPCMatch{\\        \cFunc^{a}_{\overline{t},i}  & = -(1/\CRRA)\left(\vEnd^{a}(a_{t,i})\right)^{-1-1/\CRRA} \vEnd^{a{a}}(\aNrm_{t,i}),}{}
         \end{aligned}\end{gathered}\end{equation}
   \end{verbatimwrite}
   \input{./Equations/vEndeq.tex}
@@ -1842,7 +1842,7 @@ and related equations.  With this consumption
 rule in hand, we can continue the backwards recursion to period $t-1$
 and so on back to the beginning of life.
 
-Note that this loop does not contain an item for constructing $\hat{\vFunc}_{t}^{{a}}({m}_{t})$. This is because with $\Alt{\Hi{\cFunc}}_{t}({m}_{t})$ in hand, we simply \textit{define} $\hat{\vFunc}^{{m}}_{t}({m}_{t}) = \uFunc^{{c}}(\Alt{\Hi{\cFunc}}_{t}({m}_{t}))$ so there is no need to construct interpolating approximations - the function arises `free' (or nearly so) from our constructed $\Alt{\Hi{\cFunc}}_{t}({m}_{t})$ via the usual envelope result (cf.\ \eqref{eq:envelope}).
+Note that this loop does not contain an item for constructing $\hat{\vFunc}_{t}^{a}(m_{t})$. This is because with $\Alt{\Hi{\cFunc}}_{t}(m_{t})$ in hand, we simply \textit{define} $\hat{\vFunc}^{m}_{t}(m_{t}) = \uFunc^{c}(\Alt{\Hi{\cFunc}}_{t}(m_{t}))$ so there is no need to construct interpolating approximations - the function arises `free' (or nearly so) from our constructed $\Alt{\Hi{\cFunc}}_{t}(m_{t})$ via the usual envelope result (cf.\ \eqref{eq:envelope}).
 
 \subsection{Program Structure}
 
@@ -1859,10 +1859,10 @@ vector in our computational specification of the problem.
 \hypertarget{Results}{}
 \subsection{Results}
 
-As suggested, the code creates the relevant $\Alt{\cFunc}_{t}({m}_{t})$
-functions for any period in the horizon specified by the variable \texttt{T}, at the given values of ${m}$.
+As suggested, the code creates the relevant $\Alt{\cFunc}_{t}(m_{t})$
+functions for any period in the horizon specified by the variable \texttt{T}, at the given values of $m$.
 Figure \ref{fig:PlotCFuncsConverge} shows
-$\Alt{\cFunc}_{T-n}({m})$ for $n=\{20,15,10,5,1\}$.  At least one
+$\Alt{\cFunc}_{T-n}(m)$ for $n=\{20,15,10,5,1\}$.  At least one
 feature of this figure is encouraging: the consumption functions
 converge as the horizon extends, something that \cite{BufferStockTheory}
 shows must be true under certain parametric conditions that are
@@ -1896,29 +1896,29 @@ The new control variable that the consumer can now choose is the portion of the 
 and the maximization problem is
 \begin{verbatimwrite}{./Equations/PortProb.tex}
   \begin{equation*}\begin{gathered}\begin{aligned}
-        {\vFunc}_{t}({m}_{t})  & = \max_{\{{c}_{t},\varsigma_{t}\}}   ~~ \uFunc({c}_{t}) +  \DiscFac
-        \Ex_{t}[{\vFunc}_{t+1}({m}_{t+1})]
+        \vFunc_{t}(m_{t})  & = \max_{\{{c}_{t},\varsigma_{t}\}}   ~~ \uFunc(c_{t}) +  \DiscFac
+        \Ex_{t}[{\vFunc}_{t+1}(m_{t+1})]
         \\      & \text{s.t.} \nonumber
         \\      \Rport_{t+1}  & = \Rfree + (\Risky_{t+1}-\Rfree) \varsigma_{t}
-        \\      {m}_{t+1}  & = ({m}_{t}-{c}_{t})\Rport_{t+1} + \TranShkEmp_{t+1}
+        \\      m_{t+1}  & = (m_{t}-c_{t})\Rport_{t+1} + \TranShkEmp_{t+1}
         \\  0       \leq & \varsigma_{t}  \leq 1, \label{eq:noshorts}
       \end{aligned}\end{gathered}\end{equation*}
 \end{verbatimwrite}
 \input{./Equations/PortProb.tex}\unskip
 or, more compactly,
 \begin{equation*}\begin{gathered}\begin{aligned}
-      {\vFunc}_{t}({m}_{t})  & = \max_{\{\cFunc_{t},\varsigma_{t}\}} ~~  \uFunc({c}_{t}) +  \Ex_{t}[\DiscFac {\vFunc}_{t+1}(({m}_{t}-{c}_{t}){\Rport}_{t+1} +        {\TranShkEmp}_{t+1})]
+      \vFunc_{t}(m_{t})  & = \max_{\{\cFunc_{t},\varsigma_{t}\}} ~~  \uFunc(c_{t}) +  \Ex_{t}[\DiscFac \vFunc_{t+1}((m_{t}-c_{t}){\Rport}_{t+1} +        {\TranShkEmp}_{t+1})]
       \\                       & \text{s.t.} \nonumber
       \\ 0 \leq & \varsigma_{t} \leq 1
       .
     \end{aligned}\end{gathered}\end{equation*}
-The first order condition with respect to ${c}_{t}$ is almost identical
+The first order condition with respect to $c_{t}$ is almost identical
 to that in the single-control problem, equation (\ref{eq:upceqEvtp1}),
 with the only difference being that the nonstochastic interest factor
 $\Rfree$ is now replaced by ${\Rport}_{t+1}$,
 \begin{verbatimwrite}{./Equations/valfuncFOCRtilde.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
-        \uFunc^{{c}}({c}_{t})  & = \DiscFac \Ex_{t} [{\Rport}_{t+1} \vFunc^{{m}}_{t+1}({m}_{t+1})] \label{eq:valfuncFOCRtilde},
+        \uFunc^{c}(c_{t})  & = \DiscFac \Ex_{t} [{\Rport}_{t+1} \vFunc^{m}_{t+1}(m_{t+1})] \label{eq:valfuncFOCRtilde},
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/valfuncFOCRtilde.tex}\unskip
@@ -1926,7 +1926,7 @@ and the Envelope theorem derivation remains the same,
 yielding the Euler equation for consumption
 \begin{verbatimwrite}{./Equations/EulercRiskyR.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
-        \uFunc^{{c}}({c}_{t})  & = \Ex_{t}[\DiscFac {\Rport}_{t+1} \uFunc^{{c}}({c}_{t+1})]. \label{eq:EulercRiskyR}
+        \uFunc^{c}(c_{t})  & = \Ex_{t}[\DiscFac {\Rport}_{t+1} \uFunc^{c}(c_{t+1})]. \label{eq:EulercRiskyR}
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/EulercRiskyR.tex}\unskip
@@ -1934,13 +1934,13 @@ yielding the Euler equation for consumption
 The first order condition with respect to the risky portfolio share is
 \begin{verbatimwrite}{./Equations/FOCw.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
-        0  & = \Ex_{t}[{\vFunc}_{\MidStepp}^{{m}}({m}_{t+1})(\Risky_{t+1}-\Rfree){a}_{t}] \notag
-        \\         & = {a}_{t}\Ex_{t}\left[\uFunc^{{c}}\left(\cFunc_{t+1}({m}_{t+1})\right)(\Risky_{t+1}-\Rfree)\right] \label{eq:FOCw}.
+        0  & = \Ex_{t}[{\vFunc}_{\MidStpNxt}^{m}(m_{t+1})(\Risky_{t+1}-\Rfree){a}_{t}] \notag
+        \\         & = a_{t}\Ex_{t}\left[\uFunc^{c}\left(\cFunc_{t+1}(m_{t+1})\right)(\Risky_{t+1}-\Rfree)\right] \label{eq:FOCw}.
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/FOCw.tex}\unskip
 
-As before, it will be useful to define $\vEndStep$ as a function that
+As before, it will be useful to define $\vEnd$ as a function that
 yields the expected $t+1$ value of ending period $t$ in a given state.
 However, now that there are two control variables, the expectation
 must be defined as a function of the chosen values of both of those
@@ -1948,18 +1948,18 @@ variables, because expected end-of-period value will depend not just
 on how much the agent saves, but also on how the saved assets are
 allocated between the risky and riskless assets.  Thus we define
 \begin{equation*}\begin{gathered}\begin{aligned}
-      \vEndStep({a}_{t},\varsigma_{t})  & = \Ex_{t}[\DiscFac {\vFunc}_{t+1}({m}_{t+1})]
+      \vEnd(a_{t},\varsigma_{t})  & = \Ex_{t}[\DiscFac \vFunc_{t+1}(m_{t+1})]
     \end{aligned}\end{gathered}\end{equation*}
 which has derivatives
 \begin{equation}\begin{gathered}\begin{aligned}
-      \vEndStep^{{a}}  & = \Ex_{t}[\DiscFac {\Rport}_{t+1}{\vFunc}_{t+1}^{m}({m}_{t+1})] = \Ex_{t}[\DiscFac {\Rport}_{t+1}{\uFunc}_{t+1}^{{c}}(\cFunc_{t+1}({m}_{t+1}))]
-      \\      \vEndStep^{\varsigma}  & = \Ex_{t}[\DiscFac (\Risky_{t+1}-\Rfree){\vFunc}_{t+1}^{m}({m}_{t+1})  ]a_{t} = \Ex_{t}[\DiscFac (\Risky_{t+1}-\Rfree){\uFunc}_{t+1}^{{c}}(\cFunc_{t+1}({m}_{t+1}))  ]a_{t} \notag
+      \vEnd^a  & = \Ex_{t}[\DiscFac {\Rport}_{t+1}\vFunc_{t+1}^{m}(m_{t+1})] = \Ex_{t}[\DiscFac {\Rport}_{t+1}{\uFunc}_{t+1}^{c}(\cFunc_{t+1}(m_{t+1}))]
+      \\      \vEnd^{\varsigma}  & = \Ex_{t}[\DiscFac (\Risky_{t+1}-\Rfree){\vFunc}_{t+1}^{m}(m_{t+1})  ]a_{t} = \Ex_{t}[\DiscFac (\Risky_{t+1}-\Rfree){\uFunc}_{t+1}^{c}(\cFunc_{t+1}(m_{t+1}))  ]a_{t} \notag
     \end{aligned}\end{gathered}\end{equation}
 implying that the first order conditions (\ref{eq:EulercRiskyR}) and
 (\ref{eq:FOCw}) can be rewritten
 \begin{equation}\begin{gathered}\begin{aligned}
-      \uFunc^{{c}}({c}_{t})  & = \vEndStep^{{a}}({m}_{t}-{c}_{t},\varsigma_{t})
-      \\      0  & = \vFunc^{\varsigma}_{\overline{t}}({a}_{t},\varsigma_{t}).
+      \uFunc^{c}(c_{t})  & = \vEnd^{a}(m_{t}-c_{t},\varsigma_{t})
+      \\      0  & = \vFunc^{\varsigma}_{\overline{t}}(a_{t},\varsigma_{t}).
     \end{aligned}\end{gathered}\end{equation}
 
 \subsection{Application}\label{subsec:MCApplication}
@@ -1982,10 +1982,10 @@ on $i$ is allowed to permit the possibility of nonzero correlation
 between the return on the risky asset and the shock to labor income (for example,
 in recessions the stock market falls and labor income also declines).
 
-The direct expressions for the derivatives of $\vEndStep$ are
+The direct expressions for the derivatives of $\vEnd$ are
 \begin{equation}\begin{gathered}\begin{aligned}
-      \vEndStep^{{a}}({a}_{t},\varsigma_{t})  & = \DiscFac \left(\frac{1}{n_{\risky} n_{\TranShkEmp}}\right)\sum_{i=1}^{n_{\TranShkEmp}}\sum_{j=1}^{n_{\risky} }\Rport_{i,j} \left(\cFunc_{t+1}(\Rport_{i,j}{a}_{t}+\TranShkEmp_{i})\right)^{-\CRRA}
-      \\      \vEndStep^{\varsigma}({a}_{t},\varsigma_{t})  & = \DiscFac \left(\frac{1}{n_{\risky} n_{\TranShkEmp}}\right)\sum_{i=1}^{n_{\TranShkEmp}}\sum_{j=1}^{n_{\risky} }(\Risky_{i,j}-\Rfree)\left(\cFunc_{t+1}(\Rport_{i,j}{a}_{t}+\TranShkEmp_{i})\right)^{-\CRRA}.
+      \vEnd^{a}(a_{t},\varsigma_{t})  & = \DiscFac \left(\frac{1}{n_{\risky} n_{\TranShkEmp}}\right)\sum_{i=1}^{n_{\TranShkEmp}}\sum_{j=1}^{n_{\risky} }\Rport_{i,j} \left(\cFunc_{t+1}(\Rport_{i,j}a_{t}+\TranShkEmp_{i})\right)^{-\CRRA}
+      \\      \vEnd^{\varsigma}(a_{t},\varsigma_{t})  & = \DiscFac \left(\frac{1}{n_{\risky} n_{\TranShkEmp}}\right)\sum_{i=1}^{n_{\TranShkEmp}}\sum_{j=1}^{n_{\risky} }(\Risky_{i,j}-\Rfree)\left(\cFunc_{t+1}(\Rport_{i,j}a_{t}+\TranShkEmp_{i})\right)^{-\CRRA}.
     \end{aligned}\end{gathered}\end{equation}
 
 Writing these equations out explicitly makes a problem very
@@ -1995,20 +1995,20 @@ double-summations of $n_{\risky} \times n$ terms.  Once again, there is an
 inefficiency if it must perform these same calculations many times
 for the same or nearby values of $\{{a}_{t},\varsigma_{t}\}$, and again
 the solution is to construct an approximation to the derivatives of
-the $\vEndStep$ function.
+the $\vEnd$ function.
 
 Details of the construction of the interpolating approximation are
 given below; assume for the moment that we have the approximations
-$\hat{\vFunc}_{\EndStep}^{{a}}$ and $\hat{\vFunc}_{\EndStep}^{\varsigma}$ in
+$\hat{\vFunc}_{\EndStp}^{a}$ and $\hat{\vFunc}_{\EndStp}^{\varsigma}$ in
 hand and we want to proceed.  As noted above, nonlinear equation
 solvers can find the
 solution to a set of simultaneous equations.  Thus we could ask
 Python to solve
 \begin{equation}\begin{gathered}\begin{aligned}
-      {c}_{t}^{-\CRRA}  & = \hat{\vFunc}^{a}_{\overline{t}}({m}_{t}-{c}_{t},\varsigma_{t}) %\label{eq:FOCwrtcMultContr}
-      \\      0  & = \hat{\vFunc}^{\varsigma}_{\overline{t}}({m}_{t}-{c}_{t},\varsigma_{t}) \label{eq:FOCwrtw}
+      c_{t}^{-\CRRA}  & = \hat{\vFunc}^{a}_{\overline{t}}(m_{t}-c_{t},\varsigma_{t}) %\label{eq:FOCwrtcMultContr}
+      \\      0  & = \hat{\vFunc}^{\varsigma}_{\overline{t}}(m_{t}-c_{t},\varsigma_{t}) \label{eq:FOCwrtw}
     \end{aligned}\end{gathered}\end{equation}
-simultaneously for $\cNrm$ and $\varsigma$ at the set of potential ${m}_{t}$ values defined in {\mVec}. However, multidimensional constrained
+simultaneously for $\cNrm$ and $\varsigma$ at the set of potential $m_{t}$ values defined in {\mVec}. However, multidimensional constrained
 maximization problems are difficult and sometimes quite slow to
 solve.  There is a better way.  Define the problem
 \providecommand{\Opt}{}
@@ -2016,17 +2016,17 @@ solve.  There is a better way.  Define the problem
 \providecommand{\vOpt}{}
 \renewcommand{\vOpt}{\overset{*}{\vFunc}}
 \begin{equation}\begin{gathered}\begin{aligned}
-      \Opt{\vFunc}_{\overline{t}}({a}_{t})  & = \max_{\varsigma_{t}} ~~  \vEndStep({a}_{t},\varsigma_{t})
+      \Opt{\vFunc}_{\overline{t}}(a_{t})  & = \max_{\varsigma_{t}} ~~  \vEnd(a_{t},\varsigma_{t})
       \\      & \text{s.t.} \nonumber
       \\      0 \leq & \varsigma_{t} \leq 1
     \end{aligned}\end{gathered}\end{equation}
 where the tilde over $\Opt{\vFunc}(a)$ indicates that this is the $\vFunc$ that has been optimized with
 respect to all of the arguments other than the one still present
-(${a}_{t}$).  We solve this problem for the set of gridpoints in
+($a_{t}$).  We solve this problem for the set of gridpoints in
 \texttt{aVec} and use the results to construct the interpolating
-function $\Alt{\Opt{\vFunc}}_{t}^{a}({a}_{t})$.\footnote{A faster solution
+function $\Alt{\Opt{\vFunc}}_{t}^{a}(a_{t})$.\footnote{A faster solution
   could be obtained by, for each element in \texttt{aVec}, computing
-  $\vEndStep^{\varsigma}({m}_{t}-{c}_{t},\varsigma)$ of a grid of
+  $\vEnd^{\varsigma}(m_{t}-c_{t},\varsigma)$ of a grid of
   values of $\varsigma$, and then using an approximating interpolating
   function (rather than the full expectation) in the \texttt{FindRoot}
   command.  The associated speed improvement is fairly modest,
@@ -2034,10 +2034,10 @@ function $\Alt{\Opt{\vFunc}}_{t}^{a}({a}_{t})$.\footnote{A faster solution
 hand, we can use the first order condition from the single-control
 problem
 \begin{equation*}\begin{gathered}\begin{aligned}
-      {c}_{t}^{-\CRRA}  & = \Alt{\Opt{\vFunc}}_{t}^{{a}}({m}_{t}-{c}_{t})
+      c_{t}^{-\CRRA}  & = \Alt{\Opt{\vFunc}}_{t}^{a}(m_{t}-c_{t})
     \end{aligned}\end{gathered}\end{equation*}
 to solve for the optimal level of consumption as a function of
-${m}_{t}$ using the endogenous gridpoints method described above.  Thus we have transformed the multidimensional optimization
+$m_{t}$ using the endogenous gridpoints method described above.  Thus we have transformed the multidimensional optimization
 problem into a sequence of two simple optimization problems.
 
 Note the parallel between this trick and the fundamental insight of
@@ -2070,7 +2070,7 @@ coefficient of relative risk aversion of 6, an equity premium of only
 4 percent, and an annual standard deviation in equity returns of 15
 percent, the optimal choice is for the agent
 to invest a proportion 1 (100 percent) of the portfolio in stocks (instead of the safe bank account with riskless return $\Rfree$) is
-at values of ${a}_{t}$ less than about 2.  Second, the
+at values of $a_{t}$ less than about 2.  Second, the
 proportion of the portfolio kept in stocks is \textit{declining} in the
 level of wealth - i.e., the poor should hold all of their meager
 assets in stocks, while the rich should be cautious, holding more of
@@ -2091,14 +2091,14 @@ riskless form.
 \hypertarget{PlotctMultContr}{}
 \begin{figure}
   \includegraphics[width=6in]{./Figures/PlotctMultContr}
-  \caption{$\cFunc({m}_{1})$ With Portfolio Choice}
+  \caption{$\cFunc(m_{1})$ With Portfolio Choice}
   \label{fig:PlotctMultContr}
 \end{figure}
 
 \hypertarget{PlotRiskySharetOfat}{}
 \begin{figure}
   \includegraphics[width=6in]{./Figures/PlotRiskySharetOfat}
-  \caption{Portfolio Share in Risky Assets in First Period $\varsigma({a})$}
+  \caption{Portfolio Share in Risky Assets in First Period $\varsigma(a)$}
   \label{fig:PlotRiskySharetOfat}
 \end{figure}
 
@@ -2165,7 +2165,7 @@ function has converged for all practical purposes.
   For the perfect foresight infinite horizon consumption problem,
   the solution is
   \begin{equation}\begin{gathered}\begin{aligned}
-        \bar{\cFunc}({m}_{t})  & = \overbrace{(1-\Rfree^{-1}(\Rfree
+        \bar{\cFunc}(m_{t})  & = \overbrace{(1-\Rfree^{-1}(\Rfree
           \DiscFac)^{1/\CRRA})}^{\equiv
           \underline{\MPC}}\left[{m}_{t}-1+\left(\frac{1}{1-1/\Rfree}\right)\right]
         \label{eq:pfinfhorc}
@@ -2176,11 +2176,11 @@ function has converged for all practical purposes.
   infinite-horizon perfect-foresight value function and marginal value
   function are given by
   \begin{equation}\begin{gathered}\begin{aligned}
-        \bar{\vFunc}({m}_{t})
-        & =                                 \left(\frac{\bar{\cFunc}({m}_{t})^{1-\CRRA}}{
+        \bar{\vFunc}(m_{t})
+        & =                                 \left(\frac{\bar{\cFunc}(m_{t})^{1-\CRRA}}{
             (1-\CRRA)\underline{\MPC} }\right)
-        \\  \bar{\vFunc}^{{m}}({m}_{t})  & =       (\bar{\cFunc}({m}_{t}))^{-\CRRA}
-        \\  \Opt{\vFunc}^{{m}}({a}_{t})  & = \DiscFac \Rfree \PermGroFac_{t+1}^{-\CRRA} \bar{\vFunc}^{{m}}(\RNrm_{t+1} {a}_{t}+1).
+        \\  \bar{\vFunc}^{m}(m_{t})  & =       (\bar{\cFunc}(m_{t}))^{-\CRRA}
+        \\  \Opt{\vFunc}^{m}(a_{t})  & = \DiscFac \Rfree \PermGroFac_{t+1}^{-\CRRA} \bar{\vFunc}^{m}(\RNrm_{t+1} a_{t}+1).
       \end{aligned}\end{gathered}\end{equation}
 
   % WW delete the text on 2011-06-21 because we no longer start from the infinite horizon perfect foresight solution.
@@ -2242,7 +2242,7 @@ moments.  %(The code for the structural estimation is in the self-containedsubfo
 Realistic calibration of a life cycle model needs to take into account a few things that we omitted from the bare-bones model described above. For example, the whole point of the life cycle model is that life is finite, so we need to include a realistic treatment of life expectancy; this is done easily enough, by assuming that utility accrues only if you live, so effectively the rising mortality rate with age is treated as an extra reason for discounting the future.  Similarly, we may want to capture the demographic evolution of the household (e.g., arrival and departure of kids).  A common way to handle that, too, is by modifying the discount factor (arrival of a kid might increase the total utility of the household by, say, 0.2, so if the `pure' rate of time preference were $1.0$ the `household-size-adjusted' discount factor might be 1.2.  We therefore modify the model presented above to allow age-varying discount factors that capture both mortality and family-size changes (we just adopt the factors used by \cite{cagettiWprofiles} directly), with the probability of remaining alive between $t$ and $t+n$ captured by $\Alive$ and with $\hat{\DiscFac}$ now reflecting all the age-varying discount factor adjustments (mortality, family-size, etc).  Using $\beth$ (the Hebrew cognate of $\beta$) for the `pure' time preference factor, the value function for the revised problem is
 \begin{verbatimwrite}{./Equations/lifecyclemax.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
-\vFunc_{t}(\pLvl_{t},\mLvl_{t}) & =    \max_{\{\cFunc\}_{t}^{T}}~~ \uFunc(\cLvl_{t})+\Ex_{t}\left[\sum_{n=1}^{T-t} {\beth}^{n} \Alive_{t}^{t+n}\hat{\DiscFac}_{t}^{t+n} \uFunc(\cLvl_{t+n}) \right]   \label{eq:lifecyclemax}
+\vFunc_{t}(\pLvl_{t},\mLvl_{t}) & =    \max_{\{\cFunc\}_{t}^{T}}~~ \uFunc(\cLvl_{t})+\Ex_{t}\left[\sum_{n=1}^{T-t}\beth^{n} \Alive_{t}^{t+n}\hat{\DiscFac}_{t}^{t+n} \uFunc(\cLvl_{t+n}) \right]   \label{eq:lifecyclemax}
 \end{aligned}\end{gathered}  \end{equation}
 \end{verbatimwrite}
 \input{./Equations/lifecyclemax.tex}\unskip
@@ -2312,7 +2312,7 @@ The parameter values for the shocks are taken from Carroll~\citeyearpar{carroll:
   \end{center}
 \end{table}
 
-The structural estimation of the parameters ${\beth}$ and $\CRRA$ is carried out using
+The structural estimation of the parameters $\beth$ and $\CRRA$ is carried out using
 the procedure specified in the following section, which is then implemented in
 the \texttt{StructEstimation.py} file. This file consists of two main components. The
 first section defines the objects required to execute the structural estimation procedure,
@@ -2324,7 +2324,7 @@ and its accompanying code implementation in greater detail.
 
 When economists say that they are performing ``structural estimation''
 of a model like this, they mean that they have devised a
-formal procedure for searching for values for the parameters ${\beth}$
+formal procedure for searching for values for the parameters $\beth$
 and $\CRRA$ at which some measure of the model's outcome (like
 ``median wealth by age'') is as close as possible to an empirical measure
 of the same thing. Here, we choose to match the median of the
@@ -2347,18 +2347,18 @@ match medians rather than means.
 As explained in section \ref{sec:normalization}, it is convenient to work with the normalized version of the model which can be written in Bellman form as:
 \begin{verbatimwrite}{./Equations/LifeCycleMaxNormed.tex}
   \begin{equation*}\begin{gathered}\begin{aligned}
-        {\vFunc}_{t}({m}_{t})  & = \max_{{c}_{t}}~~~ \uFunc({c}_{t})+\beth\Alive_{t+1}\hat{\DiscFac}_{t+1}
-          \Ex_{t}[(\PermShk_{t+1}\PermGroFac_{t+1})^{1-\CRRA}{\vFunc}_{t+1}({m}_{t+1})]   \\
+        \vFunc_{t}(m_{t})  & = \max_{{c}_{t}}~~~ \uFunc(c_{t})+\beth\Alive_{t+1}\hat{\DiscFac}_{t+1}
+          \Ex_{t}[(\PermShk_{t+1}\PermGroFac_{t+1})^{1-\CRRA}\vFunc_{t+1}(m_{t+1})]   \\
         & \text{s.t.}   \nonumber \\
-        {a}_{t}    & = {m}_{t}-{c}_{t} \nonumber
-        \\      {m}_{t+1}  & = {a}_{t}\underbrace{\left(\frac{\Rfree}{\PermShk_{t+1}\PermGroFac_{t+1}}\right)}_{\equiv \RNrm_{t+1}}+ ~\TranShkEmp_{t+1}
+        a_{t}    & = m_{t}-c_{t} \nonumber
+        \\      m_{t+1}  & = a_{t}\underbrace{\left(\frac{\Rfree}{\PermShk_{t+1}\PermGroFac_{t+1}}\right)}_{\equiv \RNrm_{t+1}}+ ~\TranShkEmp_{t+1}
       \end{aligned}\end{gathered}\end{equation*}
 \end{verbatimwrite}
 \input{./Equations/LifeCycleMaxNormed.tex}\unskip
 with the first order condition:
 \begin{verbatimwrite}{./Equations/FOCLifeCycle}
 \begin{equation}\begin{gathered}\begin{aligned}
-      \uFunc^{{c}}({c}_{t}) & = \beth\Alive_{t+1}\hat{\DiscFac}_{t+1}\Rfree \Ex_{t}\left[\uFunc^{{c}}\left(\PermShk_{t+1}\PermGroFac_{t+1}\cFunc_{t+1}\left({a}_{t}\RNrm_{t+1}+\TranShkEmp_{t+1}\right)\right)\right]\label{eq:FOCLifeCycle}
+      \uFunc^{c}(c_{t}) & = \beth\Alive_{t+1}\hat{\DiscFac}_{t+1}\Rfree \Ex_{t}\left[\uFunc^{c}\left(\PermShk_{t+1}\PermGroFac_{t+1}\cFunc_{t+1}\left(a_{t}\RNrm_{t+1}+\TranShkEmp_{t+1}\right)\right)\right]\label{eq:FOCLifeCycle}
       .
     \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
@@ -2414,7 +2414,7 @@ generate simulated moments, it's important to note a difficulty in producing the
 target moments using the available data.
 
 Specifically, defining $\xi$ as the set of parameters
-to be estimated (in the current case $\xi =\{\CRRA ,{\beth}\}$), we could search for
+to be estimated (in the current case $\xi =\{\CRRA ,\beth\}$), we could search for
 the parameter values which solve
 \begin{verbatimwrite}{./Equations/naivePowell.tex}
   \begin{equation}
@@ -2522,7 +2522,7 @@ purpose of this function is to compute the standard errors by bootstrap.\footnot
 \begin{enumerate}
 \item drawing new shocks for the simulation
 \item drawing a random sample (with replacement) of actual data from the SCF
-\item obtaining new estimates for $\CRRA$ and ${\beth}$
+\item obtaining new estimates for $\CRRA$ and $\beth$
 \end{enumerate}
 We repeat the above procedure several times (\texttt{Bootstrap}) and
 take the standard deviation for each of the estimated parameters across the various bootstrap iterations.
@@ -2537,7 +2537,7 @@ provide a measure of sensitivity for given estimator that makes it easy to map t
 on the moments into predictable bias in the estimates for non-linear models.
 
 In the language of \cite{andrews2017measuring}, section \ref{sec:StructEst} is aimed at providing an
-estimator $\xi =\{\CRRA ,{\beth}\}$ that has some true value $\xi_0 $ by assumption. Under the assumption $a_0$ of the
+estimator $\xi =\{\CRRA ,\beth\}$ that has some true value $\xi_0 $ by assumption. Under the assumption $a_0$ of the
 researcher, the empirical targets computed from the SCF is measured accurately. These moments of the data are precisely
 what determine our estimate $\hat{\xi}$, which minimizes (\ref{eq:StructEstim}). Under alternative assumptions $a$,
 such that a given cohort is mismeasured in the survey, a different estimate is computed. Using the plug-in estimate
@@ -2547,10 +2547,10 @@ to mismeasurement in the median wealth to income ratio for a given age cohort.
 \subsection{Results}
 The second part of the file \texttt{StructEstimation.py}
 defines a function \texttt{main} which produces our $\CRRA$ and
-${\beth}$ estimates with standard errors using 10,000 simulated
+$\beth$ estimates with standard errors using 10,000 simulated
 agents by setting the positional arguments \texttt{estimate\_model} and
 \texttt{compute\_standard\_errors} to true.\footnote{The procedure is: First we calculate the $\CRRA$ and
-  ${\beth}$ estimates as the minimizer of equation
+  $\beth$ estimates as the minimizer of equation
   (\ref{eq:StructEstim}) using the actual SCF data. Then, we apply the
   \texttt{Bootstrap} function several times to obtain the standard
   error of our estimates.} Results are reported in Table
@@ -2567,7 +2567,7 @@ agents by setting the positional arguments \texttt{estimate\_model} and
     \center
     \begin{tabular}{cc}
       \hline
-      $\CRRA $ & ${\beth}$\\
+      $\CRRA $ & $\beth$\\
       \hline
       $3.69$ & $0.88$\\
       $(0.047)$ & $(0.002)$\\
@@ -2610,7 +2610,7 @@ our estimates of these parameters under the alternative assumption that the data
 \hypertarget{PlotSensitivityMeasure}{}
 \begin{figure}
   \includegraphics[width=6in]{./Figures/Sensitivity.pdf}
-  \caption{Sensitivty of Estimates $\{\CRRA,{\beth}\}$ regarding Alternative Mismeasurement Assumptions.}
+  \caption{Sensitivty of Estimates $\{\CRRA,\beth\}$ regarding Alternative Mismeasurement Assumptions.}
   \label{fig:PlotSensitivityMeasure}
 \end{figure}
 
@@ -2619,7 +2619,7 @@ By setting the positional argument
 the contour plot of the \texttt{smmObjectiveFxn} function
 and the parameter estimates. The contour plot shows equally spaced
 isoquants of the \texttt{smmObjectiveFxn} function,
-i.e.\ the pairs of $\CRRA$ and ${\beth}$ which lead to the same
+i.e.\ the pairs of $\CRRA$ and $\beth$ which lead to the same
 deviations between simulated and empirical medians (equivalent values
 of equation (\ref{eq:StructEstim})). Interestingly, there is a large rather flat region; or, more formally speaking,
 there exists a broad set of parameter pairs which leads to similar
@@ -2635,7 +2635,7 @@ The set of techniques, and associated programs, described in these notes represe
 \hypertarget{PlotContourMedianStrEst}{}
 \begin{figure}
   \includegraphics[width=6in]{./Figures/SMMcontour.pdf}
-  \caption{Contour Plot (larger values are shown lighter) with $\{\CRRA,{\beth}\}$ Estimates (red dot).}
+  \caption{Contour Plot (larger values are shown lighter) with $\{\CRRA,\beth\}$ Estimates (red dot).}
   \label{fig:PlotContourMedianStrEst}
 \end{figure}
 

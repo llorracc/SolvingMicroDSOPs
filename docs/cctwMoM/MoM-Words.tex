@@ -1,4 +1,4 @@
-  We similarly define $\hEndMin_{\EndStep}$ as `minimal human wealth,' the
+  We similarly define $\hEndMin_{\EndStp}$ as `minimal human wealth,' the
   present discounted value of labor income if the shocks were to take on
   their worst possible value in every future period \PermShkOn
   {$\TranShkEmp_{t+n} = \TranShkEmpMin ~\forall~n>0$ and $\PermShk_{t+n} =
@@ -10,37 +10,37 @@
     probabilities of the future risks and optimizes accordingly.}
 
   A first useful point is that, for the realist, a lower bound for the
-  level of market resources is $\ushort{m}_{t} = -\hEndMin_{\EndStep}$, because
-  if ${m}_{t}$ equalled this value then there would be a positive finite
+  level of market resources is $\ushort{m}_{t} = -\hEndMin_{\EndStp}$, because
+  if $m_{t}$ equalled this value then there would be a positive finite
   chance (however small) of receiving \PermShkOn
   {$\TranShkEmp_{t+n}=\TranShkEmpMin$ and $\PermShk_{t+n}=\PermShkMin$}
   {$\TranShkEmp_{t+n}=\TranShkEmpMin$}
   in
-  every future period, which would require the consumer to set ${c}_{t}$
+  every future period, which would require the consumer to set $c_{t}$
   to zero in order to guarantee that the intertemporal budget constraint
   holds\ctw{.}{~(this is the multiperiod generalization of the discussion in
     section \ref{subsec:LiqConstrSelfImposed} explaining the derivation of the `natural borrowing constraint' for period $T-1$,
     $\ushort{a}_{T-1}$).}  Since consumption of zero yields negative
   infinite utility, the solution to realist consumer's problem is not well
-  defined for values of ${m}_{t} < \ushort{m}_{t}$, and the limiting
-  value of the realist's ${c}_t$ is zero as ${m}_{t} \downarrow \ushort{m}_{t}$.
+  defined for values of $m_{t} < \ushort{m}_{t}$, and the limiting
+  value of the realist's $c_t$ is zero as $m_{t} \downarrow \ushort{m}_{t}$.
 
   Given this result, it will be convenient to define `excess' market
   resources as the amount by which actual resources exceed the lower
   bound, and `excess' human wealth as the amount by which mean expected human wealth
   exceeds guaranteed minimum human wealth:
   \begin{equation*}\begin{gathered}\begin{aligned}
-        \aboveMin \mNrm_{t}  & = {m}_{t}+\overbrace{\hEndMin_{\EndStep}}^{=-\ushort{m}_{t}}
-        \\  \aboveMin \hNrm_{\EndStep}  & = \hNrm_{\EndStep}-\hEndMin_{\EndStep}.
+        \aboveMin \mNrm_{t}  & = m_{t}+\overbrace{\hEndMin_{\EndStp}}^{=-\ushort{m}_{t}}
+        \\  \aboveMin \hNrm_{\EndStp}  & = \hNrm_{\EndStp}-\hEndMin_{\EndStp}.
       \end{aligned}\end{gathered}\end{equation*}
 
   We can now transparently define the optimal
   consumption rules for the two perfect foresight problems, those of the
   `optimist' and the `pessimist.'  The `pessimist' perceives human
-  wealth to be equal to its minimum feasible value $\hEndMin_{\EndStep}$ with certainty, so
+  wealth to be equal to its minimum feasible value $\hEndMin_{\EndStp}$ with certainty, so
   consumption is given by the perfect foresight solution
   \begin{equation*}\begin{gathered}\begin{aligned}
-        \cFuncBelow_{t}(m_{t})  & = ({m}_{t}+\hEndMin_{\EndStep})\MPCmin_{t}
+        \cFuncBelow_{t}(m_{t})  & = (m_{t}+\hEndMin_{\EndStp})\MPCmin_{t}
         \\  & = \aboveMin \mNrm_{t}\MPCmin_{t}
         .
       \end{aligned}\end{gathered}\end{equation*}
@@ -48,9 +48,9 @@
   The `optimist,' on the other hand, pretends that there is no uncertainty
   about future income, and therefore consumes
   \begin{equation*}\begin{gathered}\begin{aligned}
-        \cFuncAbove_{t}(m_{t})  & = ({m}_{t} +\hEndMin_{\EndStep} - \hEndMin_{\EndStep} + \hNrm_{\EndStep} )\MPCmin_{t}
-        \\    & = (\aboveMin \mNrm_{t} + \aboveMin \hNrm_{\EndStep})\MPCmin_{t}
-        \\      & = \cFuncBelow_{t}(m_{t})+\aboveMin \hNrm_{\EndStep} \MPCmin_{t}
+        \cFuncAbove_{t}(m_{t})  & = (m_{t} +\hEndMin_{\EndStp} - \hEndMin_{\EndStp} + \hNrm_{\EndStp} )\MPCmin_{t}
+        \\    & = (\aboveMin \mNrm_{t} + \aboveMin \hNrm_{\EndStp})\MPCmin_{t}
+        \\      & = \cFuncBelow_{t}(m_{t})+\aboveMin \hNrm_{\EndStp} \MPCmin_{t}
         .
       \end{aligned}\end{gathered}\end{equation*}
 

@@ -29,7 +29,7 @@ Given a consumption rule $\cFunc(\mNrm)$ it is straightforward to find
 the corresponding $\mTrgNrm$.  So for our problem, a solution is declared
 to have converged if the following criterion is met:
 $\left|\mTrgNrm_{\prd+1}-\mTrgNrm_{\prd}\right| < \epsilon$, where $\epsilon$ is
-a very small number and measures our degree of convergence tolerance.
+a very small number and defines our degree of convergence tolerance.
 
 Similar criteria can obviously be specified for other problems.
 However, it is always wise to plot successive function differences and
@@ -51,7 +51,7 @@ function has converged for all practical purposes.
   For the perfect foresight infinite horizon consumption problem,
   the solution is
   \begin{equation}\begin{gathered}\begin{aligned}
-        \bar{\cFunc}({m}_{\prd})  & = \overbrace{(1-\Rfree^{-1}(\Rfree
+        \bar{\cFunc}(m_{\prd})  & = \overbrace{(1-\Rfree^{-1}(\Rfree
           \DiscFac)^{1/\CRRA})}^{\equiv
           \underline{\MPC}}\left[{m}_{\prd}-1+\left(\frac{1}{1-1/\Rfree}\right)\right]
         \label{eq:pfinfhorc}
@@ -62,11 +62,11 @@ function has converged for all practical purposes.
   infinite-horizon perfect-foresight value function and marginal value
   function are given by
   \begin{equation}\begin{gathered}\begin{aligned}
-        \bar{\vFunc}({m}_{\prd})
-        & =                                 \left(\frac{\bar{\cFunc}({m}_{\prd})^{1-\CRRA}}{
+        \bar{\vFunc}(m_{\prd})
+        & =                                 \left(\frac{\bar{\cFunc}(m_{\prd})^{1-\CRRA}}{
             (1-\CRRA)\underline{\MPC} }\right)
-        \\  \bar{\vFunc}^{{m}}({m}_{\prd})  & =       (\bar{\cFunc}({m}_{\prd}))^{-\CRRA}
-        \\  \Opt{\vFunc}^{{m}}({a}_{\prd})  & = \DiscFac \Rfree \PermGroFac_{\prd+1}^{-\CRRA} \bar{\vFunc}^{{m}}(\RNrm_{\prd+1} {a}_{\prd}+1).
+        \\  \bar{\vFunc}^{m}(m_{\prd})  & =       (\bar{\cFunc}(m_{\prd}))^{-\CRRA}
+        \\  \Opt{\vFunc}^{m}(a_{\prd})  & = \DiscFac \Rfree \PermGroFac_{\prd+1}^{-\CRRA} \bar{\vFunc}^{m}(\RNrm_{\prd+1} a_{\prd}+1).
       \end{aligned}\end{gathered}\end{equation}
 
   % WW delete the text on 2011-06-21 because we no longer start from the infinite horizon perfect foresight solution.

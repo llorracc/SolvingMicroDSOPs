@@ -131,7 +131,7 @@ Define
 \input{./Equations/vEndtdefn.tex}
 so 
 \begin{equation}\begin{gathered}\begin{aligned}
-  \vFunc_{t}(\mRat_{t})  & = \max_{\cNrm_{t}}~~ \util(\cNrm_{t}) + \vEnd_{t}(\mRat_{t}-\cNrm_{t})
+  \vFunc_{t}(\mRat_{t})  & = \max_{\cNrm_{t}}~~ \util(\cNrm_{t}) + \vEndStp{t}(\mRat_{t}-\cNrm_{t})
 \end{aligned}\end{gathered}\end{equation}
 with FOC
 \input{./Equations/upEqbetaOp.tex}
@@ -155,7 +155,7 @@ E.g.\ use an equiprobable 7-point distribution:\medskip\medskip
 \frametitle{Trick: Discretize the Risks}
 
 \begin{equation}\begin{gathered}\begin{aligned}
-        \vEnd_{t}^{\prime}({a}_{t})  & =  \Discount \Rfree \PermGroFac_{t+1}^{-\CRRA} \left(\frac{1}{n}\right) \sum_{i=1}^{n} \util^{\prime}\left(\cFunc_{t+1}(\RNrm_{t+1} {a}_{t} + \TranShkEmp_{i})\right)
+        \vEndStp_{t}^{\prime}(a_{t})  & =  \Discount \Rfree \PermGroFac_{t+1}^{-\CRRA} \left(\frac{1}{n}\right) \sum_{i=1}^{n} \util^{\prime}\left(\cFunc_{t+1}(\RNrm_{t+1} a_{t} + \TranShkEmp_{i})\right)
 \end{aligned}\end{gathered}\end{equation}
 
 %\input{./Equations/vDiscrete.tex}
@@ -174,7 +174,7 @@ using the FOC:
 \begin{enumerate}
 \item Define a grid of points $\vctr{\mRat}$ (indexed $\mRat[i]$)
 \item Use numerical rootfinder to solve 
-$\util^{\prime}(\cNrm) = \vEnd^{\prime}_{t}(\mRat[i]-\cNrm)$
+$\util^{\prime}(\cNrm) = \vEndStp^{\prime}_{t}(\mRat[i]-\cNrm)$
 \begin{itemize}
 \item The $\cNrm$ that solves this becomes $\cNrm[i]$
 \end{itemize}
@@ -204,11 +204,11 @@ Example: $\vctr{\mRat}_{T-1} = \{0.,1.,2.,3.,4.\}$ (solid is `correct' soln)
 \frametitle{Problem: Numerical Rootfinding is {\it Slow}}
 
 Numerical search for values of $\cNrm_{T-1}$ satisfying
-$\util^{\prime}(\cNrm) = \vEnd^{\prime}_{t}(\mRat[i]-\cNrm)$ at, say,
+$\util^{\prime}(\cNrm) = \vEndStp^{\prime}_{t}(\mRat[i]-\cNrm)$ at, say,
 6 gridpoints of $\vctr{\mRat}_{T-1}$ may require hundreds or even thousands of
 evaluations of
 \begin{equation}\begin{gathered}\begin{aligned}
-        \vEnd^{\prime}_{T-1}(\overbrace{{m}_{T-1}-{\cNrm}_{T-1}}^{\aRat_{T-1}})  & =   \Discount_{T} \PermGroFac_{T}^{1-\CRRA}\left(\frac{1}{n}\right)\sum_{i=1}^{n}   \left( \RNrm_{T} {a}_{T-1} + \TranShkEmp_{i}\right)^{-\CRRA} \notag
+        \vEndStp^{\prime}_{T-1}(\overbrace{{m}_{T-1}-{\cNrm}_{T-1}}^{\aRat_{T-1}})  & =   \Discount_{T} \PermGroFac_{T}^{1-\CRRA}\left(\frac{1}{n}\right)\sum_{i=1}^{n}   \left( \RNrm_{T} a_{T-1} + \TranShkEmp_{i}\right)^{-\CRRA} \notag
 \end{aligned}\end{gathered}\end{equation}
 
 \end{frame}
@@ -242,7 +242,7 @@ is {\it much} faster,  but result is bad:
 
 
 \begin{frame}
-\frametitle{Approximate $\vEnd_{t}^{\prime}(\aRat)$?}
+\frametitle{Approximate $\vEndStp_{t}^{\prime}(\aRat)$?}
 
 Better ... but still violates first two principles:
 \includegraphics[width=4in]{./Figures/PlotOPRawVSFOC.pdf}
@@ -260,16 +260,16 @@ Better ... but still violates first two principles:
 
 \begin{itemize}
 \item Define vector of {\it end-of-period} asset values $\vctr{\aRat}$
-\item For each $\aRat[j]$ compute $\vEnd_{t}^{\prime}(\aRat[j])$
+\item For each $\aRat[j]$ compute $\vEndStp_{t}^{\prime}(\aRat[j])$
 \end{itemize}
 
 \pause 
 
-Each of these $\vEnd_{t}^{\prime}[j]$ corresponds to a unique
+Each of these $\vEndStp_{t}^{\prime}[j]$ corresponds to a unique
 $\cNrm[j]$ via FOC:
 \begin{equation}\begin{gathered}\begin{aligned}
-  \cNrm[j]^{-\CRRA}  & = \vEnd_{t}^{\prime}(\aRat[j])
-\\ \cNrm[j]  & = \left(\vEnd_{t}^{\prime}(\aRat[j])\right)^{-1/\CRRA}
+  \cNrm[j]^{-\CRRA}  & = \vEndStp_{t}^{\prime}(\aRat[j])
+\\ \cNrm[j]  & = \left(\vEndStp_{t}^{\prime}(\aRat[j])\right)^{-1/\CRRA}
 \end{aligned}\end{gathered}\end{equation}
 
 \pause 
@@ -281,7 +281,7 @@ But the DBC says
 \end{aligned}\end{gathered}\end{equation}
 
 \pause 
-So computing $\vEnd_{t}^{\prime}$ at a vector of $\vctr{\aRat}$ values has produced for us the corresponding $\vctr{\cNrm}$ and $\vctr{\mRat}$ 
+So computing $\vEndStp_{t}^{\prime}$ at a vector of $\vctr{\aRat}$ values has produced for us the corresponding $\vctr{\cNrm}$ and $\vctr{\mRat}$ 
 values at virtually no cost!  
 
 \pause 
@@ -361,8 +361,8 @@ and then obtain your approximation from
 \pause 
 Define {\it consumed} function and its derivative as 
 \begin{equation}\begin{gathered}\begin{aligned}
-  \cEndFunc_{t}(\aRat)  & = (\vEnd^{\prime}_{t}(\aRat))^{-1/\CRRA}
-\\ \cEndFunc_{t}^{\aRat}(\aRat)  & = -(1/\CRRA)\left(\vEnd_{t}^{\prime}({a})\right)^{-1-1/\CRRA} \vEnd_{t}^{\prime\prime}(\aRat) 
+  \cEndFunc_{t}(\aRat)  & = (\vEndStp^{\prime}_{t}(\aRat))^{-1/\CRRA}
+\\ \cEndFunc_{t}^{\aRat}(\aRat)  & = -(1/\CRRA)\left(\vEndStp_{t}^{\prime}(a)\right)^{-1-1/\CRRA} \vEndStp_{t}^{\prime\prime}(\aRat) 
 \end{aligned}\end{gathered}\end{equation}
 
 \pause 
@@ -390,9 +390,9 @@ and using chain rule it is easy to show that
 \begin{frame}
 \frametitle{Problem: $\Alt{\cFunc}$ Below Bottom $\mRat$ Gridpoint and Extrapolation}
 
-Consider what happens as ${a}_{T-1}$ approaches $\underline{a}_{T-1}\equiv-\underline{\TranShkEmp}\RNrm_{T}^{-1}$,
+Consider what happens as $a_{T-1}$ approaches $\underline{a}_{T-1}\equiv-\underline{\TranShkEmp}\RNrm_{T}^{-1}$,
 \begin{equation*}\begin{gathered}\begin{aligned}
-        \lim_{{\aRat} \downarrow \underline{a}_{T-1}} \vEnd_{T-1}^{\prime}({\aRat}) 
+        \lim_{{\aRat} \downarrow \underline{a}_{T-1}} \vEndStp{T-1}^{\prime}({\aRat}) 
 & =         \lim_{{\aRat} \downarrow \underline{a}_{T-1}} \Discount \Rfree \PermGroFac_{T}^{-\CRRA} \left(\frac{1}{n}\right) \sum_{i=1}^{n} \left( {\aRat} \RNrm_{T}+ \TranShkEmp_{i}\right)^{-\CRRA}
 \\  & = \infty
 \end{aligned}\end{gathered}\end{equation*}
@@ -478,8 +478,8 @@ Define $\grave{\cFunc}^{*}_{t}$ as soln to unconstrained problem.  Then
 
 Point where constraint makes transition from binding to not is
 \begin{equation*}\begin{gathered}\begin{aligned}
-    \util^{\prime}(\mRat_{T-1}^{\#})  & = \vEnd^{\prime}_{T-1}(0.)
-\\  \mRat_{T-1}^{\#}  & = \left(\vEnd^{\prime}_{T-1}(0.)\right)^{-1/\CRRA}
+    \util^{\prime}(\mRat_{T-1}^{\#})  & = \vEndStp^{\prime}_{T-1}(0.)
+\\  \mRat_{T-1}^{\#}  & = \left(\vEndStp^{\prime}_{T-1}(0.)\right)^{-1/\CRRA}
 \end{aligned}\end{gathered}\end{equation*}
 \pause\medskip
 
@@ -634,7 +634,7 @@ the solution to have converged when
 Given a set of parameter values $\{\CRRA,\beth\}$:
 \begin{itemize}
 \item Start at age 25 with empirical $\mRat$ data
-\item Draw shocks using calibrated $\sigma^{2}_{\PermShk}$,$\sigma^{2}_{\TranShkEmp}$
+\item Draw shocks using calibrated $\sigma^{2}_{\permShk}$,$\sigma^{2}_{\TranShkEmp}$
 \item Consume according to solved $\cFunc_{t}$
 \end{itemize}
 \pause 

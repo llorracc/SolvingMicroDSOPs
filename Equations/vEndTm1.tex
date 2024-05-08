@@ -1,9 +1,7 @@
-%\renewcommand{\prd}{T}
-  \begin{equation}\begin{gathered}\begin{aligned}
-        {\vFunc}_{\MidStpLst}({m}_{\prdT-1})   & = \max_{\cNrm_{\prdT-1}}
-        \left\{
-          \frac{{c}_{\prdT-1}^{1-\CRRA}}{1-\CRRA} +
-          \vFunc_{\EndStpLst}({m}_{\prdT-1}-{c}_{\prdT-1})
-        \right\}.
-        \label{eq:vEndTm1}
-      \end{aligned}\end{gathered}\end{equation}%\renewcommand{\prd}{t}
+\begin{equation}\begin{gathered}\begin{aligned}
+  \vFunc_{\MidPrdLsT}(\mStte)  & = \max_{\cCtrl} ~~ \uFunc(\cCtrl) +
+%                              \underbrace{
+                              \vEndPrdLsT(\overbrace{\mStte-\cCtrl}^{\aStte})
+%                              }_{=\DiscFac \vBegPrd(a)}
+                              \label{eq:vEndTm1}
+\end{aligned}\end{gathered}\end{equation}

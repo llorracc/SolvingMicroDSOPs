@@ -59,10 +59,6 @@
   *{package}{iftex}       {2022/02/03 v1.0f}
   *{package}{moreverb}    {2008/06/03 v2.3a}
   *{package}{hhline}      {2020/01/04 v2.04}
-  *{package}{tipa}        {2002/08/08 v1.1}
-  *{package}{fontenc}     {0000/00/00 v0.0}
-  *{file}   {t3enc.def}   {2001/12/31 v3}
-  *{file}   {t1cmss.fd}   {2022/07/10 v2.5l}
   *{package}{xcolor}      {2022/06/12 v2.14}
   *{file}   {color.cfg}   {2016/01/02 v1.6}
   *{file}   {pdftex.def}  {2022/09/22 v1.2b}
@@ -82,26 +78,24 @@
   *{package}{perpage}     {2014/10/25 v2.0}
   *{package}{./.econtexRoot}{0000/00/00 v0.0}
   *{file}   {./Resources/econtexPaths.tex}{0000/00/00 v0.0}
+  *{package}{./Resources/LaTeXInputs/local-macros}{0000/00/00 v0.0}
+  *{package}{./Resources/texmf-local/tex/latex/econark}{0000/00/00 v0.0}
+  *{package}{subfiles}    {2020/11/14 v2.2}
+  *{package}{import}      {2020/04/01 v6.2}
+  *{package}{xmpincl}     {2021/09/22 v2.4}
+  *{package}{ifpdf}       {2019/10/25 v3.4}
+  *{package}{./Resources/texmf-local/tex/latex/llorracc-handouts}{0000/00/00 v0.0}
+  *{package}{./Resources/LaTeXInputs/owner}{0000/00/00 v0.0}
   *{package}{./Resources/LaTeXInputs/local-packages}{0000/00/00 v0.0}
   *{package}{./Resources/LaTeXInputs/pdfsuppressruntime}{0000/00/00 v0.0}
+  *{package}{inputenc}    {2021/02/14 v1.3d}
+  *{package}{fontenc}     {0000/00/00 v0.0}
   *{package}{listings}    {2023/02/27 v1.9}
   *{package}{lstmisc}     {2023/02/27 v1.9}
   *{file}   {listings.cfg}{2023/02/27 v1.9}
   *{package}{mathtools}   {2022/06/29 v1.29}
   *{package}{mhsetup}     {2021/03/18 v1.4}
   *{package}{xr-hyper}    {2023-02-07 v7.00v}
-  *{package}{./Resources/texmf-local/tex/latex/econark}{0000/00/00 v0.0}
-  *{package}{subfiles}    {2020/11/14 v2.2}
-  *{package}{import}      {2020/04/01 v6.2}
-  *{package}{xmpincl}     {2021/09/22 v2.4}
-  *{package}{ifpdf}       {2019/10/25 v3.4}
-  *{package}{./Resources/texmf-local/tex/latex/econtexSetup}{0000/00/00 v0.0}
-  *{package}{wasysym}     {2020/01/19 v2.4}
-  *{package}{psibycus}    {2004/10/18 v4.5}
-  *{file}   {ibycus4.map} {0000/00/00 v0.0}
-  *{file}   {Uibycus.fd}  {2004/10/18 v4.5}
-  *{file}   {iby4extr.tex}{0000/00/00 v0.0}
-  *{package}{ushort}      {2001/06/13 v2.2}
   *{package}{graphicx}    {2021/09/16 v1.2d}
   *{package}{graphics}    {2022/03/10 v1.4e}
   *{package}{trig}        {2021/08/11 v1.11}
@@ -131,24 +125,38 @@
   *{package}{caption}     {2023/03/12 v3.6j}
   *{package}{caption3}    {2023/03/12 v2.4}
   *{file}   {caption-koma.sto}{2022/12/27 v2.0c}
-  *{package}{./Resources/texmf-local/tex/latex/econtexShortcuts}{0000/00/00 v0.0}
   *{package}{showlabels}  {2022/07/18 v1.9.2}
   *{package}{./Resources/LaTeXInputs/cctwMoM}{0000/00/00 v0.0}
-  *{file}   {t3cmr.fd}    {2001/12/31 v0.0}
   *{file}   {translations-basic-dictionary-english.trsl}{(english v0.0}
   *{file}   {supp-pdf.mkii}{0000/00/00 v0.0}
   *{package}{epstopdf-base}{2020-01-24 v2.11}
   *{file}   {epstopdf-sys.cfg}{2010/07/13 v1.3}
-  *{file}   {SolvingMicroDSOPs-clean.out}{0000/00/00 v0.0}
-  *{file}   {SolvingMicroDSOPs-clean.out}{0000/00/00 v0.0}
   *{package}{bookmark}    {2020-11-06 v1.29}
   *{file}   {bkm-pdftex.def}{2020-11-06 v1.29}
   *{file}   {umsa.fd}     {2013/01/14 v3.01}
   *{file}   {umsb.fd}     {2013/01/14 v3.01}
   *{file}   {ulasy.fd}    {1998/08/17 v2.2e}
-  *{file}   {uwasy.fd}    {2020/01/19 v2.4}
   *{file}   {t1cmtt.fd}   {2022/07/10 v2.5l}
+  *{file}   {t1cmss.fd}   {2022/07/10 v2.5l}
+  *{package}{lstlang1}    {2023/02/27 v1.9}
+  *{file}   {./Code/Python/snippets/rawsolution.py}{0000/00/00 v0.0}
+  *{file}   {./Figures/discreteApprox.pdf}{0000/00/00 v0.0}
+  *{file}   {./Code/Python/snippets/equiprobable-make.py}{0000/00/00 v0.0}
+  *{file}   {./Code/Python/snippets/equiprobable-max-using.py}{0000/00/00 v0.0}
+  *{file}   {./Figures/PlotcTm1Simple.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/PlotVTm1Simple.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/PlotOTm1RawVSInt.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/PlotComparecTm1AB.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/PlotuPrimeVSOPrime.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/PlotOPRawVSFOC.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/PlotcTm1ABC.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/GothVInvVSGothC.pdf}{0000/00/00 v0.0}
   *{file}   {ueuf.fd}     {2013/01/14 v3.01}
+  *{file}   {./Figures/GothVVSGothCInv.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/PlotComparecTm1AD.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/GothVInvVSGothCEEE.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/GothVVSGothCInvEEE.pdf}{0000/00/00 v0.0}
+  *{file}   {./Figures/PlotCFuncsConverge.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/PlotctMultContr.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/PlotRiskySharetOfat.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/PlotTimeVaryingParam.pdf}{0000/00/00 v0.0}

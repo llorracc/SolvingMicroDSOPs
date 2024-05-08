@@ -1,6 +1,6 @@
   \MPCMatch{with derivative
     \begin{equation*}\begin{gathered}\begin{aligned}
-          \bar{\vInv}_{\prd}^{m}  & = (\mathbb{C}_{\prd}^{T})^{1/(1-\CRRA)}\MPCmin_{\prd},
+          \bar{\vInv}_{\prd}^m  & = (\mathbb{C}_{\prd}^{T})^{1/(1-\CRRA)}\MPCmin_{\prd},
           \\  & = \MPCmin_{\prd}^{-\CRRA/(1-\CRRA)} % 20190820
         \end{aligned}\end{gathered}\end{equation*}}{}
   and since $\PDVCoverc_{\prd}^{T}$ is a constant while the consumption
@@ -8,8 +8,8 @@
 
   We apply the same transformation to the value function for the problem with uncertainty (the ``realist's'' problem)\MPCMatch{ and differentiate}:
   \begin{equation*}\begin{gathered}\begin{aligned}
-        \bar{\vInv}_{\prd}  & = \left((1-\CRRA)\bar{\vFunc}_{\prd}({m}_{\prd})\right)^{1/(1-\CRRA)}
-        \MPCMatch{\\ \bar{\vInv}^{m}_{\prd}  & = \left((1-\CRRA)\bar{\vFunc}_{\prd}({m}_{\prd})\right)^{-1+1/(1-\CRRA)}\bar{\vFunc}_{\prd}^{m}({m}_{\prd})}{}
+        \bar{\vInv}_{\prd}  & = \left((1-\CRRA)\bar{\vFunc}_{\prd}(m_{\prd})\right)^{1/(1-\CRRA)}
+        \MPCMatch{\\ \bar{\vInv}^{m}_{\prd}  & = \left((1-\CRRA)\bar{\vFunc}_{\prd}(m_{\prd})\right)^{-1+1/(1-\CRRA)}\bar{\vFunc}_{\prd}^{m}(m_{\prd})}{}
       \end{aligned}\end{gathered}\end{equation*}
   and an excellent approximation to the value function can be obtained by
   calculating the values of $\bar{\vInv}$ at the same gridpoints used by the
@@ -25,7 +25,7 @@
   \MPCMatch{with derivative (dropping arguments)
     \begin{equation}\begin{gathered}\begin{aligned}
           \hat{\Koppa}_{\prd}^{\mu}   & = (\aboveMin \hNrm_{\EndStp} \MPCmin_{\prd} (\PDVCoverc_{\prd}^{T})^{1/(1-\CRRA)})^{-1}e^{\mu_{\prd}}\left(\bar{\vInv}^{m}_{\prd}-\vInv^{m}_{\prd}\right) \label{eq:KoppaPrime}
-          % \\  & =  (\aboveMin \hNrm_{\EndStp} \MPCmin_{\prd})^{-1}e^{\mu_{\prd}}\left((\PDVCoverc_{\prd}^{T})^{1/(1-\CRRA)}\MPCmin_{\prd}-\left((1-\CRRA)\vFunc_{\prd}({m}_{\prd})\right)^{-1+1/(1-\CRRA)}\vFunc_{\prd}^{m}({m}_{\prd})\right)  \notag
+          % \\  & =  (\aboveMin \hNrm_{\EndStp} \MPCmin_{\prd})^{-1}e^{\mu_{\prd}}\left((\PDVCoverc_{\prd}^{T})^{1/(1-\CRRA)}\MPCmin_{\prd}-\left((1-\CRRA)\vFunc_{\prd}(m_{\prd})\right)^{-1+1/(1-\CRRA)}\vFunc_{\prd}^{m}(m_{\prd})\right)  \notag
         \end{aligned}\end{gathered}\end{equation}}{}
   and an upper-case version of the $\chiFunc$ equation in \eqref{eq:chi}:
   \begin{equation}\begin{gathered}\begin{aligned}
@@ -46,8 +46,8 @@
   from which we obtain our approximation to the value function\MPCMatch{ and its derivatives~}~as \hypertarget{vHatFunc}{}
   \begin{equation}\begin{gathered}\begin{aligned}
         \hat{\vFunc}_{\prd}  & = \uFunc(\hat{\vInv}_{\prd})
-        \\  \hat{\vFunc}^{m}_{\prd}  & = \uFunc^{{c}}(\hat{\vInv}_{\prd}) \hat{\vInv}^{m}
-        \MPCMatch{\\  \hat{\vFunc}^{mm}_{\prd}  & = \uFunc^{{c}{c}}(\hat{\vInv}_{\prd}) (\hat{\vInv}^{m})^{2} + \uFunc^{{c}}(\hat{\vInv}_{\prd})\hat{\vInv}^{mm}}{}
+        \\  \hat{\vFunc}^{m}_{\prd}  & = \uFunc^{c}(\hat{\vInv}_{\prd}) \hat{\vInv}^{m}
+        \MPCMatch{\\  \hat{\vFunc}^{mm}_{\prd}  & = \uFunc^{c{c}}(\hat{\vInv}_{\prd}) (\hat{\vInv}^{m})^{2} + \uFunc^{c}(\hat{\vInv}_{\prd})\hat{\vInv}^{mm}}{}
         .
       \end{aligned}\end{gathered}\end{equation}
 

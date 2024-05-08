@@ -190,7 +190,7 @@ E.g.\ use an equiprobable 7-point distribution:\medskip\medskip
 \frametitle{Trick: Discretize the Risks}
 
 \begin{equation}\begin{gathered}\begin{aligned}
-        \vEnd_{t}^{\prime}({a}_{t})  & =  \Discount \Rfree \PermGroFac_{t+1}^{-\CRRA} \left(\frac{1}{n}\right) \sum_{i=1}^{n} \util^{\prime}\left(\cFunc_{t+1}(\RNrm_{t+1} {a}_{t} + \TranShkEmp_{i})\right)
+        \vEnd_{t}^{\prime}(a_{t})  & =  \Discount \Rfree \PermGroFac_{t+1}^{-\CRRA} \left(\frac{1}{n}\right) \sum_{i=1}^{n} \util^{\prime}\left(\cFunc_{t+1}(\RNrm_{t+1} a_{t} + \TranShkEmp_{i})\right)
 \end{aligned}\end{gathered}\end{equation}
 
 %\input{./Equations/vDiscrete.tex}
@@ -243,7 +243,7 @@ $\util^{\prime}(\cNrm) = \vEnd^{\prime}_{t}(\mRat[i]-\cNrm)$ at, say,
 6 gridpoints of $\vctr{\mRat}_{T-1}$ may require hundreds or even thousands of
 evaluations of
 \begin{equation}\begin{gathered}\begin{aligned}
-        \vEnd^{\prime}_{T-1}(\overbrace{{m}_{T-1}-{\cNrm}_{T-1}}^{\aRat_{T-1}})  & =   \Discount_{T} \PermGroFac_{T}^{1-\CRRA}\left(\frac{1}{n}\right)\sum_{i=1}^{n}   \left( \RNrm_{T} {a}_{T-1} + \TranShkEmp_{i}\right)^{-\CRRA} \notag
+        \vEnd^{\prime}_{T-1}(\overbrace{{m}_{T-1}-{\cNrm}_{T-1}}^{\aRat_{T-1}})  & =   \Discount_{T} \PermGroFac_{T}^{1-\CRRA}\left(\frac{1}{n}\right)\sum_{i=1}^{n}   \left( \RNrm_{T} a_{T-1} + \TranShkEmp_{i}\right)^{-\CRRA} \notag
 \end{aligned}\end{gathered}\end{equation}
 
 \end{frame}
@@ -397,7 +397,7 @@ and then obtain your approximation from
 Define {\it consumed} function and its derivative as 
 \begin{equation}\begin{gathered}\begin{aligned}
   \cEndFunc_{t}(\aRat)  & = (\vEnd^{\prime}_{t}(\aRat))^{-1/\CRRA}
-\\ \cEndFunc_{t}^{\aRat}(\aRat)  & = -(1/\CRRA)\left(\vEnd_{t}^{\prime}({a})\right)^{-1-1/\CRRA} \vEnd_{t}^{\prime\prime}(\aRat) 
+\\ \cEndFunc_{t}^{\aRat}(\aRat)  & = -(1/\CRRA)\left(\vEnd_{t}^{\prime}(a)\right)^{-1-1/\CRRA} \vEnd_{t}^{\prime\prime}(\aRat) 
 \end{aligned}\end{gathered}\end{equation}
 
 \pause 
@@ -425,7 +425,7 @@ and using chain rule it is easy to show that
 \begin{frame}
 \frametitle{Problem: $\Alt{\cFunc}$ Below Bottom $\mRat$ Gridpoint and Extrapolation}
 
-Consider what happens as ${a}_{T-1}$ approaches $\underline{a}_{T-1}\equiv-\underline{\TranShkEmp}\RNrm_{T}^{-1}$,
+Consider what happens as $a_{T-1}$ approaches $\underline{a}_{T-1}\equiv-\underline{\TranShkEmp}\RNrm_{T}^{-1}$,
 \begin{equation*}\begin{gathered}\begin{aligned}
         \lim_{{\aRat} \downarrow \underline{a}_{T-1}} \vEnd_{T-1}^{\prime}({\aRat}) 
 & =         \lim_{{\aRat} \downarrow \underline{a}_{T-1}} \Discount \Rfree \PermGroFac_{T}^{-\CRRA} \left(\frac{1}{n}\right) \sum_{i=1}^{n} \left( {\aRat} \RNrm_{T}+ \TranShkEmp_{i}\right)^{-\CRRA}
