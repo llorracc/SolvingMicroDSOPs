@@ -1,8 +1,8 @@
   \begin{equation}\begin{gathered}\begin{aligned}
-        \vFunc_{t}(m_{t})  & = \max_{{c}_{t}} ~~ \uFunc(c_{t})+
-       \DiscFac\Ex_{t}[ \PermGroFac_{t+1}^{1-\CRRA}\vFunc_{t+1}(m_{t+1})] \label{eq:vNormed}
-        \\         & \text{s.t.}   \\
-    a_{t}    & = m_{t}-c_{t}
-\\  k_{t+1}  & = a_{t}
-        \\      m_{t+1}  & = \underbrace{\left(\Rfree/\PermGroFac_{t+1}\right)}_{\equiv \RNrm_{t+1}}k_{t+1}+\TranShkEmp_{t+1},
+        \vFunc_{\prd}({\mNrm}_{\prd}) & = \max_{{\cNrm}_{\prd}} ~~ \uFunc({\cNrm}_{\prd})+{\DiscFac}\Ex_{\prd}[ \PermGroFac_{\prd+1}^{1-\CRRA}\vFunc_{\prd+1}({\mNrm}_{\prd+1})] \label{eq:vNormed}                   \\
+                                         & \text{s.t.}                                                                                 \\
+        {\aNrm}_{\prd}                       & = {\mNrm}_{\prd}-{\cNrm}_{\prd}                                                                     \\
+        {\kNrm}_{\prd+1}                     & = {\aNrm}_{\prd}                                                                                \\
+        {\bNrm}_{\prd+1}                     & = \underbrace{\left(\Rfree/\PermGroFac_{\prd+1}\right)}_{\equiv \RNrm_{\prd+1}}{\kNrm}_{\prd+1} \\
+        {\mNrm}_{t+1}                        & = {\bNrm}_{t+1}+\TranShkEmp_{t+1},
       \end{aligned}\end{gathered}\end{equation}

@@ -1,30 +1,16 @@
  
 /* start css.sty */
-.ecti-1200{ font-style: italic;}
-.ecti-1200{ font-style: italic;}
-.ecti-1200{ font-style: italic;}
-.ecti-1200{ font-style: italic;}
-.ecti-1200{ font-style: italic;}
-.ecti-1200{ font-style: italic;}
-.ecti-1200{ font-style: italic;}
-.ecti-1200{ font-style: italic;}
-.ecti-1200{ font-style: italic;}
-.ecti-1200{ font-style: italic;}
-.ecti-1200{ font-style: italic;}
-.ecti-1200{ font-style: italic;}
-.ecbx-1200{ font-weight: bold;}
-.ecbx-1200{ font-weight: bold;}
-.ecbx-1200{ font-weight: bold;}
-.ecbx-1200{ font-weight: bold;}
-.ecbx-1200{ font-weight: bold;}
-.ecbx-1200{ font-weight: bold;}
-.ecbx-1200{ font-weight: bold;}
-.ecbx-1200{ font-weight: bold;}
-.ecbx-1200{ font-weight: bold;}
-.ecbx-1200{ font-weight: bold;}
-.ecbx-1200{ font-weight: bold;}
-.ecbx-1200{ font-weight: bold;}
-.ecrm-0600{font-size:50%;}
+.line-10{font-size:83%;}
+.cmr-5{font-size:41%;}
+.cmr-7{font-size:58%;}
+.cmr-10{font-size:83%;}
+.cmmi-5{font-size:41%;font-style: italic;}
+.cmmi-7{font-size:58%;font-style: italic;}
+.cmmi-10{font-size:83%;font-style: italic;}
+.cmsy-5{font-size:41%;}
+.cmsy-7{font-size:58%;}
+.cmsy-10{font-size:83%;}
+.ecrm-2074{font-size:166%;}
 .ecbx-2074{font-size:166%; font-weight: bold;}
 .ecbx-2074{ font-weight: bold;}
 .ecbx-2074{ font-weight: bold;}
@@ -37,7 +23,10 @@
 .ecbx-2074{ font-weight: bold;}
 .ecbx-2074{ font-weight: bold;}
 .ecbx-2074{ font-weight: bold;}
+.ecbx-2074{ font-weight: bold;}
+.ecrm-0600{font-size:50%;}
 .ecrm-1440{font-size:116%;}
+.msbm-10{font-size:83%;}
 .ecrm-1095{font-size:83%;}
 .ecrm-1000{font-size:83%;}
 .ectt-1000{font-size:83%; font-family: monospace,monospace;}
@@ -52,18 +41,20 @@
 .ectt-1000{ font-family: monospace,monospace;}
 .ectt-1000{ font-family: monospace,monospace;}
 .ectt-1000{ font-family: monospace,monospace;}
-.ecti-1095{font-size:83%; font-style: italic;}
-.ecti-1095{ font-style: italic;}
-.ecti-1095{ font-style: italic;}
-.ecti-1095{ font-style: italic;}
-.ecti-1095{ font-style: italic;}
-.ecti-1095{ font-style: italic;}
-.ecti-1095{ font-style: italic;}
-.ecti-1095{ font-style: italic;}
-.ecti-1095{ font-style: italic;}
-.ecti-1095{ font-style: italic;}
-.ecti-1095{ font-style: italic;}
-.ecti-1095{ font-style: italic;}
+.ectt-1000{ font-family: monospace,monospace;}
+.ecbx-1200{ font-weight: bold;}
+.ecbx-1200{ font-weight: bold;}
+.ecbx-1200{ font-weight: bold;}
+.ecbx-1200{ font-weight: bold;}
+.ecbx-1200{ font-weight: bold;}
+.ecbx-1200{ font-weight: bold;}
+.ecbx-1200{ font-weight: bold;}
+.ecbx-1200{ font-weight: bold;}
+.ecbx-1200{ font-weight: bold;}
+.ecbx-1200{ font-weight: bold;}
+.ecbx-1200{ font-weight: bold;}
+.ecbx-1200{ font-weight: bold;}
+.ecbx-1200{ font-weight: bold;}
 .ecti-1000{font-size:83%; font-style: italic;}
 .ecti-1000{ font-style: italic;}
 .ecti-1000{ font-style: italic;}
@@ -76,6 +67,7 @@
 .ecti-1000{ font-style: italic;}
 .ecti-1000{ font-style: italic;}
 .ecti-1000{ font-style: italic;}
+.ecti-1000{ font-style: italic;}
 .ectt-1200{ font-family: monospace,monospace;}
 .ectt-1200{ font-family: monospace,monospace;}
 .ectt-1200{ font-family: monospace,monospace;}
@@ -88,10 +80,66 @@
 .ectt-1200{ font-family: monospace,monospace;}
 .ectt-1200{ font-family: monospace,monospace;}
 .ectt-1200{ font-family: monospace,monospace;}
+.ectt-1200{ font-family: monospace,monospace;}
+.ecti-1200{ font-style: italic;}
+.ecti-1200{ font-style: italic;}
+.ecti-1200{ font-style: italic;}
+.ecti-1200{ font-style: italic;}
+.ecti-1200{ font-style: italic;}
+.ecti-1200{ font-style: italic;}
+.ecti-1200{ font-style: italic;}
+.ecti-1200{ font-style: italic;}
+.ecti-1200{ font-style: italic;}
+.ecti-1200{ font-style: italic;}
+.ecti-1200{ font-style: italic;}
+.ecti-1200{ font-style: italic;}
+.ecti-1200{ font-style: italic;}
+.cmr-8{font-size:66%;}
+.cmr-6{font-size:50%;}
 .cmmi-12{font-style: italic;}
 .cmmi-8{font-size:66%;font-style: italic;}
+.cmmi-6{font-size:50%;font-style: italic;}
+.cmsy-8{font-size:66%;}
+.cmsy-6{font-size:50%;}
 .cmbx-12{ font-weight: bold;}
-.cmss-12{  font-family: sans-serif;}
+.cmbx-12{ font-weight: bold;}
+.cmbx-12{ font-weight: bold;}
+.cmbx-12{ font-weight: bold;}
+.cmbx-8{font-size:66%; font-weight: bold;}
+.cmbx-8{ font-weight: bold;}
+.cmbx-8{ font-weight: bold;}
+.cmbx-8{ font-weight: bold;}
+.cmbx-6{font-size:50%; font-weight: bold;}
+.cmbx-6{ font-weight: bold;}
+.cmbx-6{ font-weight: bold;}
+.cmbx-6{ font-weight: bold;}
+.cmbx-10{font-size:83%; font-weight: bold;}
+.cmbx-10{ font-weight: bold;}
+.cmbx-10{ font-weight: bold;}
+.cmbx-10{ font-weight: bold;}
+.ecit-1000{font-size:83%; font-style: italic; font-family: monospace,monospace;}
+.ecit-1000{ font-style: italic; font-family: monospace,monospace;}
+.ecit-1000{ font-style: italic; font-family: monospace,monospace;}
+.ecit-1000{ font-style: italic; font-family: monospace,monospace;}
+.ecit-1000{ font-style: italic; font-family: monospace,monospace;}
+.ecit-1000{ font-style: italic; font-family: monospace,monospace;}
+.ecit-1000{ font-style: italic; font-family: monospace,monospace;}
+.ecit-1000{ font-style: italic; font-family: monospace,monospace;}
+.ecit-1000{ font-style: italic; font-family: monospace,monospace;}
+.ecit-1000{ font-style: italic; font-family: monospace,monospace;}
+.ecit-1000{ font-style: italic; font-family: monospace,monospace;}
+.ecit-1000{ font-style: italic; font-family: monospace,monospace;}
+.ecit-1000{ font-style: italic; font-family: monospace,monospace;}
+.cmtt-12{font-family: monospace,monospace;}
+.cmtt-12{font-family: monospace,monospace;}
+.cmtt-12{font-family: monospace,monospace;}
+.cmtt-8{font-size:66%;font-family: monospace,monospace;}
+.cmtt-8{font-family: monospace,monospace;}
+.cmtt-8{font-family: monospace,monospace;}
+.cmtt-10{font-size:83%;font-family: monospace,monospace;}
+.cmtt-10{font-family: monospace,monospace;}
+.cmtt-10{font-family: monospace,monospace;}
+.eufm-10{font-size:83%;}
 .small-caps{font-variant: small-caps; }
 p{margin-top:0;margin-bottom:0}
 p.indent{text-indent:0;}
@@ -110,11 +158,11 @@ div.par-math-display, div.math-display{text-align:center;}
 body{ margin:1em auto; max-width:80ch; padding:0 .62em; }
 h1,h2,h3,h4,h5 { line-height:1.2; }
 @media print{ body{ max-width:none } }
-.partHead, .likepartHead { font-size: 2em; }
-.chapterHead, .likechapterHead { font-size: 1.7411em; }
-.sectionHead, .likesectionHead { font-size: 1.5157em; }
-.subsectionHead, .likesubsectionHead { font-size: 1.3195em; }
-.subsubsectionHead, .likesubsubsectionHead { font-size: 1.1487em; }
+.partHead, likepartHead { font-size: 2em; }
+.chapterHead, likechapterHead { font-size: 1.7411em; }
+.sectionHead, likesectionHead { font-size: 1.5157em; }
+.subsectionHead, likesubsectionHead { font-size: 1.3195em; }
+.subsubsectionHead, likesubsubsectionHead { font-size: 1.1487em; }
  @media (prefers-color-scheme: dark) { img[src^="SolvingMicroDSOPs"]{filter: invert(1); } } 
 li p.indent { text-indent: 0em }
 li p:first-child{ margin-top:0em; }
@@ -153,7 +201,6 @@ div.flushleft {text-align: left;}
 .framebox-r {text-align:right;}
 span.thank-mark{ vertical-align: super }
 span.footnote-mark sup.textsuperscript, span.footnote-mark a sup.textsuperscript{ font-size:80%; }
-code.verb{font-family:monospace,monospace;}
 td p:first-child{ margin-top:0em; }
 td p:last-child{ margin-bottom:0em; }
 div.td00{ margin-left:0pt; margin-right:0pt; }
@@ -215,10 +262,6 @@ div.author{white-space: nowrap;}
 div.abstract p {margin-left:5%; margin-right:5%;}
 div.abstract {width:100%;}
 .abstracttitle{text-align:center;margin-bottom:1em;}
-.subsectionToc, .likesubsectionToc {margin-left:1em;}
-.subsubsectionToc, .likesubsubsectionToc {margin-left:2em;}
-.paragraphToc, .likeparagraphToc {margin-left:3em;}
-.subparagraphToc, .likesubparagraphToc {margin-left:4em;}
 figure.float, div.figure {margin-left: auto; margin-right: auto;}
 figure.figure {text-align:center;}
 figcaption.caption {text-indent:-2em; margin-left:3em; margin-right:1em; text-align:center;}
@@ -282,7 +325,6 @@ pre.listings{font-family: monospace,monospace; white-space: pre-wrap; margin-top
 pre.lstlisting{font-family: monospace,monospace; white-space: pre-wrap; margin-top:0.5em; margin-bottom:0.5em; }
 pre.lstinputlisting{ font-family: monospace,monospace; white-space: pre-wrap; }
 .lstinputlisting .label{margin-right:0.5em;}
-.underline-d{ border-bottom: 3px double black; margin-bottom:1pt; }
 .rotatebox{display: inline-block;}
 div.caption {text-align:left;font-size:83%;text-indent:0em; margin-left:2em; margin-right:2em; }
 div.caption span.id{font-variant: small-caps; white-space: nowrap; }

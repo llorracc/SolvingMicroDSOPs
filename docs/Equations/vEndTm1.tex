@@ -1,9 +1,5 @@
-%\renewcommand{\stp}{T}
-  \begin{equation}\begin{gathered}\begin{aligned}
-        \vFunc_{\MidStpm}(m_{\stp-1})   & = \max_{\cNrm_{\stp-1}}
-        \left\{
-          \frac{{c}_{\stp-1}^{1-\CRRA}}{1-\CRRA} +
-          \vFunc_{\BegStpm}(m_{\stp-1}-c_{\stp-1})
-        \right\}.
-        \label{eq:vEndTm1}
-      \end{aligned}\end{gathered}\end{equation}%\renewcommand{\stp}{t}
+\begin{equation}\begin{gathered}\begin{aligned}
+  \vFunc_{\MidPrdLsT}(\mStte)  & = \max_{\cCtrl} ~~ \uFunc(\cCtrl) +
+                              \vEndPrdLsT(\overbrace{\mStte-\cCtrl}^{\aStte})
+                              \label{eq:vEndTm1}
+\end{aligned}\end{gathered}\end{equation}

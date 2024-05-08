@@ -1,0 +1,91 @@
+\input{./.econtexRoot}\documentclass[\econtexRoot/SolvingMicroDSOPs]{subfiles}
+
+\begin{document}
+
+\hypertarget{the-usual-theory}{}
+\section{The Usual Theory, and a Bit More Notation}\label{sec:the-usual-theory}
+
+%\renewcommand{\prd}{t}
+
+\subsection{\Intervals, \Stgs, \Moves}
+
+For the problem specified in \eqref{eq:vNormed}, the agent has only one decision to make in each {\interval} (how much to consume). %Many problems (including the portfolio choice example elaborated below) may have several distinct decision {\stgs} within the {\interval}, which requires a notation that permits the handoff of the solution to one {\stg} to its successor.  Here, we have
+This simplifies matters because there is no need to distinguish betwen the next {\stg} and the problem of the following {\interval}, so we can conflate the two.  (See the portfolio choice example below for the notation and analysis of multi-{\stg} problems.)
+
+\subsection{\Moves}
+
+Generically, we want to think of the Bellman solution as having three {\moves}:
+\begin{enumerate}
+\item \textbf{\Arrival}: Incoming state variables (e.g., $\kNrm$) are known, but any shocks associated with the period have not been realized and decision(s) have not yet been made
+\item \textbf{\Decision}: All exogenous variables (like income shocks, rate of return shocks, and predictable income growth $\PermGroFac$) have been realized (so that, e.g., $\mNrm$'s value is known) and the agent solves the optimization problem
+\item \textbf{\Continuation}: After all decisions have been made, their consequences are measured by evaluation of the continuing-value function at the values of the `outgoing' state variables (sometimes called `post-state' variables).
+\end{enumerate}
+
+In the standard treatment in the literature, the (implicit) default assumption is that the {\move} where the agent is solving a decision problem is the unique {\move} at which the problem is defined.  This is what was done above, when (for example) in \eqref{eq:vNormed} we related the value $\vFunc$ of the current decision to the expectation of the future value $\vFunc_{\prd+1}$.  Here, instead, we want to encapsulate the current {\stg}'s problem as a standalone object, which is solved by taking as given an exogenously-provided continuation-value function (in our case, $\vEndStp(a)$).
+
+When we want to refer to a specific {\move} in the one {\stg} of $\prd$ we will do so by supplementing the {\move} with an indicator which tracks the {\move} (and we need not denote the {\stg} within the {\interval} because we have assumed there is only one {\stg} in the {\interval}):
+\begin{center}
+%  \mbox{%
+    \begin{tabular}{r|c|c|l|l}
+      Stp          & Indicator               & State          & Usage                       & Explanation                                \\ \hline
+      {\Arrival}      & $\arvl$ prefix & $\kNrm$ & $\vBegStp({\kNrm})$ & value at entry to $\prd$ (before shocks) \\
+      {\Decision}     & (blank/none)            & $\mNrm$ & $\vMidStp({\mNrm})$ & value of $t$-decision (after shocks)       \\
+      {\Continuation} & $\cntn$ suffix & $\aNrm$ & $\vEndStp({\aNrm})$ & value at exit (after decision)
+    \end{tabular}
+%  }
+\end{center}
+
+Notice that different {\move}s of the {\stg} have distinct state variables.  $\kNrm$ is the state at the beginning of the {\stg/\interval} because the shocks that yield $\mNrm$ from $\kNrm$ have not yet been realized. The state variable for the continuation {\move} is $\aNrm$ because after the consumption decision has been made the model assumes that all that matters is where you have ended up, not how you got there.
+
+We can now restate the problem \eqref{eq:vNormed} with our new notation:
+\begin{equation}\begin{gathered}\begin{aligned}
+      \vFunc(m) & = \max_{\cNrm} ~~ \uFunc(\cNrm)+ \vEndStp(\mNrm-\cNrm)
+\end{aligned}\end{gathered}\end{equation}
+whose first order condition with respect to $\cNrm$ is
+\begin{equation}\begin{gathered}\begin{aligned}
+  \uFunc^{c}(\cNrm) &= \vEndStp^{\kNrm}(\mNrm-\cNrm)  \label{eq:FOCnew}
+\end{aligned}\end{gathered}\end{equation}
+which is mathematically equivalent to the usual Euler equation for consumption.
+
+We will revert to this formulation when we turn to section~\ref{subsec:egm}.
+
+\hypertarget{summing-up}{}
+\subsection{Summing Up}\label{subsec:summing-up}
+For future reference, it will be useful here to write the full expressions for the distinct value functions at the {\Arrival} ($\BegMark$) and {\Decision} {\moves}.  % this is said two par ahead: (Recalling that the continuation-value function $\vEndStp(a)$ is provided to the solution algorithm as an input).
+
+There is no need to use our {\interval}-identifying notation for the model's variables; $\kNrm$, for example, will have only one unique value over the course of the {\interval} and therefore a notation like $\kNrm_{\EndStp}$ would be pointless; the same is true of all other variables.
+
+Recall that the continuation value function $\vFunc_{\EndStp}(\aNrm)=\DiscFac \vFunc_{\BegStpNxt}(\aNrm)$ is provided as an input to the current {\stg} Bellman problem.  Since within the scope of the solution of the current {\stg} there is only one such continuation value function, in the solution context there is no point in keeping the {\interval} subscript when we write this function.  The same point applies to all variables and functions in the {\stg}.  Given the continuation value function $\vEndStp$, the problem within the {\stg} can be written with only the {\move} indicators:
+\begin{verbatimwrite}{./Equations/vBegStp}
+  \begin{equation}\begin{gathered}\begin{aligned}
+        \vFunc_{\arvl}(\kNrm) & = \Ex_{\arvl}[\vFunc(\overbrace{\kNrm \RNrm + \TranShkEmp}^{\mNrm})]  \label{eq:vBegStp}
+      \end{aligned}\end{gathered}\end{equation}
+\end{verbatimwrite}
+\input{./Equations/vBegStp}\unskip
+\begin{verbatimwrite}{./Equations/vMid}
+  \begin{equation}\begin{gathered}\begin{aligned}
+        \vFunc(\mNrm) & = \max_{\{{\cNrm}\}}~~\uFunc({\cNrm}) +\Ex[ \vFunc_{\cntn}(\overbrace{\mNrm-\cFunc}^{\aNrm})] \label{eq:vMid}
+      \end{aligned}\end{gathered}\end{equation}
+\end{verbatimwrite}
+\input{./Equations/vMid}\unskip
+% and
+% \begin{verbatimwrite}{./Equations/vEndtdefn}
+%   \begin{equation}\begin{gathered}\begin{aligned}
+%         \vEndStp(\aNrm_{\prd}) & = \DiscFac \vBegStpNxt(\overbrace{\kNrm_{\prd+1}}^{\aNrm_{\prd}}) \label{eq:vEndtdefn}
+%       \end{aligned}\end{gathered}\end{equation}
+% \end{verbatimwrite}
+%\input{./Equations/vEndtdefn}\unskip
+
+\begin{comment}
+  \subsection{Implementation in Python}
+
+  The code implementing the tasks outlined each of the sections to come is available in the \texttt{\href{https://econ-ark.org/materials/SolvingMicroDSOPs}{SolvingMicroDSOPs}} jupyter notebook, written in \href{https://python.org}{Python}. The notebook imports various modules, including the standard \texttt{numpy} and \texttt{scipy} modules used for numerical methods in Python, as well as some user-defined modules designed to provide numerical solutions to the consumer's problem from the previous section. Before delving into the computational exercise, it is essential to touch on the practicality of these custom modules.
+
+  \subsubsection{Useful auxilliary files}
+
+  In this exercise, two primary user-defined modules are frequently imported and utilized. The first is the \texttt{gothic\_class} module, which contains functions describing the end-of-period value functions found in equations \eqref{eq:vBegStp} - \eqref{eq:vEnd} (and the corresponding first and second derivatives). %The advantage of defining functions in the code which decompose the consumer's optimal behavior in a given period will become evident in section \ref{subsec:transformation}
+
+  The \texttt{resources} module is also used repeatedly throughout the notebook. This file has three primary objectives: (i) providing functions that discretize the continuous distributions from the theoretical model that describe the uncertainty a consumer faces, (ii) defining the utility function over consumption under a number of specifications, and (iii) enhancing the grid of end-of-period assets for which functions (such as those from the \texttt{gothic\_class} module) will be defined. These objectives will be discussed in greater detail and with respect to the numerical methods used to the problem in subsequent sections of this document.
+\end{comment}
+
+\end{document}

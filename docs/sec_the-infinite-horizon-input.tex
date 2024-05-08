@@ -1,0 +1,102 @@
+\hypertarget{the-infinite-horizon}{}
+\section{The Infinite Horizon}\label{sec:the-infinite-horizon}
+
+All of the solution methods presented so far have involved period-by-period iteration from an assumed last period of life, as is appropriate for life cycle problems.  However, if the parameter values for the problem satisfy certain conditions (detailed in \cite{BufferStockTheory}), the consumption rules (and the rest of the problem) will converge to a fixed rule as the horizon (remaining lifetime) gets large, as illustrated in Figure~\ref{fig:PlotCFuncsConverge}.  Furthermore, Deaton~\citeyearpar{deatonLiqConstr}, Carroll~\citeyearpar{carroll:brookings,carrollBSLCPIH} and others have argued that the `buffer-stock' saving behavior that emerges under some further restrictions on parameter values is a good approximation of the behavior of typical consumers over much of the lifetime.  Methods for finding the converged functions are therefore of interest, and are dealt with in this section.
+
+Of course, the simplest such method is to solve the problem as
+specified above for a large number of periods.  This is feasible, but
+there are much faster methods.
+
+\subsection{Convergence}
+
+In solving an infinite-horizon problem, it is necessary to have some
+metric that determines when to stop because a solution that is `good
+enough' has been found.
+
+A natural metric is defined by the unique `target' level of wealth that \cite{BufferStockTheory} proves
+will exist in problems of this kind \href{https://llorracc.github.io/BufferStockTheory#GICNrm}{under certain conditions}: The $\mTrgNrm$ such that
+\begin{equation}
+  \Ex_t [{\mNrm}_{\prd+1}/\mNrm_t] = 1 \mbox{~if~} \mNrm_t = \mTrgNrm  \label{eq:mTrgNrmet}
+\end{equation}
+where the accent is meant to signify that this is the value
+that other $\mNrm$'s `point to.'
+
+Given a consumption rule $\cFunc(\mNrm)$ it is straightforward to find
+the corresponding $\mTrgNrm$.  So for our problem, a solution is declared
+to have converged if the following criterion is met:
+$\left|\mTrgNrm_{\prd+1}-\mTrgNrm_{\prd}\right| < \epsilon$, where $\epsilon$ is
+a very small number and defines our degree of convergence tolerance.
+
+Similar criteria can obviously be specified for other problems.
+However, it is always wise to plot successive function differences and
+to experiment a bit with convergence criteria to verify that the
+function has converged for all practical purposes.
+
+\begin{comment} % at suggestion of WW, this section was removed as unnecessary for the current model, which solves for the converged rule very fast
+  \subsection{The Last Period}
+
+  For the last period of a finite-horizon lifetime, in the absence of a
+  bequest motive it is obvious that the optimal policy is to spend
+  everything.  However, in an infinite-horizon problem there is no last
+  period, and the policy of spending everything is obviously very far
+  from optimal.  Generally speaking, it is much better to start off with
+  a `last-period' consumption rule and value function equal to those
+  corresponding to the infinite-horizon solution to the perfect
+  foresight problem (assuming such a solution is known).
+
+  For the perfect foresight infinite horizon consumption problem,
+  the solution is
+  \begin{equation}\begin{gathered}\begin{aligned}
+        \bar{\cFunc}(m_{\prd})  & = \overbrace{(1-\Rfree^{-1}(\Rfree
+          \DiscFac)^{1/\CRRA})}^{\equiv
+          \underline{\MPC}}\left[{m}_{\prd}-1+\left(\frac{1}{1-1/\Rfree}\right)\right]
+        \label{eq:pfinfhorc}
+      \end{aligned}\end{gathered}\end{equation}
+  where $\underline{\MPC}$ is the MPC in the
+  infinite-horizon perfect foresight problem.  In our baseline problem,
+  we set $\PermGroFac = \pLvl_{\prd} = 1$.  It is straightforward to show that the
+  infinite-horizon perfect-foresight value function and marginal value
+  function are given by
+  \begin{equation}\begin{gathered}\begin{aligned}
+        \bar{\vFunc}(m_{\prd})
+        & =                                 \left(\frac{\bar{\cFunc}(m_{\prd})^{1-\CRRA}}{
+            (1-\CRRA)\underline{\MPC} }\right)
+        \\  \bar{\vFunc}^{m}(m_{\prd})  & =       (\bar{\cFunc}(m_{\prd}))^{-\CRRA}
+        \\  \Opt{\vFunc}^{m}(a_{\prd})  & = \DiscFac \Rfree \PermGroFac_{\prd+1}^{-\CRRA} \bar{\vFunc}^{m}(\RNrm_{\prd+1} a_{\prd}+1).
+      \end{aligned}\end{gathered}\end{equation}
+
+  % WW delete the text on 2011-06-21 because we no longer start from the infinite horizon perfect foresight solution.
+  % If we choose to pursue that starting point, we need to derive the optimist's and pessimist's consumption function,
+  % when the last period is given by the infinite horizon perfect-foresight solution. That will change the program significantly.
+  % In our case, with \epsilon being 10^(-4), iteration requires only 51 periods, and 0.032 minutes.
+\end{comment}
+
+\begin{comment}% At suggestion of WW this section was deleted because the technique is obvious and can be captured by the footnote that has been added
+  \subsection{Coarse Then Fine \code{aVec} }
+
+  The speed of each iteration is directly proportional to the number
+  of gridpoints at which the problem must be solved.  Therefore
+  reducing the number of points in \code{aVec} can increase
+  the speed of solution greatly.  Of course, this also decreases the
+  accuracy of the solution.  However, once the converged solution is
+  obtained for a coarse \code{aVec}, the density of the grid
+  can be increased and iteration can continue until a converged
+  solution is found for the finer \code{aVec}.
+  % WW delete the text on 2011-06-21 because we no longer need a finer \code{aVec}. I add a footnote in next subsection instead.
+
+  \subsection{Coarse then Fine \texttt{$\TranShkEmp$Vec}}
+
+  The speed of solution is roughly proportionate\footnote{It is also
+    true that the speed of each iteration is directly proportional to
+    the number of gridpoints in \code{aVec}, at which the problem must
+    be solved. However given our method of moderation, now the problem
+    could be solved very precisely based on five gridpoints only. Hence
+    we do not pursue the process of ``Coarse then Fine \code{aVec}.''}
+  to the number of points used in approximating the distribution of
+  shocks.  At least 3 gridpoints should probably be used as an initial
+  minimum, and my experience is that increasing the number of gridpoints
+  beyond 7 generally yields only very small changes in the solution.  The program
+  \texttt{multiperiodCon\_infhor.m}
+  begins with three gridpoints, and then solves for successively finer
+  \texttt{$\TranShkEmp$Vec}.
+\end{comment}

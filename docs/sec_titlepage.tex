@@ -1,0 +1,61 @@
+% -*- mode: LaTeX; TeX-PDF-mode: t; -*- # Tell emacs the file type (for syntax)
+\input{./.econtexRoot}\documentclass[\econtexRoot/SolvingMicroDSOPs]{subfiles}
+\input{subfile-start}
+
+\begin{document}
+% Redefine \onlyinsubfile command defined in local.sty file:
+% This lets any submaterial called from this doc know that it is not standalone
+%\renewcommand{\onlyinsubfile}[1]{}\renewcommand{\notinsubfile}[1]{#1}
+
+\pagenumbering{roman}
+
+\title{Solution Methods for Microeconomic \\ Dynamic Stochastic Optimization Problems}
+
+\author{Christopher D. Carroll\authNum}
+
+\keywords{Dynamic Stochastic Optimization, Method of Simulated Moments, Structural Estimation, Indirect Inference}
+\jelclass{E21, F41}
+
+\date{2024-04-20}
+\maketitle
+\footnotesize
+
+\noindent  Note: The GitHub repo {\SMDSOPrepo} associated with this document contains python code that produces all results, from scratch, except for the last section on indirect inference.  The numerical results have been confirmed by showing that the answers that the raw python produces correspond to the answers produced by tools available in the {\ARKurl} toolkit, more specifically those in the {\HARKrepo} which has full {\HARKdocs}.  The MSM results at the end have have been superseded by tools in the {\EMDSOPrepo}.
+
+\normalsize
+
+\hypertarget{abstract}{}
+\begin{abstract}
+  These notes describe tools for solving microeconomic dynamic stochastic optimization problems, and show how to use those tools for efficiently estimating a standard life cycle consumption/saving model using microeconomic data.  No attempt is made at a systematic overview of the many possible technical choices; instead, I present a specific set of methods that have proven useful in my own work (and explain why other popular methods, such as value function iteration, are a bad idea).  Paired with these notes is Python code that solves the problems described in the text.
+\end{abstract}
+
+% \ifthenelse{\boolean{Web}}{}{
+\begin{footnotesize}
+  \begin{center}
+    \begin{tabbing}
+      \texttt{~~~~PDF:~} \= \= {\urlPDF} \\
+      \texttt{~Slides:~} \> \> {\urlSlides} \\
+      \texttt{~~~~Web:~} \> \> {\urlHTML} \\
+      \texttt{~~~Code:~} \> \> {\urlCode} \\
+      \texttt{Archive:~} \> \> {\urlRepo} \\
+      \texttt{~~~~~~~~~} \> \> \textit{(Contains LaTeX code for this document and software producing figures and results)}
+    \end{tabbing}
+  \end{center}
+\end{footnotesize}
+% }
+\begin{authorsinfo}
+  \name{Carroll: Department of Economics, Johns Hopkins University, Baltimore, MD, \\
+    \href{mailto:ccarroll@jhu.edu}{\texttt{ccarroll@jhu.edu}}}
+\end{authorsinfo}
+
+\thanksFooter{The notes were originally written for my Advanced Topics in Macroeconomic Theory class at Johns Hopkins University; instructors elsewhere are welcome to use them for teaching purposes.  Relative to earlier drafts, this version incorporates several improvements related to new results in the paper \href{http://econ-ark.github.io/BufferStockTheory}{``Theoretical Foundations of Buffer Stock Saving''} (especially tools for approximating the consumption and value functions).  Like the last major draft, it also builds on material in ``The Method of Endogenous Gridpoints for Solving Dynamic Stochastic Optimization Problems'' published in \textit{Economics Letters}, available at \url{http://www.econ2.jhu.edu/people/ccarroll/EndogenousArchive.zip}, and by including sample code for a method of simulated moments estimation of the life cycle model \textit{a la} \cite{gpLifecycle} and Cagetti~\citeyearpar{cagettiWprofiles}.  Background derivations, notation, and related subjects are treated in my class notes for first year macro, available at \url{http://www.econ2.jhu.edu/people/ccarroll/public/lecturenotes/consumption}.  I am grateful to several generations of graduate students in helping me to refine these notes, to Marc Chan for help in updating the text and software to be consistent with \cite{carrollEGM}, to Kiichi Tokuoka for drafting the section on structural estimation, to Damiano Sandri for exceptionally insightful help in revising and updating the method of simulated moments estimation section, and to Weifeng Wu and Metin Uyanik for revising to be consistent with the `method of moderation' and other improvements.  All errors are my own.  This document can be cited as \cite{SolvingMicroDSOPs} in the references.}
+
+\titlepagefinish
+%\setcounter{page}{1}
+
+\thispagestyle{empty}
+\ifpdf % The table of contents does not work if not in pdf mode
+\tableofcontents \addtocontents{toc}{\vspace{1em}}\newpage
+\fi
+\newpage\pagenumbering{arabic}
+\end{document}
