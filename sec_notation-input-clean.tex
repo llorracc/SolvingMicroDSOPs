@@ -33,7 +33,7 @@ When we want to refer to a specific {step} in the {stage} we will do so by using
       {Step}         & Indicator               & State          & Usage                       & Explanation                                \\ \hline
       {\Arrival}      & $ \arvl $ & $k$ & $\vBegStg({k})$ & value at entry to {stage} (before shocks) \\
       {\Decision}(s)  & (blank)            & $m$ & $\vMidStg(m)$ & value of {stage}-decision (after shocks)       \\
-      {\Continuation} & $ \cntn $ & $a$ & $\vEndStg({a})$ & value at exit (after decision) \\ \hline
+      {\Continuation} & $ \cntn $ & $a$ & $\vEndStg(a)$ & value at exit (after decision) \\ \hline
     \end{tabular}
 %  }
   \end{center}
@@ -60,7 +60,7 @@ One way to describe this is that when we are considering the solution to the cur
 
 The {\Decision} problem can now be written much more cleanly than in equation \eqref{eq:vNormed}:
   \begin{equation}\begin{gathered}\begin{aligned}
-        v(m) & = \max_{c}~ u({c}) + v_{_\cntn}(\overbrace{m-\cFunc}^{a}) \label{eq:vMid}
+        v(m) & = \max_{c}~ u(c) + v_{_\cntn}(\overbrace{m-\cFunc}^{a}) \label{eq:vMid}
       \end{aligned}\end{gathered}\end{equation}
 whose first order condition with respect to $c$ is
 \begin{equation}\begin{gathered}\begin{aligned}

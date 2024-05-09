@@ -29,8 +29,8 @@ When we want to refer to a specific {step} in the one {stage} of $\prd$ we will 
     \begin{tabular}{r|c|c|l|l}
       Step of Stage        & Indicator               & State          & Usage                       & Explanation                                \\ \hline
       {\Arrival}      & $\arvl$ prefix & $\kNrm$ & $\vBegStg({\kNrm})$ & value at entry to $\prd$ (before shocks) \\
-      {\Decision}     & (blank/none)            & $\mNrm$ & $\vMidStp({\mNrm})$ & value of $t$-decision (after shocks)       \\
-      {\Continuation} & $\cntn$ suffix & $\aNrm$ & $\vEndStg({\aNrm})$ & value at exit (after decision)
+      {\Decision}     & (blank/none)            & $\mNrm$ & $\vMidStp(\mNrm)$ & value of $t$-decision (after shocks)       \\
+      {\Continuation} & $\cntn$ suffix & $\aNrm$ & $\vEndStg(\aNrm)$ & value at exit (after decision)
     \end{tabular}
 %  }
 \end{center}
@@ -64,7 +64,7 @@ Recall that the continuation value function $\vFunc_{\EndStg}(\aNrm)=\DiscFac \v
 \input{./Equations/vBegStg}\unskip
 \begin{verbatimwrite}{./Equations/vMid}
   \begin{equation}\begin{gathered}\begin{aligned}
-        \vFunc(\mNrm) & = \max_{\{{\cNrm}\}}~~\uFunc({\cNrm}) +\Ex[ \vFunc_{\cntn}(\overbrace{\mNrm-\cFunc}^{\aNrm})] \label{eq:vMid}
+        \vFunc(\mNrm) & = \max_{\{{\cNrm}\}}~~\uFunc(\cNrm) +\Ex[ \vFunc_{\cntn}(\overbrace{\mNrm-\cFunc}^{\aNrm})] \label{eq:vMid}
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/vMid}\unskip

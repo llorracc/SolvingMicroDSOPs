@@ -10,13 +10,13 @@ coefficient, and $\epsilon_{t+1}$ is the stochastic shock.
 The consumer's problem in this case now has two state variables, $\mRat_{t}$ and $\risky_{t}$, and
 is described by
 \begin{eqnarray}
-        {\vFunc}_{t}({m}_{t},\risky_{t}) & = & \max_{{c}_{t}} ~ \util({c}_{t})+
-        \Ex_{t}[{\Discount}_{t+1}\PGro_{t+1}^{1-\CRRA}{\vFunc}_{t+1}({m}_{t+1},\risky_{t+1})] \label{vtNormRisky}
+        \vFunc_{t}(m_{t},\risky_{t}) & = & \max_{{c}_{t}} ~ \util(c_{t})+
+        \Ex_{t}[{\Discount}_{t+1}\PGro_{t+1}^{1-\CRRA}\vFunc_{t+1}(m_{t+1},\risky_{t+1})] \label{vtNormRisky}
 \\         & \text{s.t.} &   \nonumber \\
-    {a}_{t}   & = & {m}_{t}-{c}_{t} \nonumber
+    a_{t}   & = & m_{t}-c_{t} \nonumber
 \\      \risky_{t+1}-\risky & = & (\risky_{t}-\risky)\gamma + \epsilon_{t+1} \notag
 \\      \Risky_{t+1} & = & \exp(\risky_{t+1}) \notag
-\\      {m}_{t+1} & = & \underbrace{\left(\Risky_{t+1}/\PGro_{t+1}\right)}_{\equiv \Rprod_{t+1}}{a}_{t}+\tShkEmp_{t+1} \nonumber.
+\\      m_{t+1} & = & \underbrace{\left(\Risky_{t+1}/\PGro_{t+1}\right)}_{\equiv \Rprod_{t+1}}a_{t}+\tShkEmp_{t+1} \nonumber.
 \end{eqnarray}
 
 % Kiichi: I will need you to read the literature and figure out how exactly we want to choose the Markov points and transition probabilities.

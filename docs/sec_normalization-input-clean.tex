@@ -7,32 +7,32 @@ In the last {period} of life $T$, there is no future, $\vLvl_{T+1} = 0$, so the 
 \begin{equation}\begin{gathered}\begin{aligned}
       \vLvl_{t}(\mLvl_{t},\pLvl_{t})  & = \frac{\mLvl_{t}^{1-\rho}}{1-\rho}. \label{eq:levelTm1}
     \end{aligned}\end{gathered}\end{equation}
-Now define nonbold variables as the bold variable divided by the level of permanent income in the same period, so that, for example, ${m}_{t}=\mLvl_{t}/\pLvl_{t}$; and define $v_{t}({m}_{t}) = \uFunc({m}_{t})$.\footnote{Nonbold value is bold value divided by $\pLvl^{1-\rho}$ rather than $\pLvl$.}  For our CRRA utility function, $\uFunc(xy)=x^{1-\rho}\uFunc(y)$, so (\ref{eq:levelTm1}) can be rewritten as
+Now define nonbold variables as the bold variable divided by the level of permanent income in the same period, so that, for example, $m_{t}=\mLvl_{t}/\pLvl_{t}$; and define $v_{t}(m_{t}) = \uFunc(m_{t})$.\footnote{Nonbold value is bold value divided by $\pLvl^{1-\rho}$ rather than $\pLvl$.}  For our CRRA utility function, $\uFunc(xy)=x^{1-\rho}\uFunc(y)$, so (\ref{eq:levelTm1}) can be rewritten as
 \begin{equation}\begin{gathered}\begin{aligned}
       \vLvl_{t}(\mLvl_{t},\pLvl_{t}) & = \pLvl_{t}^{1-\rho}\frac{{m}_{t}^{1-\rho}}{1-\rho}                       \\
                                                 & = (\pLvl_{\prd-1}G_{t})^{1-\rho}\frac{{m}_{t}^{1-\rho}}{1-\rho} \\
-                                                &= \pLvl_{\prd-1}^{1-\rho}G_{t}^{1-\rho}v_{t}({m}_{t}). \label{eq:vT}
+                                                &= \pLvl_{\prd-1}^{1-\rho}G_{t}^{1-\rho}v_{t}(m_{t}). \label{eq:vT}
     \end{aligned}\end{gathered}\end{equation}
 
 Now define a new optimization problem:
   \begin{equation}\begin{gathered}\begin{aligned}
-        v_{t}({m}_{t}) & = \max_{{c}_{t}} ~~ \uFunc({c}_{t})+{\beta}\Ex_{t}[ G_{t+1}^{1-\rho}v_{t+1}({m}_{t+1})] \label{eq:vNormed}                   \\
+        v_{t}(m_{t}) & = \max_{{c}_{t}} ~~ \uFunc(c_{t})+{\beta}\Ex_{t}[ G_{t+1}^{1-\rho}v_{t+1}(m_{t+1})] \label{eq:vNormed}                   \\
                                          & \text{s.t.}                                                                                 \\
-        {a}_{t}                       & = {m}_{t}-{c}_{t}                                                                     \\
-        {k}_{t+1}                     & = {a}_{t}                                                                                \\
-        {b}_{t+1}                     & = \underbrace{\left(R/G_{t+1}\right)}_{\equiv \mathcal{R}_{t+1}}{k}_{t+1} \\
-        {m}_{t+1}                        & = {b}_{t+1}+\TranShkEmp_{t+1},
+        a_{t}                       & = m_{t}-c_{t}                                                                     \\
+        k_{t+1}                     & = a_{t}                                                                                \\
+        b_{t+1}                     & = \underbrace{\left(R/G_{t+1}\right)}_{\equiv \mathcal{R}_{t+1}}k_{t+1} \\
+        m_{t+1}                        & = b_{t+1}+\TranShkEmp_{t+1},
       \end{aligned}\end{gathered}\end{equation}
 where division by $G$ in second-to-last equation yields a normalized return factor $\mathcal{R}$ which is the consequence of the fact that we have divided $t+1$ level variables by $\pLvl_{t+1}=G_{t+1}\pLvl_{t}$.
 
 Then it is easy to see that for $t=T-1$, 
 \begin{equation*}\begin{gathered}\begin{aligned}
-      \vLvl_{t}(\mLvl_{t},\pLvl_{t}) & =  \pLvl_{t+1}^{1-\rho}v_{t}({m}_{t})
+      \vLvl_{t}(\mLvl_{t},\pLvl_{t}) & =  \pLvl_{t+1}^{1-\rho}v_{t}(m_{t})
     \end{aligned}\end{gathered}\end{equation*}
-and so on back to all earlier periods.  Hence, if we solve the problem \eqref{eq:vNormed} which has only a single state variable $m_{\prd-1}$, we can obtain the levels of the value function, consumption, and all other variables from the corresponding permanent-income-normalized solution objects by multiplying each by $\pLvl_{t}$, e.g.\ $\cFunc_{t}(\mLvl_{t},\pLvl_{t})=\pLvl_{t}\cFunc_{t}(\mLvl_{t}/\pLvl_{t})$ (or, for the value function, $\vLvl _{t}(\mLvl_{t},\pLvl_{t}) = \pLvl_{t}^{1-\rho}v_{t}({m}_{t}))$.  We have thus reduced the problem from two continuous state variables to one (and thereby enormously simplified its solution).
+and so on back to all earlier periods.  Hence, if we solve the problem \eqref{eq:vNormed} which has only a single state variable $m_{\prd-1}$, we can obtain the levels of the value function, consumption, and all other variables from the corresponding permanent-income-normalized solution objects by multiplying each by $\pLvl_{t}$, e.g.\ $\cFunc_{t}(\mLvl_{t},\pLvl_{t})=\pLvl_{t}\cFunc_{t}(\mLvl_{t}/\pLvl_{t})$ (or, for the value function, $\vLvl _{t}(\mLvl_{t},\pLvl_{t}) = \pLvl_{t}^{1-\rho}v_{t}(m_{t}))$.  We have thus reduced the problem from two continuous state variables to one (and thereby enormously simplified its solution).
 
-For future reference it will also be useful to write the problem \eqref{eq:vNormed} in the traditional way, by substituting ${b}_{t+1},{k}_{t+1},$ and ${a}_{t}$ into ${m}_{t+1}$:
+For future reference it will also be useful to write the problem \eqref{eq:vNormed} in the traditional way, by substituting $b_{t+1},k_{t+1},$ and $a_{t}$ into $m_{t+1}$:
 \begin{equation}\begin{gathered}\begin{aligned}
-      v_{t}({m}_{t}) & = \max_{c} ~~ \uFunc(c)+ \beta \Ex_{t}[ G_{t+1}^{1-\rho}v_{t+1}(\overbrace{({m}_{t}-c)(R/G_{t+1})+\TranShkEmp_{t+1}}^{m_{t+1}})] \label{eq:vusual}.
+      v_{t}(m_{t}) & = \max_{c} ~~ \uFunc(c)+ \beta \Ex_{t}[ G_{t+1}^{1-\rho}v_{t+1}(\overbrace{(m_{t}-c)(R/G_{t+1})+\TranShkEmp_{t+1}}^{m_{t+1}})] \label{eq:vusual}.
     \end{aligned}\end{gathered}\end{equation}
 

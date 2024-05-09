@@ -140,7 +140,7 @@ While the investor's problem cannot be solved using the endogenous gridpoints me
 we can solve it numerically for the optimal $\Shr$ at a vector of $\vctr{a}$ ({\aVecCode} in the code)  and then construct an approximated optimal portfolio share function $\Aprx{\optml{\Shr}}(a)$ as the interpolating function among the members of the $\{\vctr{a},\vctr{\Shr}\}$ mapping.  Having done this, we can now calculate a vector of values and marginal values that correspond to $\aVec$:
 \begin{equation}\begin{gathered}\begin{aligned}
       \vctr{v}  & = \vFunc_{_\arvl[\Shr]}(\vctr{a}) \label{eq:vShrEnd}
-\\      \vctr{v}^{\aNrm}  & = \vFunc^{\aNrm}_{_\arvl[\Shr]}(\vctr{a}).
+\\      \vctr{v}^\aNrm  & = \vFunc^{\aNrm}_{_\arvl[\Shr]}(\vctr{a}).
     \end{aligned}\end{gathered}\end{equation}
 
 With the $\vctr{v}^{\aNrm}$ approximation described in hand, we can construct our approximation to the consumption function using \emph{exactly the same EGM procedure} that we used in solving the problem \emph{without} a portfolio choice (see \eqref{eq:cGoth}):
@@ -168,7 +168,7 @@ What is the benefit of writing effectively the identical problem in two differen
   \end{itemize}
 \end{itemize}
 
-% the problem needs to be altered to bring the {step}s involving the realization of risky returns into {period} $\prd$; the variable with which the agent ends the period is now ${\bNrm}_{\prd}$ and to avoid confusion with the prior model in which we assumed $k_{\prd+1}={a}_{\prd}$ we will now define $\kappa_{\prd+1}={\bNrm}_{\prd}$.  The continuation-value function for the $[\Shr]$ {stage} now becomes
+% the problem needs to be altered to bring the {step}s involving the realization of risky returns into {period} $\prd$; the variable with which the agent ends the period is now $\bNrm_{\prd}$ and to avoid confusion with the prior model in which we assumed $k_{\prd+1}={a}_{\prd}$ we will now define $\kappa_{\prd+1}={\bNrm}_{\prd}$.  The continuation-value function for the $[\Shr]$ {stage} now becomes
 % \begin{equation}\begin{gathered}\begin{aligned}
 %       \vFunc_{\prd[\Shr]_\cntn}(a_{\prd}) & = \DiscFac \vFunc_{[\cFunc]_\arvl(\prd+1)}({\kappa}_{\prd+1})
 %     \end{aligned}\end{gathered}\end{equation}
@@ -178,7 +178,7 @@ What is the benefit of writing effectively the identical problem in two differen
 %     \end{aligned}\end{gathered}\end{equation}
 % and the problem in the decision step is now
 % \begin{equation}\begin{gathered}\begin{aligned}
-%       \vFunc_{\prd}(m) & = \max_{c}~~\uFunc(c)+\Ex_{\prd}[\vFunc_{\prd_\cntn}(m-{c})]
+%       \vFunc_{\prd}(m) & = \max_{c}~~\uFunc(c)+\Ex_{\prd}[\vFunc_{\prd_\cntn}(m-c)]
 %     \end{aligned}\end{gathered}\end{equation}
 % while value as a function of $\mNrm$ in the arrival step is now
 % \begin{equation}\begin{gathered}\begin{aligned}

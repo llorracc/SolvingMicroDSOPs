@@ -14,7 +14,7 @@ The new portfolio-share control variable is captured by the archaic Greek charac
     \end{aligned}\end{gathered}\end{equation}
 If we imagine the portfolio share decision as being made simultaneously with the $\cNrm$ decision, the traditional way of writing the problem is (substituting the budget constraint):
 \begin{equation}\begin{gathered}\begin{aligned}
-      \vFunc_{\prd}({m})  & = \max_{\{\cFunc,\Shr\}} ~~  \uFunc({c}) + \ExMidStg[\DiscFac {\vFunc}_{\prd+1}(({m}-{c})\Rport(\Shr) + {\TranShkEmp}_{\prd+1})] \label{eq:Bellmanundated}
+      \vFunc_{\prd}(m)  & = \max_{\{\cFunc,\Shr\}} ~~  \uFunc(c) + \ExMidStg[\DiscFac \vFunc_{\prd+1}((m-c)\Rport(\Shr) + {\TranShkEmp}_{\prd+1})] \label{eq:Bellmanundated}
     \end{aligned}\end{gathered}\end{equation}
 where we have deliberately omitted the {period}-designating subscripts for $\Shr$ and the return factors to highlight the point that, once the consumption and $\Shr$ decisions have been made, it makes no difference to this equation whether the risky return factor $\Risky$ is revealed a nanosecond before the end of the current {period} or a nanosecond after the beginning of the successor {period}.
 
@@ -31,27 +31,27 @@ where we have deliberately omitted the {period}-designating subscripts for $\Shr
   and the maximization problem is
   \begin{verbatimwrite}{./Equations/PortProb.tex}
     \begin{equation*}\begin{gathered}\begin{aligned}
-          {\vFunc}_{\prd}({m}_{\prd})  & = \max_{\{{c}_{\prd},\Shr_{\prd}\}}   ~~ \uFunc({c}_{\prd}) +  \DiscFac
-          \ExEndStg[{\vFunc}_{\prd+1}({m}_{\prd+1})]
+          \vFunc_{\prd}(m_{\prd})  & = \max_{\{{c}_{\prd},\Shr_{\prd}\}}   ~~ \uFunc(c_{\prd}) +  \DiscFac
+          \ExEndStg[{\vFunc}_{\prd+1}(m_{\prd+1})]
           \\      & \text{s.t.} \nonumber
           \\      \Rport_{\prd+1}  & = \Rfree + (\Risky_{\prd+1}-\Rfree) \Shr_{\prd}
-          \\      {m}_{\prd+1}  & = ({m}_{\prd}-{c}_{\prd})\Rport_{\prd+1} + \TranShkEmp_{\prd+1}
+          \\      m_{\prd+1}  & = (m_{\prd}-c_{\prd})\Rport_{\prd+1} + \TranShkEmp_{\prd+1}
           \\  0       \leq & \Shr_{\prd}  \leq 1, \label{eq:noshorts}
         \end{aligned}\end{gathered}\end{equation*}
   \end{verbatimwrite}
   \input{./Equations/PortProb.tex}\unskip
 
-  The first order condition with respect to ${c}_{\prd}$ is almost identical to that in the single-control problem, equation (\ref{eq:upceqEvtp1}); the only difference is that the nonstochastic interest factor $\Rfree$ is now replaced by the portfolio return ${\Rport}_{\prd+1}$,
+  The first order condition with respect to $c_{\prd}$ is almost identical to that in the single-control problem, equation (\ref{eq:upceqEvtp1}); the only difference is that the nonstochastic interest factor $\Rfree$ is now replaced by the portfolio return ${\Rport}_{\prd+1}$,
   \begin{verbatimwrite}{./Equations/valfuncFOCRtilde.tex}
     \begin{equation}\begin{gathered}\begin{aligned}
-          \uFunc^{{c}}({c}_{\prd})  & = \DiscFac \ExEndStg [{\Rport}_{\prd+1} \vFunc^{{m}}_{\prd+1}({m}_{\prd+1})] \label{eq:valfuncFOCRtilde},
+          \uFunc^{c}(c_{\prd})  & = \DiscFac \ExEndStg [{\Rport}_{\prd+1} \vFunc^{m}_{\prd+1}(m_{\prd+1})] \label{eq:valfuncFOCRtilde},
         \end{aligned}\end{gathered}\end{equation}
   \end{verbatimwrite}
   \input{./Equations/valfuncFOCRtilde.tex}\unskip
   and the Envelope theorem derivation remains the same, yielding the Euler equation for consumption
   \begin{verbatimwrite}{./Equations/EulercRiskyR.tex}
     \begin{equation}\begin{gathered}\begin{aligned}
-          \uFunc^{{c}}({c}_{\prd})  & = \ExEndStg[\DiscFac {\Rport}_{\prd+1} \uFunc^{{c}}({c}_{\prd+1})]. \label{eq:EulercRiskyR}
+          \uFunc^{c}(c_{\prd})  & = \ExEndStg[\DiscFac {\Rport}_{\prd+1} \uFunc^{c}(c_{\prd+1})]. \label{eq:EulercRiskyR}
         \end{aligned}\end{gathered}\end{equation}
   \end{verbatimwrite}
   \input{./Equations/EulercRiskyR.tex}\unskip
@@ -59,33 +59,33 @@ where we have deliberately omitted the {period}-designating subscripts for $\Shr
   The first order condition with respect to the risky portfolio share is
   \begin{verbatimwrite}{./Equations/FOCw.tex}
     \begin{equation}\begin{gathered}\begin{aligned}
-          0  & = \ExEndStg[{\vFunc}_{\MidStgNxt}^{{m}}({m}_{\prd+1})(\Risky_{\prd+1}-\Rfree){a}_{\prd}] \notag
-          \\         & = \ExEndStg\left[\uFunc^{{c}}\left(\cFunc_{\prd+1}({m}_{\prd+1})\right)(\Risky_{\prd+1}-\Rfree)\right]{a}_{\prd} 
-          \\         & = \ExEndStg\left[\uFunc^{{c}}\left(\cFunc_{\prd+1}({m}_{\prd+1})\right)(\Risky_{\prd+1}-\Rfree)\right], \label{eq:FOCw}        
+          0  & = \ExEndStg[{\vFunc}_{\MidStgNxt}^{m}(m_{\prd+1})(\Risky_{\prd+1}-\Rfree){a}_{\prd}] \notag
+          \\         & = \ExEndStg\left[\uFunc^{c}\left(\cFunc_{\prd+1}(m_{\prd+1})\right)(\Risky_{\prd+1}-\Rfree)\right]{a}_{\prd} 
+          \\         & = \ExEndStg\left[\uFunc^{c}\left(\cFunc_{\prd+1}(m_{\prd+1})\right)(\Risky_{\prd+1}-\Rfree)\right], \label{eq:FOCw}        
         \end{aligned}\end{gathered}\end{equation}
   \end{verbatimwrite}
   \input{./Equations/FOCw.tex}\unskip
   where the last line follows because $0/a_{\prd}=0$.
 
-  As before, we define $\vEnd$ as a function that yields the expected $t+1$ value of ending period $t$ with assets ${a}_{\prd}$.  However, now that there are two control variables, the expectation must be defined as a function of the chosen values of both of those variables, because expected end-of-period value will depend not just on how much the agent saves, but also on how the saved assets are allocated between the risky and riskless assets.  Thus we define
+  As before, we define $\vEnd$ as a function that yields the expected $t+1$ value of ending period $t$ with assets $a_{\prd}$.  However, now that there are two control variables, the expectation must be defined as a function of the chosen values of both of those variables, because expected end-of-period value will depend not just on how much the agent saves, but also on how the saved assets are allocated between the risky and riskless assets.  Thus we define
   \begin{equation*}\begin{gathered}\begin{aligned}
-        \vMidStg({a}_{\prd},\Shr_{\prd})  & = \DiscFac {\vFunc}_{\arvlStgShr}({m}_{\prd+1})
+        \vMidStg(a_{\prd},\Shr_{\prd})  & = \DiscFac \vFunc_{\arvlStgShr}(m_{\prd+1})
       \end{aligned}\end{gathered}\end{equation*}
   which has derivatives
   \begin{equation}\begin{gathered}\begin{aligned}
-        \vMidStg^{{a}}  & = \ExEndStg[\DiscFac {\Rport}_{\prd+1}{\vFunc}_{\prd+1}^{m}({m}_{\prd+1})] = \ExEndStg[\DiscFac {\Rport}_{\prd+1}{\uFunc}_{\prd+1}^{{c}}(\cFunc_{\prd+1}({m}_{\prd+1}))]
+        \vMidStg^a  & = \ExEndStg[\DiscFac {\Rport}_{\prd+1}\vFunc_{\prd+1}^{m}(m_{\prd+1})] = \ExEndStg[\DiscFac {\Rport}_{\prd+1}{\uFunc}_{\prd+1}^{c}(\cFunc_{\prd+1}(m_{\prd+1}))]
       \end{aligned}\end{gathered}\end{equation}
   \begin{equation}\begin{gathered}\begin{aligned}
-        \vMidStg^{\Shr}  & = \ExEndStg[\DiscFac (\Risky_{\prd+1}-\Rfree){\vFunc}_{\prd+1}^{m}({m}_{\prd+1})  ]a_{\prd} = \ExEndStg[\DiscFac (\Risky_{\prd+1}-\Rfree){\uFunc}_{\prd+1}^{{c}}(\cFunc_{\prd+1}({m}_{\prd+1}))  ]a_{\prd} \notag
+        \vMidStg^{\Shr}  & = \ExEndStg[\DiscFac (\Risky_{\prd+1}-\Rfree){\vFunc}_{\prd+1}^{m}(m_{\prd+1})  ]a_{\prd} = \ExEndStg[\DiscFac (\Risky_{\prd+1}-\Rfree){\uFunc}_{\prd+1}^{c}(\cFunc_{\prd+1}(m_{\prd+1}))  ]a_{\prd} \notag
       \end{aligned}\end{gathered}\end{equation}
   implying that the first order conditions (\ref{eq:EulercRiskyR}) and
   (\ref{eq:FOCw}) can be rewritten
   \begin{equation}\begin{gathered}\begin{aligned}
-        \uFunc^{{c}}({c}_{\prd})  & = \vMidStg^{{a}}({m}_{\prd}-{c}_{\prd},\Shr_{\prd}) \label{eq:FOCc}
+        \uFunc^{c}(c_{\prd})  & = \vMidStg^{a}(m_{\prd}-c_{\prd},\Shr_{\prd}) \label{eq:FOCc}
       \end{aligned}\end{gathered}\end{equation}
   and 
   \begin{equation}\begin{gathered}\begin{aligned}
-        0  & = \vFunc^{\Shr}_{\vMidStgStgShr}({a}_{\prd},\Shr_{\prd}). \label{eq:FOCShr}
+        0  & = \vFunc^{\Shr}_{\vMidStgStgShr}(a_{\prd},\Shr_{\prd}). \label{eq:FOCShr}
       \end{aligned}\end{gathered}\end{equation}
 \end{comment}
 
@@ -157,14 +157,14 @@ The `state transition' equation between $\prd$ and $\prd+1$ is simply $\bNrm_{t+
 we can solve it numerically for the optimal $\Shr$ at a vector of $\vctr{a}$ ({\aVecCode} in the code)  and then construct an approximated optimal portfolio share function $\Aprx{\optml{\Shr}}(a)$ as the interpolating function among the members of the $\{\vctr{a},\vctr{\Shr}\}$ mapping.  Having done this, we can now calculate a vector of values and marginal values that correspond to $\aVec$:
 \begin{equation}\begin{gathered}\begin{aligned}
       \vctr{v}  & = \vFunc_{_\arvl[\Shr]}(\vctr{a}) \label{eq:vShrEnd}
-\\      \vctr{v}^{\aNrm}  & = \vFunc^{\aNrm}_{_\arvl[\Shr]}(\vctr{a}).
+\\      \vctr{v}^\aNrm  & = \vFunc^{\aNrm}_{_\arvl[\Shr]}(\vctr{a}).
     \end{aligned}\end{gathered}\end{equation}
 
 With the $\vctr{v}^{\aNrm}$ approximation described in hand, we can construct our approximation to the consumption function using \emph{exactly the same EGM procedure} that we used in solving the problem \emph{without} a portfolio choice (see \eqref{eq:cGoth}):
 \begin{equation}\begin{gathered}\begin{aligned}
       \vctr{c}  & \equiv  \left(\vctr{\vNrm}^{\aNrm}\right)^{-1/\CRRA} \label{eq:cVecPort},
     \end{aligned}\end{gathered}\end{equation}
-which, following a procedure identical to that in the EGM subsection \ref{subsec:egm}, yields an approximated consumption function $\Aprx{\cFunc}_{\prd}({m})$.  Thus, again, we can construct the consumption function at nearly zero cost (once we have calculated $\vctr{v}^{a}$).
+which, following a procedure identical to that in the EGM subsection \ref{subsec:egm}, yields an approximated consumption function $\Aprx{\cFunc}_{\prd}(m)$.  Thus, again, we can construct the consumption function at nearly zero cost (once we have calculated $\vctr{v}^{a}$).
 
 \hypertarget{the-point}{}
 
@@ -185,7 +185,7 @@ What is the benefit of writing effectively the identical problem in two differen
   \end{itemize}
 \end{itemize}
 
-% % the problem needs to be altered to bring the {step}s involving the realization of risky returns into {period} $\prd$; the variable with which the agent ends the period is now ${\bNrm}_{\prd}$ and to avoid confusion with the prior model in which we assumed ${k}_{\prd+1}={a}_{\prd}$ we will now define $\kappa_{\prd+1}={\bNrm}_{\prd}$.  The continuation-value function for the $[\Shr]$ {stage} now becomes
+% % the problem needs to be altered to bring the {step}s involving the realization of risky returns into {period} $\prd$; the variable with which the agent ends the period is now $\bNrm_{\prd}$ and to avoid confusion with the prior model in which we assumed $k_{\prd+1}={a}_{\prd}$ we will now define $\kappa_{\prd+1}={\bNrm}_{\prd}$.  The continuation-value function for the $[\Shr]$ {stage} now becomes
 % % \begin{equation}\begin{gathered}\begin{aligned}
 
 
@@ -200,33 +200,33 @@ As with labor income uncertainty, it is necessary to discretize the rate-of-retu
 
 The direct expressions for the derivatives of $\vEndStg$ are
 \begin{equation}\begin{gathered}\begin{aligned}
-      \vEndStg^{{a}}({a}_{\prd},\Shr_{\prd})  & = \DiscFac \left(\frac{1}{n_{\risky} n_{\TranShkEmp}}\right)\sum_{i=1}^{n_{\TranShkEmp}}\sum_{j=1}^{n_{\risky} }\Rport_{i,j} \left(\cFunc_{\prd+1}(\Rport_{i,j}{a}_{\prd}+\TranShkEmp_{i})\right)^{-\CRRA}
-      \\      \vEndStg^{\Shr}({a}_{\prd},\Shr_{\prd})  & = \DiscFac \left(\frac{1}{n_{\risky} n_{\TranShkEmp}}\right)\sum_{i=1}^{n_{\TranShkEmp}}\sum_{j=1}^{n_{\risky} }(\Risky_{i,j}-\Rfree)\left(\cFunc_{\prd+1}(\Rport_{i,j}{a}_{\prd}+\TranShkEmp_{i})\right)^{-\CRRA}.
+      \vEndStg^{a}(a_{\prd},\Shr_{\prd})  & = \DiscFac \left(\frac{1}{n_{\risky} n_{\TranShkEmp}}\right)\sum_{i=1}^{n_{\TranShkEmp}}\sum_{j=1}^{n_{\risky} }\Rport_{i,j} \left(\cFunc_{\prd+1}(\Rport_{i,j}a_{\prd}+\TranShkEmp_{i})\right)^{-\CRRA}
+      \\      \vEndStg^{\Shr}(a_{\prd},\Shr_{\prd})  & = \DiscFac \left(\frac{1}{n_{\risky} n_{\TranShkEmp}}\right)\sum_{i=1}^{n_{\TranShkEmp}}\sum_{j=1}^{n_{\risky} }(\Risky_{i,j}-\Rfree)\left(\cFunc_{\prd+1}(\Rport_{i,j}a_{\prd}+\TranShkEmp_{i})\right)^{-\CRRA}.
     \end{aligned}\end{gathered}\end{equation}
 
 Writing these equations out explicitly makes a problem very apparent: For every different combination of $\{{a}_{\prd},\Shr_{\prd}\}$ that the routine wishes to consider, it must perform two double-summations of $n_{\risky} \times n_{\TranShkEmp}$ terms.  Once again, there is an inefficiency if it must perform these same calculations many times for the same or nearby values of $\{{a}_{\prd},\Shr_{\prd}\}$, and again the solution is to construct an approximation to the (inverses of the) derivatives of the $\vEndStg$ function.
 
-Details of the construction of the interpolating approximations are given below; assume for the moment that we have the approximations $\Aprx{\vFunc}_{\EndStg}^{{a}}$ and $\Aprx{\vFunc}_{\EndStg}^{\Shr}$ in hand and we want to proceed.  As noted above in the discussion of \eqref{eq:Bellmanundated}, nonlinear equation solvers can find the solution to a set of simultaneous equations.  Thus we could ask one to solve
+Details of the construction of the interpolating approximations are given below; assume for the moment that we have the approximations $\Aprx{\vFunc}_{\EndStg}^{a}$ and $\Aprx{\vFunc}_{\EndStg}^{\Shr}$ in hand and we want to proceed.  As noted above in the discussion of \eqref{eq:Bellmanundated}, nonlinear equation solvers can find the solution to a set of simultaneous equations.  Thus we could ask one to solve
 \begin{equation}\begin{gathered}\begin{aligned}
-      {c}_{\prd}^{-\CRRA}  & = \Aprx{\vFunc}^{a}_{{\prd_\cntn}}({m}_{\prd}-{c}_{\prd},\Shr_{\prd}) %\label{eq:FOCwrtcMultContr}
-      \\      0  & = \Aprx{\vFunc}^{\Shr}_{{\prd_\cntn}}({m}_{\prd}-{c}_{\prd},\Shr_{\prd}) \label{eq:FOCwrtw}
+      c_{\prd}^{-\CRRA}  & = \Aprx{\vFunc}^{a}_{{\prd_\cntn}}(m_{\prd}-c_{\prd},\Shr_{\prd}) %\label{eq:FOCwrtcMultContr}
+      \\      0  & = \Aprx{\vFunc}^{\Shr}_{{\prd_\cntn}}(m_{\prd}-c_{\prd},\Shr_{\prd}) \label{eq:FOCwrtw}
     \end{aligned}\end{gathered}\end{equation}
-simultaneously for $\cNrm$ and $\Shr$ at the set of potential ${m}_{\prd}$ values defined in {\mVec}. However, as noted above, multidimensional constrained
+simultaneously for $\cNrm$ and $\Shr$ at the set of potential $m_{\prd}$ values defined in {\mVec}. However, as noted above, multidimensional constrained
 maximization problems are difficult and sometimes quite slow to
 solve.
 
 There is a better way.  Define the problem
 
 \begin{equation}\begin{gathered}\begin{aligned}
-      \Opt{\vFunc}_{{\prd_\cntn}}({a}_{\prd})  & = \max_{\Shr_{\prd}} ~~  \vEndStg({a}_{\prd},\Shr_{\prd})
+      \Opt{\vFunc}_{{\prd_\cntn}}(a_{\prd})  & = \max_{\Shr_{\prd}} ~~  \vEndStg(a_{\prd},\Shr_{\prd})
       \\      & \text{s.t.} \nonumber
       \\      0 \leq & \Shr_{\prd} \leq 1
     \end{aligned}\end{gathered}\end{equation}
-where the tilde over $\Opt{\vFunc}(a)$ indicates that this is the $\vFunc$ that has been optimized with respect to all of the arguments other than the one still present (${a}_{\prd}$).  We solve this problem for the set of gridpoints in \code{aVec} and use the results to construct the interpolating function $\Aprx{\Opt{\vFunc}}_{\prd}^{a}({a}_{\prd})$.\footnote{A faster solution could be obtained by, for each element in \code{aVec}, computing $\vEndStg^{\Shr}({m}_{\prd}-{c}_{\prd},\Shr)$ of a grid of values of $\Shr$, and then using an approximating interpolating function (rather than the full expectation) in the \texttt{FindRoot} command.  The associated speed improvement is fairly modest, however, so this route was not pursued.}  With this function in hand, we can use the first order condition from the single-control problem
+where the tilde over $\Opt{\vFunc}(a)$ indicates that this is the $\vFunc$ that has been optimized with respect to all of the arguments other than the one still present ($a_{\prd}$).  We solve this problem for the set of gridpoints in \code{aVec} and use the results to construct the interpolating function $\Aprx{\Opt{\vFunc}}_{\prd}^{a}(a_{\prd})$.\footnote{A faster solution could be obtained by, for each element in \code{aVec}, computing $\vEndStg^{\Shr}(m_{\prd}-c_{\prd},\Shr)$ of a grid of values of $\Shr$, and then using an approximating interpolating function (rather than the full expectation) in the \texttt{FindRoot} command.  The associated speed improvement is fairly modest, however, so this route was not pursued.}  With this function in hand, we can use the first order condition from the single-control problem
 \begin{equation*}\begin{gathered}\begin{aligned}
-      {c}_{\prd}^{-\CRRA}  & = \Aprx{\Opt{\vFunc}}_{\prd}^{{a}}({m}_{\prd}-{c}_{\prd})
+      c_{\prd}^{-\CRRA}  & = \Aprx{\Opt{\vFunc}}_{\prd}^{a}(m_{\prd}-c_{\prd})
     \end{aligned}\end{gathered}\end{equation*}
-to solve for the optimal level of consumption as a function of ${m}_{\prd}$ using the endogenous gridpoints method described above.  Thus we have transformed the multidimensional optimization problem into a sequence of two simple optimization problems.
+to solve for the optimal level of consumption as a function of $m_{\prd}$ using the endogenous gridpoints method described above.  Thus we have transformed the multidimensional optimization problem into a sequence of two simple optimization problems.
 
 Note the parallel between this trick and the fundamental insight of dynamic programming: Dynamic programming techniques transform a multi-period (or infinite-period) optimization problem into a sequence of two-period optimization problems which are individually much easier to solve; we have done the same thing here, but with multiple dimensions of controls rather than multiple periods.
 
@@ -248,19 +248,19 @@ assets with respect to the level of assets and the share invested in risky asset
 
 Figure~\ref{fig:PlotctMultContr} plots the $\prd-1$ consumption function generated by the program; qualitatively it does not look much different from the consumption functions generated by the program without portfolio choice.
 
-But Figure~\ref{fig:PlotRiskySharetOfat} which plots the optimal portfolio share as a function of the level of assets, exhibits several interesting features.  First, even with a coefficient of relative risk aversion of 6, an equity premium of only 4 percent, and an annual standard deviation in equity returns of 15 percent, the optimal choice is for the agent to invest a proportion 1 (100 percent) of the portfolio in stocks (instead of the safe bank account with riskless return $\Rfree$) is at values of ${a}_{\prd}$ less than about 2.  Second, the proportion of the portfolio kept in stocks is \textit{declining} in the level of wealth - i.e., the poor should hold all of their meager assets in stocks, while the rich should be cautious, holding more of their wealth in safe bank deposits and less in stocks.  This seemingly bizarre (and highly counterfactual -- see \cite{carroll:richportfolios}) prediction reflects the nature of the risks the consumer faces.  Those consumers who are poor in measured financial wealth will likely derive a high proportion of future consumption from their labor income.  Since by assumption labor income risk is uncorrelated with rate-of-return risk, the covariance between their future consumption and future stock returns is relatively low.  By contrast, persons with relatively large wealth will be paying for a large proportion of future consumption out of that wealth, and hence if they invest too much of it in stocks their consumption will have a high covariance with stock returns.  Consequently, they reduce that correlation by holding some of their wealth in the riskless form.
+But Figure~\ref{fig:PlotRiskySharetOfat} which plots the optimal portfolio share as a function of the level of assets, exhibits several interesting features.  First, even with a coefficient of relative risk aversion of 6, an equity premium of only 4 percent, and an annual standard deviation in equity returns of 15 percent, the optimal choice is for the agent to invest a proportion 1 (100 percent) of the portfolio in stocks (instead of the safe bank account with riskless return $\Rfree$) is at values of $a_{\prd}$ less than about 2.  Second, the proportion of the portfolio kept in stocks is \textit{declining} in the level of wealth - i.e., the poor should hold all of their meager assets in stocks, while the rich should be cautious, holding more of their wealth in safe bank deposits and less in stocks.  This seemingly bizarre (and highly counterfactual -- see \cite{carroll:richportfolios}) prediction reflects the nature of the risks the consumer faces.  Those consumers who are poor in measured financial wealth will likely derive a high proportion of future consumption from their labor income.  Since by assumption labor income risk is uncorrelated with rate-of-return risk, the covariance between their future consumption and future stock returns is relatively low.  By contrast, persons with relatively large wealth will be paying for a large proportion of future consumption out of that wealth, and hence if they invest too much of it in stocks their consumption will have a high covariance with stock returns.  Consequently, they reduce that correlation by holding some of their wealth in the riskless form.
 
 \hypertarget{PlotctMultContr}{}
 \begin{figure}
   \includegraphics[width=6in]{./Figures/PlotctMultContr}
-  \caption{$\cFunc({m}_{1})$ With Portfolio Choice}
+  \caption{$\cFunc(m_{1})$ With Portfolio Choice}
   \label{fig:PlotctMultContr}
 \end{figure}
 
 \hypertarget{PlotRiskySharetOfat}{}
 \begin{figure}
   \includegraphics[width=6in]{./Figures/PlotRiskySharetOfat}
-  \caption{Portfolio Share in Risky Assets in First Period $\Shr({a})$}
+  \caption{Portfolio Share in Risky Assets in First Period $\Shr(a)$}
   \label{fig:PlotRiskySharetOfat}
 \end{figure}
 \end{document}

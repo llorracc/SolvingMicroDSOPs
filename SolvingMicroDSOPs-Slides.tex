@@ -155,7 +155,7 @@ E.g.\ use an equiprobable 7-point distribution:\medskip\medskip
 \frametitle{Trick: Discretize the Risks}
 
 \begin{equation}\begin{gathered}\begin{aligned}
-        \vEndStg_{t}^{\prime}({a}_{t})  & =  \Discount \Rfree \PermGroFac_{t+1}^{-\CRRA} \left(\frac{1}{n}\right) \sum_{i=1}^{n} \util^{\prime}\left(\cFunc_{t+1}(\RNrm_{t+1} {a}_{t} + \TranShkEmp_{i})\right)
+        \vEndStg_{t}^{\prime}(a_{t})  & =  \Discount \Rfree \PermGroFac_{t+1}^{-\CRRA} \left(\frac{1}{n}\right) \sum_{i=1}^{n} \util^{\prime}\left(\cFunc_{t+1}(\RNrm_{t+1} a_{t} + \TranShkEmp_{i})\right)
 \end{aligned}\end{gathered}\end{equation}
 
 %\input{./Equations/vDiscrete.tex}
@@ -208,7 +208,7 @@ $\util^{\prime}(\cNrm) = \vEndStg^{\prime}_{t}(\mRat[i]-\cNrm)$ at, say,
 6 gridpoints of $\vctr{\mNrm}_{T-1}$ may require hundreds or even thousands of
 evaluations of
 \begin{equation}\begin{gathered}\begin{aligned}
-        \vEndStg^{\prime}_{T-1}(\overbrace{{m}_{T-1}-{\cNrm}_{T-1}}^{\aNrm_{T-1}})  & =   \Discount_{T} \PermGroFac_{T}^{1-\CRRA}\left(\frac{1}{n}\right)\sum_{i=1}^{n}   \left( \RNrm_{T} {a}_{T-1} + \TranShkEmp_{i}\right)^{-\CRRA} \notag
+        \vEndStg^{\prime}_{T-1}(\overbrace{{m}_{T-1}-\cNrm_{T-1}}^{\aNrm_{T-1}})  & =   \Discount_{T} \PermGroFac_{T}^{1-\CRRA}\left(\frac{1}{n}\right)\sum_{i=1}^{n}   \left( \RNrm_{T} a_{T-1} + \TranShkEmp_{i}\right)^{-\CRRA} \notag
 \end{aligned}\end{gathered}\end{equation}
 
 \end{frame}
@@ -362,7 +362,7 @@ and then obtain your approximation from
 Define {\it consumed} function and its derivative as 
 \begin{equation}\begin{gathered}\begin{aligned}
   \cEndFunc_{t}(\aNrm)  & = (\vEndStg^{\prime}_{t}(\aNrm))^{-1/\CRRA}
-\\ \cEndFunc_{t}^{\aNrm}(\aNrm)  & = -(1/\CRRA)\left(\vEndStg_{t}^{\prime}({a})\right)^{-1-1/\CRRA} \vEndStg_{t}^{\prime\prime}(\aNrm) 
+\\ \cEndFunc_{t}^{\aNrm}(\aNrm)  & = -(1/\CRRA)\left(\vEndStg_{t}^{\prime}(a)\right)^{-1-1/\CRRA} \vEndStg_{t}^{\prime\prime}(\aNrm) 
 \end{aligned}\end{gathered}\end{equation}
 
 \pause 
@@ -390,10 +390,10 @@ and using chain rule it is easy to show that
 \begin{frame}
 \frametitle{Problem: $\Alt{\cFunc}$ Below Bottom $\mRat$ Gridpoint and Extrapolation}
 
-Consider what happens as ${a}_{T-1}$ approaches $\underline{a}_{T-1}\equiv-\underline{\TranShkEmp}\RNrm_{T}^{-1}$,
+Consider what happens as $a_{T-1}$ approaches $\underline{a}_{T-1}\equiv-\underline{\TranShkEmp}\RNrm_{T}^{-1}$,
 \begin{equation*}\begin{gathered}\begin{aligned}
-        \lim_{{\aNrm} \downarrow \underline{a}_{T-1}} \vEndStg{T-1}^{\prime}({\aNrm}) 
-& =         \lim_{{\aNrm} \downarrow \underline{a}_{T-1}} \Discount \Rfree \PermGroFac_{T}^{-\CRRA} \left(\frac{1}{n}\right) \sum_{i=1}^{n} \left( {\aNrm} \RNrm_{T}+ \TranShkEmp_{i}\right)^{-\CRRA}
+        \lim_{{\aNrm} \downarrow \underline{a}_{T-1}} \vEndStg{T-1}^{\prime}(\aNrm) 
+& =         \lim_{{\aNrm} \downarrow \underline{a}_{T-1}} \Discount \Rfree \PermGroFac_{T}^{-\CRRA} \left(\frac{1}{n}\right) \sum_{i=1}^{n} \left(  \aNrm\RNrm_{T}+ \TranShkEmp_{i}\right)^{-\CRRA}
 \\  & = \infty
 \end{aligned}\end{gathered}\end{equation*}
 
@@ -402,7 +402,7 @@ This means our lowest value in $\vctr{\aNrm}_{T-1}$ should be $> \underline{\aNr
 \medskip
 Suppose we construct $\Alt{\cFunc}$ by linear interpolation:
 \begin{equation*}\begin{gathered}\begin{aligned}
-  \Alt{\cFunc}_{T-1}(\mRat)  & = \Alt{\cFunc}_{T-1}(\vctr{\mNrm}_{T-1}[1])+\Alt{\cFunc}_{T-1}^{\prime}(\vctr{\mNrm}_{T-1}[1])({\mNrm}-\vctr{\mNrm}_{T-1}[1]) \label{eq:ExtrapLin}
+  \Alt{\cFunc}_{T-1}(\mRat)  & = \Alt{\cFunc}_{T-1}(\vctr{\mNrm}_{T-1}[1])+\Alt{\cFunc}_{T-1}^{\prime}(\vctr{\mNrm}_{T-1}[1])(\mNrm-\vctr{\mNrm}_{T-1}[1]) \label{eq:ExtrapLin}
 \end{aligned}\end{gathered}\end{equation*}
 
 True $\cFunc$ is strictly concave 
@@ -519,7 +519,7 @@ Procedure is very easy:
 
 \begin{figure}
         \includegraphics[width=4in]{./Figures/PlotCFuncsConverge.pdf}
-        \caption{Converging $\grave{\cFunc}_{T-n}({\mNrm})$ Functions for $n=\{1,5,10,15,20\}$}
+        \caption{Converging $\grave{\cFunc}_{T-n}(\mNrm)$ Functions for $n=\{1,5,10,15,20\}$}
         \label{fig:PlotCFuncsConverge}
 \end{figure}
 

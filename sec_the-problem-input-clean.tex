@@ -24,7 +24,7 @@ available to be spent on consumption $\cLvl_{t}$ for a consumer subject to a liq
 The consumer's goal is to maximize discounted utility from consumption over the rest of a lifetime ending at date $T$:
 % chktex-file 36
   \begin{equation}\label{eq:MaxProb}
-    \max~\Ex_{t}\left[\sum_{n=0}^{T-t}\beta^{n} u({\cLvl}_{t+n})\right].
+    \max~\Ex_{t}\left[\sum_{n=0}^{T-t}\beta^{n} u(\cLvl_{t+n})\right].
   \end{equation}
 Income evolves according to:
   \begin{equation}\begin{gathered}\begin{aligned}
@@ -36,7 +36,7 @@ Equation \eqref{eq:permincgrow} indicates that we are allowing for a predictable
 
 It is well known that this problem can be rewritten in recursive (Bellman) form:
   \begin{equation}\begin{gathered}\begin{aligned}
-        v_{t}(\mLvl_{t},\pLvl_{t})  & = \max_{c}~ u(c) + \beta \Ex_{t}[ v_{t+1}({\mLvl}_{t+1},\pLvl_{t+1})]\label{eq:vrecurse}
+        v_{t}(\mLvl_{t},\pLvl_{t})  & = \max_{c}~ u(c) + \beta \Ex_{t}[ v_{t+1}(\mLvl_{t+1},\pLvl_{t+1})]\label{eq:vrecurse}
       \end{aligned}\end{gathered}\end{equation}
 subject to the Dynamic Budget Constraint (DBC) implicitly defined by equations~\eqref{eq:bLvl}-\eqref{eq:mLvl} and to the transition equation that defines next period's initial capital as this period's end-of-period assets:
 \begin{equation}\begin{gathered}\begin{aligned}
