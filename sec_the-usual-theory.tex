@@ -29,7 +29,7 @@ When we want to refer to a specific {step} in the one {stage} of $\prd$ we will 
     \begin{tabular}{r|c|c|l|l}
       Step of Stage        & Indicator               & State          & Usage                       & Explanation                                \\ \hline
       {\Arrival}      & $\arvl$ prefix & $\kNrm$ & $\vBegStg(\kNrm)$ & value at entry to $\prd$ (before shocks) \\
-      {\Decision}     & (blank/none)            & $\mNrm$ & $\vMidStp(\mNrm)$ & value of $t$-decision (after shocks)       \\
+      {\Decision}     & (blank/none)            & $\mNrm$ & $\vMidStg(\mNrm)$ & value of $t$-decision (after shocks)       \\
       {\Continuation} & $\cntn$ suffix & $\aNrm$ & $\vEndStg(\aNrm)$ & value at exit (after decision)
     \end{tabular}
 %  }
@@ -55,7 +55,7 @@ For future reference, it will be useful here to write the full expressions for t
 
 There is no need to use our {period}-identifying notation for the model's variables; $\kNrm$, for example, will have only one unique value over the course of the {period} and therefore a notation like $\kNrm_{\EndStg}$ would be pointless; the same is true of all other variables.
 
-Recall that the continuation value function $\vFunc_{\EndStg}(\aNrm)=\DiscFac \vFunc_{\BegStpNxt}(\aNrm)$ is provided as an input to the current {stage} Bellman problem.  Since within the scope of the solution of the current {stage} there is only one such continuation value function, in the solution context there is no point in keeping the {period} subscript when we write this function.  The same point applies to all variables and functions in the {stage}.  Given the continuation value function $\vEndStg$, the problem within the {stage} can be written with only the {step} indicators:
+Recall that the continuation value function $\vFunc_{\EndStg}(\aNrm)=\DiscFac \vFunc_{\BegStgNxt}(\aNrm)$ is provided as an input to the current {stage} Bellman problem.  Since within the scope of the solution of the current {stage} there is only one such continuation value function, in the solution context there is no point in keeping the {period} subscript when we write this function.  The same point applies to all variables and functions in the {stage}.  Given the continuation value function $\vEndStg$, the problem within the {stage} can be written with only the {step} indicators:
 \begin{verbatimwrite}{./Equations/vBegStg}
   \begin{equation}\begin{gathered}\begin{aligned}
         \vFunc_{\arvl}(\kNrm) & = \Ex_{\arvl}[\vFunc(\overbrace{\kNrm \RNrm + \TranShkEmp}^{\mNrm})]  \label{eq:vBegStg}

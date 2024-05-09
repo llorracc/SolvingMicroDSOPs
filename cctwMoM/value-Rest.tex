@@ -20,12 +20,12 @@
   an upper bound for the ${\vInv}$ function in the presence of uncertainty, and the value function
   for the pessimist is a lower bound. Analogously to \eqref{eq:koppa}, define an upper-case
   \begin{equation}\begin{gathered}\begin{aligned}
-        \hat{\Koppa}_{\prd}(\mu_{\prd})   & = \left(\frac{\bar{\vInv}_{\prd}(\ushort{m}_{\prd}+e^{\mu_{\prd}})-\vInv_{\prd}(\ushort{m}_{\prd}+e^{\mu_{\prd}})}{\aboveMin \hNrm_{\EndStp} \MPCmin_{\prd} (\PDVCoverc_{\prd}^{T})^{1/(1-\CRRA)}}\right) \label{eq:Koppa}
+        \hat{\Koppa}_{\prd}(\mu_{\prd})   & = \left(\frac{\bar{\vInv}_{\prd}(\ushort{m}_{\prd}+e^{\mu_{\prd}})-\vInv_{\prd}(\ushort{m}_{\prd}+e^{\mu_{\prd}})}{\aboveMin \hNrm_{\EndStg} \MPCmin_{\prd} (\PDVCoverc_{\prd}^{T})^{1/(1-\CRRA)}}\right) \label{eq:Koppa}
       \end{aligned}\end{gathered}\end{equation}
   \MPCMatch{with derivative (dropping arguments)
     \begin{equation}\begin{gathered}\begin{aligned}
-          \hat{\Koppa}_{\prd}^{\mu}   & = (\aboveMin \hNrm_{\EndStp} \MPCmin_{\prd} (\PDVCoverc_{\prd}^{T})^{1/(1-\CRRA)})^{-1}e^{\mu_{\prd}}\left(\bar{\vInv}^{m}_{\prd}-\vInv^{m}_{\prd}\right) \label{eq:KoppaPrime}
-          % \\  & =  (\aboveMin \hNrm_{\EndStp} \MPCmin_{\prd})^{-1}e^{\mu_{\prd}}\left((\PDVCoverc_{\prd}^{T})^{1/(1-\CRRA)}\MPCmin_{\prd}-\left((1-\CRRA)\vFunc_{\prd}(m_{\prd})\right)^{-1+1/(1-\CRRA)}\vFunc_{\prd}^{m}(m_{\prd})\right)  \notag
+          \hat{\Koppa}_{\prd}^{\mu}   & = (\aboveMin \hNrm_{\EndStg} \MPCmin_{\prd} (\PDVCoverc_{\prd}^{T})^{1/(1-\CRRA)})^{-1}e^{\mu_{\prd}}\left(\bar{\vInv}^{m}_{\prd}-\vInv^{m}_{\prd}\right) \label{eq:KoppaPrime}
+          % \\  & =  (\aboveMin \hNrm_{\EndStg} \MPCmin_{\prd})^{-1}e^{\mu_{\prd}}\left((\PDVCoverc_{\prd}^{T})^{1/(1-\CRRA)}\MPCmin_{\prd}-\left((1-\CRRA)\vFunc_{\prd}(m_{\prd})\right)^{-1+1/(1-\CRRA)}\vFunc_{\prd}^{m}(m_{\prd})\right)  \notag
         \end{aligned}\end{gathered}\end{equation}}{}
   and an upper-case version of the $\chiFunc$ equation in \eqref{eq:chi}:
   \begin{equation}\begin{gathered}\begin{aligned}
@@ -41,7 +41,7 @@
   approximation to our inverted value function at the same points for
   which we have our approximated value function:
   \begin{equation}\begin{gathered}\begin{aligned}
-        \hat{\vInv}_{\prd}  & = \bar{\vInv}_{\prd}-\overbrace{\left(\frac{1}{1+\exp(\hat{\Chi}_{\prd})}\right)}^{=\hat{\Koppa}_{\prd}} \aboveMin \hNrm_{\EndStp} \MPCmin_{\prd} (\PDVCoverc_{\prd}^{T})^{1/(1-\CRRA) }
+        \hat{\vInv}_{\prd}  & = \bar{\vInv}_{\prd}-\overbrace{\left(\frac{1}{1+\exp(\hat{\Chi}_{\prd})}\right)}^{=\hat{\Koppa}_{\prd}} \aboveMin \hNrm_{\EndStg} \MPCmin_{\prd} (\PDVCoverc_{\prd}^{T})^{1/(1-\CRRA) }
       \end{aligned}\end{gathered}\end{equation}
   from which we obtain our approximation to the value function\MPCMatch{ and its derivatives~}~as \hypertarget{vHatFunc}{}
   \begin{equation}\begin{gathered}\begin{aligned}
