@@ -334,9 +334,7 @@ which is mathematically equivalent to the usual Euler equation for consumption. 
 
 Having defined these notational conventions, we are now ready to move to substance.
 
-\begin{comment} %
 
-  %
   \subsection{Implementation in Python}
 
   The code implementing the tasks outlined each of the sections to come is available in the \texttt{\href{https://econ-ark.org/materials/SolvingMicroDSOPs}{SolvingMicroDSOPs}} jupyter notebook, written in \href{https://python.org}{Python}. The notebook imports various modules, including the standard \texttt{numpy} and \texttt{scipy} modules used for numerical methods in Python, as well as some user-defined modules designed to provide numerical solutions to the consumer's problem from the previous section. Before delving into the computational exercise, it is essential to touch on the practicality of these custom modules.
@@ -470,7 +468,6 @@ The notebook code responsible for computing an estimated consumption function be
 \hypertarget{an-interpolated-consumption-function}{}
 \subsection{An Interpolated Consumption Function} \label{subsec:LinInterp}
 
-We can now apply our solution to \eqref{eq:vEndTm1} to each of the values in $\vctr{m}$, generating a corresponding optimal $\vctr{c}$.  This is called `sampling' the consumption function.  Using the ordered pairs $\{\vctr{m},\vctr{c}\}$ we can create a piecewise linear `interpolating function' (a `spline') which when applied to any input $\vctr{m}[1] \leq  m\leq \vctr{m}[-1]$ will yield the value of $c$ that corresponds to a linear `connect-the-dots' interpolation of the value of $c$ from the values of the two nearest computed $\{m,c\}$ points.\footnote{For a useful treatment of various kinds of interpolation appropriate for different questions, see } %
 
 This is accomplished in ``An Interpolated Consumption Function,'' which generates an interpolating function that we designate $\Aprx{\cFunc}_{\MidPrdLsT}(m)$. %When called with an $\mNrm$ that is equal to one of the points in $\code{{{\mVec}\_int}}$, $\Aprx{\cFunc}_{\prdT-1}$ returns the associated value of $\vctr{c}_{\code{\prdT-1}}$, and when called with a value of $\mNrm$ that is not exactly equal to one of the \texttt{mVec\_int}, returns the value of $c$ that reflects a linear interpolation between the $\vctr{c}_{\code{\prdT-1}}$ points associated with the two \texttt{mVec\_int} points immediately above and below $\mNrm$.  
 
@@ -564,7 +561,6 @@ The first order condition of the maximization problem in period $T-1$ is:
   \label{fig:PlotuPrimeVSOPrime}
 \end{figure}
 
-In the notebook, the ``Value Function versus the First Order Condition'' section completes the task of finding the values of consumption which satisfy the first order condition in \eqref{eq:FOCTm1} using the \href{https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.brentq.html}{\texttt{brentq}} function from the \texttt{scipy} package.%
 
 
 The downward-sloping curve in Figure \ref{fig:PlotuPrimeVSOPrime}
@@ -653,7 +649,6 @@ will be $\TranShkEmp_{t} = 1$).  The final Euler equation (recall that we are st
 
 In the case we are now considering with no uncertainty and no liquidity constraints, the optimizing consumer does not care whether a unit of income is scheduled to be received in the future period $t$ or the current period $t-1$; there is perfect certainty that the income will be received, so the consumer treats its PDV as equivalent to a unit of current wealth.  Total resources available at the point when the consumption decision is made is therefore are comprised of two types: current market resources $m$ and `human wealth' (the PDV of future income) of $h_{t-1}=1$ (because it is the value of human wealth as of the end of the period, there is only one more period of income of 1 left).
 
-The well-known optimal solution is to spend half of total lifetime resources in period $t-1$ and the remainder in period $t (=T)$.  Since total resources are known with certainty to be $m+h_{t-1}= m+1$, and since $v_{\MidStg}^{m}(m) = u^{c}(c)$, this implies that
 \begin{equation}
   v^{m}_{\MidPrdLsT}(m)  = \left(\frac{m+1}{2}\right)^{-\rho} \label{eq:vPLin}.
 \end{equation}
