@@ -244,8 +244,8 @@ Now define a new optimization problem:
         v_{t}(m_{t}) & = \max_{{c}_{t}} ~~ u(c_{t})+{\beta}\Ex_{t}[ \PermGroFac_{t+1}^{1-\rho}v_{t+1}(m_{t+1})] \label{eq:vNormed}                   \\
                                          & \text{s.t.}                                                                                 \\
         a_{t}                       & = m_{t}-c_{t}                                                                     \\
-        {k}_{t+1}                     & = a_{t}                                                                                \\
-        b_{t+1}                     & = \underbrace{\left(R/\PermGroFac_{t+1}\right)}_{\equiv \RNrm_{t+1}}{k}_{t+1} \\
+        k_{t+1}                     & = a_{t}                                                                                \\
+        b_{t+1}                     & = \underbrace{\left(R/\PermGroFac_{t+1}\right)}_{\equiv \RNrm_{t+1}}k_{t+1} \\
         m_{t+1}                        & = b_{t+1}+\TranShkEmp_{t+1},
       \end{aligned}\end{gathered}\end{equation}
 where division by $\PermGroFac$ in second-to-last equation yields a normalized return factor $\RNrm$ which is the consequence of the fact that we have divided $t+1$ level variables by $\pLvl_{t+1}=\PermGroFac_{t+1}\pLvl_{t}$.
@@ -256,7 +256,7 @@ Then it is easy to see that for $t=T-1$,
     \end{aligned}\end{gathered}\end{equation*}
 and so on back to all earlier periods.  Hence, if we solve the problem \eqref{eq:vNormed} which has only a single state variable $m_{t-1}$, we can obtain the levels of the value function, consumption, and all other variables from the corresponding permanent-income-normalized solution objects by multiplying each by $\pLvl_{t}$, e.g.\ $\cFunc_{t}(\mLvl_{t},\pLvl_{t})=\pLvl_{t}\cFunc_{t}(\mLvl_{t}/\pLvl_{t})$ (or, for the value function, $\vLvl _{t}(\mLvl_{t},\pLvl_{t}) = \pLvl_{t}^{1-\rho}v_{t}(m_{t}))$.  We have thus reduced the problem from two continuous state variables to one (and thereby enormously simplified its solution).
 
-For future reference it will also be useful to write the problem \eqref{eq:vNormed} in the traditional way, by substituting $b_{t+1},{k}_{t+1},$ and $a_{t}$ into $m_{t+1}$:
+For future reference it will also be useful to write the problem \eqref{eq:vNormed} in the traditional way, by substituting $b_{t+1},k_{t+1},$ and $a_{t}$ into $m_{t+1}$:
 \begin{equation}\begin{gathered}\begin{aligned}
       v_{t}(m_{t}) & = \max_{c} ~~ u(c)+ \beta \Ex_{t}[ \PermGroFac_{t+1}^{1-\rho}v_{t+1}(\overbrace{(m_{t}-c)(R/\PermGroFac_{t+1})+\TranShkEmp_{t+1}}^{m_{t+1}})] \label{eq:vusual}.
     \end{aligned}\end{gathered}\end{equation}
@@ -295,7 +295,7 @@ When we want to refer to a specific {step} in the {stage} we will do so by using
 %  \mbox{%
     \begin{tabular}{r|c|c|l|l}
       {Step}         & Indicator               & State          & Usage                       & Explanation                                \\ \hline
-      {\Arrival}      & $ \arvl $ & $k$ & $\vBegStg({k})$ & value at entry to {stage} (before shocks) \\
+      {\Arrival}      & $ \arvl $ & $k$ & $\vBegStg(k)$ & value at entry to {stage} (before shocks) \\
       {\Decision}(s)  & (blank)            & $m$ & $\vMidStg(m)$ & value of {stage}-decision (after shocks)       \\
       {\Continuation} & $ \cntn $ & $a$ & $\vEndStg(a)$ & value at exit (after decision) \\ \hline
     \end{tabular}
@@ -500,7 +500,7 @@ Piecewise linear `spline' interpolation as described above works well for genera
 
 For any given index $j$ in $\vctr{m}[j]$, the algorithm, as it searches for the corresponding optimal $a$, the algorithm will end up  calculating $v_{\EndPrdLsT}(\tilde{a})$ for many $\tilde{a}$ values close to the optimal $a_{t-1}$.  Indeed, even when searching for the optimal $a$ for a \emph{different} $m$ (say $\vctr{m}[k]$ for $k \neq j$) the search process might compute $v_{\EndPrdLsT}(a)$ for an $a$ close to the correct optimal $a$ for $\vctr{m}[j]$. But if that difficult computation does not correspond to the exact solution to the $\vctr{m}[k]$ problem, it is discarded.  
 
-% (These lists contain the points of the $\vctr{a}_{{\prdT-1}}$ and $\vctr{v}_{{\prdT-1}}$ vectors, respectively.)
+% (These lists contain the points of the $\vctr{a}_{\prdT-1}$ and $\vctr{v}_{\prdT-1}$ vectors, respectively.)
 
 The notebook section ``Interpolating Expectations,'' now interpolates the expected value of \textit{ending} the period with a given amount of assets.\footnote{What we are doing here is closely related to `the method of parameterized expectations' of \cite{denHaanMarcet:parameterized}; the only difference is that our method is essentially a nonparametric version.}  %The problem is solved in the same block with the remaining lines of code.
 
@@ -509,7 +509,7 @@ Figure~\ref{fig:PlotOTm1RawVSInt} compares the true value function to the approx
 \hypertarget{PlotOTm1RawVSInt}{}
 \begin{figure}
   \centerline{\includegraphics[width=6in]{\FigDir/PlotOTm1RawVSInt}}
-  \caption{End-Of-Period Value $v_{({t-1})_\cntn}(a_{t-1})$ (solid) versus $\Aprx{v}_{({T-1})_\cntn}(a_{T-1})$ (dashed)}
+  \caption{End-Of-Period Value $v_{(t-1)_\cntn}(a_{t-1})$ (solid) versus $\Aprx{v}_{({T-1})_\cntn}(a_{T-1})$ (dashed)}
   \label{fig:PlotOTm1RawVSInt}
 \end{figure}
 
@@ -522,7 +522,7 @@ Figure~\ref{fig:PlotOTm1RawVSInt} compares the true value function to the approx
 
 \Fix{\marginpar{\tiny In all figs, replace gothic h with notation corresponding to the lecture notes.}}
 
-Nevertheless, the consumption rule obtained when the approximating $\Aprx{v}_{({t-1})_\cntn}(a_{t-1})$ is used instead of $v_{({t-1})_\cntn}(a_{t-1})$ is surprisingly bad, as shown in figure \ref{fig:PlotComparecTm1AB}.  For example, when $m$ goes from 2 to 3, $\Aprx{\cFunc}_{t-1}$ goes from about 1 to about 2, yet when $m$ goes from 3 to 4, $\Aprx c$ goes from about 2 to about 2.05.  The function fails even to be concave, which is distressing because Carroll and Kimball~\citeyearpar{ckConcavity} prove that the correct consumption function is strictly concave in a wide class of problems that includes this one.
+Nevertheless, the consumption rule obtained when the approximating $\Aprx{v}_{(t-1)_\cntn}(a_{t-1})$ is used instead of $v_{(t-1)_\cntn}(a_{t-1})$ is surprisingly bad, as shown in figure \ref{fig:PlotComparecTm1AB}.  For example, when $m$ goes from 2 to 3, $\Aprx{\cFunc}_{t-1}$ goes from about 1 to about 2, yet when $m$ goes from 3 to 4, $\Aprx c$ goes from about 2 to about 2.05.  The function fails even to be concave, which is distressing because Carroll and Kimball~\citeyearpar{ckConcavity} prove that the correct consumption function is strictly concave in a wide class of problems that includes this one.
 
 \hypertarget{value-function-versus-first-order-condition}{}
 \subsection{Value Function versus First Order Condition}\label{subsec:vVsuP}
@@ -586,39 +586,39 @@ optimal level of consumption if $m=4$.  These two curves
 intersect slightly below $c=2.5$.  Thus, increasing $m$
 from 3 to 4 increases optimal consumption by about 0.5.
 
-Now consider the derivative of our function $\Aprx{v}_{({t-1})}(a_{t-1})$.  Because we have
-constructed $\Aprx{v}_{({t-1})}$ as a linear interpolation, the slope of
-$\Aprx{v}_{({t-1})}(a_{t-1})$ between any two adjacent points
+Now consider the derivative of our function $\Aprx{v}_{(t-1)}(a_{t-1})$.  Because we have
+constructed $\Aprx{v}_{(t-1)}$ as a linear interpolation, the slope of
+$\Aprx{v}_{(t-1)}(a_{t-1})$ between any two adjacent points
 $\{\vctr{a}[i],\vctr{},\vctr{a}[{i+1}]\}$ is constant.  The level of the slope immediately below any
 particular gridpoint is different, of course, from the slope above that gridpoint, a fact which
-implies that the derivative of $\Aprx{v}_{({t-1})_\cntn}(a_{t-1})$ follows a step function.
+implies that the derivative of $\Aprx{v}_{(t-1)_\cntn}(a_{t-1})$ follows a step function.
 
 The solid-line step function in Figure \ref{fig:PlotuPrimeVSOPrime} depicts the actual value of
-$\Aprx{v}_{({t-1})_\cntn}^{a}(3-c)$.  When we attempt to find optimal values of
-$c$ given $m$ using $\Aprx{v}_{({t-1})_\cntn}(a_{t-1})$, the numerical optimization routine will
+$\Aprx{v}_{(t-1)_\cntn}^{a}(3-c)$.  When we attempt to find optimal values of
+$c$ given $m$ using $\Aprx{v}_{(t-1)_\cntn}(a_{t-1})$, the numerical optimization routine will
 return the $c$ for which
-$u^{c}(c) = \Aprx{v}^{a}_{({t-1})_\cntn}(m-c)$.  Thus, for
+$u^{c}(c) = \Aprx{v}^{a}_{(t-1)_\cntn}(m-c)$.  Thus, for
 $m=3$ the program will return the value of $c$ for which the downward-sloping
 $u^{c}(c)$ curve intersects with the
-$\Aprx{v}_{({t-1})_\cntn}^{a}(3-c)$; as the diagram shows, this value is exactly equal to 2.
+$\Aprx{v}_{(t-1)_\cntn}^{a}(3-c)$; as the diagram shows, this value is exactly equal to 2.
 Similarly, if we ask the routine to find the optimal $c$ for $m=4$, it finds the point of
-intersection of $u^{c}(c)$ with $\Aprx{v}_{({t-1})_\cntn}^{a}(4-c)$; and as the diagram shows, this
+intersection of $u^{c}(c)$ with $\Aprx{v}_{(t-1)_\cntn}^{a}(4-c)$; and as the diagram shows, this
 intersection is only slightly above 2.  Hence, this figure illustrates why the numerical consumption
 function plotted earlier returned values very close to $c=2$ for both $m=3$ and $m=4$.
 
-We would obviously obtain much better estimates of the point of intersection between $u^{c}(c)$ and $v_{({t-1})_\cntn}^{a}(m-c)$ if our estimate of $\Aprx{v}^{a}_{({t-1})_\cntn}$ were not a step function.  In fact, we already know how to construct linear interpolations to functions, so the obvious next step is to construct a linear interpolating approximation to the \textit{expected marginal value of end-of-period assets function} at the points in $\vctr{a}$:
+We would obviously obtain much better estimates of the point of intersection between $u^{c}(c)$ and $v_{(t-1)_\cntn}^{a}(m-c)$ if our estimate of $\Aprx{v}^{a}_{(t-1)_\cntn}$ were not a step function.  In fact, we already know how to construct linear interpolations to functions, so the obvious next step is to construct a linear interpolating approximation to the \textit{expected marginal value of end-of-period assets function} at the points in $\vctr{a}$:
 \begin{equation}\begin{gathered}\begin{aligned}
-      v_{({t-1})_\cntn}^{a}(\vctr{a})  & =  \beta R \PermGroFacAdjMu \left(\frac{1}{n_{\TranShkEmp}}\right) \sum_{i=1}^{n_{\TranShkEmp}} \left(\RNrm_{t} \vctr{a} + \TranShkEmp_{i}\right)^{-\rho} \label{eq:vEndPrimeTm1}
+      v_{(t-1)_\cntn}^{a}(\vctr{a})  & =  \beta R \PermGroFacAdjMu \left(\frac{1}{n_{\TranShkEmp}}\right) \sum_{i=1}^{n_{\TranShkEmp}} \left(\RNrm_{t} \vctr{a} + \TranShkEmp_{i}\right)^{-\rho} \label{eq:vEndPrimeTm1}
     \end{aligned}\end{gathered}\end{equation}
-yielding $\vctr{v}{^{a}_{({t-1})_\cntn}}$ (the vector of expected end-of-period-$(T-1)$ marginal values of assets corresponding to \code{aVec}),  %$\{\{\vctr{a}}\code{_{\prdT-1}},\vFunc_{({\prdT-1})_\cntn}^{a}(\vctr{{a}[1]}_{\prdT-1}\},\{\vctr{a}_{(T-1)},\vFunc_{({\prdT-1})_\cntn}^{a}\}\ldots\}$
+yielding $\vctr{v}{^{a}_{(t-1)_\cntn}}$ (the vector of expected end-of-period-$(T-1)$ marginal values of assets corresponding to \code{aVec}),  %$\{\{\vctr{a}}\code{_{\prdT-1}},\vFunc_{(\prdT-1)_\cntn}^{a}(\vctr{{a}[1]}_{\prdT-1}\},\{\vctr{a}_{(T-1)},\vFunc_{(\prdT-1)_\cntn}^{a}\}\ldots\}$
 and construct
-$\Aprx{v}_{({t-1})_\cntn}^{a}(a_{t-1})$ as the linear
+$\Aprx{v}_{(t-1)_\cntn}^{a}(a_{t-1})$ as the linear
 interpolating function that fits this set of points.
 
 \hypertarget{PlotOPRawVSFOC}{}
 \begin{figure}
   \centerline{\includegraphics[width=6in]{\FigDir/PlotOPRawVSFOC}}
-  \caption{$v_{({t-1})_\cntn}^{a}(a_{t-1})$ versus $\Aprx{v}_{({t-1})_\cntn}^{a}(a_{t-1})$}
+  \caption{$v_{(t-1)_\cntn}^{a}(a_{t-1})$ versus $\Aprx{v}_{(t-1)_\cntn}^{a}(a_{t-1})$}
   \label{fig:PlotOPRawVSFOC}
 \end{figure}
 
@@ -639,7 +639,7 @@ The results are shown in Figure \ref{fig:PlotOPRawVSFOC}.  The linear interpolat
 Even the new-and-improved consumption function diverges notably from the true
 solution, especially at lower values of $m$.  That is because the
 linear interpolation does an increasingly poor job of capturing the
-nonlinearity of $v_{({t-1})_\cntn}^{a}(a_{t-1})$ at
+nonlinearity of $v_{(t-1)_\cntn}^{a}(a_{t-1})$ at
 lower and lower levels of $a$.
 
 This is where we unveil our next trick.  To understand the logic,

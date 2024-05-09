@@ -19,8 +19,8 @@ Now define a new optimization problem:
         \vFunc_{\prd}(\mNrm_{\prd}) & = \max_{{\cNrm}_{\prd}} ~~ \uFunc(\cNrm_{\prd})+{\DiscFac}\Ex_{\prd}[ \PermGroFac_{\prd+1}^{1-\CRRA}\vFunc_{\prd+1}(\mNrm_{\prd+1})] \label{eq:vNormed}                   \\
                                          & \text{s.t.}                                                                                 \\
         \aNrm_{\prd}                       & = \mNrm_{\prd}-\cNrm_{\prd}                                                                     \\
-        {\kNrm}_{\prd+1}                     & = \aNrm_{\prd}                                                                                \\
-        \bNrm_{\prd+1}                     & = \underbrace{\left(\Rfree/\PermGroFac_{\prd+1}\right)}_{\equiv \RNrm_{\prd+1}}{\kNrm}_{\prd+1} \\
+        \kNrm_{\prd+1}                     & = \aNrm_{\prd}                                                                                \\
+        \bNrm_{\prd+1}                     & = \underbrace{\left(\Rfree/\PermGroFac_{\prd+1}\right)}_{\equiv \RNrm_{\prd+1}}\kNrm_{\prd+1} \\
         \mNrm_{t+1}                        & = \bNrm_{t+1}+\TranShkEmp_{t+1},
       \end{aligned}\end{gathered}\end{equation}
 where division by $\PermGroFac$ in second-to-last equation yields a normalized return factor $\RNrm$ which is the consequence of the fact that we have divided $\prd+1$ level variables by $\pLvl_{\prd+1}=\PermGroFac_{\prd+1}\pLvl_{\prd}$.
@@ -31,7 +31,7 @@ Then it is easy to see that for $\prd=\trmT-1$,
     \end{aligned}\end{gathered}\end{equation*}
 and so on back to all earlier periods.  Hence, if we solve the problem \eqref{eq:vNormed} which has only a single state variable $\mNrm_{\prd-1}$, we can obtain the levels of the value function, consumption, and all other variables from the corresponding permanent-income-normalized solution objects by multiplying each by $\pLvl_{\prd}$, e.g.\ $\cFunc_{\prd}(\mLvl_{\prd},\pLvl_{\prd})=\pLvl_{\prd}\cFunc_{\prd}(\mLvl_{\prd}/\pLvl_{\prd})$ (or, for the value function, $\vLvl _{\prd}(\mLvl_{\prd},\pLvl_{\prd}) = \pLvl_{\prd}^{1-\CRRA}\vFunc_{\prd}(\mNrm_{\prd}))$.  We have thus reduced the problem from two continuous state variables to one (and thereby enormously simplified its solution).
 
-For future reference it will also be useful to write the problem \eqref{eq:vNormed} in the traditional way, by substituting $\bNrm_{\prdt+1},{\kNrm}_{\prdt+1},$ and $\aNrm_{\prdt}$ into $\mNrm_{t+1}$:
+For future reference it will also be useful to write the problem \eqref{eq:vNormed} in the traditional way, by substituting $\bNrm_{\prdt+1},\kNrm_{\prdt+1},$ and $\aNrm_{\prdt}$ into $\mNrm_{t+1}$:
 \begin{equation}\begin{gathered}\begin{aligned}
       \vFunc_{\prdt}(\mNrm_{\prdt}) & = \max_{\cNrm} ~~ \uFunc(\cNrm)+ \DiscFac \Ex_{\prdt}[ \PermGroFac_{\prdt+1}^{1-\CRRA}\vFunc_{\prdt+1}(\overbrace{(\mNrm_{t}-\cNrm)(\Rfree/\PermGroFac_{t+1})+\TranShkEmp_{t+1}}^{m_{t+1}})] \label{eq:vusual}.
     \end{aligned}\end{gathered}\end{equation}

@@ -148,7 +148,7 @@ Piecewise linear `spline' interpolation as described above works well for genera
 
 For any given index $j$ in $\vctr{m}[j]$, the algorithm, as it searches for the corresponding optimal $a$, the algorithm will end up  calculating $\vFunc_{\EndPrdLsT}(\tilde{a})$ for many $\tilde{a}$ values close to the optimal $a_{\prdT-1}$.  Indeed, even when searching for the optimal $a$ for a \emph{different} $m$ (say $\vctr{m}[k]$ for $k \neq j$) the search process might compute $\vFunc_{\EndPrdLsT}(a)$ for an $a$ close to the correct optimal $a$ for $\vctr{m}[j]$. But if that difficult computation does not correspond to the exact solution to the $\vctr{m}[k]$ problem, it is discarded.  
 
-% (These lists contain the points of the $\vctr{a}_{{\prdT-1}}$ and $\vctr{v}_{{\prdT-1}}$ vectors, respectively.)
+% (These lists contain the points of the $\vctr{a}_{\prdT-1}$ and $\vctr{v}_{\prdT-1}$ vectors, respectively.)
 
 The notebook section ``Interpolating Expectations,'' now interpolates the expected value of \textit{ending} the period with a given amount of assets.\footnote{What we are doing here is closely related to `the method of parameterized expectations' of \cite{denHaanMarcet:parameterized}; the only difference is that our method is essentially a nonparametric version.}  %The problem is solved in the same block with the remaining lines of code.
 
@@ -157,7 +157,7 @@ Figure~\ref{fig:PlotOTm1RawVSInt} compares the true value function to the approx
 \hypertarget{PlotOTm1RawVSInt}{}
 \begin{figure}
   \centerline{\includegraphics[width=6in]{\FigDir/PlotOTm1RawVSInt}}
-  \caption{End-Of-Period Value $\vFunc_{({\prdT-1})_\cntn}(a_{\prdT-1})$ (solid) versus $\Aprx{\vFunc}_{({\trmT-1})_\cntn}(a_{\trmT-1})$ (dashed)}
+  \caption{End-Of-Period Value $\vFunc_{(\prdT-1)_\cntn}(a_{\prdT-1})$ (solid) versus $\Aprx{\vFunc}_{({\trmT-1})_\cntn}(a_{\trmT-1})$ (dashed)}
   \label{fig:PlotOTm1RawVSInt}
 \end{figure}
 
@@ -170,7 +170,7 @@ Figure~\ref{fig:PlotOTm1RawVSInt} compares the true value function to the approx
 
 \Fix{\marginpar{\tiny In all figs, replace gothic h with notation corresponding to the lecture notes.}}
 
-Nevertheless, the consumption rule obtained when the approximating $\Aprx{\vFunc}_{({\prdT-1})_\cntn}(a_{\prdT-1})$ is used instead of $\vFunc_{({\prdT-1})_\cntn}(a_{\prdT-1})$ is surprisingly bad, as shown in figure \ref{fig:PlotComparecTm1AB}.  For example, when $\mNrm$ goes from 2 to 3, $\Aprx{\cFunc}_{\prdT-1}$ goes from about 1 to about 2, yet when $\mNrm$ goes from 3 to 4, $\Aprx\cNrm$ goes from about 2 to about 2.05.  The function fails even to be concave, which is distressing because Carroll and Kimball~\citeyearpar{ckConcavity} prove that the correct consumption function is strictly concave in a wide class of problems that includes this one.
+Nevertheless, the consumption rule obtained when the approximating $\Aprx{\vFunc}_{(\prdT-1)_\cntn}(a_{\prdT-1})$ is used instead of $\vFunc_{(\prdT-1)_\cntn}(a_{\prdT-1})$ is surprisingly bad, as shown in figure \ref{fig:PlotComparecTm1AB}.  For example, when $\mNrm$ goes from 2 to 3, $\Aprx{\cFunc}_{\prdT-1}$ goes from about 1 to about 2, yet when $\mNrm$ goes from 3 to 4, $\Aprx\cNrm$ goes from about 2 to about 2.05.  The function fails even to be concave, which is distressing because Carroll and Kimball~\citeyearpar{ckConcavity} prove that the correct consumption function is strictly concave in a wide class of problems that includes this one.
 
 \hypertarget{value-function-versus-first-order-condition}{}
 \subsection{Value Function versus First Order Condition}\label{subsec:vVsuP}
@@ -234,39 +234,39 @@ optimal level of consumption if $\mNrm=4$.  These two curves
 intersect slightly below $\cNrm=2.5$.  Thus, increasing $\mNrm$
 from 3 to 4 increases optimal consumption by about 0.5.
 
-Now consider the derivative of our function $\Aprx{\vFunc}_{({\prdT-1})}(a_{\prdT-1})$.  Because we have
-constructed $\Aprx{\vFunc}_{({\prdT-1})}$ as a linear interpolation, the slope of
-$\Aprx{\vFunc}_{({\prdT-1})}(a_{\prdT-1})$ between any two adjacent points
+Now consider the derivative of our function $\Aprx{\vFunc}_{(\prdT-1)}(a_{\prdT-1})$.  Because we have
+constructed $\Aprx{\vFunc}_{(\prdT-1)}$ as a linear interpolation, the slope of
+$\Aprx{\vFunc}_{(\prdT-1)}(a_{\prdT-1})$ between any two adjacent points
 $\{\vctr{a}[i],\vctr{},\vctr{a}[{i+1}]\}$ is constant.  The level of the slope immediately below any
 particular gridpoint is different, of course, from the slope above that gridpoint, a fact which
-implies that the derivative of $\Aprx{\vFunc}_{({\prdT-1})_\cntn}(a_{\prdT-1})$ follows a step function.
+implies that the derivative of $\Aprx{\vFunc}_{(\prdT-1)_\cntn}(a_{\prdT-1})$ follows a step function.
 
 The solid-line step function in Figure \ref{fig:PlotuPrimeVSOPrime} depicts the actual value of
-$\Aprx{\vFunc}_{({\prdT-1})_\cntn}^{a}(3-\cNrm)$.  When we attempt to find optimal values of
-$\cNrm$ given $\mNrm$ using $\Aprx{\vFunc}_{({\prdT-1})_\cntn}(a_{\prdT-1})$, the numerical optimization routine will
+$\Aprx{\vFunc}_{(\prdT-1)_\cntn}^{a}(3-\cNrm)$.  When we attempt to find optimal values of
+$\cNrm$ given $\mNrm$ using $\Aprx{\vFunc}_{(\prdT-1)_\cntn}(a_{\prdT-1})$, the numerical optimization routine will
 return the $\cNrm$ for which
-$\uFunc^{c}(\cNrm) = \Aprx{\vFunc}^{a}_{({\prdT-1})_\cntn}(\mNrm-\cNrm)$.  Thus, for
+$\uFunc^{c}(\cNrm) = \Aprx{\vFunc}^{a}_{(\prdT-1)_\cntn}(\mNrm-\cNrm)$.  Thus, for
 $\mNrm=3$ the program will return the value of $\cNrm$ for which the downward-sloping
 $\uFunc^{c}(\cNrm)$ curve intersects with the
-$\Aprx{\vFunc}_{({\prdT-1})_\cntn}^{a}(3-\cNrm)$; as the diagram shows, this value is exactly equal to 2.
+$\Aprx{\vFunc}_{(\prdT-1)_\cntn}^{a}(3-\cNrm)$; as the diagram shows, this value is exactly equal to 2.
 Similarly, if we ask the routine to find the optimal $\cNrm$ for $\mNrm=4$, it finds the point of
-intersection of $\uFunc^{c}(\cNrm)$ with $\Aprx{\vFunc}_{({\prdT-1})_\cntn}^{a}(4-\cNrm)$; and as the diagram shows, this
+intersection of $\uFunc^{c}(\cNrm)$ with $\Aprx{\vFunc}_{(\prdT-1)_\cntn}^{a}(4-\cNrm)$; and as the diagram shows, this
 intersection is only slightly above 2.  Hence, this figure illustrates why the numerical consumption
 function plotted earlier returned values very close to $\cNrm=2$ for both $\mNrm=3$ and $\mNrm=4$.
 
-We would obviously obtain much better estimates of the point of intersection between $\uFunc^{c}(\cNrm)$ and $\vFunc_{({\prdT-1})_\cntn}^{a}(\mNrm-\cNrm)$ if our estimate of $\Aprx{\vFunc}^{a}_{({\prdT-1})_\cntn}$ were not a step function.  In fact, we already know how to construct linear interpolations to functions, so the obvious next step is to construct a linear interpolating approximation to the \textit{expected marginal value of end-of-period assets function} at the points in $\vctr{a}$:
+We would obviously obtain much better estimates of the point of intersection between $\uFunc^{c}(\cNrm)$ and $\vFunc_{(\prdT-1)_\cntn}^{a}(\mNrm-\cNrm)$ if our estimate of $\Aprx{\vFunc}^{a}_{(\prdT-1)_\cntn}$ were not a step function.  In fact, we already know how to construct linear interpolations to functions, so the obvious next step is to construct a linear interpolating approximation to the \textit{expected marginal value of end-of-period assets function} at the points in $\vctr{a}$:
 \begin{equation}\begin{gathered}\begin{aligned}
-      \vFunc_{({\prdT-1})_\cntn}^{a}(\vctr{a})  & =  \DiscFac \Rfree \PermGroFacAdjMu \left(\frac{1}{n_{\TranShkEmp}}\right) \sum_{i=1}^{n_{\TranShkEmp}} \left(\RNrm_{\prdT} \vctr{a} + \TranShkEmp_{i}\right)^{-\CRRA} \label{eq:vEndPrimeTm1}
+      \vFunc_{(\prdT-1)_\cntn}^{a}(\vctr{a})  & =  \DiscFac \Rfree \PermGroFacAdjMu \left(\frac{1}{n_{\TranShkEmp}}\right) \sum_{i=1}^{n_{\TranShkEmp}} \left(\RNrm_{\prdT} \vctr{a} + \TranShkEmp_{i}\right)^{-\CRRA} \label{eq:vEndPrimeTm1}
     \end{aligned}\end{gathered}\end{equation}
-yielding $\vctr{v}{^{a}_{({\prdT-1})_\cntn}}$ (the vector of expected end-of-period-$(T-1)$ marginal values of assets corresponding to \code{aVec}),  %$\{\{\vctr{a}}\code{_{\prdT-1}},\vFunc_{({\prdT-1})_\cntn}^{a}(\vctr{{a}[1]}_{\prdT-1}\},\{\vctr{a}_{(T-1)},\vFunc_{({\prdT-1})_\cntn}^{a}\}\ldots\}$
+yielding $\vctr{v}{^{a}_{(\prdT-1)_\cntn}}$ (the vector of expected end-of-period-$(T-1)$ marginal values of assets corresponding to \code{aVec}),  %$\{\{\vctr{a}}\code{_{\prdT-1}},\vFunc_{(\prdT-1)_\cntn}^{a}(\vctr{{a}[1]}_{\prdT-1}\},\{\vctr{a}_{(T-1)},\vFunc_{(\prdT-1)_\cntn}^{a}\}\ldots\}$
 and construct
-$\Aprx{\vFunc}_{({\prdT-1})_\cntn}^{a}(a_{\prdT-1})$ as the linear
+$\Aprx{\vFunc}_{(\prdT-1)_\cntn}^{a}(a_{\prdT-1})$ as the linear
 interpolating function that fits this set of points.
 
 \hypertarget{PlotOPRawVSFOC}{}
 \begin{figure}
   \centerline{\includegraphics[width=6in]{\FigDir/PlotOPRawVSFOC}}
-  \caption{$\vFunc_{({\prdT-1})_\cntn}^{a}(a_{\prdT-1})$ versus $\Aprx{\vFunc}_{({\prdT-1})_\cntn}^{a}(a_{\prdT-1})$}
+  \caption{$\vFunc_{(\prdT-1)_\cntn}^{a}(a_{\prdT-1})$ versus $\Aprx{\vFunc}_{(\prdT-1)_\cntn}^{a}(a_{\prdT-1})$}
   \label{fig:PlotOPRawVSFOC}
 \end{figure}
 
@@ -287,7 +287,7 @@ The results are shown in Figure \ref{fig:PlotOPRawVSFOC}.  The linear interpolat
 Even the new-and-improved consumption function diverges notably from the true
 solution, especially at lower values of $m$.  That is because the
 linear interpolation does an increasingly poor job of capturing the
-nonlinearity of $\vFunc_{({\prdT-1})_\cntn}^{a}(a_{\prdT-1})$ at
+nonlinearity of $\vFunc_{(\prdT-1)_\cntn}^{a}(a_{\prdT-1})$ at
 lower and lower levels of $a$.
 
 This is where we unveil our next trick.  To understand the logic,
