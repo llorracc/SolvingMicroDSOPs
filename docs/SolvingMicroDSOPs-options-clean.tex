@@ -1,0 +1,73 @@
+% Controls for which of various variant versions to create
+
+\provideboolean{ctwVersion}\setboolean{ctwVersion}{false}\newcommand{\ctw}{\ifthenelse{\boolean{ctwVersion}}} % {cctw}
+\provideboolean{trpVersion}\setboolean{trpVersion}{false}\newcommand{\trp}{\ifthenelse{\boolean{trpVersion}}} % {trp}
+% \setboolean{trpVersion}{true} % {trp}
+\setboolean{trpVersion}{false} % {trp}
+
+% Draft mode puts \labels of figs, tables, eqns in margin
+\provideboolean{draftmode}\setboolean{draftmode}{true}
+% \setboolean{draftmode}{false}
+\newcommand{\Draft}{\ifthenelse{\boolean{draftmode}}}
+\Draft{\usepackage{showlabels}
+  \renewcommand{\showlabelsetlabel}[1]{\tiny #1}
+}{}
+
+% Include or exclude Method of Moderation material 
+\provideboolean{MoMVersion}\setboolean{MoMVersion}{true}
+%\setboolean{MoMVersion}{false}
+\newcommand{\MoM}{\ifthenelse{\boolean{MoMVersion}}}
+
+% Get extra style stuff for cctwMoM
+\MoM{ % {cctw}
+  \usepackage{\LaTeXInputs/cctwMoM} % {cctw}
+}{} % {cctw}
+
+% Versions with or without permanent shocks
+% Seems to be defunct - remove
+\provideboolean{PermShkVersion}\setboolean{PermShkVersion}{true}
+\setboolean{PermShkVersion}{false}
+\newcommand{\PermShkOn}{\ifthenelse{\boolean{PermShkVersion}}}
+
+% MPCMatch version does Hermite polynomials for the interpolation
+% that match both the slope and the intercept at the gridpoints
+\provideboolean{MPCMatchVersion}\setboolean{MPCMatchVersion}{true}
+\newcommand{\MPCMatch}{\ifthenelse{\boolean{MPCMatchVersion}}}
+
+% mynotes
+\provideboolean{MyNotes}\setboolean{MyNotes}{true}
+%\setboolean{MyNotes}{false} 
+
+% margin notes
+\provideboolean{Margnote}\setboolean{Margnote}{true}
+% \setboolean{Margnote}{false}
+\newcommand{\ifMarg}{\ifthenelse{\Margnote}}
+
+% margin notes
+\provideboolean{Cleanmacros}\setboolean{Cleanmacros}{true}
+\setboolean{Cleanmacros}{false}
+\newcommand{\ifClean}{\ifthenelse{\boolean{Cleanmacros}}}
+
+% Show things that need fixing
+\provideboolean{ToFix}\setboolean{ToFix}{true}
+% \setboolean{ToFix}{false} 
+\newcommand{\Fix}{\ifthenelse{\boolean{ToFix}}}
+
+% Show or hide the time subscripts for
+\provideboolean{hidetime}\setboolean{hidetime}{true}
+% \setboolean{hidetime}{false} 
+\newcommand{\timehide}{\ifthenelse{\boolean{hidetime}}}
+
+\provideboolean{verbon}\setboolean{verbon}{true}
+\newcommand{\onverb}{\ifthenelse{\boolean{verbon}}}
+
+\setboolean{showPageHead}{true}
+% \econtexSetup sets boolean variable 'Web' to true if making html not pdf
+\ifthenelse{\boolean{Web}}{ % then
+  \setboolean{showPageHead}{false} % no pages, so no page head, on web
+}{ % else not for web
+  \usepackage{scrlayer-scrpage} % Package for page headers if PDF
+  \automark[section]{section}
+  \usepackage{caption} % allow suppression of appendix figures in NoAppendix PDF
+}
+  
