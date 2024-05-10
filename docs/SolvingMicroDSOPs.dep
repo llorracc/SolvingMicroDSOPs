@@ -129,7 +129,6 @@
   *{package}{atbegshi-ltx}{2021/01/10 v1.0c}
   *{file}   {htex4ht.def} {2023-02-07 v7.00v}
   *{file}   {htex4ht.def} {2023-02-07 v7.00v}
-  *{package}{SolvingMicroDSOPs-private}{0000/00/00 v0.0}
   *{file}   {SolvingMicroDSOPs-options.tex}{0000/00/00 v0.0}
   *{package}{showlabels}  {2022/07/18 v1.9.2}
   *{package}{./Resources/LaTeXInputs/cctwMoM}{0000/00/00 v0.0}
@@ -193,6 +192,7 @@
   *{file}   {sec_the-problem-input.tex}{0000/00/00 v0.0}
   *{file}   {sec_normalization-input.tex}{0000/00/00 v0.0}
   *{file}   {sec_notation-input.tex}{0000/00/00 v0.0}
+  *{file}   {sec_the-usual-theory-input.tex}{0000/00/00 v0.0}
   *{file}   {sec_solving-the-next-input.tex}{0000/00/00 v0.0}
   *{package}{lstlang1}    {2023/02/27 v1.9}
   *{package}{lstlang1}    {2023/02/27 v1.9}

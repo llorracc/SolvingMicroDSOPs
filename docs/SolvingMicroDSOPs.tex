@@ -9,16 +9,22 @@
 \usepackage{\packages/llorracc-handouts} % allow references to llorracc-handouts
 \usepackage{\LaTeXInputs/owner}          % llorracc or econ-ark?
 \usepackage{\LaTeXInputs/local-packages} % LaTeX config in Resources/LaTeXInputs
-%\input{unicode-subs-declare}% When unicode char encountered, translate 
-
-% Characters to replace for prettification
-\usepackage{SolvingMicroDSOPs-private}
 
 % Uncomment the line below to make a file with unicode compilable
 %\usepackage{\LaTeXInputs/unicode-subs-private} % sub unicode for default
 
 % booleans control whether certain features are on or off:
 \input{SolvingMicroDSOPs-options}   
+
+% Characters to replace for easier viewing
+\provideboolean{Cleanmacros}
+\setboolean{Cleanmacros}{false}
+\ifClean{\usepackage{SolvingMicroDSOPs-private}}{}
+
+% Version to substitute primitive latex for everything
+\provideboolean{cleanclean}
+\setboolean{cleanclean}{false}
+\ifthenelse{\boolean{cleanclean}}{\usepackage{econark-clean-clean}}{}
 
 \hypersetup{colorlinks=true,
   pdfauthor={Christopher D. Carroll <ccarroll@jhu.edu>},
@@ -41,7 +47,7 @@
 \input{sec_the-problem-input}
 \input{sec_normalization-input}
 \input{sec_notation-input}
-%\input{sec_the-usual-theory-input}
+\input{sec_the-usual-theory-input}
 \input{sec_solving-the-next-input}
 %\MoM{\input{sec_method-of-moderation-input}}{}
 % Habits go here: \input{./Subfiles-private/Habits}

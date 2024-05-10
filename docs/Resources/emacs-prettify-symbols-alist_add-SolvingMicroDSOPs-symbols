@@ -33,7 +33,7 @@
 		("\\CRRA"			. ?ρ)
 		("\\prd"                        . ?t)
 		("\\prdt"                       . ?t)
-		("\\prdT"                       . ?T)
+		("\\prdT"                       . ?t)
 		("\\trmT"                       . ?T)
 		("\\Rfree"                      . ?R)
 		("\\Risky"                      . ?𝐑)

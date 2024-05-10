@@ -27,16 +27,16 @@ The key to the framework is distinguishing, within each {stage}'s Bellman proble
 \item \textbf{\Continuation}: After all decisions have been made, their consequences are measured by evaluation of the continuing-value function at the values of the `outgoing' state variables (sometimes called `post-state' variables).
 \end{enumerate}
 
-%In the standard treatment in the literature, the (implicit) default assumption is that the {step} where the agent is solving a decision problem is the unique {step} at which the problem is defined.  This is what was done above, when (for example) in \eqref{eq:vNormed} we related the value $\vFunc$ of the current decision to the expectation of the future value $\vFunc_{\prd+1}$.  Here, instead, we want to encapsulate the current {stage}'s problem as a standalone object, which is solved by taking as given an exogenously-provided continuation-value function (in our case, $\vEndStp(a)$).
+%In the standard treatment in the literature, the (implicit) default assumption is that the {step} where the agent is solving a decision problem is the unique {step} at which the problem is defined.  This is what was done above, when (for example) in \eqref{eq:vNormed} we related the value $\vFunc$ of the current decision to the expectation of the future value $\vFunc_{\prd+1}$.  Here, instead, we want to encapsulate the current {stage}'s problem as a standalone object, which is solved by taking as given an exogenously-provided continuation-value function (in our case, $\vEndStg(a)$).
 
 When we want to refer to a specific {step} in the {stage} we will do so by using an indicator which identifies that {step}.  Here we use the consumption {stage} problem described above to exemplify the usage:
 \begin{center}
 %  \mbox{%
     \begin{tabular}{r|c|c|l|l}
       {Step}         & Indicator               & State          & Usage                       & Explanation                                \\ \hline
-      {\Arrival}      & $ \arvl $ & $\kNrm$ & $\vBegStp({\kNrm})$ & value at entry to {stage} (before shocks) \\
-      {\Decision}(s)  & (blank)            & $\mNrm$ & $\vMidStp(\mNrm)$ & value of {stage}-decision (after shocks)       \\
-      {\Continuation} & $ \cntn $ & $\aNrm$ & $\vEndStp(\aNrm)$ & value at exit (after decision) \\ \hline
+      {\Arrival}      & $ \arvl $ & $\kNrm$ & $\vBegStg(\kNrm)$ & value at entry to {stage} (before shocks) \\
+      {\Decision}(s)  & (blank)            & $\mNrm$ & $\vMidStg(\mNrm)$ & value of {stage}-decision (after shocks)       \\
+      {\Continuation} & $ \cntn $ & $\aNrm$ & $\vEndStg(\aNrm)$ & value at exit (after decision) \\ \hline
     \end{tabular}
 %  }
   \end{center}
@@ -44,7 +44,7 @@ When we want to refer to a specific {step} in the {stage} we will do so by using
   Notice that the value functions at different {step}s of the {stage} have distinct state variables.  Only $\kNrm$ is known at the beginning of the period, and other variables take on their values with equations like $b = k \RNrm$ and $\mNrm = \bNrm+\TranShkEmp.$  We will refer to such within-the-{stage} creation of variables as {evolutions}.%  Thus, the consumption problem has two {evolutions}: from $\kNrm$ to $\mNrm$ and from $\mNrm$ to $\aNrm$.
 
 \subsection{Transitions}
-v
+
   In the backward-induction world of Bellman solutions, to solve the problem of a particular {period} we must start with an end-of-{period} value function, which we designate by including the {period} indicator in the subscript:
   \begin{equation}\begin{gathered}\begin{aligned}
         \vEndPrd(\aNrm) & \mapsto \DiscFac \vBegPrdNxt(\overbrace{\aNrm}^{=\kNrm}), \label{eq:trns-single-prd}
@@ -64,29 +64,29 @@ One way to describe this is that when we are considering the solution to the cur
 The {\Decision} problem can now be written much more cleanly than in equation \eqref{eq:vNormed}:
 \begin{verbatimwrite}{./Equations/vMid}
   \begin{equation}\begin{gathered}\begin{aligned}
-        \vFunc(\mNrm) & = \max_{\cNrm}~ \uFunc(\cNrm) + \vFunc_{\cntn}(\overbrace{\mNrm-\cFunc}^{\aNrm}) \label{eq:vMid}
+        \vFunc(\mNrm) & = \max_{\cNrm}~ \uFunc(\cNrm) + \vFunc_{_\cntn}(\overbrace{\mNrm-\cFunc}^{\aNrm}) \label{eq:vMid}
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/vMid}\unskip
 whose first order condition with respect to $\cNrm$ is
 \begin{equation}\begin{gathered}\begin{aligned}
-  \uFunc^{\cNrm}(\cNrm) &= \vEndStp^{\aNrm}(\mNrm-\cNrm)  \label{eq:upEqbetaOp} 
+  \uFunc^{\cNrm}(\cNrm) &= \vEndStg^{\aNrm}(\mNrm-\cNrm)  \label{eq:upEqbetaOp} 
 \end{aligned}\end{gathered}\end{equation}
 which is mathematically equivalent to the usual Euler equation for consumption.  (We will reuse this formulation when we turn to section~\ref{subsec:egm}.)
 
 Having defined these notational conventions, we are now ready to move to substance.
 
-\begin{comment}
-  %
+\begin{comment} %
+
   \subsection{Implementation in Python}
 
   The code implementing the tasks outlined each of the sections to come is available in the \texttt{\href{https://econ-ark.org/materials/SolvingMicroDSOPs}{SolvingMicroDSOPs}} jupyter notebook, written in \href{https://python.org}{Python}. The notebook imports various modules, including the standard \texttt{numpy} and \texttt{scipy} modules used for numerical methods in Python, as well as some user-defined modules designed to provide numerical solutions to the consumer's problem from the previous section. Before delving into the computational exercise, it is essential to touch on the practicality of these custom modules.
 
   \subsubsection{Useful auxilliary files}
 
-  In this exercise, two primary user-defined modules are frequently imported and utilized. The first is the \texttt{gothic\_class} module, which contains functions describing the end-of-period value functions found in equations \eqref{eq:vBegStp} - \eqref{eq:vEnd} (and the corresponding first and second derivatives). %The advantage of defining functions in the code which decompose the consumer's optimal behavior in a given period will become evident in section \ref{subsec:transformation}
+  In this exercise, two primary user-defined modules are frequently imported and utilized. The first is the \texttt{gothic\_class} module, which contains functions describing the end-of-period value functions found in equations \eqref{eq:vBegStg} - \eqref{eq:vEnd} (and the corresponding first and second derivatives). %The advantage of defining functions in the code which decompose the consumer's optimal behavior in a given period will become evident in section \ref{subsec:transformation}
 
   The \texttt{resources} module is also used repeatedly throughout the notebook. This file has three primary objectives: (i) providing functions that discretize the continuous distributions from the theoretical model that describe the uncertainty a consumer faces, (ii) defining the utility function over consumption under a number of specifications, and (iii) enhancing the grid of end-of-period assets for which functions (such as those from the \texttt{gothic\_class} module) will be defined. These objectives will be discussed in greater detail and with respect to the numerical methods used to the problem in subsequent sections of this document.
-\end{comment}
 
+\end{comment}
 \end{document}

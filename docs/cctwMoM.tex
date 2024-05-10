@@ -3,8 +3,11 @@
 \newcommand{\texname}{cctwMoM} % Keyname for the paper
 \usepackage{./.econtexRoot}         % Set paths (like, \LaTeXInputs)
 
-\usepackage{SolvingMicroDSOPs-private}
+\usepackage{\LaTeXInputs/local-macros}   % defns for this project
+\usepackage{\packages/econark}           % econark defns
 \usepackage{\LaTeXInputs/local-packages} % LaTeX config in Resources/LaTeXInputs
+\usepackage{\LaTeXInputs/cctwMoM} % LaTeX config in Resources/LaTeXInputs
+
 \input{cctwMoM-options} % booleans that control whether certain features are on or off
 
 \hypersetup{colorlinks=true,
@@ -77,8 +80,8 @@
 
 \pagebreak\newpage
 
-
-\renewcommand{\DiscAlt}{\beta} % Erase the distinction between the alternative and the standard discount factor
+\end{document}
+%\renewcommand{\DiscAlt}{\beta} % Erase the distinction between the alternative and the standard discount factor
 
 \hypertarget{introduction}{}
 \section{Introduction}\label{sec:Intro}
@@ -127,12 +130,12 @@ For comparison to our new solution method, we use the endogenous gridpoints solu
 \subsubsection{The Consumption Function}
 
 \begin{verbatimwrite}{./cctwMoM/MoM-Prelims.tex}
-  As a preliminary to our solution, define $\hNrm_{\EndStp}$ as end-of-period human wealth (the present discounted value of future labor income) for a perfect foresight version of the problem of a `risk optimist:' a period-$t$ consumer who believes with perfect confidence that the shocks will always take their expected value of \permShkOn {1, $\TranShkEmp_{t+n} = \Ex[\TranShkEmp]=1~\forall~n>0$ and $\permShk_{t+n} = \Ex[\permShk]=1~\forall~n>0$.}  {1, $\TranShkEmp_{t+n} = \Ex[\TranShkEmp]=1~\forall~n>0$.}  The solution to a perfect foresight problem of this kind takes the form\footnote{For a derivation, see \cite{BufferStockTheory}; $\MPCmin_{t}$ is defined therein as the MPC of the perfect foresight consumer with horizon $T-t$.}
+  As a preliminary to our solution, define $\hNrm_{\EndStg}$ as end-of-period human wealth (the present discounted value of future labor income) for a perfect foresight version of the problem of a `risk optimist:' a period-$t$ consumer who believes with perfect confidence that the shocks will always take their expected value of \permShkOn {1, $\TranShkEmp_{t+n} = \Ex[\TranShkEmp]=1~\forall~n>0$ and $\permShk_{t+n} = \Ex[\permShk]=1~\forall~n>0$.}  {1, $\TranShkEmp_{t+n} = \Ex[\TranShkEmp]=1~\forall~n>0$.}  The solution to a perfect foresight problem of this kind takes the form\footnote{For a derivation, see \cite{BufferStockTheory}; $\MPCmin_{t}$ is defined therein as the MPC of the perfect foresight consumer with horizon $T-t$.}
 \end{verbatimwrite}
 \input{./cctwMoM/MoM-Prelims.tex}\unskip
 \begin{verbatimwrite}{./Equations/cFuncAbove.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
-        \cFuncAbove_{t}(\mNrm_{t})  & = (\mNrm_{t} + \hNrm_{\EndStp})\MPCmin_{t} \label{eq:cFuncAbove}
+        \cFuncAbove_{t}(\mNrm_{t})  & = (\mNrm_{t} + \hNrm_{\EndStg})\MPCmin_{t} \label{eq:cFuncAbove}
       \end{aligned}\end{gathered}\end{equation}
   for a constant minimal marginal propensity to consume $\MPCmin_{t}$ given below.
 \end{verbatimwrite}

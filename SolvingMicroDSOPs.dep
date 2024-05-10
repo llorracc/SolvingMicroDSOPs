@@ -1,6 +1,7 @@
 \RequireVersions{
   *{application}{TeX}     {1990/03/25 v3.x}
   *{format} {LaTeX2e}     {2022-11-01 v2.e}
+  *{file}   {SolvingMicroDSOPs.tex}{0000/00/00 v0.0}
   *{class}  {Resources/texmf-local/tex/latex/econtex}{2017/08/01 v0.0}
   *{package}{snapshot}    {2002/03/05 v1.14}
   *{package}{ifthen}      {2022/04/13 v1.1d}
@@ -146,6 +147,7 @@
   *{file}   {sec_the-problem-input.tex}{0000/00/00 v0.0}
   *{file}   {sec_normalization-input.tex}{0000/00/00 v0.0}
   *{file}   {sec_notation-input.tex}{0000/00/00 v0.0}
+  *{file}   {sec_the-usual-theory-input.tex}{0000/00/00 v0.0}
   *{file}   {sec_solving-the-next-input.tex}{0000/00/00 v0.0}
   *{package}{lstlang1}    {2023/02/27 v1.9}
   *{file}   {./Code/Python/snippets/rawsolution.py}{0000/00/00 v0.0}

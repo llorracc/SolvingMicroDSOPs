@@ -6,18 +6,15 @@
 \renewcommand{\packages}{\econtexRoot/Resources/texmf-local/tex/latex}
 \renewcommand{\econtex}{\packages/econtex}
 \renewcommand{\econark}{\econtexRoot/Resources/texmf-local/tex/latex/econark}
-\renewcommand{\econtexSetup}{\econtexRoot/Resources/texmf-local/tex/latex/econtexSetup}
-\renewcommand{\econtexShortcuts}{\econtexRoot/Resources/texmf-local/tex/latex/econtexShortcuts}
-\renewcommand{\econtexBibMake}{\econtexRoot/Resources/texmf-local/tex/latex/econtexBibMake}
-\renewcommand{\econtexBibStyle}{\econtexRoot/Resources/texmf-local/bibtex/bst/econtex}
+%\renewcommand{\econtexSetup}{\econtexRoot/Resources/texmf-local/tex/latex/econtexSetup}
+%\renewcommand{\econtexShortcuts}{\econtexRoot/Resources/texmf-local/tex/latex/econtexShortcuts}
+%\renewcommand{\econtexBibMake}{\econtexRoot/Resources/texmf-local/tex/latex/econtexBibMake}
+%\renewcommand{\econtexBibStyle}{\econtexRoot/Resources/texmf-local/bibtex/bst/econtex}
 \renewcommand{\LaTeXInputs}{\econtexRoot/Resources/LaTeXInputs}
 \renewcommand{\local}{\LaTeXInputs/local}
 
 \providecommand{\onlyinsubfile}{}\renewcommand{\onlyinsubfile}[1]{#1}
 \providecommand{\notinsubfile}{}\renewcommand{\notinsubfile}[1]{}
-
-\providecommand{\aboveMin}{}\renewcommand{\aboveMin}{\blacktriangle}
-\providecommand{\chiFunc}{}\providecommand{\chiFunc}{\pmb{\chi}}
 
 % version for urls - [userGitHubID] or econ-ark
 
@@ -34,20 +31,20 @@
 \providecommand{\prdLsT}{}\renewcommand{\prdLsT}{\prdT-1}
 
 \providecommand{\BegMark}{}\renewcommand{\BegMark}{\arvl}
-\providecommand{\BegStp}{}\renewcommand{\BegStp}{_\arvl}
-\providecommand{\BegStpNxt}{}\renewcommand{\BegStpNxt}{_\arvl{(+)}}
-\providecommand{\BegStpLst}{}\renewcommand{\BegStpLst}{_\arvl{(-)}}
+% \providecommand{\BegStp}{}\renewcommand{\BegStp}{_\arvl}
+% \providecommand{\BegStpNxt}{}\renewcommand{\BegStpNxt}{_\arvl{(+)}}
+% \providecommand{\BegStpLst}{}\renewcommand{\BegStpLst}{_\arvl{(-)}}
+
+\providecommand{\BegStg}{}\renewcommand{\BegStg}{_\arvl}
+\providecommand{\BegStgNxt}{}\renewcommand{\BegStgNxt}{_\arvl{(+)}}
+\providecommand{\BegStgLst}{}\renewcommand{\BegStgLst}{_\arvl{(-)}}
 
 \providecommand{\BegPrd}{}\renewcommand{\BegPrd}{_\arvl{\prd}}
 \providecommand{\BegPrdNxt}{}\renewcommand{\BegPrdNxt}{_\arvl{(\prd+1)}}
 \providecommand{\BegPrdLst}{}\renewcommand{\BegPrdLst}{_\arvl\prd-1}
 
-\providecommand{\MidStp}{}\renewcommand{\MidStp}{\dcsn}
+\providecommand{\MidStg}{}\renewcommand{\MidStg}{\dcsn}
 \providecommand{\MidPrd}{}\renewcommand{\MidPrd}{\prd}
-\providecommand{\MidStpLst}{}\renewcommand{\MidStpLst}{{\prd-1}}
-\providecommand{\MidStpLsT}{}\renewcommand{\MidStpLsT}{{\prdT-1}}
-\providecommand{\MidStpNxt}{}\renewcommand{\MidStpNxt}{{\prd+1}}
-\providecommand{\MidStpNxT}{}\renewcommand{\MidStpNxT}{{\prdT+1}}
 \providecommand{\EndMark}{}\renewcommand{\EndMark}{\cntn}
 \providecommand{\EndPrd}{}\renewcommand{\EndPrd}{\prd_\cntn}
 \providecommand{\EndStg}{}\renewcommand{\EndStg}{_\cntn}
@@ -57,47 +54,52 @@
 \providecommand{\MidPrdLsT}{}\renewcommand{\MidPrdLsT}{{(\prd-1)}} % \dcsn
 \providecommand{\BegPrdLst}{}\renewcommand{\BegPrdLst}{{_\arvl(\prd-1)}} % \dcsn
 \providecommand{\BegPrdLsT}{}\renewcommand{\BegPrdLsT}{{_\arvl(\prd-1)}} % \dcsn
-\providecommand{\MidLsT}{}\renewcommand{\EndPrdLsT}{{(\prd-1})_\cntn}
 \providecommand{\EndPrdNxt}{}\renewcommand{\EndPrdNxt}{(\prd+1)_\cntn}
 \providecommand{\EndPrdNxT}{}\renewcommand{\EndPrdNxT}{(\prdT+1)_\cntn}
 \providecommand{\EndStp}{}\renewcommand{\EndStp}{_\cntn}
-\providecommand{\EndStpLst}{}\renewcommand{\EndStpLst}{_\cntn}
-\providecommand{\EndStpLsT}{}\renewcommand{\EndStpLsT}{_\cntn}
-\providecommand{\EndStpNxt}{}\renewcommand{\EndStpNxt}{_\cntn}
-\newcommand{\vBegStp}{\vFunc_{\BegStp}}
-\newcommand{\vBegStpNxt}{\vFunc_{\BegStpNxt}}
+\newcommand{\vBegStg}{\vFunc_{\BegStg}}
+%\newcommand{\vBegStpNxt}{\vFunc_{\BegStpNxt}}
 \newcommand{\vBegPrd}{\vFunc_{\BegPrd}}
 \newcommand{\vBegPrdNxt}{\vFunc_{\BegPrdNxt}}
-\newcommand{\vBegStpLst}{\vFunc_{\BegStpLst}}
-\newcommand{\vMidStp}{\vFunc_{\MidStp}}
-\newcommand{\vMidStpNxt}{\vFunc_{\MidStpNxt}}
-\newcommand{\vEnd}{\vFunc_{\EndStp}}
-\newcommand{\vEndStp}{\vFunc_{\EndStp}}
+%\newcommand{\vBegStpLst}{\vFunc_{\BegStpLst}}
+%\newcommand{\vMidStp}{\vFunc_{\MidStp}}
+\newcommand{\vMidStg}{\vFunc_{\MidStg}}
+%\newcommand{\vMidStpNxt}{\vFunc_{\MidStpNxt}}
+%\newcommand{\vEnd}{\vFunc_{\EndStp}}
+%\newcommand{\vEndStp}{\vFunc_{\EndStp}}
 \newcommand{\vEndStg}{\vFunc_{\EndStg}}
 \newcommand{\vEndPrd}{\vFunc_{\EndPrd}}
-\newcommand{\vEndStpLst}{\vFunc_{\EndStpLst}}
-\newcommand{\vEndStpLsT}{\vFunc_{\EndStpLsT}}
+%\newcommand{\vEndStpLst}{\vFunc_{\EndStpLst}}
+%\newcommand{\vEndStpLsT}{\vFunc_{\EndStpLsT}}
 \newcommand{\vEndPrdLst}{\vFunc_{\EndPrdLst}}
 \newcommand{\vEndPrdLsT}{\vFunc_{\EndPrdLsT}}
 \newcommand{\vMidPrdLst}{\vFunc_{\MidPrdLst}}
 \newcommand{\vMidPrdLsT}{\vFunc_{\MidPrdLsT}}
-\newcommand{\cEndStp}{\cFunc_{\EndStp}}
-\newcommand{\vPEndStp}{\vFunc^{a}_{\EndStp}}
-\newcommand{\vPMidStp}{\vFunc^{m}_{\MidStp}}
-\newcommand{\vPBegStp}{\vFunc^{k}_{\BegStp}}
-\newcommand{\vPEndStpNxt}{\vFunc^{a}_{\EndStpNxt}}
-\newcommand{\vPMidStpNxt}{\vFunc^{m}_{\MidStpNxt}}
-\newcommand{\vPBegStpNxt}{\vFunc^{k}_{\BegStpNxt}}
-\renewcommand{\vPBegStpNxt}{\vFunc^{k}_{\BegStpNxt}}
+%\newcommand{\cEndStp}{\cFunc_{\EndStp}}
+% \newcommand{\vPEndStp}{\vFunc^{a}_{\EndStp}}
+% \newcommand{\vPMidStp}{\vFunc^{m}_{\MidStp}}
+% \newcommand{\vPBegStp}{\vFunc^{k}_{\BegStp}}
+% \newcommand{\vPEndStpNxt}{\vFunc^{a}_{\EndStpNxt}}
+% \newcommand{\vPMidStpNxt}{\vFunc^{m}_{\MidStpNxt}}
+% \newcommand{\vPBegStpNxt}{\vFunc^{k}_{\BegStpNxt}}
+% \renewcommand{\vPBegStpNxt}{\vFunc^{k}_{\BegStpNxt}}
 
-\providecommand{\step}{}\renewcommand{\step}{s}
+\newcommand{\vPEndStg}{\vFunc^{a}_{\EndStg}}
+\newcommand{\vPMidStg}{\vFunc^{m}_{\MidStg}}
+\newcommand{\vPBegStg}{\vFunc^{k}_{\BegStg}}
+\newcommand{\vPEndStgNxt}{\vFunc^{a}_{\EndStgNxt}}
+\newcommand{\vPMidStgNxt}{\vFunc^{m}_{\MidStgNxt}}
+\newcommand{\vPBegStgNxt}{\vFunc^{k}_{\BegStgNxt}}
+\renewcommand{\vPBegStgNxt}{\vFunc^{k}_{\BegStgNxt}}
+
+%\providecommand{\step}{}\renewcommand{\step}{s}
 
 \providecommand{\PDVCoverc}{\mathbb{C}}
 
 % \newcommand{\Mma}{\textit{Mathematica}}
-\providecommand{\step}{}\renewcommand{\step}{t}
-\providecommand{\stp}{}\renewcommand{\stp}{t}
-\providecommand{\Stp}{}\renewcommand{\Stp}{T}
+%\providecommand{\step}{}\renewcommand{\step}{t}
+%\providecommand{\stp}{}\renewcommand{\stp}{t}
+%\providecommand{\Stp}{}\renewcommand{\Stp}{T}
 % \providecommand{\move}{}\renewcommand{\move}{step}
 \providecommand{\move}{}\renewcommand{\move}{toe}
 \providecommand{\Move}{}\renewcommand{\Move}{Toe}
@@ -113,62 +115,72 @@
 \providecommand{\stgs}{}\renewcommand{\stgs}{tacs}
 \providecommand{\Stgs}{}\renewcommand{\Stgs}{Tacs}
 
-
+% Transitions
 \providecommand{\trnsn}{}\renewcommand{\trnsn}{transition}
 \providecommand{\Trnsn}{}\renewcommand{\Trnsn}{Transition}
 \providecommand{\trnsns}{}\renewcommand{\trnsns}{transitions}
 \providecommand{\Trnsns}{}\renewcommand{\Trnsns}{Transitions}
 
+% Evolutions
 \providecommand{\evltn}{}\renewcommand{\evltn}{evolution}
 \providecommand{\Evltn}{}\renewcommand{\Evltn}{Evolution}
 \providecommand{\evltns}{}\renewcommand{\evltns}{evolutions}
 \providecommand{\Evltns}{}\renewcommand{\Evltns}{Evolutions}
 
+% Expectations
 \newcommand{\ExEndStp}{\Ex_{\EndStp}}
-\newcommand{\ExBegStp}{\Ex_{\BegStp}}
 \newcommand{\ExMidStp}{\Ex_{\MidStp}}
-\newcommand{\ExMidPrd}{\Ex_{\MidPrd}}
+\newcommand{\ExBegStp}{\Ex_{\BegStp}}
+
+\newcommand{\ExEndStg}{\Ex_{\EndStg}}
+\newcommand{\ExMidStg}{\Ex_{\MidStg}}
+\newcommand{\ExBegStg}{\Ex_{\BegStg}}
+\newcommand{\ExBegPrd}{\Ex_{\BegPrd}}
 \newcommand{\ExEndPrd}{\Ex_{\EndPrd}}
 
-\newcommand{\ExEndStpLst}{\Ex_{\EndStpLst}}
-\newcommand{\ExEndStpLsT}{\Ex_{\EndStpLsT}}
-\newcommand{\ExBegStpLst}{\Ex_{\BegStpLst}}
-\newcommand{\ExBegStpLsT}{\Ex_{\BegStpLsT}}
-\newcommand{\ExMidStpLst}{\Ex_{\MidStpLst}}
-\newcommand{\ExMidStpLsT}{\Ex_{\MidStpLsT}}
+%\newcommand{\ExEndStpLst}{\Ex_{\EndStpLst}}
+%\newcommand{\ExEndStpLsT}{\Ex_{\EndStpLsT}}
+%\newcommand{\ExBegStpLst}{\Ex_{\BegStpLst}}
+%\newcommand{\ExBegStpLsT}{\Ex_{\BegStpLsT}}
+%\newcommand{\ExMidStpLst}{\Ex_{\MidStpLst}}
+%\newcommand{\ExMidStpLsT}{\Ex_{\MidStpLsT}}
 
 \providecommand{\stigma}{}\renewcommand{\stigma}{\varsigma}
 \providecommand{\Shr}{}\renewcommand{\Shr}{\stigma}
 \providecommand{\Aprx}{}\renewcommand{\Aprx}{\Alt}
 
-%\newcommand{\lqd}{\ell}
 \newcommand{\wlthAftr}{\acute{w}}
 \newcommand{\wlthBefr}{w}
 
 \newcommand{\optml}[1]{\breve{#1}}
 
 \providecommand{\prd}{}\renewcommand{\prd}{t}
-\providecommand{\prdm}{}\renewcommand{\prdm}{({\prd-1})}
-
+%\providecommand{\prdm}{}\renewcommand{\prdm}{({\prd-1})}
 
 \newcommand{\code}[1]{\ensuremath{\mathtt{#1}}} % code should be in tt font
-%\newcommand{\code}{\mathtt}
 
 % These allow turning on or off the growth factor for permanent income
 % (preserves symbolic derivations in LaTeX but makes them disappear)
 % value function growth normed by G^{1-\CRRA}
+
+% on
 \newcommand{\PermGroFacAdjV}{\PermGroFac_{\prd}^{1-\CRRA}}
 \newcommand{\PermGroFacAdjVNxt}{\PermGroFac_{\prd+1}^{1-\CRRA}}
-\renewcommand{\PermGroFacAdjV}{\null}
-\newcommand{\AdjV}{_{\prd}^{1-\CRRA}}
-\newcommand{\AdjVNxt}{_{\prd+1}^{1-\CRRA}}
-%\providecommand{\PermGroFacAdjV}{}\renewcommand{\PermGroFacAdjV}{.} % turn off
-% marginal utility growth normed by G^{-\CRRA}
 \newcommand{\PermGroFacAdjMu}{\PermGroFac_{\prd}^{-\CRRA}}
 \newcommand{\PermGroFacAdjMuNxt}{\PermGroFac_{\prd+1}^{-\CRRA}}
+\newcommand{\AdjV}{_{\prd}^{1-\CRRA}}
+\newcommand{\AdjVNxt}{_{\prd+1}^{1-\CRRA}}
 \newcommand{\AdjMu}{_{\prd}^{-\CRRA}}
 \newcommand{\AdjMuNxt}{_{\prd+1}^{-\CRRA}}
-\providecommand{\PermGroFacAdjMu}{}\renewcommand{\PermGroFacAdjMu}{\null} % turn off
+% off
+\renewcommand{\PermGroFacAdjV}{\null}
+\renewcommand{\PermGroFacAdjVNxt}{\null}
+\renewcommand{\AdjV}{\null}
+\renewcommand{\AdjVNxt}{\null}
+\renewcommand{\AdjMu}{\null}
+\renewcommand{\AdjMuNxt}{\null}
+\renewcommand{\PermGroFacAdjMu}{\null}
+\renewcommand{\PermGroFacAdjMuNxt}{\null}
 
 % To compile the Habits subfile, go to the Subfiles directory
 
@@ -191,7 +203,7 @@
 \newcommand{\aVec}{\texttt{aVec}}
 \newcommand{\vVec}{\texttt{vVec}}
 
-\newcommand{\arvlstepShr}{_\arvl\step[\Shr]}
+\newcommand{\arvlStpShr}{_\arvl\step[\Shr]}
 \newcommand{\stepShr}{\step[\Shr]}
 
 \newcommand{\vBegStpShr}{\vFunc_{_arvl[\Shr]}}
@@ -214,37 +226,31 @@
 \newcommand{\vctratm}{\vctr{a}_{\prd-1}}\renewcommand{\vctratm}{\vctr{a}}
 \providecommand{\TranShkEmpMin}{}\renewcommand{\TranShkEmpMin}{\underline{\TranShkEmp}}
 
-\newcommand{\cLst}{{c}_{\prdLst}}
-\newcommand{\cLsT}{{c}_{\prdLsT}}
-\newcommand{\mLst}{{m}_{\prdLst}}
-\newcommand{\mLsT}{{m}_{\prdLsT}}
+%\newcommand{\cLst}{{c}_{\prdLst}}
+%\newcommand{\cLsT}{{c}_{\prdLsT}}
+%\newcommand{\mLst}{{m}_{\prdLst}}
+%\newcommand{\mLsT}{{m}_{\prdLsT}}
 
 % Alternative definitions of these would restore the time subscript for c
 % in the max problem statements
-\newcommand{\cLvlMaxPrdT}{\cLvl}
-\newcommand{\cLvlMaxPrdt}{\cLvl}
-\newcommand{\cNrmMaxPrdT}{\cNrm}
-\newcommand{\cNrmMaxPrdt}{\cNrm}
+%\newcommand{\cLvlMaxPrdT}{\cLvl}
+%\newcommand{\cLvlMaxPrdt}{\cLvl}
+%\newcommand{\cNrmMaxPrdT}{\cNrm}
+%\newcommand{\cNrmMaxPrdt}{\cNrm}
 % \newcommand{\cLvlMaxPrd}{\cLvl_{\prd}}
 
+\providecommand{\std}{}\renewcommand{\std}{\sigma}
+%\newcommand{\vrnc}{\std^{2}}
 
-\renewcommand{\std}{\sigma}
-\newcommand{\vrnc}{\std^{2}}
+%\newcommand{\cStg}{\cFunc}
+%\newcommand{\cStgSub}{[\cStg]}
+%\newcommand{\cStgSup}{\cStg}
 
-\newcommand{\cStg}{\cFunc}
-\newcommand{\cStgSub}{[\cStg]}
-\newcommand{\cStgSup}{\cStg}
+%\newcommand{\cStgBeg}{_\arvl{c}}
+%\newcommand{\cStgMid}{[c]}
+%\newcommand{\cStgEnd}{{c}\cntn}
 
-\newcommand{\cStgBeg}{_\arvl{c}}
-\newcommand{\cStgMid}{[c]}
-\newcommand{\cStgEnd}{{c}\cntn}
+%\renewcommand{\vBegStpNxt}{\vFunc^{\cStgBeg}_{\prd+1}}
 
-\newcommand{\vFuncBeg}{\nu}
-\newcommand{\vFuncMid}{\vFunc}
-\newcommand{\vFuncEnd}{\mathfrak{v}}
-
-\renewcommand{\vBegStpNxt}{\vFunc^{\cStgBeg}_{\prd+1}}
-\newcommand{\cCtrl}{\cFunc}
-
-\newcommand{\mStte}{\mNrm} % m as a state variable
-\newcommand{\aStte}{\aNrm}
+%\newcommand{\mStte}{\mNrm} % m as a state variable
+%\newcommand{\aStte}{\aNrm}
