@@ -6,6 +6,7 @@
 \hypertarget{structural-estimation}{}
 \section{Structural Estimation}\label{sec:structural-estimation}
 
+%%% AL: This needs to be reviewed (1) to ensure consistency with the foregoing (ince it is a one-stage-per-period problem, the notation probably will not need to change much if at all); and (2) to be sure it correctly describes what we do in the structural estimation HARK tool now.
 
 This section describes how to use the methods developed above to
 structurally estimate a life-cycle consumption model, following
@@ -147,7 +148,7 @@ with the first order condition:
 \end{verbatimwrite}
 \input{./Equations/FOCLifeCycle} \unskip
 
-The first substantive {step} in this estimation procedure is
+The first substantive {\move} in this estimation procedure is
 to solve for the consumption functions at each age. We need to
 discretize the shock distribution and solve for the policy
 functions by backward induction using equation (\ref{eq:FOCLifeCycle})
@@ -268,6 +269,7 @@ take the standard deviation for each of the estimated parameters across the vari
 
 \subsubsection{An Aside to Computing Sensitivity Measures}\label{subsubsec:sensmeas}
 
+%%% DE: Need reference for andrews2017measuring.  Put in SolvingMicroDSOPs-Add-Refs.bib
 
 A common drawback in commonly used structural estimation procedures is a lack of transparency in its estimates.  As \cite{andrews2017measuring} notes, a researcher employing such structural empirical methods may be interested in how alternative assumptions (such as misspecification or measurement bias in the data) would ``change the moments of the data that the estimator uses as inputs, and how changes in these moments affect the estimates.'' The authors provide a measure of sensitivity for given estimator that makes it easy to map the effects of different assumptions on the moments into predictable bias in the estimates for non-linear models.
 
