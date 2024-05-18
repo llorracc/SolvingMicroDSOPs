@@ -8,6 +8,7 @@
 \usepackage{\LaTeXInputs/local-packages} % LaTeX config in Resources/LaTeXInputs
 \usepackage{\LaTeXInputs/cctwMoM} % LaTeX config in Resources/LaTeXInputs
 
+
 \input{\texname-options} % booleans that control whether certain features are on or off
 
 \hypersetup{colorlinks=true,
@@ -80,7 +81,6 @@
 
 \pagebreak\newpage
 
-\end{document}
 %\renewcommand{\DiscAlt}{\beta} % Erase the distinction between the alternative and the standard discount factor
 
 \hypertarget{introduction}{}
@@ -107,18 +107,18 @@ where
 and the exogenous variables evolve according to 
 \input{./Equations/ExogVars.tex}
 
-It turns out (see \cite{SolvingMicroDSOPs} for a proof) that this problem can be rewritten in a more convenient form in which choice and state variables are normalized by the level of permanent income, e.g., using nonbold font for normalized variables, $\mRat_{t}=\cLev_{t}/\pLev_{t}$.  When that is done, the Bellman equation for the transformed version of the consumer's problem is \input{./Equations/vNormed.tex} and because we have not imposed a liquidity constraint, the solution satisfies the Euler equation \input{./Equations/cEuler.tex}
+It turns out (see \cite{SolvingMicroDSOPs} for a proof) that this problem can be rewritten in a more convenient form in which choice and state variables are normalized by the level of permanent income, e.g., using nonbold font for normalized variables, $\mNrm_{t}=\cLvl_{t}/\pLvl_{t}$.  When that is done, the Bellman equation for the transformed version of the consumer's problem is \input{./Equations/vNormed.tex} and because we have not imposed a liquidity constraint, the solution satisfies the Euler equation \input{./Equations/cEuler.tex}
 
-For the remainder of the paper we will assume that permanent income $\pLev_{t}$ grows by a constant factor $\PermGroFac$ and is not subject to stochastic shocks.  (The generalization to the case with permanent shocks is straightforward.)
+For the remainder of the paper we will assume that permanent income $\pLvl_{t}$ grows by a constant factor $\PermGroFac$ and is not subject to stochastic shocks.  (The generalization to the case with permanent shocks is straightforward.)
 
 \hypertarget{benchmark}{}
 \section{Benchmark: The Method of Endogenous Gridpoints}
 
-For comparison to our new solution method, we use the endogenous gridpoints solution to the microeconomic problem presented in \cite{carrollEGM}.  That method computes the level of consumption at a set of gridpoints for market resources $\mRat$ that are determined endogenously using the Euler equation.  The consumption function is then constructed by linear interpolation among the gridpoints thus found.
+For comparison to our new solution method, we use the endogenous gridpoints solution to the microeconomic problem presented in \cite{carrollEGM}.  That method computes the level of consumption at a set of gridpoints for market resources $\mNrm$ that are determined endogenously using the Euler equation.  The consumption function is then constructed by linear interpolation among the gridpoints thus found.
 
-\cite{SolvingMicroDSOPs} describes a specific calibration of the model and constructs a solution using five gridpoints chosen to capture the structure of the consumption function reasonably well at values of $\mRat$ near the infinite-horizon target value.  (See those notes for details).
+\cite{SolvingMicroDSOPs} describes a specific calibration of the model and constructs a solution using five gridpoints chosen to capture the structure of the consumption function reasonably well at values of $\mNrm$ near the infinite-horizon target value.  (See those notes for details).
 
-\input{\econtexRoot/cctwMoM/EndogGptsProbs.tex}
+\input{cctwMoM/EndogGptsProbs.tex}
 
 \hypertarget{the-method-of-moderation}{}
 \section{The Method of Moderation}
@@ -130,7 +130,7 @@ For comparison to our new solution method, we use the endogenous gridpoints solu
 \subsubsection{The Consumption Function}
 
 \begin{verbatimwrite}{./cctwMoM/MoM-Prelims.tex}
-  As a preliminary to our solution, define $\hNrm_{\EndStg}$ as end-of-period human wealth (the present discounted value of future labor income) for a perfect foresight version of the problem of a `risk optimist:' a period-$t$ consumer who believes with perfect confidence that the shocks will always take their expected value of \permShkOn {1, $\TranShkEmp_{t+n} = \Ex[\TranShkEmp]=1~\forall~n>0$ and $\permShk_{t+n} = \Ex[\permShk]=1~\forall~n>0$.}  {1, $\TranShkEmp_{t+n} = \Ex[\TranShkEmp]=1~\forall~n>0$.}  The solution to a perfect foresight problem of this kind takes the form\footnote{For a derivation, see \cite{BufferStockTheory}; $\MPCmin_{t}$ is defined therein as the MPC of the perfect foresight consumer with horizon $T-t$.}
+  As a preliminary to our solution, define $\hNrm_{\EndStg}$ as end-of-period human wealth (the present discounted value of future labor income) for a perfect foresight version of the problem of a `risk optimist:' a period-$t$ consumer who believes with perfect confidence that the shocks will always take their expected value of \PermShkOn{1, $\TranShkEmp_{t+n} = \Ex[\TranShkEmp]=1~\forall~n>0$ and $\permShk_{t+n} = \Ex[\permShk]=1~\forall~n>0$.}{1, $\TranShkEmp_{t+n} = \Ex[\TranShkEmp]=1~\forall~n>0$.}  The solution to a perfect foresight problem of this kind takes the form\footnote{For a derivation, see \cite{BufferStockTheory}; $\MPCmin_{t}$ is defined therein as the MPC of the perfect foresight consumer with horizon $T-t$.}
 \end{verbatimwrite}
 \input{./cctwMoM/MoM-Prelims.tex}\unskip
 \begin{verbatimwrite}{./Equations/cFuncAbove.tex}
@@ -142,36 +142,36 @@ For comparison to our new solution method, we use the endogenous gridpoints solu
 \input{./Equations/cFuncAbove.tex}\unskip
 
 \input{./Equations/cFuncAbove.tex} 
-\input{\econtexRoot/cctwMoM/MoM-Words.tex}
+\input{cctwMoM/MoM-Words.tex}
 
 \import{./Figures/}{IntExpFOCInvPesReaOptNeedHiPlot.tex}
 
-\input{\econtexRoot/cctwMoM/MoM-Words-Rest.tex}
+\input{cctwMoM/MoM-Words-Rest.tex}
 \input{./Equations/MoM-Inequalities.tex}
-\input{\econtexRoot/cctwMoM/MoM-Inequalities-Describe.tex}
+\input{cctwMoM/MoM-Inequalities-Describe.tex}
 \input{./Equations/MoM-KoppaOfMu.tex}
-\input{\econtexRoot/cctwMoM/MoM-KoppaOfMu-Describe.tex}
+\input{cctwMoM/MoM-KoppaOfMu-Describe.tex}
 \input{./Equations/cFuncHi.tex}
-\input{\econtexRoot/cctwMoM/MoM-End.tex}
+\input{cctwMoM/MoM-End.tex}
 
 \hypertarget{the-value-function}{}
 \subsubsection{The Value Function}
 
-\input{\econtexRoot/cctwMoM/value-Intro.tex} % Can't nest verbatimwrites so must split value.tex up into parts
+\input{cctwMoM/value-Intro.tex} % Can't nest verbatimwrites so must split value.tex up into parts
 \input{./Equations/vFuncPF.tex} % This is the perfect foresight solution 
-\input{\econtexRoot/cctwMoM/value-Rest.tex} % Remainder of the text
+\input{cctwMoM/value-Rest.tex} % Remainder of the text
 
 \section{Extensions}
 
 \hypertarget{a-tighter-upper-bound}{}
 \subsection{A Tighter Upper Bound}
-\input{\econtexRoot/cctwMoM/Tighter.tex}
+\input{cctwMoM/Tighter.tex}
 \input{./Equations/mtCusp.tex}
 \input{./Equations/TighterUpperBound.tex}
 \input{./Equations/koppaLo.tex}
-\input{\econtexRoot/cctwMoM/TighterThreeFuncs.tex}
+\input{cctwMoM/TighterThreeFuncs.tex}
 \input{./Equations/TighterThreeEqns.tex}
-\input{\econtexRoot/cctwMoM/TighterThreeFuncsExplain.tex}
+\input{cctwMoM/TighterThreeFuncsExplain.tex}
 
 \begin{figure}
   \includegraphics[width=6in]{./Figures/IntExpFOCInvPesReaOptNeed45Plot}
@@ -180,11 +180,11 @@ For comparison to our new solution method, we use the endogenous gridpoints solu
 \IfRiskyR{
   \hypertarget{stochastic-rate-of-return}{}
   \subsection{Stochastic Rate of Return}
-  \input{\econtexRoot/cctwMoM/StochasticR-Intro.tex} 
+  \input{cctwMoM/StochasticR-Intro.tex} 
 
   The easiest case is where the interest factor is i.i.d., \input{./Equations/distRisky.tex} \noindent because in this case \cite{merton:restat} and \cite{samuelson:portfolio} showed that for a consumer without labor income (or with perfectly forecastable labor income) the consumption function is linear, with an MPC.\footnote{See \handoutC{CRRA-RateRisk} for a derivation.}
-  \input{\econtexRoot/cctwMoM/R-IID-MertonSamuelson.tex} 
-  \input{\econtexRoot/cctwMoM/R-AR1.tex} 
+  \input{cctwMoM/R-IID-MertonSamuelson.tex} 
+  \input{cctwMoM/R-AR1.tex} 
 }{}
 
 % \subsection{Habits}
@@ -195,7 +195,7 @@ For comparison to our new solution method, we use the endogenous gridpoints solu
 The method proposed here is not universally applicable.  For example, the method cannot be used for problems for which upper and lower bounds to the `true' solution are not known.  But many problems do have obvious upper and lower bounds, and in those cases (as in the consumption example used in the paper), the method may result in substantial improvements in accuracy and stability of solutions.
 
 \vfill\clearpage
-\notinsubfile{\input{\LaTeXInputs/bibliography_blend}} \end{document}\endinput
+\notinsubfile{\input{Resources/LaTeXInputs/bibliography_blend}} \end{document}\endinput
 
 % Local Variables:
 % TeX-master-file: t
