@@ -1,15 +1,15 @@
 % -*- mode: LaTeX; TeX-PDF-mode: t; -*- # Tell emacs the file type (for syntax)
-\documentclass[titlepage, headings=optiontotocandhead]{Resources/texmf-local/tex/latex/econtex}
+\input{add_search_paths}
+\documentclass[titlepage, headings=optiontotocandhead]{econtex}
 \newcommand{\texname}{cctwMoM} % Keyname for the paper
 \usepackage{./.econtexRoot}         % Set paths (like, \LaTeXInputs)
 
-\usepackage{\LaTeXInputs/local-macros}   % defns for this project
-\usepackage{\packages/econark}           % econark defns
-\usepackage{\LaTeXInputs/local-packages} % LaTeX config in Resources/LaTeXInputs
-\usepackage{\LaTeXInputs/cctwMoM} % LaTeX config in Resources/LaTeXInputs
+\usepackage{local-macros}   % defns for this project
+\usepackage{econark}           % econark defns
+\usepackage{local-packages} % LaTeX config in Resources/LaTeXInputs
+\usepackage{cctwMoM} % LaTeX config in Resources/LaTeXInputs
 
-
-\input{\texname-options} % booleans that control whether certain features are on or off
+\input{cctwMoM-options} % booleans that control whether certain features are on or off
 
 \hypersetup{colorlinks=true,
   pdfauthor={Christopher D. Carroll <ccarroll@jhu.edu>, Kiichi Tokuoka <ktokuoka <ktokuoka@imf.org>, Weifeng Wu <wwu19@jhu.edu> },
@@ -24,7 +24,7 @@
   The Method of Moderation
 \end{verbatimwrite}
 
-\bibliographystyle{\econtexBibStyle}
+\bibliographystyle{econtex}
 \begin{document}
 
 % Redefine \onlyinsubfile command defined in local.sty file:
@@ -50,7 +50,7 @@
 
 \hypertarget{abstract}{}
 \begin{abstract}
-  In a risky world, a pessimist assumes the worst will happen.  Someone who ignores risk altogether is an optimist.  Consumption decisions are mathematically simple for both the pessimist and the optimist because both behave as if they live in a riskless world.  A realist (that is, someone who wants to respond optimally to risk) faces a much more difficult problem, but (under standard conditions) will choose a level of spending somewhere between pessimist's and the optimist's.  We use this fact to redefine the space in which the realist searches for optimal consumption rules.  The resulting solution accurately represents the numerical consumption rule over the entire interval of feasible wealth values with remarkably few computations.
+  In a risky world, a pessimist assumes the worst will happen.  Someone who ignores risk altogether is an optimist.  Consumption decisions are mathematically simple for both the pessimist and the optimist because both behave as if they live in a riskless world.  A realist (someone who wants to respond optimally to risk) faces a much more difficult problem, but (under standard conditions) will choose a level of spending somewhere between pessimist's and the optimist's.  We use this fact to redefine the space in which the realist searches for optimal consumption rules.  The resulting solution accurately represents the numerical consumption rule over the entire interval of feasible wealth values with remarkably few computations.
 \end{abstract}
 
 % \begin{small}
@@ -83,6 +83,8 @@
 
 %\renewcommand{\DiscAlt}{\beta} % Erase the distinction between the alternative and the standard discount factor
 
+\notinsubfile{\input{./.resources/latex/bibliography-blend}} \end{document}\endinput
+
 \hypertarget{introduction}{}
 \section{Introduction}\label{sec:Intro}
 
@@ -99,7 +101,7 @@ After showing how to use the method in the baseline case, we show how refine it 
 
 We assume that truly optimal behavior in the problem facing the consumer who understands all his risks is captured by
 \input{./Equations/MaxProb.tex}
-%\notinsubfile{\input{\LaTeXInputs/bibliography_blend}} \end{document}\endinput
+%\notinsubfile{\input{./.resources/latex/bibliography-blend}} \end{document}\endinput
 subject to
 \input{./Equations/DBCLevelStart.tex}
 where

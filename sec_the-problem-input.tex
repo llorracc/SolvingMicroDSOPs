@@ -1,0 +1,46 @@
+
+\hypertarget{the-problem}{}
+\section{The Problem}\label{sec:the-problem}
+
+The usual analysis of dynamic stochastic programming problems packs a great many events (intertemporal choice, stochastic shocks, intertemporal returns, income growth, the taking of expectations, time discounting, and more) into a complex decision in which the agent makes an optimal choice simultaneously taking all these elements into account. For the dissection here, we will be careful to break down everything that happens into distinct operations so that each element can be scrutinized and understood in isolation.
+
+We are interested in the behavior a consumer who begins {\interval} $\prd$ with a certain amount of `capital' $\kLvl_{\prd}$, which is immediately rewarded by a return factor $\Rfree_{\prd}$  with the proceeds deposited in a \textbf{b}ank \textbf{b}alance:
+\begin{equation}\begin{gathered}\begin{aligned}\label{eq:bLvl}
+      \bLvl_{\prd} & = \kLvl_{\prd}\Rfree_{\prd}. 
+    \end{aligned}\end{gathered}\end{equation}
+
+Simultaneously with the realization of the capital return, the consumer also receives noncapital income $\yLvl_{\prd}$, which is determined by multiplying the consumer's `permanent income' $\pLvl_{\prd}$ by a transitory shock $\TranShkEmp_{\prd}$:
+\begin{equation}\begin{gathered}\begin{aligned}
+      \yLvl_{\prd} & = \pLvl_{\prd}\TranShkEmp_{\prd} \label{eq:yLvl}
+    \end{aligned}\end{gathered}\end{equation}
+whose whose expectation is 1 (that is, before realization of the transitory shock, the consumer's expectation is that actual income will on average be equal to permanent income $\pLvl_{\prd}$).
+
+The combination of bank balances $\bLvl$ and income $\yLvl$ define's the consumer's `market resources' (sometimes called `cash-on-hand,' following~\cite{deatonUnderstandingC}):
+\begin{equation}\begin{gathered}\begin{aligned}
+      \mLvl_{\prd} & = \bLvl_{\prd}+\yLvl_{\prd} \label{eq:mLvl},
+    \end{aligned}\end{gathered}\end{equation}
+available to be spent on consumption $\cLvl_{\prd}$ for a consumer subject to a liquidity constraint that requires $\cLvl \leq \mLvl$ (though we are not imposing such a constraint yet - see subsection~\ref{subsec:LiqConstrSelfImposed} for further discussion).
+
+The consumer's goal is to maximize discounted utility from consumption over the rest of a lifetime ending at date $\trmT$:
+% chktex-file 36
+  \begin{equation}\label{eq:MaxProb}
+    \max~\Ex_{\prd}\left[\sum_{n=0}^{\trmT-\prd}\DiscFac^{n} \uFunc(\cLvl_{\prd+n})\right].
+  \end{equation}
+Income evolves according to:
+  \begin{equation}\begin{gathered}\begin{aligned}
+        \pLvl_{\prd+1}   = \PermGroFac_{\prd+1}\pLvl_{\prd}                                        & \text{~~ -- permanent labor income dynamics} \label{eq:permincgrow}
+        \\ \log ~ \TranShkEmp_{t+n}  \sim ~\Nrml(-\std_{\TranShkEmp}^{2}/2,\std_{\TranShkEmp}^{2}) & \text{~~ -- lognormal transitory shocks}~\forall~n>0 .
+      \end{aligned}\end{gathered}\end{equation}
+
+Equation \eqref{eq:permincgrow} indicates that we are allowing for a predictable average profile of income growth over the lifetime $\{\PermGroFac\}_{0}^{T}$ (to capture typical career wage paths, pension arrangements, etc).\footnote{For expositional and pedagogical purposes, this equation assumes that there are no shocks to permanent income (though they are trivial to add).  A large literature finds that, in reality, permanent (or at least extremely highly persistent) shocks exist and are quite large; such shocks therefore need to be incorporated into any `serious' model (that is, one that hopes to match and explain empirical data), but the treatment of permanent shocks clutters the exposition without adding much to the intuition, so permanent shocks are omitted from the analysis until the last section of the notes, which shows how to match the model with empirical micro data.  For a full treatment of the theory including permanent shocks, see \cite{BufferStockTheory}.}  Finally, the utility function is of the Constant Relative Risk Aversion (CRRA), form, $\uFunc(\bullet) = \bullet^{1-\CRRA}/(1-\CRRA)$.
+
+It is well known that this problem can be rewritten in recursive (Bellman) form:
+  \begin{equation}\begin{gathered}\begin{aligned}
+        \vFunc_{\prd}(\mLvl_{\prd},\pLvl_{\prd})  & = \max_{\cLvl}~ \uFunc(\cLvl) + \DiscFac \Ex_{\prd}[ \vFunc_{\prd+1}(\mLvl_{\prd+1},\pLvl_{\prd+1})]\label{eq:vrecurse}
+      \end{aligned}\end{gathered}\end{equation}
+subject to the Dynamic Budget Constraint (DBC) implicitly defined by equations~\eqref{eq:bLvl}-\eqref{eq:mLvl} and to the transition equation that defines next period's initial capital as this period's end-of-period assets:
+\begin{equation}\begin{gathered}\begin{aligned}
+      \kLvl_{\prd+1} & = \aLvl_{\prd}. \label{eq:transitionstate}
+    \end{aligned}\end{gathered}\end{equation}
+
+

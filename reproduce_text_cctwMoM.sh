@@ -1,5 +1,7 @@
 #/bin/bash
-pdflatex -interaction=nonstopmode                           -halt-on-error -file-line-error -shell-escape \\newcommand\\UseOption{FromShell}\\input{cctwMoM}
-pdflatex -interaction=nonstopmode                           -halt-on-error -file-line-error -shell-escape \\newcommand\\UseOption{FromShell}\\input{cctwMoM}
-pdflatex -interaction=nonstopmode                           -halt-on-error -file-line-error -shell-escape \\newcommand\\UseOption{FromShell}\\input{cctwMoM}
-latexmk -c
+scriptDir="$(realpath $(dirname $0))" ; cd $scriptDir
+pdflatex -interaction=nonstopmode -shell-escape -output-format dvi cctwMoM
+pdflatex -halt-on-error    -output-format dvi -shell-escape cctwMoM
+bibtex -terse cctwMoM
+pdflatex -halt-on-error    -output-format dvi -shell-escape cctwMoM
+pdflatex -halt-on-error    -output-format dvi -shell-escape cctwMoM
