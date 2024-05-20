@@ -12,7 +12,7 @@
 % if this is uncommented, bullets are shown step by step; comment out to make printable version:
 \beamerdefaultoverlayspecification{<+->}
 
-\usepackage{\texname-options}
+%\usepackage{\texname-options}
 % if invoked from shell with option NoOverlays, make printable version
 % (no partial slides where bullets unfold)
 \opt{NoOverlays}{\setboolean{WithOverlays}{false}\beamerdefaultoverlayspecification{}}
@@ -99,12 +99,12 @@
 
 where nonbold variables are bold ones normalized by $\pLev$:
 \begin{equation}\begin{gathered}\begin{aligned}
-\mRat_{t}  & = \mLev_{t}/\pLev_{t}
+\mNrm_{t}  & = \mLvl_{t}/\pLvl_{t}
 \end{aligned}\end{gathered}\end{equation}
 
 Yields $\cFunc_{t}(m)$ from which we can obtain
 \begin{equation}\begin{gathered}\begin{aligned}
-  \cLev_{t}(\mLev_{t},\pLev_{t})  & = \cFunc_{t}(\mLev_{t}/\pLev_{t})\pLev_{t}
+  \cLvl_{t}(\mLvl_{t},\pLvl_{t})  & = \cFunc_{t}(\mLvl_{t}/\pLvl_{t})\pLvl_{t}
 \end{aligned}\end{gathered}\end{equation}
 
 \end{frame}
@@ -131,7 +131,7 @@ Define
 \input{./Equations/vEndtdefn.tex}
 so 
 \begin{equation}\begin{gathered}\begin{aligned}
-  \vFunc_{t}(\mRat_{t})  & = \max_{\cNrm_{t}}~~ \util(\cNrm_{t}) + \vEndStg{t}(\mRat_{t}-\cNrm_{t})
+  \vFunc_{t}(\mNrm_{t})  & = \max_{\cNrm_{t}}~~ \util(\cNrm_{t}) + \vEndStg{t}(\mNrm_{t}-\cNrm_{t})
 \end{aligned}\end{gathered}\end{equation}
 with FOC
 \input{./Equations/upEqbetaOp.tex}
@@ -161,7 +161,7 @@ E.g.\ use an equiprobable 7-point distribution:\medskip\medskip
 %\input{./Equations/vDiscrete.tex}
 
 \pause 
-So for any particular $\mRat_{T-1}$ the corresponding $\cNrm_{T-1}$ can be found
+So for any particular $\mNrm_{T-1}$ the corresponding $\cNrm_{T-1}$ can be found
 using the FOC:
 \input{./Equations/upEqbetaOp.tex}
 
@@ -172,9 +172,9 @@ using the FOC:
 \frametitle{Trick: Interpolate a Consumption Rule}
 
 \begin{enumerate}
-\item Define a grid of points $\vctr{\mNrm}$ (indexed $\mRat[i]$)
+\item Define a grid of points $\vctr{\mNrm}$ (indexed $\mNrm\[i]$)
 \item Use numerical rootfinder to solve 
-$\util^{\prime}(\cNrm) = \vEndStg^{\prime}_{t}(\mRat[i]-\cNrm)$
+$\util^{\prime}(\cNrm) = \vEndStg^{\prime}_{t}(\mNrm\[i]-\cNrm)$
 \begin{itemize}
 \item The $\cNrm$ that solves this becomes $\cNrm[i]$
 \end{itemize}
@@ -204,7 +204,7 @@ Example: $\vctr{\mNrm}_{T-1} = \{0.,1.,2.,3.,4.\}$ (solid is `correct' soln)
 \frametitle{Problem: Numerical Rootfinding is {\it Slow}}
 
 Numerical search for values of $\cNrm_{T-1}$ satisfying
-$\util^{\prime}(\cNrm) = \vEndStg^{\prime}_{t}(\mRat[i]-\cNrm)$ at, say,
+$\util^{\prime}(\cNrm) = \vEndStg^{\prime}_{t}(\mNrm\[i]-\cNrm)$ at, say,
 6 gridpoints of $\vctr{\mNrm}_{T-1}$ may require hundreds or even thousands of
 evaluations of
 \begin{equation}\begin{gathered}\begin{aligned}
@@ -231,7 +231,7 @@ can be constructed by linear interpolation among the points:
 \begin{frame}
 \frametitle{Using $\grave{\vEnd}_{T-1}$ In Optimization}
 \begin{equation*}\begin{gathered}\begin{aligned}
-  \vFunc_{t}(\mRat_{t})  & = \max_{\cNrm_{t}}~~ \util(\cNrm_{t}) + \grave{\vEnd}_{t}(\mRat_{t}-\cNrm_{t})
+  \vFunc_{t}(\mNrm_{t})  & = \max_{\cNrm_{t}}~~ \util(\cNrm_{t}) + \grave{\vEnd}_{t}(\mNrm_{t}-\cNrm_{t})
 \end{aligned}\end{gathered}\end{equation*}
 is {\it much} faster,  but result is bad:
 \begin{center}
@@ -276,8 +276,8 @@ $\cNrm[j]$ via FOC:
 
 But the DBC says
 \begin{equation}\begin{gathered}\begin{aligned}
-  \aNrm_{t}  & = \mRat_{t} - \cNrm_{t}
-\\ \mRat[j]  & = \aNrm[j]+\cNrm[j]
+  \aNrm_{t}  & = \mNrm_{t} - \cNrm_{t}
+\\ \mNrm\[j]  & = \aNrm[j]+\cNrm[j]
 \end{aligned}\end{gathered}\end{equation}
 
 \pause 
@@ -297,9 +297,9 @@ From these we can interpolate as before to construct $\grave{\cFunc}_{t}(\mRat)$
 Principles of Approximation
 
 \begin{itemize}
-\item Hard to approximate things that approach $\infty$ for relevant $\mRat$
+\item Hard to approximate things that approach $\infty$ for relevant $\mNrm$
 \begin{itemize}
-\item Not a prob for Rep Agent models: `relevant' $\mRat$'s are $\approx$ SS
+\item Not a prob for Rep Agent models: `relevant' $\mNrm$'s are $\approx$ SS
 \end{itemize}
 \item Hard to approximate things that are highly nonlinear 
 %\item Best to approximate things that directly govern behavior
@@ -318,7 +318,7 @@ Perfect Foresight Theory:
 \begin{equation}\begin{gathered}\begin{aligned}
   \cFunc_{t}(\mRat)  & = (\mRat+\hEnd_{t})\MPCmin_{t} 
 \end{aligned}\end{gathered}\end{equation}
-for market resources $\mRat$ and end-of-period human wealth $\hEnd$.
+for market resources $\mNrm$ and end-of-period human wealth $\hEnd$.
 
 
 \medskip\medskip
@@ -388,7 +388,7 @@ and using chain rule it is easy to show that
 \subsection{Improving the $\aNrm$ Grid}
 
 \begin{frame}
-\frametitle{Problem: $\Alt{\cFunc}$ Below Bottom $\mRat$ Gridpoint and Extrapolation}
+\frametitle{Problem: $\Alt{\cFunc}$ Below Bottom $\mNrm$ Gridpoint and Extrapolation}
 
 Consider what happens as $a_{T-1}$ approaches $\underline{a}_{T-1}\equiv-\underline{\TranShkEmp}\RNrm_{T}^{-1}$,
 \begin{equation*}\begin{gathered}\begin{aligned}
@@ -478,17 +478,17 @@ Define $\grave{\cFunc}^{*}_{t}$ as soln to unconstrained problem.  Then
 
 Point where constraint makes transition from binding to not is
 \begin{equation*}\begin{gathered}\begin{aligned}
-    \util^{\prime}(\mRat_{T-1}^{\#})  & = \vEndStg^{\prime}_{T-1}(0.)
-\\  \mRat_{T-1}^{\#}  & = \left(\vEndStg^{\prime}_{T-1}(0.)\right)^{-1/\CRRA}
+    \util^{\prime}(\mNrm_{T-1}^{\#})  & = \vEndStg^{\prime}_{T-1}(0.)
+\\  \mNrm_{T-1}^{\#}  & = \left(\vEndStg^{\prime}_{T-1}(0.)\right)^{-1/\CRRA}
 \end{aligned}\end{gathered}\end{equation*}
 \pause\medskip
 
 Procedure is very easy:
 \begin{itemize}
 \item Add $0.$ as first point in $\vctr{\aNrm}$
-\item $\Rightarrow \vctr{\mNrm}[1] = \mRat_{T-1}^{\#}$
-\item Above $\mRat_{T-1}^{\#}$, $\grave{\cFunc}_{T-1}(\mRat)$ obtained as before
-\item Below $\mRat_{T-1}^{\#}$, $\grave{\cFunc}_{T-1}(\mRat)=\mRat$
+\item $\Rightarrow \vctr{\mNrm}[1] = \mNrm_{T-1}^{\#}$
+\item Above $\mNrm_{T-1}^{\#}$, $\grave{\cFunc}_{T-1}(\mRat)$ obtained as before
+\item Below $\mNrm_{T-1}^{\#}$, $\grave{\cFunc}_{T-1}(\mRat)=\mNrm$
 \end{itemize}
 
 \end{frame}
@@ -558,12 +558,12 @@ When the problem satisfies certain conditions~(\cite{BufferStockTheory}),
 it defines a `converged' consumption rule with a `target' ratio $\check{\mNrm}$
 that satisfies:
 \begin{equation}\begin{gathered}\begin{aligned}
-  \Ex_{t}[\mRat_{t+1}/\mRat_{t}]  & = 1 \text{~if $\mRat_{t} = \check{\mNrm}$}
+  \Ex_{t}[\mNrm_{t+1}/\mNrm_{t}]  & = 1 \text{~if $\mNrm_{t} = \check{\mNrm}$}
 \end{aligned}\end{gathered}\end{equation}
 
 \pause 
 
-Define the target $\mRat$ implied by the consumption rule $\cFunc_{t}$ as $\check{\mNrm}_{t}$.
+Define the target $\mNrm$ implied by the consumption rule $\cFunc_{t}$ as $\check{\mNrm}_{t}$.
 
 \medskip\pause
 Then a plausible metric for convergence is to define some value $\epsilon$ and to declare
@@ -623,7 +623,7 @@ the solution to have converged when
 \frametitle{Empirical Wealth Profiles}
 \begin{figure}
     \includegraphics[width=3.5in]{./Figures/PlotMeanMedianSCFcollegeGrads.pdf}
-    \caption{$\mRat$ from SCF (means (dashed) and medians (solid))}
+    \caption{$\mNrm$ from SCF (means (dashed) and medians (solid))}
     \label{fig:MeanMedianSCF}
 \end{figure}
 \end{frame}
@@ -633,12 +633,12 @@ the solution to have converged when
 
 Given a set of parameter values $\{\CRRA,\beth\}$:
 \begin{itemize}
-\item Start at age 25 with empirical $\mRat$ data
+\item Start at age 25 with empirical $\mNrm$ data
 \item Draw shocks using calibrated $\sigma^{2}_{\permShk}$,$\sigma^{2}_{\TranShkEmp}$
 \item Consume according to solved $\cFunc_{t}$
 \end{itemize}
 \pause 
-$\Rightarrow \mRat$ distribution by age
+$\Rightarrow \mNrm$ distribution by age
 \end{frame}
 
 \begin{frame}

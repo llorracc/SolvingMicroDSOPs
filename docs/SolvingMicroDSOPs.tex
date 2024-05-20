@@ -1,59 +1,52 @@
-% -*- mode: LaTeX; TeX-PDF-mode: t; -*-  
-\documentclass[titlepage, headings=optiontotocandhead]{Resources/texmf-local/tex/latex/econtex}
+% -*- mode: LaTeX; TeX-PDF-mode: t; -*-
+\input{.resources/texlive/add_search_paths} % allow latex to find custom stuff
+
+\documentclass[titlepage, headings=optiontotocandhead]{econtex}
 \newcommand{\texname}{SolvingMicroDSOPs} % Keyname for the paper
-\usepackage{./.econtexRoot}              % Set paths (like, \LaTeXInputs)
+%\usepackage{./.econtexRoot}              % Set paths
 
 % specific to this paper 
-\usepackage{\LaTeXInputs/local-macros}   % defns for this project
-\usepackage{\packages/econark}           % econark defns
-\usepackage{\packages/llorracc-handouts} % allow references to llorracc-handouts
-\usepackage{\LaTeXInputs/owner}          % llorracc or econ-ark?
-\usepackage{\LaTeXInputs/local-packages} % LaTeX config in Resources/LaTeXInputs
-
-% Uncomment the line below to make a file with unicode compilable
-%\usepackage{\LaTeXInputs/unicode-subs-private} % sub unicode for default
+\usepackage{local-macros}      % defns for this project
+\usepackage{econark}           % econark defns
+\usepackage{llorracc-handouts} % allow references to llorracc-handouts
+\usepackage{owner}             % llorracc or econ-ark?
+\usepackage{local-packages}    % LaTeX config in ./resources/latex
 
 % booleans control whether certain features are on or off:
-\input{SolvingMicroDSOPs-options}   
+\input{\texname-options}   
 
-% Characters to replace for easier viewing
-\provideboolean{Cleanmacros}
-\setboolean{Cleanmacros}{false}
-\ifClean{\usepackage{SolvingMicroDSOPs-private}}{}
+% replace macros with their referents using demacro
+% (only operative when processing doc with demacro script):
+\provideboolean{demacro}\setboolean{demacro}{false}
+\ifthenelse{\boolean{demacro}}{\usepackage{SolvingMicroDSOPs-private}}{}
 
-% Version to substitute primitive latex for everything
-\provideboolean{cleanclean}
-\setboolean{cleanclean}{false}
-\ifthenelse{\boolean{cleanclean}}{\usepackage{econark-clean-clean}}{}
+% Only operative when running demacro script on document-clean
+% (a make script changes the name to end in -private)
+\provideboolean{demacromore}\setboolean{demacromore}{false}
+\ifthenelse{\boolean{demacromore}}{\usepackage{SolvingMicroDSOPs-econark}}{}
 
-\hypersetup{colorlinks=true,
-  pdfauthor={Christopher D. Carroll <ccarroll@jhu.edu>},
-  pdftitle={Solution Methods for Microeconomic Dynamic Stochastic Optimization Problems},
-  pdfsubject={Dynamic Stochastic Optimization Theory; Lecture Notes},
-  pdfkeywords={Numerical Methods, Software, Computational Economics, Bellman},
-  pdfcreator = {pdflatex},
-  plainpages=false,
-  pdfpagelabels,
-  colorlinks=true,
-  citecolor=magenta
-}
+% Configure html links etc
+\input{SolvingMicroDSOPs-hypersetup}
 
-\bibliographystyle{\econtexBibStyle}
+% Like econometrica.bst but with full names rather than initials
+\bibliographystyle{econtex}
 
 \begin{document}
 
-\input{sec_titlepage-input}
-\input{sec_introduction-input}
-\input{sec_the-problem-input}
-\input{sec_normalization-input}
-\input{sec_notation-input}
-\input{sec_the-usual-theory-input}
-\input{sec_solving-the-next-input}
-%\MoM{\input{sec_method-of-moderation-input}}{}
-% Habits go here: \input{./Subfiles-private/Habits}
-\input{sec_the-infinite-horizon-input}
-\input{sec_multiple-control-variables-input}
-\input{sec_structural-estimation-input}
+% Sections = _sectn-
+\subfile{_sectn-titlepage}
+%\input{./.resources/latex/bibliography-blend}\end{document}\endinput % \endinput prevents any processing of subsequent stuff
+\subfile{_sectn-introduction}
+\subfile{_sectn-the-problem}
+\subfile{_sectn-normalization}
+\subfile{_sectn-notation}
+%\subfile{_sectn-the-usual-theory}
+\subfile{_sectn-solving-the-next}
+%\MoM{\subfile{_sectn_method-of-moderation}}{}
+\subfile{_sectn-the-infinite-horizon}
+\subfile{_sectn-multiple-control-variables}
+\subfile{_sectn-structural-estimation}
+\subfile{_sectn-conclusion}
 
 \clearpage\vfill\eject
 
@@ -61,10 +54,11 @@
 
 \appendix
 
-\input{apndx_scf-data-input}
+% Appendices = _apndx-
+\subfile{_apndx-scf-data}
 \vfill\clearpage
 
-\input{Resources/LaTeXInputs/bibliography_blend}
+\input{./.resources/latex/bibliography-blend}%\end{document}\endinput % \endinput prevents any processing of subsequent stuff
 
 \trp{
   \pagebreak

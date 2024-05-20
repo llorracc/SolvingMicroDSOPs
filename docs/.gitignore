@@ -2,6 +2,9 @@
 # Created by https://www.gitignore.io/api/latex,emacs,macos,python,ipython
 # Edit at https://www.gitignore.io/?templates=latex,emacs,macos,python,ipython
 
+# Ignore .condaenv because needs to be made once on each machine
+.condaenv
+
 ### Emacs ###
 # -*- mode: gitignore; -*-
 *~

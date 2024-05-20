@@ -8,7 +8,7 @@
 
 The usual analysis of dynamic stochastic programming problems packs a great many events (intertemporal choice, stochastic shocks, intertemporal returns, income growth, the taking of expectations, time discounting, and more) into a complex decision in which the agent makes an optimal choice simultaneously taking all these elements into account. For the dissection here, we will be careful to break down everything that happens into distinct operations so that each element can be scrutinized and understood in isolation.
 
-We are interested in the behavior a consumer who begins {period} $\prd$ with a certain amount of `capital' $\kLvl_{\prd}$, which is immediately rewarded by a return factor $\Rfree_{\prd}$  with the proceeds deposited in a \textbf{b}ank \textbf{b}alance:
+We are interested in the behavior a consumer who begins {\interval} $\prd$ with a certain amount of `capital' $\kLvl_{\prd}$, which is immediately rewarded by a return factor $\Rfree_{\prd}$  with the proceeds deposited in a \textbf{b}ank \textbf{b}alance:
 \begin{equation}\begin{gathered}\begin{aligned}\label{eq:bLvl}
       \bLvl_{\prd} & = \kLvl_{\prd}\Rfree_{\prd}. 
     \end{aligned}\end{gathered}\end{equation}
@@ -23,7 +23,7 @@ The combination of bank balances $\bLvl$ and income $\yLvl$ define's the consume
 \begin{equation}\begin{gathered}\begin{aligned}
       \mLvl_{\prd} & = \bLvl_{\prd}+\yLvl_{\prd} \label{eq:mLvl},
     \end{aligned}\end{gathered}\end{equation}
-available to be spent on consumption $\cLvl_{\prd}$ for a consumer subject to a liquidity constraint that requires $\cLvl \leq \mLvl$ (we are not imposing such a constraint yet - see subsection~\ref{subsec:LiqConstrSelfImposed} below for further discussion).
+available to be spent on consumption $\cLvl_{\prd}$ for a consumer subject to a liquidity constraint that requires $\cLvl \leq \mLvl$ (though we are not imposing such a constraint yet - see subsection~\ref{subsec:LiqConstrSelfImposed} for further discussion).
 
 The consumer's goal is to maximize discounted utility from consumption over the rest of a lifetime ending at date $\trmT$:
 % chktex-file 36
@@ -47,7 +47,7 @@ Equation \eqref{eq:permincgrow} indicates that we are allowing for a predictable
 It is well known that this problem can be rewritten in recursive (Bellman) form:
 \begin{verbatimwrite}{./Equations/vrecurse}
   \begin{equation}\begin{gathered}\begin{aligned}
-        \vFunc_{\prd}(\mLvl_{\prd},\pLvl_{\prd})  & = \max_{\cNrm}~ \uFunc(\cNrm) + \DiscFac \Ex_{\prd}[ \vFunc_{\prd+1}(\mLvl_{\prd+1},\pLvl_{\prd+1})]\label{eq:vrecurse}
+        \vFunc_{\prd}(\mLvl_{\prd},\pLvl_{\prd})  & = \max_{\cLvl}~ \uFunc(\cLvl) + \DiscFac \Ex_{\prd}[ \vFunc_{\prd+1}(\mLvl_{\prd+1},\pLvl_{\prd+1})]\label{eq:vrecurse}
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/vrecurse}\unskip

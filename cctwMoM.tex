@@ -1,13 +1,13 @@
 % -*- mode: LaTeX; TeX-PDF-mode: t; -*- # Tell emacs the file type (for syntax)
-\input{add_search_paths}
+\input{.resources/texlive/add_search_paths}
 \documentclass[titlepage, headings=optiontotocandhead]{econtex}
 \newcommand{\texname}{cctwMoM} % Keyname for the paper
-\usepackage{./.econtexRoot}         % Set paths (like, \LaTeXInputs)
+%\usepackage{./.econtexRoot}         % Set paths (like, \LaTeXInputs)
 
 \usepackage{local-macros}   % defns for this project
-\usepackage{econark}           % econark defns
-\usepackage{local-packages} % LaTeX config in Resources/LaTeXInputs
-\usepackage{cctwMoM} % LaTeX config in Resources/LaTeXInputs
+\usepackage{econark}        % econark defns
+\usepackage{local-packages} % LaTeX config in .resources/LaTeXInputs
+\usepackage{cctwMoM}        % LaTeX config in .resources/LaTeXInputs
 
 \input{cctwMoM-options} % booleans that control whether certain features are on or off
 
@@ -83,8 +83,6 @@
 
 %\renewcommand{\DiscAlt}{\beta} % Erase the distinction between the alternative and the standard discount factor
 
-\notinsubfile{\input{./.resources/latex/bibliography-blend}} \end{document}\endinput
-
 \hypertarget{introduction}{}
 \section{Introduction}\label{sec:Intro}
 
@@ -101,7 +99,7 @@ After showing how to use the method in the baseline case, we show how refine it 
 
 We assume that truly optimal behavior in the problem facing the consumer who understands all his risks is captured by
 \input{./Equations/MaxProb.tex}
-%\notinsubfile{\input{./.resources/latex/bibliography-blend}} \end{document}\endinput
+\notinsubfile{\input{./.resources/latex/bibliography-blend}} \end{document}\endinput
 subject to
 \input{./Equations/DBCLevelStart.tex}
 where
@@ -197,7 +195,7 @@ For comparison to our new solution method, we use the endogenous gridpoints solu
 The method proposed here is not universally applicable.  For example, the method cannot be used for problems for which upper and lower bounds to the `true' solution are not known.  But many problems do have obvious upper and lower bounds, and in those cases (as in the consumption example used in the paper), the method may result in substantial improvements in accuracy and stability of solutions.
 
 \vfill\clearpage
-\notinsubfile{\input{Resources/LaTeXInputs/bibliography_blend}} \end{document}\endinput
+\notinsubfile{\input{.resources/latex/bibliography-blend}} \end{document}\endinput
 
 % Local Variables:
 % TeX-master-file: t

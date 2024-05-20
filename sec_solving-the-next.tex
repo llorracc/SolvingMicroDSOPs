@@ -78,7 +78,6 @@ distribution.\footnote{More sophisticated approximation methods exist
 \end{verbatimwrite}
 \input{\econtexRoot/Figures/discreteApprox.tex}\unskip
 
-%%% DE: the arguments of the functions being plotted should not have a T-1 subscript, i.e. the horizontal axis of figure 2 should be labled m not m_{T-1}; same with figures 3 etc
 
 
 Because one of the purposes of these notes is to connect the math to the code that solves the math, we display here a brief snippet from the notebook that constructs these points.
@@ -139,7 +138,6 @@ The notebook code responsible for computing an estimated consumption function be
 
 This is accomplished in ``An Interpolated Consumption Function,'' which generates an interpolating function that we designate $\Aprx{\cFunc}_{\MidPrdLsT}(\mNrm)$. %When called with an $\mNrm$ that is equal to one of the points in $\code{{{\mVec}\_int}}$, $\Aprx{\cFunc}_{\prdT-1}$ returns the associated value of $\vctr{c}_{\code{\prdT-1}}$, and when called with a value of $\mNrm$ that is not exactly equal to one of the \texttt{mVec\_int}, returns the value of $c$ that reflects a linear interpolation between the $\vctr{c}_{\code{\prdT-1}}$ points associated with the two \texttt{mVec\_int} points immediately above and below $\mNrm$.  
 
-%%% AL: Please provide href for your interpolation package and add to global bib
 
 Figures \ref{fig:PlotcTm1Simple} and~\ref{fig:PlotVTm1Simple} show
 plots of the constructed $\Aprx{\cFunc}_{\prdT-1}$ and $\Aprx{\vFunc}_{\prdT-1}$. While the $\Aprx{\cFunc}_{\prdT-1}$ function looks very smooth, the fact that the $\Aprx{\vFunc}_{\prdT-1}$ function is a set of line segments is very evident.  This figure provides the beginning of the intuition for why trying to approximate the value function directly is a bad idea (in this context).\footnote{For some problems, especially ones with discrete choices, value function approximation is unavoidable; nevertheless, even in such problems, the techniques sketched below can be very useful across much of the range over which the problem is defined.}
@@ -150,7 +148,6 @@ plots of the constructed $\Aprx{\cFunc}_{\prdT-1}$ and $\Aprx{\vFunc}_{\prdT-1}$
   \caption{$\cFunc_{\trmT-1}(\mNrm)$ (solid) versus $\Aprx{\cFunc}_{\trmT-1}(\mNrm)$ (dashed)}
   \label{fig:PlotcTm1Simple}
 \end{figure}
-%%% DE: In this figure, the argument to v' should be (m-c) and of u' should be c, and the horizontal axis should be labeled c not c_{T-1}
 
 \hypertarget{PlotvTm1Simple}{}
 \begin{figure}
@@ -159,9 +156,7 @@ plots of the constructed $\Aprx{\cFunc}_{\prdT-1}$ and $\Aprx{\vFunc}_{\prdT-1}$
   \label{fig:PlotVTm1Simple}
 \end{figure}
 
-%%% DE: same kinds of comments as before
 
-%%% DE: Also, make the functions math roman rather than gothic font
 
 \hypertarget{interpolating-expectations}{}
 \subsection{Interpolating Expectations}
@@ -371,7 +366,6 @@ with the idea that we will construct an approximation of the consumed function $
 %\renewcommand{\prd}{T} 
 This is the appropriate moment to ask an awkward question: How should an interpolated, approximated `consumed' function like $\Aprx{\cFunc}_{(\prdLsT)_\cntn}(a_{\prdLsT})$ be extrapolated to return an estimated `consumed' amount when evaluated at an $a_{\prdLsT}$ outside the range spanned by $\{\vctr{a}[1],...,\vctr{a}[n]\}$?
 
-%%% DE: Please always include a link rather than just using \texttt (I've replaced your \texttt{scipy.interpolate} below with what should have been there)
 
 For most canned piecewise-linear interpolation tools like \href{https://docs.scipy.org/doc/scipy/tutorial/interpolate.html}{scipy.interpolate}, when the `interpolating' function is evaluated at a point outside the provided range, the algorithm extrapolates under the assumption that the slope of the function remains constant beyond its measured boundaries (that is, the slope is assumed to be equal to the slope of nearest piecewise segment \emph{within} the interpolated range); for example, if the bottommost gridpoint is $\aVecMin = \vctratm[1]$ and the corresponding consumed level is $\cMin = \cFunc_{(\prdLsT)_\cntn}(a_1)$ we could calculate the `marginal propensity to have consumed' $\varkappa_{1}=
 \Aprx{\cFunc}_{(\prdLsT)_\cntn}^{a}(\aVecMin)$ and construct the approximation as the linear extrapolation below $\vctratm[1]$ from:
