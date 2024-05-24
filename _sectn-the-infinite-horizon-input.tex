@@ -49,10 +49,10 @@ function has converged for all practical purposes.
   \begin{equation}\begin{gathered}\begin{aligned}
         \bar{\cFunc}(m_{\prd})  & = \overbrace{(1-\Rfree^{-1}(\Rfree
           \DiscFac)^{1/\CRRA})}^{\equiv
-          \underline{\MPC}}\left[{m}_{\prd}-1+\left(\frac{1}{1-1/\Rfree}\right)\right]
+          \Lo{\MPC}}\left[{m}_{\prd}-1+\left(\frac{1}{1-1/\Rfree}\right)\right]
         \label{eq:pfinfhorc}
       \end{aligned}\end{gathered}\end{equation}
-  where $\underline{\MPC}$ is the MPC in the
+  where $\Lo{\MPC}$ is the MPC in the
   infinite-horizon perfect foresight problem.  In our baseline problem,
   we set $\PermGroFac = \pLvl_{\prd} = 1$.  It is straightforward to show that the
   infinite-horizon perfect-foresight value function and marginal value
@@ -60,7 +60,7 @@ function has converged for all practical purposes.
   \begin{equation}\begin{gathered}\begin{aligned}
         \bar{\vFunc}(m_{\prd})
         & =                                 \left(\frac{\bar{\cFunc}(m_{\prd})^{1-\CRRA}}{
-            (1-\CRRA)\underline{\MPC} }\right)
+            (1-\CRRA)\Lo{\MPC} }\right)
         \\  \bar{\vFunc}^{m}(m_{\prd})  & =       (\bar{\cFunc}(m_{\prd}))^{-\CRRA}
         \\  \Opt{\vFunc}^{m}(a_{\prd})  & = \DiscFac \Rfree \PermGroFac_{\prd+1}^{-\CRRA} \bar{\vFunc}^{m}(\RNrm_{\prd+1} a_{\prd}+1).
       \end{aligned}\end{gathered}\end{equation}
@@ -79,7 +79,7 @@ function has converged for all practical purposes.
   can be increased and iteration can continue until a converged
   solution is found for the finer \code{aVec}.
 
-  \subsection{Coarse then Fine \texttt{$\TranShkEmp$Vec}}
+  \subsection{Coarse then Fine \texttt{$\tranShkEmp$Vec}}
 
   The speed of solution is roughly proportionate\footnote{It is also
     true that the speed of each iteration is directly proportional to
@@ -93,5 +93,5 @@ function has converged for all practical purposes.
   beyond 7 generally yields only very small changes in the solution.  The program
   \texttt{multiperiodCon\_infhor.m}
   begins with three gridpoints, and then solves for successively finer
-  \texttt{$\TranShkEmp$Vec}.
+  \texttt{$\tranShkEmp$Vec}.
 \end{comment}

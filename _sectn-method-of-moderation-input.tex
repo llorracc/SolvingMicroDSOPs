@@ -27,7 +27,7 @@
 
 %\renewcommand{\prd}{t} % For the rest of the doc, use generic t vs t+1
 
-  As a preliminary to our solution, define $\hNrm_{\EndStg}$ as end-of-period human wealth (the present discounted value of future labor income) for a perfect foresight version of the problem of a `risk optimist:' a period-$t$ consumer who believes with perfect confidence that the shocks will always take their expected value of \PermShkOn{1, $\TranShkEmp_{t+n} = \Ex[\TranShkEmp]=1~\forall~n>0$ and $\permShk_{t+n} = \Ex[\permShk]=1~\forall~n>0$.}  {1, $\TranShkEmp_{t+n} = \Ex[\TranShkEmp]=1~\forall~n>0$.}  The solution to a perfect foresight problem of this kind takes the form\footnote{For a derivation, see \cite{BufferStockTheory}; $\MPCmin_{\prd}$ is defined therein as the MPC of the perfect foresight consumer with horizon $\trmT-t$.}
+  As a preliminary to our solution, define $\hNrm_{\EndStg}$ as end-of-period human wealth (the present discounted value of future labor income) for a perfect foresight version of the problem of a `risk optimist:' a period-$t$ consumer who believes with perfect confidence that the shocks will always take their expected value of \PermShkOn{1, $\tranShkEmp_{t+n} = \Ex[\tranShkEmp]=1~\forall~n>0$ and $\permShk_{t+n} = \Ex[\permShk]=1~\forall~n>0$.}  {1, $\tranShkEmp_{t+n} = \Ex[\tranShkEmp]=1~\forall~n>0$.}  The solution to a perfect foresight problem of this kind takes the form\footnote{For a derivation, see \cite{BufferStockTheory}; $\MPCmin_{\prd}$ is defined therein as the MPC of the perfect foresight consumer with horizon $\trmT-t$.}
   \begin{equation}\begin{gathered}\begin{aligned}
         \cFuncAbove_{\prd}(\mNrm_{\prd})  & = (\mNrm_{\prd} + \hNrm_{\EndStg})\MPCmin_{\prd} \label{eq:cFuncAbove}
       \end{aligned}\end{gathered}\end{equation}
@@ -35,9 +35,9 @@
 
   We similarly define $\hEndMin_{\EndStg}$ as `minimal human wealth,' the
   present discounted value of labor income if the shocks were to take on
-  their worst possible value in every future period \permShkOn
-  {$\TranShkEmp_{t+n} = \TranShkEmpMin ~\forall~n>0$ and $\permShk_{t+n} =
-    \permShkMin ~\forall~n>0$} {$\TranShkEmp_{t+n} = \TranShkEmpMin
+  their worst possible value in every future period \PermShkOn
+  {$\tranShkEmp_{t+n} = \tranShkEmpMin ~\forall~n>0$ and $\permShk_{t+n} =
+    \permShkMin ~\forall~n>0$} {$\tranShkEmp_{t+n} = \tranShkEmpMin
     ~\forall~n>0$} (which we define as corresponding to the beliefs of a
   `pessimist').
 
@@ -45,27 +45,27 @@
     probabilities of the future risks and optimizes accordingly.}
 
   A first useful point is that, for the realist, a lower bound for the
-  level of market resources is $\ushort{m}_{\prd} = -\hEndMin_{\EndStg}$, because
+  level of market resources is $\Lo{m}_{\prd} = -\hEndMin_{\EndStg}$, because
   if $m_{\prd}$ equalled this value then there would be a positive finite
-  chance (however small) of receiving \permShkOn
-  {$\TranShkEmp_{t+n}=\TranShkEmpMin$ and $\permShk_{t+n}=\permShkMin$}
-  {$\TranShkEmp_{t+n}=\TranShkEmpMin$}
+  chance (however small) of receiving \PermShkOn
+  {$\tranShkEmp_{t+n}=\tranShkEmpMin$ and $\permShk_{t+n}=\permShkMin$}
+  {$\tranShkEmp_{t+n}=\tranShkEmpMin$}
   in
   every future period, which would require the consumer to set $c_{\prd}$
   to zero in order to guarantee that the intertemporal budget constraint
   holds\ctw{.}{~(this is the multiperiod generalization of the discussion in
     section \ref{subsec:LiqConstrSelfImposed} explaining the derivation of the `natural borrowing constraint' for period $\trmT-1$,
-    $\ushort{a}_{\prd-1}$).}  Since consumption of zero yields negative
+    $\Lo{a}_{\prd-1}$).}  Since consumption of zero yields negative
   infinite utility, the solution to realist consumer's problem is not well
-  defined for values of $m_{\prd} < \ushort{m}_{\prd}$, and the limiting
-  value of the realist's $c_t$ is zero as $m_{\prd} \downarrow \ushort{m}_{\prd}$.
+  defined for values of $m_{\prd} < \Lo{m}_{\prd}$, and the limiting
+  value of the realist's $c_t$ is zero as $m_{\prd} \downarrow \Lo{m}_{\prd}$.
 
   Given this result, it will be convenient to define `excess' market
   resources as the amount by which actual resources exceed the lower
   bound, and `excess' human wealth as the amount by which mean expected human wealth
   exceeds guaranteed minimum human wealth:
   \begin{equation*}\begin{gathered}\begin{aligned}
-        \aboveMin \mNrm_{\prd}  & = m_{\prd}+\overbrace{\hEndMin_{\EndStg}}^{=-\ushort{m}_{\prd}}
+        \aboveMin \mNrm_{\prd}  & = m_{\prd}+\overbrace{\hEndMin_{\EndStg}}^{=-\Lo{m}_{\prd}}
         \\  \aboveMin \hNrm_{\EndStg}  & = \hNrm_{\EndStg}-\hEndMin_{\EndStg}.
       \end{aligned}\end{gathered}\end{equation*}
 
@@ -95,7 +95,7 @@
   \hypertarget{IntExpFOCInvPesReaOptNeedHiPlot}{}
   \begin{figure}
     \includegraphics[width=6in]{./Figures/IntExpFOCInvPesReaOptNeedHiPlot}
-    \caption{Moderation Illustrated: $\underline{\cFunc}_{\prd-1} < \Aprx{\cFunc}_{\prd-1} < \bar{\cFunc}_{\prd-1}$}
+    \caption{Moderation Illustrated: $\Lo{\cFunc}_{\prd-1} < \Aprx{\cFunc}_{\prd-1} < \bar{\cFunc}_{\prd-1}$}
     \label{fig:IntExpFOCInvPesReaOptNeedHiPlot}
   \end{figure}
 
@@ -106,10 +106,10 @@
 
   \begin{center}
     \begin{tabular}{rcl}
-      $ \aboveMin \mNrm_{\prd} \MPCmin_{\prd} < $ & $ \cFunc_{\prd}(\ushort{m}_{\prd}+\aboveMin \mNrm_{\prd}) $  $< (\aboveMin \mNrm_{\prd}+\aboveMin \hNrm_{\EndStg})\MPCmin_{\prd} $
-      \\  $- \aboveMin \mNrm_{\prd} \MPCmin_{\prd} > $ & $ -\cFunc_{\prd}(\ushort{m}_{\prd}+\aboveMin \mNrm_{\prd}) $ & $> -(\aboveMin \mNrm_{\prd}+\aboveMin \hNrm_{\EndStg})\MPCmin_{\prd} $
-      \\  $ \aboveMin \hNrm_{\EndStg} \MPCmin_{\prd} > $ & $ \bar{\cFunc}_{\prd}(\ushort{m}_{\prd}+\aboveMin \mNrm_{\prd})-\cFunc_{\prd}(\ushort{m}_{\prd}+\aboveMin \mNrm_{\prd}) $ & $> 0$
-      \\  $1 > $ & $ \underbrace{\left(\frac{\bar{\cFunc}_{\prd}(\ushort{m}_{\prd}+\aboveMin \mNrm_{\prd})-\cFunc_{\prd}(\ushort{m}_{\prd}+\aboveMin \mNrm_{\prd})}{\aboveMin \hNrm_{\EndStg} \MPCmin_{\prd}}\right)}_{\equiv \Hi{\koppa}_{\prd}} $ & $> 0$
+      $ \aboveMin \mNrm_{\prd} \MPCmin_{\prd} < $ & $ \cFunc_{\prd}(\Lo{m}_{\prd}+\aboveMin \mNrm_{\prd}) $  $< (\aboveMin \mNrm_{\prd}+\aboveMin \hNrm_{\EndStg})\MPCmin_{\prd} $
+      \\  $- \aboveMin \mNrm_{\prd} \MPCmin_{\prd} > $ & $ -\cFunc_{\prd}(\Lo{m}_{\prd}+\aboveMin \mNrm_{\prd}) $ & $> -(\aboveMin \mNrm_{\prd}+\aboveMin \hNrm_{\EndStg})\MPCmin_{\prd} $
+      \\  $ \aboveMin \hNrm_{\EndStg} \MPCmin_{\prd} > $ & $ \bar{\cFunc}_{\prd}(\Lo{m}_{\prd}+\aboveMin \mNrm_{\prd})-\cFunc_{\prd}(\Lo{m}_{\prd}+\aboveMin \mNrm_{\prd}) $ & $> 0$
+      \\  $1 > $ & $ \underbrace{\left(\frac{\bar{\cFunc}_{\prd}(\Lo{m}_{\prd}+\aboveMin \mNrm_{\prd})-\cFunc_{\prd}(\Lo{m}_{\prd}+\aboveMin \mNrm_{\prd})}{\aboveMin \hNrm_{\EndStg} \MPCmin_{\prd}}\right)}_{\equiv \Hi{\koppa}_{\prd}} $ & $> 0$
     \end{tabular}
   \end{center}
 
@@ -123,7 +123,7 @@
   Defining $\mu_{\prd} =
   \log \aboveMin \mNrm_{\prd}$ (which can range from $-\infty$ to $\infty$), the object in the middle of the last inequality is
   \begin{equation}\begin{gathered}\begin{aligned}
-        \Hi{\koppa}_{\prd}(\mu_{\prd})   & \equiv  \left(\frac{\bar{\cFunc}_{\prd}(\ushort{m}_{\prd}+e^{\mu_{\prd}})-\cFunc_{\prd}(\ushort{m}_{\prd}+e^{\mu_{\prd}})}{\aboveMin \hNrm_{\EndStg} \MPCmin_{\prd}}\right), \label{eq:koppa}
+        \Hi{\koppa}_{\prd}(\mu_{\prd})   & \equiv  \left(\frac{\bar{\cFunc}_{\prd}(\Lo{m}_{\prd}+e^{\mu_{\prd}})-\cFunc_{\prd}(\Lo{m}_{\prd}+e^{\mu_{\prd}})}{\aboveMin \hNrm_{\EndStg} \MPCmin_{\prd}}\right), \label{eq:koppa}
       \end{aligned}\end{gathered}\end{equation}
   and we now define
   \begin{equation}\begin{gathered}\begin{aligned}
@@ -137,7 +137,6 @@
         \Hi{\cFunc}_{\prd}  & = \bar{\cFunc}_{\prd}-\overbrace{\left(\frac{1}{1+\exp(\Hi{\chiFunc}_{\prd})}\right)}^{=\Hi{\koppa}_{\prd}} \aboveMin \hNrm_{\EndStg} \MPCmin_{\prd}. \label{eq:cFuncHi}
       \end{aligned}\end{gathered}\end{equation}
 
-\mu 
   Thus, the procedure is to calculate $\Hi{\chiFunc}_{\prd}$ at the points
   $\vctr{\mu}_{\prd}$ corresponding to the log of the $\aboveMin
   \vctr{m}_{\prd}$ points defined above, and then using these to construct an
@@ -182,7 +181,7 @@ at those points.
 
 This requires us to differentiate \eqref{eq:koppa} and \eqref{eq:chi}, yielding
 \begin{equation}\begin{gathered}\begin{aligned}
-      \Hi{\koppa}_{\prd}^{\mu}(\mu_{\prd})   & = (\aboveMin \hNrm_{\EndStg} \MPCmin_{\prd})^{-1}e^{\mu_{\prd}}\left(\MPCmin_{\prd}-\overbrace{\cFunc^{\mNrm}_{\prd}(\ushort{m}_{\prd}+e^{\mu_{\prd}})}^{\equiv \MPCFunc_{\prd}(\mNrm_{\prd})}\right)  \label{eq:koppaPrime}
+      \Hi{\koppa}_{\prd}^{\mu}(\mu_{\prd})   & = (\aboveMin \hNrm_{\EndStg} \MPCmin_{\prd})^{-1}e^{\mu_{\prd}}\left(\MPCmin_{\prd}-\overbrace{\cFunc^{\mNrm}_{\prd}(\Lo{m}_{\prd}+e^{\mu_{\prd}})}^{\equiv \MPCFunc_{\prd}(\mNrm_{\prd})}\right)  \label{eq:koppaPrime}
       \\ \Hi{\chiFunc}_{\prd}^{\mu}(\mu_{\prd})  & = \left(\frac{-\Hi{\koppa}_{\prd}^{\mu}(\mu_{\prd})/\Hi{\koppa}_{\prd}^{2}}{1/\Hi{\koppa}_{\prd}(\mu_{\prd})-1}\right)
     \end{aligned}\end{gathered}\end{equation}
 and (dropping arguments) with some algebra these can be combined to yield
@@ -284,7 +283,7 @@ Designating $\Aprx{\Hi{\cFunc}}_{\prd-1}$ as the approximated consumption rule o
   an upper bound for the ${\vInv}$ function in the presence of uncertainty, and the value function
   for the pessimist is a lower bound. Analogously to \eqref{eq:koppa}, define an upper-case
   \begin{equation}\begin{gathered}\begin{aligned}
-        \hat{\Koppa}_{\prd}(\mu_{\prd})   & = \left(\frac{\bar{\vInv}_{\prd}(\ushort{m}_{\prd}+e^{\mu_{\prd}})-\vInv_{\prd}(\ushort{m}_{\prd}+e^{\mu_{\prd}})}{\aboveMin \hNrm_{\EndStg} \MPCmin_{\prd} (\PDVCoverc_{\prd}^{T})^{1/(1-\CRRA)}}\right) \label{eq:Koppa}
+        \hat{\Koppa}_{\prd}(\mu_{\prd})   & = \left(\frac{\bar{\vInv}_{\prd}(\Lo{m}_{\prd}+e^{\mu_{\prd}})-\vInv_{\prd}(\Lo{m}_{\prd}+e^{\mu_{\prd}})}{\aboveMin \hNrm_{\EndStg} \MPCmin_{\prd} (\PDVCoverc_{\prd}^{T})^{1/(1-\CRRA)}}\right) \label{eq:Koppa}
       \end{aligned}\end{gathered}\end{equation}
   \MPCMatch{with derivative (dropping arguments)
     \begin{equation}\begin{gathered}\begin{aligned}
@@ -334,7 +333,7 @@ Designating $\Aprx{\Hi{\cFunc}}_{\prd-1}$ as the approximated consumption rule o
   fact plus the strict concavity of the consumption function yields the
   proposition that
   \begin{equation}\begin{gathered}\begin{aligned}
-        \cFunc_{\prd}(\ushort{m}_{\prd}+\aboveMin \mNrm_{\prd}) & < \MPCmax_{\prd} \aboveMin \mNrm_{\prd}.
+        \cFunc_{\prd}(\Lo{m}_{\prd}+\aboveMin \mNrm_{\prd}) & < \MPCmax_{\prd} \aboveMin \mNrm_{\prd}.
       \end{aligned}\end{gathered}\end{equation}
 
   The solution method described above does not guarantee that
@@ -348,7 +347,7 @@ Designating $\Aprx{\Hi{\cFunc}}_{\prd-1}$ as the approximated consumption rule o
     That is, the realist's consumption function is bounded from above by both
     the \textit{unconstrained} optimist's problem already treated, as well as
     by the \textit{constrained} optimist's problem, which is a 45 degree line
-    originating from $\ushort{m}_{\prd}$ on the $m$-axis, as shown in
+    originating from $\Lo{m}_{\prd}$ on the $m$-axis, as shown in
     Figure~\ref{fig:IntExpFOCInvPesReaOptNeed45Plot}. The same is true for
     the value function, as illustrated in Figure
     \ref{fig:IntExpFOCInvPesReaOptNeed45ValuePlot}.
@@ -379,36 +378,36 @@ Designating $\Aprx{\Hi{\cFunc}}_{\prd-1}$ as the approximated consumption rule o
         \aboveMin \mtCusp  & =  \frac{\MPCmin_{\prd}\aboveMin \hNrm_{\EndStg}}{(1-\MPCmin_{\prd})\MPCmax_{\prd}} \\
         \mtCusp  & =  \frac{\MPCmin_{\prd}\hNrm_{\EndStg}-\hEndMin_{\EndStg}}{(1-\MPCmin_{\prd})\MPCmax_{\prd}},
       \end{aligned}\end{gathered}\end{equation*}
-  we want to construct a consumption function for $m_{\prd} \in (\ushort{m}_{\prd}, \mtCusp]$ that respects the
+  we want to construct a consumption function for $m_{\prd} \in (\Lo{m}_{\prd}, \mtCusp]$ that respects the
   tighter upper bound:
   \begin{center}
     \begin{tabular}{rcl}
-      $ \aboveMin \mNrm_{\prd} \MPCmin_{\prd} < $ & $ \cFunc_{\prd}(\ushort{m}_{\prd}+\aboveMin \mNrm_{\prd}) $  $< \MPCmax_{\prd} \aboveMin \mNrm_{\prd} $
-      % \\  $-\aboveMin \mNrm_{\prd} \MPCmin_{\prd} > $ & $ -\cFunc_{\prd}(\ushort{m}_{\prd}+\aboveMin \mNrm_{\prd}) $ & $> -\aboveMin \mNrm_{\prd} $
-      \\  $ \aboveMin \mNrm_{\prd}(\MPCmax_{\prd}- \MPCmin_{\prd}) > $ & $ \MPCmax_{\prd} \aboveMin \mNrm_{\prd}-\cFunc_{\prd}(\ushort{m}_{\prd}+\aboveMin \mNrm_{\prd}) $ & $> 0$
-      \\  $1 > $ & $ \left(\frac{\MPCmax_{\prd} \aboveMin \mNrm_{\prd}-\cFunc_{\prd}(\ushort{m}_{\prd}+\aboveMin \mNrm_{\prd})}{\aboveMin \mNrm_{\prd}(\MPCmax_{\prd}- \MPCmin_{\prd})}\right) $ & $> 0$.
+      $ \aboveMin \mNrm_{\prd} \MPCmin_{\prd} < $ & $ \cFunc_{\prd}(\Lo{m}_{\prd}+\aboveMin \mNrm_{\prd}) $  $< \MPCmax_{\prd} \aboveMin \mNrm_{\prd} $
+      % \\  $-\aboveMin \mNrm_{\prd} \MPCmin_{\prd} > $ & $ -\cFunc_{\prd}(\Lo{m}_{\prd}+\aboveMin \mNrm_{\prd}) $ & $> -\aboveMin \mNrm_{\prd} $
+      \\  $ \aboveMin \mNrm_{\prd}(\MPCmax_{\prd}- \MPCmin_{\prd}) > $ & $ \MPCmax_{\prd} \aboveMin \mNrm_{\prd}-\cFunc_{\prd}(\Lo{m}_{\prd}+\aboveMin \mNrm_{\prd}) $ & $> 0$
+      \\  $1 > $ & $ \left(\frac{\MPCmax_{\prd} \aboveMin \mNrm_{\prd}-\cFunc_{\prd}(\Lo{m}_{\prd}+\aboveMin \mNrm_{\prd})}{\aboveMin \mNrm_{\prd}(\MPCmax_{\prd}- \MPCmin_{\prd})}\right) $ & $> 0$.
     \end{tabular}
   \end{center}
 
   Again defining $\mu_{\prd} =\log \aboveMin \mNrm_{\prd}$, the object in the middle of the inequality is
   \begin{equation*}\begin{gathered}\begin{aligned}
-        \Lo{\koppa}_{\prd}(\mu_{\prd})  & \equiv  \frac{\MPCmax_{\prd}-\cFunc_{\prd}(\ushort{m}_{\prd}+e^{\mu_{\prd}})e^{-\mu_{\prd}}}{\MPCmax_{\prd}-\MPCmin_{\prd}} \label{eq:koppaL}
-        \MPCMatch{\\ \Lo{\koppa}^{\mu}_{\prd}(\mu_{\prd})  & = \frac{\cFunc_{\prd}(\ushort{m}_{\prd}+e^{\mu_{\prd}})e^{-\mu_{\prd}}-\MPCFunc_{\prd}^{m}(\ushort{m}_{\prd}+e^{\mu_{\prd}})}{\MPCmax_{\prd}-\MPCmin_{\prd}}}{} .
+        \Lo{\koppa}_{\prd}(\mu_{\prd})  & \equiv  \frac{\MPCmax_{\prd}-\cFunc_{\prd}(\Lo{m}_{\prd}+e^{\mu_{\prd}})e^{-\mu_{\prd}}}{\MPCmax_{\prd}-\MPCmin_{\prd}} \label{eq:koppaL}
+        \MPCMatch{\\ \Lo{\koppa}^{\mu}_{\prd}(\mu_{\prd})  & = \frac{\cFunc_{\prd}(\Lo{m}_{\prd}+e^{\mu_{\prd}})e^{-\mu_{\prd}}-\MPCFunc_{\prd}^{m}(\Lo{m}_{\prd}+e^{\mu_{\prd}})}{\MPCmax_{\prd}-\MPCmin_{\prd}}}{} .
       \end{aligned}\end{gathered}\end{equation*}
 
   As $m_{\prd}$ approaches
-  $-\ushort{m}_{\prd}$, $\Lo{\koppa}_{\prd}(\mu_{\prd})$ converges to zero, while as $m_{\prd}$
+  $-\Lo{m}_{\prd}$, $\Lo{\koppa}_{\prd}(\mu_{\prd})$ converges to zero, while as $m_{\prd}$
   approaches $+\infty$, $\Lo{\koppa}_{\prd}(\mu_{\prd})$ approaches $1$.
 
   As before, we can derive an approximated consumption function; call it $\Aprx{\Lo{\cFunc}}_{\prd}$.  This function will clearly do a better job approximating the consumption function for low values of $\mNrm_{\prd}$ while the previous approximation will perform better for high values of $\mNrm_{\prd}$.
 
-  For middling values of $\mNrm$ it is not clear which of these functions will perform better.  However, an alternative is available which performs well.  Define the highest gridpoint below $\mtCusp$ as $\bar{\check{\mNrm}}_{\prd}^{\#}$ and the lowest gridpoint above $\mtCusp$ as $\ushort{\hat{\mNrm}}_{\prd}^{\#}$.  Then there will be a unique interpolating polynomial that matches the level and slope of the consumption function at these two points.  Call this function $\tilde{\cFunc}_{\prd}(\mNrm)$.
+  For middling values of $\mNrm$ it is not clear which of these functions will perform better.  However, an alternative is available which performs well.  Define the highest gridpoint below $\mtCusp$ as $\bar{\check{\mNrm}}_{\prd}^{\#}$ and the lowest gridpoint above $\mtCusp$ as $\Lo{\hat{\mNrm}}_{\prd}^{\#}$.  Then there will be a unique interpolating polynomial that matches the level and slope of the consumption function at these two points.  Call this function $\tilde{\cFunc}_{\prd}(\mNrm)$.
 
   Using indicator functions that are zero everywhere except for specified intervals,
   \begin{equation*}\begin{gathered}\begin{aligned}
-        \vctr{1}_{\text{Lo}}(\mNrm)  & = 1 \text{~if $          \mNrm \leq  \bar{\check{\mNrm}}_{\prd}^{\#} \phantom{< \mNrm <   \ushort{\hat{\mNrm}}_{\prd}^{\#}          \leq \mNrm}$}
-        \\  \vctr{1}_{\text{Mid}}(\mNrm)  & = 1 \text{~if $\phantom{ \mNrm \leq}~ \bar{\check{\mNrm}}_{\prd}^{\#}          < \mNrm <   \ushort{\hat{\mNrm}}_{\prd}^{\#} \phantom{\leq \mNrm}$}
-        \\  \vctr{1}_{\text{Hi}}(\mNrm)  & = 1 \text{~if $\phantom{ \mNrm \leq  ~\bar{\check{\mNrm}}_{\prd}^{\#}          < \mNrm < } \ushort{\hat{\mNrm}}_{\prd}^{\#}           \leq \mNrm$}
+        \vctr{1}_{\text{Lo}}(\mNrm)  & = 1 \text{~if $          \mNrm \leq  \bar{\check{\mNrm}}_{\prd}^{\#} \phantom{< \mNrm <   \Lo{\hat{\mNrm}}_{\prd}^{\#}          \leq \mNrm}$}
+        \\  \vctr{1}_{\text{Mid}}(\mNrm)  & = 1 \text{~if $\phantom{ \mNrm \leq}~ \bar{\check{\mNrm}}_{\prd}^{\#}          < \mNrm <   \Lo{\hat{\mNrm}}_{\prd}^{\#} \phantom{\leq \mNrm}$}
+        \\  \vctr{1}_{\text{Hi}}(\mNrm)  & = 1 \text{~if $\phantom{ \mNrm \leq  ~\bar{\check{\mNrm}}_{\prd}^{\#}          < \mNrm < } \Lo{\hat{\mNrm}}_{\prd}^{\#}           \leq \mNrm$}
       \end{aligned}\end{gathered}\end{equation*}
   we can define a well-behaved approximating consumption function
   \begin{equation}\begin{gathered}\begin{aligned}
@@ -500,7 +499,7 @@ is described by
       a_{\prd}    & = m_{\prd}-c_{\prd} \nonumber
       \\      \risky_{\prd+1}-\risky  & = (\risky_{\prd}-\risky)\gamma + \epsilon_{\prd+1} \notag
       \\      \Risky_{\prd+1}  & = \exp(\risky_{\prd+1}) \notag
-      \\      m_{\prd+1}  & = \underbrace{\left(\Risky_{\prd+1}/\PermGroFac_{\prd+1}\right)}_{\equiv \Rprod_{\prd+1}}a_{\prd}+\TranShkEmp_{\prd+1} \nonumber.
+      \\      m_{\prd+1}  & = \underbrace{\left(\Risky_{\prd+1}/\PermGroFac_{\prd+1}\right)}_{\equiv \Rprod_{\prd+1}}a_{\prd}+\tranShkEmp_{\prd+1} \nonumber.
     \end{aligned}\end{gathered}\end{equation}
 
 % Kiichi: I will need you to read the literature and figure out how exactly we want to choose the Markov points and transition probabilities.
@@ -530,7 +529,7 @@ zero.\footnote{The word artificial is chosen only because of its clarity in dist
       \vFunc_{\prd-1}(m_{\prd-1})  & = \max_{\cNrm_{\prd-1}} ~~ \uFunc(c_{\prd-1}) + \Ex_{\prd-1} [\DiscFac \PermGroFacAdjV{\vFunc}_{\cntn(T)}(m_{\prd})] \label{eq:ConstrArt}
       \\ & \mbox{s.t.}  \nonumber
       \\ a_{\prd-1}  & = m_{\prd-1} - c_{\prd-1}
-      \\ m_{\prd}  & = \RNrm_{\prd} a_{\prd-1} + \TranShkEmp_{\prd}
+      \\ m_{\prd}  & = \RNrm_{\prd} a_{\prd-1} + \tranShkEmp_{\prd}
       \\ a_{\prd-1} & \geq 0 .
     \end{aligned}\end{gathered}\end{equation*}
 
@@ -596,8 +595,8 @@ constraint requires three changes to the procedures outlined above:
 \begin{enumerate}
 \item We redefine
   $\hEndMin_{\EndStg}$, which now is the PDV of receiving
-  $\TranShkEmp_{\prd+1}=\TranShkEmpMin$ next period and
-  $\TranShkEmp_{t+n}=0~\forall~n>1$ -- that is, the pessimist believes he
+  $\tranShkEmp_{\prd+1}=\tranShkEmpMin$ next period and
+  $\tranShkEmp_{t+n}=0~\forall~n>1$ -- that is, the pessimist believes he
   will receive nothing beyond period $t+1$
 \item We augment the end-of-period \code{aVec} with zero and with a point with a small positive value so that the generated
   {\mVec} will the binding point $\mNrm^{\#}$ and a point just above it (so that we can better capture the curvature
@@ -625,7 +624,7 @@ simplifies things a bit because now we can always consider an
 Recall now equations~(\ref{eq:vEndPrimeTm1}) and (\ref{eq:upEqbetaOp}):
 \begin{equation*}\begin{gathered}\begin{aligned}
       \vPEndStg(a_{\prd})  & = \Ex_{\BegStg}[\DiscFac \Rfree \PermGroFac_{\prd+1}^{-\CRRA}
-      \uFunc^{c}(\cFunc_{\prd+1}(\RNrm_{\prd+1} a_{\prd}+{\TranShkEmp}_{\prd+1}))]
+      \uFunc^{c}(\cFunc_{\prd+1}(\RNrm_{\prd+1} a_{\prd}+{\tranShkEmp}_{\prd+1}))]
       \\\uFunc^{c}(c_{\prd})   & = \vEndStg^{a}(m_{\prd}-c_{\prd}).
     \end{aligned}\end{gathered}\end{equation*}
 Assuming that the problem has been solved up to period $t+1$ (and thus assuming that we have an approximated $\Aprx{\cFunc}_{\prd+1}(m_{\prd+1})$), our solution method essentially involves using these two equations in succession to work back progressively from period $\trmT-1$ to the beginning of life.  Stated generally, the method is as follows.  (Here, we use the original, rather than the ``refined,'' method for constructing consumption functions; the generalization of the algorithm below to use the refined method presents no difficulties.)
@@ -633,13 +632,13 @@ Assuming that the problem has been solved up to period $t+1$ (and thus assuming 
 \begin{enumerate}
 
 \item For the grid of values $a_{t,i}$ in \texttt{aVec\_eee}, numerically calculate the values
-  of $\cFunc_{\overline{t}}(a_{t,i})$ and $\cFunc_{\overline{t}}^{a}(a_{t,i})$,
+  of $\cFunc_{\Hi{t}}(a_{t,i})$ and $\cFunc_{\Hi{t}}^{a}(a_{t,i})$,
     \begin{equation}\begin{gathered}\begin{aligned}
-          \cFunc_{\overline{t},i}  & = \left(\vEndStg^{a}(a_{t,i})\right)^{-1/\CRRA},
-          \\                             & = \left(\DiscFac \Ex_{\BegStg} \left[\Rfree \PermGroFac_{\prd+1}^{-\CRRA}(\grave{\cFunc}_{\prd+1}(\RNrm_{\prd+1} a_{t,i} +      {\TranShkEmp}_{\prd+1}))^{-\CRRA}\right]\right)^{-1/\CRRA}, \label{eq:vEndeq}
-          \MPCMatch{\\        \cFunc^{a}_{\overline{t},i}  & = -(1/\CRRA)\left(\vEndStg^{a}(a_{t,i})\right)^{-1-1/\CRRA} \vEndStg^{a{a}}(\aNrm_{t,i}),}{}
+          \cFunc_{\Hi{t},i}  & = \left(\vEndStg^{a}(a_{t,i})\right)^{-1/\CRRA},
+          \\                             & = \left(\DiscFac \Ex_{\BegStg} \left[\Rfree \PermGroFac_{\prd+1}^{-\CRRA}(\grave{\cFunc}_{\prd+1}(\RNrm_{\prd+1} a_{t,i} +      {\tranShkEmp}_{\prd+1}))^{-\CRRA}\right]\right)^{-1/\CRRA}, \label{eq:vEndeq}
+          \MPCMatch{\\        \cFunc^{a}_{\Hi{t},i}  & = -(1/\CRRA)\left(\vEndStg^{a}(a_{t,i})\right)^{-1-1/\CRRA} \vEndStg^{a{a}}(\aNrm_{t,i}),}{}
         \end{aligned}\end{gathered}\end{equation}
-generating vectors of values $\vctr{\cFunc}_{\prd}$\MPCMatch{ and $\vctr{\cFunc}^{a}_{\overline{t}}$.}{.}
+generating vectors of values $\vctr{\cFunc}_{\prd}$\MPCMatch{ and $\vctr{\cFunc}^{a}_{\Hi{t}}$.}{.}
 
 \item Construct a corresponding vector of values of $\vctr{m}_{\prd}=\vctr{\cNrm}_{\prd}+\vctr{\aNrm}_{\prd}$\MPCMatch{; similarly construct a corresponding list of MPC's $\vctr{\MPC}_{\prd}$ using equation \eqref{eq:MPCfromMPTHC}.}{.}
 

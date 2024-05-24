@@ -11,21 +11,21 @@ To reduce clutter, we now temporarily assume that $\PermGroFac_{\prd}=1$ for all
 \end{aligned}\end{gathered}\end{equation}
 where 
 \begin{equation*}\begin{gathered}\begin{aligned}
-  \vFunc_{\EndPrdLsT}(\aNrm)  & = \DiscFac \vFunc_{\BegPrd}(\aNrm) 
-\\                          & = \DiscFac \Ex_{\BegPrd} \left[\PermGroFacAdjV \vFunc_{\MidPrd}(\underbrace{\aNrm \RNrm_{\prdT} + \TranShkEmp_{\prdT}}_{{m}_{\prdT}})\right]
+  \vFunc_{\EndPrdLsT}(\aNrm)  & \sameas \DiscFac \vFunc_{\BegPrd}(\aNrm) 
+                           \equiv \DiscFac \Ex_{\BegPrd} \left[\PermGroFacAdjV \vFunc_{\MidPrd}(\underbrace{\aNrm \RNrm_{\prdT} + \tranShkEmp_{\prdT}}_{{m}_{\prdT}})\right]
     \end{aligned}\end{gathered}\end{equation*}
 
 % \begin{equation*}\begin{gathered}\begin{aligned}
 %       \vFunc_{\prdLsT}(\mNrm)  & = \max_{\cNrm} ~~ \uFunc(\cNrm) 
-%      + \DiscFac \Ex_{\EndPrdLsT} \left[\PermGroFacAdjV \vFunc_{\MidPrd}(\underbrace{(\mNrm-\cNrm)\RNrm_{\prdT} + \TranShkEmp_{\prdT}}_{{m}_{\prdT}})\right].
+%      + \DiscFac \Ex_{\EndPrdLsT} \left[\PermGroFacAdjV \vFunc_{\MidPrd}(\underbrace{(\mNrm-\cNrm)\RNrm_{\prdT} + \tranShkEmp_{\prdT}}_{{m}_{\prdT}})\right].
 %     \end{aligned}\end{gathered}\end{equation*}
 
 
-Using (0) $\prd=\trmT$; (1) $\vFunc_{\prdT}(m)=\uFunc(m)$; (2) the definition of $\uFunc(m)$; and (3) the definition of the expectations operator,  %\newcommand{\TranShkEmpDummy}{\vartheta}
+Using (0) $\prd=\trmT$; (1) $\vFunc_{\prdT}(m)=\uFunc(m)$; (2) the definition of $\uFunc(m)$; and (3) the definition of the expectations operator,  %\newcommand{\tranShkEmpDummy}{\vartheta}
 \begin{equation}\begin{gathered}\begin{aligned}
-      \vFunc_{\BegPrd}(\aNrm)   & = \PermGroFacAdjV\int_{0}^{\infty} \frac{\left(\aNrm \RNrm_{\prd}+ \TranShkEmpDummy\right)^{1-\CRRA}}{1-\CRRA}  d\FDist(\TranShkEmpDummy) \label{eq:NumDefInt}
+      \vFunc_{\BegPrd}(\aNrm)   & = \PermGroFacAdjV\int_{0}^{\infty} \frac{\left(\aNrm \RNrm_{\prd}+ \tranShkEmpDummy\right)^{1-\CRRA}}{1-\CRRA}  d\FDist(\tranShkEmpDummy) \label{eq:NumDefInt}
     \end{aligned}\end{gathered}\end{equation}
-where $\FDist(\TranShkEmp)$ is the cumulative distribution function for ${\TranShkEmp}$.
+where $\FDist(\tranShkEmp)$ is the cumulative distribution function for ${\tranShkEmp}$.
 
 \lstset{basicstyle=\ttfamily\footnotesize,breaklines=true,language=Python,frame=single}
 \lstinputlisting{./Code/Python/snippets/rawsolution.py}
@@ -36,29 +36,29 @@ But because there is no general analytical solution to this problem, for any giv
 
 \hypertarget{discretizing-the-distribution}{}
 \subsection{Discretizing the Distribution}
-Our first speedup trick is therefore to construct a discrete approximation to the lognormal distribution that can be used in place of numerical integration.  That is, we want to approximate the expectation over $\TranShkEmp$ of a function $g(\TranShkEmp)$ by calculating its value at set of $n_{\TranShkEmp}$ points $\TranShkEmp_{i}$, each of which has an associated probability weight $w_{i}$:
+Our first speedup trick is therefore to construct a discrete approximation to the lognormal distribution that can be used in place of numerical integration.  That is, we want to approximate the expectation over $\tranShkEmp$ of a function $g(\tranShkEmp)$ by calculating its value at set of $n_{\tranShkEmp}$ points $\tranShkEmp_{i}$, each of which has an associated probability weight $w_{i}$:
 \begin{equation*}\begin{gathered}\begin{aligned}
-      \Ex[g(\TranShkEmp)] & = \int_{\TranShkEmpMin}^{\TranShkEmpMax}(\TranShkEmpDummy)d\FDist(\TranShkEmpDummy) \\
-      & \approx \sum_{\TranShkEmp = 1}^{n}w_{i}g(\TranShkEmp_{i})
+      \Ex[g(\tranShkEmp)] & = \int_{\tranShkEmpMin}^{\tranShkEmpMax}(\tranShkEmpDummy)d\FDist(\tranShkEmpDummy) \\
+      & \approx \sum_{\tranShkEmp = 1}^{n}w_{i}g(\tranShkEmp_{i})
     \end{aligned}\end{gathered}\end{equation*}
 (because adding $n$ weighted values to each other is enormously faster than general-purpose numerical integration).
 
-Such a procedure is called a `quadrature' method of integration; \cite{Tanaka2013-bc} survey a number of options, but for our purposes we choose the one which is easiest to understand: An `equiprobable' approximation (that is, one where each of the values of $\TranShkEmp_{i}$ has an equal probability, equal to $1/n_{\TranShkEmp}$).
+Such a procedure is called a `quadrature' method of integration; \cite{Tanaka2013-bc} survey a number of options, but for our purposes we choose the one which is easiest to understand: An `equiprobable' approximation (that is, one where each of the values of $\tranShkEmp_{i}$ has an equal probability, equal to $1/n_{\tranShkEmp}$).
 
 We calculate such an $n$-point approximation as follows.
 
-Define a set of points from $\sharp_{0}$ to $\sharp_{n_{\TranShkEmp}}$ on the $[0,1]$ interval
-as the elements of the set $\sharp = \{0,1/n,2/n, \ldots,1\}$.\footnote{These points define intervals that constitute a partition of the domain of $\FDist$.}  Call the inverse of the $\TranShkEmp$ distribution $\FDist^{-1}_{\phantom{\TranShkEmp}}$, and define the
-points $\sharp^{-1}_{i} = \FDist^{-1}_{\phantom{\TranShkEmp}}(\sharp_{i})$.  Then
-the conditional mean of $\TranShkEmp$ in each of the intervals numbered 1 to $n$ is:
+Define a set of points from $\sharp_{0}$ to $\sharp_{n_{\tranShkEmp}}$ on the $[0,1]$ interval
+as the elements of the set $\sharp = \{0,1/n,2/n, \ldots,1\}$.\footnote{These points define intervals that constitute a partition of the domain of $\FDist$.}  Call the inverse of the $\tranShkEmp$ distribution $\FDist^{-1}_{\phantom{\tranShkEmp}}$, and define the
+points $\sharp^{-1}_{i} = \FDist^{-1}_{\phantom{\tranShkEmp}}(\sharp_{i})$.  Then
+the conditional mean of $\tranShkEmp$ in each of the intervals numbered 1 to $n$ is:
 \begin{equation}\begin{gathered}\begin{aligned}
-      \TranShkEmp_{i} \equiv \Ex[\TranShkEmp | \sharp_{i-1}^{-1} \leq \TranShkEmp < \sharp_{i}^{-1}]  & = \int_{\sharp^{-1}_{i-1}}^{\sharp^{-1}_{i}} \vartheta ~ d\FDist_{\phantom{\TranShkEmp}}(\vartheta)  ,
+      \tranShkEmp_{i} \equiv \Ex[\tranShkEmp | \sharp_{i-1}^{-1} \leq \tranShkEmp < \sharp_{i}^{-1}]  & = \int_{\sharp^{-1}_{i-1}}^{\sharp^{-1}_{i}} \vartheta ~ d\FDist_{\phantom{\tranShkEmp}}(\vartheta)  ,
     \end{aligned}\end{gathered}\end{equation}
-and when the integral is evaluated numerically for each $i$ the result is a set of values of $\TranShkEmp$ that correspond to the mean value in each of the $n$ intervals.
+and when the integral is evaluated numerically for each $i$ the result is a set of values of $\tranShkEmp$ that correspond to the mean value in each of the $n$ intervals.
 
 The method is illustrated in Figure~\ref{fig:discreteapprox}.  The solid continuous curve represents
-the ``true'' CDF $\FDist(\TranShkEmp)$ for a lognormal distribution such that $\Ex[\TranShkEmp] = 1$, $\sigma_{\TranShkEmp} = 0.1$.  The short vertical line segments represent the $n_{\TranShkEmp}$
-equiprobable values of $\TranShkEmp_{i}$ which are used to approximate this
+the ``true'' CDF $\FDist(\tranShkEmp)$ for a lognormal distribution such that $\Ex[\tranShkEmp] = 1$, $\sigma_{\tranShkEmp} = 0.1$.  The short vertical line segments represent the $n_{\tranShkEmp}$
+equiprobable values of $\tranShkEmp_{i}$ which are used to approximate this
 distribution.\footnote{More sophisticated approximation methods exist
   (e.g.\ Gauss-Hermite quadrature; see \cite{kopecky2010finite} for a discussion of other alternatives), but the method described here is easy to understand, quick to calculate, and has additional advantages briefly described in the discussion of simulation below.}
   \hypertarget{discreteApprox}{}
@@ -77,10 +77,10 @@ Because one of the purposes of these notes is to connect the math to the code th
 \lstinputlisting{./Code/Python/snippets/equiprobable-make.py}\nopagebreak
 
   \begin{equation}\begin{gathered}\begin{aligned}
-        \vFunc_{{\prdLst}_\cntn}(\aNrm)  & =   \DiscFac \PermGroFacAdjV\left(\frac{1}{n_{\TranShkEmp}}\right)\sum_{i=1}^{n_{\TranShkEmp}}   \frac{\left(\RNrm_{\prd} \aNrm + \TranShkEmp_{i}\right)^{1-\CRRA}}{1-\CRRA} \label{eq:vDiscrete}
+        \vFunc_{{\prdLst}_\cntn}(\aNrm)  & =   \DiscFac \PermGroFacAdjV\left(\frac{1}{n_{\tranShkEmp}}\right)\sum_{i=1}^{n_{\tranShkEmp}}   \frac{\left(\RNrm_{\prd} \aNrm + \tranShkEmp_{i}\right)^{1-\CRRA}}{1-\CRRA} \label{eq:vDiscrete}
       \end{aligned}\end{gathered}\end{equation}
 
-We now substitute our approximation \eqref{eq:vDiscrete} for $\vEndPrdLsT(a)$ in \eqref{eq:vEndTm1} which is simply the sum of $n_{\TranShkEmp}$ numbers and is therefore easy to calculate (compared to the full-fledged numerical integration \eqref{eq:NumDefInt} that it replaces).
+We now substitute our approximation \eqref{eq:vDiscrete} for $\vEndPrdLsT(a)$ in \eqref{eq:vEndTm1} which is simply the sum of $n_{\tranShkEmp}$ numbers and is therefore easy to calculate (compared to the full-fledged numerical integration \eqref{eq:NumDefInt} that it replaces).
 
 % so we can rewrite the maximization problem that defines the middle step of period {$\prdLst$} as
 %   \begin{equation}\begin{gathered}\begin{aligned}
@@ -108,7 +108,7 @@ Given any particular value of $\mNrm$, a numerical maximization tool can now fin
 \begin{comment}
   % The {\SMDSOPntbk} notebook follows a series of steps to achieve this. Initially, parameter values for the coefficient of relative risk aversion (CRRA, $\rho$), the discount factor ($\beta$), the permanent income growth factor ($\PermGroFac$), and the risk-free interest rate ($R$ are specified in ``Define Parameters, Grids, and the  Utility Function.'')
 
-  % After defining the utility function, the `natural borrowing constraint' is defined as $\underline{a}_{\prdT-1}=-\underline{\TranShkEmp}\RNrm_{\prdT}^{-1}$, which will be discussed in greater depth in section \ref{subsec:LiqConstrSelfImposed}. %Following the reformulation of the maximization problem, an instance of the \texttt{gothic\_class} is created using the specifications and the discretized distribution described in the prior lines of code; this is required to provide the numerical solution.
+  % After defining the utility function, the `natural borrowing constraint' is defined as $\Lo{a}_{\prdT-1}=-\Lo{\tranShkEmp}\RNrm_{\prdT}^{-1}$, which will be discussed in greater depth in section \ref{subsec:LiqConstrSelfImposed}. %Following the reformulation of the maximization problem, an instance of the \texttt{gothic\_class} is created using the specifications and the discretized distribution described in the prior lines of code; this is required to provide the numerical solution.
 \end{comment}
 
 The notebook code responsible for computing an estimated consumption function begins in ``Solving the Model by Value Function Maximization,'' where a vector containing a set of possible values of market resources $m$ is created (in the code, various $m$ vectors have names beginning {\mVec}; in these notes we will use boldface italics to represent vectors, so we can refer to our collection of $m$ points as $\vctr{m}$ with values indexed by brackets: $\vctr{m}[1]$ is the first entry in the vector, up to a last entry $\vctr{m}[-1]$; we arbitrarily (and suboptimally) pick the first five integers as our five {\mVec}  gridpoints (in the code, \code{mVec\_int}= $\{0.,1.,2.,3.,4.\}$)).
@@ -148,7 +148,7 @@ plots of the constructed $\Aprx{\cFunc}_{\prdT-1}$ and $\Aprx{\vFunc}_{\prdT-1}$
 
 Piecewise linear `spline' interpolation as described above works well for generating a good approximation to the true optimal consumption function. However, there is a clear inefficiency in the program: Since it uses equation \eqref{eq:vEndTm1}, for every value of $\mNrm$ the program must calculate the utility consequences of various possible choices of $\cNrm$ (and therefore $\aNrm_{\prdT-1}$) as it searches for the best choice.
 
-For any given index $j$ in $\vctr{m}[j]$, the algorithm, as it searches for the corresponding optimal $a$, the algorithm will end up  calculating $\vFunc_{\EndPrdLsT}(\tilde{a})$ for many $\tilde{a}$ values close to the optimal $a_{\prdT-1}$.  Indeed, even when searching for the optimal $a$ for a \emph{different} $m$ (say $\vctr{m}[k]$ for $k \neq j$) the search process might compute $\vFunc_{\EndPrdLsT}(a)$ for an $a$ close to the correct optimal $a$ for $\vctr{m}[j]$. But if that difficult computation does not correspond to the exact solution to the $\vctr{m}[k]$ problem, it is discarded.  
+For any given index $j$ in $\vctr{m}[j]$, as it searches for the corresponding optimal $a$, the algorithm will end up  calculating $\vFunc_{\EndPrdLsT}(\tilde{a})$ for many $\tilde{a}$ values close to the optimal $a_{\prdT-1}$.  Indeed, even when searching for the optimal $a$ for a \emph{different} $m$ (say $\vctr{m}[k]$ for $k \neq j$) the search process might compute $\vFunc_{\EndPrdLsT}(a)$ for an $a$ close to the correct optimal $a$ for $\vctr{m}[j]$. But if that difficult computation does not correspond to the exact solution to the $\vctr{m}[k]$ problem, it is discarded.  
 
 % (These lists contain the points of the $\vctr{a}_{\prdT-1}$ and $\vctr{v}_{\prdT-1}$ vectors, respectively.)
 
@@ -205,7 +205,7 @@ of the value function.
 The first order condition of the maximization problem in period $\trmT-1$ is:
   \begin{equation}\begin{gathered}\begin{aligned}
         \uFunc^{c}(\cNrm)       & = \DiscFac \Ex_{\cntn(T-1)} [\PermGroFacAdjMu\Rfree \uFunc^{c}(c_{\prdT})]  %\label{eq:focraw}
-        \\      \cNrm^{-\CRRA}   & = \Rfree \DiscFac \left(\frac{1}{n_{\TranShkEmp}}\right) \sum_{i=1}^{n_{\TranShkEmp}} \PermGroFacAdjMu\left(\Rfree (\mNrm-\cNrm) + \TranShkEmp_{i}\right)^{-\CRRA} \label{eq:FOCTm1}.
+        \\      \cNrm^{-\CRRA}   & = \Rfree \DiscFac \left(\frac{1}{n_{\tranShkEmp}}\right) \sum_{i=1}^{n_{\tranShkEmp}} \PermGroFacAdjMu\left(\Rfree (\mNrm-\cNrm) + \tranShkEmp_{i}\right)^{-\CRRA} \label{eq:FOCTm1}.
       \end{aligned}\end{gathered}\end{equation}
 \hypertarget{PlotuPrimeVSOPrime}{}
 \begin{figure}
@@ -238,7 +238,7 @@ from 3 to 4 increases optimal consumption by about 0.5.
 Now consider the derivative of our function $\Aprx{\vFunc}_{(\prdT-1)}(a_{\prdT-1})$.  Because we have
 constructed $\Aprx{\vFunc}_{(\prdT-1)}$ as a linear interpolation, the slope of
 $\Aprx{\vFunc}_{(\prdT-1)}(a_{\prdT-1})$ between any two adjacent points
-$\{\vctr{a}[i],\vctr{},\vctr{a}[{i+1}]\}$ is constant.  The level of the slope immediately below any
+$\{\vctr{a}[i],\vctr{a}[{i+1}]\}$ is constant.  The level of the slope immediately below any
 particular gridpoint is different, of course, from the slope above that gridpoint, a fact which
 implies that the derivative of $\Aprx{\vFunc}_{(\prdT-1)_\cntn}(a_{\prdT-1})$ follows a step function.
 
@@ -257,7 +257,7 @@ function plotted earlier returned values very close to $\cNrm=2$ for both $\mNrm
 
 We would obviously obtain much better estimates of the point of intersection between $\uFunc^{c}(\cNrm)$ and $\vFunc_{(\prdT-1)_\cntn}^{a}(\mNrm-\cNrm)$ if our estimate of $\Aprx{\vFunc}^{a}_{(\prdT-1)_\cntn}$ were not a step function.  In fact, we already know how to construct linear interpolations to functions, so the obvious next step is to construct a linear interpolating approximation to the \textit{expected marginal value of end-of-period assets function} at the points in $\vctr{a}$:
 \begin{equation}\begin{gathered}\begin{aligned}
-      \vFunc_{(\prdT-1)_\cntn}^{a}(\vctr{a})  & =  \DiscFac \Rfree \PermGroFacAdjMu \left(\frac{1}{n_{\TranShkEmp}}\right) \sum_{i=1}^{n_{\TranShkEmp}} \left(\RNrm_{\prdT} \vctr{a} + \TranShkEmp_{i}\right)^{-\CRRA} \label{eq:vEndPrimeTm1}
+      \vFunc_{(\prdT-1)_\cntn}^{a}(\vctr{a})  & =  \DiscFac \Rfree \PermGroFacAdjMu \left(\frac{1}{n_{\tranShkEmp}}\right) \sum_{i=1}^{n_{\tranShkEmp}} \left(\RNrm_{\prdT} \vctr{a} + \tranShkEmp_{i}\right)^{-\CRRA} \label{eq:vEndPrimeTm1}
     \end{aligned}\end{gathered}\end{equation}
 yielding $\vctr{v}{^{a}_{(\prdT-1)_\cntn}}$ (the vector of expected end-of-period-$(T-1)$ marginal values of assets corresponding to \code{aVec}),  %$\{\{\vctr{a}}\code{_{\prdT-1}},\vFunc_{(\prdT-1)_\cntn}^{a}(\vctr{{a}[1]}_{\prdT-1}\},\{\vctr{a}_{(T-1)},\vFunc_{(\prdT-1)_\cntn}^{a}\}\ldots\}$
 and construct
@@ -285,22 +285,14 @@ The results are shown in Figure \ref{fig:PlotOPRawVSFOC}.  The linear interpolat
 \hypertarget{transformation}{}
 \subsection{Transformation}\label{subsec:transformation}
 
-Even the new-and-improved consumption function diverges notably from the true
-solution, especially at lower values of $m$.  That is because the
-linear interpolation does an increasingly poor job of capturing the
-nonlinearity of $\vFunc_{(\prdT-1)_\cntn}^{a}(a_{\prdT-1})$ at
-lower and lower levels of $a$.
+Even the new-and-improved consumption function diverges notably from the true solution, especially at lower values of $m$.  That is because the linear interpolation does an increasingly poor job of capturing the nonlinearity of $\vFunc_{(\prdT-1)_\cntn}^{a}$ at lower and lower levels of $a$.
 
-This is where we unveil our next trick.  To understand the logic,
-start by considering the case where $\RNrm_{\prdT} = \DiscFac =
-\PermGroFac_{\prdT} = 1$ and there is no uncertainty
-(that is, we know for sure that income next period
-will be $\TranShkEmp_{\prdT} = 1$).  The final Euler equation (recall that we are still assuming that $\prd=\trmT$) is then:
+This is where we unveil our next trick.  To understand the logic, start by considering the case where $\RNrm_{\prdT} = \DiscFac = \PermGroFac_{\prdT} = 1$ and there is no uncertainty (that is, we know for sure that income next period will be $\tranShkEmp_{\prdT} = 1$).  The final Euler equation (recall that we are still assuming that $\prd=\trmT$) is then:
 \begin{equation}\begin{gathered}\begin{aligned}
       \cNrm_{\prdT-1}^{-\CRRA}  & = c_{\prdT}^{-\CRRA}.
     \end{aligned}\end{gathered}\end{equation}
 
-In the case we are now considering with no uncertainty and no liquidity constraints, the optimizing consumer does not care whether a unit of income is scheduled to be received in the future period $\prdT$ or the current period $\prdT-1$; there is perfect certainty that the income will be received, so the consumer treats its PDV as equivalent to a unit of current wealth.  Total resources available at the point when the consumption decision is made is therefore are comprised of two types: current market resources $\mNrm$ and `human wealth' (the PDV of future income) of $\hNrm_{\prdT-1}=1$ (because it is the value of human wealth as of the end of the period, there is only one more period of income of 1 left).
+In the case we are now considering with no uncertainty and no liquidity constraints, the optimizing consumer does not care whether a unit of income is scheduled to be received in the future period $\prdT$ or the current period $\prdT-1$; there is perfect certainty that the income will be received, so the consumer treats its PDV as equivalent to a unit of current wealth.  Total resources available at the point when the consumption decision is made is therefore comprised of two types: current market resources $\mNrm$ and `human wealth' (the PDV of future income) of $\hNrm_{\prdT-1}=1$ (because it is the value of human wealth as of the end of the period, there is only one more period of income of 1 left).
 
 \begin{equation}
   \vFunc^{m}_{\MidPrdLsT}(\mNrm)  = \left(\frac{\mNrm+1}{2}\right)^{-\CRRA} \label{eq:vPLin}.
@@ -354,24 +346,24 @@ For most canned piecewise-linear interpolation tools like \href{https://docs.sci
       \Aprx{\cFunc}_{(\prdLsT)_\cntn}(a)  &  \equiv \cMin + (a-\aVecMin)\varkappa_{1}  \label{eq:ExtrapLin}.
     \end{aligned}\end{gathered}\end{equation}
 
-To see that this will lead us into difficulties, consider what happens to the true (not approximated) $\vFunc^{a}_{(\prdLsT)_\cntn}(a_{\prdLsT})$ as $a_{\prdLsT}$ approaches a quantity we will call the `natural borrowing constraint': $\NatBoroCnstra_{\prdLsT}=-\underline{\TranShkEmp}\RNrm_{\prdT}^{-1}$.  From
+To see that this will lead us into difficulties, consider what happens to the true (not approximated) $\vFunc^{a}_{(\prdLsT)_\cntn}(a_{\prdLsT})$ as $a_{\prdLsT}$ approaches a quantity we will call the `natural borrowing constraint': $\NatBoroCnstra_{\prdLsT}=-\Lo{\tranShkEmp}\RNrm_{\prdT}^{-1}$.  From
 \eqref{eq:vEndPrimeTm1} we have
 \begin{equation}\begin{gathered}\begin{aligned}
       \lim_{\aNrm \downarrow \NatBoroCnstra_{\prdLsT}} \vFunc^{a}_{(\prdLsT)_\cntn}(\aNrm)
-      & =                                                                                         \lim_{\aNrm \downarrow \NatBoroCnstra_{\prdLsT}} \DiscFac \Rfree \PermGroFacAdjMu \left(\frac{1}{n_{\TranShkEmp}}\right) \sum_{i=1}^{n_{\TranShkEmp}} \left( \aNrm \RNrm_{\prd}+ \TranShkEmp_{i}\right)^{-\CRRA}.
+      & =                                                                                         \lim_{\aNrm \downarrow \NatBoroCnstra_{\prdLsT}} \DiscFac \Rfree \PermGroFacAdjMu \left(\frac{1}{n_{\tranShkEmp}}\right) \sum_{i=1}^{n_{\tranShkEmp}} \left( \aNrm \RNrm_{\prd}+ \tranShkEmp_{i}\right)^{-\CRRA}.
     \end{aligned}\end{gathered}\end{equation}
 
-But since $\TranShkEmpMin=\TranShkEmp_{1}$, exactly at $\aNrm=\NatBoroCnstra_{\prdLsT}$ the first term in the summation would be $(-\TranShkEmpMin+\TranShkEmp_{1})^{-\CRRA}=1/0^{\CRRA}$ which is infinity.  The reason is simple: $-\NatBoroCnstra_{\prdLsT}$ is the PDV, as of $\prdLsT$, of the \emph{minimum possible realization of income} in $\prdT$ ($\RNrm_{\prdT}\NatBoroCnstra_{\prdLsT} = -\TranShkEmp_{1}$).  Thus, if the consumer borrows an amount greater than or equal to $\underline{\TranShkEmp}\RNrm_{\prdT}^{-1}$ (that is, if the consumer ends $\prdLsT$ with $a_{\prdLsT} \leq -\underline{\TranShkEmp}\RNrm_{\prdT}^{-1}$) and then draws the worst possible income shock in period $\prdT$, they will have to consume zero in period $\prdT$, which yields $-\infty$ utility and $+\infty$ marginal utility.
+But since $\tranShkEmpMin=\tranShkEmp_{1}$, exactly at $\aNrm=\NatBoroCnstra_{\prdLsT}$ the first term in the summation would be $(-\tranShkEmpMin+\tranShkEmp_{1})^{-\CRRA}=1/0^{\CRRA}$ which is infinity.  The reason is simple: $-\NatBoroCnstra_{\prdLsT}$ is the PDV, as of $\prdLsT$, of the \emph{minimum possible realization of income} in $\prdT$ ($\RNrm_{\prdT}\NatBoroCnstra_{\prdLsT} = -\tranShkEmp_{1}$).  Thus, if the consumer borrows an amount greater than or equal to $\Lo{\tranShkEmp}\RNrm_{\prdT}^{-1}$ (that is, if the consumer ends $\prdLsT$ with $a_{\prdLsT} \leq -\Lo{\tranShkEmp}\RNrm_{\prdT}^{-1}$) and then draws the worst possible income shock in period $\prdT$, they will have to consume zero in period $\prdT$, which yields $-\infty$ utility and $+\infty$ marginal utility.
 
-As \cite{zeldesStochastic} first noticed, this means that the consumer faces a `self-imposed' (or, as above, `natural') borrowing constraint (which springs from the precautionary motive): They will never borrow an amount greater than or equal to $\underline{\TranShkEmp}\RNrm_{\prdT}^{-1}$ (that is, assets will never reach the lower bound of $\NatBoroCnstra_{\prdLsT}$).  The constraint is `self-imposed' in the precise sense that if the utility function were different (say, Constant Absolute Risk Aversion), the consumer might be willing to borrow more than $\underline{\TranShkEmp}\RNrm_{\prdT}^{-1}$ because a choice of zero or negative consumption in period $\prdT$ would yield some finite amount of utility.\footnote{Though it is very unclear what a proper economic interpretation of negative consumption might be -- this is an important reason why CARA utility, like quadratic utility, is increasingly not used for serious quantitative work, though it is still useful for teaching purposes.}
+As \cite{zeldesStochastic} first noticed, this means that the consumer faces a `self-imposed' (or, as above, `natural') borrowing constraint (which springs from the precautionary motive): They will never borrow an amount greater than or equal to $\Lo{\tranShkEmp}\RNrm_{\prdT}^{-1}$ (that is, assets will never reach the lower bound of $\NatBoroCnstra_{\prdLsT}$).  The constraint is `self-imposed' in the precise sense that if the utility function were different (say, Constant Absolute Risk Aversion), the consumer might be willing to borrow more than $\Lo{\tranShkEmp}\RNrm_{\prdT}^{-1}$ because a choice of zero or negative consumption in period $\prdT$ would yield some finite amount of utility.\footnote{Though it is very unclear what a proper economic interpretation of negative consumption might be -- this is an important reason why CARA utility, like quadratic utility, is increasingly not used for serious quantitative work, though it is still useful for teaching purposes.}
 
-%\providecommand{\aMin}{\underline{\aNrm}}
+%\providecommand{\aMin}{\Lo{\aNrm}}
 This self-imposed constraint cannot be captured well when the $\vFunc^{a}_{(\prdLsT)_\cntn}$ function is approximated by a piecewise linear function like $\Aprx{\vFunc}^{m}_{(\prdLsT)_\cntn}$, because it is impossible for the linear extrapolation below $\aMin$ to correctly predict $\vFunc^{a}_{(\prdLsT)_\cntn}(\NatBoroCnstra_{\prdLsT})=\infty.$ %To see what will happen instead, note first that if we are approximating $\vFunc^{a}_{(\prdLsT)_\cntn}$ the smallest value in \code{aVec} must be greater than $\NatBoroCnstra_{\prdLsT}$ (because the expectation for any $a_{\prdLsT} \leq \NatBoroCnstra_{\prdLsT}$ is undefined).
 
 % When the approximating $\vFunc^{a}_{(\prdLsT)_\cntn}$ function is evaluated at some value less than the first element in \code{aVec}, a piecewise linear approximating function will linearly extrapolate the slope that characterized the lowest segment of the piecewise linear approximation (between \texttt{aVec[1]} and \texttt{aVec[2]}), a procedure that will return a positive finite number, even if the requested $a_{\prdLsT}$ point is below $\NatBoroCnstra_{\prdLsT}$.  This means that the precautionary saving motive is understated, and by an arbitrarily large amount as the level of assets approaches its true theoretical minimum $\NatBoroCnstra_{\prdLsT}$.
 
 %\renewcommand{\prd}{T}
-So, the marginal value of saving approaches infinity as $\aNrm \downarrow \NatBoroCnstra_{\prdLsT}=-\underline{\TranShkEmp}\RNrm_{\prdT}^{-1}$.  But this implies that $\lim_{\aNrm \downarrow \NatBoroCnstra_{\prdLsT}} \cFunc_{(\prdLsT)_\cntn}(\aNrm) = (\vFunc^{a}_{(\prdLsT)_\cntn}(\aNrm))^{-1/\CRRA} = 0$; that is, as $a$ approaches its `natural borrowing constraint' minimum possible value, the corresponding amount of worst-case $c$ must approach \textit{its} lower bound: zero.
+So, the marginal value of saving approaches infinity as $\aNrm \downarrow \NatBoroCnstra_{\prdLsT}=-\Lo{\tranShkEmp}\RNrm_{\prdT}^{-1}$.  But this implies that $\lim_{\aNrm \downarrow \NatBoroCnstra_{\prdLsT}} \cFunc_{(\prdLsT)_\cntn}(\aNrm) = (\vFunc^{a}_{(\prdLsT)_\cntn}(\aNrm))^{-1/\CRRA} = 0$; that is, as $a$ approaches its `natural borrowing constraint' minimum possible value, the corresponding amount of worst-case $c$ must approach \textit{its} lower bound: zero.
 
 The upshot is a realization that all we need to do to address these problems is to prepend each of the $\vctr{a}_{\code{\prdLsT}}$ and $\vctr{c}_{\code{\prdLsT}}$ from \eqref{eq:consumedfnvecs} with an extra point so that the first element in the mapping that produces our interpolation function is $\{\NatBoroCnstra_{\prdLsT},0.\}$. This is done in section ``The Self-Imposed `Natural' Borrowing Constraint and the $a_{\prdLsT}$ Lower Bound'' of the notebook.%which can be seen in the defined lists \texttt{aVecBot} and \texttt{cVec3Bot}.
 

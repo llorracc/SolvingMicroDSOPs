@@ -34,7 +34,7 @@ subject to the constraints
   \begin{equation*}\begin{gathered}\begin{aligned}
         \aLvl_{\prd}  & = \mLvl_{\prd}-\cLvl_{\prd}
         \\      \pLvl_{\prd+1}  & = \PermGroFac_{\prd+1}\pLvl_{\prd}\permShk_{\prd+1}
-        \\      \yLvl_{\prd+1}  & = \pLvl_{\prd+1}\TranShkEmp _{\prd+1}
+        \\      \yLvl_{\prd+1}  & = \pLvl_{\prd+1}\tranShkEmp _{\prd+1}
         \\      \mLvl_{\prd+1}  & = \Rfree \aLvl_{\prd}+\yLvl_{\prd+1}
       \end{aligned}\end{gathered}\end{equation*}
 \end{verbatimwrite} 
@@ -61,7 +61,7 @@ agents are dead by $s=91$ as assumed by Cagetti. % Note that in addition to a ty
         \Xi_{s} & =
         \begin{cases}
           0\phantom{/\pZero} & \text{with probability $\pZero>0$} \\
-          \TranShkEmp_{s}/\pZero      & \text{with probability $(1-\pZero)$, where $\log \TranShkEmp_{s}\thicksim \Nrml(-\sigma_{\TranShkEmp}^{2}/2,\sigma_{\TranShkEmp}^{2})$}\\
+          \tranShkEmp_{s}/\pZero      & \text{with probability $(1-\pZero)$, where $\log \tranShkEmp_{s}\thicksim \Nrml(-\sigma_{\tranShkEmp}^{2}/2,\sigma_{\tranShkEmp}^{2})$}\\
         \end{cases}\\
         \log \permShk_{s} &\thicksim \Nrml(-\sigma_{\permShk}^{2}/2,\sigma_{\permShk}^{2})
       \end{aligned}\end{gathered}\end{equation}
@@ -69,8 +69,8 @@ agents are dead by $s=91$ as assumed by Cagetti. % Note that in addition to a ty
 \end{verbatimwrite}
 \input{./Equations/shocks-for-lifecycle} \unskip
 
-The parameter values for the shocks are taken from Carroll~\citeyearpar{carroll:brookings}, $\pZero=0.5/100$, $\sigma _{\TranShkEmp }=0.1$, and $\sigma_{\permShk}=0.1$.\footnote{Note that $\sigma _{\TranShkEmp}=0.1$ is smaller than the estimate for college graduates estimated in
-  Carroll and Samwick~\citeyearpar{carroll&samwick:nature} ($=0.197=\sqrt{0.039}$) which is used by Cagetti~\citeyearpar{cagettiWprofiles}. The reason for this choice is that Carroll and Samwick~\citeyearpar{carroll&samwick:nature} themselves argue that their estimate of $\sigma_{\TranShkEmp }$ is almost certainly increased by measurement error.} The income growth profile $\PermGroFac_{\prd}$ is from Carroll~\citeyearpar{carrollBSLCPIH} and the values of $\Alive_{\prd}$ and $\hat{\DiscFac}_{\prd}$ are obtained from Cagetti~\citeyearpar{cagettiWprofiles} (Figure \ref{fig:TimeVaryingParam}).\footnote{The income growth profile is the one used by Caroll for operatives. Cagetti computes the time-varying discount factor by educational groups using the methodology proposed by Attanasio et al.~\citeyearpar{AttanasioBanksMeghirWeber} and the survival probabilities from the 1995 Life Tables (National Center for Health Statistics 1998).} The interest rate is assumed to equal $1.03$. The model parameters are included in Table \ref{table:StrEstParams}.
+The parameter values for the shocks are taken from Carroll~\citeyearpar{carroll:brookings}, $\pZero=0.5/100$, $\sigma _{\tranShkEmp }=0.1$, and $\sigma_{\permShk}=0.1$.\footnote{Note that $\sigma _{\tranShkEmp}=0.1$ is smaller than the estimate for college graduates estimated in
+  Carroll and Samwick~\citeyearpar{carroll&samwick:nature} ($=0.197=\sqrt{0.039}$) which is used by Cagetti~\citeyearpar{cagettiWprofiles}. The reason for this choice is that Carroll and Samwick~\citeyearpar{carroll&samwick:nature} themselves argue that their estimate of $\sigma_{\tranShkEmp }$ is almost certainly increased by measurement error.} The income growth profile $\PermGroFac_{\prd}$ is from Carroll~\citeyearpar{carrollBSLCPIH} and the values of $\Alive_{\prd}$ and $\hat{\DiscFac}_{\prd}$ are obtained from Cagetti~\citeyearpar{cagettiWprofiles} (Figure \ref{fig:TimeVaryingParam}).\footnote{The income growth profile is the one used by Caroll for operatives. Cagetti computes the time-varying discount factor by educational groups using the methodology proposed by Attanasio et al.~\citeyearpar{AttanasioBanksMeghirWeber} and the survival probabilities from the 1995 Life Tables (National Center for Health Statistics 1998).} The interest rate is assumed to equal $1.03$. The model parameters are included in Table \ref{table:StrEstParams}.
 
 \hypertarget{PlotTimeVaryingParam}{}
 \begin{figure}[h]
@@ -84,7 +84,7 @@ The parameter values for the shocks are taken from Carroll~\citeyearpar{carroll:
   \begin{center}
     \begin{tabular}{ccl}
       \hline\hline
-      $\sigma _{\TranShkEmp}$    & $0.1$ & Carroll~\citeyearpar{carroll:brookings}
+      $\sigma _{\tranShkEmp}$    & $0.1$ & Carroll~\citeyearpar{carroll:brookings}
       \\ $\sigma _{\permShk}$   & $0.1$ & Carroll~\citeyearpar{carroll:brookings}
       \\ $\pZero$           & $0.005$  & Carroll~\citeyearpar{carroll:brookings}
       \\ $\PermGroFac_{s}$        & figure \ref{fig:TimeVaryingParam} & Carroll~\citeyearpar{carrollBSLCPIH}
@@ -134,14 +134,14 @@ As explained in section \ref{sec:normalization}, it is convenient to work with t
         \Ex_{\prd}[(\permShk_{\prd+1}\PermGroFac_{\prd+1})^{1-\CRRA}\vFunc_{\prd+1}(m_{\prd+1})]   \\
         & \text{s.t.}   \nonumber \\
         a_{\prd}    & = m_{\prd}-c_{\prd} \nonumber
-        \\      m_{\prd+1}  & = a_{\prd}\underbrace{\left(\frac{\Rfree}{\permShk_{\prd+1}\PermGroFac_{\prd+1}}\right)}_{\equiv \RNrm_{\prd+1}}+ ~\TranShkEmp_{\prd+1}
+        \\      m_{\prd+1}  & = a_{\prd}\underbrace{\left(\frac{\Rfree}{\permShk_{\prd+1}\PermGroFac_{\prd+1}}\right)}_{\equiv \RNrm_{\prd+1}}+ ~\tranShkEmp_{\prd+1}
       \end{aligned}\end{gathered}\end{equation*}
 \end{verbatimwrite} 
 \input{./Equations/LifeCycleMaxNormed.tex}\unskip
 with the first order condition:
 \begin{verbatimwrite}{./Equations/FOCLifeCycle}
   \begin{equation}\begin{gathered}\begin{aligned}
-        \uFunc^{c}(c_{\prd}) & = \beth\Alive_{\prd+1}\hat{\DiscFac}_{\prd+1}\Rfree \Ex_{\prd}\left[\uFunc^{c}\left(\permShk_{\prd+1}\PermGroFac_{\prd+1}\cFunc_{\prd+1}\left(a_{\prd}\RNrm_{\prd+1}+\TranShkEmp_{\prd+1}\right)\right)\right]\label{eq:FOCLifeCycle}
+        \uFunc^{c}(c_{\prd}) & = \beth\Alive_{\prd+1}\hat{\DiscFac}_{\prd+1}\Rfree \Ex_{\prd}\left[\uFunc^{c}\left(\permShk_{\prd+1}\PermGroFac_{\prd+1}\cFunc_{\prd+1}\left(a_{\prd}\RNrm_{\prd+1}+\tranShkEmp_{\prd+1}\right)\right)\right]\label{eq:FOCLifeCycle}
         .
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}

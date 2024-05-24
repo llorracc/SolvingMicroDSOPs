@@ -155,15 +155,16 @@
   *{file}   {.resources/texlive/add_search_paths.tex}{0000/00/00 v0.0}
   *{file}   {_sectn-the-problem.tex}{0000/00/00 v0.0}
   *{file}   {.resources/texlive/add_search_paths.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/MaxProb.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/ExogVars.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/vrecurse.tex}{0000/00/00 v0.0}
   *{file}   {_sectn-normalization.tex}{0000/00/00 v0.0}
   *{file}   {.resources/texlive/add_search_paths.tex}{0000/00/00 v0.0}
   *{file}   {./Equations/vNormed.tex}{0000/00/00 v0.0}
   *{file}   {_sectn-notation.tex}{0000/00/00 v0.0}
   *{file}   {.resources/texlive/add_search_paths.tex}{0000/00/00 v0.0}
   *{file}   {./Equations/vMid.tex}{0000/00/00 v0.0}
+  *{file}   {_sectn-the-usual-theory.tex}{0000/00/00 v0.0}
+  *{file}   {.resources/texlive/add_search_paths.tex}{0000/00/00 v0.0}
+  *{file}   {./Equations/Envelope.tex}{0000/00/00 v0.0}
+  *{file}   {./Equations/cEuler.tex}{0000/00/00 v0.0}
   *{file}   {_sectn-solving-the-next.tex}{0000/00/00 v0.0}
   *{file}   {.resources/texlive/add_search_paths.tex}{0000/00/00 v0.0}
   *{file}   {./Equations/vEndTm1.tex}{0000/00/00 v0.0}

@@ -21,7 +21,7 @@ Now define a new optimization problem:
         \aNrm_{\prd}                       & = \mNrm_{\prd}-\cNrm_{\prd}                                                                     \\
         \kNrm_{\prd+1}                     & = \aNrm_{\prd}                                                                                \\
         \bNrm_{\prd+1}                     & = \underbrace{\left(\Rfree/\PermGroFac_{\prd+1}\right)}_{\equiv \RNrm_{\prd+1}}\kNrm_{\prd+1} \\
-        \mNrm_{t+1}                        & = \bNrm_{t+1}+\TranShkEmp_{t+1},
+        \mNrm_{t+1}                        & = \bNrm_{t+1}+\tranShkEmp_{t+1},
       \end{aligned}\end{gathered}\end{equation}
 where division by $\PermGroFac$ in second-to-last equation yields a normalized return factor $\RNrm$ which is the consequence of the fact that we have divided $\prd+1$ level variables by $\pLvl_{\prd+1}=\PermGroFac_{\prd+1}\pLvl_{\prd}$.
 
@@ -37,8 +37,8 @@ and so on back to all earlier periods.  Hence, if we solve the problem \eqref{eq
 
 We have thus reduced the problem from two continuous state variables to one (and thereby enormously simplified its solution).
 
-For future reference it will also be useful to write the problem \eqref{eq:vNormed} in the traditional way, by substituting $\bNrm_{\prdt+1},\kNrm_{\prdt+1},$ and $\aNrm_{\prdt}$ into $\mNrm_{t+1}$:
+For future reference it is useful to write \eqref{eq:vNormed} in the traditional way, by substituting $\bNrm_{\prdt+1},\kNrm_{\prdt+1},$ and $\aNrm_{\prdt}$ into $\mNrm_{t+1}$:
 \begin{equation}\begin{gathered}\begin{aligned}
-      \vFunc_{\prdt}(\mNrm_{\prdt}) & = \max_{\cNrm} ~~ \uFunc(\cNrm)+ \DiscFac \Ex_{\prdt}[ \PermGroFac_{\prdt+1}^{1-\CRRA}\vFunc_{\prdt+1}(\overbrace{(\mNrm_{t}-\cNrm)(\Rfree/\PermGroFac_{t+1})+\TranShkEmp_{t+1}}^{m_{t+1}})] \label{eq:vusual}.
+      \vFunc_{\prdt}(\mNrm_{\prdt}) & = \max_{\cNrm} ~~ \uFunc(\cNrm)+ \DiscFac \Ex_{\prdt}[ \PermGroFac_{\prdt+1}^{1-\CRRA}\vFunc_{\prdt+1}(\overbrace{(\mNrm_{t}-\cNrm)(\Rfree/\PermGroFac_{t+1})+\tranShkEmp_{t+1}}^{m_{t+1}})] \label{eq:vusual}.
     \end{aligned}\end{gathered}\end{equation}
 

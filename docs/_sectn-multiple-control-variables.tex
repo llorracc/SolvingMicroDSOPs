@@ -14,7 +14,7 @@ The new portfolio-share control variable is captured by the archaic Greek charac
     \end{aligned}\end{gathered}\end{equation}
 If we imagine the portfolio share decision as being made simultaneously with the $\cNrm$ decision, the traditional way of writing the problem is (substituting the budget constraint):
 \begin{equation}\begin{gathered}\begin{aligned}
-      \vFunc_{\prd}(m)  & = \max_{\{\cFunc,\Shr\}} ~~  \uFunc(c) + \ExMidStg[\DiscFac \vFunc_{\prd+1}((m-c)\Rport(\Shr) + {\TranShkEmp}_{\prd+1})] \label{eq:Bellmanundated}
+      \vFunc_{\prd}(m)  & = \max_{\{\cFunc,\Shr\}} ~~  \uFunc(c) + \ExMidStg[\DiscFac \vFunc_{\prd+1}((m-c)\Rport(\Shr) + {\tranShkEmp}_{\prd+1})] \label{eq:Bellmanundated}
     \end{aligned}\end{gathered}\end{equation}
 where we have deliberately omitted the {\interval}-designating subscripts for $\Shr$ and the return factors to highlight the point that, once the consumption and $\Shr$ decisions have been made, it makes no difference to this equation whether the risky return factor $\Risky$ is revealed a nanosecond before the end of the current {\interval} or a nanosecond after the beginning of the successor {\interval}.
 
@@ -35,7 +35,7 @@ where we have deliberately omitted the {\interval}-designating subscripts for $\
           \ExEndStg[{\vFunc}_{\prd+1}(m_{\prd+1})]
           \\      & \text{s.t.} \nonumber
           \\      \Rport_{\prd+1}  & = \Rfree + (\Risky_{\prd+1}-\Rfree) \Shr_{\prd}
-          \\      m_{\prd+1}  & = (m_{\prd}-c_{\prd})\Rport_{\prd+1} + \TranShkEmp_{\prd+1}
+          \\      m_{\prd+1}  & = (m_{\prd}-c_{\prd})\Rport_{\prd+1} + \tranShkEmp_{\prd+1}
           \\  0       \leq & \Shr_{\prd}  \leq 1, \label{eq:noshorts}
         \end{aligned}\end{gathered}\end{equation*}
   \end{verbatimwrite}
@@ -103,7 +103,7 @@ A slight modification to the consumer's problem specified earlier is necessary t
 \begin{verbatimwrite}{./Equations/vBalances.tex}
   \begin{equation}\begin{gathered}\begin{aligned}
  \vFunc_{[\cFunc]}(\mNrm) & =  \max_{\cNrm} ~~ \uFunc(\cNrm)+  \vFunc_{[\cFunc]_{_\cntn}}(\underbrace{\mNrm-\cNrm}_{\aNrm})             
-\\    \vFunc_{_\arvl[\cFunc]}(\bNrm) & = \Ex_{_\arvl[\cFunc]}\left[\vFunc_{[\cNrm]}(\overbrace{\bNrm+\TranShkEmp}^{m})\right] \label{eq:vBalances}
+\\    \vFunc_{_\arvl[\cFunc]}(\bNrm) & = \Ex_{_\arvl[\cFunc]}\left[\vFunc_{[\cNrm]}(\overbrace{\bNrm+\tranShkEmp}^{m})\right] \label{eq:vBalances}
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/vBalances.tex}\unskip
@@ -127,13 +127,13 @@ The reward for all this notational investment is that it is now clear that \emph
 \subsubsection{The `beginning-of-period returns' Problem}\label{subsubsec:beginning-returns}
 The beginning-returns problem effectively just inserts a portfolio choice that happens at a {\stg} immediately before the consumption {\stg} in the optimal consumption problem described in \eqref{eq:vBalances}, for which we had a beginning-of-{\stg} value function $\vFunc_{_\arvl[\cFunc]}(\bNrm)$.  The agent makes their portfolio share decision within the {\stg} but (obviously) before the risky returns $\Risky$ for the {\interval} have been realized.  So the problem's portfolio-choice {\stg} also takes $\kNrm$ as its initial state and solves the investor's problem outlined in section~\ref{subsubsec:investors-problem} above:
 \begin{equation}\begin{gathered}\begin{aligned}
-  \vFunc_{_\arvl[\Shr]}(\kNrm) & = \Ex_{[_\arvl\Shr]}[\vFunc_{[\Shr]_{_\cntn}}(\underbrace{\kNrm\optml{\Rport}}_{\bNrm})]
-\\\vFunc_{[\Shr]_\cntn}(\bNrm)  & = \vFunc_{_\arvl[\cFunc]}(\bNrm)
+  \vFunc_{_\arvl[\Shr]}(\kNrm) & = \Ex_{_\arvl[\Shr]}[\vFunc_{[\Shr]_{_\cntn}}(\underbrace{\kNrm\optml{\Rport}}_{\bNrm})]
+\\ \vFunc_{[\Shr]_\cntn}(\bNrm)  & = \vFunc_{_\arvl[\cFunc]}(\bNrm)
     \end{aligned}\end{gathered}\end{equation}
 
-Since in this setup bank balances have been determined before the consumption problems starts, we need to rewrite the consumption {\stg}  as a function of bank balances that will have resulted from the portfolio investment $\bNrm$, combined with the income shocks $\TranShkEmp$:
+Since in this setup bank balances have been determined before the consumption problems starts, we need to rewrite the consumption {\stg}  as a function of bank balances that will have resulted from the portfolio investment $\bNrm$, combined with the income shocks $\tranShkEmp$:
 \begin{equation}\begin{gathered}\begin{aligned}
-      \vFunc_{_\arvl[\cFunc]}(\bNrm) = & \max_{\cFunc}~ \uFunc(\cNrm) + \Ex_{_\arvl[\cFunc]}[\vFunc_{[\cFunc]_\cntn}(\underbrace{\overbrace{\bNrm+\TranShkEmp}^{\mNrm}-\cNrm}_{\aNrm})]
+      \vFunc_{_\arvl[\cFunc]}(\bNrm) = & \max_{\cFunc}~ \uFunc(\cNrm) + \Ex_{_\arvl[\cFunc]}[\vFunc_{[\cFunc]_\cntn}(\underbrace{\overbrace{\bNrm+\tranShkEmp}^{\mNrm}-\cNrm}_{\aNrm})]
     \end{aligned}\end{gathered}\end{equation}
 where, because the consumption {\stg} is the last {\stg} in the {\interval}, the continuatibon-value function for the $\cFunc$ {\stg} is just the continuation-value function for the period as a whole:
 \begin{equation}\begin{gathered}\begin{aligned}
@@ -149,7 +149,7 @@ If the portfolio share and risky returns are realized at the end of the {\interv
     \end{aligned}\end{gathered}\end{equation}
 where we are designating the post-realization result of the investment as $\kNrm$, and since the $\Shr$-{\stg} is the last {\stg} of the problem the end-of-{\stg} $\kNrm$ becomes the end-of-{\interval} $\kNrm_{\prd}.$ 
 
-The `state transition' equation between $\prd$ and $\prd+1$ is simply $\bNrm_{t+1} = \kNrm_{\prd}$ and the continuation-value function transition is $\vFunc_{\prd_\cntn}(\kNrm) \mapsto \DiscFac \vFunc_{_\arvl(\prd+1)}(\kNrm)$ which reflects the above-mentioned point that there is no substantive difference between the two problems (their $\vFunc_{[\cFunc]}(\mNrm)$ value functions and $\cFunc(\mNrm)$ functions will be identical).
+The `state transition' equation between $\prd$ and $\prd+1$ is simply $\bNrm_{t+1} = \kNrm_{\prd}$ and the continuation-value function transition is $\vFunc_{\prd_\cntn}(\kNrm) \sameas \DiscFac \vFunc_{_\arvl(\prd+1)}(\kNrm)$ which reflects the above-mentioned point that there is no substantive difference between the two problems (their $\vFunc_{[\cFunc]}(\mNrm)$ value functions and $\cFunc(\mNrm)$ functions will be identical).
 
 (Note that we are assuming that there will be only one consumption function in the period, so no {\stg} subscript is necessary to pick out `the consumption function'). 
 
@@ -196,15 +196,15 @@ What is the benefit of writing effectively the identical problem in two differen
 
 In specifying the stochastic process for $\Risky_{\prd+1}$, we follow the common practice of assuming that returns are lognormally distributed, $\log \Risky \sim \Nrml(\eprem+\rfree-\sigma^{2}_{\risky}/2,\sigma^{2}_{\risky})$ where $\eprem$ is the equity premium over the thin returns $\rfree$ available on the riskless asset.\footnote{This guarantees that $\Ex[\Risky] = \EPrem/\Rfree$ is invariant to the choice of $\sigma^{2}_{\eprem}$; see \handoutM{LogELogNorm}.}
 
-As with labor income uncertainty, it is necessary to discretize the rate-of-return risk in order to have a problem that is soluble in a reasonable amount of time.  We follow the same procedure as for labor income uncertainty, generating a set of $n_{\risky}$ equiprobable shocks to the rate of return; in a slight abuse of notation, we will designate the portfolio-weighted return (contingent on the chosen portfolio share in equity, and potentially contingent on any other aspect of the consumer's problem) simply as $\Rport_{i,j}$ (where dependence on $i$ is allowed to permit the possibility of nonzero correlation between the return on the risky asset and the $\TranShkEmp$ shock to labor income (for example, in recessions the stock market falls and labor income also declines).
+As with labor income uncertainty, it is necessary to discretize the rate-of-return risk in order to have a problem that is soluble in a reasonable amount of time.  We follow the same procedure as for labor income uncertainty, generating a set of $n_{\risky}$ equiprobable shocks to the rate of return; in a slight abuse of notation, we will designate the portfolio-weighted return (contingent on the chosen portfolio share in equity, and potentially contingent on any other aspect of the consumer's problem) simply as $\Rport_{i,j}$ (where dependence on $i$ is allowed to permit the possibility of nonzero correlation between the return on the risky asset and the $\tranShkEmp$ shock to labor income (for example, in recessions the stock market falls and labor income also declines).
 
 The direct expressions for the derivatives of $\vEndStg$ are
 \begin{equation}\begin{gathered}\begin{aligned}
-      \vEndStg^{a}(a_{\prd},\Shr_{\prd})  & = \DiscFac \left(\frac{1}{n_{\risky} n_{\TranShkEmp}}\right)\sum_{i=1}^{n_{\TranShkEmp}}\sum_{j=1}^{n_{\risky} }\Rport_{i,j} \left(\cFunc_{\prd+1}(\Rport_{i,j}a_{\prd}+\TranShkEmp_{i})\right)^{-\CRRA}
-      \\      \vEndStg^{\Shr}(a_{\prd},\Shr_{\prd})  & = \DiscFac \left(\frac{1}{n_{\risky} n_{\TranShkEmp}}\right)\sum_{i=1}^{n_{\TranShkEmp}}\sum_{j=1}^{n_{\risky} }(\Risky_{i,j}-\Rfree)\left(\cFunc_{\prd+1}(\Rport_{i,j}a_{\prd}+\TranShkEmp_{i})\right)^{-\CRRA}.
+      \vEndStg^{a}(a_{\prd},\Shr_{\prd})  & = \DiscFac \left(\frac{1}{n_{\risky} n_{\tranShkEmp}}\right)\sum_{i=1}^{n_{\tranShkEmp}}\sum_{j=1}^{n_{\risky} }\Rport_{i,j} \left(\cFunc_{\prd+1}(\Rport_{i,j}a_{\prd}+\tranShkEmp_{i})\right)^{-\CRRA}
+      \\      \vEndStg^{\Shr}(a_{\prd},\Shr_{\prd})  & = \DiscFac \left(\frac{1}{n_{\risky} n_{\tranShkEmp}}\right)\sum_{i=1}^{n_{\tranShkEmp}}\sum_{j=1}^{n_{\risky} }(\Risky_{i,j}-\Rfree)\left(\cFunc_{\prd+1}(\Rport_{i,j}a_{\prd}+\tranShkEmp_{i})\right)^{-\CRRA}.
     \end{aligned}\end{gathered}\end{equation}
 
-Writing these equations out explicitly makes a problem very apparent: For every different combination of $\{{a}_{\prd},\Shr_{\prd}\}$ that the routine wishes to consider, it must perform two double-summations of $n_{\risky} \times n_{\TranShkEmp}$ terms.  Once again, there is an inefficiency if it must perform these same calculations many times for the same or nearby values of $\{{a}_{\prd},\Shr_{\prd}\}$, and again the solution is to construct an approximation to the (inverses of the) derivatives of the $\vEndStg$ function.
+Writing these equations out explicitly makes a problem very apparent: For every different combination of $\{{a}_{\prd},\Shr_{\prd}\}$ that the routine wishes to consider, it must perform two double-summations of $n_{\risky} \times n_{\tranShkEmp}$ terms.  Once again, there is an inefficiency if it must perform these same calculations many times for the same or nearby values of $\{{a}_{\prd},\Shr_{\prd}\}$, and again the solution is to construct an approximation to the (inverses of the) derivatives of the $\vEndStg$ function.
 
 Details of the construction of the interpolating approximations are given below; assume for the moment that we have the approximations $\Aprx{\vFunc}_{\EndStg}^{a}$ and $\Aprx{\vFunc}_{\EndStg}^{\Shr}$ in hand and we want to proceed.  As noted above in the discussion of \eqref{eq:Bellmanundated}, nonlinear equation solvers can find the solution to a set of simultaneous equations.  Thus we could ask one to solve
 \begin{equation}\begin{gathered}\begin{aligned}

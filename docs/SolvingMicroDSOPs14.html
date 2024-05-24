@@ -9,18 +9,25 @@
 </head><body 
 >
         <div class="footnote-text">
-   <!--l. 198--><p class="indent" >     <span class="footnote-mark"><a 
- id="x14-32002x7.3"></a><a 
+   <!--l. 226--><p class="indent" >     <span class="footnote-mark"><a 
+ id="x14-33007x8.3"></a><a 
  id="fn13x0">      <sup class="textsuperscript">13</sup></a></span><span 
-class="ecrm-1000">This guarantees that</span> <img 
-src="SolvingMicroDSOPs463x.svg" alt="𝔼[R ] = φφφ∕R  " class="math";align="absmiddle"> <span 
-class="ecrm-1000">is invariant to the choice of</span> <img 
-src="SolvingMicroDSOPs464x.svg" alt="σ2ϕ  " class="math";align="absmiddle"><span 
-class="ecrm-1000">; see  </span><a 
-href="https://www.econ2.jhu.edu/people/ccarroll/public/lecturenotes/MathFacts/MathFactsList/LogELogNorm" ><span 
-class="ectt-1000">LogELogNorm</span></a>
- <span 
-class="ecrm-1000">.</span></div>
+class="ecrm-1000">A faster solution could be obtained by, for each element in</span> <img 
+src="SolvingMicroDSOPs495x.svg" alt="aVec " class="math";align="absmiddle"><span 
+class="ecrm-1000">, computing</span> <img 
+src="SolvingMicroDSOPs496x.svg" alt="vς(m  − c,ς)
+ →   t  t  " class="math";align="absmiddle"> <span 
+class="ecrm-1000">of a grid</span>
+  <span 
+class="ecrm-1000">of values of</span> <img 
+src="SolvingMicroDSOPs497x.svg" alt="ς  " class="math";align="absmiddle"><span 
+class="ecrm-1000">, and then using an approximating interpolating function (rather than the full expectation) in</span>
+  <span 
+class="ecrm-1000">the </span><span 
+class="ectt-1000">FindRoot </span><span 
+class="ecrm-1000">command. The associated speed improvement is fairly modest, however, so this route was not</span>
+  <span 
+class="ecrm-1000">pursued.</span></div>
       
 </body> 
 </html>

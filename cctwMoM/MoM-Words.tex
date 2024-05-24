@@ -1,7 +1,8 @@
   We similarly define $\hEndMin_{\EndStg}$ as `minimal human wealth,' the
   present discounted value of labor income if the shocks were to take on
-  their worst possible value in every future period \PermShkOn{$\TranShkEmp_{t+n} = \TranShkEmpMin ~\forall~n>0$ and $\permShk_{t+n} =
-    \permShkMin ~\forall~n>0$} {$\TranShkEmp_{t+n} = \TranShkEmpMin
+  their worst possible value in every future period \PermShkOn
+  {$\tranShkEmp_{t+n} = \tranShkEmpMin ~\forall~n>0$ and $\permShk_{t+n} =
+    \permShkMin ~\forall~n>0$} {$\tranShkEmp_{t+n} = \tranShkEmpMin
     ~\forall~n>0$} (which we define as corresponding to the beliefs of a
   `pessimist').
 
@@ -9,26 +10,27 @@
     probabilities of the future risks and optimizes accordingly.}
 
   A first useful point is that, for the realist, a lower bound for the
-  level of market resources is $\ushort{m}_{\prd} = -\hEndMin_{\EndStg}$, because
+  level of market resources is $\Lo{m}_{\prd} = -\hEndMin_{\EndStg}$, because
   if $m_{\prd}$ equalled this value then there would be a positive finite
-  chance (however small) of receiving \PermShkOn{$\TranShkEmp_{t+n}=\TranShkEmpMin$ and $\permShk_{t+n}=\permShkMin$}
-  {$\TranShkEmp_{t+n}=\TranShkEmpMin$}
+  chance (however small) of receiving \PermShkOn
+  {$\tranShkEmp_{t+n}=\tranShkEmpMin$ and $\permShk_{t+n}=\permShkMin$}
+  {$\tranShkEmp_{t+n}=\tranShkEmpMin$}
   in
   every future period, which would require the consumer to set $c_{\prd}$
   to zero in order to guarantee that the intertemporal budget constraint
   holds\ctw{.}{~(this is the multiperiod generalization of the discussion in
     section \ref{subsec:LiqConstrSelfImposed} explaining the derivation of the `natural borrowing constraint' for period $\trmT-1$,
-    $\ushort{a}_{\prd-1}$).}  Since consumption of zero yields negative
+    $\Lo{a}_{\prd-1}$).}  Since consumption of zero yields negative
   infinite utility, the solution to realist consumer's problem is not well
-  defined for values of $m_{\prd} < \ushort{m}_{\prd}$, and the limiting
-  value of the realist's $c_t$ is zero as $m_{\prd} \downarrow \ushort{m}_{\prd}$.
+  defined for values of $m_{\prd} < \Lo{m}_{\prd}$, and the limiting
+  value of the realist's $c_t$ is zero as $m_{\prd} \downarrow \Lo{m}_{\prd}$.
 
   Given this result, it will be convenient to define `excess' market
   resources as the amount by which actual resources exceed the lower
   bound, and `excess' human wealth as the amount by which mean expected human wealth
   exceeds guaranteed minimum human wealth:
   \begin{equation*}\begin{gathered}\begin{aligned}
-        \aboveMin \mNrm_{\prd}  & = m_{\prd}+\overbrace{\hEndMin_{\EndStg}}^{=-\ushort{m}_{\prd}}
+        \aboveMin \mNrm_{\prd}  & = m_{\prd}+\overbrace{\hEndMin_{\EndStg}}^{=-\Lo{m}_{\prd}}
         \\  \aboveMin \hNrm_{\EndStg}  & = \hNrm_{\EndStg}-\hEndMin_{\EndStg}.
       \end{aligned}\end{gathered}\end{equation*}
 

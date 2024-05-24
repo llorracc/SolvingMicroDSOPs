@@ -13,9 +13,9 @@ We are interested in the behavior a consumer who begins {\interval} $\prd$ with 
       \bLvl_{\prd} & = \kLvl_{\prd}\Rfree_{\prd}. 
     \end{aligned}\end{gathered}\end{equation}
 
-Simultaneously with the realization of the capital return, the consumer also receives noncapital income $\yLvl_{\prd}$, which is determined by multiplying the consumer's `permanent income' $\pLvl_{\prd}$ by a transitory shock $\TranShkEmp_{\prd}$:
+Simultaneously with the realization of the capital return, the consumer also receives noncapital income $\yLvl_{\prd}$, which is determined by multiplying the consumer's `permanent income' $\pLvl_{\prd}$ by a transitory shock $\tranShkEmp_{\prd}$:
 \begin{equation}\begin{gathered}\begin{aligned}
-      \yLvl_{\prd} & = \pLvl_{\prd}\TranShkEmp_{\prd} \label{eq:yLvl}
+      \yLvl_{\prd} & = \pLvl_{\prd}\tranShkEmp_{\prd} \label{eq:yLvl}
     \end{aligned}\end{gathered}\end{equation}
 whose whose expectation is 1 (that is, before realization of the transitory shock, the consumer's expectation is that actual income will on average be equal to permanent income $\pLvl_{\prd}$).
 
@@ -23,9 +23,12 @@ The combination of bank balances $\bLvl$ and income $\yLvl$ define's the consume
 \begin{equation}\begin{gathered}\begin{aligned}
       \mLvl_{\prd} & = \bLvl_{\prd}+\yLvl_{\prd} \label{eq:mLvl},
     \end{aligned}\end{gathered}\end{equation}
-available to be spent on consumption $\cLvl_{\prd}$ for a consumer subject to a liquidity constraint that requires $\cLvl \leq \mLvl$ (though we are not imposing such a constraint yet - see subsection~\ref{subsec:LiqConstrSelfImposed} for further discussion).
+available to be spent on consumption $\cLvl_{\prd}$ for a consumer subject to a liquidity constraint that requires $\cLvl \leq \mLvl$ (though we are not imposing such a constraint yet - see subsection~\ref{subsec:LiqConstrSelfImposed}).
 
 The consumer's goal is to maximize discounted utility from consumption over the rest of a lifetime ending at date $\trmT$:
+\end{document}\endinput
+
+
 % chktex-file 36
 \begin{verbatimwrite}{./Equations/MaxProb}
   \begin{equation}\label{eq:MaxProb}
@@ -37,7 +40,7 @@ Income evolves according to:
 \begin{verbatimwrite}{./Equations/ExogVars}
   \begin{equation}\begin{gathered}\begin{aligned}
         \pLvl_{\prd+1}   = \PermGroFac_{\prd+1}\pLvl_{\prd}                                        & \text{~~ -- permanent labor income dynamics} \label{eq:permincgrow}
-        \\ \log ~ \TranShkEmp_{t+n}  \sim ~\Nrml(-\std_{\TranShkEmp}^{2}/2,\std_{\TranShkEmp}^{2}) & \text{~~ -- lognormal transitory shocks}~\forall~n>0 .
+        \\ \log ~ \tranShkEmp_{t+n}  \sim ~\Nrml(-\std_{\tranShkEmp}^{2}/2,\std_{\tranShkEmp}^{2}) & \text{~~ -- lognormal transitory shocks}~\forall~n>0 .
       \end{aligned}\end{gathered}\end{equation}
 \end{verbatimwrite}
 \input{./Equations/ExogVars}\unskip
@@ -56,5 +59,5 @@ subject to the Dynamic Budget Constraint (DBC) implicitly defined by equations~\
       \kLvl_{\prd+1} & = \aLvl_{\prd}. \label{eq:transitionstate}
     \end{aligned}\end{gathered}\end{equation}
 
+\onlyinsubfile{\input{.resources/latex/bibliography-blend}}
 \end{document}\endinput
-

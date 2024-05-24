@@ -1,29 +1,18 @@
 % Define macros for this paper
-% Only works after \input{./.econtexRoot}
 
-% \renewcommand{\econtexRoot}{.}
-% \renewcommand{\packages}{\econtexRoot/.resources/texmf-local/tex/latex}
-% \renewcommand{\econtex}{econtex}
-% \renewcommand{\econark}{\econtexRoot/.resources/texmf-local/tex/latex/econark}
-%\renewcommand{\econtexSetup}{\econtexRoot/.resources/texmf-local/tex/latex/econtexSetup}
-%\renewcommand{\econtexShortcuts}{\econtexRoot/.resources/texmf-local/tex/latex/econtexShortcuts}
-%\renewcommand{\econtexBibMake}{\econtexRoot/.resources/texmf-local/tex/latex/econtexBibMake}
-%\renewcommand{\econtexBibStyle}{\econtexRoot/.resources/texmf-local/bibtex/bst/econtex}
-% \renewcommand{\LaTeXInputs}{\econtexRoot/.resources/latex}
-% \renewcommand{\local}{local}
+%
+\newcommand{\sameas}{\leftrightarrow}
 
 % Allow conditional execution depending on whether in subfile or not
 \providecommand{\onlyinsubfile}{}\renewcommand{\onlyinsubfile}[1]{#1}
 \providecommand{\notinsubfile}{}\renewcommand{\notinsubfile}[1]{}
 
-
+% Notation for three steps within a stage
 \newcommand{\Arrival}{Arrival}\newcommand{\arvl}{\leftarrow}
 \newcommand{\Decision}{Decision}\newcommand{\dcsn}{\null}%{\sim}
-\newcommand{\Continuation}{Continuation}\newcommand{\cntn}{\rightarrow}%{\rightharpoonup}
+\newcommand{\Continuation}{Continuation}\newcommand{\cntn}{\rightarrow}
 
-% providecommand then renewcommand works to redefine it
-% if it already exists
-
+% providecommand then renewcommand works to redefine macro if it already exists
 \providecommand{\prdNxt}{}\renewcommand{\prdNxt}{\prdt+1}
 \providecommand{\prdLst}{}\renewcommand{\prdLst}{\prdt-1}
 \providecommand{\prdNxT}{}\renewcommand{\prdNxT}{\prdT+1}
@@ -54,12 +43,15 @@
 \providecommand{\BegPrdLst}{}\renewcommand{\BegPrdLst}{{_\arvl(\prd-1)}} % \dcsn
 \providecommand{\BegPrdLsT}{}\renewcommand{\BegPrdLsT}{{_\arvl(\prd-1)}} % \dcsn
 \providecommand{\EndPrdNxt}{}\renewcommand{\EndPrdNxt}{(\prd+1)_\cntn}
+\providecommand{\MidPrdNxt}{}\renewcommand{\EndPrdNxt}{(\prd+1)_\dcsn}
 \providecommand{\EndPrdNxT}{}\renewcommand{\EndPrdNxT}{(\prdT+1)_\cntn}
 \providecommand{\EndStp}{}\renewcommand{\EndStp}{_\cntn}
 \newcommand{\vBegStg}{\vFunc_{\BegStg}}
 %\newcommand{\vBegStpNxt}{\vFunc_{\BegStpNxt}}
 \newcommand{\vBegPrd}{\vFunc_{\BegPrd}}
 \newcommand{\vBegPrdNxt}{\vFunc_{\BegPrdNxt}}
+\newcommand{\vMidPrdNxt}{\vFunc_{\MidPrdNxt}}
+\newcommand{\vEndPrdNxt}{\vFunc_{\EndPrdNxt}}
 %\newcommand{\vBegStpLst}{\vFunc_{\BegStpLst}}
 %\newcommand{\vMidStp}{\vFunc_{\MidStp}}
 \newcommand{\vMidStg}{\vFunc_{\MidStg}}
@@ -74,6 +66,7 @@
 \newcommand{\vEndPrdLsT}{\vFunc_{\EndPrdLsT}}
 \newcommand{\vMidPrdLst}{\vFunc_{\MidPrdLst}}
 \newcommand{\vMidPrdLsT}{\vFunc_{\MidPrdLsT}}
+\newcommand{\cEndStg}{\cFunc_{\EndStg}} % used in _sectn-method-of-moderation.tex
 %\newcommand{\cEndStp}{\cFunc_{\EndStp}}
 % \newcommand{\vPEndStp}{\vFunc^{a}_{\EndStp}}
 % \newcommand{\vPMidStp}{\vFunc^{m}_{\MidStp}}
@@ -89,20 +82,16 @@
 \newcommand{\vPEndStgNxt}{\vFunc^{a}_{\EndStgNxt}}
 \newcommand{\vPMidStgNxt}{\vFunc^{m}_{\MidStgNxt}}
 \newcommand{\vPBegStgNxt}{\vFunc^{k}_{\BegStgNxt}}
-\renewcommand{\vPBegStgNxt}{\vFunc^{k}_{\BegStgNxt}}
+\newcommand{\vPBegPrdNxt}{\vFunc^{k}_{\BegPrdNxt}}
 
 %\providecommand{\step}{}\renewcommand{\step}{s}
 
 \providecommand{\PDVCoverc}{\mathbb{C}}
 
-% \newcommand{\Mma}{\textit{Mathematica}}
-%\providecommand{\step}{}\renewcommand{\step}{t}
-%\providecommand{\stp}{}\renewcommand{\stp}{t}
-%\providecommand{\Stp}{}\renewcommand{\Stp}{T}
-% \providecommand{\move}{}\renewcommand{\move}{step}
-\providecommand{\move}{}\renewcommand{\move}{toe}
-\providecommand{\Move}{}\renewcommand{\Move}{Toe}
-% \providecommand{\moves}{}\renewcommand{\moves}{steps}
+% Allow changing our mind about the names of the ordering elements
+\providecommand{\move}{}\renewcommand{\move}{step}
+\providecommand{\Move}{}\renewcommand{\Move}{Step}
+ \providecommand{\moves}{}\renewcommand{\moves}{steps}
 \providecommand{\moves}{}\renewcommand{\moves}{steps}
 \providecommand{\Moves}{}\renewcommand{\Moves}{Steps}
 \providecommand{\interval}{}\renewcommand{\interval}{period}
@@ -153,7 +142,6 @@
 
 \newcommand{\optml}[1]{\breve{#1}}
 
-\providecommand{\prd}{}\renewcommand{\prd}{t}
 %\providecommand{\prdm}{}\renewcommand{\prdm}{({\prd-1})}
 
 \newcommand{\code}[1]{\ensuremath{\mathtt{#1}}} % code should be in tt font
@@ -205,25 +193,35 @@
 \newcommand{\arvlStpShr}{_\arvl\step[\Shr]}
 \newcommand{\stepShr}{\step[\Shr]}
 
-\newcommand{\vBegStpShr}{\vFunc_{_arvl[\Shr]}}
-\newcommand{\vMidStpShr}{\vFunc_{\stp[\Shr]}}
-\newcommand{\vEndStpShr}{\vFunc_{\stp[\Shr]_\cntn}}
-\newcommand{\dvdShrBeg}{\vFunc^{\Shr}_{_\arvl\prd[\Shr]}}
-\newcommand{\vShrMid}{\vFunc^{\Shr}_{\prd[\Shr]}}
-\newcommand{\vShrEnd}{\vFunc^{\Shr}_{\prd[\Shr]_\cntn}}
-\newcommand{\vVecShr}{\vctr{v}_{_\arvl\prd[\Shr]}}
+%\newcommand{\vBegPrdNxt}{\vFunc_{_\arvl{\prd+1}}}
+%\newcommand{\vMidPrdNxt}{\vFunc_{_\dcsn{\prd+1}}}
+%\newcommand{\vMidPrdNxt}{\vFunc_{_\dcsn{\prd+1}}}
+%\newcommand{\vMidPrdNxt}{\vFunc_{\stp[\Shr]}}
+%\newcommand{\vEndStpShr}{\vFunc_{\stp[\Shr]_\cntn}}
 
-%\newcommand{\prd}{t}
+%\newcommand{\vBegStpShr}{\vFunc_{_arvl[\Shr]}}
+%\newcommand{\vMidStpShr}{\vFunc_{\stp[\Shr]}}
+%\newcommand{\vEndStpShr}{\vFunc_{\stp[\Shr]_\cntn}}
+%\newcommand{\dvdShrBeg}{\vFunc^{\Shr}_{_\arvl\prd[\Shr]}}
+\newcommand{\vShrBegPrd}{\vFunc^{\Shr}_{_\arvl\prd[\Shr]}}
+\newcommand{\vShrMidPrd}{\vFunc^{\Shr}_{\prd[\Shr]}}
+\newcommand{\vShrEndPrd}{\vFunc^{\Shr}_{\prd[\Shr]_\cntn}}
+%\newcommand{\vVecShr}{\vctr{v}_{_\arvl\prd[\Shr]}}
+
+%\providecommand{\prd}{}\renewcommand{\prd}{t}
+\newcommand{\prd}{t}
 \newcommand{\prdt}{t}
 \newcommand{\prdT}{t}
 
 \providecommand{\hEndMin}{\underline{\hNrm}}\renewcommand{\hEndMin}{\underline{\hNrm}}
-\newcommand{\TranShkEmpDummy}{\vartheta}
+\newcommand{\TranShkEmpDummy}{\pmb{\vartheta}}
+\newcommand{\tranShkEmpDummy}{\vartheta}
 
 \newcommand{\aVecMin}{{a}_{1}}
 \newcommand{\cMin}{{c}_{1}}
 \newcommand{\vctratm}{\vctr{a}_{\prd-1}}\renewcommand{\vctratm}{\vctr{a}}
 \providecommand{\TranShkEmpMin}{}\renewcommand{\TranShkEmpMin}{\underline{\TranShkEmp}}
+\providecommand{\tranShkEmpMin}{}\renewcommand{\tranShkEmpMin}{\underline{\tranShkEmp}}
 
 %\newcommand{\cLst}{{c}_{\prdLst}}
 %\newcommand{\cLsT}{{c}_{\prdLsT}}
