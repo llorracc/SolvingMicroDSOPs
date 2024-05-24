@@ -3,7 +3,7 @@ channels:
   - conda-forge
 dependencies:
   - python=3.9
-  - econ-ark=0.12
+  - econ-ark=0.14
   - ipywidgets
   - jupyterlab
   - matplotlib
