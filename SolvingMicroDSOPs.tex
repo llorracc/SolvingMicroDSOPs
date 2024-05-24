@@ -13,7 +13,7 @@
 \usepackage{local-packages}    % LaTeX config in ./resources/latex
 
 % booleans control whether certain features are on or off:
-\input{SolvingMicroDSOPs-options}   
+\input{\texname-options}   
 
 % replace macros with their referents using demacro
 % (only operative when processing doc with demacro script):
@@ -34,19 +34,19 @@
 \begin{document}
 
 % Sections = _sectn-
-\input{_sectn-titlepage-input}
-\input{_sectn-introduction-input}
+\subfile{_sectn-titlepage}
+\subfile{_sectn-introduction}
 %\input{./.resources/latex/bibliography-blend}\end{document}\endinput % \endinput prevents any processing of subsequent stuff
-\input{_sectn-the-problem-input}
-\input{_sectn-normalization-input}
-\input{_sectn-notation-input}
-\input{_sectn-the-usual-theory-input}
-\input{_sectn-solving-the-next-input}
-%\MoM{\input{_sectn-method-of-moderation-input}}{}
-\input{_sectn-the-infinite-horizon-input}
-\input{_sectn-multiple-control-variables-input}
-\input{_sectn-structural-estimation-input}
-\input{_sectn-conclusion-input}
+\subfile{_sectn-the-problem}
+\subfile{_sectn-normalization}
+\subfile{_sectn-notation}
+\subfile{_sectn-the-usual-theory}
+\subfile{_sectn-solving-the-next}
+%\MoM{\subfile{_sectn-method-of-moderation}}{}
+\subfile{_sectn-the-infinite-horizon}
+\subfile{_sectn-multiple-control-variables}
+\subfile{_sectn-structural-estimation}
+\subfile{_sectn-conclusion}
 
 \clearpage\vfill\eject
 
@@ -55,7 +55,7 @@
 \appendix
 
 % Appendices = _apndx-
-\input{_apndx-scf-data-input}
+\subfile{_apndx-scf-data}
 \vfill\clearpage
 
 \input{./.resources/latex/bibliography-blend}%\end{document}\endinput % \endinput prevents any processing of subsequent stuff
