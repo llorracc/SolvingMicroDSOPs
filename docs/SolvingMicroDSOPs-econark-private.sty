@@ -1,36 +1,10 @@
-% Style file with stuff that should be available for any latex doc in Econ-ARK
-% \renewcommand{[macroName]}{[value]} does not overwrite [macroName]
-% so if used after macroName is already defined, it leaves the macro unchanged
-
-% Get references right whether compiled as subfile or main file
-% https://tex.stackexchange.com/questions/463699/proper-reference-numbers-with-subfiles
-\newcommand\labelprefix{}
-\newcommand\localorexternallabel[1]{% Removing this comment breaks the command
-  \expandafter\ifx\csname r@#1\endcsname\relax
-  \labelprefix
-  \fi #1% Removing this comment breaks the command
-}
-
-% Appendices and body are subfiles
-\RequirePackage{subfiles}
-\RequirePackage{xmpincl} % mathstat.dal..ca/~sellinger/pdfa
-
-% Get all the packages from the American Mathematical Society
-\RequirePackage{amsmath,amsfonts,amsmath,amsthm,amssymb}
-
-% Command to define a label only if it does not yet exist (suppresses misleading
-% warnings when material created in subfiles is read in while references already
-% exist from master document)
-\makeatletter
-\renewcommand{\iflabelexists}[3]{\@ifundefined{r@#1}{\G@refundefinedtrue{#3}}{#2}}
-\makeatother
-
-% Home of Econ-ARK
-\renewcommand{\ARKurl}{\href{https://econ-ark.org}{{Econ-ARK}}}
+% Contains raw latex versions of most commands
+% When used with demacro, generates document where LaTeX can mostly
+% be rendered by plain markdown etc.
 
 % Define various generically useful terms and items
 \renewcommand{\avg}{\bar}
-\renewcommand{\cov}{}\renewcommand{\cov}{\textup{cov}}
+\providecommand{\cov}{}\renewcommand{\cov}{\textup{cov}}
 \renewcommand{\Abve}{\bar}
 \renewcommand{\Belw}{\underline}
 \renewcommand{\CDF}{\mathcal{F}}
@@ -40,14 +14,6 @@
 
 % Constrained
 \renewcommand{\cnstr}[1]{\grave{#1}}
-
-\renewcommand{\BalGroFac}{\check} % Balanced growth factor
-\renewcommand{\BalGroRte}{\tilde} % Balanced growth rate (log change)
-\renewcommand{\TargetNrm}{\hat}   % Target 
-\renewcommand{\ABalLvl}{\BalGroFac{\ALvl}} % m where ALvl grows by PermGroFac
-\renewcommand{\MBalLvl}{\BalGroFac{\MNrm}} % m where MLvl grows by PermGroFac
-\renewcommand{\mBalLog}{\BalGroRte{\mNrm}} % m where mLog grows by PermGroRte
-\renewcommand{\mTrgNrm}{\TargetNrm{\mNrm}} % m where E[m_{t+1}]=m_{t}
 
 % Levels are boldface
 \renewcommand{\aLvl}{\mathbf{a}}

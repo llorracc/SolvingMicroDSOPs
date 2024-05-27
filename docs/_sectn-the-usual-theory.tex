@@ -47,7 +47,7 @@ For reference and to illustrate our new notation, we will now derive the Euler e
 % (We will reuse this formulation when we turn to section~\ref{subsec:egm}.)
 Since
 \begin{equation}\begin{gathered}\begin{aligned}
-  \vEndStg(\aNrm) & \sameas \vFunc_{\prd_\cntn}(\aNrm) = \DiscFac \vBegPrdNxt(\aNrm) = \DiscFac \Ex_{\BegPrdNxt}[\PermGroFac_{\prd+1}^{1-\CRRA}\vFunc_{\prd+1}(\overbrace{a (\Rfree / \PermGroFac_{\prd+1})+\tranShk_{\prd+1}}^{\mNrm_{\prd+1}})],
+  \vEndStg(\aNrm) & \assignedto \vFunc_{\prd_\cntn}(\aNrm) \assignedto \DiscFac \vBegPrdNxt(\aNrm) = \DiscFac \Ex_{\BegPrdNxt}[\PermGroFac_{\prd+1}^{1-\CRRA}\vFunc_{\prd+1}(\overbrace{a (\Rfree / \PermGroFac_{\prd+1})+\tranShkEmp_{\prd+1}}^{\mNrm_{\prd+1}})],
 \end{aligned}\end{gathered}\end{equation}
 given $\mNrm_{\prd}$, the first order condition for \eqref{eq:vusual} with respect to $\aNrm$ is
 \begin{equation}\begin{gathered}\begin{aligned}
@@ -142,8 +142,3 @@ We will revert to this formulation when we reach section~\ref{subsec:egm}.
 \end{comment}
 
 \end{document}
-
-% Local Variables:
-% eval: (setq global-prettify-symbols-mode t)
-% eval: (setq prettify-symbols-unprettify-at-point 'right-edge)
-% End:

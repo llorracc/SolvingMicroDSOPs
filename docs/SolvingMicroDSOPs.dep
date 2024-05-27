@@ -104,6 +104,8 @@
   *{package}{lstmisc}     {2024/02/21 v1.10}
   *{file}   {listings.cfg}{2024/02/21 v1.10}
   *{file}   {listings.cfg}{2024/02/21 v1.10}
+  *{package}{lstlang1}    {2024/02/21 v1.10}
+  *{package}{lstlang1}    {2024/02/21 v1.10}
   *{package}{mathtools}   {2022/06/29 v1.29}
   *{package}{mhsetup}     {2021/03/18 v1.4}
   *{package}{xr-hyper}    {2024-01-20 v7.01h}
@@ -187,8 +189,7 @@
   *{file}   {translations-basic-dictionary-english.trsl}{(english v0.0}
   *{file}   {translations-basic-dictionary-english.trsl}{(english v0.0}
   *{package}{bookmark}    {2023-12-10 v1.31}
-  *{file}   {_sectn-titlepage.tex}{0000/00/00 v0.0}
-  *{file}   {.resources/texlive/add_search_paths.tex}{0000/00/00 v0.0}
+  *{file}   {_sectn-titlepage-input.tex}{0000/00/00 v0.0}
   *{file}   {umsa.fd}     {2013/01/14 v3.01}
   *{file}   {umsa.fd}     {2013/01/14 v3.01}
   *{file}   {umsb.fd}     {2013/01/14 v3.01}
@@ -197,55 +198,26 @@
   *{file}   {ulasy.fd}    {1998/08/17 v2.2e}
   *{file}   {t1cmtt.fd}   {2023/04/13 v2.5m}
   *{file}   {t1cmtt.fd}   {2023/04/13 v2.5m}
-  *{file}   {_sectn-introduction.tex}{0000/00/00 v0.0}
-  *{file}   {.resources/texlive/add_search_paths.tex}{0000/00/00 v0.0}
+  *{file}   {_sectn-introduction-input.tex}{0000/00/00 v0.0}
   *{file}   {t1cmss.fd}   {2023/04/13 v2.5m}
   *{file}   {t1cmss.fd}   {2023/04/13 v2.5m}
-  *{file}   {_sectn-the-problem.tex}{0000/00/00 v0.0}
-  *{file}   {.resources/texlive/add_search_paths.tex}{0000/00/00 v0.0}
-  *{file}   {_sectn-normalization.tex}{0000/00/00 v0.0}
-  *{file}   {.resources/texlive/add_search_paths.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/vNormed.tex}{0000/00/00 v0.0}
-  *{file}   {_sectn-notation.tex}{0000/00/00 v0.0}
-  *{file}   {.resources/texlive/add_search_paths.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/vMid.tex}{0000/00/00 v0.0}
-  *{file}   {_sectn-the-usual-theory.tex}{0000/00/00 v0.0}
-  *{file}   {.resources/texlive/add_search_paths.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/Envelope.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/cEuler.tex}{0000/00/00 v0.0}
-  *{file}   {_sectn-solving-the-next.tex}{0000/00/00 v0.0}
-  *{file}   {.resources/texlive/add_search_paths.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/vEndTm1.tex}{0000/00/00 v0.0}
-  *{package}{lstlang1}    {2024/02/21 v1.10}
-  *{package}{lstlang1}    {2024/02/21 v1.10}
-  *{file}   {./Code/Python/snippets/rawsolution.py}{0000/00/00 v0.0}
-  *{file}   {./Figures/discreteApprox.tex}{0000/00/00 v0.0}
+  *{file}   {_sectn-the-problem-input.tex}{0000/00/00 v0.0}
+  *{file}   {_sectn-normalization-input.tex}{0000/00/00 v0.0}
   *{file}   {./Code/Python/snippets/equiprobable-make.py}{0000/00/00 v0.0}
-  *{file}   {./Equations/vDiscrete.tex}{0000/00/00 v0.0}
+  *{file}   {_sectn-notation-input.tex}{0000/00/00 v0.0}
+  *{file}   {./Code/Python/snippets/pseudo-model-setup-prdT.py}{0000/00/00 v0.0}
+  *{file}   {_sectn-the-usual-theory-input.tex}{0000/00/00 v0.0}
+  *{file}   {_sectn-solving-the-next-input.tex}{0000/00/00 v0.0}
+  *{file}   {./Code/Python/snippets/rawsolution.py}{0000/00/00 v0.0}
+  *{file}   {./Code/Python/snippets/equiprobable-make.py}{0000/00/00 v0.0}
   *{file}   {./Code/Python/snippets/equiprobable-max-using.py}{0000/00/00 v0.0}
-  *{file}   {./Equations/FOCTm1.tex}{0000/00/00 v0.0}
   *{file}   {ueuf.fd}     {2013/01/14 v3.01}
   *{file}   {ueuf.fd}     {2013/01/14 v3.01}
-  *{file}   {_sectn-the-infinite-horizon.tex}{0000/00/00 v0.0}
-  *{file}   {.resources/texlive/add_search_paths.tex}{0000/00/00 v0.0}
-  *{file}   {_sectn-multiple-control-variables.tex}{0000/00/00 v0.0}
-  *{file}   {.resources/texlive/add_search_paths.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/vBalances.tex}{0000/00/00 v0.0}
-  *{file}   {_sectn-structural-estimation.tex}{0000/00/00 v0.0}
-  *{file}   {.resources/texlive/add_search_paths.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/lifecyclemax.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/dbc-with-permshk.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/subjectTo.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/shocks-for-lifecycle.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/LifeCycleMaxNormed.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/FOCLifeCycle.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/naivePowell.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/StructEstim.tex}{0000/00/00 v0.0}
-  *{file}   {./Tables/EstResults.tex}{0000/00/00 v0.0}
-  *{file}   {_sectn-conclusion.tex}{0000/00/00 v0.0}
-  *{file}   {.resources/texlive/add_search_paths.tex}{0000/00/00 v0.0}
-  *{file}   {_apndx-scf-data.tex}{0000/00/00 v0.0}
-  *{file}   {.resources/texlive/add_search_paths.tex}{0000/00/00 v0.0}
+  *{file}   {_sectn-the-infinite-horizon-input.tex}{0000/00/00 v0.0}
+  *{file}   {_sectn-multiple-control-variables-input.tex}{0000/00/00 v0.0}
+  *{file}   {_sectn-structural-estimation-input.tex}{0000/00/00 v0.0}
+  *{file}   {_sectn-conclusion-input.tex}{0000/00/00 v0.0}
+  *{file}   {_apndx-scf-data-input.tex}{0000/00/00 v0.0}
   *{file}   {./.resources/latex/bibliography-blend.tex}{0000/00/00 v0.0}
   *{file}   {SolvingMicroDSOPs.bbl}{0000/00/00 v0.0}
 }

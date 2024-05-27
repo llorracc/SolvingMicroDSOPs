@@ -62,6 +62,10 @@
   *{package}{iftex}       {2022/02/03 v1.0f}
   *{package}{moreverb}    {2008/06/03 v2.3a}
   *{package}{hhline}      {2020/01/04 v2.04}
+  *{package}{tipa}        {2002/08/08 v1.1}
+  *{package}{fontenc}     {0000/00/00 v0.0}
+  *{file}   {t3enc.def}   {2001/12/31 v3}
+  *{file}   {t1cmss.fd}   {2023/04/13 v2.5m}
   *{package}{xcolor}      {2023/11/15 v3.01}
   *{file}   {color.cfg}   {2016/01/02 v1.6}
   *{file}   {pdftex.def}  {2022/09/22 v1.2b}
@@ -85,7 +89,7 @@
   *{package}{import}      {2020/04/01 v6.2}
   *{package}{xmpincl}     {2021/09/22 v2.4}
   *{package}{ifpdf}       {2019/10/25 v3.4}
-  *{package}{llorracc-handouts}{0000/00/00 v0.0}
+  *{package}{./.resources/texmf-local/tex/latex/llorracc-handouts}{0000/00/00 v0.0}
   *{package}{./.resources/latex/owner}{0000/00/00 v0.0}
   *{package}{./.resources/latex/local-packages}{0000/00/00 v0.0}
   *{package}{pdfsuppressruntime}{0000/00/00 v0.0}
@@ -96,6 +100,7 @@
   *{package}{lstpatch}    {2024/02/21 v1.10}
   *{package}{lstmisc}     {2024/02/21 v1.10}
   *{file}   {listings.cfg}{2024/02/21 v1.10}
+  *{package}{lstlang1}    {2024/02/21 v1.10}
   *{package}{mathtools}   {2022/06/29 v1.29}
   *{package}{mhsetup}     {2021/03/18 v1.4}
   *{package}{xr-hyper}    {2024-01-20 v7.01h}
@@ -135,6 +140,7 @@
   *{file}   {Uibycus.fd}  {2004/10/18 v4.5}
   *{file}   {iby4extr.tex}{0000/00/00 v0.0}
   *{file}   {SolvingMicroDSOPs-hypersetup.tex}{0000/00/00 v0.0}
+  *{file}   {t3cmr.fd}    {2001/12/31 v0.0}
   *{file}   {translations-basic-dictionary-english.trsl}{(english v0.0}
   *{file}   {supp-pdf.mkii}{0000/00/00 v0.0}
   *{package}{epstopdf-base}{2020-01-24 v2.11}
@@ -143,43 +149,28 @@
   *{file}   {SolvingMicroDSOPs.out}{0000/00/00 v0.0}
   *{package}{bookmark}    {2023-12-10 v1.31}
   *{file}   {bkm-pdftex.def}{2023-12-10 v1.31}
-  *{file}   {_sectn-titlepage.tex}{0000/00/00 v0.0}
-  *{file}   {.resources/texlive/add_search_paths.tex}{0000/00/00 v0.0}
+  *{file}   {_sectn-titlepage-input.tex}{0000/00/00 v0.0}
   *{file}   {umsa.fd}     {2013/01/14 v3.01}
   *{file}   {umsb.fd}     {2013/01/14 v3.01}
   *{file}   {ulasy.fd}    {1998/08/17 v2.2e}
   *{file}   {t1cmtt.fd}   {2023/04/13 v2.5m}
   *{file}   {.resources/econ-ark/PoweredByEconARK.pdf}{0000/00/00 v0.0}
-  *{file}   {t1cmss.fd}   {2023/04/13 v2.5m}
-  *{file}   {_sectn-introduction.tex}{0000/00/00 v0.0}
-  *{file}   {.resources/texlive/add_search_paths.tex}{0000/00/00 v0.0}
-  *{file}   {_sectn-the-problem.tex}{0000/00/00 v0.0}
-  *{file}   {.resources/texlive/add_search_paths.tex}{0000/00/00 v0.0}
-  *{file}   {_sectn-normalization.tex}{0000/00/00 v0.0}
-  *{file}   {.resources/texlive/add_search_paths.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/vNormed.tex}{0000/00/00 v0.0}
-  *{file}   {_sectn-notation.tex}{0000/00/00 v0.0}
-  *{file}   {.resources/texlive/add_search_paths.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/vMid.tex}{0000/00/00 v0.0}
-  *{file}   {_sectn-the-usual-theory.tex}{0000/00/00 v0.0}
-  *{file}   {.resources/texlive/add_search_paths.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/Envelope.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/cEuler.tex}{0000/00/00 v0.0}
-  *{file}   {_sectn-solving-the-next.tex}{0000/00/00 v0.0}
-  *{file}   {.resources/texlive/add_search_paths.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/vEndTm1.tex}{0000/00/00 v0.0}
-  *{package}{lstlang1}    {2024/02/21 v1.10}
+  *{file}   {_sectn-introduction-input.tex}{0000/00/00 v0.0}
+  *{file}   {_sectn-the-problem-input.tex}{0000/00/00 v0.0}
+  *{file}   {_sectn-normalization-input.tex}{0000/00/00 v0.0}
+  *{file}   {./Code/Python/snippets/equiprobable-make.py}{0000/00/00 v0.0}
+  *{file}   {_sectn-notation-input.tex}{0000/00/00 v0.0}
+  *{file}   {./Code/Python/snippets/pseudo-model-setup-prdT.py}{0000/00/00 v0.0}
+  *{file}   {_sectn-the-usual-theory-input.tex}{0000/00/00 v0.0}
+  *{file}   {_sectn-solving-the-next-input.tex}{0000/00/00 v0.0}
   *{file}   {./Code/Python/snippets/rawsolution.py}{0000/00/00 v0.0}
-  *{file}   {./Figures/discreteApprox.tex}{0000/00/00 v0.0}
   *{file}   {./Figures/discreteApprox.pdf}{0000/00/00 v0.0}
   *{file}   {./Code/Python/snippets/equiprobable-make.py}{0000/00/00 v0.0}
-  *{file}   {./Equations/vDiscrete.tex}{0000/00/00 v0.0}
   *{file}   {./Code/Python/snippets/equiprobable-max-using.py}{0000/00/00 v0.0}
   *{file}   {./Figures/PlotcTm1Simple.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/PlotVTm1Simple.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/PlotOTm1RawVSInt.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/PlotComparecTm1AB.pdf}{0000/00/00 v0.0}
-  *{file}   {./Equations/FOCTm1.tex}{0000/00/00 v0.0}
   *{file}   {./Figures/PlotuPrimeVSOPrime.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/PlotOPRawVSFOC.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/PlotcTm1ABC.pdf}{0000/00/00 v0.0}
@@ -190,32 +181,17 @@
   *{file}   {./Figures/GothVInvVSGothCEEE.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/GothVVSGothCInvEEE.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/PlotCFuncsConverge.pdf}{0000/00/00 v0.0}
-  *{file}   {_sectn-the-infinite-horizon.tex}{0000/00/00 v0.0}
-  *{file}   {.resources/texlive/add_search_paths.tex}{0000/00/00 v0.0}
-  *{file}   {_sectn-multiple-control-variables.tex}{0000/00/00 v0.0}
-  *{file}   {.resources/texlive/add_search_paths.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/vBalances.tex}{0000/00/00 v0.0}
+  *{file}   {_sectn-the-infinite-horizon-input.tex}{0000/00/00 v0.0}
+  *{file}   {_sectn-multiple-control-variables-input.tex}{0000/00/00 v0.0}
   *{file}   {./Figures/PlotctMultContr.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/PlotRiskySharetOfat.pdf}{0000/00/00 v0.0}
-  *{file}   {_sectn-structural-estimation.tex}{0000/00/00 v0.0}
-  *{file}   {.resources/texlive/add_search_paths.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/lifecyclemax.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/dbc-with-permshk.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/subjectTo.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/shocks-for-lifecycle.tex}{0000/00/00 v0.0}
+  *{file}   {_sectn-structural-estimation-input.tex}{0000/00/00 v0.0}
   *{file}   {./Figures/PlotTimeVaryingParam.pdf}{0000/00/00 v0.0}
-  *{file}   {./Equations/LifeCycleMaxNormed.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/FOCLifeCycle.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/naivePowell.tex}{0000/00/00 v0.0}
-  *{file}   {./Equations/StructEstim.tex}{0000/00/00 v0.0}
   *{file}   {./Figures/PlotMeanMedianSCFcollegeGrads.pdf}{0000/00/00 v0.0}
-  *{file}   {./Tables/EstResults.tex}{0000/00/00 v0.0}
   *{file}   {./Figures/Sensitivity.pdf}{0000/00/00 v0.0}
   *{file}   {./Figures/SMMcontour.pdf}{0000/00/00 v0.0}
-  *{file}   {_sectn-conclusion.tex}{0000/00/00 v0.0}
-  *{file}   {.resources/texlive/add_search_paths.tex}{0000/00/00 v0.0}
-  *{file}   {_apndx-scf-data.tex}{0000/00/00 v0.0}
-  *{file}   {.resources/texlive/add_search_paths.tex}{0000/00/00 v0.0}
+  *{file}   {_sectn-conclusion-input.tex}{0000/00/00 v0.0}
+  *{file}   {_apndx-scf-data-input.tex}{0000/00/00 v0.0}
   *{file}   {./.resources/latex/bibliography-blend.tex}{0000/00/00 v0.0}
   *{file}   {SolvingMicroDSOPs.bbl}{0000/00/00 v0.0}
 }

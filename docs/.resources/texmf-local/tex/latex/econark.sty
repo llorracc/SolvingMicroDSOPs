@@ -10,6 +10,13 @@
   \labelprefix
   \fi #1% Removing this comment breaks the command
 }
+\newcommand{\TargetNrm}{\hat}   % Target 
+\newcommand{\mTrgNrm}{\TargetNrm{\mNrm}} % m where E[m_{t+1}]=m_{t}
+
+\makeatletter
+\newif\ifdvi\dvitrue
+\@ifundefined{pdfoutput}{}{\ifnum\pdfoutput>0 \dvifalse\fi}
+\makeatother
 
 % Appendices and body are subfiles
 \RequirePackage{subfiles}
@@ -19,7 +26,7 @@
 \RequirePackage{amsmath,amsfonts,amsthm,amssymb}
 
 % Command to define a label only if it does not yet exist (suppresses misleading
-% warnings when material created in subfiles is read in while references already
+% warnings when material created in subfiles is read while references already
 % exist from master document)
 \makeatletter
 \newcommand{\iflabelexists}[3]{\@ifundefined{r@#1}{\G@refundefinedtrue{#3}}{#2}}
@@ -31,26 +38,13 @@
 % Define various generically useful terms and items
 \providecommand{\avg}{\bar}
 \providecommand{\cov}{}\renewcommand{\cov}{\textup{cov}}
-\providecommand{\Abve}{\bar}
-\providecommand{\Belw}{\underline}
 \providecommand{\CDF}{\mathcal{F}}
-\providecommand{\GroFac}{\Omega} % Generic for growth factor
-\providecommand{\GroRte}{\omega} % Generic for growth rate 
-\providecommand{\Lvl}{\mathbf}   % Levels of variables are bold
 
 % Constrained
 \newcommand{\cnstr}[1]{\grave{#1}}
 
-\newcommand{\BalGroFac}{\check} % Balanced growth factor
-\newcommand{\BalGroRte}{\tilde} % Balanced growth rate (log change)
-\newcommand{\TargetNrm}{\hat}   % Target 
-\newcommand{\ABalLvl}{\BalGroFac{\ALvl}} % m where mLvl grows by PermGroFac
-\newcommand{\mBalLvl}{\BalGroFac{\mNrm}} % m where mLvl grows by PermGroFac
-\newcommand{\MBalLvl}{\BalGroFac{\MNrm}} % m where MLvl grows by PermGroFac
-\newcommand{\mBalLog}{\BalGroRte{\mNrm}} % m where mLog grows by PermGroRte
-\newcommand{\mTrgNrm}{\TargetNrm{\mNrm}} % m where E[m_{t+1}]=m_{t}
-
 % Levels are boldface
+\providecommand{\Lvl}{\mathbf}     % Levels of variables are bold
 \providecommand{\aLvl}{\mathbf{a}}
 \providecommand{\bLvl}{\mathbf{b}}
 \providecommand{\cLvl}{\mathbf{c}}
@@ -110,6 +104,7 @@
 \providecommand{\dFunc}{\mathrm{d}}
 \providecommand{\eFunc}{\mathrm{e}}
 \providecommand{\fFunc}{\mathrm{f}}
+\providecommand{\gFunc}{\mathrm{g}}
 \providecommand{\hFunc}{\mathrm{h}}
 \providecommand{\iFunc}{\mathrm{i}}
 \providecommand{\jFunc}{\mathrm{j}}
@@ -166,7 +161,6 @@
 \providecommand{\kNrm}{k}
 \providecommand{\mNrm}{m}
 \providecommand{\pNrm}{p}
-\providecommand{\rNrm}{s}
 \providecommand{\sNrm}{s}
 \providecommand{\vNrm}{v}
 \providecommand{\yNrm}{y}
@@ -189,59 +183,63 @@
 \providecommand{\YNrm}{Y}
 \providecommand{\ZNrm}{Z}
 
+% Normalized return is special because G is normalizer
 \providecommand{\RNrm}{\mathcal{R}}
-% Ind and Agg varaibles begin with lower case
-\providecommand{\tranShkInd}{\theta}   % 
-\providecommand{\tranShk}{\tranShkInd}   % 
-\providecommand{\tranShkAgg}{\Theta}   % 
-\providecommand{\permShkInd}{\psi}     % 
-\providecommand{\permShk}{\permShkInd} % 
-\providecommand{\PermShkAgg}{\Psi}     % 
-\providecommand{\tranShkAgg}{\Theta}   % 
 
-% Shock std
+% Individual-level (idosyncratic) variables
+\providecommand{\tranShkInd}{\xi}      % (purely) transitory
+%\providecommand{\tranShk}{\tranShkInd} % alias
+\providecommand{\permShkInd}{\psi}     % (purely) permanent
+%\providecommand{\permShk}{\permShkInd} % alias
+\providecommand{\prstShkInd}{\phi}     % persistent not permanent
+\providecommand{\prstShk}{\prstShkInd} % alias
+\providecommand{\tranShkMin}{\Lo{\xi}}
+\providecommand{\tranShkMax}{\Hi{\xi}}
+
+% Agg variables (also affect individuals)
+\providecommand{\TranShkAgg}{\Xi}   % 
+\providecommand{\PermShkAgg}{\Psi}  % 
+
+% Shock std and var
 \providecommand{\std}{\sigma}
 \providecommand{\tranShkIndStd}{\std_{\tranShkInd}}     % 
 \providecommand{\tranShkIndVar}{\std^{2}_{\tranShkInd}} % 
-\providecommand{\tranShkAggStd}{\std_{\tranShkAgg}}     %
-\providecommand{\tranShkAggVar}{\std^{2}_{\tranShkAgg}} %
+\providecommand{\TranShkAggStd}{\std_{\TranShkAgg}}     %
+\providecommand{\TranShkAggVar}{\std^{2}_{\TranShkAgg}} %
 
 % Combo variables (combining Ind and Agg) 
-\providecommand{\PermShk}{\mathbf{\Psi}}
-\providecommand{\PermShkStd}{\std_{\PermShk}}
-\providecommand{\PermShkVar}{\std^{2}_{\PermShk}}
-\providecommand{\PermLvl}{\pLvl}
-\providecommand{\PermLvlAgg}{\PLvl}
+\providecommand{\PermShkAll}{\mathbf{\Psi}}
+\providecommand{\PermShkAllStd}{\std_{\PermShkAll}}
+\providecommand{\PermShkAllVar}{\std^{2}_{\PermShkAll}}
+\providecommand{\PermLvlAll}{\mathfrak{P}}
 
-% More specialized variables
-\providecommand{\TranShkAll}{\pmb{\xi}} 
-\providecommand{\tranShk}{\tranShkInd}       
-\providecommand{\TranShkMin}{\underline{\xi}}
-\providecommand{\TranShkMax}{\overline{\xi}}
-\providecommand{\TranShkStd}{\std_{\TranShk}}
-\providecommand{\TranShkVar}{\std^{2}_{\TranShk}}
-\providecommand{\TranShkEmp}{\Theta}    
-\providecommand{\tranShkEmp}{\theta}    
-\providecommand{\TranShkEmpMin}{\underline{\TranShkEmp}}    
-\providecommand{\TranShkEmpMax}{\overline{\TranShkEmp}}    
-\providecommand{\tranShkEmpMin}{\underline{\tranShkEmp}}    
-\providecommand{\tranShkEmpMax}{\overline{\tranShkEmp}}    
+\providecommand{\TranShkAll}{\pmb{\Xi}} 
+\providecommand{\TranShkAllStd}{\std_{\TranShkAll}}
+\providecommand{\TranShkAllVar}{\std^{2}_{\TranShkAll}}
+
+% Transitory shock for employed
+\providecommand{\tranShkEmp}{\theta}     % ind
+\providecommand{\TranShkEmp}{\Theta}     % agg
+\providecommand{\TranShkEmpMin}{\Lo{\TranShkEmp}}    
+\providecommand{\TranShkEmpMax}{\Hi{\TranShkEmp}}    
+\providecommand{\tranShkEmpMin}{\Lo{\tranShkEmp}}    
+\providecommand{\tranShkEmpMax}{\Hi{\tranShkEmp}}    
 \providecommand{\IncUnemp}{\mu}  % Income in unemployment
 
 \providecommand{\permLvlAgg}{\mathrm{P}}      % 
 \providecommand{\permLvlInd}{\mathrm{p}}      % 
 
-\providecommand{\MPCmin}{{\uline{\kappa}}}
-\providecommand{\MPCmax}{{\bar{\kappa}}}
-\providecommand{\MPCmaxmax}{{\bar{\bar{\kappa}}}}
-\providecommand{\MPCmaxmin}{{\hat{\underline{\kappa}}}}
-\providecommand{\MPCminmin}{{\underline{\kappa}}}
+\providecommand{\MPCmin}{\Lo{\kappa}}
+\providecommand{\MPCmax}{\Hi{\kappa}}
+\providecommand{\MPCmaxmax}{\Hi{\Hi{\kappa}}}
+\providecommand{\MPCmaxmin}{\Hi{\Lo{\kappa}}}
+\providecommand{\MPCminmin}{\Lo{\Lo{\kappa}}}
 \providecommand{\Opt}{}\renewcommand{\Opt}{\tilde}
-\providecommand{\permGroFacAgg}{\mathrm{G}}
+\providecommand{\PermGroFacAgg}{\mathrm{G}}
 \providecommand{\permGroFacInd}{\mathsf{G}}
-\providecommand{\PermGroFac}{\mathcal{G}}
-\providecommand{\PermGroFacAdj}{\underline{\PermGroFac}}
-\providecommand{\PermGroFacuAdj}{\underline{\underline{\PermGroFac}}}
+%\providecommand{\PermGroFac}{\mathcal{G}}
+\providecommand{\PermGroFacAdj}{\Lo{\PermGroFac}}
+\providecommand{\PermGroFacuAdj}{\Lo{\Lo{\PermGroFac}}}
 \providecommand{\PermGroRte}{g}
 
 \providecommand{\Alive}{\mathcal{L}}\renewcommand{\Alive}{\mathcal{L}}
@@ -251,10 +249,10 @@
 \providecommand{\deprRte}{\delta} % 
 \providecommand{\DiscFac}{\beta}
 \providecommand{\DiscFacAlt}{\beth}
-\providecommand{\DiscAltuAdj}{\underline{\underline{\beth}}}
+\providecommand{\DiscAltuAdj}{\Lo{\Lo{\beth}}}
 \providecommand{\DiscAlt}{}\renewcommand{\DiscAlt}{\beth}
 \providecommand{\DiscFacRaw}{\beta}
-\providecommand{\DiscFacLiv}{\underline{\DiscFacRaw}}
+\providecommand{\DiscFacLiv}{\Lo{\DiscFacRaw}}
 \providecommand{\discRte}{\vartheta} % 
 
 \providecommand{\APFac}{\text{\pmb{\Thorn}}} % Former \Pat
@@ -270,8 +268,8 @@
 
 
 \providecommand{\EPermShkInv}{\Ex[\PermShk^{-1}]}  % Formerly EpShkInv
-\providecommand{\InvEPermShkInv}{\underline{\PermShk}} % Formerly InvEpShkInv
-\providecommand{\uInvEuPermShk}{\underline{\underline{\PermShk}}} % Formerly {\uInvEpShkuInv}
+\providecommand{\InvEPermShkInv}{\Lo{\PermShk}} % Formerly InvEpShkInv
+\providecommand{\uInvEuPermShk}{\Lo{\Lo{\PermShk}}} % Formerly {\uInvEpShkuInv}
 
 \providecommand{\RfreeEff}{\bar{\Rfree}} % Blanchard-adjusted interest rate
 
@@ -287,7 +285,6 @@
 
 \providecommand{\pNotZero}{(1-\pZero)}
 
-
 \providecommand{\CARA}{\alpha}
 \providecommand{\CRRA}{\rho}
 \providecommand{\diePrb}{\mathsf{d}} % Continuous time death rate 
@@ -300,18 +297,18 @@
 
 \providecommand{\rfree}{\mathsf{r}}   % The net return rate on the safe asset
 \providecommand{\Rfree}{\mathsf{R}}   % The return factor on the safe asset 
-\providecommand{\RSave}{\underline{\Rfree}}
-\providecommand{\rsave}{\underline{\rfree}}
+\providecommand{\RSave}{\Lo{\Rfree}}
+\providecommand{\rsave}{\Lo{\rfree}}
 \providecommand{\RBoro}{\bar{\Rfree}}
 \providecommand{\rboro}{\bar{\rfree}}
 
-\providecommand{\Risky}{\mathbf{R}}  % The return factor on the risky asset
-\providecommand{\risky}{\mathbf{r}}  % The arithmetic return rate E[\Risky] - 1
-\providecommand{\riskyELog}{\risky}     % The arithmetic return rate \Risky - 1
+\providecommand{\Risky}{\mathbf{R}}         % The return factor on the risky asset
+\providecommand{\risky}{\mathbf{r}}         % The arithmetic return rate E[\Risky] - 1
+\providecommand{\riskyELog}{\risky}         % The arithmetic return rate \Risky - 1
 \providecommand{\riskyELev}{\boldsymbol{r}} % The geometric  return rate \log \Risky
 \providecommand{\riskyshare}{{\varsigma}}
 \providecommand{\riskyvar}{\std^{2}_{\risky}}
-\providecommand{\Rport}{\mathfrak{R}}    % Portfolio -weighted return
+\providecommand{\Rport}{\mathfrak{R}}       % Portfolio -weighted return
 \providecommand{\rport}{\mathfrak{r}}
 
 \providecommand{\uPPP}{{{\mathrm{u}^{\prime\prime\prime}}}}
@@ -322,7 +319,7 @@
 \providecommand{\Kap}{K}
 \providecommand{\kap}{k}
 
-\providecommand{\leiShare}{{\zeta}} % 
+\providecommand{\leiShare}{\zeta} % 
 
 \providecommand{\MPSmin}{\pZero^{1/\CRRA} \RPFac}
 \providecommand{\MPSmax}{\RPFac}
@@ -371,7 +368,7 @@
 \providecommand{\FDist}{{\mathcal{F}}}
 \providecommand{\fDist}{{\mathcal{f}}}
 
-\providecommand{\aMin}{{\underline{\aNrm}}}
+\providecommand{\aMin}{{\Lo{\aNrm}}}
 
 \providecommand{\FDist}{}\renewcommand{\FDist}{\mathcal{F}}
 \providecommand{\fDist}{}\renewcommand{\fDist}{\mathcal{f}}

@@ -32,6 +32,10 @@ Now define a new optimization problem:
 \input{./Equations/vNormed.tex}\unskip
 where division by $\PermGroFac$ in second-to-last equation yields a normalized return factor $\RNrm$ which is the consequence of the fact that we have divided $\prd+1$ level variables by $\pLvl_{\prd+1}=\PermGroFac_{\prd+1}\pLvl_{\prd}$.
 
+\ifpseudo{ % pseudocode goes here
+\lstinputlisting{equiprobable-make.py}\nopagebreak
+  }{}
+  
 Then it is easy to see that for $\prd=\trmT-1$, we can write boldface (nonnormalized) $\vLvl$ as a function of $\vFunc$ (normalized value) and permanent income:
 \begin{equation}\begin{gathered}\begin{aligned}
       \vLvl_{\prd}(\mLvl_{\prd},\pLvl_{\prd}) & =  \pLvl_{\prd}^{1-\CRRA}\vFunc_{\prdt}(\mNrm_{\prdt}), \label{eq:vLvlFromvFunc}

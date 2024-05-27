@@ -38,6 +38,11 @@
 \provideboolean{MyNotes}\setboolean{MyNotes}{true}
 %\setboolean{MyNotes}{false} 
 
+% pseudocode
+\provideboolean{pseudocode}\setboolean{pseudocode}{true}
+%\setboolean{pseudocode}{false}
+\newcommand{\ifpseudo}{\ifthenelse{\boolean{pseudocode}}}
+
 % margin notes
 \provideboolean{Margnote}\setboolean{Margnote}{true}
 % \setboolean{Margnote}{false}

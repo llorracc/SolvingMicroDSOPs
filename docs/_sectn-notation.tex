@@ -43,15 +43,21 @@ When we want to refer to a specific {\move} in the {\stg} we will do so by using
 
   Notice that the value functions at different {\move}s of the {\stg} have distinct state variables.  Only $\kNrm$ is known at the beginning of the {\stg}, and other variables take on their values with equations like $b = k \RNrm$ and $\mNrm = \bNrm+\tranShkEmp.$  We will refer to such within-the-{\stg} creation of variables as `{\evltns}.'  So, the consumption stage problem has two {\evltns}: from $\kNrm$ to $\mNrm$ and from $\mNrm$ to $\aNrm$.
 
+\ifpseudo{
+\lstinputlisting{./Code/Python/snippets/pseudo-model-setup-prdT.py}\nopagebreak
+}{}
+
 \subsection{\Trnsns}
 
+  In the backward-induction world of Bellman solutions, to solve the problem of a particular {\interval} we must start with an end-of-{\interval} (continuation) value function, which we designate by explicitly including the {\interval} indicator in the subscript (the $:=$ symbol denotes that the object on the right hand side is assigned to the object on the left hand side):
   \begin{equation}\begin{gathered}\begin{aligned}
-        \vEndPrd(\aNrm) & := \DiscFac \vBegPrdNxt(\overbrace{\aNrm}^{=\kNrm}), \label{eq:trns-single-prd}
+        \vEndPrd(\aNrm) & \leftassign \DiscFac \vBegPrdNxt(\overbrace{\aNrm}^{=\kNrm}), \label{eq:trns-single-prd}
   \end{aligned}\end{gathered}\end{equation}
 and we are not done solving the problem of {\interval} {\prd} until we have constructed a beginning-of-{\interval} value function $\vBegPrd(\kNrm)$.
 
+Similarly, in order to solve the problem of any {\stg}, we must endow it with an end-of-{\stg} continuation-value function.  For the last {\stg} in a {\interval}, the end-of-{\stg} function is taken to be end-of-{\interval} value function; in our case where there is only one {\stg}, this can be written cleanly as:
   \begin{equation}\begin{gathered}\begin{aligned}
-        \vEndStg(\aNrm) \sameas \vEndPrd(\aNrm).
+        \vEndStg(\aNrm) \leftassign \vEndPrd(\aNrm).
       \end{aligned}\end{gathered}\end{equation}
 \subsection{The Decision Problem in the New Notation}\label{subsec:decision-problem}\hypertarget{decision-problem}{}
 

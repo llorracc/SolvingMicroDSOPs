@@ -1,16 +1,22 @@
 % Define macros for this paper
 
-%
+\makeatletter
+\newif\ifdvi\dvitrue
+\@ifundefined{pdfoutput}{}{\ifnum\pdfoutput>0 \dvifalse\fi}
+\makeatother
+
+
 \newcommand{\sameas}{\leftrightarrow}
+\newcommand{\leftassign}{:=}
 
 % Allow conditional execution depending on whether in subfile or not
 \providecommand{\onlyinsubfile}{}\renewcommand{\onlyinsubfile}[1]{#1}
 \providecommand{\notinsubfile}{}\renewcommand{\notinsubfile}[1]{}
 
 % Notation for three steps within a stage
-\newcommand{\Arrival}{Arrival}\newcommand{\arvl}{\leftarrow}
+\newcommand{\Arrival}{Arrival}\newcommand{\arvl}{\leftharpoonup}
 \newcommand{\Decision}{Decision}\newcommand{\dcsn}{\null}%{\sim}
-\newcommand{\Continuation}{Continuation}\newcommand{\cntn}{\rightarrow}
+\newcommand{\Continuation}{Continuation}\newcommand{\cntn}{\rightharpoondown}
 
 % providecommand then renewcommand works to redefine macro if it already exists
 \providecommand{\prdNxt}{}\renewcommand{\prdNxt}{\prdt+1}
