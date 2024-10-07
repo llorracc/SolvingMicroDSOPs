@@ -1,0 +1,105 @@
+% Define a few objects that are unique to this paper
+% Allow different actions depending on whether document is being processed as
+% subfile or being process as standalone
+
+% \usepackage{import} % used in slides and cctwMoM
+\usepackage{pdfsuppressruntime} % prevent timestamp
+
+% Get fonts so pdflatex can handle unicode characters
+\usepackage[utf8]{inputenc}
+
+\usepackage{listings} % For exhibiting code snippets
+\lstset{basicstyle=\ttfamily\footnotesize,breaklines=true,language=Python,frame=single}
+\usepackage{mathtools}
+\usepackage{accents,xr-hyper}
+%\usepackage{\econark}
+\usepackage{dcolumn}       % seems to need to come after hyperref
+\usepackage{moreverb}      % Used in slides
+%\usepackage{\econtexSetup} % Gets, configures often-used packages
+
+\usepackage{ifthen}
+\provideboolean{Web}
+\setboolean{Web}{false} % reset to true if running via dvi; search for \ifdvi below
+
+\makeatletter
+\newif\ifdvi\dvitrue
+\@ifundefined{pdfoutput}{}{\ifnum\pdfoutput>0 \dvifalse\fi}
+\makeatother
+
+% \usepackage{marginnote} % maybe interferes with showlabels?
+\ifdvi
+    \setboolean{Web}{true}   
+    \RequirePackage{tex4ht}
+    \RequirePackage{graphicx}
+    \RequirePackage[tex4ht]{hyperref}
+    \provideboolean{bigPrint}\setboolean{bigPrint}{true}  % HTM output looks better in a larger font size
+    \DeclareGraphicsExtensions{.png}
+    \providecommand{\textSizeDefault}{\large}
+    \providecommand{\titlepagefinish}{\newpage\textSizeDefault}
+    \providecommand{\abstractSizeDefault}{\large}
+    \let\footnoterule\relax
+    \makeatletter
+    \renewenvironment{abstract}{%
+       \begin{spacing}{0.9}
+       \noindent {\tiny \phantom{.}} \\ % Trick to get proper spacing in html
+       \noindent \hrule height 0.4pt depth 0.0pt width \textwidth \relax
+       \vspace*{5mm}
+       \noindent \textbf{Abstract}\\
+       \indent \abstractSizeDefault
+        }{%
+           \noindent {\tiny \phantom{.}} \\  % Trick to get proper spacing in html
+%           \noindent \hrule height 0.4pt depth 0.0pt width \textwidth \relax
+       \vspace*{3mm}
+       \ifthenelse{ \isundefined\@keywords }{
+       \ClassWarningNoLine{bejournal}{No keywords specified.
+          Please use the command \protect\keywords}
+       }{
+       }
+       \end{spacing}
+    \begin{quote}
+    \begin{Description}
+    \item[\textbf{~~~~~~~~~~~~Keywords~}] \@keywords
+    \ifthenelse{ \isundefined\@jelclass }{
+    \ClassWarningNoLine{bejournal}{No JEL classification specified.
+       Please use the command \protect\jelclass}
+    }{
+    \item[\textbf{~~~~~~~~~~~~JEL codes~}] \@jelclass
+    \end{Description}
+    }
+    \end{quote}
+    \makeatother
+    }
+\else
+    \RequirePackage{graphicx} % requiring [pdftex] seems to interfere with Pandemic build
+    \RequirePackage{hyperref} % plainpages seems to mess up BST 
+    \DeclareGraphicsExtensions{.pdf}
+\fi
+
+
+% \usepackage{econtexSetup} sets boolean Web=true if compilation type is dvi
+% also includes hyperref
+\provideboolean{showPageHead}{}
+\ifthenelse{\boolean{Web}}{
+  \setboolean{showPageHead}{false}
+}{ % {pdf}
+  \setboolean{showPageHead}{true}
+  \usepackage{scrlayer-scrpage} %  Package for page headers if PDF
+  \usepackage{caption} % allow suppression of appendix figures in NoAppendix PDF
+} 
+
+%\usepackage{\econtexShortcuts}
+\usepackage{subfiles}
+
+\newcommand{\urlPDF}{\texttt{\href{https://github.com/\owner/SolvingMicroDSOPs/blob/master/SolvingMicroDSOPs.pdf}{https://github.com/\owner/SolvingMicroDSOPs/blob/master/SolvingMicroDSOPs.pdf}}}
+\newcommand{\urlSlides}{\texttt{\href{https://github.com/\owner/SolvingMicroDSOPs/blob/master/SolvingMicroDSOPs-Slides.pdf}{https://github.com/\owner/SolvingMicroDSOPs/blob/master/SolvingMicroDSOPs-Slides.pdf}}}
+\newcommand{\urlHTML}{\texttt{\href{https://\owner.github.io/SolvingMicroDSOPs}{https://\owner.github.io/SolvingMicroDSOPs}}}
+\newcommand{\urlCode}{\texttt{\href{https://github.com/\owner/SolvingMicroDSOPs/tree/master/Code}{https://github.com/\owner/SolvingMicroDSOPs/tree/master/Code}}}
+\newcommand{\urlRepo}{\texttt{\href{https://github.com/\owner/SolvingMicroDSOPs}{https://github.com/\owner/SolvingMicroDSOPs}}}
+
+
+\newcommand{\SMDSOPrepo}{\texttt{\href{https://github.com/\owner/SolvingMicroDSOPs}{SolvingMicroDSOPs}}}
+\newcommand{\EMDSOPrepo}{\texttt{\href{https://github.com/\owner/EstimatingMicroDSOPs}{EstimatingMicroDSOPs repo}}}
+%\newcommand{\HARKrepo}{\texttt{\href{https://github.com/econ-ark/HARK}{HARK}}}
+%\newcommand{\HARKdocs}{\texttt{\href{https://docs.econ-ark.org}{documentation}}}
+
+% \newcommand{\ARKurl}{\texttt{\href{https://econ-ark.org}{Econ-ARK}}}

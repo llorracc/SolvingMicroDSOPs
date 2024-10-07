@@ -1,0 +1,232 @@
+% Define macros for this paper
+
+\makeatletter
+\newif\ifdvi\dvitrue
+\@ifundefined{pdfoutput}{}{\ifnum\pdfoutput>0 \dvifalse\fi}
+\makeatother
+
+% LHS 'gets' RHS:  
+\newcommand{\leftassign}{:=} % ambiguous whether a pointer, a deepcopy, ...
+
+% Allow conditional execution depending on whether in subfile or not
+\providecommand{\onlyinsubfile}{}\renewcommand{\onlyinsubfile}[1]{#1}
+\providecommand{\notinsubfile}{}\renewcommand{\notinsubfile}[1]{}
+
+% Notation for three steps within a stage
+\newcommand{\Arrival}{Arrival}          \newcommand{\arvl}{\leftharpoonup}
+\newcommand{\Continuation}{Continuation}\newcommand{\cntn}{\rightharpoondown}
+%% 20240602: 
+%% - \dcsn is null so disappears in latex
+%% - preserved in case we want to create a middle-of-period marker later
+\newcommand{\Decision}{Decision}\newcommand{\dcsn}{\null}%{\sim}
+
+% providecommand then renewcommand works to redefine macro if it already exists
+\providecommand{\prdNxt}{}\renewcommand{\prdNxt}{\prdt+1}
+\providecommand{\prdLst}{}\renewcommand{\prdLst}{\prdt-1}
+\providecommand{\prdNxT}{}\renewcommand{\prdNxT}{\prdT+1}
+\providecommand{\prdLsT}{}\renewcommand{\prdLsT}{\prdT-1}
+
+\providecommand{\BegMark}{}\renewcommand{\BegMark}{\arvl}
+
+\providecommand{\BegStg}{}\renewcommand{\BegStg}{_\arvl}
+\providecommand{\BegStgNxt}{}\renewcommand{\BegStgNxt}{_\arvl{\prdNxt}}
+\providecommand{\BegStgLst}{}\renewcommand{\BegStgLst}{_\arvl{\prdLst}}
+
+\providecommand{\MidStg}{}\renewcommand{\MidStg}{_{\dcsn}}
+\providecommand{\MidStgNxt}{}\renewcommand{\MidStgNxt}{_{\dcsn}{\prdNxt}}
+\providecommand{\MidStgLst}{}\renewcommand{\MidStgLst}{_{\dcsn}{\prdLst}}
+\providecommand{\MidStgLsT}{}\renewcommand{\MidStgLsT}{_{\dcsn}{\prdLsT}}
+
+\providecommand{\BegPrd}{}\renewcommand{\BegPrd}{_{\arvl}{\prdt}}
+\providecommand{\BegPrdNxt}{}\renewcommand{\BegPrdNxt}{_{\arvl}{(\prdt+1)}}
+\providecommand{\MidPrdNxt}{}\renewcommand{\MidPrdNxt}{_{\dcsn}{(\prdt+1)}}
+\providecommand{\MidPrdNxT}{}\renewcommand{\MidPrdNxT}{_{\arvl}{(\prdT+1)}}
+\providecommand{\BegPrdLst}{}\renewcommand{\BegPrdLst}{_{\arvl}{(\prdt-1)}}
+\providecommand{\MidPrdLst}{}\renewcommand{\MidPrdLst}{_{\dcsn}{(\prdt-1)}} 
+\providecommand{\BegPrdLsT}{}\renewcommand{\BegPrdLst}{_{\arvl}{(\prdT-1)}}
+\providecommand{\BegPrdNxT}{}\renewcommand{\BegPrdNxt}{_{\arvl}{(\prdT+1)}}
+\providecommand{\MidPrdLsT}{}\renewcommand{\MidPrdLsT}{_{\dcsn}{(\prdT-1)}} 
+
+\providecommand{\MidStg}{}\renewcommand{\MidStg}{\dcsn}
+\providecommand{\MidPrd}{}\renewcommand{\MidPrd}{\prd}
+\providecommand{\EndMark}{}\renewcommand{\EndMark}{\cntn}
+\providecommand{\EndStg}{}\renewcommand{\EndStg}{_{\cntn}}
+\providecommand{\EndPrd}{}\renewcommand{\EndPrd}{\prd_{\cntn}}
+\providecommand{\EndPrdLst}{}\renewcommand{\EndPrdLst}{{(\prd-1)}_{\cntn}}   % Lst=Last=t-1
+\providecommand{\EndPrdLsT}{}\renewcommand{\EndPrdLsT}{{(\prd-1)}_{\cntn}}   % LsT=T-1
+\providecommand{\BegPrdLst}{}\renewcommand{\BegPrdLst}{{_{\arvl}(\prdt-1)}} 
+\providecommand{\BegPrdLsT}{}\renewcommand{\BegPrdLsT}{{_{\arvl}(\prdT-1)}} 
+\providecommand{\EndPrdNxt}{}\renewcommand{\EndPrdNxt}{(\prd+1)_{\cntn}}
+\providecommand{\MidPrdNxt}{}\renewcommand{\EndPrdNxt}{(\prd+1)_{\dcsn}}
+\providecommand{\EndPrdNxT}{}\renewcommand{\EndPrdNxT}{(\prdT+1)_{\cntn}}
+\newcommand{\vBegStg}{\vFunc_{\BegStg}}
+\newcommand{\vBegStgNxt}{\vFunc_{\BegStgNxt}}
+\newcommand{\vBegPrd}{\vFunc_{\BegPrd}}
+\newcommand{\vBegPrdNxt}{\vFunc_{\BegPrdNxt}}
+\newcommand{\vMidPrdNxt}{\vFunc_{\MidPrdNxt}}
+\newcommand{\vEndPrdNxt}{\vFunc_{\EndPrdNxt}}
+\newcommand{\vMidStg}{\vFunc_{\MidStg}}
+\newcommand{\vMidStgNxt}{\vFunc_{\MidStgNxt}}
+\newcommand{\vEndStg}{\vFunc_{\EndStg}}
+\newcommand{\vEndPrd}{\vFunc_{\EndPrd}}
+\newcommand{\vEndPrdLst}{\vFunc_{\EndPrdLst}}
+\newcommand{\vEndPrdLsT}{\vFunc_{\EndPrdLsT}}
+\newcommand{\vMidPrdLst}{\vFunc_{\MidPrdLst}}
+\newcommand{\vMidPrdLsT}{\vFunc_{\MidPrdLsT}}
+\newcommand{\cEndStg}{\cFunc_{\EndStg}} % used in _sectn-method-of-moderation.tex
+
+\newcommand{\vPEndStg}{\vFunc^{a}_{\EndStg}}
+\newcommand{\vPMidStg}{\vFunc^{m}_{\MidStg}}
+\newcommand{\vPBegStg}{\vFunc^{k}_{\BegStg}}
+\newcommand{\vPEndStgNxt}{\vFunc^{a}_{\EndStgNxt}}
+\newcommand{\vPMidStgNxt}{\vFunc^{m}_{\MidStgNxt}}
+\newcommand{\vPBegStgNxt}{\vFunc^{k}_{\BegStgNxt}}
+\newcommand{\vPBegPrdNxt}{\vFunc^{k}_{\BegPrdNxt}}
+
+\providecommand{\PDVCoverc}{\mathbb{C}}
+
+% Allow changing our mind about the names of the ordering elements
+\providecommand{\move}{}\renewcommand{\move}{step}
+\providecommand{\Move}{}\renewcommand{\Move}{Step}
+ \providecommand{\moves}{}\renewcommand{\moves}{steps}
+\providecommand{\moves}{}\renewcommand{\moves}{steps}
+\providecommand{\Moves}{}\renewcommand{\Moves}{Steps}
+\providecommand{\interval}{}\renewcommand{\interval}{period}
+\providecommand{\Interval}{}\renewcommand{\Interval}{Period}
+\providecommand{\intervals}{}\renewcommand{\intervals}{periods}
+\providecommand{\Intervals}{}\renewcommand{\Intervals}{Periods}
+\providecommand{\stg}{}\renewcommand{\stg}{stage}
+\providecommand{\Stg}{}\renewcommand{\Stg}{Stage}
+\providecommand{\stgs}{}\renewcommand{\stgs}{stages}
+\providecommand{\Stgs}{}\renewcommand{\Stgs}{Stages}
+
+% Transitions
+\providecommand{\trnsn}{}\renewcommand{\trnsn}{transition}
+\providecommand{\Trnsn}{}\renewcommand{\Trnsn}{Transition}
+\providecommand{\trnsns}{}\renewcommand{\trnsns}{transitions}
+\providecommand{\Trnsns}{}\renewcommand{\Trnsns}{Transitions}
+
+% Evolutions
+\providecommand{\evltn}{}\renewcommand{\evltn}{evolution}
+\providecommand{\Evltn}{}\renewcommand{\Evltn}{Evolution}
+\providecommand{\evltns}{}\renewcommand{\evltns}{evolutions}
+\providecommand{\Evltns}{}\renewcommand{\Evltns}{Evolutions}
+
+% Expectations
+\newcommand{\ExEndStg}{\Ex_{\EndStg}}
+\newcommand{\ExMidStg}{\Ex_{\MidStg}}
+\newcommand{\ExBegStg}{\Ex_{\BegStg}}
+\newcommand{\ExBegPrd}{\Ex_{\BegPrd}}
+\newcommand{\ExEndPrd}{\Ex_{\EndPrd}}
+
+\providecommand{\stigma}{}\renewcommand{\stigma}{\varsigma}
+\providecommand{\Shr}{}\renewcommand{\Shr}{\stigma}
+\providecommand{\Aprx}{}\renewcommand{\Aprx}{\Alt}
+
+\newcommand{\wlthAftr}{\acute{w}}
+\newcommand{\wlthBefr}{w}
+
+\newcommand{\optml}[1]{\breve{#1}}
+
+%\providecommand{\prdm}{}\renewcommand{\prdm}{({\prd-1})}
+
+\newcommand{\code}[1]{\ensuremath{\mathtt{#1}}} % code should be in tt font
+
+% These allow turning on or off the growth factor for permanent income
+% (preserves symbolic derivations in LaTeX but makes them disappear)
+% value function growth normed by G^{1-\CRRA}
+
+% on
+\newcommand{\PermGroFacAdjV}{\PermGroFac_{\prd}^{1-\CRRA}}
+\newcommand{\PermGroFacAdjVNxt}{\PermGroFac_{\prd+1}^{1-\CRRA}}
+\newcommand{\PermGroFacAdjMu}{\PermGroFac_{\prd}^{-\CRRA}}
+\newcommand{\PermGroFacAdjMuNxt}{\PermGroFac_{\prd+1}^{-\CRRA}}
+\newcommand{\AdjV}{_{\prd}^{1-\CRRA}}
+\newcommand{\AdjVNxt}{_{\prd+1}^{1-\CRRA}}
+\newcommand{\AdjMu}{_{\prd}^{-\CRRA}}
+\newcommand{\AdjMuNxt}{_{\prd+1}^{-\CRRA}}
+% off
+\renewcommand{\PermGroFacAdjV}{\null}
+\renewcommand{\PermGroFacAdjVNxt}{\null}
+\renewcommand{\AdjV}{\null}
+\renewcommand{\AdjVNxt}{\null}
+\renewcommand{\AdjMu}{\null}
+\renewcommand{\AdjMuNxt}{\null}
+\renewcommand{\PermGroFacAdjMu}{\null}
+\renewcommand{\PermGroFacAdjMuNxt}{\null}
+
+% To compile the Habits subfile, go to the Subfiles directory
+
+\newcommand{\trmT}{T}
+
+\providecommand{\VInv}{}\providecommand{\VInv}{}\renewcommand{\VInv}{{\Lambda}}
+\providecommand{\vInv}{}\providecommand{\vInv}{}\renewcommand{\vInv}{{\scriptstyle \VInv \displaystyle}}
+
+\providecommand{\NatBoroCnstra}{}\providecommand{\NatBoroCnstra}{}\renewcommand{\NatBoroCnstra}{\underline{a}}
+
+\providecommand{\DiscAlt}{}\renewcommand{\DiscAlt}{\beta} % Erase the distinction between the alternative and the standard discount factor
+
+\providecommand{\aVecCode}{}\renewcommand{\aVecCode}{\code{aVec}}
+\providecommand{\mVecCode}{}\renewcommand{\mVecCode}{\texttt{mVec}}
+\providecommand{\kVecCode}{}\renewcommand{\kVecCode}{\texttt{kVec}}
+\providecommand{\cVecCode}{}\renewcommand{\cVecCode}{\texttt{cVec}}
+
+\newcommand{\vctr}[1]{\pmb{\mathtt{{#1}}}} % code should be in tt font
+\newcommand{\vctrNotationDescribe}{a boldface monotype (computer) font}
+
+%\newcommand{\vctr}{\mathtt}
+\newcommand{\mVec}{\texttt{mVec}}
+\newcommand{\aVec}{\texttt{aVec}}
+\newcommand{\vVec}{\texttt{vVec}}
+
+\newcommand{\stepShr}{\step[\Shr]}
+
+%\newcommand{\vBegPrdNxt}{\vFunc_{_{\arvl}{\prd+1}}}
+%\newcommand{\vMidPrdNxt}{\vFunc_{_{\dcsn}{\prd+1}}}
+%\newcommand{\dvdShrBeg}{\vFunc^{\Shr}_{_{\arvl}\prd[\Shr]}}
+\newcommand{\vShrBegPrd}{\vFunc^{\Shr}_{_{\arvl}\prd[\Shr]}}
+\newcommand{\vShrMidPrd}{\vFunc^{\Shr}_{\prd[\Shr]}}
+\newcommand{\vShrEndPrd}{\vFunc^{\Shr}_{\prd[\Shr]_{\cntn}}}
+%\newcommand{\vVecShr}{\vctr{v}_{_{\arvl}\prd[\Shr]}}
+
+%\providecommand{\prd}{}\renewcommand{\prd}{t}
+\newcommand{\prd}{t}
+\newcommand{\prdt}{t}
+\newcommand{\prdT}{t}
+
+\providecommand{\hEndMin}{\underline{\hNrm}}\renewcommand{\hEndMin}{\underline{\hNrm}}
+\newcommand{\TranShkEmpDummy}{\pmb{\vartheta}}
+\newcommand{\tranShkEmpDummy}{\vartheta}
+
+\newcommand{\aVecMin}{{a}_{1}}
+\newcommand{\cMin}{{c}_{1}}
+\newcommand{\vctratm}{\vctr{a}_{\prd-1}}\renewcommand{\vctratm}{\vctr{a}}
+\providecommand{\TranShkEmpMin}{}\renewcommand{\TranShkEmpMin}{\underline{\TranShkEmp}}
+\providecommand{\tranShkEmpMin}{}\renewcommand{\tranShkEmpMin}{\underline{\tranShkEmp}}
+
+%\newcommand{\cLst}{{c}_{\prdLst}}
+%\newcommand{\cLsT}{{c}_{\prdLsT}}
+%\newcommand{\mLst}{{m}_{\prdLst}}
+%\newcommand{\mLsT}{{m}_{\prdLsT}}
+
+% Alternative definitions of these would restore the time subscript for c
+% in the max problem statements
+%\newcommand{\cLvlMaxPrdT}{\cLvl}
+%\newcommand{\cLvlMaxPrdt}{\cLvl}
+%\newcommand{\cNrmMaxPrdT}{\cNrm}
+%\newcommand{\cNrmMaxPrdt}{\cNrm}
+% \newcommand{\cLvlMaxPrd}{\cLvl_{\prd}}
+
+\providecommand{\std}{}\renewcommand{\std}{\sigma}
+%\newcommand{\vrnc}{\std^{2}}
+
+%\newcommand{\cStg}{\cFunc}
+%\newcommand{\cStgSub}{[\cStg]}
+%\newcommand{\cStgSup}{\cStg}
+
+%\newcommand{\cStgBeg}{_{\arvl}{c}}
+%\newcommand{\cStgMid}{[c]}
+%\newcommand{\cStgEnd}{{c}\cntn}
+
+%\newcommand{\mStte}{\mNrm} % m as a state variable
+%\newcommand{\aStte}{\aNrm}
