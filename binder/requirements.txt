@@ -1,0 +1,23 @@
+# Python packages for BinderHub / MyBinder
+#
+# BinderHub installs these via pip into its managed Python environment.
+# This file is intentionally simpler than pyproject.toml because BinderHub
+# imposes build-time limits and does not support UV or lock files.
+#
+# For the full reproducible environment (Docker / devcontainer) see:
+#   pyproject.toml  +  uv.lock  +  reproduce/docker/setup.sh
+
+# Economics packages
+econ-ark>=0.17.1
+
+# Core scientific computing stack
+numpy>=1.24
+scipy>=1.10
+pandas>=2.0
+matplotlib>=3.7
+
+# Jupyter
+notebook>=7.0
+ipykernel>=6.0
+ipywidgets>=8.0
+jupytext>=1.14

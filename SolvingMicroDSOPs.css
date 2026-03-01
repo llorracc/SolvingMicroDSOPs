@@ -1,0 +1,947 @@
+ 
+/* start css.sty */
+.cmbx-12{ font-weight: bold;}
+.cmbsy-10x-x-120{font-weight: bold;}
+.cmbsy-10x-x-120{font-weight: bold;}
+.cmbsy-10x-x-120{font-weight: bold;}
+.cmbsy-8{font-size:66%;font-weight: bold;}
+.cmbsy-8{font-weight: bold;}
+.cmbsy-8{font-weight: bold;}
+.cmbsy-6{font-size:50%;font-weight: bold;}
+.cmbsy-6{font-weight: bold;}
+.cmbsy-6{font-weight: bold;}
+.cmex-8{font-size:66%;}
+.cmex-7x-x-85{font-size:49%;}
+.msam-10x-x-80{font-size:66%;}
+.msam-7x-x-85{font-size:49%;}
+.msbm-10x-x-80{font-size:66%;}
+.msbm-7x-x-85{font-size:49%;}
+.cmr-8{font-size:66%;}
+.cmr-6{font-size:50%;}
+.cmmi-12{font-style: italic;}
+.cmmi-8{font-size:66%;font-style: italic;}
+.cmmi-6{font-size:50%;font-style: italic;}
+.cmsy-8{font-size:66%;}
+.cmsy-6{font-size:50%;}
+.ec-lmr-17{font-size:141%;}
+.ec-lmr-12x-x-120{font-size:120%;}
+.ec-lmr-17x-x-120{font-size:170%;}
+.ec-lmbx-12x-x-144{font-size:144%; font-weight: bold;}
+.ec-lmbx-12x-x-144{ font-weight: bold;}
+.ec-lmbx-12x-x-144{ font-weight: bold;}
+.ec-lmbx-12x-x-144{ font-weight: bold;}
+.ec-lmbx-12x-x-144{ font-weight: bold;}
+.ec-lmbx-12x-x-144{ font-weight: bold;}
+.ec-lmbx-12x-x-144{ font-weight: bold;}
+.ec-lmbx-12x-x-144{ font-weight: bold;}
+.ec-lmbx-12x-x-144{ font-weight: bold;}
+.ec-lmbx-12x-x-144{ font-weight: bold;}
+.ec-lmbx-12x-x-144{ font-weight: bold;}
+.ec-lmbx-12x-x-144{ font-weight: bold;}
+.ec-lmbx-12x-x-144{ font-weight: bold;}
+.ec-lmbx-12x-x-144{ font-weight: bold;}
+.ec-lmbx-12x-x-144{ font-weight: bold;}
+.ec-lmbx-12x-x-144{ font-weight: bold;}
+.ec-lmbx-12x-x-144{ font-weight: bold;}
+.ec-lmbx-12x-x-144{ font-weight: bold;}
+.ec-lmbx-12x-x-144{ font-weight: bold;}
+.ec-lmr-6{font-size:50%;}
+.cmr-10{font-size:83%;}
+.cmr-7{font-size:58%;}
+.cmmi-10{font-size:83%;font-style: italic;}
+.cmmi-7{font-size:58%;font-style: italic;}
+.cmsy-10{font-size:83%;}
+.cmsy-7{font-size:58%;}
+.msbm-10{font-size:83%;}
+.ec-lmr-10x-x-109{font-size:90%;}
+.ec-lmr-10{font-size:83%;}
+.ec-lmtt-10{font-size:83%; font-family: monospace,monospace;}
+.ec-lmtt-10{ font-family: monospace,monospace;}
+.ec-lmtt-10{ font-family: monospace,monospace;}
+.ec-lmtt-10{ font-family: monospace,monospace;}
+.ec-lmtt-10{ font-family: monospace,monospace;}
+.ec-lmtt-10{ font-family: monospace,monospace;}
+.ec-lmtt-10{ font-family: monospace,monospace;}
+.ec-lmtt-10{ font-family: monospace,monospace;}
+.ec-lmtt-10{ font-family: monospace,monospace;}
+.ec-lmtt-10{ font-family: monospace,monospace;}
+.ec-lmtt-10{ font-family: monospace,monospace;}
+.ec-lmtt-10{ font-family: monospace,monospace;}
+.ec-lmtt-10{ font-family: monospace,monospace;}
+.ec-lmtt-10{ font-family: monospace,monospace;}
+.ec-lmtt-10{ font-family: monospace,monospace;}
+.ec-lmtt-10{ font-family: monospace,monospace;}
+.ec-lmtt-10{ font-family: monospace,monospace;}
+.ec-lmtt-10{ font-family: monospace,monospace;}
+.ec-lmtt-10{ font-family: monospace,monospace;}
+.ec-lmbx-12{ font-weight: bold;}
+.ec-lmbx-12{ font-weight: bold;}
+.ec-lmbx-12{ font-weight: bold;}
+.ec-lmbx-12{ font-weight: bold;}
+.ec-lmbx-12{ font-weight: bold;}
+.ec-lmbx-12{ font-weight: bold;}
+.ec-lmbx-12{ font-weight: bold;}
+.ec-lmbx-12{ font-weight: bold;}
+.ec-lmbx-12{ font-weight: bold;}
+.ec-lmbx-12{ font-weight: bold;}
+.ec-lmbx-12{ font-weight: bold;}
+.ec-lmbx-12{ font-weight: bold;}
+.ec-lmbx-12{ font-weight: bold;}
+.ec-lmbx-12{ font-weight: bold;}
+.ec-lmbx-12{ font-weight: bold;}
+.ec-lmbx-12{ font-weight: bold;}
+.ec-lmbx-12{ font-weight: bold;}
+.ec-lmbx-12{ font-weight: bold;}
+.ec-lmbx-12{ font-weight: bold;}
+.ec-lmtt-8x-x-75{font-size:50%; font-family: monospace,monospace;}
+.ec-lmtt-8x-x-75{ font-family: monospace,monospace;}
+.ec-lmtt-8x-x-75{ font-family: monospace,monospace;}
+.ec-lmtt-8x-x-75{ font-family: monospace,monospace;}
+.ec-lmtt-8x-x-75{ font-family: monospace,monospace;}
+.ec-lmtt-8x-x-75{ font-family: monospace,monospace;}
+.ec-lmtt-8x-x-75{ font-family: monospace,monospace;}
+.ec-lmtt-8x-x-75{ font-family: monospace,monospace;}
+.ec-lmtt-8x-x-75{ font-family: monospace,monospace;}
+.ec-lmtt-8x-x-75{ font-family: monospace,monospace;}
+.ec-lmtt-8x-x-75{ font-family: monospace,monospace;}
+.ec-lmtt-8x-x-75{ font-family: monospace,monospace;}
+.ec-lmtt-8x-x-75{ font-family: monospace,monospace;}
+.ec-lmtt-8x-x-75{ font-family: monospace,monospace;}
+.ec-lmtt-8x-x-75{ font-family: monospace,monospace;}
+.ec-lmtt-8x-x-75{ font-family: monospace,monospace;}
+.ec-lmtt-8x-x-75{ font-family: monospace,monospace;}
+.ec-lmtt-8x-x-75{ font-family: monospace,monospace;}
+.ec-lmtt-8x-x-75{ font-family: monospace,monospace;}
+.ec-lmri-7x-x-85{font-size:49%; font-style:italic;}
+.ec-lmri-7x-x-85{ font-style:italic;}
+.ec-lmri-7x-x-85{ font-style:italic;}
+.ec-lmri-7x-x-85{ font-style:italic;}
+.ec-lmri-7x-x-85{ font-style:italic;}
+.ec-lmri-7x-x-85{ font-style:italic;}
+.ec-lmri-7x-x-85{ font-style:italic;}
+.ec-lmri-7x-x-85{ font-style:italic;}
+.ec-lmri-7x-x-85{ font-style:italic;}
+.ec-lmri-7x-x-85{ font-style:italic;}
+.ec-lmri-7x-x-85{ font-style:italic;}
+.ec-lmri-7x-x-85{ font-style:italic;}
+.ec-lmri-7x-x-85{ font-style:italic;}
+.ec-lmri-7x-x-85{ font-style:italic;}
+.ec-lmri-7x-x-85{ font-style:italic;}
+.ec-lmri-7x-x-85{ font-style:italic;}
+.ec-lmri-7x-x-85{ font-style:italic;}
+.ec-lmri-7x-x-85{ font-style:italic;}
+.ec-lmri-7x-x-85{ font-style:italic;}
+.ec-lmri-10{font-size:83%; font-style:italic;}
+.ec-lmri-10{ font-style:italic;}
+.ec-lmri-10{ font-style:italic;}
+.ec-lmri-10{ font-style:italic;}
+.ec-lmri-10{ font-style:italic;}
+.ec-lmri-10{ font-style:italic;}
+.ec-lmri-10{ font-style:italic;}
+.ec-lmri-10{ font-style:italic;}
+.ec-lmri-10{ font-style:italic;}
+.ec-lmri-10{ font-style:italic;}
+.ec-lmri-10{ font-style:italic;}
+.ec-lmri-10{ font-style:italic;}
+.ec-lmri-10{ font-style:italic;}
+.ec-lmri-10{ font-style:italic;}
+.ec-lmri-10{ font-style:italic;}
+.ec-lmri-10{ font-style:italic;}
+.ec-lmri-10{ font-style:italic;}
+.ec-lmri-10{ font-style:italic;}
+.ec-lmri-10{ font-style:italic;}
+.ec-lmss-12{ font-family: sans-serif;}
+.ec-lmss-12{ font-family: sans-serif;}
+.ec-lmss-12{ font-family: sans-serif;}
+.ec-lmss-12{ font-family: sans-serif;}
+.ec-lmss-12{ font-family: sans-serif;}
+.ec-lmss-12{ font-family: sans-serif;}
+.ec-lmss-12{ font-family: sans-serif;}
+.ec-lmss-12{ font-family: sans-serif;}
+.ec-lmss-12{ font-family: sans-serif;}
+.ec-lmss-12{ font-family: sans-serif;}
+.ec-lmss-12{ font-family: sans-serif;}
+.ec-lmss-12{ font-family: sans-serif;}
+.ec-lmss-12{ font-family: sans-serif;}
+.ec-lmss-12{ font-family: sans-serif;}
+.ec-lmss-12{ font-family: sans-serif;}
+.ec-lmss-12{ font-family: sans-serif;}
+.ec-lmss-12{ font-family: sans-serif;}
+.ec-lmss-12{ font-family: sans-serif;}
+.ec-lmss-12{ font-family: sans-serif;}
+.ec-lmssbx-10x-x-120{ font-family: sans-serif; font-weight: bold;}
+.ec-lmssbx-10x-x-120{ font-family: sans-serif; font-weight: bold;}
+.ec-lmssbx-10x-x-120{ font-family: sans-serif; font-weight: bold;}
+.ec-lmssbx-10x-x-120{ font-family: sans-serif; font-weight: bold;}
+.ec-lmssbx-10x-x-120{ font-family: sans-serif; font-weight: bold;}
+.ec-lmssbx-10x-x-120{ font-family: sans-serif; font-weight: bold;}
+.ec-lmssbx-10x-x-120{ font-family: sans-serif; font-weight: bold;}
+.ec-lmssbx-10x-x-120{ font-family: sans-serif; font-weight: bold;}
+.ec-lmssbx-10x-x-120{ font-family: sans-serif; font-weight: bold;}
+.ec-lmssbx-10x-x-120{ font-family: sans-serif; font-weight: bold;}
+.ec-lmssbx-10x-x-120{ font-family: sans-serif; font-weight: bold;}
+.ec-lmssbx-10x-x-120{ font-family: sans-serif; font-weight: bold;}
+.ec-lmssbx-10x-x-120{ font-family: sans-serif; font-weight: bold;}
+.ec-lmssbx-10x-x-120{ font-family: sans-serif; font-weight: bold;}
+.ec-lmssbx-10x-x-120{ font-family: sans-serif; font-weight: bold;}
+.ec-lmssbx-10x-x-120{ font-family: sans-serif; font-weight: bold;}
+.ec-lmssbx-10x-x-120{ font-family: sans-serif; font-weight: bold;}
+.ec-lmssbx-10x-x-120{ font-family: sans-serif; font-weight: bold;}
+.ec-lmssbx-10x-x-120{ font-family: sans-serif; font-weight: bold;}
+.ec-lmtt-12{ font-family: monospace,monospace;}
+.ec-lmtt-12{ font-family: monospace,monospace;}
+.ec-lmtt-12{ font-family: monospace,monospace;}
+.ec-lmtt-12{ font-family: monospace,monospace;}
+.ec-lmtt-12{ font-family: monospace,monospace;}
+.ec-lmtt-12{ font-family: monospace,monospace;}
+.ec-lmtt-12{ font-family: monospace,monospace;}
+.ec-lmtt-12{ font-family: monospace,monospace;}
+.ec-lmtt-12{ font-family: monospace,monospace;}
+.ec-lmtt-12{ font-family: monospace,monospace;}
+.ec-lmtt-12{ font-family: monospace,monospace;}
+.ec-lmtt-12{ font-family: monospace,monospace;}
+.ec-lmtt-12{ font-family: monospace,monospace;}
+.ec-lmtt-12{ font-family: monospace,monospace;}
+.ec-lmtt-12{ font-family: monospace,monospace;}
+.ec-lmtt-12{ font-family: monospace,monospace;}
+.ec-lmtt-12{ font-family: monospace,monospace;}
+.ec-lmtt-12{ font-family: monospace,monospace;}
+.ec-lmtt-12{ font-family: monospace,monospace;}
+.ec-lmri-12{ font-style:italic;}
+.ec-lmri-12{ font-style:italic;}
+.ec-lmri-12{ font-style:italic;}
+.ec-lmri-12{ font-style:italic;}
+.ec-lmri-12{ font-style:italic;}
+.ec-lmri-12{ font-style:italic;}
+.ec-lmri-12{ font-style:italic;}
+.ec-lmri-12{ font-style:italic;}
+.ec-lmri-12{ font-style:italic;}
+.ec-lmri-12{ font-style:italic;}
+.ec-lmri-12{ font-style:italic;}
+.ec-lmri-12{ font-style:italic;}
+.ec-lmri-12{ font-style:italic;}
+.ec-lmri-12{ font-style:italic;}
+.ec-lmri-12{ font-style:italic;}
+.ec-lmri-12{ font-style:italic;}
+.ec-lmri-12{ font-style:italic;}
+.ec-lmri-12{ font-style:italic;}
+.ec-lmri-12{ font-style:italic;}
+.cmbxti-10x-x-120{ font-weight: bold; font-style: italic;}
+.cmbxti-10x-x-120{ font-weight: bold; font-style: italic;}
+.cmbxti-10x-x-120{ font-weight: bold; font-style: italic;}
+.cmbxti-10x-x-80{font-size:66%; font-weight: bold; font-style: italic;}
+.cmbxti-10x-x-80{ font-weight: bold; font-style: italic;}
+.cmbxti-10x-x-80{ font-weight: bold; font-style: italic;}
+.cmss-12{  font-family: sans-serif;}
+.cmbxti-10{font-size:83%; font-weight: bold; font-style: italic;}
+.cmbxti-10{ font-weight: bold; font-style: italic;}
+.cmbxti-10{ font-weight: bold; font-style: italic;}
+.eusm-10x-x-80{font-size:66%;}
+.cmtt-12{font-family: monospace,monospace;}
+.cmtt-12{font-family: monospace,monospace;}
+.cmtt-8{font-size:66%;font-family: monospace,monospace;}
+.cmtt-8{font-family: monospace,monospace;}
+.ec-lmss-10{font-size:83%; font-family: sans-serif;}
+.ec-lmss-10{ font-family: sans-serif;}
+.ec-lmss-10{ font-family: sans-serif;}
+.ec-lmss-10{ font-family: sans-serif;}
+.ec-lmss-10{ font-family: sans-serif;}
+.ec-lmss-10{ font-family: sans-serif;}
+.ec-lmss-10{ font-family: sans-serif;}
+.ec-lmss-10{ font-family: sans-serif;}
+.ec-lmss-10{ font-family: sans-serif;}
+.ec-lmss-10{ font-family: sans-serif;}
+.ec-lmss-10{ font-family: sans-serif;}
+.ec-lmss-10{ font-family: sans-serif;}
+.ec-lmss-10{ font-family: sans-serif;}
+.ec-lmss-10{ font-family: sans-serif;}
+.ec-lmss-10{ font-family: sans-serif;}
+.ec-lmss-10{ font-family: sans-serif;}
+.ec-lmss-10{ font-family: sans-serif;}
+.ec-lmss-10{ font-family: sans-serif;}
+.ec-lmss-10{ font-family: sans-serif;}
+.ec-lmcsc-10x-x-120{ font-variant: small-caps;}
+.ec-lmcsc-10x-x-120{ font-variant: small-caps;}
+.ec-lmcsc-10x-x-120{ font-variant: small-caps;}
+.ec-lmcsc-10x-x-120{ font-variant: small-caps;}
+.ec-lmcsc-10x-x-120{ font-variant: small-caps;}
+.ec-lmcsc-10x-x-120{ font-variant: small-caps;}
+.ec-lmcsc-10x-x-120{ font-variant: small-caps;}
+.ec-lmcsc-10x-x-120{ font-variant: small-caps;}
+.ec-lmcsc-10x-x-120{ font-variant: small-caps;}
+.ec-lmcsc-10x-x-120{ font-variant: small-caps;}
+.ec-lmcsc-10x-x-120{ font-variant: small-caps;}
+.ec-lmcsc-10x-x-120{ font-variant: small-caps;}
+.ec-lmcsc-10x-x-120{ font-variant: small-caps;}
+.ec-lmcsc-10x-x-120{ font-variant: small-caps;}
+.ec-lmcsc-10x-x-120{ font-variant: small-caps;}
+.ec-lmcsc-10x-x-120{ font-variant: small-caps;}
+.ec-lmcsc-10x-x-120{ font-variant: small-caps;}
+.ec-lmcsc-10x-x-120{ font-variant: small-caps;}
+.ec-lmcsc-10x-x-120{ font-variant: small-caps;}
+p{margin-top:0;margin-bottom:0}
+p.indent{text-indent:0;}
+p + p{margin-top:1em;}
+p + div, p + pre {margin-top:1em;}
+div + p, pre + p {margin-top:1em;}
+a { overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; hyphens: auto; }
+@media print {div.crosslinks {visibility:hidden;}}
+table.tabular{border-collapse: collapse; border-spacing: 0;}
+a img { border-top: 0; border-left: 0; border-right: 0; }
+center { margin-top:1em; margin-bottom:1em; }
+td center { margin-top:0em; margin-bottom:0em; }
+.Canvas { position:relative; }
+math { text-indent: 0em; }
+body{ margin:1em auto; max-width:80ch; padding:0 .62em; }
+h1,h2,h3,h4,h5 { line-height:1.2; }
+@media print{ body{ max-width:none } }
+.partHead, .likepartHead { font-size: 2em; }
+.chapterHead, .likechapterHead { font-size: 1.7411em; }
+.sectionHead, .likesectionHead { font-size: 1.5157em; }
+.subsectionHead, .likesubsectionHead { font-size: 1.3195em; }
+.subsubsectionHead, .likesubsubsectionHead { font-size: 1.1487em; }
+ @media (prefers-color-scheme: dark) { img[src^="SolvingMicroDSOPs"]{filter: invert(1); } } 
+li p.indent { text-indent: 0em }
+li p:first-child{ margin-top:0em; }
+li p:last-child, li div:last-child { margin-bottom:0.5em; }
+li p:first-child{ margin-bottom:0; }
+li p~ul:last-child, li p~ol:last-child{ margin-bottom:0.5em; }
+.enumerate1 {list-style-type:decimal;}
+.enumerate2 {list-style-type:lower-alpha;}
+.enumerate3 {list-style-type:lower-roman;}
+.enumerate4 {list-style-type:upper-alpha;}
+div.newtheorem { margin-bottom: 2em; margin-top: 2em;}
+div.newtheorem .head{font-weight: bold;}
+.obeylines-h,.obeylines-v {white-space: nowrap; }
+div.obeylines-v p { margin-top:0; margin-bottom:0; }
+.overline{ text-decoration:overline; }
+.overline img{ border-top: 1px solid black; }
+td.displaylines {text-align:center; white-space:nowrap;}
+.centerline {text-align:center;}
+.rightline {text-align:right;}
+pre.verbatim {font-family: monospace,monospace; text-align:left; clear:both; }
+.fbox {padding-left:3.0pt; padding-right:3.0pt; text-indent:0pt; border:solid black 0.4pt; }
+div.fbox {display:table}
+div.center div.fbox {text-align:center; clear:both; padding-left:3.0pt; padding-right:3.0pt; text-indent:0pt; border:solid black 0.4pt; }
+div.minipage{width:100%;}
+div.center, div.center div.center {text-align: center; margin-left:1em; margin-right:1em;}
+div.center div {text-align: left;}
+div.flushright, div.flushright div.flushright {text-align: right;}
+div.flushright div {text-align: left;}
+div.flushleft {text-align: left;}
+.underline{ text-decoration:underline; }
+.underline img{ border-bottom: 1px solid black; margin-bottom:1pt; }
+.framebox-c, .framebox-l, .framebox-r { padding-left:3.0pt; padding-right:3.0pt; text-indent:0pt; border:solid black 0.4pt; }
+.framebox-c {text-align:center;}
+.framebox-l {text-align:left;}
+.framebox-r {text-align:right;}
+span.thank-mark{ vertical-align: super }
+span.footnote-mark sup.textsuperscript, span.footnote-mark a sup.textsuperscript{ font-size:80%; }
+code.verb{font-family:monospace,monospace;}
+div.tabular, div.center div.tabular {text-align: center; margin-top:0.5em; margin-bottom:0.5em; }
+table.tabular td p{margin-top:0em;}
+table.tabular {margin-left: auto; margin-right: auto;}
+td p:first-child{ margin-top:0em; }
+td p:last-child{ margin-bottom:0em; }
+div.td00{ margin-left:0pt; margin-right:0pt; }
+div.td01{ margin-left:0pt; margin-right:5pt; }
+div.td10{ margin-left:5pt; margin-right:0pt; }
+div.td11{ margin-left:5pt; margin-right:5pt; }
+table[rules] {border-left:solid black 0.4pt; border-right:solid black 0.4pt; }
+td.td00{ padding-left:0pt; padding-right:0pt; }
+td.td01{ padding-left:0pt; padding-right:5pt; }
+td.td10{ padding-left:5pt; padding-right:0pt; }
+td.td11{ padding-left:5pt; padding-right:5pt; }
+table[rules] {border-left:solid black 0.4pt; border-right:solid black 0.4pt; }
+.hline hr, .cline hr{ height : 0px; margin:0px; }
+.hline td, .cline td{ padding: 0; }
+.hline hr, .cline hr{border:none;border-top:1px solid black;}
+.hline {border-top: 1px solid black;}
+.hline + .vspace:last-child{display:none;}
+.hline:first-child{border-bottom:1px solid black;border-top:none;}
+.tabbing-right {text-align:right;}
+div.float, div.figure {margin-left: auto; margin-right: auto;}
+div.float img {text-align:center;}
+div.figure img {text-align:center;}
+.marginpar,.reversemarginpar {width:20%; float:right; text-align:left; margin-left:auto; margin-top:0.5em; font-size:85%; text-decoration:underline;}
+.marginpar p,.reversemarginpar p{margin-top:0.4em; margin-bottom:0.4em;}
+.reversemarginpar{float:left;}
+.equation td{text-align:center; vertical-align:middle; }
+td.eq-no{ width:5%; }
+table.equation { width:100%; } 
+div.math-display, div.par-math-display{text-align:center;}
+.array-hline,.array-cline{ border-top: 1px solid black; height:0px; }
+.array-hline + .array-vspace:last-child{display:none;}
+.hline-mtd, .array-hline td{ display:none }
+.array-hline + .array-row:last-child{display:none;}
+.array-hline:first-child{border-bottom:1px solid black;border-top:none;}
+math .texttt { font-family: monospace; }
+math .textit { font-style: italic; }
+math .textsl { font-style: oblique; }
+math .textsf { font-family: sans-serif; }
+math .textbf { font-weight: bold; }
+mo.MathClass-op + mi{margin-left:0.3em}
+mi + mo.MathClass-op{margin-left:0.3em}
+ math mstyle[mathvariant="bold"] { font-weight: bold; font-style: normal; } 
+ math mstyle[mathvariant="normal"] { font-weight: normal; font-style: normal; } 
+.partToc a, .partToc, .likepartToc a, .likepartToc {line-height: 200%; font-weight:bold; font-size:110%;}
+.index-item, .index-subitem, .index-subsubitem {display:block}
+div.caption {text-indent:-2em; margin-left:3em; margin-right:1em; text-align:left;}
+div.caption span.id{font-weight: bold; white-space: nowrap; }
+h1.partHead{text-align: center}
+p.bibitem { text-indent: -2em; margin-left: 2em; margin-top:0.6em; margin-bottom:0.6em; }
+p.bibitem-p { text-indent: 0em; margin-left: 2em; margin-top:0.6em; margin-bottom:0.6em; }
+.subsubsectionHead, .likesubsubsectionHead { font-size: 1em; }
+.paragraphHead, .likeparagraphHead { margin-top:2em; font-weight: bold;}
+.subparagraphHead, .likesubparagraphHead { font-weight: bold;}
+.verse{white-space:nowrap; margin-left:2em}
+div.maketitle {text-align:center;}
+h2.titleHead{text-align:center;}
+div.maketitle{ margin-bottom: 2em; }
+div.author, div.date {text-align:center;}
+div.thanks{text-align:left; margin-left:10%; font-size:85%; font-style:italic; }
+div.author{white-space: nowrap;}
+div.abstract p {margin-left:5%; margin-right:5%;}
+div.abstract {width:100%;}
+.abstracttitle{text-align:center;margin-bottom:1em;}
+.subsectionToc, .likesubsectionToc {margin-left:1em;}
+.subsubsectionToc, .likesubsubsectionToc {margin-left:2em;}
+.paragraphToc, .likeparagraphToc {margin-left:3em;}
+.subparagraphToc, .likesubparagraphToc {margin-left:4em;}
+figure.float, div.figure {margin-left: auto; margin-right: auto;}
+figure.figure {text-align:center;}
+figcaption.caption {text-indent:-2em; margin-left:3em; margin-right:1em; text-align:center;}
+figcaption.caption span.id{font-weight: bold; white-space: nowrap; }
+p + figcaption, img + figcaption{margin-top: 1em;}
+.abstract{margin:1em;}
+span.footnote-mark sup.textsuperscript, span.footnote-mark a sup.textsuperscript{ font-size:80%; }
+figure.float, div.figure {margin-left: auto; margin-right: auto;}
+figure.figure {text-align:center;}
+figcaption.caption {text-indent:-2em; margin-left:3em; margin-right:1em; text-align:center;}
+figcaption.caption span.id{font-weight: bold; white-space: nowrap; }
+p + figcaption, img + figcaption{margin-top: 1em;}
+.equation-star td{text-align:center; vertical-align:middle; }
+table.equation-star { width:100%; } 
+.boxed{border: 1px solid black; padding-left:2px; padding-right:2px;}
+mtd.align-odd{margin-left:2em; text-align:right;}
+mtd.align-even{margin-right:2em; text-align:left;}
+.cancel{background: linear-gradient(to left top, transparent 47.75%, currentColor 49.5%, currentColor 50.5%, transparent 52.25%);}
+.bcancel{background: linear-gradient(to bottom left, transparent 47.75%, currentColor 49.5%, currentColor 50.5%, transparent 52.25%);}
+.xcancel{background: linear-gradient(to bottom left, transparent 47.75%, currentColor 49.5%, currentColor 50.5%, transparent 52.25%), linear-gradient(to left top, transparent 47.75%, currentColor 49.5%, currentColor 50.5%, transparent 52.25%);}
+div.verbatiminput {font-family: monospace,monospace; white-space: nowrap; }
+div.tabular, div.center div.tabular {text-align: center; margin-top:0.5em; margin-bottom:0.5em; }
+table.tabular td p{margin-top:0em;}
+table.tabular {margin-left: auto; margin-right: auto;}
+td p:first-child{ margin-top:0em; }
+td p:last-child{ margin-bottom:0em; }
+div.td00{ margin-left:0pt; margin-right:0pt; }
+div.td01{ margin-left:0pt; margin-right:5pt; }
+div.td10{ margin-left:5pt; margin-right:0pt; }
+div.td11{ margin-left:5pt; margin-right:5pt; }
+table[rules] {border-left:solid black 0.4pt; border-right:solid black 0.4pt; }
+td.td00{ padding-left:0pt; padding-right:0pt; }
+td.td01{ padding-left:0pt; padding-right:5pt; }
+td.td10{ padding-left:5pt; padding-right:0pt; }
+td.td11{ padding-left:5pt; padding-right:5pt; }
+table[rules] {border-left:solid black 0.4pt; border-right:solid black 0.4pt; }
+.hline hr, .cline hr{ height : 0px; margin:0px; }
+.hline td, .cline td{ padding: 0; }
+.hline hr, .cline hr{border:none;border-top:1px solid black;}
+.hline {border-top: 1px solid black;}
+.hline + .vspace:last-child{display:none;}
+.hline:first-child{border-bottom:1px solid black;border-top:none;}
+table.boxedverbatim {width:100%;}
+ pre.boxedverbatim{border:solid 1px; padding-right:1em;} 
+table.boxedverbatim {text-align:center;}
+.listinginput p{ margin-bottom:0em; margin-top:0em; }
+code.lstinline{font-family:monospace,monospace;}
+pre.listings{font-family: monospace,monospace; white-space: pre-wrap; margin-top:0.5em; margin-bottom:0.5em; }
+.lstlisting .label{margin-right:0.5em; }
+pre.lstlisting{font-family: monospace,monospace; white-space: pre-wrap; margin-top:0.5em; margin-bottom:0.5em; }
+pre.lstinputlisting{ font-family: monospace,monospace; white-space: pre-wrap; }
+.lstinputlisting .label{margin-right:0.5em;}
+.rotatebox{display: inline-block;}
+.marginnote{ font-style: italic;} 
+ @media (min-width: 104ch){ .marginnote{ display: block; float: right; width: 12ch; margin-right: -14ch; font-style: normal; }} 
+figure.figure img { max-width: 90width: auto; height: auto; margin: 0 auto; }
+.subfigure { display: inline-block !important; width: 50max-width: 50margin: 0 !important; vertical-align: top !important; }
+.subfigure figcaption { margin-top: 0.5em; text-align: center; }
+div.subfigure .caption .content, figcaption .content, .caption .content { text-align: center !important; }
+div.subfigure .caption .content, body div.subfigure .caption .content, html body div.subfigure .caption .content { text-align: center !important; }
+figure.figure { text-align: center; width: 100margin: 1em auto; }
+.equation{ display: table; margin-top: 1.5em; margin-bottom: 1.5em; }
+.equation td:first-child{ text-align: center; vertical-align: middle; }
+.equation td:last-child{ text-align: right; vertical-align: middle; }
+.equation-star{ display: block; text-align: center; margin-top: 1.5em; margin-bottom: 1.5em; }
+.math-display img{ /* Targets images within elements with class math-display */ display: block; /* Makes the image a block element */ margin-left: auto; /* These two margin settings together */ margin-right: auto; /* center the image horizontally */ } 
+div.center p { text-align: justify !important; margin: 0.5em 0; }
+.panel-header-center { text-align: center !important; font-weight: bold; margin: 0.8em auto; display: block; } .table-footer-justified { max-width: 75%; margin: 1em auto; text-align: justify; font-size: 85%; line-height: 1.4; display: block; }
+figcaption.caption { text-align: center !important; margin: 1rem auto !important; display: block !important; } figcaption.caption .id { text-align: center !important; display: block !important; font-weight: bold !important; margin-bottom: 0.5rem !important; } figcaption.caption .content { text-align: center !important; display: block !important; }
+figure.float > span.ec-lmr-6 + *:not(table):not(p.noindent) { text-align: center !important; font-weight: bold !important; margin: 1em auto 0.5em auto !important; display: block !important; } figure.float { text-align: center; } figure.float > text, figure.float > *:not(figcaption):not(table):not(.tabular):not(p) { text-align: center !important; font-weight: bold !important; margin: 1em auto 0.5em auto !important; display: block !important; }
+.multicolumn { text-align: justify !important; max-width: 100% !important; margin: 0.5em 0 !important; font-size: 0.9em !important; line-height: 1.4 !important; } .multicolumn .ec-lmbx-10 { font-weight: bold !important; } .multicolumn .ec-lmr-10 { font-weight: normal !important; } tr:last-child .multicolumn { margin-top: 1em !important; }
+.tabular { margin: 0.5em auto 1em auto !important; border-collapse: collapse !important; width: auto !important; } .tabular td { padding: 0.3em 0.5em !important; vertical-align: top !important; } figure.float .tabular + p.noindent { margin-top: 1.5em !important; text-align: center !important; font-weight: bold !important; }
+.fbox { border: none !important; text-align: center !important; font-weight: normal !important; padding: 0 !important; display: block !important; margin: 0.5em auto !important; }
+table.tabbing { border: none !important; }
+.ectt-1095 { display: none; }
+/* end css.sty */
+
+/* Econ-ARK Basic HTML Theme styles     						 */
+/* path: econ-ark-tools/Web/Styling/REMARKs-HTML/					 */
+/* prior git commit 219bf537a01b96629fd51df690e48d97727664c8				 */
+/* Updates from version 1.0:								 */
+/* 1.01 - asked Claude to document what each command does				 */
+/* 1.02: 										 */
+/* - justify body and paragraphs							 */
+/* - make links less obtrusive								 */
+/* ====== Normalize.css v1.1.3 - Makes browsers render elements more consistently ====== */
+/*! normalize.css v1.1.3 | MIT License | git.io/normalize				 */
+
+/* Text justification for paragraphs */
+p {
+    text-align: justify;
+}
+
+/* Make block elements display as blocks */
+article, aside, details, figcaption, figure, footer, header, 
+hgroup, main, nav, section, summary {
+    display: block;
+}
+
+/* Make media elements display inline-block with IE7 fallback */
+audio, canvas, video {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+}
+
+/* Hide audio without controls */
+audio:not([controls]) {
+    display: none;
+    height: 0;
+}
+
+/* Hide elements with hidden attribute */
+[hidden] {
+    display: none;
+}
+
+/* Base font settings */
+html {
+    font-size: 100%;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+/* Set default font family */
+html, button, input, select, textarea {
+    font-family: sans-serif;
+}
+
+/* Remove default body margin */
+body {
+    margin: 0;
+}
+
+/* Link styling */
+a:link {
+    color: #333333;
+    text-decoration: none;
+    border: 1px solid #cccccc;
+    padding: 0 2px;
+}
+
+/* Make visited links subtly different */
+a:visited {
+    color: #666666;		/* Lighter gray than unvisited links */
+    text-decoration: none;
+    border: 1px dashed #dddddd; /* Dashed instead of solid border */
+    padding: 0 2px;
+}
+
+/* Link focus styles */
+a:focus {
+    outline: thin dotted;
+}
+
+a:active, a:hover {
+    outline: 0;
+    background-color: #f0f0f0;  /* Light gray background on hover/active */
+    /* or */
+    border-color: #999999;      /* Darker border on hover/active */
+    /* or */
+    color: #000000;            /* Darker text on hover/active */
+}
+
+/* Heading sizes and margins */
+h1 {
+    font-size: 2em;
+    margin: .67em 0;
+}
+h2 {
+    font-size: 1.5em;
+    margin: .83em 0;
+}
+h3 {
+    font-size: 1.17em;
+    margin: 1em 0;
+}
+h4 {
+    font-size: 1em;
+    margin: 1.33em 0;
+}
+h5 {
+    font-size: .83em;
+    margin: 1.67em 0;
+}
+h6 {
+    font-size: .67em;
+    margin: 2.33em 0;
+}
+
+/* Text formatting */
+abbr[title] {
+    border-bottom: 1px dotted;
+}
+b, strong {
+    font-weight: bold;
+}
+blockquote {
+    margin: 1em 40px;
+}
+dfn {
+    font-style: italic;
+}
+
+/* Horizontal rule styling */
+hr {
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 0;
+}
+
+/* Highlight mark styling */
+mark {
+    background: #ff0;
+    color: #000;
+}
+
+/* Paragraph and preformatted text */
+p, pre {
+    margin: 1em 0;
+}
+
+/* Code and monospace text */
+code, kbd, pre, samp {
+    font-family: monospace, serif;
+    _font-family: 'courier new', monospace;
+    font-size: 1em;
+}
+
+/* Lists styling */
+dl, menu, ol, ul {
+    margin: 1em 0;
+}
+li {
+    margin: 0.25em 0;
+}
+dd {
+    margin: 0 0 0 40px;
+}
+menu, ol, ul {
+    padding: 0 0 0 40px;
+}
+nav ul, nav ol {
+    list-style: none;
+    list-style-image: none;
+}
+
+/* Image handling */
+img {
+    border: 0;
+    -ms-interpolation-mode: bicubic;
+}
+
+/* Form elements */
+fieldset {
+    border: 1px solid #f5f5f5;
+    margin: 0 2px;
+    padding: .35em .625em .75em;
+}
+
+/* ====== Main Theme Styles ====== */
+
+/* Page background and layout */
+html {
+    background-color: #f7f7f7;
+}
+
+/* Main body layout and styling */
+body {
+    color: #444;
+    max-width: 800px;
+    margin: 0 auto;        /* Center the content */
+    padding: 2rem 4rem;    /* Add padding around content */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-width: 4px 1px; /* Thicker top/bottom borders */
+    text-align: justify;   /* Add text justification */
+}
+
+/* Responsive design for smaller screens */
+@media screen and (max-width: 600px) {
+    body {
+        padding: 2rem 2rem; /* Reduce padding on mobile */
+    }
+}
+
+/* Equation table styling */
+table.equation {
+    margin: 1rem 0;
+}
+
+/* Tabular table styling - full width to match LaTeX \textwidth behavior */
+table.tabular {
+    width: 100%;
+}
+
+/* ====== Print Styles ====== */
+@media print {
+    /* Remove backgrounds and shadows when printing */
+    * {
+        background: transparent !important;
+        color: #000 !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    /* Link handling in print */
+    a, a:visited {
+        text-decoration: underline;
+        border: 0;
+    }
+
+    /* Add titles after abbreviations in print */
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /* Hide certain links in print */
+    .ir a:after,
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after {
+        content: "";
+    }
+
+    /* Page break rules */
+    blockquote, pre {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group;
+    }
+
+    img, tr {
+        page-break-inside: avoid;
+    }
+
+    /* Image sizing in print */
+    img {
+        max-width: 100% !important;
+    }
+
+    /* Page margins for print */
+    @page {
+        margin: .5cm;
+    }
+
+    /* Typography for print */
+    h2, h3, p {
+        orphans: 3;  /* Minimum lines at bottom of page */
+        widows: 3;   /* Minimum lines at top of page */
+    }
+
+    h2, h3 {
+        page-break-after: avoid;
+    }
+}
+
+/* ====== Utility Classes ====== */
+
+/* Hide elements but maintain layout */
+.invisible {
+    visibility: hidden;
+}
+
+/* Completely hide elements */
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+/* Hide elements visually but keep them available for screen readers */
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+/* Make visually hidden elements focusable */
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+/* Clearfix for containing floats */
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/* IE6/7 clearfix */
+.clearfix {
+    *zoom: 1;
+}
+
+/* ===== RESPONSIVE FIGURE IMPROVEMENTS ===== */
+/* Added 2025-09-13: Make figures responsive and take up most of page width */
+/* Similar to how tables achieve 100% width with div.minipage{width:100%;} */
+
+/* Make figure containers responsive */
+figure.figure {
+    width: 100%;
+    max-width: 100%;
+    margin: 1em auto;
+    text-align: center;
+}
+
+/* Make images within figures responsive */
+figure.figure img {
+    max-width: 100% !important;
+    width: auto !important;
+    height: auto !important;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Ensure figure captions don't constrain width */
+figure.figure figcaption {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* General responsive image rule for all images */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Override any fixed dimensions from tex4ht */
+img[width], img[height] {
+    max-width: 100% !important;
+    width: auto !important;
+    height: auto !important;
+}
+
+/* ===== SUBFIGURE RESPONSIVE IMPROVEMENTS ===== */
+/* Added 2025-09-13: Make subfigures display side-by-side and scale responsively */
+
+/* Make subfigure containers display inline-block for side-by-side layout */
+div.subfigure {
+    display: inline-block;
+    vertical-align: top;
+    width: 48%;
+    margin: 0 1% 1em 1%;
+    text-align: center;
+}
+
+/* Make images within subfigures responsive */
+div.subfigure img {
+    max-width: 100% !important;
+    width: auto !important;
+    height: auto !important;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Ensure subfigure captions scale with container */
+div.subfigure .caption {
+    width: 100%;
+    margin-top: 0.5em;
+}
+
+/* Mobile responsive: stack subfigures vertically on small screens */
+@media screen and (max-width: 600px) {
+    div.subfigure {
+        display: block;
+        width: 100%;
+        margin: 0 0 2em 0;
+    }
+}
+
+/* ===== MATHML FENCE SCALING FIXES ===== */
+/* Added 2025-09-14: Improves rendering of \begin{cases} environments and other mathematical braces */
+
+/* Force stretchy braces to scale with their content */
+mo[fence="true"][form="prefix"],
+mo[fence="true"][form="postfix"] {
+    font-size: 150% !important;
+    vertical-align: middle !important;
+    line-height: 1 !important;
+}
+
+/* Special handling for cases environments - target braces adjacent to mtable.array */
+mrow:has(mtable.array) > mo[fence="true"][form="prefix"]:first-child,
+mrow:has(mtable.array) > mo[fence="true"][form="postfix"]:last-child {
+    font-size: 200% !important;
+    vertical-align: middle !important;
+    transform: scaleY(1.2);
+    transform-origin: center;
+}
+
+/* Fallback for browsers that don't support :has() - target by structure */
+mrow > mo[fence="true"][form="prefix"] + mrow > mtable.array ~ mo[fence="true"][form="postfix"],
+mrow > mo[fence="true"][form="prefix"]:has(+ mrow > mtable.array) {
+    font-size: 200% !important;
+    vertical-align: middle !important;
+    transform: scaleY(1.2);
+    transform-origin: center;
+}
+
+/* Ensure proper vertical alignment of array content with scaled braces */
+mtable.array {
+    vertical-align: middle !important;
+}
+
+/* Improve spacing around mathematical operators in arrays */
+mtable.array mtd.array-td {
+    vertical-align: middle;
+}
+
+/* Alternative approach using CSS custom properties for easier maintenance */
+:root {
+    --math-fence-scale: 150%;
+    --math-cases-fence-scale: 200%;
+}
+
+/* Apply custom scaling - this provides a fallback method */
+mo[fence="true"] {
+    font-size: var(--math-fence-scale) !important;
+    vertical-align: middle !important;
+}

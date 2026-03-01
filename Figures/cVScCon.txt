@@ -1,0 +1,23 @@
+Constrained (solid) and Unconstrained Consumption (dashed)
+
+5
+
+cT 1(mT 1)
+
+4
+3
+2
+1
+0
+
+0
+
+2
+
+4
+mT 1
+
+6
+
+8
+

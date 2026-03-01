@@ -1,0 +1,33 @@
+Moderation Illustrated
+2.5
+
+(m + h) min (optimist)
+(m mmin) min (pessimist)
+c(m) (no moderation)
+c(m) (realist)
+
+2.0
+
+c
+
+1.5
+1.0
+
+extrapolation
+begins
+
+0.5
+0.0
+
+5
+
+10
+
+m
+
+15
+
+20
+
+25
+

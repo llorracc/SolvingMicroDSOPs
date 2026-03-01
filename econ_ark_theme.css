@@ -1,0 +1,460 @@
+/* Econ-ARK Basic HTML Theme styles     						 */
+/* path: econ-ark-tools/Web/Styling/REMARKs-HTML/					 */
+/* prior git commit 219bf537a01b96629fd51df690e48d97727664c8				 */
+/* Updates from version 1.0:								 */
+/* 1.01 - asked Claude to document what each command does				 */
+/* 1.02: 										 */
+/* - justify body and paragraphs							 */
+/* - make links less obtrusive								 */
+/* ====== Normalize.css v1.1.3 - Makes browsers render elements more consistently ====== */
+/*! normalize.css v1.1.3 | MIT License | git.io/normalize				 */
+
+/* Text justification for paragraphs */
+p {
+    text-align: justify;
+}
+
+/* Make block elements display as blocks */
+article, aside, details, figcaption, figure, footer, header, 
+hgroup, main, nav, section, summary {
+    display: block;
+}
+
+/* Make media elements display inline-block with IE7 fallback */
+audio, canvas, video {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+}
+
+/* Hide audio without controls */
+audio:not([controls]) {
+    display: none;
+    height: 0;
+}
+
+/* Hide elements with hidden attribute */
+[hidden] {
+    display: none;
+}
+
+/* Base font settings */
+html {
+    font-size: 100%;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+/* Set default font family */
+html, button, input, select, textarea {
+    font-family: sans-serif;
+}
+
+/* Remove default body margin */
+body {
+    margin: 0;
+}
+
+/* Link styling */
+a:link {
+    color: #333333;
+    text-decoration: none;
+    border: 1px solid #cccccc;
+    padding: 0 2px;
+}
+
+/* Make visited links subtly different */
+a:visited {
+    color: #666666;		/* Lighter gray than unvisited links */
+    text-decoration: none;
+    border: 1px dashed #dddddd; /* Dashed instead of solid border */
+    padding: 0 2px;
+}
+
+/* Link focus styles */
+a:focus {
+    outline: thin dotted;
+}
+
+a:active, a:hover {
+    outline: 0;
+    background-color: #f0f0f0;  /* Light gray background on hover/active */
+    /* or */
+    border-color: #999999;      /* Darker border on hover/active */
+    /* or */
+    color: #000000;            /* Darker text on hover/active */
+}
+
+/* Heading sizes and margins */
+h1 {
+    font-size: 2em;
+    margin: .67em 0;
+}
+h2 {
+    font-size: 1.5em;
+    margin: .83em 0;
+}
+h3 {
+    font-size: 1.17em;
+    margin: 1em 0;
+}
+h4 {
+    font-size: 1em;
+    margin: 1.33em 0;
+}
+h5 {
+    font-size: .83em;
+    margin: 1.67em 0;
+}
+h6 {
+    font-size: .67em;
+    margin: 2.33em 0;
+}
+
+/* Text formatting */
+abbr[title] {
+    border-bottom: 1px dotted;
+}
+b, strong {
+    font-weight: bold;
+}
+blockquote {
+    margin: 1em 40px;
+}
+dfn {
+    font-style: italic;
+}
+
+/* Horizontal rule styling */
+hr {
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 0;
+}
+
+/* Highlight mark styling */
+mark {
+    background: #ff0;
+    color: #000;
+}
+
+/* Paragraph and preformatted text */
+p, pre {
+    margin: 1em 0;
+}
+
+/* Code and monospace text */
+code, kbd, pre, samp {
+    font-family: monospace, serif;
+    _font-family: 'courier new', monospace;
+    font-size: 1em;
+}
+
+/* Lists styling */
+dl, menu, ol, ul {
+    margin: 1em 0;
+}
+li {
+    margin: 0.25em 0;
+}
+dd {
+    margin: 0 0 0 40px;
+}
+menu, ol, ul {
+    padding: 0 0 0 40px;
+}
+nav ul, nav ol {
+    list-style: none;
+    list-style-image: none;
+}
+
+/* Image handling */
+img {
+    border: 0;
+    -ms-interpolation-mode: bicubic;
+}
+
+/* Form elements */
+fieldset {
+    border: 1px solid #f5f5f5;
+    margin: 0 2px;
+    padding: .35em .625em .75em;
+}
+
+/* ====== Main Theme Styles ====== */
+
+/* Page background and layout */
+html {
+    background-color: #f7f7f7;
+}
+
+/* Main body layout and styling */
+body {
+    color: #444;
+    max-width: 800px;
+    margin: 0 auto;        /* Center the content */
+    padding: 2rem 4rem;    /* Add padding around content */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-width: 4px 1px; /* Thicker top/bottom borders */
+    text-align: justify;   /* Add text justification */
+}
+
+/* Responsive design for smaller screens */
+@media screen and (max-width: 600px) {
+    body {
+        padding: 2rem 2rem; /* Reduce padding on mobile */
+    }
+}
+
+/* Equation table styling */
+table.equation {
+    margin: 1rem 0;
+}
+
+/* Tabular table styling - full width to match LaTeX \textwidth behavior */
+table.tabular {
+    width: 100%;
+}
+
+/* ====== Print Styles ====== */
+@media print {
+    /* Remove backgrounds and shadows when printing */
+    * {
+        background: transparent !important;
+        color: #000 !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    /* Link handling in print */
+    a, a:visited {
+        text-decoration: underline;
+        border: 0;
+    }
+
+    /* Add titles after abbreviations in print */
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /* Hide certain links in print */
+    .ir a:after,
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after {
+        content: "";
+    }
+
+    /* Page break rules */
+    blockquote, pre {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group;
+    }
+
+    img, tr {
+        page-break-inside: avoid;
+    }
+
+    /* Image sizing in print */
+    img {
+        max-width: 100% !important;
+    }
+
+    /* Page margins for print */
+    @page {
+        margin: .5cm;
+    }
+
+    /* Typography for print */
+    h2, h3, p {
+        orphans: 3;  /* Minimum lines at bottom of page */
+        widows: 3;   /* Minimum lines at top of page */
+    }
+
+    h2, h3 {
+        page-break-after: avoid;
+    }
+}
+
+/* ====== Utility Classes ====== */
+
+/* Hide elements but maintain layout */
+.invisible {
+    visibility: hidden;
+}
+
+/* Completely hide elements */
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+/* Hide elements visually but keep them available for screen readers */
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+/* Make visually hidden elements focusable */
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+/* Clearfix for containing floats */
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/* IE6/7 clearfix */
+.clearfix {
+    *zoom: 1;
+}
+
+/* ===== RESPONSIVE FIGURE IMPROVEMENTS ===== */
+/* Added 2025-09-13: Make figures responsive and take up most of page width */
+/* Similar to how tables achieve 100% width with div.minipage{width:100%;} */
+
+/* Make figure containers responsive */
+figure.figure {
+    width: 100%;
+    max-width: 100%;
+    margin: 1em auto;
+    text-align: center;
+}
+
+/* Make images within figures responsive */
+figure.figure img {
+    max-width: 100% !important;
+    width: auto !important;
+    height: auto !important;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Ensure figure captions don't constrain width */
+figure.figure figcaption {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* General responsive image rule for all images */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Override any fixed dimensions from tex4ht */
+img[width], img[height] {
+    max-width: 100% !important;
+    width: auto !important;
+    height: auto !important;
+}
+
+/* ===== SUBFIGURE RESPONSIVE IMPROVEMENTS ===== */
+/* Added 2025-09-13: Make subfigures display side-by-side and scale responsively */
+
+/* Make subfigure containers display inline-block for side-by-side layout */
+div.subfigure {
+    display: inline-block;
+    vertical-align: top;
+    width: 48%;
+    margin: 0 1% 1em 1%;
+    text-align: center;
+}
+
+/* Make images within subfigures responsive */
+div.subfigure img {
+    max-width: 100% !important;
+    width: auto !important;
+    height: auto !important;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Ensure subfigure captions scale with container */
+div.subfigure .caption {
+    width: 100%;
+    margin-top: 0.5em;
+}
+
+/* Mobile responsive: stack subfigures vertically on small screens */
+@media screen and (max-width: 600px) {
+    div.subfigure {
+        display: block;
+        width: 100%;
+        margin: 0 0 2em 0;
+    }
+}
+
+/* ===== MATHML FENCE SCALING FIXES ===== */
+/* Added 2025-09-14: Improves rendering of \begin{cases} environments and other mathematical braces */
+
+/* Force stretchy braces to scale with their content */
+mo[fence="true"][form="prefix"],
+mo[fence="true"][form="postfix"] {
+    font-size: 150% !important;
+    vertical-align: middle !important;
+    line-height: 1 !important;
+}
+
+/* Special handling for cases environments - target braces adjacent to mtable.array */
+mrow:has(mtable.array) > mo[fence="true"][form="prefix"]:first-child,
+mrow:has(mtable.array) > mo[fence="true"][form="postfix"]:last-child {
+    font-size: 200% !important;
+    vertical-align: middle !important;
+    transform: scaleY(1.2);
+    transform-origin: center;
+}
+
+/* Fallback for browsers that don't support :has() - target by structure */
+mrow > mo[fence="true"][form="prefix"] + mrow > mtable.array ~ mo[fence="true"][form="postfix"],
+mrow > mo[fence="true"][form="prefix"]:has(+ mrow > mtable.array) {
+    font-size: 200% !important;
+    vertical-align: middle !important;
+    transform: scaleY(1.2);
+    transform-origin: center;
+}
+
+/* Ensure proper vertical alignment of array content with scaled braces */
+mtable.array {
+    vertical-align: middle !important;
+}
+
+/* Improve spacing around mathematical operators in arrays */
+mtable.array mtd.array-td {
+    vertical-align: middle;
+}
+
+/* Alternative approach using CSS custom properties for easier maintenance */
+:root {
+    --math-fence-scale: 150%;
+    --math-cases-fence-scale: 200%;
+}
+
+/* Apply custom scaling - this provides a fallback method */
+mo[fence="true"] {
+    font-size: var(--math-fence-scale) !important;
+    vertical-align: middle !important;
+}

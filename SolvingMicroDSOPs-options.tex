@@ -1,0 +1,78 @@
+% Controls for which of various variant versions to create
+
+\provideboolean{shortVersion}\setboolean{shortVersion}{false} % skip right to multiple control variables
+%\setboolean{shortVersion}{true}
+\provideboolean{ctwVersion}\setboolean{ctwVersion}{false}\newcommand{\ctw}{\ifthenelse{\boolean{ctwVersion}}} % {cctw}
+\provideboolean{trpVersion}\setboolean{trpVersion}{false}\newcommand{\trp}{\ifthenelse{\boolean{trpVersion}}} % {trp}
+% \setboolean{trpVersion}{true} % {trp}
+\setboolean{trpVersion}{false} % {trp}
+
+% Draft mode puts \labels of figs, tables, eqns in margin
+\provideboolean{draftmode}\setboolean{draftmode}{true}
+\setboolean{draftmode}{false}
+\newcommand{\Draft}{\ifthenelse{\boolean{draftmode}}}
+\Draft{
+\usepackage[left]{showlabels}
+\ifluatex
+  \ifthenelse{\boolean{Web}}{}{% tex4ht can't resolve OTF fonts from the DVI
+    \directlua{luaotfload.add_fallback("showlblmathfb",
+      {"file:latinmodern-math.otf:mode=harf;"})}
+    \font\showlabelunicodefont="file:lmmono10-regular.otf:mode=harf;fallback=showlblmathfb" at 6pt \relax
+    \renewcommand{\showlabelfont}{\showlabelunicodefont}
+  }
+\fi
+}{}
+
+% Versions with or without permanent shocks
+% Seems to be defunct - remove
+\provideboolean{PermShkVersion}\setboolean{PermShkVersion}{true}
+\setboolean{PermShkVersion}{false}
+\newcommand{\PermShkOn}{\ifthenelse{\boolean{PermShkVersion}}}
+
+% MPCMatch version does Hermite polynomials for the interpolation
+% that match both the slope and the intercept at the gridpoints
+\provideboolean{MPCMatchVersion}\setboolean{MPCMatchVersion}{true}
+\newcommand{\MPCMatch}{\ifthenelse{\boolean{MPCMatchVersion}}}
+
+% mynotes
+\provideboolean{MyNotes}\setboolean{MyNotes}{false}
+%\setboolean{MyNotes}{false} 
+
+% realcode
+\provideboolean{realcode}\setboolean{realcode}{false}
+%\setboolean{realcode}{true}
+\newcommand{\ifcode}{\ifthenelse{\boolean{realcode}}}
+
+% pseudocode
+\provideboolean{pseudocode}\setboolean{pseudocode}{false}
+%\setboolean{pseudocode}{false}
+\newcommand{\ifpseudo}{\ifthenelse{\boolean{pseudocode}}}
+
+% margin notes
+\provideboolean{Margnote}\setboolean{Margnote}{true}
+% \setboolean{Margnote}{false}
+\newcommand{\ifMarg}{\ifthenelse{\boolean{Margnote}}}
+
+% Show things that need fixing
+\provideboolean{ToFix}\setboolean{ToFix}{false}
+\setboolean{ToFix}{false} 
+\newcommand{\Fix}{\ifthenelse{\boolean{ToFix}}}
+
+% Show or hide the time subscripts
+\provideboolean{hidetime}\setboolean{hidetime}{true}
+% \setboolean{hidetime}{false} 
+\newcommand{\timehide}{\ifthenelse{\boolean{hidetime}}}
+
+\provideboolean{verbon}\setboolean{verbon}{true}
+\newcommand{\onverb}{\ifthenelse{\boolean{verbon}}}
+
+\setboolean{showPageHead}{true}
+% \econtexSetup sets boolean variable 'Web' to true if making html not pdf
+\ifthenelse{\boolean{Web}}{ % then
+  \setboolean{showPageHead}{false} % no pages, so no page head, on web
+}{ % else not for web
+  \usepackage{scrlayer-scrpage} % Package for page headers if PDF
+  \automark[section]{section}
+  \usepackage{caption} % allow suppression of appendix figures in NoAppendix PDF
+}
+  

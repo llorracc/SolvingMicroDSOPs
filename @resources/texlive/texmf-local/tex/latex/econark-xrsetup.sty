@@ -1,0 +1,21 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{econark-xrsetup}[2024/08/25 Set the external document for subfiles]
+
+\newcommand{\xrsetup}[1]{%
+  \typeout{setting externaldocument to #1}
+  \@ifpackageloaded{xr-hyper}{%
+    \externaldocument{#1}% xr-hyper in use
+  }{%
+    \@ifpackageloaded{xr}{%
+      \externaldocument{#1}% xr in use
+    }{%
+      % Neither xr-hyper nor xr is loaded
+      \PackageWarning{econark-set-external}{%
+        Neither 'xr-hyper' nor 'xr' package is loaded. Cross-referencing may not work as expected.^^J%
+        Please load either 'xr-hyper' or 'xr' package to enable cross-referencing.%
+      }%
+    }%
+  }%
+}
+
+\endinput

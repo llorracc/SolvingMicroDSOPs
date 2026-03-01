@@ -1,0 +1,23 @@
+% econark-labelsafe.sty
+% A package to safely create labels without duplicates
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{econark-labelsafe}[2023/06/09 v1.0 Safe label creation]
+
+% Required packages
+\RequirePackage{etoolbox}
+
+% Main command definition
+\makeatletter
+\newcommand{\labelsafe}[1]{%
+  \ifdef{\r@#1}{%
+    % Label exists, do nothing
+  }{%
+    \label{#1}%
+    \typeout{Label #1 created}%
+  }%
+}
+\makeatother
+
+% End of package
+\endinput

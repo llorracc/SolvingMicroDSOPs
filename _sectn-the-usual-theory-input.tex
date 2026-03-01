@@ -1,0 +1,90 @@
+
+\hypertarget{the-usual-theory}{}
+\section{The Usual Theory, and a Bit More Notation}\label{sec:the-usual-theory}
+
+
+For reference and to illustrate our new notation, we will now derive the Euler equation and other standard results for the problem described above.
+Since we can write value as of the end of the consumption stage as a function of $\aNrm_{\prdt}$:
+\hypertarget{eq-vCntnExpansion}{}
+\begin{equation}\begin{gathered}\begin{aligned}
+      % \vCntn & \leftassign \vFunc_{{\cntn}(\prdt)}(\aNrm_{\prdt}) \leftassign \DiscFac \vBegPrdNxt(\aNrm_{\prdt}) = \DiscFac \Ex_{\BegPrdNxt}[\PermGroFac_{\prdt+1}^{1-\CRRA}\vFunc_{\dcsn(\prdt+1)}(\overbrace{a (\Rfree / \PermGroFac_{\prdt+1})+\tranShkEmp_{\prdt+1}}^{\mNrm_{\prdt+1}})],
+  \vFunc_{{\cntn}(\prdt)}(\aNrm_{\prdt}) = \DiscFac \Ex_{\BegPrdNxt}[\PermGroFac_{\prdt+1}^{1-\CRRA}\vFunc_{\dcsn(\prdt+1)}(\overbrace{(\Rfree / \PermGroFac_{\prdt+1})\aNrm_{\prdt} +\tranShkEmp_{\prdt+1}}^{\mNrm_{\prdt+1}})], \label{eq:vCntnExpansion}
+\end{aligned}\end{gathered}\end{equation}
+\ifcode{\marginpar{\scriptsize\texttt{endOfPrd.vEndPrd}}}{}
+
+\hypertarget{derivative-notation-convention}{}
+\paragraph{Derivative notation convention.}
+Throughout this document, a superscript~$\partial$ on a function means its derivative with respect to the relevant state variable at that perch: $\vFunc^{\partial}_{\cntn}(\aNrm) \equiv \mathrm{d}\vFunc_{\cntn}/\mathrm{d}\aNrm$, $\vFunc^{\partial}_{\dcsn}(\mNrm) \equiv \mathrm{d}\vFunc_{\dcsn}/\mathrm{d}\mNrm$.
+So, the first order condition for \eqref{eq:vusual} with respect to $\aNrm_{\prdt}$\footnote{Since $\cNrm = \mNrm - \aNrm$, maximizing over $\cNrm$ is equivalent to maximizing over $\aNrm$.  Differentiating $\uFunc(\mNrm - \aNrm) + \vCntn(\aNrm)$ with respect to $\aNrm$ gives $-\uFunc^{\partial}(\cNrm) + \vCntn^{\partial}(\aNrm) = 0$, which rearranges to $\uFunc^{\partial}(\cNrm) = \vCntn^{\partial}(\aNrm)$.} is
+\hypertarget{eq-upceqEvtp1}{}
+\begin{equation}\begin{gathered}\begin{aligned}
+      \uFunc^{\partial}(\mNrm_{\prdt}-\aNrm_{\prdt}) = \vEndPrd^{\partial}(\aNrm_{\prdt}) & = \Ex_{\BegPrdNxt}[\DiscFac \RNrmByG_{\prdt+1}\PermGroFac_{\prdt+1}^{1-\CRRA}{\vFunc}^{\dm}_{\dcsn(\prdt+1)}(\mNrm_{\prdt+1})]  \label{eq:upceqEvtp1}
+      \\                        & =  \Ex_{\BegPrdNxt}[\DiscFac\Rfree\phantom{._{\prdt+1}}\PermGroFac_{\prdt+1}^{\phantom{1}-\CRRA}{\vFunc}^{\dm}_{\dcsn(\prdt+1)}(\mNrm_{\prdt+1})]
+      %
+      \UnifiedNote{FOC: ∂r/∂𝜋 + β(∂ℰ/∂xₑ)∇_𝜋 gᵥₑ = 0, i.e. u'(c) = ℰ^{\partial}(a)}
+\end{aligned}\end{gathered}\end{equation}
+\ifcode{\marginpar{\scriptsize\texttt{endOfPrd.vCntn$\delta$a}}}{}% 
+which illustrates the derivative convention (e.g.\ $\vFunc^{\partial}$ is the derivative of $\vFunc$ with respect to its argument).\footnote{The superscript $\partial$ plays the same role as the more common prime notation ($\vFunc'$), which we avoid because in dynamic programming contexts the prime conventionally denotes the \textit{next-period} value of a variable (e.g., $\mNrm'$ for next-period market resources), creating potential ambiguity.}  For functions of more than one argument, we append the variable name: $\vFunc^{\partial x}$ denotes the partial derivative of $\vFunc$ with respect to $x$.
+
+Because the \handoutC{Envelope} theorem tells us that
+\hypertarget{eq-envelope}{}
+\begin{equation}\begin{gathered}\begin{aligned}
+      {\vFunc}^{\dm}_{\dcsn(\prdt)}(\mNrm_{\prdt})  & =  \Ex_{\BegPrdNxt} [\DiscFac \Rfree \PermGroFac_{\prdt+1}^{-\CRRA}{\vFunc}^{\dm}_{\dcsn(\prdt+1)}(\mNrm_{\prdt+1})] \label{eq:envelope}
+      %
+      \UnifiedNote{Envelope: 𝒱^{\partial}(xᵥ) = ∂r/∂xᵥ + β(∂ℰ/∂xₑ)(∂gᵥₑ/∂xᵥ)}
+    \end{aligned}\end{gathered}\end{equation}
+we can substitute the LHS of \eqref{eq:envelope} for the RHS of
+(\ref{eq:upceqEvtp1}) to get
+  \begin{equation}\begin{gathered}\begin{aligned}
+        \uFunc^{\partial}(\cNrm_{\prdt})  & = {\vFunc}^{\dm}_{\dcsn(\prdt)}(\mNrm_{\prdt})\label{eq:upcteqvtp}
+        %
+        \UnifiedNote{Envelope result: u'(c) = 𝒱^{\partial}(xᵥ)}
+      \end{aligned}\end{gathered}\end{equation}
+and rolling forward one {\interval},
+\begin{equation}\begin{gathered}\begin{aligned}
+      \uFunc^{\partial}(\cNrm_{\prdt+1})  & = \vFunc^{\dm}_{\dcsn(\prdt+1)}(\aNrm_{\prdt}\RNrmByG_{\prdt+1}+\tranShkEmp_{\prdt+1}) \label{eq:upctp1EqVpxtp1}
+      %
+      \UnifiedNote{Envelope rolled forward: u'(c₊) = 𝒱^{\partial}₊(xᵥ₊)}
+    \end{aligned}\end{gathered}\end{equation}
+so that substituting the LHS in equation (\ref{eq:upceqEvtp1}) finally gives us the Euler equation for consumption:
+\hypertarget{eq-cEuler}{}
+  \begin{equation}\begin{gathered}\begin{aligned}
+        \uFunc^{\partial}(\cNrm_{\prdt})  & = \ExEndPrd[\DiscFac \Rfree \PermGroFac_{\prdt+1}^{-\CRRA}\uFunc^{\partial}(\cNrm_{\prdt+1})] \label{eq:cEuler}.
+        %
+        \UnifiedNote{Euler equation (combines envelope + FOC across periods)}
+      \end{aligned}\end{gathered}\end{equation}
+
+The derivation above used period-qualified subscripts (e.g., $\vFunc_{{\cntn}(\prdt)}$, $\vFunc^{\dm}_{\dcsn(\prdt+1)}$) because the Euler equation relates objects across {\intervals}.  We can now restate the problem \eqref{eq:vusual} using the simpler within-{\stg} notation, which drops the {\interval} qualifier:
+\begin{equation}\begin{gathered}\begin{aligned}
+      \vFunc_{\dcsn}(\mNrm) & = \max_{\cNrm} ~~ \uFunc(\cNrm)+ \vCntn(\mNrm-\cNrm)
+      %
+      \UnifiedNote{𝒱(xᵥ) = max_𝜋{r(xᵥ, 𝜋) + ℰ(gᵥₑ(xᵥ, 𝜋))} [β=1 at cons stage; tex vCntn ≡ ℰ_cons which includes β via disc stage]}
+\end{aligned}\end{gathered}\end{equation}
+whose first order condition with respect to $\cNrm$ is
+\begin{equation}\begin{gathered}\begin{aligned}
+  \uFunc^{\partial}(\cNrm) &= \vCntn^{\partial}(\mNrm-\cNrm)  \label{eq:upEqbetaOp} % \label{eq:FOCnew} 
+  %
+      \UnifiedNote{FOC: ∂r/∂𝜋 + β(∂ℰ/∂xₑ)∇_𝜋 gᵥₑ = 0, i.e. u'(c) = ℰ^{\partial}(a)}
+\end{aligned}\end{gathered}\end{equation}
+which is mathematically equivalent to the usual Euler equation for consumption.
+
+We will revert to this formulation when we reach \ifthenelse{\boolean{shortVersion}}{subsection~4.2 (EGM)}{subsection~\ref{subsec:egm}}.
+
+\begin{comment}
+  \subsection{Implementation in Python}
+
+  The code implementing the tasks outlined each of the sections to come is available in the \texttt{\href{https://econ-ark.org/materials/SolvingMicroDSOPs}{SolvingMicroDSOPs}} jupyter notebook, written in \href{https://python.org}{Python}. The notebook imports various modules, including the standard \texttt{numpy} and \texttt{scipy} modules used for numerical methods in Python, as well as some user-defined modules designed to provide numerical solutions to the consumer's problem from the previous section. Before delving into the computational exercise, it is essential to touch on the practicality of these custom modules.
+
+  \subsubsection{Useful auxiliary files}
+
+  In this exercise, two primary user-defined modules are frequently imported and utilized. The first is the \texttt{endOfPrd} module, which contains functions describing the end-of-period value functions found in equations \eqref{eq:vArvl} - \eqref{eq:EndPrd} (and the corresponding first and second derivatives). %The advantage of defining functions in the code which decompose the consumer's optimal behavior in a given period will become evident in section \ref{subsec:transformation}
+
+  The \texttt{resources} module is also used repeatedly throughout the notebook. This file has three primary objectives: (i) providing functions that discretize the continuous distributions from the theoretical model that describe the uncertainty a consumer faces, (ii) defining the utility function over consumption under a number of specifications, and (iii) enhancing the grid of end-of-period assets for which functions (such as those from the \texttt{endOfPrd} module) will be defined. These objectives will be discussed in greater detail and with respect to the numerical methods used to the problem in subsequent sections of this document.
+\end{comment}
+
+
+
+% Local Variables:
+% eval: (setq prettify-symbols-unprettify-at-point 'right-edge)
+% End:
+% coding: utf-8
