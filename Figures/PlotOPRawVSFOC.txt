@@ -1,0 +1,34 @@
+Marginal continuation value v , T 1 (solid) versus v , T 1 (dashed)
+1.0
+
+v , T 1(aT 1) exact
+v , T 1(aT 1) approx
+
+0.8
+
+v ,T 1
+
+0.6
+0.4
+0.2
+0.0
+
+0.0
+
+0.5
+
+1.0
+
+1.5
+
+2.0
+aT 1
+
+2.5
+
+3.0
+
+3.5
+
+4.0
+

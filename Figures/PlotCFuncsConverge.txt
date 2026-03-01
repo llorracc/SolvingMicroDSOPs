@@ -1,0 +1,22 @@
+Convergence of cT n(m) Functions as n Increases
+
+2.5
+2.0
+
+cT n(m)
+
+1.5
+1.0
+0.5
+0.0
+0
+
+1
+
+2
+m
+
+3
+
+4
+

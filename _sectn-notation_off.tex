@@ -1,0 +1,122 @@
+\input{@resources/tex-add-search-paths}\documentclass[SolvingMicroDSOPs]{subfiles}
+\input{subfile-start}
+
+\begin{document}
+
+\hypertarget{notation}{}
+\section{Notation}\label{sec:notation}
+
+\subsection{\Intervals, \Stgs, \Prchs}
+
+The problem so far assumes that the agent has only one decision.  But agents often have multiple choices per {\interval}; say, a consumption decision (call it the $\cFunc$ {\stg}), a labor supply {\stg} (call it $\labor$) and a choice of what proportion $\Shr$ of capital $\kNrm$ to invest in a risky vehicle (the $\Shr$ {\stg}).
+
+The modeler might want to explore whether the order in which the {\stgs} are solved makes any difference, either to the substantive results or to aspects of the computational solution like speed and accuracy.
+
+If, as in section \ref{sec:the-problem}, we hard-wire into the solution code for each {\stg} an assumption that its successor {\stg} will be something in particular (say, the consumption {\stg} assumes that the portfolio choice is next), then if we want to change the order of the {\stgs} (say, labor supply after consumption, followed by portfolio choice), we will need to re-hard-wire each of the stages to know particular things about its new successor (for example, the specifics of the distribution of the rate of return on the risky asset must be known by whatever {\stg} precedes the portfolio choice {\stg}).
+
+The cardinal insight of Bellman's (1957, ``Dynamic Programming'') original work is that \emph{everything that matters} for the solution to the current problem is encoded in a `continuation-value function.' %that incorporates \texttt{everything about the future} that is important to solution of the present stage.  %This point is important for a number of reasons, but here we will focus on one problem of ignoring it. Actual solution of the maximization problem as specified in \eqref{eq:vNormed} requires the current agent to have knowledge not only of the successor value function, but also of other aspects of the problem like the distributions of the future period's stochastic shocks. So any solution to the problem that directly uses in \eqref{eq:vNormed} will need to hard-wire into itself the specifics of the successor problem.
+Using Bellman's insight, we describe here a framework for isolating the {\stg} problems within a {\interval} from each other, and the {\interval} from its successors or predecessors in any other {\interval}.  The advantage of this isolation is that each {\stg} problem becomes a self-contained \textit{module}: Its internal logic---the computation it performs on value functions---is defined independently of where it sits in the sequence of {\stgs}.
+
+This modularity does \textit{not} mean that reordering {\stgs} is economically neutral.  Changing the order of {\stgs} generally changes the information structure of the problem and therefore produces a \textit{different} economic model.  For example, if consumption is chosen before income shocks are realized (rather than after), the agent faces a genuinely different decision problem with different optimal behavior.  The reordered model is equally valid -- but it is not the \textit{same} model.
+
+Modularity is valuable because it makes exploring such alternative model structures \textit{cheap}.  Designating each {\stg} by the decision variable associated with it (e.g., the consumption stage is called $\cNrm$), after considering the {\stg}-order $[\ell,\cFunc,\Shr]$, the modeler can reorder the {\stgs} to consider, say, the order $[\ell,\Shr,\cFunc]$ \textit{without rewriting any of the code that solves each individual {\stg}}.\footnote{The beginning-of-{\stg} and end-of-{\stg} value functions for each {\stg} must be defined over compatible state variables, so that the output of any {\stg} can serve as the input to any other; see the discussion in section~\ref{sec:multiple-control-variables}.  The modeler must be careful to understand that each ordering implies a particular \textit{information structure}---that is, which shocks have been realized and which decisions have been made at the point each {\stg} executes.  Rewiring the transitions between {\stgs} to reflect a new ordering is straightforward, but the resulting model encodes different economic assumptions and will generically yield different solutions.}  What must change are the \textit{transitions}---the mappings that connect the end of one {\stg} to the beginning of the next---which must be rewired to reflect the new ordering and its implied information structure.  The {\stg}-level code itself remains untouched.
+
+\hypertarget{prchs}{}
+\subsection{\Prchs}\label{subsec:prchs}
+
+The key is to distinguish, within each {\stg}'s Bellman problem, three viewpoints or `{\prchs}' (we use that word to empasize that the {\prch} does not \textit{do} anything: It is merely a collection of mathematical and computational functions and objects).
+\begin{enumerate}
+\item \textbf{\Arrival}: Incoming state variables (e.g., $\kNrm$) are known, but any shocks associated with the {\stg} have not been realized and decision(s) have not yet been made
+\item \textbf{\Decision}: The agent solves the decision problem for the period
+\item \textbf{\Continuation}: After all decisions have been made, their consequences are measured by evaluation of the continuing-value function at the values of the `outgoing' state variables (sometimes called `post-state' variables)
+\end{enumerate}
+
+This framework is silent about when shocks (if any) occur.  In a consumption problem, the usual assumption is that any shocks have been realized before the spending decision is made so that the consumer knows their resources when they decide how much to spend. But in a portfolio choice problem, the portfolio share decision must be made before the risky rate of return is known.  
+% In the standard treatment in the literature, the (implicit) default assumption is that the {\prch} where the agent is solving a decision problem is the unique {\prch} at which the problem is defined.  This is what was done above, when (for example) in \eqref{eq:vNormed} we related the value $\vFunc$ of the current decision to the expectation of the future value $\vFunc_{\dcsn(\prd+1)}$.  Here, instead, we want to encapsulate the current {\prch}'s problem as a standalone object, which is solved by taking as given an exogenously-provided continuation-value function (in our case, $\vCntn(a)$).
+
+%When we want to refer to a specific {\prch} in the {\stg} we do so using the indicator for that {\prch}; for example, the expectations operator $\Ex_{\arvl}$ indicates that the information set is the one that characterizes the {\Arrival} perch.
+\begin{table}[h]\label{\prchs}\caption{{\Prchs} within a Consumption {\stg} that includes shocks}
+\begin{center}
+    \begin{tabular}{r|c|c|c|l}
+      {\Prch}         & Indicator               & State          & value functions              & Explanation    \\ \hline
+      {\Arrival}      & $ \arvl $ & $\kNrm$ & $\vArvl = \Ex_{\Arvl}[\vDcsn]$ & value at entry to {\stg} \\
+      {\Decision}(s)  & $\sim$         & $\mNrm$ & $\vDcsn=\max_{\cNrm}\uFunc(\cNrm)+\vCntn$ & value of {\stg}-decision \\
+      {\Continuation} & $ \cntn $ & $\aNrm$ & $\vCntn$ & value at exit \\ \hline
+    \end{tabular}
+  \end{center}
+  \end{table}
+
+
+  % The former two-evolution example ($b = k \RNrmByG$, $\mNrm = \bNrm+\tranShkEmp$)
+  % has been collapsed to a single evolution to eliminate the intermediate
+  % variable \bNrm, aligning with bellman-ddsl/docs/development/references/unified.
+  The table illustrates notation we can use when analyzing the problem from a context `inside' a particular stage of a specific period.  We require that no variable can have more than one meaning or interpetation inside a period (in computational terminology, in the stage's `namespace'), and we prohibit any reference to values of any variables or functions or other model objects from outside the stage (or period).  This is why we use different letters, $\kNrm$ and $\aNrm$, to represent liquid resources before and after the consumption decision, rather than, say, $k_{t}$ and $k_{t+1}$ (more on this below).  
+
+  However, items like value functions $\vFunc$ or expectations operators $\Ex$ have different meanings at different perches; we capture this using a subscript like $\arvl$.  The fact that all functions in a perch depend on the same state variables (shown in the second column) allows us to write those functions without specifying their arguments.
+%  $\kNrm$ is the only variable is known at the beginning of the {\stg}; other variables (states; controls; shocks) take on their values as equations like $\mNrm = \kNrm \RNrmByG+\tranShkEmp$ are evaluated.  %We will refer to such within-the-{\stg} creation of variables as `{\evltns}.'  So, the consumption stage problem has two {\evltns}: from $\kNrm$ to $\mNrm$ and from $\mNrm$ to $\aNrm$.
+
+%  This consumption {\stg} bundles two logically distinct operations: (1)~the realization of returns and income shocks (the $\kNrm \to \mNrm$ {\evltn}), and (2)~the consumption decision (the $\mNrm \to \aNrm$ {\evltn}).  % When, later, we introduce a portfolio-choice {\stg} in section~\ref{sec:multiple-control-variables}, these operations will be separated: the shock-realization machinery will move into the portfolio {\stg}, leaving a simpler `shock-free' consumption {\stg} whose {\Arrival} state is $\mNrm$ rather than $\kNrm$.
+
+\ifpseudo{
+\lstinputlisting{./\snippetsPath/pseudo-model-setup-prdT.py}\nopagebreak
+}{}
+
+\hypertarget{transitions}{}
+\subsection{Builders and Connectors}\label{subsec:transitions}\label{subsubsec:builders}
+
+Modularity requires that objects inside a period have no direct access to objects from any other period.  This requires us to endow a {\stg}, at the time of its creation, with its end-of-{\stg} value function $\vFunc_{\cntn}$ with no direct information about its origin.
+
+
+Tying two adjacent stages together requires specification of what we will call a {\Cnct}.
+For example, in the single-stage consumption problem above, end-of-{\interval} $\aNrm_{\prdt}$ and beginning-of-next-{\interval} $\kNrm_{\prd+1}$ are the same quantity, which we denote by:
+
+Concretely, the 
+\begin{equation}\begin{gathered}\begin{aligned}
+        \vEndPrd & \leftassign \DiscFac \vBegPrdNxt, \label{eq:trns-single-prd}
+        %
+        \UnifiedNote{tex vCntn ≡ ℰ_disc; disc stage creates ℰ_disc(xₑ) = β·𝒜₊(gₑₐ₊(xₑ)); every period ends with a disc stage that applies β}
+\end{aligned}\end{gathered}\end{equation}
+where `$\leftassign$' signals creation: the left-hand side is brought into existence by a builder evaluating the right-hand side.\footnote{By contrast, ``='' in~\eqref{eq:last-stg-v-is-end-prd-v} below equates two names for the same object.}
+
+\paragraph{Builder-specs.}
+The connector, $\vBegPrdNxt$, and $\DiscFac$ together form the \textit{builder-spec} for this creation: the purely mathematical information the builder needs.  In general a builder-spec collects whatever transition functions, operators, and other formulas its builder requires.
+
+Once backward induction is complete, each $\BkBldr$ has a corresponding forward builder $\FwBldr$ that simulates a population of agents by subjecting them to the problem's shocks.
+
+The framework thus has three levels: (1)~\textit{mathematical}---builder-specs containing operators (e.g., the Bellman operator $\mathrm{T}$), transition functions, and pushforward formulas; (2)~\textit{computational objects}---{\prchs} (value functions, policies, distributions) and connectors ($\CnctrComp$); (3)~\textit{computational processes}---backward builders ($\BkBldr$) and forward builders ($\FwBldr$) that evaluate builder-specs to populate {\prchs}.
+
+{\interval} {\prd} is solved once we have constructed $\vBegPrd$.\footnote{We consider a single-{\stg} problem here; multi-stage notation is developed below.}
+Solving any {\stg} requires an end-of-{\stg} continuation-value function; in the single-{\stg} case this is the end-of-{\interval} value function:
+  \begin{equation}\begin{gathered}\begin{aligned} \label{eq:last-stg-v-is-end-prd-v} 
+        \vCntn(\aNrm) = \vEndPrd(\aNrm). 
+        %
+        \UnifiedNote{ℰ(xₑ) ← ℰ_period(xₑ) (single-stage identity: stage cntn = period cntn)}
+      \end{aligned}\end{gathered}\end{equation}
+
+\subsection{The Decision Problem in the New Notation}\label{subsec:decision-problem}\hypertarget{decision-problem}{}
+
+From `inside' the decision {\prch}, the {\Decision} problem can now be written much more cleanly than in equation \eqref{eq:vNormed}:
+\begin{verbatimwrite}{./Equations/vDcsnCNrm}
+  \begin{equation}\begin{gathered}\begin{aligned}
+        \vFunc_{\dcsn}(\mNrm) & = \max_{\cNrm}~ \uFunc(\cNrm) + \vFunc_{\cntn}(\overbrace{\mNrm-\cNrm}^{=\aNrm}) \label{eq:vDcsnCNrm}.
+        %
+        \UnifiedNote{𝒱(xᵥ) = max_𝜋{r(xᵥ, 𝜋) + ℰ(gᵥₑ(xᵥ, 𝜋))} [β=1 at cons stage; tex vCntn ≡ ℰ_cons which includes β via disc stage]}
+      \end{aligned}\end{gathered}\end{equation}
+\end{verbatimwrite}
+\input{./Equations/vDcsnCNrm}\unskip
+
+
+\begin{comment} 
+
+  \subsection{Implementation in Python}
+
+  The code implementing the tasks outlined each of the sections to come is available in the \texttt{\href{https://econ-ark.org/materials/SolvingMicroDSOPs}{SolvingMicroDSOPs}} jupyter notebook, written in \href{https://python.org}{Python}. The notebook imports various modules, including the standard \texttt{numpy} and \texttt{scipy} modules used for numerical methods in Python, as well as some user-defined modules designed to provide numerical solutions to the consumer's problem from the previous section. Before delving into the computational exercise, it is essential to touch on the practicality of these custom modules.
+
+  \subsubsection{Useful auxiliary files}
+
+  In this exercise, two primary user-defined modules are frequently imported and utilized. The first is the \texttt{endOfPrd} module, which contains functions describing the end-of-period value functions found in equations \eqref{eq:vArvl} - \eqref{eq:EndPrd} (and the corresponding first and second derivatives). %The advantage of defining functions in the code which decompose the consumer's optimal behavior in a given period will become evident in section \ref{subsec:transformation}
+
+  The \texttt{resources} module is also used repeatedly throughout the notebook. This file has three primary objectives: (i) providing functions that discretize the continuous distributions from the theoretical model that describe the uncertainty a consumer faces, (ii) defining the utility function over consumption under a number of specifications, and (iii) enhancing the grid of end-of-period assets for which functions (such as those from the \texttt{endOfPrd} module) will be defined. These objectives will be discussed in greater detail and with respect to the numerical methods used to the problem in subsequent sections of this document.
+
+\end{comment}
+\end{document}

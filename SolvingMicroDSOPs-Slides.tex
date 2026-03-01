@@ -1,0 +1,694 @@
+% -*- mode: LaTeX; TeX-PDF-mode: t; -*- # Tell emacs the file type (for syntax)
+\input{@resources/tex-add-search-paths} % allow latex to find custom stuff
+\input{./.econtexRoot}
+\documentclass{beamer}
+\newcommand{\texname}{SolvingMicroDSOPs-Slides}
+\usepackage{local-macros}      % defns for this project
+\usepackage{econark}           % econark defns
+\usepackage{llorracc-handouts} % allow references to llorracc-handouts
+\usepackage{owner}             % llorracc or econ-ark?
+\usepackage{local-packages}    % LaTeX config in ./resources/latex
+\provideboolean{MPCMatchVersion}\setboolean{MPCMatchVersion}{true}
+\newcommand{\MPCMatch}{\ifthenelse{\boolean{MPCMatchVersion}}}
+
+\usepackage[Overlays]{optional}
+%\usepackage{\local}
+\usepackage{ulem}   % used in slides
+
+\usepackage{econtexShortcuts}
+\usepackage{econark}
+
+% if this is uncommented, bullets are shown step by step; comment out to make printable version:
+\beamerdefaultoverlayspecification{<+->}
+
+%\usepackage{\texname-options}
+% if invoked from shell with option NoOverlays, make printable version
+% (no partial slides where bullets unfold)
+\opt{NoOverlays}{\setboolean{WithOverlays}{false}\beamerdefaultoverlayspecification{}}
+
+% Jirka's definitions
+\definecolor{jirkasred}{rgb}{0.9,0,0}
+\newcommand{\jemph}[1]{{\color{jirkasred}#1}}
+\def\newblock{\hskip .11em plus .33em minus .07em}
+
+\mode<presentation>
+{
+  \usetheme{default}
+  % or ...
+  \setbeamercovered{transparent}
+}
+
+%\setbeamertemplate{navigation symbols}{}  % Take away navigation symbols
+
+\usetheme{Frankfurt}
+
+%_____________ Opening slide _______________________
+
+\begin{document}
+
+\title[SolvingMicroDSOPs]{\textbf{Structural Estimation of Dynamic Stochastic\\ Optimizing Models of Intertemporal Choice \\ \LARGE{For Dummies!}}}
+\author[Carroll]{Christopher Carroll\inst{1}}
+
+\institute{
+  \inst{1} Johns Hopkins University and NBER\\   \texttt{ccarroll@jhu.edu} \and
+    }
+\date{June 2012 \\ {\tiny \url{http://www.econ2.jhu.edu/people/ccarroll/SolvingMicroDSOPs-Slides.pdf}}
+}
+
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+\section{Introduction}
+
+\begin{frame}
+\begin{itemize}
+\item Efficient Solution Methods for Canonical $C$ problem
+\begin{itemize}
+\item CRRA utility
+\item Plausible (microeconomically calibrated) uncertainty
+\item Life cycle or infinite horizon
+\end{itemize}
+\item How To Add a Second Choice Variable
+\item Method of Simulated Moments Estimation of Parameters
+\end{itemize}
+\end{frame}
+
+\section{The Problem}
+
+\begin{frame}[label=MaxProb]
+\frametitle{\large\textbf{The Basic Problem at Date $t$}}
+
+\input{./Equations/MaxProb.tex}
+\begin{equation}\begin{gathered}\begin{aligned}
+{\yLev}_{\prd}  & = {\pLev}_{\prd}\tranShkEmp_{\prd}
+\end{aligned}\end{gathered}\end{equation}
+\input{./Equations/ExogVars.tex}
+\end{frame}
+
+\begin{frame}[label=vrecurse]
+\frametitle{\large\textbf{Bellman Equation}}
+
+\input{./Equations/vrecurse.tex}
+
+\begin{equation*}\begin{gathered}\begin{aligned}
+   \mLev  & - \text{ `market resources' (net worth plus current income)}
+\\ \pLev  & - \text{ permanent labor income }
+\end{aligned}\end{gathered}\end{equation*}
+
+\end{frame}
+
+\section{Tricks}
+\subsection{Normalization}
+\begin{frame}[label=Normalize]
+\frametitle{\large\textbf{Trick: Normalize the Problem}}
+
+\input{./Equations/vNormed.tex}
+
+where nonbold variables are bold ones normalized by $\pLev$:
+\begin{equation}\begin{gathered}\begin{aligned}
+\mNrm_{\prd}  & = \mLvl_{\prd}/\pLvl_{\prd}
+\end{aligned}\end{gathered}\end{equation}
+
+Yields $\cFunc_{\prd}(m)$ from which we can obtain
+\begin{equation}\begin{gathered}\begin{aligned}
+  \cLvl_{\prd}(\mLvl_{\prd},\pLvl_{\prd})  & = \cFunc_{\prd}(\mLvl_{\prd}/\pLvl_{\prd})\pLvl_{\prd}
+\end{aligned}\end{gathered}\end{equation}
+
+\end{frame}
+
+\begin{frame}[label=Normalize]
+\frametitle{\large\textbf{When Doesn't Normalization Work?}}
+
+\begin{itemize}
+\item Non-CRRA utility
+\item Non-Friedman (transitory/permanent) income process
+\begin{itemize}
+\item e.g., AR(1)
+\item But micro evidence is consistent with Friedman
+\end{itemize}
+\end{itemize}
+
+\end{frame}
+\subsection{View Problem from End of Period}
+
+\begin{frame}[label=Normalize]
+\frametitle{Trick: View Everything from End of Period}
+
+Define 
+\input{./Equations/vEndPrddefn.tex}
+so 
+\begin{equation}\begin{gathered}\begin{aligned}
+  \vFunc_{\dcsn(\prd)}(\mNrm_{\prd})  & = \max_{\cNrm_{\prd}}~~ \util(\cNrm_{\prd}) + \vFunc_{\dcsn(\prd)}(\mNrm_{\prd}-\cNrm_{\prd})
+\end{aligned}\end{gathered}\end{equation}
+with FOC
+\input{./Equations/upEqbetaOp.tex}
+and Envelope relation
+\input{./Equations/Envelope.tex}
+
+\end{frame}
+
+
+\subsection{Discretization of Risks}
+\begin{frame}[label=DiscretizeFig]
+\frametitle{Trick: Discretize the Risks}
+
+E.g.\ use an equiprobable 7-point distribution:\medskip\medskip
+
+\includegraphics[width=4in]{./Figures/discreteApprox.pdf}
+
+\end{frame}
+
+\begin{frame}[label=DiscretizeEqn]
+\frametitle{Trick: Discretize the Risks}
+
+\begin{equation}\begin{gathered}\begin{aligned}
+        \vFunc^{\partial}(a_{\prd})  & =  \Discount \Rfree \PermGroFac_{\prd+1}^{-\CRRA} \left(\frac{1}{n}\right) \sum_{i=1}^{n} \util^{\partial}\left(\cFunc_{\prd+1}(\RNrmByG_{\prd+1} a_{\prd} + \tranShkEmp_{i})\right)
+\end{aligned}\end{gathered}\end{equation}
+
+%\input{./Equations/vDiscrete.tex}
+
+\pause 
+So for any particular $\mNrm_{T-1}$ the corresponding $\cNrm_{T-1}$ can be found
+using the FOC:
+\input{./Equations/upEqbetaOp.tex}
+
+
+\end{frame}
+\subsection{Interpolate a Consumption Rule}
+\begin{frame}
+\frametitle{Trick: Interpolate a Consumption Rule}
+
+\begin{enumerate}
+\item Define a grid of points $\vctr{\mNrm}$ (indexed $\mNrm[i]$)
+\item Use numerical rootfinder to solve 
+$\util^{\partial}(\cNrm) = \vFunc^{\partial}_{\prd}(\mNrm[i]-\cNrm)$
+\begin{itemize}
+\item The $\cNrm$ that solves this becomes $\cNrm[i]$
+\end{itemize}
+\item Construct interpolating function $\grave{\cFunc}$ by linear interpolation
+\begin{itemize}
+\item `Connect-the-dots'
+\end{itemize}
+\end{enumerate}
+
+\end{frame}
+
+
+
+
+
+
+\begin{frame}[label=DiscretizeEqn]
+\frametitle{Trick: Interpolate a Consumption Rule}
+
+Example: $\vctr{\mNrm}_{T-1} = \{0.,1.,2.,3.,4.\}$ (solid is `correct' soln)
+
+\includegraphics[width=4.0in]{./Figures/PlotcTm1Simple.pdf}
+
+\end{frame}
+
+\begin{frame}[label=vEndPrdSlow]
+\frametitle{Problem: Numerical Rootfinding is {\it Slow}}
+
+Numerical search for values of $\cNrm_{T-1}$ satisfying
+$\util^{\partial}(\cNrm) = \vFunc^{\partial}_{\prd}(\mNrm[i]-\cNrm)$ at, say,
+6 gridpoints of $\vctr{\mNrm}_{T-1}$ may require hundreds or even thousands of
+evaluations of
+\begin{equation}\begin{gathered}\begin{aligned}
+        \vFunc^{\partial}_{T-1}(\overbrace{{m}_{T-1}-\cNrm_{T-1}}^{\aNrm_{T-1}})  & =   \Discount_{T} \PermGroFac_{T}^{1-\CRRA}\left(\frac{1}{n}\right)\sum_{i=1}^{n}   \left( \RNrmByG_{T} a_{T-1} + \tranShkEmp_{i}\right)^{-\CRRA} \notag
+\end{aligned}\end{gathered}\end{equation}
+
+\end{frame}
+
+
+
+
+\begin{comment}
+
+\begin{frame}[label=vApprox]
+\frametitle{Solution: Approximate \$\vEndPrd\$?}
+
+\pause Given $\{\vctr{\aNrm}_{T-1},\vctr{\EndPrd}_{T-1}\}$, an approximate function $\grave{\EndPrd}_{T-1}$ 
+can be constructed by linear interpolation among the points:
+
+\includegraphics[width=4in]{./Figures/PlotOTm1RawVsInt.pdf}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Using $\grave{\EndPrd}_{T-1}$ In Optimization}
+\begin{equation*}\begin{gathered}\begin{aligned}
+  \vFunc_{\dcsn(\prd)}(\mNrm_{\prd})  & = \max_{\cNrm_{\prd}}~~ \util(\cNrm_{\prd}) + \grave{\EndPrd}_{\prd}(\mNrm_{\prd}-\cNrm_{\prd})
+\end{aligned}\end{gathered}\end{equation*}
+is {\it much} faster,  but result is bad:
+\begin{center}
+\includegraphics[width=3in]{./Figures/PlotComparecTm1AB}
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Approximate $\vFunc^{\partial}(\aNrm)$?}
+
+Better ... but still violates first two principles:
+\includegraphics[width=4in]{./Figures/PlotOPRawVSFOC.pdf}
+
+\end{frame}
+
+
+\end{comment}
+
+\subsection{The Method of Endogenous Gridpoints}
+\begin{frame}
+\frametitle{Solution: The Method of Endogenous Gridpoints}
+
+\pause 
+
+\begin{itemize}
+\item Define vector of {\it end-of-period} asset values $\vctr{\aNrm}$
+\item For each $\aNrm[j]$ compute $\vFunc^{\partial}(\aNrm[j])$
+\end{itemize}
+
+\pause 
+
+Each of these $\vFunc^{\partial}[j]$ corresponds to a unique
+$\cNrm[j]$ via FOC:
+\begin{equation}\begin{gathered}\begin{aligned}
+  \cNrm[j]^{-\CRRA}  & = \vFunc^{\partial}(\aNrm[j])
+\\ \cNrm[j]  & = \left(\vFunc^{\partial}(\aNrm[j])\right)^{-1/\CRRA}
+\end{aligned}\end{gathered}\end{equation}
+
+\pause 
+
+But the DBC says
+\begin{equation}\begin{gathered}\begin{aligned}
+  \aNrm_{\prd}  & = \mNrm_{\prd} - \cNrm_{\prd}
+\\ \mNrm[j]  & = \aNrm[j]+\cNrm[j]
+\end{aligned}\end{gathered}\end{equation}
+
+\pause 
+So computing $\vFunc^{\partial}$ at a vector of $\vctr{\aNrm}$ values has produced for us the corresponding $\vctr{\cNrm}$ and $\vctr{\mNrm}$ 
+values at virtually no cost!  
+
+\pause 
+\medskip 
+From these we can interpolate as before to construct $\grave{\cFunc}_{\prd}(\mRat)$.
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Why Directly Approximating $\vFunc_{\dcsn(\prd)}$ is a Bad Idea}
+
+Principles of Approximation
+
+\begin{itemize}
+\item Hard to approximate things that approach $\infty$ for relevant $\mNrm$
+\begin{itemize}
+\item Not a prob for Rep Agent models: `relevant' $\mNrm$'s are $\approx$ SS
+\end{itemize}
+\item Hard to approximate things that are highly nonlinear 
+%\item Best to approximate things that directly govern behavior
+\end{itemize}
+
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Approximate Something That Would Be Linear in PF Case}
+
+\medskip
+
+Perfect Foresight Theory:
+\begin{equation}\begin{gathered}\begin{aligned}
+  \cFunc_{\prd}(\mRat)  & = (\mRat+\hEnd_{\prd})\MPCmin_{\prd} 
+\end{aligned}\end{gathered}\end{equation}
+for market resources $\mNrm$ and end-of-period human wealth $\hEnd$.
+
+
+\medskip\medskip
+\pause 
+
+This is why it's a good idea to approximate $\cFunc_{\prd}$ 
+
+\pause \medskip\medskip
+
+Bonus: Easy to debug programs by setting $\sigma^{2} = 0$ and
+testing whether numerical solution matches analytical!
+
+\end{frame}
+
+\subsection{Approximate Inverted Functions}
+\begin{frame}%[ValFnApprox]
+\frametitle{But What if You {\it Need} the Value Function?}
+
+Perfect foresight value function:
+\input{./Equations/vFuncPF.tex}
+which is linear.  
+
+\medskip\medskip
+\pause If you need the value function, approximate the {\it inverted} value function to generate $\grave{\vInv}_{\prd}$ 
+and then obtain your approximation from 
+\begin{equation}\begin{gathered}\begin{aligned}
+  \grave{\vFunc}_{\dcsn(\prd)}  & = \util(\grave{\vInv}_{\prd})
+\end{aligned}\end{gathered}\end{equation}
+
+
+\end{frame}
+
+\subsection{Derivatives}
+\begin{frame}
+\frametitle{Approximate Slope Too}
+
+\cite{BufferStockTheory} shows that $\cFunc^{\dm}_{\prd}$ exists everywhere.
+\medskip
+
+\pause 
+Define {\it consumed} function and its derivative as 
+\begin{equation}\begin{gathered}\begin{aligned}
+  \cEndFunc_{\prd}(\aNrm)  & = (\vFunc^{\partial}_{\prd}(\aNrm))^{-1/\CRRA}
+\\ \cEndFunc_{\prd}^{\partial}(\aNrm)  & = -(1/\CRRA)\left(\vFunc^{\partial}(a)\right)^{-1-1/\CRRA} \vFunc^{\partial\partial}(\aNrm) 
+\end{aligned}\end{gathered}\end{equation}
+
+\pause 
+and using chain rule it is easy to show that
+\begin{equation}\begin{gathered}\begin{aligned}
+ \cFunc^{\dm}_{\prd}  & = \cEndFunc^{\partial}_{\prd}/(1+\cEndFunc^{\partial}_{\prd})
+\end{aligned}\end{gathered}\end{equation}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{To Implement: Modify Prior Procedures in Two Ways}
+\begin{enumerate}
+\item Construct $\vctr{\cFunc}^{\mNrm}_{\prd}$ along with $\vctr{\cFunc}_{\prd}$ in EGM algorithm
+\item Approximate $\cFunc_{\prd}(m)$ using piecewise Hermite polynomial
+\begin{itemize}
+\item Exact match to both level and derivative at set of points
+\end{itemize}
+\end{enumerate}
+\end{frame}
+
+
+\subsection{Improving the $\aNrm$ Grid}
+
+\begin{frame}
+\frametitle{Problem: $\Alt{\cFunc}$ Below Bottom $\mNrm$ Gridpoint and Extrapolation}
+
+Consider what happens as $a_{T-1}$ approaches $\Min{a}_{T-1}\equiv-\Min{\tranShkEmp}\RNrmByG_{T}^{-1}$,
+\begin{equation*}\begin{gathered}\begin{aligned}
+        \lim_{{\aNrm} \downarrow \Min{a}_{T-1}} \vFunc{T-1}^{\partial}(\aNrm) 
+& =         \lim_{{\aNrm} \downarrow \Min{a}_{T-1}} \Discount \Rfree \PermGroFac_{T}^{-\CRRA} \left(\frac{1}{n}\right) \sum_{i=1}^{n} \left(  \aNrm\RNrmByG_{T}+ \tranShkEmp_{i}\right)^{-\CRRA}
+\\  & = \infty
+\end{aligned}\end{gathered}\end{equation*}
+
+This means our lowest value in $\vctr{\aNrm}_{T-1}$ should be $> \Min{\aNrm}_{T-1}$.  
+
+\medskip
+Suppose we construct $\Alt{\cFunc}$ by linear interpolation:
+\begin{equation*}\begin{gathered}\begin{aligned}
+  \Alt{\cFunc}_{T-1}(\mRat)  & = \Alt{\cFunc}_{T-1}(\vctr{\mNrm}_{T-1}[1])+\Alt{\cFunc}_{T-1}^{\partial}(\vctr{\mNrm}_{T-1}[1])(\mNrm-\vctr{\mNrm}_{T-1}[1]) \label{eq:ExtrapLin}
+\end{aligned}\end{gathered}\end{equation*}
+
+True $\cFunc$ is strictly concave 
+$\Rightarrow \exists \mRat^{-} > \Min{\mNrm}_{T-1}$  for which $\mRat^{-}-\Alt{\cFunc}_{T-1}(\mRat^{-}) < \Min{\aNrm}_{T-1}$
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Solution: Hard-Code the Bottom Point}
+
+Theory says that
+\begin{equation}\begin{gathered}\begin{aligned}
+  \lim_{\mRat \downarrow \Min{\mNrm}_{T-1}} \cFunc_{T-1}(\mRat)  & = 0
+\\ \lim_{\mRat \downarrow \Min{\mNrm}_{T-1}} \cFunc_{T-1}^{\mNrm}(\mRat)  & = \MPCmax_{T-1}
+\end{aligned}\end{gathered}\end{equation}
+
+\medskip 
+
+\begin{enumerate}
+\item Redefine $\vctr{\aNrm}$ {\it relative} to $\Min{\aNrm}_{T-1}$
+\item Construct corresponding $\vctr{\mNrm}_{T-1}$ and $\vctr{\cNrm}_{T-1}$
+\item Prepend $\Min{\mNrm}_{T-1}$ to $\vctr{\mNrm}_{T-1}$
+\item Prepend $0.$ to $\vctr{\cNrm}_{T-1}$
+\item Prepend $\MPCmax_{T-1}$ to $\vctr{\MPC}_{T-1}$
+\end{enumerate}
+then proceed as before.
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Trick: Improving the $\aNrm$ Grid}
+Grid Spacing: Uniform
+
+\includegraphics[width=4in]{./Figures/GothVInvVSGothC.pdf}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Trick: Improving the $\aNrm$ Grid}
+Grid Spacing: Same $\{\Min{\aNrm},\bar{\aNrm}\}$ But Triple Exponential $e^{e^{e^{...}}}$ Growth
+
+\includegraphics[width=4in]{./Figures/GothVInvVSGothCEEE.pdf}
+
+\end{frame}
+
+
+\subsection{The Method of Moderation}
+
+\begin{frame}[label=MoM]
+\frametitle{The Method of Moderation}
+
+\begin{itemize}
+\item Further improves speed and accuracy of solution
+\item See my talk at the conference!
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Imposing `Artificial' Borrowing Constraints}
+\input{./Equations/ConstrArt.tex}
+
+\pause 
+
+Define $\grave{\cFunc}^{*}_{\prd}$ as soln to unconstrained problem.  Then
+\input{./Equations/LiqCons.tex}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Imposing `Artificial' Borrowing Constraints}
+
+Point where constraint makes transition from binding to not is
+\begin{equation*}\begin{gathered}\begin{aligned}
+    \util^{\partial}(\mNrm_{T-1}^{\#})  & = \vFunc^{\partial}_{T-1}(0.)
+\\  \mNrm_{T-1}^{\#}  & = \left(\vFunc^{\partial}_{T-1}(0.)\right)^{-1/\CRRA}
+\end{aligned}\end{gathered}\end{equation*}
+\pause\medskip
+
+Procedure is very easy:
+\begin{itemize}
+\item Add $0.$ as first point in $\vctr{\aNrm}$
+\item $\Rightarrow \vctr{\mNrm}[1] = \mNrm_{T-1}^{\#}$
+\item Above $\mNrm_{T-1}^{\#}$, $\grave{\cFunc}_{T-1}(\mRat)$ obtained as before
+\item Below $\mNrm_{T-1}^{\#}$, $\grave{\cFunc}_{T-1}(\mRat)=\mNrm$
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Imposing `Artificial' Borrowing Constraints}
+\begin{figure}
+\includegraphics[width=4in]{./Figures/cVScCon.pdf}
+        \caption{Constrained (solid) and Unconstrained (dashed) Consumption}
+        \label{fig:cVScCon}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}%[Recursion]
+\frametitle{Recursion: Period $t$ Solution Given Period $t+1$}
+\begin{enumerate}
+\item Construct 
+\input{./Equations/vEndeq.tex}
+\item Call the result $\vctr{\cNrm}_{\prd}$ and generate the corresponding $\vctr{\mNrm}_{\prd}=\vctr{\cNrm}_{\prd}+\vctr{\aNrm}_{\prd}$
+\item Interpolate to create $\grave{\cNrm}_{\prd}(\mRat)$
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}%[Convergence]
+\frametitle{Consumption Rules $\grave{\cFunc}_{T-n}$ Converge}
+
+\begin{figure}
+        \includegraphics[width=4in]{./Figures/PlotCFuncsConverge.pdf}
+        \caption{Converging $\grave{\cFunc}_{T-n}(\mNrm)$ Functions for $n=\{1,5,10,15,20\}$}
+        \label{fig:PlotCFuncsConverge}
+\end{figure}
+
+\end{frame}
+
+
+\section{Multiple Control Variables}
+\begin{frame}
+\frametitle{Portfolio Choice}
+
+Now the consumer has a choice between a risky and a safe asset.  \pause The portfolio
+return is
+\input{./Equations/Rport.tex}
+\pause so (setting $\PermGroFac=1$) the maximization problem is \pause 
+\input{./Equations/PortProb.tex}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Portfolio Choice}
+
+The FOC with respect to $\cNrm_{\prd}$ now yields an Euler equation
+\input{./Equations/EulercRiskyR.tex}
+\pause
+while the FOC with respect to the portfolio share yields
+%\input{./Equations/FOCw.tex}
+
+\end{frame}
+
+\section{The Infinite Horizon}
+\subsection{Convergence}
+\begin{frame}
+\frametitle{Convergence}
+
+When the problem satisfies certain conditions~(\cite{BufferStockTheory}),
+it defines a `converged' consumption rule with a `target' ratio $\check{\mNrm}$
+that satisfies:
+\begin{equation}\begin{gathered}\begin{aligned}
+  \Ex_{\prd}[\mNrm_{\prd+1}/\mNrm_{\prd}]  & = 1 \text{~if $\mNrm_{\prd} = \check{\mNrm}$}
+\end{aligned}\end{gathered}\end{equation}
+
+\pause 
+
+Define the target $\mNrm$ implied by the consumption rule $\cFunc_{\prd}$ as $\check{\mNrm}_{\prd}$.
+
+\medskip\pause
+Then a plausible metric for convergence is to define some value $\epsilon$ and to declare
+the solution to have converged when
+\begin{equation}\begin{gathered}\begin{aligned}
+  |\check{\mNrm}_{\prd+1}-\check{\mNrm}_{\prd}|  & < \epsilon
+\end{aligned}\end{gathered}\end{equation}
+
+\end{frame}
+
+\subsection{Tricks}
+\begin{frame}
+\frametitle{Trick: Coarse then Fine $\tranShkEmp$}
+
+\begin{enumerate}
+\item Start with coarse grid for $\tranShkEmp$ (say, 3 points)
+\item Solve to convergence; call period of convergence $n$
+\item Construct finer grid for $\tranShkEmp$ (say, 7 points)
+\item Solve for period $T-n-1$ assuming $\Alt{\cFunc}_{T-n}$ 
+\item Continue to convergence
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Trick: Coarse then Fine $\vctr{\aNrm}_{T-1}$}
+
+\begin{enumerate}
+\item Start with coarse grid for $\vctr{\aNrm}$ (say, 5 gridpoints)
+\item Solve to convergence; call period of convergence $n$
+\item Construct finer grid for $\vctr{\aNrm}$ (say, 20 points)
+\item Solve for period $T-n-1$ assuming $\Alt{\cFunc}_{T-n}$ 
+\item Continue to convergence
+\end{enumerate}
+
+\end{frame}
+
+\section{Structural Estimation}
+\subsection{Life Cycle Model}
+
+\begin{frame}
+\frametitle{Life Cycle Maximization Problem}
+\input{./Equations/LifeCycleMaxNormed.tex}
+\input{./Equations/subjectTo.tex}
+\end{frame}
+
+\begin{frame}
+\frametitle{Details follow~\cite{cagettiWprofiles}}
+\begin{itemize}
+\item Parameterization of Uncertainty
+\item Probability of Death
+\item Demographic Adjustments to $\Discount$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Empirical Wealth Profiles}
+\begin{figure}
+    \includegraphics[width=3.5in]{./Figures/PlotMeanMedianSCFcollegeGrads.pdf}
+    \caption{$\mNrm$ from SCF (means (dashed) and medians (solid))}
+    \label{fig:MeanMedianSCF}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Simulated Moments}
+
+Given a set of parameter values $\{\CRRA,\beth\}$:
+\begin{itemize}
+\item Start at age 25 with empirical $\mNrm$ data
+\item Draw shocks using calibrated $\sigma^{2}_{\permShk}$,$\sigma^{2}_{\tranShkEmp}$
+\item Consume according to solved $\cFunc_{\prd}$
+\end{itemize}
+\pause 
+$\Rightarrow \mNrm$ distribution by age
+\end{frame}
+
+\begin{frame}
+\frametitle{Choose What to Simulate}
+\input{./Equations/GapEmpiricalSimulatedMedians.tex}
+\end{frame}
+
+\begin{frame}
+\frametitle{Calculate Match Between Theory and Data}
+\begin{equation}\begin{gathered}\begin{aligned}
+\xi  & = \{\CRRA,\beth\}
+\end{aligned}\end{gathered}\end{equation}
+solve
+\input{./Equations/StructEstim.tex}
+
+\end{frame}
+\begin{frame}
+\frametitle{Bootstrap Standard Errors (\cite{horowitzBootstrap})}
+
+Yields estimates of 
+\input{./Tables/EstResults.tex}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Contour Plot}
+\begin{figure}
+     \includegraphics[width=2.5in]{./Figures/PlotContourMedianStrEst.pdf}
+    \caption{Point Estimate and Height of Minimized Function}
+    \label{fig:PlotContourMedianStrEst}
+\end{figure}
+
+\end{frame}
+
+\beamerdefaultoverlayspecification{<*>}
+
+\begin{frame}[allowframebreaks]
+\frametitle{\textbf{References}}
+\tiny
+\input handoutBibMake
+\end{frame}
+
+
+\end{document}

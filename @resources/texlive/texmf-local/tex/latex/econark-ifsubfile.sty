@@ -1,0 +1,36 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{econark-ifsubfile}[2023/06/14 Define ifsubfile condition]
+
+\newif\ifsubfile
+
+% Define a command that will only exist in the main file
+\@ifundefined{@mainfile}{%
+  % @mainfile is not defined, so this must be a subfile
+  \subfiletrue
+  \@namedef{@mainfile}{}% Define it now to prevent future redefinitions
+}{%
+  % @mainfile is defined, so this must be the main file
+  \subfilefalse
+}
+
+\providecommand{\onlyinsubfile}{}
+\providecommand{\notinsubfile}{}
+
+\providecommand{\compilingassubfile}{}
+\providecommand{\compilingasstandalone}{}
+
+\ifsubfile
+  % Compiling a subfile standalone (not included from main)
+  \renewcommand{\onlyinsubfile}[1]{#1}
+  \renewcommand{\notinsubfile}[1]{}
+  \renewcommand{\compilingassubfile}[1]{#1}
+  \renewcommand{\compilingasstandalone}[1]{#1}
+\else
+  % Compiling the main document
+  \renewcommand{\onlyinsubfile}[1]{}
+  \renewcommand{\notinsubfile}[1]{#1}
+  \renewcommand{\compilingassubfile}[1]{}
+  \renewcommand{\compilingasstandalone}[1]{}
+\fi
+
+\endinput

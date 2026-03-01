@@ -1,0 +1,142 @@
+\input{@resources/tex-add-search-paths}\documentclass[SolvingMicroDSOPs]{subfiles}
+\input{subfile-start}
+
+\begin{document}
+
+\hypertarget{notation}{}
+\section{Notation}\label{sec:notation}
+
+\hypertarget{intervals-stages-perches}{}
+\subsection{\Intervals, \Stgs, \Prchs}
+
+The problem so far assumes that the agent has only one decision.  But agents often have multiple choices per {\interval}---for example, a consumption decision, a labor supply choice, and a choice of what proportion $\Shr$ of capital $\kNrm$ to invest in a risky vehicle.  We identify each {\stg} type in two ways: by a \textbf{short-name} (a textual name, given when the stage is first introduced) and by a \textbf{control-name} (the stage's control variable, if any).  For example, a labor supply {\stg} might have short-name \StgName{labor} and control-name $\ell$; a consumption {\stg} has control-name $\cFunc$.  A stage list that constitutes a period may therefore be written by short-name, e.g.\ $[\StgName{labor}, \StgName{cons-noshocks}, \StgName{disc}]$, or by control-name, e.g.\ $[\ell, \cFunc, \DiscFac]$. A modeler might want to explore whether the order in which the {\stgs} are solved makes any difference, either to the substantive results or to aspects of the computational solution like speed and accuracy; with this scheme they do so merely by changing the order in which the stages are listed in the specification of the period.
+
+If, as in section \ref{sec:the-problem}, we hard-wire into the solution code for each {\stg} an assumption that its successor {\stg} will be something in particular (say, the consumption {\stg} assumes that the portfolio choice is next), then if we want to change the order of the {\stgs} (say, labor supply after consumption, followed by portfolio choice), we will need to re-hard-wire each of the stages to know new things about its new successor (for example, the specifics of the distribution of the rate of return on the risky asset must be known by whatever {\stg} precedes the portfolio choice {\stg}).
+
+The cardinal insight of \citet{bellman1957} is that \emph{everything that matters} for the solution to the current problem is encoded in a `continuation-value function.'
+
+Using that insight, we describe here a framework for isolating the {\stg} problems within a {\interval} from each other, and the {\interval} from its successors or predecessors in any other {\interval}.  The advantage of this isolation is that each {\stg} problem becomes a self-contained \textit{module}: Its internal logic---the computation it performs on value functions---is defined independently of where it sits in the sequence of {\stgs}.
+
+%This modularity does \textit{not} mean that reordering {\stgs} is economically neutral.  Changing the order of {\stgs} generally changes the information structure of the problem and therefore produces a \textit{different} economic model.  For example, if consumption is chosen before income shocks are realized (rather than after), the agent faces a genuinely different decision problem with different optimal behavior.  The reordered model is equally valid -- but it is not the \textit{same} model.
+
+Modularity is valuable because it makes exploring such alternative model structures \textit{cheap}.  Using control-name indexing (e.g., the consumption {\stg} by $\cFunc$), after considering the {\stg}-order $[\ell,\cFunc,\Shr]$, the modeler can reorder the {\stgs} to consider, say, the order $[\ell,\Shr,\cFunc]$ \textit{without rewriting any of the code that solves each individual {\stg}}.\footnote{The beginning-of-{\stg} and end-of-{\stg} value functions for each {\stg} must be defined over compatible state variables, so that the output of any {\stg} can serve as the input to any other; see the discussion in section~\ref{sec:multiple-control-variables}.
+}  What must change are the \textit{transitions}---the mappings that connect the end of one {\stg} to the beginning of the next---which must be rewired to reflect the new ordering and its implied information structure.  The {\stg}-level code itself remains untouched.
+
+\hypertarget{prchs}{}
+\subsection{\Prchs}\label{subsec:prchs}
+
+The key is to distinguish, within each {\stg}'s Bellman problem, three viewpoints or `{\prchs}' (we use that word to empasize that the {\prch} does not \textit{do} anything: It is merely a collection of mathematical and computational functions and objects).
+\begin{enumerate}
+\item \textbf{\Arrival}: Incoming state variables (e.g., $\kNrm$) are known, but any shocks associated with the {\stg} have not been realized and decision(s) have not yet been made
+\item \textbf{\Decision}: The agent solves the decision problem for the period
+\item \textbf{\Continuation}: After all decisions have been made, their consequences are measured by evaluation of the continuing-value function at the values of the `outgoing' state variables (sometimes called `post-state' variables)
+\end{enumerate}
+
+This framework is silent about when shocks (if any) occur.  In a consumption problem, the usual assumption is that shocks have been realized before the spending decision is made so that the consumer knows their resources when they decide how much to spend. But in a portfolio choice problem, the portfolio share decision must be made before the shock that determines the risky rate of return is known.  
+
+\begin{table}[h]\label{\prchs}\caption{{\Prchs} within the \StgName{cons-with-shocks} {\stg}}
+\begin{center}
+    \begin{tabular}{r|c|c|c|l}
+      {\Prch}         & Indicator               & State          & value functions              & Explanation    \\ \hline
+      {\Arrival}      & $ \arvl $ & $\kNrm$ & $\vArvl = \Ex_{\Arvl}[\vDcsn]$ & value at entry to {\stg} \\
+      {\Decision}(s)  & $\sim$         & $\mNrm$ & $\vDcsn=\max_{\cNrm}\uFunc(\cNrm)+\vCntn$ & value of {\stg}-decision \\
+      {\Continuation} & $ \cntn $ & $\aNrm$ & $\vCntn$ & value at exit \\ \hline
+    \end{tabular}
+  \end{center}
+  \end{table}
+  \noindent This \StgName{cons-with-shocks} {\stg} corresponds to the consumption problem defined above.
+
+  % The former two-evolution example ($b = k \RNrmByG$, $\mNrm = \bNrm+\tranShkEmp$)
+  % has been collapsed to a single evolution to eliminate the intermediate
+  % variable \bNrm, aligning with bellman-ddsl/docs/development/references/unified.
+  The table illustrates notation we can use when analyzing the problem from a context `inside' a particular stage of a specific period.  We require that no variable can have more than one meaning or interpretation inside a period, and we prohibit any reference to values of any variables or functions or other model objects from outside the stage (or period).  This is why we use different letters, $\kNrm$ and $\aNrm$, to represent liquid resources before and after the consumption decision, even if ultimately this period's continuation value of $\aNrm$ will transmute into the next period's initial $\kNrm$.  (Both $\kNrm$ and $\aNrm$ are ``k-type'' variables---investable capital before returns are realized; the distinction from ``m-type'' variables like $\mNrm$, which represent spendable resources after returns, is formalized below.)
+
+  In contrast, items like value functions $\vFunc$ or expectations operators $\Ex$ have different meanings at different perches; we capture this using a subscript like $\arvl$.  The fact that all functions in a perch depend on the same state variables (shown in the second column) allows us to write those functions without specifying their arguments.
+%  $\kNrm$ is the only variable is known at the beginning of the {\stg}; other variables (states; controls; shocks) take on their values as equations like $\mNrm = \kNrm \RNrmByG+\tranShkEmp$ are evaluated.  %We will refer to such within-the-{\stg} creation of variables as `{\evltns}.'  So, the consumption stage problem has two {\evltns}: from $\kNrm$ to $\mNrm$ and from $\mNrm$ to $\aNrm$.
+
+%  This consumption {\stg} bundles two logically distinct operations: (1)~the realization of returns and income shocks (the $\kNrm \to \mNrm$ {\evltn}), and (2)~the consumption decision (the $\mNrm \to \aNrm$ {\evltn}).  % When, later, we introduce a portfolio-choice {\stg} in section~\ref{sec:multiple-control-variables}, these operations will be separated: the shock-realization machinery will move into the portfolio {\stg}, leaving a simpler `shock-free' consumption {\stg} whose {\Arrival} state is $\mNrm$ rather than $\kNrm$.
+
+\ifpseudo{
+\lstinputlisting{./\snippetsPath/pseudo-model-setup-prdT.py}\nopagebreak
+}{}
+
+\hypertarget{transitions}{}
+\subsection{Builders and Connectors}\label{subsec:transitions}\label{subsubsec:builders}
+
+Modularity requires that objects inside a period have no direct access to objects from any other period.  This means that we must endow a {\stg} or a period, at the time of its creation, with its end-of-{\stg}-or-period value function $\vFunc_{\cntn}$.
+
+For example, in a model in which every period contains only the single-stage consumption problem above, the continuation value function for the last (and only) stage at {\prdt} will need to be 'connected' to the arrival value function in ({\prdt}+1), which of necessity requires us to use {\prdt}-related notation.  Concretely, if we designate the end-of-\textit{period} value function as $\vEndPrd$ (which is defined as the continuation value function from the last {\stg} in the period), we use the notation 
+\hypertarget{eq-trns-single-prd}{}
+\begin{equation}\begin{gathered}\begin{aligned}
+        \vEndPrd & \leftassign \DiscFac \vBegPrdNxt, \label{eq:trns-single-prd}
+        %
+        \UnifiedNote{tex vCntn ≡ ℰ_disc; disc stage creates ℰ_disc(xₑ) = β·𝒜₊(gₑₐ₊(xₑ)); every period ends with a disc stage that applies β}
+\end{aligned}\end{gathered}\end{equation}
+to describe what the builder does when constructing the predecessor to period $t+1$.  The use of the `$\leftassign$' signals creation: the left-hand side is \textit{brought into existence} by the builder.% \footnote{By contrast, ``='' in~\eqref{eq:last-stg-v-is-end-prd-v} below equates two names for the same object.}
+
+\hypertarget{expectation-operators}{}
+\paragraph{Expectation operators across {\prchs}.}  The subscript on an expectation operator $\Ex$ indicates the information set at that {\prch}: $\Ex_{\arvl}$ conditions on the {\Arrival} state but not on any shocks realized between {\Arrival} and {\Decision}.  For adjacent {\prchs} at a {\interval} boundary---$\ExEndPrd$ ({\Continuation} of {\interval} $\prdt$) and $\Ex_{\BegPrdNxt}$ ({\Arrival} of {\interval} $\prdt+1$)---the information sets are identical, so the two operators are mathematically interchangeable; the notational distinction reflects viewpoint (looking backward from $\prdt$'s exit versus forward from $(\prdt+1)$'s entry).
+
+Tying two adjacent {\stgs} or periods together also requires that we define a {\Cnct}, ${\Cnctr}$, which specifies the relationship between the continuation-perch state variable(s) of the predecessor to the arrival-perch state variable(s) of the successor. Again concretely, for two successive periods each of which contains only a single consumption {\stg} like the one described above, the {\Cnct} would look like:
+  \begin{equation}\begin{gathered}\begin{aligned} \label{eq:last-stg-v-is-end-prd-v} 
+        \Cnctr(\aNrm \leftrightarrow \kNrm).
+      \end{aligned}\end{gathered}\end{equation}
+
+\hypertarget{state-variable-types}{}
+\paragraph{State-variable types.}  A {\Cnct} is a pure rename: it asserts that two variables from adjacent {\stgs} or {\intervals} are different names for the same object.  This is only meaningful if the two variables are of the same \textit{type}.  In our framework, state variables fall into two types:
+\begin{itemize}
+\item \textbf{k-type} (capital): investable assets \textit{before} returns and income are realized.  Examples: $\kNrm$ (beginning-of-{\interval} capital) and $\aNrm$ (end-of-{\interval} assets after consumption, awaiting next period's returns).
+\item \textbf{m-type} (market resources): spendable resources \textit{after} returns and income shocks have been realized---what \citet{deatonUnderstandingC} calls ``cash-on-hand.''  Examples: $\mNrm$ (market resources at the {\Decision} {\prch}) and $\check{\mNrm}$ (post-shock market resources within a period).
+\end{itemize}
+\noindent The {\Cnct} $\Cnctr(\aNrm \leftrightarrow \kNrm)$ is valid because both $\aNrm$ and $\kNrm$ are k-type; $\Cnctr(\check{\mNrm} \leftrightarrow \mNrm)$ is valid because both are m-type.  A {\Cnct} that crossed types---say, $\Cnctr(\mNrm \leftrightarrow \kNrm)$---would be illegal, because market resources and investable capital are not merely different names for the same quantity: converting between them requires a substantive transformation (the realization of returns and income).
+
+  \begin{comment} % Not clear that we need to define this
+\paragraph{Builder-spec for $\BkBldrPrd$.}\label{subsec:builder-spec-bkwd}
+In the single-{\stg}, single-control-variable case, the builder-spec collects the mathematical information the backward builder needs to extend $\Pile$ by one {\interval}:
+\begin{enumerate}
+\item \textbf{{\Cnct} mapping.}  The identification $\kNrm_{\prdT} = \aNrm_{\prdt\!-\!1}$ that links the successor {\interval}'s arrival {\prch} to the current {\interval}'s {\Continuation} {\prch}.
+\item \textbf{Prior-period {\Continuation} value.}  The formula $\vEndPrd(\aNrm) \leftassign \DiscFac \, \vBegPrdNxt(\aNrm)$, which the builder uses to create the prior {\interval}'s continuation value function from the successor's arrival value.
+\item \textbf{Optimization.}  The definition of the intra-{\interval} decision problem $\max_{\cNrm} \uFunc(\cNrm) + \vEndPrd(\mNrm - \cNrm)$ that yields the consumption rule $\vBegPrd$ and the decision-perch value function $\vDcsn$.
+\item \textbf{The definition of how to build $\vArvl$} from $\vDcsn$.
+\end{enumerate}
+With this spec, the computational execution of $\BkBldrPrd$ has all it needs to construct the next-earlier period.  With multiple {\stgs} or control variables, the builder-spec expands to include within-{\interval} {\stg}-level transitions and their {\Cncts}---see section~\ref{sec:multiple-control-variables}.
+\end{comment}
+%Once backward induction is complete, use of the model will require constructing a simulation of the behavior of the agents; we call the corresponding forward builder $\FwBldr$.  
+
+%  The framework thus has three levels: (1)~\textit{mathematical}---  builder-specs containing operators (e.g., the Bellman operator $\mathrm{T}$), transition functions, and simulation (pushforward) methods; (2)~\textit{computational objects}---{\prchs} (value functions, policies, distributions) and connectors ($\CnctrComp$); (3)~\textit{computational processes}---backward builders ($\BkBldr$) and forward builders ($\FwBldr$) that evaluate builder-specs to populate {\prchs}.
+
+% \subsection{The Decision Problem in the New Notation}\label{subsec:decision-problem}\hypertarget{decision-problem}{}
+
+% From `inside' the decision {\prch}, the {\Decision} problem can now be written much more cleanly than in equation \eqref{eq:vNormed}:
+% \begin{verbatimwrite}{./Equations/vDcsnCNrm}
+%   \begin{equation}\begin{gathered}\begin{aligned}
+%         \vFunc_{\dcsn}(\mNrm) & = \max_{\cNrm}~ \uFunc(\cNrm) + \vFunc_{\cntn}(\overbrace{\mNrm-\cNrm}^{=\aNrm}) \label{eq:vDcsnCNrm}.
+%         %
+%         \UnifiedNote{𝒱(xᵥ) = max_𝜋{r(xᵥ, 𝜋) + ℰ(gᵥₑ(xᵥ, 𝜋))} [β=1 at cons stage; tex vCntn ≡ ℰ_cons which includes β via disc stage]}
+%       \end{aligned}\end{gathered}\end{equation}
+% \end{verbatimwrite}
+% \input{./Equations/vDcsnCNrm}\unskip
+
+
+\begin{comment} 
+
+  \subsection{Implementation in Python}
+
+  The code implementing the tasks outlined each of the sections to come is available in the \texttt{\href{https://econ-ark.org/materials/SolvingMicroDSOPs}{SolvingMicroDSOPs}} jupyter notebook, written in \href{https://python.org}{Python}. The notebook imports various modules, including the standard \texttt{numpy} and \texttt{scipy} modules used for numerical methods in Python, as well as some user-defined modules designed to provide numerical solutions to the consumer's problem from the previous section. Before delving into the computational exercise, it is essential to touch on the practicality of these custom modules.
+
+  \subsubsection{Useful auxiliary files}
+
+  In this exercise, two primary user-defined modules are frequently imported and utilized. The first is the \texttt{endOfPrd} module, which contains functions describing the end-of-period value functions found in equations \eqref{eq:vArvl} - \eqref{eq:EndPrd} (and the corresponding first and second derivatives). %The advantage of defining functions in the code which decompose the consumer's optimal behavior in a given period will become evident in section \ref{subsec:transformation}
+
+  The \texttt{resources} module is also used repeatedly throughout the notebook. This file has three primary objectives: (i) providing functions that discretize the continuous distributions from the theoretical model that describe the uncertainty a consumer faces, (ii) defining the utility function over consumption under a number of specifications, and (iii) enhancing the grid of end-of-period assets for which functions (such as those from the \texttt{endOfPrd} module) will be defined. These objectives will be discussed in greater detail and with respect to the numerical methods used to solve the problem in subsequent sections of this document.
+
+\end{comment}
+
+\hypertarget{building-pile}{}
+\subsection{Building the {\PileName} Backward}\label{subsec:building-pile}
+
+We call the structure in which accumulating periods are stored the {\pileName} $\Pile$. Once backward induction is complete, the {\pileName} holds the full definition---what might colloquially be called ``the full model.''  (We avoid the term ``model'' here because it is used in too many other ways and contexts.)  Since we accrete the elements of $\Pile$ one by one as we iterate backward, it can be thought of as a pile of defined {\intervals} (and the {\Cncts} between them).
+
+The process of building the {\pileName} is straightforward.  We start from the terminal {\interval} (section~\ref{sec:normalization}: $\vFunc_{\prdT}(\mNrm) = \uFunc(\mNrm)$, consume everything), so initially $\Pile = \{\pile_{\prdT}\}$.  We will denote the `builder' as a computational object with notation like $\BkBldrPrd$, and we will speak of the backward-induction creation of a new period as being the result of `applying` the $\BkBldrPrd$ to the existing $\Pile$.  The backward builder augments the $\pile$ by creating a new {\Cnct} and then the new period's solution, so the {\pileName} then has the form $\Pile = \{\pile_{\prdT-1},\, \CnctrComp_{\prdT-1,\prdT},\, \pile_{\prdT}\}$.  Section~\ref{sec:solving-the-next} details the construction of $\pile_{\prdT\!-\!1}$; with multiple {\stgs} or control variables the structure generalizes as in section~\ref{sec:multiple-control-variables}.
+
+\end{document}

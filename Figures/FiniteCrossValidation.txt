@@ -1,0 +1,63 @@
+Convergence: old vs modular cT n(m)
+3.0
+
+Absolute difference (interpolation error)
+
+Old (cons-with-shocks)
+New (modular cons-only)
+
+T-1
+T-2
+T-3
+T-4
+T-5
+T-6
+T-7
+
+0.0010
+
+2.5
+
+0.0008
+
+c(m)
+
+|cold cnew|
+
+2.0
+1.5
+
+0.0006
+0.0004
+
+1.0
+
+0.0002
+
+0.5
+
+0.0000
+1
+
+2
+
+m
+
+3
+
+4
+
+5
+
+1
+
+2
+
+m
+
+3
+
+4
+
+5
+

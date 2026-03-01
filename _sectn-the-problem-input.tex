@@ -1,0 +1,78 @@
+
+\hypertarget{the-problem}{}
+\section{The Problem}\label{sec:the-problem}
+
+The usual analysis of dynamic stochastic programming problems packs a great many events (intertemporal choice, stochastic shocks, intertemporal returns, income growth, the taking of expectations, time discounting, and more) into a complex decision in which the agent makes an optimal choice simultaneously taking all these elements into account. For the dissection here, we will be careful to break down everything that happens into distinct operations so that each element can be scrutinized and understood in isolation.
+
+% The variable \bLvl (`bank balances') has been eliminated to align with
+% the bellman-ddsl unified framework
+% (bellman-ddsl/docs/development/references/unified) in which no
+% intermediate `b' variable appears.  The two-step chain
+%   \bLvl = \kLvl \Rfree, \mLvl = \bLvl + \yLvl
+% is collapsed into the single equation \mLvl = \kLvl \Rfree + \yLvl.
+
+We are interested in the behavior of a consumer who begins {\interval} $\prdt$ with a certain amount of `capital'
+\begin{equation}\begin{gathered}\begin{aligned}
+\kLvl_{\prdt}
+      %
+      \UnifiedNote{xₐ ∈ 𝓧ₐ (arrival state of cons stage)}
+\end{aligned}\end{gathered}\end{equation}
+which immediately earns a return factor $\Rfree_{\prdt}$.  Simultaneously, the consumer receives noncapital income $\yLvl_{\prdt}$, which is the product of `permanent income' $\pLvl_{\prdt}$ and a transitory shock $\tranShkEmp_{\prdt}$:
+\hypertarget{eq-yLvl}{}
+\begin{equation}\begin{gathered}\begin{aligned}
+      \yLvl_{\prdt} & = \pLvl_{\prdt}\tranShkEmp_{\prdt} \label{eq:yLvl}
+      %
+      \UnifiedNote{Part of shock space 𝒵ₐᵥ; θ (transitory shock) with E[θ]=1}
+    \end{aligned}\end{gathered}\end{equation}
+whose expectation is 1 (that is, before realization of the transitory shock, the consumer's expectation is that actual income will on average be equal to permanent income $\pLvl_{\prdt}$).
+
+The combination of the capital return and income defines the consumer's `market resources' (sometimes called `cash-on-hand,' following~\cite{deatonUnderstandingC}):
+\hypertarget{eq-mLvl}{}
+\begin{equation}\begin{gathered}\begin{aligned}
+      \mLvl_{\prdt} & = \kLvl_{\prdt}\Rfree_{\prdt}+\yLvl_{\prdt} \label{eq:mLvl},
+      %
+      \UnifiedNote{gₐᵥ: (xₐ, ζₐᵥ) → xᵥ; level: mLvl = kLvl·R + pLvl·θ; unified (no perm inc): m = kR + θ}
+    \end{aligned}\end{gathered}\end{equation}
+available to be spent on consumption $\cLvl_{\prdt}$ for a consumer subject to a liquidity constraint that requires $\cLvl_{\prdt} \leq \mLvl_{\prdt}$ (though we are not imposing such a constraint yet\ifthenelse{\boolean{shortVersion}}{}{---see subsection~\ref{subsec:LiqConstrSelfImposed}}).  Finally we define
+\hypertarget{eq-aLvl}{}
+  \begin{equation}\begin{gathered}\begin{aligned}\label{eq:aLvl}
+    \aLvl_{\prdt} & = \mLvl_{\prdt}-\cLvl_{\prdt} 
+      %
+      \UnifiedNote{gᵥₑ: (xᵥ, 𝜋) → xₑ, i.e. a = gᵥₑ(m, c) = m − c}
+      \end{aligned}\end{gathered}\end{equation}
+mnemonically as `assets-after-all-actions-are-accomplished.' 
+
+The consumer's goal is to maximize discounted utility from consumption over the rest of a lifetime ending at date $\prdT$:
+% chktex-file 36
+\hypertarget{eq-MaxProb}{}
+  \begin{equation}\label{eq:MaxProb}
+    \max~\Ex_{\prdt}\left[\sum_{n=0}^{\prdT-\prdt}\DiscFac^{n} \uFunc(\cLvl_{\prdt+n})\right].
+    %
+    \UnifiedNote{V(x) = max_{π} E[Σₜ βᵗ r(xₜ, π(xₜ))] (MDP objective)}
+  \end{equation}
+Income evolves according to:
+\hypertarget{eq-permincgrow}{}
+  \begin{equation}\begin{gathered}\begin{aligned}
+        \pLvl_{\prdt+1}   = \PermGroFac_{\prdt+1}\pLvl_{\prdt}                                        & \text{~~ -- permanent labor income dynamics} \label{eq:permincgrow}
+        \\ \log ~ \tranShkEmp_{\prdt+n}  \sim ~\Nrml(-\std_{\tranShkEmp}^{2}/2,\std_{\tranShkEmp}^{2}) & \text{~~ -- lognormal transitory shocks}~\forall~n>0 .
+        %
+        \UnifiedNote{Shock space 𝒵ₐᵥ definition; ζₐᵥ = (ψ, θ) with distributions Pₐᵥ}
+      \end{aligned}\end{gathered}\end{equation}
+
+Equation \eqref{eq:permincgrow} indicates that we are allowing for a predictable average profile of income growth over the lifetime $\{\PermGroFac\}_{0}^{T}$ (to capture typical career wage paths, pension arrangements, etc).\footnote{For simplicity, this equation assumes no shocks to permanent income (though they are trivial to add).  Empirically, such shocks are large and must be incorporated into any serious model, but they clutter the exposition without adding much intuition; they are introduced in the final section when we match the model to data.  For a full treatment including permanent shocks, see \cite{BufferStockTheory}.}  Finally, the utility function is of the Constant Relative Risk Aversion (CRRA) form, $\uFunc(\bullet) = \bullet^{1-\CRRA}/(1-\CRRA)$.
+
+It is well known that this problem can be rewritten in recursive (Bellman) form:
+\hypertarget{eq-vrecurse}{}
+  \begin{equation}\begin{gathered}\begin{aligned}
+        \vFunc_{\prdt}(\mLvl_{\prdt},\pLvl_{\prdt})  & = \max_{\cLvl}~ \uFunc(\cLvl) + \DiscFac \Ex_{\prdt}[ \vFunc_{\prdt+1}(\mLvl_{\prdt+1},\pLvl_{\prdt+1})]\label{eq:vrecurse}
+        %
+        \UnifiedNote{𝒱(xᵥ) = max_𝜋{r(xᵥ, 𝜋) + β E[𝒱₊(gₐᵥ(gₑₐ₊(gᵥₑ(xᵥ, 𝜋)), ζ))]}}
+      \end{aligned}\end{gathered}\end{equation}
+subject to the Dynamic Budget Constraint (DBC) defined by equation~\eqref{eq:mLvl}, and to the dynamic process for income defined in \eqref{eq:permincgrow} and to a transition equation that defines next period's initial capital as this period's end-of-period assets:
+\begin{equation}\begin{gathered}\begin{aligned}
+      \kLvl_{\prdt+1} & = \aLvl_{\prdt}. \label{eq:transitionstate}
+      %
+      \UnifiedNote{gₑₐ₊: 𝓧ₑ → 𝓧ₐ₊, i.e. k_{t+1} = gₑₐ₊(aₜ) = aₜ}
+    \end{aligned}\end{gathered}\end{equation}
+
+%\notinsubfile{\input{@resources/latex/econark-multibib}}

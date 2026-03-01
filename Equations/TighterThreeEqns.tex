@@ -1,0 +1,11 @@
+  \begin{equation*}\begin{gathered}\begin{aligned}
+        \vctr{1}_{\text{Lo}}(\mNrm)  & = 1 \text{~if $          \mNrm \leq  \bar{\check{\mNrm}}_{\prdt}^{\#} \phantom{< \mNrm <   \Min{\hat{\mNrm}}_{\prdt}^{\#}          \leq \mNrm}$}
+        \\  \vctr{1}_{\text{Mid}}(\mNrm)  & = 1 \text{~if $\phantom{ \mNrm \leq}~ \bar{\check{\mNrm}}_{\prdt}^{\#}          < \mNrm <   \Min{\hat{\mNrm}}_{\prdt}^{\#} \phantom{\leq \mNrm}$}
+        \\  \vctr{1}_{\text{Hi}}(\mNrm)  & = 1 \text{~if $\phantom{ \mNrm \leq  ~\bar{\check{\mNrm}}_{\prdt}^{\#}          < \mNrm < } \Min{\hat{\mNrm}}_{\prdt}^{\#}           \leq \mNrm$}
+      \end{aligned}\end{gathered}\end{equation*}
+  we can define a well-behaved approximating consumption function
+  \begin{equation}\begin{gathered}\begin{aligned}
+        \Aprx{\cFunc}_{\prdt}  & = \vctr{1}_{\text{Lo}} \Aprx{\Min{\cFunc}}_{\prdt} + \vctr{1}_{\text{Mid}} \Aprx{\tilde{\cFunc}}_{\prdt}+\vctr{1}_{\text{Hi}} \Aprx{\Max{\cFunc}}_{\prdt}.
+        %
+        \UnifiedNote{[no direct counterpart] (computational: piecewise consumption approximation combining low/mid/high regions)}
+      \end{aligned}\end{gathered}\end{equation}
