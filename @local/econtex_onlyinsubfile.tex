@@ -1,0 +1,10 @@
+\onlyinsubfile{% https://tex.stackexchange.com/questions/463699/proper-reference-numbers-with-subfiles
+    \csname @ifpackageloaded\endcsname{xr-hyper}{%
+      \externaldocument{SolvingMicroDSOPs}% xr-hyper in use; optional argument for url of main.pdf for hyperlinks
+    }{%
+      \externaldocument{SolvingMicroDSOPs}% xr in use
+    }%
+    \providecommand{\labelprefix}{}\renewcommand\labelprefix{}%
+    % Initialize the counters via the labels belonging to the main document:
+}
+

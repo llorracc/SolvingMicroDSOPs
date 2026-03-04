@@ -1,0 +1,105 @@
+# SolvingMicroDSOPs is a research project, not an installable package
+# This pyproject.toml manages dependencies only (no build-system needed)
+
+[project]
+name = "solvingmicrodsops"
+version = "1.0.0"
+description = "Solving Microeconomic Dynamic Stochastic Optimization Problems"
+requires-python = ">=3.10,<3.13"
+authors = [
+    {name = "Christopher D. Carroll", email = "ccarroll@llorracc.org"},
+]
+readme = "README.md"
+license = {text = "Apache-2.0"}
+keywords = ["economics", "computational", "dynamic-programming", "consumption-savings", "numerical-methods"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Economics",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: Apache Software License",
+]
+
+dependencies = [
+    # Economics packages
+    "econ-ark>=0.17.1",
+    # Core scientific computing stack
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "pandas>=2.0",
+    "matplotlib>=3.7",
+]
+
+[dependency-groups]
+# Jupyter and interactive tools
+jupyter = [
+    "jupyter>=1.0",
+    "notebook>=7.0",
+    "ipykernel>=6.0",
+    "ipywidgets>=8.0",
+    "jupytext>=1.14",
+]
+
+# Development and testing
+dev = [
+    "pytest>=7.0",
+    "ruff>=0.1.0",
+]
+
+# All dependencies for complete environment
+all = [
+    {include-group = "jupyter"},
+    {include-group = "dev"},
+]
+
+# ============================================================================
+# SYSTEM DEPENDENCIES (NOT MANAGED BY UV)
+# ============================================================================
+# The following system-level tools are required but CANNOT be installed via uv:
+#
+# REQUIRED:
+#   - LaTeX (pdflatex, bibtex, latexmk) - For PDF generation
+#     Install (macOS): brew install --cask mactex
+#     Install (Linux): apt-get install texlive-full
+#
+# OPTIONAL:
+#   - Inkscape - For SVG/PDF figure conversion
+#     Install (macOS): brew install --cask inkscape
+# ============================================================================
+
+[tool.setuptools]
+# SolvingMicroDSOPs is a research project, not an installable package
+# Disable automatic package discovery to avoid setuptools errors
+py-modules = []
+
+[tool.setuptools.packages.find]
+# Explicitly exclude all directories from package discovery
+where = ["."]
+exclude = ["*"]
+
+[tool.uv]
+# UV will manage Python version based on requires-python
+# No additional configuration needed
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+extend-exclude = [
+    ".venv*",
+    "venv",
+    "build",
+    "dist",
+    "docs",
+    "Code-private",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["Code/Python/tests"]
+python_files = "test_*.py"
+python_classes = "Test*"
+python_functions = "test_*"
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+]

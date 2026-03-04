@@ -1,0 +1,29 @@
+% macro \ifExecuteAllowed is a boolean indicating shell access
+
+\NeedsTeXFormat{LaTeX2e}
+% Require the iftex package
+\RequirePackage{iftex}
+
+% Require the etoolbox package for boolean operations
+\RequirePackage{etoolbox}
+
+% Define the boolean variable
+\newbool{executeAllowed}
+
+% Check if we're using pdfTeX
+\ifpdftex
+  % For pdfTeX, check if \pdfshellescape is defined and equal to 1 or 2
+  \ifcsname pdfshellescape\endcsname
+    \ifnumequal{\pdfshellescape}{1}{\booltrue{executeAllowed}}{}
+    \ifnumequal{\pdfshellescape}{2}{\booltrue{executeAllowed}}{}
+  \fi
+\else
+  % For XeTeX and LuaTeX, check if \shellescape is defined and equal to 1 or 2
+  \ifcsname shellescape\endcsname
+    \ifnumequal{\shellescape}{1}{\booltrue{executeAllowed}}{}
+    \ifnumequal{\shellescape}{2}{\booltrue{executeAllowed}}{}
+  \fi
+\fi
+
+% Provide a user-friendly command to check the boolean
+\newcommand{\ifExecuteAllowed}[2]{\ifbool{executeAllowed}{#1}{#2}}

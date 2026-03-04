@@ -1,0 +1,136 @@
+# Required LaTeX Packages for SolvingMicroDSOPs
+# Single Source of Truth for tlmgr package installation
+#
+# This file is read by reproduce/docker/setup.sh and the Dockerfile,
+# and drives `tlmgr install`.
+# Lines beginning with # are comments. Inline comments are also stripped.
+#
+# Packages already included in collection-basic are noted with ❌ and
+# commented out. Packages whose .sty name differs from the tlmgr name
+# are annotated with the .sty they provide.
+#
+# The econark document class (econark.cls) pulls in a large collection of
+# packages automatically; any package it requires is implicitly needed here too.
+
+## MATH AND SYMBOLS
+# amsfonts   # ❌ collection-basic
+# amsmath    # ❌ collection-basic
+# amssymb    # ❌ collection-basic
+# amsthm     # ❌ collection-basic
+bbm
+cancel
+doublestroke       # provides dsfont.sty
+mathtools
+isomath
+
+## TEXT FORMATTING AND FONTS
+accents
+# fontenc    # ❌ collection-basic
+# inputenc   # ❌ collection-basic
+setspace
+ulem
+soul
+pxfonts
+lm
+lm-math
+cm-super
+
+## BIBLIOGRAPHY AND CITATIONS
+natbib
+harvard
+
+## FIGURES AND GRAPHICS
+booktabs
+caption            # provides subcaption.sty
+floatrow
+# graphicx   # ❌ collection-basic
+# rotating   # ❌ provided by graphics bundle in collection-basic
+subfig
+subfigure
+pgf
+
+## TABLE FORMATTING
+# array      # ❌ collection-basic
+# dcolumn    # ❌ provided by tools bundle in collection-basic
+multirow
+ragged2e
+tabulary
+threeparttable
+
+## DOCUMENT STRUCTURE AND LAYOUT
+appendix
+currfile
+filehook
+# fancyhdr   # ❌ collection-basic
+# geometry   # ❌ collection-basic
+import
+koma-script        # provides scrlayer-scrpage.sty
+pdflscape
+pdfpages
+sectsty
+subfiles
+titlesec
+tocloft
+
+## ENGINE DETECTION AND CONDITIONALS
+iftex              # provides ifxetex.sty (modern replacement)
+# ifthen     # ❌ provided by base LaTeX in collection-basic
+
+## CROSS-REFERENCES AND LINKS
+# hyperref   # ❌ collection-basic (also provides xr-hyper.sty)
+# xr         # ❌ provided by tools bundle in collection-basic
+showlabels
+pdfcomment
+
+## LISTS AND ENUMERATIONS
+algorithms         # provides algorithmic.sty
+# enumerate  # ❌ collection-basic
+enumitem
+
+## SOURCE CODE LISTINGS
+listings
+moreverb
+
+## UTILITY PACKAGES
+# babel      # ❌ collection-basic
+catchfile
+# color      # ❌ collection-basic
+environ
+etoolbox
+ncctools
+nth
+optional
+# pdfsuppressruntime  # ❌ not a tlmgr package; local .sty in @resources/
+# pifont     # ❌ provided by psnfss in collection-basic
+placeins
+siunitx
+snapshot
+trimspaces
+xcolor
+xpatch
+xstring
+textcase
+
+## ECONARK.CLS DEPENDENCIES
+# These are required by econark.cls and its associated .sty files
+# but have tlmgr names that differ from the .sty they provide.
+datetime2          # date manipulation (econark.cls)
+tracklang          # dependency of datetime2
+footmisc           # footnote customization (econark.cls)
+bigfoot            # provides perpage.sty (econark.cls)
+endfloat           # optional: move floats to end (econark.cls, guarded by \opt)
+xkeyval            # dependency of datetime2 and others
+wasysym            # symbols (econark-ark-required.sty)
+wasy               # Metafont sources for wasy fonts (required by wasysym)
+layouts            # page layout measurement (econtexSetup.sty)
+xmpincl            # XMP metadata inclusion (econark_demacro_demacro.sty)
+zref               # provides zref-savepos.sty (dependency of pdfcomment)
+marginnote         # margin notes (local-packages.sty)
+soulpos            # dependency of soul with pdflatex
+
+## SPECIALIZED
+eurosym
+dvisvgm
+svg
+changepage
+luatex

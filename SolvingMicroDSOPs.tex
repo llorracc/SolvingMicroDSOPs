@@ -1,0 +1,121 @@
+\input{@resources/tex-add-search-paths} % allow latex to find custom stuff
+
+\RequirePackage{setspace} % load before class so it is before hyperref (avoids Hfootnote dest warning)
+\documentclass[titlepage, headings=optiontotocandhead]{econark}
+\newcommand{\texname}{SolvingMicroDSOPs} % Keyname for the doc
+
+% specific to this paper
+% \usepackage{econark-titlepage} % custom titlepage
+% These are in various subdirectories searched by add-latex-search-paths
+\usepackage{local-macros}      % @resources/latex: defns for this project
+\usepackage{econark}           % econark defns
+\usepackage{llorracc-handouts} % allow references to llorracc-handouts
+\usepackage{local-packages}    % LaTeX config in @resources/latex
+\newcommand{\owner}{llorracc}  % llorracc or econ-ark
+
+% booleans control whether certain options are on or off:
+\input{\texname-options}
+
+% replace macros with their referents using demacro
+% (only operative when processing doc with demacro script):
+\provideboolean{demacro}\setboolean{demacro}{false}
+\ifthenelse{\boolean{demacro}}{
+  %replace only a few things that are single letter vars
+  \usepackage{SolvingMicroDSOPs_demacro}}{}
+
+% Only operative when running demacro script on document-clean:
+% (de-macro-do.sh script changes the name to end in -private)
+\provideboolean{demacromore}\setboolean{demacromore}{false}
+\ifthenelse{\boolean{demacromore}}{
+  \usepackage{SolvingMicroDSOPs_demacro_demacro}}{} % demacro most things
+
+% Configure html links etc
+\input{SolvingMicroDSOPs-hypersetup}
+
+\usepackage{econark-multibib}  % use supplemental bib files if they exist
+
+\begin{document}
+% Provide destinations for footnote links (perpage/footnoteB) so pdfTeX does not warn "Hfootnote.1/2 referenced but do not exist"
+\hypertarget{Hfootnote.1}{}\hypertarget{Hfootnote.2}{}
+
+% Sections = _sectn-
+\subfile{_sectn-titlepage}
+\subfile{_sectn-table-of-contents} % only in pdf
+\subfile{_sectn-introduction}
+\subfile{_sectn-the-problem}
+\subfile{_sectn-normalization}
+\subfile{_sectn-notation}
+\subfile{_sectn-the-usual-theory}
+\ifthenelse{\boolean{shortVersion}}{}{
+  \subfile{_sectn-solving-the-next}
+  }
+\ifthenelse{\boolean{shortVersion}}{}{
+  \subfile{_sectn-the-infinite-horizon}}
+\subfile{_sectn-method-of-moderation-brief}
+\subfile{_sectn-multiple-control-variables}
+\ifthenelse{\boolean{shortVersion}}{}{
+  \subfile{_sectn-structural-estimation}
+  }
+\subfile{_sectn-conclusion}
+
+\clearpage\vfill\eject
+
+\centerline{\LARGE Appendices}\vspace{0.2in}
+
+\appendix
+
+% Appendices = _apndx-
+\subfile{_apndx-scf-data}
+\vfill\clearpage
+
+\ifthenelse{\boolean{showPageHead}}{ %then
+  \clearpairofpagestyles % No header for references pages
+  }{} % No head has been set to clear
+
+\bibliographystyle{econark}% Like econometrica.bst but with full names rather than initials
+\econarkmultibib{\texname}
+
+
+\trp{
+  \pagebreak
+  \hypertarget{Appendices}{} % Allows link to [url-of-paper]#Appendices
+  \ifthenelse{\boolean{Web}}{}{% Web version has no page headers
+    \chead[Appendices]{Appendices}      % but PDF version does
+    \appendixpage % Reset formatting for appendices
+  }
+  \appendix
+  \addcontentsline{toc}{section}{Appendices} % Say "Appendices"
+
+  \subfile{TRP_aInU}
+}{}
+
+
+\end{document}\endinput % \endinput prevents any processing of subsequent stuff
+
+% Local Variables:
+% TeX-master-file: t
+% eval: (setq TeX-command-list  (assq-delete-all (car (assoc "BibTeX" TeX-command-list)) TeX-command-list))
+% eval: (setq TeX-command-list  (assq-delete-all (car (assoc "Biber"  TeX-command-list)) TeX-command-list))
+% eval: (setq TeX-command-list  (remove '("BibTeX" "%(bibtex) %s"    TeX-run-BibTeX nil t :help "Run BibTeX") TeX-command-list))
+% eval: (setq TeX-command-list  (remove '("BibTeX"    "bibtex %s"    TeX-run-BibTeX nil (plain-tex-mode latex-mode doctex-mode ams-tex-mode texinfo-mode context-mode)  :help "Run BibTeX") TeX-command-list))
+% eval: (setq TeX-command-list  (remove '("BibTeX" "bibtex %s"    TeX-run-BibTeX nil t :help "Run BibTeX") TeX-command-list))
+% eval: (add-to-list 'TeX-command-list '("BibTeX" "bibtex %s" TeX-run-BibTeX nil t                                                                              :help "Run BibTeX") t)
+% eval: (add-to-list 'TeX-command-list '("BibTeX" "bibtex %s" TeX-run-BibTeX nil (plain-tex-mode latex-mode doctex-mode ams-tex-mode texinfo-mode context-mode) :help "Run BibTeX") t)
+% TeX-PDF-mode: t
+% TeX-file-line-error: t
+% TeX-debug-warnings: t
+% LaTeX-command-style: (("" "pdflatex -output-format=PDF %(file-line-error) %(extraopts) %S%(PDFout)"))
+% TeX-source-correlate-mode: t
+% TeX-parse-self: t
+% TeX-parse-all-errors: t
+% eval: (cond ((string-equal system-type "darwin") (progn (setq TeX-view-program-list '(("Skim" "/Applications/Skim.app/Contents/SharedSupport/displayline -b %n %o %b"))))))
+% eval: (cond ((string-equal system-type "gnu/linux") (progn (setq TeX-view-program-list '(("Evince" "evince --page-index=%(outpage) %o"))))))
+% eval: (cond ((string-equal system-type "gnu/linux") (progn (setq TeX-view-program-selection '((output-pdf "Evince"))))))
+% eval: (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+% eval: (setq reftex-plug-into-AUCTeX t)
+% coding: utf-8
+% eval: (prettify-symbols-mode 1)
+% eval: (setq prettify-symbols-unprettify-at-point 'right-edge)
+% eval: (setq debug-on-error t)
+% End:
+

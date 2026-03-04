@@ -1,0 +1,32 @@
+% Style file with stuff that should be available for any latex doc in Econ-ARK
+% n.b.: \providecommand{[macroName]}{[value]} does not overwrite [macroName]
+% so if used after macroName is already defined, it leaves the macro unchanged
+
+% Get references right whether compiled as subfile or main file
+% https://tex.stackexchange.com/questions/463699/proper-reference-numbers-with-subfiles
+\RequirePackage[nointegrals]{wasysym} % integrals conflict with amsmath
+\newcommand\labelprefix{}
+\newcommand\localorexternallabel[1]{% Removing this comment breaks the command
+  \expandafter\ifx\csname r@#1\endcsname\relax
+  \labelprefix
+  \fi #1% Removing this comment breaks the command
+}
+\makeatletter
+\newif\ifdvi\dvitrue
+\@ifundefined{pdfoutput}{}{\ifnum\pdfoutput>0 \dvifalse\fi}
+\makeatother
+
+% Appendices and body are subfiles
+\RequirePackage{subfiles}
+%\RequirePackage{xmpincl} % mathstat.dal..ca/~sellinger/pdfa
+
+% Get all the packages from the American Mathematical Society
+\RequirePackage{amsmath,amsfonts,amsthm,amssymb}
+\RequirePackage{moreverb}
+% Command to define a label only if it does not yet exist (suppresses misleading
+% warnings when material created in subfiles is read while references already
+% exist from master document)
+\makeatletter
+\newcommand{\iflabelexists}[3]{\@ifundefined{r@#1}{\G@refundefinedtrue{#3}}{#2}}
+\makeatother
+

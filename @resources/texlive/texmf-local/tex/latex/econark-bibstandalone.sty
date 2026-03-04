@@ -1,0 +1,20 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{econark-bibstandalone}[2023/06/01 EconArk Bibliography Standalone Package]
+
+\RequirePackage{ifthen}
+
+\newcommand{\bibstandalone}[1]{%
+  \makeatletter
+  \@ifundefined{subfiles@main}{%
+    % Standalone mode
+    \econarkmultibib{#1}%
+  }{%
+    % Included in main document
+    \typeout{jobname: \jobname.bbl}
+    \renewcommand{\bibdata}[1]{\@input@{\jobname.bbl}}%
+    \econarkmultibib{#1}%
+  }%
+  \makeatother
+}
+
+\endinput
