@@ -1,0 +1,14 @@
+  Defining $\mu_{\prdt} =
+  \log \aboveMin \mNrm_{\prdt}$ (which can range from $-\infty$ to $\infty$), the object in the middle of the last inequality is
+  \begin{equation}\begin{gathered}\begin{aligned}
+        \Max{\koppa}_{\prdt}(\mu_{\prdt})   & \equiv  \left(\frac{\bar{\cFunc}_{\prdt}(\Min{m}_{\prdt}+e^{\mu_{\prdt}})-\cFunc_{\prdt}(\Min{m}_{\prdt}+e^{\mu_{\prdt}})}{\aboveMin \hNrm_{\Cntn} \MPCmin_{\prdt}}\right), \label{eq:koppa}
+        %
+        \UnifiedNote{[no direct counterpart] (computational: koppa — bounded interpolant between pessimist/optimist consumption)}
+      \end{aligned}\end{gathered}\end{equation}
+  and we now define
+  \begin{equation}\begin{gathered}\begin{aligned}
+        \Max{\chiFunc}_{\prdt}(\mu_{\prdt})  & = \log \left(\frac{1-\Max{\koppa}_{\prdt}(\mu_{\prdt})}{\Max{\koppa}_{\prdt}(\mu_{\prdt})}\right)
+        \\  & = \log \left(1/\Max{\koppa}_{\prdt}(\mu_{\prdt})-1\right) \label{eq:chi}
+        %
+        \UnifiedNote{[no direct counterpart] (computational: chi — log-odds transform of koppa for interpolation)}
+      \end{aligned}\end{gathered}\end{equation}

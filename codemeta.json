@@ -1,0 +1,73 @@
+{
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "@type": "SoftwareSourceCode",
+  "name": "SolvingMicroDSOPs",
+  "description": "Solution Methods for Microeconomic Dynamic Stochastic Optimization Problems — lecture notes, code, and replication for structural estimation of a life-cycle consumption-saving model.",
+  "version": "2.0.0",
+  "datePublished": "2021-02-20",
+  "dateModified": "2026-03-01",
+  "license": "https://spdx.org/licenses/Apache-2.0",
+  "codeRepository": "https://github.com/econ-ark/SolvingMicroDSOPs",
+  "issueTracker": "https://github.com/econ-ark/SolvingMicroDSOPs/issues",
+  "programmingLanguage": {
+    "@type": "ComputerLanguage",
+    "name": "Python",
+    "url": "https://www.python.org/"
+  },
+  "runtimePlatform": "Python 3.10+",
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Christopher D.",
+      "familyName": "Carroll",
+      "@id": "https://orcid.org/0000-0003-3732-9312",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "Johns Hopkins University"
+      }
+    }
+  ],
+  "softwareRequirements": [
+    "econ-ark >= 0.17.1",
+    "numpy >= 1.24",
+    "scipy >= 1.10",
+    "pandas >= 2.0",
+    "matplotlib >= 3.7"
+  ],
+  "keywords": [
+    "Consumption",
+    "Saving",
+    "Dynamic Programming",
+    "Endogenous Grid Method",
+    "Numerical Methods",
+    "Life Cycle Model",
+    "Portfolio Choice",
+    "Structural Estimation",
+    "HARK",
+    "Econ-Ark"
+  ],
+  "relatedLink": [
+    "https://econ-ark.org/materials/SolvingMicroDSOPs",
+    "https://llorracc.github.io/SolvingMicroDSOPs"
+  ],
+  "isPartOf": {
+    "@type": "SoftwareApplication",
+    "name": "Econ-Ark",
+    "url": "https://econ-ark.org"
+  },
+  "referencePublication": {
+    "@type": "ScholarlyArticle",
+    "name": "Theoretical Foundations of Buffer Stock Saving",
+    "author": {
+      "@type": "Person",
+      "givenName": "Christopher D.",
+      "familyName": "Carroll"
+    },
+    "datePublished": "2026",
+    "isPartOf": {
+      "@type": "Periodical",
+      "name": "Quantitative Economics"
+    },
+    "url": "https://econ-ark.github.io/BufferStockTheory"
+  }
+}

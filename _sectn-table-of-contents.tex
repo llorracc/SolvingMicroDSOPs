@@ -1,0 +1,15 @@
+\input{@resources/tex-add-search-paths} % paths simplify everything
+\documentclass[SolvingMicroDSOPs]{subfiles}
+\input{subfile-start} % in @resources
+
+\begin{document}
+
+% Table of contents does not work in html; only execute it in pdf mode
+
+\ifnum\pdfoutput>0
+  % code to be executed if compiled in pdf mode
+  \tableofcontents \addtocontents{toc}{\vspace{1em}}\newpage
+\fi
+\newpage\pagenumbering{arabic} % start arabic numbering anew after titlepage and toc
+
+\end{document}
