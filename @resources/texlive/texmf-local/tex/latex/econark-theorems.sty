@@ -1,0 +1,22 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{econark-theorems}[2024/01/01 Econark theorem environments]
+
+% % ------------------ Theorems ------------------ 
+% \newtheorem{assumption}{Assumption}
+
+% Define theorems only if not already defined
+\@ifundefined{claim}{\newtheorem{claim}{Claim}}{}
+\@ifundefined{proposition}{\newtheorem{proposition}{Proposition}}{}
+\@ifundefined{corollary}{\newtheorem{corollary}{Corollary}}{}
+\@ifundefined{fact}{\newtheorem{fact}{Fact}}{}
+\@ifundefined{remark}{\newtheorem{remark}{Remark}}{}
+
+% ---------------Custom Definitions--------------
+
+\def\liminf{\mathop{\rm lim\, inf}\limits} 
+%\DeclareMathOperator{\Ex}{\mathbb{E}} % Expectations operator 
+\def\var{\operatorname{var}} % variance
+\def\cov{\operatorname{cov}} % covariance
+\def\std{\operatorname{std}} % standard deviation
+\def\argmax{\operatornamewithlimits{arg\,max}} % argmax
+

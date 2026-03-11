@@ -1,0 +1,176 @@
+# .latexmkrc_quit-pdf-viewers-on-latexmk_-c
+# 
+# PDF Viewer Management Module for latexmk
+# Include this in your main .latexmkrc with: do '.latexmkrc_quit-pdf-viewers-on-latexmk_-c';
+
+sub handle_pdf_viewers {
+    my $action = shift || 'check';
+    
+    # Skip if PDF viewer management is disabled
+    return unless $ENV{'MAKEPDF_CLOSE_VIEWERS'} && $ENV{'MAKEPDF_CLOSE_VIEWERS'} eq 'true';
+    
+    print "=== PDF Viewer Management ===\n";
+    
+    # Get the directory to scan (current directory)
+    my $scan_dir = ".";
+    
+    # Find PDF files in current directory and immediate subdirectories (depth 1)
+    my @pdf_files = ();
+    
+    # Current directory PDFs
+    opendir(my $dh, $scan_dir) or return;
+    while (my $file = readdir($dh)) {
+        push @pdf_files, "$scan_dir/$file" if $file =~ /\.pdf$/i && -f "$scan_dir/$file";
+    }
+    closedir($dh);
+    
+    # Subdirectory PDFs (depth 1)
+    opendir($dh, $scan_dir) or return;
+    while (my $subdir = readdir($dh)) {
+        next if $subdir =~ /^\./;  # Skip . and ..
+        my $subdir_path = "$scan_dir/$subdir";
+        next unless -d $subdir_path;
+        
+        opendir(my $subdh, $subdir_path) or next;
+        while (my $file = readdir($subdh)) {
+            push @pdf_files, "$subdir_path/$file" if $file =~ /\.pdf$/i && -f "$subdir_path/$file";
+        }
+        closedir($subdh);
+    }
+    closedir($dh);
+    
+    return unless @pdf_files;
+    
+    # Check which PDFs are open using lsof
+    my @open_viewers = ();
+    
+    foreach my $pdf_file (@pdf_files) {
+        my $lsof_output = `lsof "$pdf_file" 2>/dev/null`;
+        next unless $lsof_output;
+        
+        # Parse lsof output (skip header line)
+        my @lines = split /\n/, $lsof_output;
+        shift @lines;  # Remove header
+        
+        foreach my $line (@lines) {
+            my @fields = split /\s+/, $line;
+            next unless @fields >= 2;
+            
+            my $pid = $fields[1];
+            my $process = $fields[0];
+            
+            # Get better app name on macOS
+            my $app_name = $process;
+            if ($^O eq 'darwin') {
+                my $ps_output = `ps -p $pid -o comm= 2>/dev/null`;
+                chomp $ps_output;
+                if ($ps_output) {
+                    $ps_output =~ s/.*\///;  # Remove path
+                    $app_name = $ps_output;
+                    
+                    # Convert to proper app names
+                    if ($app_name eq 'Skim') { $app_name = 'Skim.app'; }
+                    elsif ($app_name eq 'Preview') { $app_name = 'Preview.app'; }
+                    elsif ($app_name =~ /Adobe Acrobat/) { $app_name = 'Adobe Acrobat DC.app'; }
+                    elsif ($app_name eq 'TeXShop') { $app_name = 'TeXShop.app'; }
+                }
+            }
+            
+            push @open_viewers, {
+                pid => $pid,
+                app => $app_name,
+                pdf => $pdf_file
+            };
+        }
+    }
+    
+    return unless @open_viewers;
+    
+    my $viewer_count = scalar @open_viewers;
+    my $requested_action = $ENV{'MAKEPDF_CLOSE_ACTION'} || 'check';
+    
+    if ($requested_action eq 'check') {
+        print "WARNING: $viewer_count PDF viewer(s) detected:\n";
+        foreach my $viewer (@open_viewers) {
+            my $basename = $viewer->{pdf};
+            $basename =~ s/.*\///;  # Get just filename
+            print "  → $viewer->{app} (PID: $viewer->{pid}) viewing $basename\n";
+        }
+        print "To automatically close viewers, set MAKEPDF_CLOSE_ACTION=quit\n";
+        
+    } elsif ($requested_action eq 'quit') {
+        print "Attempting to close $viewer_count PDF viewer(s)...\n";
+        
+        foreach my $viewer (@open_viewers) {
+            my $basename = $viewer->{pdf};
+            $basename =~ s/.*\///;
+            print "Closing $viewer->{app} viewing $basename...\n";
+            
+            my $success = 0;
+            
+            if ($^O eq 'darwin') {
+                # macOS: Try AppleScript first for .app files
+                if ($viewer->{app} =~ /\.app$/) {
+                    my $script_name = $viewer->{app};
+                    $script_name =~ s/\.app$//;
+                    
+                    my $applescript_result = system("osascript -e 'tell application \"$script_name\" to quit' 2>/dev/null");
+                    if ($applescript_result == 0) {
+                        print "  ✓ Successfully quit $script_name via AppleScript\n";
+                        $success = 1;
+                    }
+                }
+                
+                # Fallback to killall/kill
+                unless ($success) {
+                    if (system("killall '$viewer->{app}' 2>/dev/null") == 0 || 
+                        system("kill -TERM $viewer->{pid} 2>/dev/null") == 0) {
+                        print "  ✓ Successfully sent termination signal to $viewer->{app}\n";
+                        $success = 1;
+                    }
+                }
+            } else {
+                # Linux/Unix: Use killall or kill
+                my $process_name = $viewer->{app};
+                $process_name =~ s/\.app$// if $process_name =~ /\.app$/;
+                
+                if (system("killall -TERM '$process_name' 2>/dev/null") == 0 ||
+                    system("pkill -TERM '$process_name' 2>/dev/null") == 0 ||
+                    system("kill -TERM $viewer->{pid} 2>/dev/null") == 0) {
+                    print "  ✓ Successfully sent termination signal to $process_name\n";
+                    $success = 1;
+                }
+            }
+            
+            unless ($success) {
+                print "  ✗ Failed to quit $viewer->{app}\n";
+            }
+        }
+        
+        # Give viewers time to close and re-check
+        sleep 1;
+        
+    } elsif ($requested_action eq 'warn') {
+        print "WARNING: $viewer_count PDF viewer(s) detected but not closing (action=warn):\n";
+        foreach my $viewer (@open_viewers) {
+            my $basename = $viewer->{pdf};
+            $basename =~ s/.*\///;
+            print "  → $viewer->{app} (PID: $viewer->{pid}) viewing $basename\n";
+        }
+    }
+    
+    print "\n";
+}
+
+# Hook into latexmk's cleanup phase
+# This runs when latexmk -c is called
+$clean_up_hook = sub {
+    handle_pdf_viewers('quit') if $ENV{'MAKEPDF_CLOSE_VIEWERS'} && $ENV{'MAKEPDF_CLOSE_VIEWERS'} eq 'true';
+};
+
+# For latexmk 4.70+, use the proper cleanup hook
+eval {
+    $cleanup_hook = $clean_up_hook;
+};
+
+1;  # Return true for successful loading 

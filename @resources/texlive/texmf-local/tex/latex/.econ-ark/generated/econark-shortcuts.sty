@@ -1,0 +1,230 @@
+% Econ-ARK standard mathematical notation - v2.0
+% Auto-generated from macros.yaml on 2025-07-15 15:40:43
+% DO NOT EDIT - Use the generator script: python .econ-ark/generate-macros.py
+% 
+% Maintainer: econ-ark.org
+% Total commands: 193
+
+\ProvidesPackage{econark-shortcuts}[2025/07/15 v2.0 Econ-ARK standard mathematical notation]
+
+% ARK command definition utility - ensures our notation takes precedence
+\newcommand{\ARKcommand}[2]{%
+  \providecommand{#1}{}%
+  \renewcommand{#1}{#2}%
+}
+
+% Individual variable definitions
+% Generated from 'variables' section
+
+% BEHAVIOR VARIABLES
+\ARKcommand{\MPC}{\kappa}  % Marginal propensity to consume
+
+% FUNCTIONS VARIABLES
+\ARKcommand{\AFunc}{\mathrm{A}}  % Function variable for letter A (from Letter function variables)
+\ARKcommand{\BFunc}{\mathrm{B}}  % Function variable for letter B (from Letter function variables)
+\ARKcommand{\CFunc}{\mathrm{C}}  % Function variable for letter C (from Letter function variables)
+\ARKcommand{\DFunc}{\mathrm{D}}  % Function variable for letter D (from Letter function variables)
+\ARKcommand{\EFunc}{\mathrm{E}}  % Function variable for letter E (from Letter function variables)
+\ARKcommand{\FFunc}{\mathrm{F}}  % Function variable for letter F (from Letter function variables)
+\ARKcommand{\GFunc}{\mathrm{G}}  % Function variable for letter G (from Letter function variables)
+\ARKcommand{\HFunc}{\mathrm{H}}  % Function variable for letter H (from Letter function variables)
+\ARKcommand{\IFunc}{\mathrm{I}}  % Function variable for letter I (from Letter function variables)
+\ARKcommand{\JFunc}{\mathrm{J}}  % Function variable for letter J (from Letter function variables)
+\ARKcommand{\KFunc}{\mathrm{K}}  % Function variable for letter K (from Letter function variables)
+\ARKcommand{\LFunc}{\mathrm{L}}  % Function variable for letter L (from Letter function variables)
+\ARKcommand{\MFunc}{\mathrm{M}}  % Function variable for letter M (from Letter function variables)
+\ARKcommand{\NFunc}{\mathrm{N}}  % Function variable for letter N (from Letter function variables)
+\ARKcommand{\OFunc}{\mathrm{O}}  % Function variable for letter O (from Letter function variables)
+\ARKcommand{\PFunc}{\mathrm{P}}  % Function variable for letter P (from Letter function variables)
+\ARKcommand{\QFunc}{\mathrm{Q}}  % Function variable for letter Q (from Letter function variables)
+\ARKcommand{\RFunc}{\mathrm{R}}  % Function variable for letter R (from Letter function variables)
+\ARKcommand{\SFunc}{\mathrm{S}}  % Function variable for letter S (from Letter function variables)
+\ARKcommand{\TFunc}{\mathrm{T}}  % Function variable for letter T (from Letter function variables)
+\ARKcommand{\UFunc}{\mathrm{U}}  % Function variable for letter U (from Letter function variables)
+\ARKcommand{\VFunc}{\mathrm{V}}  % Function variable for letter V (from Letter function variables)
+\ARKcommand{\WFunc}{\mathrm{W}}  % Function variable for letter W (from Letter function variables)
+\ARKcommand{\XFunc}{\mathrm{X}}  % Function variable for letter X (from Letter function variables)
+\ARKcommand{\YFunc}{\mathrm{Y}}  % Function variable for letter Y (from Letter function variables)
+\ARKcommand{\ZFunc}{\mathrm{Z}}  % Function variable for letter Z (from Letter function variables)
+\ARKcommand{\aFunc}{\mathrm{a}}  % Function variable for letter a (from Letter function variables)
+\ARKcommand{\bFunc}{\mathrm{b}}  % Function variable for letter b (from Letter function variables)
+\ARKcommand{\cFunc}{\mathrm{c}}  % Function variable for letter c (from Letter function variables)
+\ARKcommand{\dFunc}{\mathrm{d}}  % Function variable for letter d (from Letter function variables)
+\ARKcommand{\eFunc}{\mathrm{e}}  % Function variable for letter e (from Letter function variables)
+\ARKcommand{\fFunc}{\mathrm{f}}  % Function variable for letter f (from Letter function variables)
+\ARKcommand{\gFunc}{\mathrm{g}}  % Function variable for letter g (from Letter function variables)
+\ARKcommand{\hFunc}{\mathrm{h}}  % Function variable for letter h (from Letter function variables)
+\ARKcommand{\iFunc}{\mathrm{i}}  % Function variable for letter i (from Letter function variables)
+\ARKcommand{\jFunc}{\mathrm{j}}  % Function variable for letter j (from Letter function variables)
+\ARKcommand{\kFunc}{\mathrm{k}}  % Function variable for letter k (from Letter function variables)
+\ARKcommand{\lFunc}{\mathrm{l}}  % Function variable for letter l (from Letter function variables)
+\ARKcommand{\mFunc}{\mathrm{m}}  % Function variable for letter m (from Letter function variables)
+\ARKcommand{\nFunc}{\mathrm{n}}  % Function variable for letter n (from Letter function variables)
+\ARKcommand{\oFunc}{\mathrm{o}}  % Function variable for letter o (from Letter function variables)
+\ARKcommand{\pFunc}{\mathrm{p}}  % Function variable for letter p (from Letter function variables)
+\ARKcommand{\qFunc}{\mathrm{q}}  % Function variable for letter q (from Letter function variables)
+\ARKcommand{\rFunc}{\mathrm{r}}  % Function variable for letter r (from Letter function variables)
+\ARKcommand{\sFunc}{\mathrm{s}}  % Function variable for letter s (from Letter function variables)
+\ARKcommand{\tFunc}{\mathrm{t}}  % Function variable for letter t (from Letter function variables)
+\ARKcommand{\uFunc}{\mathrm{u}}  % Function variable for letter u (from Letter function variables)
+\ARKcommand{\vFunc}{\mathrm{v}}  % Function variable for letter v (from Letter function variables)
+\ARKcommand{\wFunc}{\mathrm{w}}  % Function variable for letter w (from Letter function variables)
+\ARKcommand{\xFunc}{\mathrm{x}}  % Function variable for letter x (from Letter function variables)
+\ARKcommand{\yFunc}{\mathrm{y}}  % Function variable for letter y (from Letter function variables)
+\ARKcommand{\zFunc}{\mathrm{z}}  % Function variable for letter z (from Letter function variables)
+
+% GROWTH VARIABLES
+\ARKcommand{\PermGroFac}{\mathcal{G}}  % Permanent growth factor
+\ARKcommand{\PermGroFacAgg}{\mathscr{G}}  % Aggregate permanent growth factor
+\ARKcommand{\PermGroRte}{g}  % Permanent growth rate
+\ARKcommand{\permGroFacInd}{\mathit{G}}  % Individual permanent growth factor
+
+% MODIFIERS VARIABLES
+\ARKcommand{\MPCMax}{\overline{\MPC}}  % Maximum value of MPC (from Maximum values)
+\ARKcommand{\MPCMin}{\underline{\MPC}}  % Minimum value of MPC (from Minimum values)
+\ARKcommand{\PermGroFacMin}{\underline{\PermGroFac}}  % Minimum value of PermGroFac (from Minimum values)
+\ARKcommand{\PermShkAllStd}{\std_{\PermShkAll}}  % Standard deviation of PermShkAll (from Standard deviation)
+\ARKcommand{\PermShkAllVar}{\std^{2}_{\PermShkAll}}  % Variance of PermShkAll (from Variance)
+\ARKcommand{\TranShkAggStd}{\std_{\TranShkAgg}}  % Standard deviation of TranShkAgg (from Standard deviation)
+\ARKcommand{\TranShkAggVar}{\std^{2}_{\TranShkAgg}}  % Variance of TranShkAgg (from Variance)
+\ARKcommand{\permShkIndMax}{\overline{\permShkInd}}  % Maximum value of permShkInd (from Maximum values)
+\ARKcommand{\permShkIndMin}{\underline{\permShkInd}}  % Minimum value of permShkInd (from Minimum values)
+\ARKcommand{\prstShkIndMax}{\overline{\prstShkInd}}  % Maximum value of prstShkInd (from Maximum values)
+\ARKcommand{\prstShkIndMin}{\underline{\prstShkInd}}  % Minimum value of prstShkInd (from Minimum values)
+\ARKcommand{\tranShkAllStd}{\std_{\tranShkAll}}  % Standard deviation of tranShkAll (from Standard deviation)
+\ARKcommand{\tranShkAllVar}{\std^{2}_{\tranShkAll}}  % Variance of tranShkAll (from Variance)
+\ARKcommand{\tranShkEmpMax}{\overline{\tranShkEmp}}  % Maximum value of tranShkEmp (from Maximum values)
+\ARKcommand{\tranShkEmpMin}{\underline{\tranShkEmp}}  % Minimum value of tranShkEmp (from Minimum values)
+\ARKcommand{\tranShkIndStd}{\std_{\tranShkInd}}  % Standard deviation of tranShkInd (from Standard deviation)
+\ARKcommand{\tranShkIndVar}{\std^{2}_{\tranShkInd}}  % Variance of tranShkInd (from Variance)
+
+% OPERATORS VARIABLES
+\ARKcommand{\std}{\sigma}  % Standard deviation operator
+
+% PREFERENCES VARIABLES
+\ARKcommand{\CARA}{\alpha}  % Coefficient of absolute risk aversion
+\ARKcommand{\CRRA}{\rho}  % Coefficient of relative risk aversion
+\ARKcommand{\DiscFac}{\beta}  % Discount factor
+\ARKcommand{\DiscRte}{\nu}  % Discount rate
+
+% RETURNS VARIABLES
+\ARKcommand{\Rfree}{\mathsf{R}}  % Risk-free return factor
+\ARKcommand{\Risky}{\mathbf{R}}  % Risky return factor
+\ARKcommand{\rfree}{\mathsf{r}}  % Risk-free return rate
+\ARKcommand{\risky}{\mathbf{r}}  % Risky return rate
+
+% SHOCKS VARIABLES
+\ARKcommand{\PermShkAgg}{\Psi}  % Aggregate permanent shock
+\ARKcommand{\TranShkAgg}{\Theta}  % Aggregate transitory shock
+\ARKcommand{\TranShkEmp}{\Theta}  % Aggregate transitory shock for employed
+\ARKcommand{\permShkInd}{\psi}  % Individual permanent shock
+\ARKcommand{\tranShkEmp}{\theta}  % Transitory shock for employed
+\ARKcommand{\tranShkInd}{\xi}  % Individual transitory shock
+
+% VARIABLES VARIABLES
+\ARKcommand{\ALvl}{\boldsymbol{\mathit{A}}}  % Level variable for letter A (from Letter level variables)
+\ARKcommand{\ANrm}{A}  % Normalized variable for letter A (from Letter normalized variables)
+\ARKcommand{\BLvl}{\boldsymbol{\mathit{B}}}  % Level variable for letter B (from Letter level variables)
+\ARKcommand{\BNrm}{B}  % Normalized variable for letter B (from Letter normalized variables)
+\ARKcommand{\CLvl}{\boldsymbol{\mathit{C}}}  % Level variable for letter C (from Letter level variables)
+\ARKcommand{\CNrm}{C}  % Normalized variable for letter C (from Letter normalized variables)
+\ARKcommand{\DLvl}{\boldsymbol{\mathit{D}}}  % Level variable for letter D (from Letter level variables)
+\ARKcommand{\DNrm}{D}  % Normalized variable for letter D (from Letter normalized variables)
+\ARKcommand{\ELvl}{\boldsymbol{\mathit{E}}}  % Level variable for letter E (from Letter level variables)
+\ARKcommand{\ENrm}{E}  % Normalized variable for letter E (from Letter normalized variables)
+\ARKcommand{\FLvl}{\boldsymbol{\mathit{F}}}  % Level variable for letter F (from Letter level variables)
+\ARKcommand{\FNrm}{F}  % Normalized variable for letter F (from Letter normalized variables)
+\ARKcommand{\GLvl}{\boldsymbol{\mathit{G}}}  % Level variable for letter G (from Letter level variables)
+\ARKcommand{\GNrm}{G}  % Normalized variable for letter G (from Letter normalized variables)
+\ARKcommand{\HLvl}{\boldsymbol{\mathit{H}}}  % Level variable for letter H (from Letter level variables)
+\ARKcommand{\HNrm}{H}  % Normalized variable for letter H (from Letter normalized variables)
+\ARKcommand{\ILvl}{\boldsymbol{\mathit{I}}}  % Level variable for letter I (from Letter level variables)
+\ARKcommand{\INrm}{I}  % Normalized variable for letter I (from Letter normalized variables)
+\ARKcommand{\JLvl}{\boldsymbol{\mathit{J}}}  % Level variable for letter J (from Letter level variables)
+\ARKcommand{\JNrm}{J}  % Normalized variable for letter J (from Letter normalized variables)
+\ARKcommand{\KLvl}{\boldsymbol{\mathit{K}}}  % Level variable for letter K (from Letter level variables)
+\ARKcommand{\KNrm}{K}  % Normalized variable for letter K (from Letter normalized variables)
+\ARKcommand{\LLvl}{\boldsymbol{\mathit{L}}}  % Level variable for letter L (from Letter level variables)
+\ARKcommand{\LNrm}{L}  % Normalized variable for letter L (from Letter normalized variables)
+\ARKcommand{\MLvl}{\boldsymbol{\mathit{M}}}  % Level variable for letter M (from Letter level variables)
+\ARKcommand{\MNrm}{M}  % Normalized variable for letter M (from Letter normalized variables)
+\ARKcommand{\NLvl}{\boldsymbol{\mathit{N}}}  % Level variable for letter N (from Letter level variables)
+\ARKcommand{\NNrm}{N}  % Normalized variable for letter N (from Letter normalized variables)
+\ARKcommand{\OLvl}{\boldsymbol{\mathit{O}}}  % Level variable for letter O (from Letter level variables)
+\ARKcommand{\ONrm}{O}  % Normalized variable for letter O (from Letter normalized variables)
+\ARKcommand{\PLvl}{\boldsymbol{\mathit{P}}}  % Level variable for letter P (from Letter level variables)
+\ARKcommand{\PNrm}{P}  % Normalized variable for letter P (from Letter normalized variables)
+\ARKcommand{\QLvl}{\boldsymbol{\mathit{Q}}}  % Level variable for letter Q (from Letter level variables)
+\ARKcommand{\QNrm}{Q}  % Normalized variable for letter Q (from Letter normalized variables)
+\ARKcommand{\RLvl}{\boldsymbol{\mathit{R}}}  % Level variable for letter R (from Letter level variables)
+\ARKcommand{\RNrm}{R}  % Normalized variable for letter R (from Letter normalized variables)
+\ARKcommand{\SLvl}{\boldsymbol{\mathit{S}}}  % Level variable for letter S (from Letter level variables)
+\ARKcommand{\SNrm}{S}  % Normalized variable for letter S (from Letter normalized variables)
+\ARKcommand{\TLvl}{\boldsymbol{\mathit{T}}}  % Level variable for letter T (from Letter level variables)
+\ARKcommand{\TNrm}{T}  % Normalized variable for letter T (from Letter normalized variables)
+\ARKcommand{\ULvl}{\boldsymbol{\mathit{U}}}  % Level variable for letter U (from Letter level variables)
+\ARKcommand{\UNrm}{U}  % Normalized variable for letter U (from Letter normalized variables)
+\ARKcommand{\VLvl}{\boldsymbol{\mathit{V}}}  % Level variable for letter V (from Letter level variables)
+\ARKcommand{\VNrm}{V}  % Normalized variable for letter V (from Letter normalized variables)
+\ARKcommand{\WLvl}{\boldsymbol{\mathit{W}}}  % Level variable for letter W (from Letter level variables)
+\ARKcommand{\WNrm}{W}  % Normalized variable for letter W (from Letter normalized variables)
+\ARKcommand{\XLvl}{\boldsymbol{\mathit{X}}}  % Level variable for letter X (from Letter level variables)
+\ARKcommand{\XNrm}{X}  % Normalized variable for letter X (from Letter normalized variables)
+\ARKcommand{\YLvl}{\boldsymbol{\mathit{Y}}}  % Level variable for letter Y (from Letter level variables)
+\ARKcommand{\YNrm}{Y}  % Normalized variable for letter Y (from Letter normalized variables)
+\ARKcommand{\ZLvl}{\boldsymbol{\mathit{Z}}}  % Level variable for letter Z (from Letter level variables)
+\ARKcommand{\ZNrm}{Z}  % Normalized variable for letter Z (from Letter normalized variables)
+\ARKcommand{\aLvl}{\boldsymbol{\mathit{a}}}  % Level variable for letter a (from Letter level variables)
+\ARKcommand{\aNrm}{a}  % Normalized variable for letter a (from Letter normalized variables)
+\ARKcommand{\bLvl}{\boldsymbol{\mathit{b}}}  % Level variable for letter b (from Letter level variables)
+\ARKcommand{\bNrm}{b}  % Normalized variable for letter b (from Letter normalized variables)
+\ARKcommand{\cLvl}{\boldsymbol{\mathit{c}}}  % Level variable for letter c (from Letter level variables)
+\ARKcommand{\cNrm}{c}  % Normalized variable for letter c (from Letter normalized variables)
+\ARKcommand{\dLvl}{\boldsymbol{\mathit{d}}}  % Level variable for letter d (from Letter level variables)
+\ARKcommand{\dNrm}{d}  % Normalized variable for letter d (from Letter normalized variables)
+\ARKcommand{\eLvl}{\boldsymbol{\mathit{e}}}  % Level variable for letter e (from Letter level variables)
+\ARKcommand{\eNrm}{e}  % Normalized variable for letter e (from Letter normalized variables)
+\ARKcommand{\fLvl}{\boldsymbol{\mathit{f}}}  % Level variable for letter f (from Letter level variables)
+\ARKcommand{\fNrm}{f}  % Normalized variable for letter f (from Letter normalized variables)
+\ARKcommand{\gLvl}{\boldsymbol{\mathit{g}}}  % Level variable for letter g (from Letter level variables)
+\ARKcommand{\gNrm}{g}  % Normalized variable for letter g (from Letter normalized variables)
+\ARKcommand{\hLvl}{\boldsymbol{\mathit{h}}}  % Level variable for letter h (from Letter level variables)
+\ARKcommand{\hNrm}{h}  % Normalized variable for letter h (from Letter normalized variables)
+\ARKcommand{\iLvl}{\boldsymbol{\mathit{i}}}  % Level variable for letter i (from Letter level variables)
+\ARKcommand{\iNrm}{i}  % Normalized variable for letter i (from Letter normalized variables)
+\ARKcommand{\jLvl}{\boldsymbol{\mathit{j}}}  % Level variable for letter j (from Letter level variables)
+\ARKcommand{\jNrm}{j}  % Normalized variable for letter j (from Letter normalized variables)
+\ARKcommand{\kLvl}{\boldsymbol{\mathit{k}}}  % Level variable for letter k (from Letter level variables)
+\ARKcommand{\kNrm}{k}  % Normalized variable for letter k (from Letter normalized variables)
+\ARKcommand{\lLvl}{\boldsymbol{\mathit{l}}}  % Level variable for letter l (from Letter level variables)
+\ARKcommand{\lNrm}{l}  % Normalized variable for letter l (from Letter normalized variables)
+\ARKcommand{\mLvl}{\boldsymbol{\mathit{m}}}  % Level variable for letter m (from Letter level variables)
+\ARKcommand{\mNrm}{m}  % Normalized variable for letter m (from Letter normalized variables)
+\ARKcommand{\nLvl}{\boldsymbol{\mathit{n}}}  % Level variable for letter n (from Letter level variables)
+\ARKcommand{\nNrm}{n}  % Normalized variable for letter n (from Letter normalized variables)
+\ARKcommand{\oLvl}{\boldsymbol{\mathit{o}}}  % Level variable for letter o (from Letter level variables)
+\ARKcommand{\oNrm}{o}  % Normalized variable for letter o (from Letter normalized variables)
+\ARKcommand{\pLvl}{\boldsymbol{\mathit{p}}}  % Level variable for letter p (from Letter level variables)
+\ARKcommand{\pNrm}{p}  % Normalized variable for letter p (from Letter normalized variables)
+\ARKcommand{\qLvl}{\boldsymbol{\mathit{q}}}  % Level variable for letter q (from Letter level variables)
+\ARKcommand{\qNrm}{q}  % Normalized variable for letter q (from Letter normalized variables)
+\ARKcommand{\rLvl}{\boldsymbol{\mathit{r}}}  % Level variable for letter r (from Letter level variables)
+\ARKcommand{\rNrm}{r}  % Normalized variable for letter r (from Letter normalized variables)
+\ARKcommand{\sLvl}{\boldsymbol{\mathit{s}}}  % Level variable for letter s (from Letter level variables)
+\ARKcommand{\sNrm}{s}  % Normalized variable for letter s (from Letter normalized variables)
+\ARKcommand{\tLvl}{\boldsymbol{\mathit{t}}}  % Level variable for letter t (from Letter level variables)
+\ARKcommand{\tNrm}{t}  % Normalized variable for letter t (from Letter normalized variables)
+\ARKcommand{\uLvl}{\boldsymbol{\mathit{u}}}  % Level variable for letter u (from Letter level variables)
+\ARKcommand{\uNrm}{u}  % Normalized variable for letter u (from Letter normalized variables)
+\ARKcommand{\vLvl}{\boldsymbol{\mathit{v}}}  % Level variable for letter v (from Letter level variables)
+\ARKcommand{\vNrm}{v}  % Normalized variable for letter v (from Letter normalized variables)
+\ARKcommand{\wLvl}{\boldsymbol{\mathit{w}}}  % Level variable for letter w (from Letter level variables)
+\ARKcommand{\wNrm}{w}  % Normalized variable for letter w (from Letter normalized variables)
+\ARKcommand{\xLvl}{\boldsymbol{\mathit{x}}}  % Level variable for letter x (from Letter level variables)
+\ARKcommand{\xNrm}{x}  % Normalized variable for letter x (from Letter normalized variables)
+\ARKcommand{\yLvl}{\boldsymbol{\mathit{y}}}  % Level variable for letter y (from Letter level variables)
+\ARKcommand{\yNrm}{y}  % Normalized variable for letter y (from Letter normalized variables)
+\ARKcommand{\zLvl}{\boldsymbol{\mathit{z}}}  % Level variable for letter z (from Letter level variables)
+\ARKcommand{\zNrm}{z}  % Normalized variable for letter z (from Letter normalized variables)
+
+\endinput

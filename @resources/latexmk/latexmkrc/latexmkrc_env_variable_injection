@@ -1,0 +1,72 @@
+# -*- mode: perl; coding: utf-8 -*-
+#
+# latexmkrc_env_variable_injection
+#
+# ==============================================================================
+# Generic Environment Variable Injection for LaTeX Compilation
+# ==============================================================================
+#
+# PURPOSE:
+#   This file provides a generic mechanism for injecting environment variables
+#   as LaTeX commands during pdflatex compilation. This enables dynamic control
+#   of document compilation variants without modifying the LaTeX source files.
+#
+# USAGE:
+#   Include this file in your project's .latexmkrc after loading base configuration:
+#   
+#   do './@resources/latexmk/latexmkrc/latexmkrc_for-projects-with-circular-crossrefs';
+#   do './@resources/latexmk/latexmkrc/latexmkrc_env_variable_injection';
+#
+# SUPPORTED ENVIRONMENT VARIABLES:
+#   BUILD_MODE     - Injects \newcommand\BuildMode{$value}
+#   APPENDIX_MODE  - Injects \newcommand\AppendixMode{$value}
+#
+# EXTENSIBILITY:
+#   Additional environment variables can be easily added following the same pattern.
+#   The injected commands are available throughout the LaTeX document for conditional
+#   compilation using standard LaTeX \ifdefined or package-based conditionals.
+#
+# EXAMPLES:
+#   export BUILD_MODE=FULL && latexmk paper.tex
+#   export BUILD_MODE=SHORT APPENDIX_MODE=ONLINE && latexmk paper.tex
+#
+# ==============================================================================
+
+# --- Environment Variable to LaTeX Command Injection ---
+# Build a prefix string containing LaTeX \newcommand definitions
+# based on environment variables
+
+my $mode_prefix = "";
+
+# Handle BUILD_MODE environment variable
+# Commonly used for controlling document length/content (FULL, SHORT, etc.)
+if (defined $ENV{'BUILD_MODE'}) {
+    my $build_mode = $ENV{'BUILD_MODE'};
+    $mode_prefix .= "\\newcommand\\BuildMode{$build_mode}";
+}
+
+# Handle APPENDIX_MODE environment variable  
+# Commonly used for controlling appendix compilation (INLINE, ONLINE, SEPARATE, etc.)
+if (defined $ENV{'APPENDIX_MODE'}) {
+    my $appendix_mode = $ENV{'APPENDIX_MODE'};
+    $mode_prefix .= "\\newcommand\\AppendixMode{$appendix_mode}";
+}
+
+# Apply the mode prefix to pdflatex command if any environment variables are defined
+# The prefix is injected before \input{filename}, making the commands available
+# throughout the entire document compilation
+if ($mode_prefix ne "") {
+    $pdflatex = "pdflatex -interaction=nonstopmode -file-line-error %O \"${mode_prefix}\\input{%S}\"";
+}
+
+# --- Additional Variables Can Be Added Here ---
+# To support more environment variables, follow this pattern:
+#
+# if (defined $ENV{'YOUR_VAR_NAME'}) {
+#     my $your_var = $ENV{'YOUR_VAR_NAME'};
+#     $mode_prefix .= "\\newcommand\\YourVarName{$your_var}";
+# }
+#
+# Then rebuild the $pdflatex command as shown above.
+
+# --- End Environment Variable Injection --- 

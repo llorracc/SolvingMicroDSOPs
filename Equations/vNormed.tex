@@ -1,0 +1,8 @@
+  \begin{equation}\begin{gathered}\begin{aligned}
+        \vFunc_{\prdt}(\mNrm_{\prdt}) & = \max_{{\cNrm}} ~~ \uFunc(\cNrm)+\DiscFac \Ex_{\prdt}[ \PermGroFac_{\prdt+1}^{1-\CRRA}\vFunc_{\prdt+1}(\mNrm_{\prdt+1})] \label{eq:vNormed}                   \\
+                                         & \text{s.t.}                                                                                 \\
+        \aNrm_{\prdt}                       & = \mNrm_{\prdt}-\cNrm_{\prdt}                                                                     \\
+        \kNrm_{\prdt+1}                     & = \aNrm_{\prdt}                                                                                \\
+        \mNrm_{\prdt+1}                        & = \RNrmByG_{\prdt+1}\kNrm_{\prdt+1}+\tranShkEmp_{\prdt+1}.
+\UnifiedNote{normalized MDP (period-level composed Bellman); stages: [cons-with-shocks(β=1), disc(β)]; 𝒱(m) = max_c u(c) + ℰ_disc(a) where ℰ_disc(a) = β·𝒜₊(a→k) = β·𝔼[Γ^{1−ρ} 𝒱((R/Γ)a + θ)]; gₐᵥ: (k, θ) ↦ m = (R/Γ)k + θ; gᵥₑ: (m, c) ↦ a = m − c; gₑₐ₊: a → k (pure rename); tex vCntn ≡ ℰ_disc}
+      \end{aligned}\end{gathered}\end{equation}

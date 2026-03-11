@@ -1,0 +1,16 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{resourcesUpdateIfAllowed}[2023/07/23 Execute Bash Script Package]
+
+\RequirePackage{shellesc}
+
+% Execute @resources-update-from-remote if allowed
+\newcommand{\resourcesUpdate}{%
+  \executionAllowed{ % true
+    \typeout{Executing @resources-update-from-remote.sh}
+    \ShellEscape{bash @resources/bash/@resources-update-from-remote.sh}
+  }{ % \executionAllowed is false
+    \typeout{No permissions to execute @resources-update-from-remote.sh}
+  }
+} % end \executionAllowed
+
+\AtBeginDocument{\resourcesUpdate}
