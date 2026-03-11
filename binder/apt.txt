@@ -1,0 +1,15 @@
+# System packages for BinderHub
+#
+# BinderHub installs these via apt-get before building the Python environment.
+# We use the lighter texlive-latex-base + recommended rather than texlive-full
+# to stay within BinderHub's build time limit.
+# Full TeX Live 2025 is used in the Docker / devcontainer context via setup.sh.
+
+latexmk
+texlive-latex-base
+texlive-latex-recommended
+texlive-latex-extra
+texlive-fonts-recommended
+texlive-science
+dvipng
+cm-super

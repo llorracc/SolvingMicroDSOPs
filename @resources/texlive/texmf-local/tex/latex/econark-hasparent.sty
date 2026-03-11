@@ -1,0 +1,16 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{econark-hasparent}[2024/10/10 Determine if document has a parent]
+% Parent means that the file is being compiled as a subfile
+% in main file, \usepackage{econark-hasparent} sets \parent to self
+
+\newcommand{\ifhasparent}[2]{%
+  \def\@tempa{other}%
+  \def\@tempb{\parent}%
+  \ifx\@tempa\@tempb
+    #1%
+  \else
+    #2%
+  \fi
+}
+
+\endinput

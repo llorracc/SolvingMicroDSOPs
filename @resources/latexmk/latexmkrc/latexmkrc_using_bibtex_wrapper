@@ -1,0 +1,26 @@
+# -*- mode: perl; coding: utf-8 -*-
+#
+# latexmkrc_using_bibtex_wrapper
+#
+# PURPOSE:
+#   This configuration tells latexmk to use our custom-built bibtex wrapper
+#   script. The wrapper is designed to intelligently suppress "Repeated entry"
+#   warnings that latexmk's internal logic often mishandles.
+#
+# USAGE:
+#   This file is not meant to be used alone. It should be included in a parent
+#   latexmkrc file via the `do` command, like so:
+#   do 'path/to/latexmkrc_using_bibtex_wrapper';
+#
+# See: bibtex_wrapper.sh for the wrapper's implementation.
+# ---
+
+# Use single quotes for the path to prevent Perl from interpreting '@' as an array.
+# This is the correct and safe way to specify the path.
+$bibtex = 'sh ./@resources/latexmk/latexmkrc/tools/bibtex_wrapper.sh %O %B';
+
+# Setting `$bibtex_use = 2` tells latexmk that a .bbl file is needed and
+# that it should be generated if it's missing or outdated.
+$bibtex_use = 2;
+
+

@@ -1,0 +1,12 @@
+# REMARK / Binder environment for SolvingMicroDSOPs (Tier 1).
+# Minimal adapter: provides Python + uv; reproduce.sh runs "uv sync" from pyproject.toml.
+# See https://github.com/econ-ark/REMARK/blob/main/STANDARD.md
+
+name: solvingmicrodsops
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+    - uv

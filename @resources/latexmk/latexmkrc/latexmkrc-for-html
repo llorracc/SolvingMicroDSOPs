@@ -1,0 +1,48 @@
+# -*- mode: perl; coding: utf-8 -*-
+#
+# latexmkrc-for-html
+#
+# PURPOSE:
+#   This is a general-purpose latexmk configuration tuned for build processes
+#   that require maximum verbosity, such as debugging complex documents or
+#   preparing for an HTML conversion pipeline (e.g., using `make4ht`).
+#
+#   Its primary feature is disabling silent mode (`$silent = 0;`), which causes
+#   all output from the underlying LaTeX commands to be printed to the console.
+#
+# USAGE:
+#   This configuration can be invoked for any document with the -r flag:
+#   `latexmk -r path/to/latexmkrc-for-html my_document.tex`
+#
+# --- SETTINGS ---
+
+# --- Core Behavior ---
+# The main purpose of this file: be as verbose as possible.
+$silent = 0;
+
+# --- Compilation Control ---
+$force_mode = 1;          # Force compilation to continue through routine warnings.
+$warnings_as_errors = 0;  # Do not treat warnings as fatal errors.
+$pdflatex_runs = 3;       # A sufficient number of runs for most documents.
+$do_cd = 1;               # Always change to the document's directory before compiling.
+$pdf_mode = 1;            # Ensure PDF mode is active.
+
+# --- BibTeX Specifics ---
+$bibtex_use = 2;                    # Ensure bibtex is run when needed.
+$bibtex_silent_switch = '-terse';   # Reduce bibtex verbosity.
+
+# --- Logging & Reporting ---
+$rc_report = 1;           # Report which rc file is being used at startup.
+$aux_out_dir_report = 1;  # Report where auxiliary files are being placed.
+
+# --- File Cleanup ---
+# Define a minimal set of extensions to be deleted by `latexmk -c`.
+$clean_ext = "bbl nav out snm tmp 4tc 4ct log fls fdb_latexmk synctex.gz ps lg";
+
+# --- Engine Command ---
+# Standard command for running pdflatex in non-interactive CI/build environments.
+$pdflatex = "pdflatex -interaction=nonstopmode %O %S";
+
+# NOTE: This file is now a general-purpose tool. It does not contain any
+# project-specific filenames and will operate on whichever .tex file is
+# passed to latexmk on the command line.

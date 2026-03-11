@@ -1,0 +1,153 @@
+% Define macros for this paper
+\newcommand{\snippetsPath}{./Code/Python/snippets}
+\providecommand{\wRatio}{\mathfrak{w}} % empirical wealth-to-income ratio (StructEstim)
+\makeatletter
+\newif\ifdvi\dvitrue
+\@ifundefined{pdfoutput}{}{\ifnum\pdfoutput>0 \dvifalse\fi}
+\makeatother
+
+% Pile of solved periods (backward induction): typewriter P (computational objects); word macros for prose
+% Symbols: \Pile = $\mathtt{P}$, \pile = $\mathtt{p}$; words: \pileName, \PileName, \pilesName, \PilesName
+\providecommand{\Pile}{}\renewcommand{\Pile}{\mathtt{P}}
+\providecommand{\pile}{}\renewcommand{\pile}{\mathtt{p}}
+\providecommand{\pileName}{}\renewcommand{\pileName}{pile}
+\providecommand{\PileName}{}\renewcommand{\PileName}{Pile}
+\providecommand{\pilesName}{}\renewcommand{\pilesName}{piles}
+\providecommand{\PilesName}{}\renewcommand{\PilesName}{Piles}
+\providecommand{\PileCode}{}\renewcommand{\PileCode}{\texttt{Pile}}
+
+% LHS is created from RHS; see \ref{subsubsec:builders}
+\newcommand{\leftassign}{:=}
+
+% Allow conditional execution depending on whether in subfile or not
+\providecommand{\onlyinsubfile}{}\renewcommand{\onlyinsubfile}[1]{#1}
+\providecommand{\notinsubfile}{}\renewcommand{\notinsubfile}[1]{}
+
+% ====== Perch-level subscript macros (beyond what econark-shortcuts provides) ======
+\providecommand{\ArvlLst}{}\renewcommand{\ArvlLst}{{\arvl(\prdLst)}}
+
+\providecommand{\DcsnLst}{}\renewcommand{\DcsnLst}{{\dcsn(\prdLst)}}
+\providecommand{\DcsnLsT}{}\renewcommand{\DcsnLsT}{{\dcsn(\prdLsT)}}
+
+\providecommand{\ArvlPrd}{}\renewcommand{\ArvlPrd}{{\arvl(\prdt)}}
+\providecommand{\ArvlPrdNxt}{}\renewcommand{\ArvlPrdNxt}{{\arvl(\prdt+1)}}
+\providecommand{\DcsnPrdNxt}{}\renewcommand{\DcsnPrdNxt}{{\dcsn(\prdt+1)}}
+\providecommand{\DcsnPrdNxT}{}\renewcommand{\DcsnPrdNxT}{{\dcsn(\prdT+1)}}
+\providecommand{\ArvlPrdLst}{}\renewcommand{\ArvlPrdLst}{{\arvl(\prdt-1)}}
+\providecommand{\DcsnPrdLst}{}\renewcommand{\DcsnPrdLst}{{\dcsn(\prdt-1)}} 
+\providecommand{\ArvlPrdLsT}{}\renewcommand{\ArvlPrdLsT}{{\arvl(\prdT-1)}}
+\providecommand{\ArvlPrdNxT}{}\renewcommand{\ArvlPrdNxT}{{\arvl(\prdT+1)}}
+\providecommand{\DcsnPrdLsT}{}\renewcommand{\DcsnPrdLsT}{{\dcsn(\prdT-1)}} 
+
+\providecommand{\DcsnPrd}{}\renewcommand{\DcsnPrd}{\dcsn(\prd)}
+\providecommand{\EndMark}{}\renewcommand{\EndMark}{\cntn}
+\providecommand{\CntnPrd}{}\renewcommand{\CntnPrd}{{\cntn}(\prd)}
+\providecommand{\CntnPrdLst}{}\renewcommand{\CntnPrdLst}{{\cntn}(\prd-1)}   % Lst=Last=t-1
+\providecommand{\CntnPrdLsT}{}\renewcommand{\CntnPrdLsT}{{\cntn}(\prd-1)}   % LsT=T-1
+\providecommand{\CntnPrdNxt}{}\renewcommand{\CntnPrdNxt}{{\cntn(\prd+1)}}
+\providecommand{\CntnPrdNxT}{}\renewcommand{\CntnPrdNxT}{{\cntn(\prdT+1)}}
+
+% Value function macros -- period-level
+% N.B. use \sb not _ : tex4ht drops subscripts defined with _ inside \newcommand
+\providecommand{\cCntn}{\cFunc\sb{\Cntn}}
+\providecommand{\vDcsnNxt}{\vFunc\sb{\DcsnNxt}}
+\providecommand{\vArvlPrd}{\vFunc\sb{\ArvlPrd}}
+\providecommand{\vArvlPrdNxt}{\vFunc\sb{\ArvlPrdNxt}}
+\providecommand{\vDcsnPrdNxt}{\vFunc\sb{\DcsnPrdNxt}}
+\providecommand{\vCntnPrdNxt}{\vFunc\sb{\CntnPrdNxt}}
+\providecommand{\vCntnPrd}{\vFunc\sb{\CntnPrd}}
+\providecommand{\vCntnPrdLst}{\vFunc\sb{\CntnPrdLst}}
+\providecommand{\vCntnPrdLsT}{\vFunc\sb{\CntnPrdLsT}}
+\providecommand{\vDcsnPrdLst}{\vFunc\sb{\DcsnPrdLst}}
+\providecommand{\vDcsnPrdLsT}{\vFunc\sb{\DcsnPrdLsT}}
+
+% Generic derivative superscripts
+\newcommand{\dm}{\partial}
+\newcommand{\dcheckm}{\partial}
+
+\providecommand{\PDVCoverc}{\mathbb{C}}
+
+% Allow changing our mind about the names of the ordering elements
+\providecommand{\interval}{}\renewcommand{\interval}{period}
+\providecommand{\Interval}{}\renewcommand{\Interval}{Period}
+\providecommand{\intervals}{}\renewcommand{\intervals}{periods}
+\providecommand{\Intervals}{}\renewcommand{\Intervals}{Periods}
+
+% Transitions
+\providecommand{\trnsn}{}\renewcommand{\trnsn}{transition}
+\providecommand{\Trnsn}{}\renewcommand{\Trnsn}{Transition}
+\providecommand{\trnsns}{}\renewcommand{\trnsns}{transitions}
+\providecommand{\Trnsns}{}\renewcommand{\Trnsns}{Builders and Connectors}
+
+% Evolutions
+\providecommand{\evltn}{}\renewcommand{\evltn}{evolution}
+\providecommand{\Evltn}{}\renewcommand{\Evltn}{Evolution}
+\providecommand{\evltns}{}\renewcommand{\evltns}{evolutions}
+\providecommand{\Evltns}{}\renewcommand{\Evltns}{Evolutions}
+
+% Builders beyond what econark-shortcuts provides
+% N.B. use \sb/\sp not _/^ : tex4ht drops sub/superscripts defined with _/^ inside \newcommand
+\providecommand{\FwBldrPrd}{}\renewcommand{\FwBldrPrd}{\mathtt{B}\sp{\rightarrow}\sb{\mathrm{prd}}}
+\providecommand{\BkBldrStg}{}\renewcommand{\BkBldrStg}{\mathtt{B}\sp{\leftarrow }\sb{\mathrm{stg}}}
+\providecommand{\FwBldrStg}{}\renewcommand{\FwBldrStg}{\mathtt{B}\sp{\rightarrow}\sb{\mathrm{stg}}}
+
+% Expectations at period positions
+\providecommand{\ExArvlPrd}{\Ex\sb{\ArvlPrd}}
+\providecommand{\ExCntnPrd}{\Ex\sb{\CntnPrd}}
+
+\providecommand{\stigma}{}\renewcommand{\stigma}{\varsigma}
+\providecommand{\shr}{}\renewcommand{\shr}{\stigma}
+
+\newcommand{\optml}[1]{\breve{#1}}
+
+\newcommand{\code}[1]{\ensuremath{\mathtt{#1}}}
+
+% Growth-factor adjustments (on/off toggle for permanent income normalization)
+% "on" definitions (restored when needed):
+%   \PermGroFacAdjV = \PermGroFac_{\prd}^{1-\CRRA}
+%   \PermGroFacAdjMu = \PermGroFac_{\prd}^{-\CRRA}
+% "off" definitions (current default):
+\providecommand{\PermGroFacAdjV}{}\renewcommand{\PermGroFacAdjV}{\null}
+\providecommand{\PermGroFacAdjVNxt}{\null}
+\providecommand{\PermGroFacAdjMu}{}\renewcommand{\PermGroFacAdjMu}{\null}
+\providecommand{\PermGroFacAdjMuNxt}{\null}
+\providecommand{\AdjV}{\null}
+\providecommand{\AdjVNxt}{\null}
+\providecommand{\AdjMu}{\null}
+\providecommand{\AdjMuNxt}{\null}
+
+\newcommand{\trmT}{T}
+
+\providecommand{\NatBoroCnstra}{}\renewcommand{\NatBoroCnstra}{\underline{a}}
+
+\providecommand{\aVecCode}{}\renewcommand{\aVecCode}{\code{aVec}}
+\providecommand{\mVecCode}{}\renewcommand{\mVecCode}{\texttt{mVec}}
+\providecommand{\kVecCode}{}\renewcommand{\kVecCode}{\texttt{kVec}}
+\providecommand{\cVecCode}{}\renewcommand{\cVecCode}{\texttt{cVec}}
+
+\newcommand{\vctr}[1]{\pmb{\mathtt{{#1}}}}
+\newcommand{\vctrNotationDescribe}{a boldface monotype (computer) font}
+
+\newcommand{\mVec}{\texttt{mVec}}
+\newcommand{\aVec}{\texttt{aVec}}
+\newcommand{\vVec}{\texttt{vVec}}
+
+\newcommand{\stepShr}{\step[\shr]}
+
+\providecommand{\vShrArvlPrd}{\vFunc\sp{\shr}\sb{\sb{\arvl}\prd[\shr]}}
+\providecommand{\vShrDcsnPrd}{\vFunc\sp{\shr}\sb{\prd[\shr]}}
+\providecommand{\vShrCntnPrd}{\vFunc\sp{\shr}\sb{\prd[\shr]\sb{\cntn}}}
+
+\providecommand{\hEndMin}{\underline{\hNrm}}\renewcommand{\hEndMin}{\underline{\hNrm}}
+\newcommand{\TranShkEmpDummy}{\pmb{\vartheta}}
+\newcommand{\tranShkEmpDummy}{\vartheta}
+
+\newcommand{\cMin}{{c}_{1}}
+\newcommand{\vctratm}{\vctr{a}_{\prd-1}}\renewcommand{\vctratm}{\vctr{a}}
+\providecommand{\TranShkEmpMin}{}\renewcommand{\TranShkEmpMin}{\underline{\TranShkEmp}}
+\providecommand{\tranShkEmpMin}{}\renewcommand{\tranShkEmpMin}{\underline{\tranShkEmp}}
+
+% Macros formerly from econtexShortcuts, needed by Slides and main doc
+\providecommand{\aboveMin}{\blacktriangle}
+\providecommand{\hEnd}{{\mathfrak{h}}}
+\providecommand{\pLev}{{\pmb{p}}}

@@ -1,0 +1,23 @@
+# -*- mode: perl; coding: utf-8 -*-
+#
+# latexmkrc_bypass_bibtex_altogether
+#
+# PURPOSE:
+#   This configuration completely disables latexmk's built-in BibTeX integration.
+#   It is designed for workflows where the .bbl file is generated reliably by an
+#   external script (e.g., our `bibtex_wrapper.sh`), but latexmk's
+#   internal error-checking is still causing the compilation to fail.
+#
+#   By setting `$bibtex_use = 0`, we instruct latexmk to assume that a valid
+#   .bbl file already exists and to proceed with the `pdflatex` runs without
+#   trying to invoke bibtex itself.
+#
+# USAGE:
+#   This file should be used in build scripts where you need to guarantee that
+#   latexmk will not interfere with a pre-generated .bbl file.
+# ---
+
+$bibtex_use = 0;          # CRITICAL: Disable latexmk's bibtex integration.
+$pdf_mode = 1;            # Ensure PDF output is generated.
+$force_mode = 1;          # Force compilation to continue even if warnings are found.
+$warnings_as_errors = 0;  # Do not treat routine LaTeX warnings as fatal errors. 

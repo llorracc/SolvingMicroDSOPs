@@ -1,0 +1,74 @@
+% Example LaTeX file using Econ-ARK macros
+% This demonstrates how to use the generated econark-shortcuts.sty package
+
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{econark-shortcuts}  % Generated from .econ-ark/macros.yaml
+
+\title{Econ-ARK Mathematical Notation Example}
+\author{Generated Example}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+This document demonstrates the use of Econ-ARK's standardized mathematical notation. All macros are generated from a single source file and are consistent across LaTeX and MyST formats.
+
+\section{Growth and Discount Factors}
+
+The permanent growth factor is denoted $\PermGroFac$, with individual growth factor $\permGroFacInd$ and aggregate growth factor $\PermGroFacAgg$. The corresponding growth rate is $\PermGroRte$.
+
+The discount factor is $\DiscFac$ with rate $\DiscRte$.
+
+\section{Shocks}
+
+\subsection{Individual Shocks}
+\begin{itemize}
+    \item Permanent shock: $\permShkInd$
+    \item Transitory shock: $\tranShkInd$ 
+    \item Employment shock: $\tranShkEmp$
+\end{itemize}
+
+\subsection{Aggregate Shocks}
+\begin{itemize}
+    \item Permanent shock: $\PermShkAgg$
+    \item Transitory shock: $\TranShkAgg$
+    \item Employment shock: $\TranShkEmp$
+\end{itemize}
+
+\section{Variables by Type}
+
+\subsection{Level Variables (Boldface Italic)}
+Individual asset level: $\aLvl$, consumption level: $\cLvl$, income level: $\yLvl$.
+
+\subsection{Normalized Variables (Plain)}
+Asset ratio: $\aNrm$, consumption ratio: $\cNrm$, income ratio: $\yNrm$.
+
+\subsection{Function Variables (Upright Roman)}
+Consumption function: $\cFunc$, value function: $\vFunc$, policy function: $\aFunc$.
+
+\section{Interest Rates and Returns}
+
+The risk-free return factor is $\Rfree$ with rate $\rfree$. The risky return factor is $\Risky$ with rate $\risky$.
+
+\section{Utility and Preferences}
+
+Coefficient of relative risk aversion: $\CRRA$. Coefficient of absolute risk aversion: $\CARA$. Marginal propensity to consume: $\MPC$.
+
+\section{Mathematical Expression Example}
+
+The Bellman equation for the normalized consumption-saving problem:
+\begin{align}
+\vFunc(\mNrm) &= \max_{\cNrm} \left\{ \util(\cNrm) + \DiscFac \Ex[\vFunc(\mNrm')] \right\} \\
+\text{subject to:} \quad \mNrm' &= \Rfree/\PermGroFac \cdot (\mNrm - \cNrm) + \yNrm'
+\end{align}
+
+where $\mNrm' = \mLvl'/\PermLvl'$ is next period's market resources ratio.
+
+\section{Conclusion}
+
+This example shows how the single-source macro system provides consistent notation across all Econ-ARK documents. The same macros work identically in MyST markdown files.
+
+\end{document} 
