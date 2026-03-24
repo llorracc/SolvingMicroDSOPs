@@ -23,13 +23,13 @@ classifiers = [
 ]
 
 dependencies = [
-    # Economics packages
-    "econ-ark>=0.17.1",
-    # Core scientific computing stack
-    "numpy>=1.24",
-    "scipy>=1.10",
-    "pandas>=2.0",
-    "matplotlib>=3.7",
+    # Economics packages — pin to 0.17.x; code uses lifecycle API that changed across major versions
+    "econ-ark>=0.17.1,<0.18",
+    # Core scientific computing stack — pin major versions for reproducibility
+    "numpy>=1.24,<3",
+    "scipy>=1.10,<2",
+    "pandas>=2.0,<3",
+    "matplotlib>=3.7,<4",
 ]
 
 [dependency-groups]

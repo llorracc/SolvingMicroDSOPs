@@ -1,0 +1,43 @@
+# Example root myst.yml file for Econ-ARK repository
+# Place this at your repository root to enable global macro inheritance
+
+version: 1
+
+# Site configuration
+site:
+  title: "Econ-ARK Research"
+  nav:
+    - title: "Home"
+      url: /
+    - title: "Papers"
+      url: /papers
+  domains:
+    - econ-ark.org
+
+# Project configuration  
+project:
+  title: "Econ-ARK: Heterogeneous Agent Models"
+  authors:
+    - name: "Econ-ARK Team"
+  license: "CC-BY-4.0"
+  
+  # Bibliography files
+  bibliography: 
+    - references.bib
+    - econ-references.bib
+
+# GLOBAL MACRO INHERITANCE
+# This makes ALL MyST files in the project automatically inherit 
+# the complete set of Econ-ARK mathematical notation macros
+extends:
+  - .econ-ark/generated/econark-macros.yml
+
+# Optional: Additional project-level configuration
+options:
+  template: article
+  
+# Optional: Export configurations
+exports:
+  - format: pdf
+    template: arxiv
+  - format: docx 

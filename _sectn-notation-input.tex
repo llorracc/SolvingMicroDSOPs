@@ -28,7 +28,25 @@ The key is to distinguish, within each {\stg}'s Bellman problem, three viewpoint
 \item \textbf{\Continuation}: After all decisions have been made, their consequences are measured by evaluation of the continuing-value function at the values of the `outgoing' state variables (sometimes called `post-state' variables)
 \end{enumerate}
 
-This framework is silent about when shocks (if any) occur.  In a consumption problem, the usual assumption is that shocks have been realized before the spending decision is made so that the consumer knows their resources when they decide how much to spend. But in a portfolio choice problem, the portfolio share decision must be made before the shock that determines the risky rate of return is known.  
+This framework is deliberately silent about \textit{when} shocks (if any)
+occur within a {\stg}. Shocks may be realized between the {\Arrival} and
+{\Decision} {\prchs}, or between the {\Decision} and {\Continuation}
+{\prchs}---the choice is part of the {\stg}'s specification, not a
+framework-level constraint. In a consumption problem, the usual assumption
+is that income shocks have been realized before the spending decision is
+made, so that the consumer knows their resources when they decide how much
+to spend; here, shocks fall between {\Arrival} and {\Decision}
+($\kNrm \xrightarrow{\text{shocks}} \mNrm \xrightarrow{\text{decision}} \aNrm$).
+But in a portfolio choice problem, the portfolio share decision must be made
+\textit{before} the return shock is realized; there, shocks fall between
+{\Decision} and {\Continuation}
+($\kNrm \xrightarrow{\text{decision}} (\kNrm,\shr) \xrightarrow{\text{shocks}} \check{\mNrm}$).
+The {\prch} structure accommodates both patterns: the {\Arrival}-to-{\Decision}
+relationship encodes pre-decision uncertainty, while the
+{\Decision}-to-{\Continuation} relationship encodes post-decision uncertainty.
+A {\stg} with no shocks at all (such as \StgName{cons-noshocks} or
+\StgName{disc}) simply sets $\vArvl = \vDcsn$ or $\vDcsn = f(\vCntn)$
+with no intervening expectation.  
 
 \begin{table}[h]\label{\prchs}\caption{{\Prchs} within the \StgName{cons-with-shocks} {\stg}}
 \begin{center}
@@ -79,12 +97,107 @@ Tying two adjacent {\stgs} or periods together also requires that we define a {\
       \end{aligned}\end{gathered}\end{equation}
 
 \hypertarget{state-variable-types}{}
-\paragraph{State-variable types.}  A {\Cnct} is a pure rename: it asserts that two variables from adjacent {\stgs} or {\intervals} are different names for the same object.  This is only meaningful if the two variables are of the same \textit{type}.  In our framework, state variables fall into two types:
+\paragraph{State-variable types.}
+Every state variable in the framework belongs to exactly one of two
+\textit{types}:
+
 \begin{itemize}
-\item \textbf{k-type} (capital): investable assets \textit{before} returns and income are realized.  Examples: $\kNrm$ (beginning-of-{\interval} capital) and $\aNrm$ (end-of-{\interval} assets after consumption, awaiting next period's returns).
-\item \textbf{m-type} (market resources): spendable resources \textit{after} returns and income shocks have been realized---what \citet{deatonUnderstandingC} calls ``cash-on-hand.''  Examples: $\mNrm$ (market resources at the {\Decision} {\prch}) and $\check{\mNrm}$ (post-shock market resources within a period).
+  \item \textbf{k-type} (capital): investable assets \textit{before}
+    returns and income are realized. The defining characteristic is that
+    a k-type variable must pass through a returns-and-shocks process
+    before it becomes spendable. Examples: $\kNrm$
+    (beginning-of-{\interval} capital) and $\aNrm$ (end-of-{\interval}
+    assets after consumption, awaiting next period's returns).
+
+  \item \textbf{m-type} (market resources): spendable resources
+    \textit{after} returns and income shocks have been
+    realized---what \citet{deatonUnderstandingC} calls ``cash-on-hand.''
+    The defining characteristic is that an m-type variable is immediately
+    available for spending or allocation decisions. Examples: $\mNrm$
+    (market resources at the {\Decision} {\prch}) and $\check{\mNrm}$
+    (post-shock market resources within a period).
 \end{itemize}
-\noindent The {\Cnct} $\Cnctr(\aNrm \leftrightarrow \kNrm)$ is valid because both $\aNrm$ and $\kNrm$ are k-type; $\Cnctr(\check{\mNrm} \leftrightarrow \mNrm)$ is valid because both are m-type.  A {\Cnct} that crossed types---say, $\Cnctr(\mNrm \leftrightarrow \kNrm)$---would be illegal, because market resources and investable capital are not merely different names for the same quantity: converting between them requires a substantive transformation (the realization of returns and income).
+
+\noindent \textbf{Well-typed connectors.}
+A {\Cnct} is a pure rename: it asserts that two variables from adjacent
+{\stgs} or {\intervals} are different names for the same economic object.
+A {\Cnct} is \textit{well-typed} if and only if the two variables it
+connects share the same type. Thus:
+\begin{itemize}
+  \item $\Cnctr(\aNrm \leftrightarrow \kNrm)$ is well-typed: both are
+    k-type.
+  \item $\Cnctr(\check{\mNrm} \leftrightarrow \mNrm)$ is well-typed:
+    both are m-type.
+  \item $\Cnctr(\mNrm \leftrightarrow \kNrm)$ would be \textit{illegal}:
+    $\mNrm$ is m-type and $\kNrm$ is k-type. Market resources and
+    investable capital are not merely different names for the same
+    quantity---converting between them requires a substantive
+    transformation (the realization of returns and income). Attempting
+    such a connector is a modeling error: it would silently skip the
+    returns process, treating post-return resources as if they were
+    pre-return capital.
+\end{itemize}
+
+\noindent The type constraint prevents a common class of modeling errors
+in which a modeler inadvertently connects a post-return variable to a
+pre-return slot (or vice versa), producing economically nonsensical
+dynamics. By requiring type agreement, the framework ensures that every
+transition between k-type and m-type passes through an explicit
+returns-and-shocks {\stg}.
+
+\paragraph{Annotating stage tables with types.}
+When reading the {\prch} tables in this document and in
+section~\ref{sec:multiple-control-variables}, the arrival and continuation
+state types can be read off directly:
+\begin{itemize}
+  \item \StgName{cons-with-shocks}: arrival $\kNrm$ (k-type),
+    continuation $\aNrm$ (k-type).
+  \item \StgName{cons-noshocks}: arrival $\mNrm$ (m-type),
+    continuation $\aNrm$ (k-type).
+  \item \StgName{portable}: arrival $\kNrm$ (k-type),
+    continuation $\check{\mNrm}$ (m-type).
+  \item \StgName{disc}: arrival and continuation inherit the type of
+    the predecessor's exit state (passthrough).
+\end{itemize}
+A within-{\interval} {\Cnct} between two {\stgs} must respect the same
+type constraint: the predecessor {\stg}'s continuation type must match
+the successor {\stg}'s arrival type.
+
+\hypertarget{namespace-uniqueness}{}
+\paragraph{Namespace uniqueness and the $\check{}$ decoration.}
+A strict rule of the framework is that \textbf{each variable name refers
+to exactly one value within a given {\interval}}. This
+\textit{namespace uniqueness constraint} ensures that the mapping between
+mathematical symbols and computational variables (e.g., Python names) is
+well-defined: if a symbol appears in an equation, there is no ambiguity
+about which quantity it denotes.
+
+The constraint has a practical consequence when multiple {\stgs} within
+the same {\interval} produce variables of the same type. For example,
+in the portable--consnoshocks {\interval}
+(section~\ref{subsubsec:beginning-returns}), the \StgName{portable}
+{\stg} produces post-shock market resources, and the
+\StgName{cons-noshocks} {\stg} receives market resources as its
+{\Arrival} state. Both quantities are m-type, but they arise at
+different points in the {\interval} and generally take different values.
+To preserve namespace uniqueness, the earlier occurrence receives a
+decoration: we write $\check{\mNrm}$ for the \StgName{portable} {\stg}'s
+output and $\mNrm$ for the \StgName{cons-noshocks} {\stg}'s input.
+The within-{\interval} {\Cnct}
+$\CnctrComp(\check{\mNrm} \leftrightarrow \mNrm)$ then renames one to
+the other.
+
+More generally, when a {\stg}'s continuation state has the same type as
+another {\stg}'s arrival state within the same {\interval}, the later or
+secondary occurrence may receive a decoration ($\check{}$, $\hat{}$,
+etc.) to maintain uniqueness. The decoration signals that the variable
+is of the same economic type as its undecorated counterpart but occupies
+a distinct position in the {\interval}'s computation. This convention
+makes it straightforward to translate the mathematical notation into code:
+each decorated symbol maps to a unique Python variable name (e.g.,
+\texttt{mNrmCheck} for $\check{\mNrm}$, \texttt{mNrm} for $\mNrm$),
+and no variable is overwritten or reused within a single {\interval}'s
+scope.
 
   \begin{comment} % Not clear that we need to define this
 \paragraph{Builder-spec for $\BkBldrPrd$.}\label{subsec:builder-spec-bkwd}
@@ -127,9 +240,108 @@ With this spec, the computational execution of $\BkBldrPrd$ has all it needs to 
 \end{comment}
 
 \hypertarget{building-pile}{}
-\subsection{Building the {\PileName} Backward}\label{subsec:building-pile}
+\subsection{The {\PileName}: Definition and Construction}\label{subsec:building-pile}
 
-We call the structure in which accumulating periods are stored the {\pileName} $\Pile$. Once backward induction is complete, the {\pileName} holds the full definition---what might colloquially be called ``the full model.''  (We avoid the term ``model'' here because it is used in too many other ways and contexts.)  Since we accrete the elements of $\Pile$ one by one as we iterate backward, it can be thought of as a pile of defined {\intervals} (and the {\Cncts} between them).
+\subsubsection{Formal Definition}
 
-The process of building the {\pileName} is straightforward.  We start from the terminal {\interval} (section~\ref{sec:normalization}: $\vFunc_{\prdT}(\mNrm) = \uFunc(\mNrm)$, consume everything), so initially $\Pile = \{\pile_{\prdT}\}$.  We will denote the `builder' as a computational object with notation like $\BkBldrPrd$, and we will speak of the backward-induction creation of a new period as being the result of `applying` the $\BkBldrPrd$ to the existing $\Pile$.  The backward builder augments the $\pile$ by creating a new {\Cnct} and then the new period's solution, so the {\pileName} then has the form $\Pile = \{\pile_{\prdT-1},\, \CnctrComp_{\prdT-1,\prdT},\, \pile_{\prdT}\}$.  Section~\ref{sec:solving-the-next} details the construction of $\pile_{\prdT\!-\!1}$; with multiple {\stgs} or control variables the structure generalizes as in section~\ref{sec:multiple-control-variables}.
+The {\pileName} $\Pile$ is an ordered sequence of solved {\intervals}
+interleaved with the {\Cncts} that join them. Formally, a {\pileName}
+with $N$ {\intervals} is:
+\begin{equation}
+  \Pile
+  \;=\;
+  \bigl\{\,
+    \pile_1,\;
+    \Cnctr_{1,2},\;
+    \pile_2,\;
+    \Cnctr_{2,3},\;
+    \ldots,\;
+    \Cnctr_{N-1,N},\;
+    \pile_N
+  \,\bigr\},
+  \label{eq:pile-def}
+\end{equation}
+where each $\pile_{\prdt}$ is a solved {\interval} (containing its stage
+list, value functions, and policy functions) and each $\Cnctr_{\prdt,\prdt+1}$
+is a between-{\interval} {\Cnct} satisfying the type constraint from
+section~\ref{subsec:transitions}: the predecessor's exit state and the
+successor's entry state must share the same type (k-type or m-type).
+
+The {\pileName} is \textbf{well-formed} if and only if every adjacent
+$(\pile_{\prdt},\, \Cnctr_{\prdt,\prdt+1},\, \pile_{\prdt+1})$ triple
+satisfies:
+\begin{enumerate}
+  \item \textbf{Type consistency.} The continuation-state type of
+    $\pile_{\prdt}$'s last {\stg} matches the arrival-state type of
+    $\pile_{\prdt+1}$'s first {\stg}, and the {\Cnct} is a valid rename
+    between them.
+  \item \textbf{Value-function compatibility.} The {\Cnct} and builder
+    together produce a continuation value function for $\pile_{\prdt}$
+    from the arrival value function of $\pile_{\prdt+1}$.
+\end{enumerate}
+
+\subsubsection{The Consumption-Only {\PileName}}
+
+For the consumption-only problem of
+sections~\ref{sec:the-problem}--\ref{sec:normalization}, each {\interval}
+contains the stage list
+$[\StgName{shocks-only},\, \CnctrComp(\check{\mNrm} \leftrightarrow \mNrm),\,
+  \StgName{cons-noshocks},\, \StgName{disc}]$
+(or, in the single-{\stg} formulation, just
+$[\StgName{cons-with-shocks},\, \StgName{disc}]$).
+The between-{\interval} {\Cnct} is
+$\Cnctr(\aNrm \leftrightarrow \kNrm)$ (both k-type).
+A three-{\interval} consumption-only {\pileName} is therefore:
+\begin{equation*}
+  \Pile_{\text{cons}}
+  \;=\;
+  \bigl\{\,
+    \pile_{\prdT-2},\;
+    \Cnctr(\aNrm \leftrightarrow \kNrm),\;
+    \pile_{\prdT-1},\;
+    \Cnctr(\aNrm \leftrightarrow \kNrm),\;
+    \pile_{\prdT}
+  \,\bigr\}.
+\end{equation*}
+
+\subsubsection{Homogeneous and Heterogeneous {\PilesName}}
+
+A {\pileName} is \textbf{homogeneous} if every {\interval} has the same
+stage list, the same parameter values, and the same between-{\interval}
+{\Cnct}. The infinite-horizon consumption problem
+(section~\ref{sec:the-infinite-horizon}) converges to a homogeneous
+{\pileName}: every {\interval} is identical, and the converged solution
+is a fixed point of the backward builder $\BkBldrPrd$.
+
+A {\pileName} is \textbf{heterogeneous} if {\intervals} differ in their
+stage lists, parameter values, or {\Cncts}. A life cycle model is
+typically heterogeneous: mortality risk, income profiles, and available
+choices (e.g., whether portfolio optimization is active) may vary by age.
+For example, a life cycle model might use
+$[\StgName{portable}(\bar{\shr}=\bot),\, \CnctrComp,\,
+  \StgName{cons-noshocks},\, \StgName{disc}]$
+for working-age {\intervals} (with active portfolio choice) and
+$[\StgName{shocks-only},\, \CnctrComp,\,
+  \StgName{cons-noshocks},\, \StgName{disc}]$
+for retirement {\intervals} (no portfolio choice).
+
+\subsubsection{Backward Construction}
+
+We call the structure in which accumulating periods are stored the
+{\pileName} $\Pile$. Once backward induction is complete, the {\pileName}
+holds the full definition of the solved problem.
+
+The process of building the {\pileName} is straightforward. We start from
+the terminal {\interval} (section~\ref{sec:normalization}:
+$\vFunc_{\prdT}(\mNrm) = \uFunc(\mNrm)$, consume everything), so initially
+$\Pile = \{\pile_{\prdT}\}$. We denote the backward builder as $\BkBldrPrd$.
+Applying $\BkBldrPrd$ to the existing $\Pile$ creates a new {\Cnct} and
+then the new period's solution, yielding
+$\Pile = \{\pile_{\prdT-1},\, \Cnctr_{\prdT-1,\prdT},\, \pile_{\prdT}\}$.
+Each subsequent application of $\BkBldrPrd$ prepends one more
+$(\pile_{\prdt},\, \Cnctr_{\prdt,\prdt+1})$ pair, growing the {\pileName}
+from right to left. Section~\ref{sec:solving-the-next} details the
+construction of $\pile_{\prdT-1}$; with multiple {\stgs} or control
+variables the structure generalizes as in
+section~\ref{sec:multiple-control-variables}.
 

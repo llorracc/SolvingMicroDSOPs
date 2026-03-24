@@ -2,6 +2,7 @@
 # Econ-ARK website fields
 remark-version: "1.0"
 remark-name: SolvingMicroDSOPs
+tier: 3
 notebooks:
   - SolvingMicroDSOPs.ipynb
 

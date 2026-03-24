@@ -1,0 +1,2 @@
+do '/usr/local/share/latexmk/latexmkrc_for-projects-with-circular-crossrefs';
+1;

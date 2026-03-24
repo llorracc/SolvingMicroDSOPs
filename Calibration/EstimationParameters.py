@@ -147,9 +147,9 @@ DiscFac_timevary = [
     0.9902111,
 ]
 
-# Survival probabilities over the lifecycle
+# Survival probabilities over the lifecycle (T_cycle entries needed by HARK solver)
 liv_prb = parse_ssa_life_table(
-    female=False, age_min=initial_age, age_max=final_age - 1, cohort=1960
+    female=False, age_min=initial_age, age_max=final_age, cohort=1960
 )
 
 # Age groups for the estimation: calculate average wealth-to-permanent income ratio
@@ -181,7 +181,7 @@ seed = 31382  # Just an integer to seed the estimation
 # Dictionary that can be passed to ConsumerType to instantiate
 init_consumer_objects = {
     "CRRA": CRRA_start,
-    "Rfree": Rfree,
+    "Rfree": [Rfree] * TT,
     "PermGroFac": inc_calib["PermGroFac"],
     "BoroCnstArt": BoroCnstArt,
     "PermShkStd": inc_calib["PermShkStd"],

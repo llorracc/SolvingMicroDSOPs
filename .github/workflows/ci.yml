@@ -8,9 +8,11 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
+        os: [ubuntu-latest, macos-latest]
         python-version: ["3.10", "3.11", "3.12"]
     steps:
       - uses: actions/checkout@v4
@@ -32,6 +34,32 @@ jobs:
       - name: Run tests (all)
         working-directory: Code/Python
         run: pytest tests/ -v
+        continue-on-error: true
+
+  test-windows-wsl:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up WSL (Ubuntu)
+        uses: Vampire/setup-wsl@v5
+        with:
+          distribution: Ubuntu-24.04
+          additional-packages: python3 python3-pip python3-venv
+
+      - name: Run tests inside WSL
+        shell: wsl-bash {0}
+        run: |
+          python3 -m pip install --upgrade pip --break-system-packages
+          pip install numpy scipy matplotlib pandas econ-ark pytest --break-system-packages
+          cd Code/Python
+          pytest tests/ -m "not slow" -v
+
+      - name: Run tests (all)
+        shell: wsl-bash {0}
+        run: |
+          cd Code/Python
+          pytest tests/ -v
         continue-on-error: true
 
   notebook:

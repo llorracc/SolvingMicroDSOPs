@@ -1,0 +1,123 @@
+\ProvidesPackage{econark-bibfilesfind}[2024/11/04 collect existing among filename.bib, system.bib, filename-Add-Refs.bib]
+
+% creates \bibfilesfound with list of nonempty bibfiles
+
+\RequirePackage{ifthen}
+\RequirePackage{etoolbox}
+
+% command that checks if a file is empty or not
+% (no point in including empty bib files)
+% example usage:
+% \IsFileEmpty{myfile.txt}
+%   {This executes if file is empty}
+%   {This executes if file has content}
+
+\newcommand{\IsFileEmpty}[3]{%
+  \IfFileExists{#1}{%
+    \newread\filetest
+    \openin\filetest=#1
+    \read\filetest to \fileline
+    \ifeof\filetest
+      \typeout{File #1 is empty}%
+      #2%
+    \else
+      \typeout{File #1 is not empty}%
+      #3%
+    \fi
+    \closein\filetest
+  }{%
+    \typeout{File #1 does not exist}%
+    #2% or handle non-existent file differently
+  }%
+}
+
+% \IfFileExistsAndNotEmpty{myfile.tex}
+%   {File exists and has content}  % executed if file exists and is not empty
+%   {File is either missing or empty}  % executed if file doesn't exist or is empty
+
+\newcommand{\IfFileExistsAndNotEmpty}[3]{%
+  \IfFileExists{#1}%
+  {\IsFileEmpty{#1}{#3}{#2}}%
+  {#3}%
+}
+
+\providecommand{\bibfilesfound}{}
+\providecommand{\bibfilesfind}{}
+\renewcommand{\bibfilesfind}[1]{%
+  \def\filename{#1}%
+  \provideboolean{AddRefsExists}%
+  \provideboolean{systemExists}%
+  \provideboolean{filenameExists}%
+  \IfFileExistsAndNotEmpty{/usr/local/texlive/texmf-local/bibtex/bib/system.bib}{%
+    \setboolean{systemExists}{true}%
+    \typeout{econark-bibfilesfind: File system.bib found}%
+  }{%
+%    \typeout{cannot be true and false}%
+    \setboolean{systemExists}{false}%
+    \typeout{econark-bibfilesfind: File system.bib not found}%
+  }%
+  \IfFileExistsAndNotEmpty{\filename-Add-Refs.bib}{%
+    \setboolean{AddRefsExists}{true}%
+    \typeout{econark-bibfilesfind: File \filename-Add-Refs.bib found}%
+  }{%
+    \setboolean{AddRefsExists}{false}%
+    \typeout{econark-bibfilesfind: File \filename-Add-Refs.bib not found}%
+  }%
+  \IfFileExistsAndNotEmpty{\filename.bib}{%
+  \setboolean{filenameExists}{true}%
+  \typeout{econark-bibfilesfind: File \filename.bib found}%
+  }{%
+    \setboolean{filenameExists}{false}%
+    \typeout{econark-bibfilesfind: File \filename.bib not found}%
+  }%
+  \ifthenelse{\boolean{AddRefsExists}}{% AddRefs
+    \ifthenelse{\boolean{systemExists}}{% Addrefs+system 
+      \ifthenelse{\boolean{filenameExists}}{% AddRefs+system+file
+        \typeout{econark-bibfilesfind: References in \filename-Add-Refs.bib will take precedence over those elsewhere}%
+        \typeout{econark-bibfilesfind: References in default global system.bib will be used for items not found elsewhere}%
+        \typeout{}% 
+        \typeout{\bibfilesfound:{\filename-Add-Refs,\filename,system}}%
+        \typeout{}% 
+        \renewcommand{\bibfilesfound}{system,./\filename-Add-Refs,./\filename}%
+      }{% AddRefs+system-file
+        \typeout{econark-bibfilesfind: References in \filename-Add-Refs.bib will take precedence over those elsewhere}%
+        \typeout{econark-bibfilesfind: References in default global system.bib will be used for items not found elsewhere}%
+        \typeout{\bibfilesfound:{\filename-Add-Refs,system}}%
+        \renewcommand{\bibfilesfound}{system,./\filename-Add-Refs}%
+      }%
+    }{% +AddRefs-system
+      \ifthenelse{\boolean{filenameExists}}{% AddRefs-system+file
+        \typeout{econark-bibfilesfind: References in \filename-Add-Refs.bib will take precedence over those elsewhere}%
+        \typeout{econark-bibfilesfind: References in default global system.bib will be used for items not found elsewhere}%
+        \typeout{\bibfilesfound:{\filename,\filename-Add-Refs}}%
+        \renewcommand{\bibfilesfound}{./\filename,./\filename-Add-Refs}%
+      }{% +AddRefs-system-file
+        \typeout{econark-bibfilesfind: References in \filename-Add-Refs.bib will be used}%
+        \typeout{\bibfilesfound:{\filename-Add-Refs}}%
+        \renewcommand{\bibfilesfound}{./\filename-Add-Refs}%
+      }% end filename+AddRefs-system
+    }%
+  }{% -AddRefs
+    \ifthenelse{\boolean{systemExists}}{% -AddRefs+system
+      \ifthenelse{\boolean{filenameExists}}{% -AddRefs+file+system
+        \typeout{econark-bibfilesfind: References in default global system.bib will be used for items not found in \filename.bib}%
+        \typeout{\bibfilesfound:{\filename,system}}%
+        \renewcommand{\bibfilesfound}{system,./\filename}%
+      }{% -AddRefs+system-file
+        \typeout{econark-bibfilesfind: References in default global system.bib will be used}%
+        \typeout{\bibfilesfound:{system}}%
+        \renewcommand{\bibfilesfound}{system}%
+      }% end file
+    }{% -AddRefs-system
+      \ifthenelse{\boolean{filenameExists}}{%
+        \typeout{econark-bibfilesfind: references in \filename.bib}%
+        \typeout{\bibfilesfound:{\filename}}%
+        \renewcommand{\bibfilesfound}{./\filename}%
+      }{% -AddRefs-system-file
+        \typeout{econark-bibfilesfind: No bibliography files found}%
+      }
+    } % end -filename 
+  }% end -Addrefs
+}% end newcommand
+
+\endinput

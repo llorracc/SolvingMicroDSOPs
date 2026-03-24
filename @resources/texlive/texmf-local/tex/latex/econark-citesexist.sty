@@ -1,0 +1,68 @@
+% econark-citesexist.sty
+% 
+% A package to detect whether citations exist in a LaTeX document
+% 
+% Usage:
+%   \usepackage{natbib}          % Must be loaded first
+%   \usepackage{econark-citesexist}
+%
+% Commands:
+%   \ifcitesexist{<if-true>}{<if-false>}
+%     Executes <if-true> if any citations exist in the document,
+%     otherwise executes <if-false>
+%
+% Example:
+%   \ifcitesexist{
+%     \section{References}
+%     \bibliography{mybib}
+%   }{
+%     % No references section if no citations exist
+%   }
+%
+% Author: [Your Name]
+% Version: 1.0
+% Date: 2024/12/23
+% License: LPPL 1.3c
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{econark-citesexist}[2023/05/24 Check if citations exist]
+
+% Check if natbib is loaded
+\@ifpackageloaded{natbib}{}{%
+  \PackageError{econark-citesexist}%
+    {citesexist package requires the use of natbib, which has not been loaded}%
+    {Please invoke natbib before \string\usepackage{econark-citesexist}}%
+}
+
+% Create a boolean to track if citations exist
+\newif\if@citesexist
+\@citesexistfalse
+
+% Hook into both cite and nocite commands to set our flag
+\let\oldcite\cite
+\global\def\cite{\global\@citesexisttrue\oldcite}
+
+\let\oldnocite\nocite
+\global\def\nocite{\global\@citesexisttrue\oldnocite}
+
+% Define the basic conditional command
+\newcommand{\ifcitesexist}[2]{%
+  \if@citesexist
+    #1%
+  \else
+    #2%
+  \fi
+}
+
+% \safebibliographystyle only sets style if it has not already been set
+\newif\ifbibstyleset
+\bibstylesetfalse
+
+\newcommand{\safebibliographystyle}[1]{
+    \ifbibstyleset
+    \else
+        \bibliographystyle{#1}
+        \bibstylesettrue
+    \fi
+  }
+\endinput

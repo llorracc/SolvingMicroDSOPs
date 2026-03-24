@@ -5,7 +5,8 @@
 % Get references right whether compiled as subfile or main file
 % https://tex.stackexchange.com/questions/463699/proper-reference-numbers-with-subfiles
 \RequirePackage[nointegrals]{wasysym} % integrals conflict with amsmath
-\newcommand\labelprefix{}
+\RequirePackage{ifthen} 
+% \newcommand{\labelprefix}{}
 \newcommand\localorexternallabel[1]{% Removing this comment breaks the command
   \expandafter\ifx\csname r@#1\endcsname\relax
   \labelprefix

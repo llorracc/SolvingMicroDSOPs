@@ -4,7 +4,7 @@
 $do_cd = 1;
 $clean_ext = "bbl nav out snm dvi idv tmp 4tc out aux log fls fdb_latexmk mk4 synctex.gz toc ps out.ps upa upb 4ct";
 $bibtex_use=2;
-$bibtex = 'bibtex %O %B; sed -i "" "s/error message/benign repeated-entry note/" %B.blg; exit 0';
+$bibtex = 'bibtex %O %B; sed "s/error message/benign repeated-entry note/" %B.blg > %B.blg.tmp && mv %B.blg.tmp %B.blg; exit 0';
 @default_files = ('SolvingMicroDSOPs');
 $pdf_mode = 4;
 $out_dir = '.';

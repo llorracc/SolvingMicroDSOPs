@@ -24,42 +24,50 @@ fi
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
-# ---------------------------------------------------------------------------
-# Platform / architecture detection
-# ---------------------------------------------------------------------------
-get_platform_venv_path() {
-    local platform="" arch=""
+# Shared platform/architecture detection and symlink helpers
+source "$SCRIPT_DIR/platform-utils.sh"
 
+# ---------------------------------------------------------------------------
+# Windows / WSL checks
+# ---------------------------------------------------------------------------
+
+# Detect if running on native Windows (not WSL) and abort with instructions
+check_windows_native() {
     case "$(uname -s)" in
-        Darwin) platform="darwin" ;;
-        Linux)  platform="linux" ;;
-        *)      platform="" ;;
+        MINGW*|MSYS*|CYGWIN*)
+            cat >&2 <<'WINMSG'
+ERROR: Native Windows is not supported.
+Please use Windows Subsystem for Linux (WSL) instead:
+  1. Install WSL:   wsl --install
+  2. Clone the repo INSIDE WSL (not /mnt/c/...):
+       cd ~ && git clone <repo-url>
+  3. Run this script from inside WSL.
+WINMSG
+            return 1 2>/dev/null || exit 1
+            ;;
     esac
+}
 
-    if [[ "$(uname -s)" == "Darwin" ]]; then
-        if sysctl -n hw.optional.arm64 2>/dev/null | grep -q 1; then
-            arch="arm64"
-        else
-            arch="x86_64"
+# If running under WSL, verify repo is on the Linux filesystem (not /mnt/)
+check_wsl_filesystem() {
+    if [[ "$(uname -s)" == "Linux" ]] && grep -qi microsoft /proc/version 2>/dev/null; then
+        if [[ "$PROJECT_ROOT" == /mnt/* ]]; then
+            cat >&2 <<'WSLMSG'
+ERROR: This repo is on the Windows filesystem (/mnt/...).
+WSL has very poor I/O performance on Windows-mounted drives.
+Please clone the repo inside the WSL Linux filesystem instead:
+  cd ~ && git clone <repo-url>
+Then run this script from that location.
+WSLMSG
+            return 1 2>/dev/null || exit 1
         fi
-    else
-        arch="$(uname -m)"
-    fi
-
-    case "$arch" in
-        arm64)   arch="arm64" ;;
-        aarch64) arch="aarch64" ;;
-        x86_64)  arch="x86_64" ;;
-    esac
-
-    if [[ -n "$platform" ]] && [[ -n "$arch" ]]; then
-        echo "$PROJECT_ROOT/.venv-$platform-$arch"
-    elif [[ -n "$platform" ]]; then
-        echo "$PROJECT_ROOT/.venv-$platform"
-    else
-        echo "$PROJECT_ROOT/.venv"
     fi
 }
+
+check_windows_native
+check_wsl_filesystem
+
+# Platform / architecture detection is provided by platform-utils.sh
 
 # ---------------------------------------------------------------------------
 # Ensure python/python3 symlinks exist in the venv
@@ -229,36 +237,7 @@ ensure_uv_in_path() {
 
 ensure_uv_in_path
 
-# ---------------------------------------------------------------------------
-# Create/update .venv symlink pointing to the platform-specific venv.
-# This makes .venv a standard entry point for VS Code, Cursor, and other
-# tools while preserving per-platform venvs on shared filesystems.
-# The devcontainer's post-create.sh does the same thing.
-# ---------------------------------------------------------------------------
-ensure_venv_symlink() {
-    local venv_path="$1"
-    local venv_name
-    venv_name=$(basename "$venv_path")
-    local link="$PROJECT_ROOT/.venv"
-
-    if [[ -L "$link" ]]; then
-        local current
-        current=$(readlink "$link")
-        if [[ "$current" != "$venv_name" ]]; then
-            rm -f "$link"
-            ln -s "$venv_name" "$link"
-            echo "  Updated .venv -> $venv_name"
-        fi
-    elif [[ -d "$link" ]]; then
-        # Legacy shim directory — remove it
-        rm -rf "$link"
-        ln -s "$venv_name" "$link"
-        echo "  Replaced .venv/ shim directory with symlink -> $venv_name"
-    elif [[ ! -e "$link" ]]; then
-        ln -s "$venv_name" "$link"
-        echo "  Created .venv -> $venv_name"
-    fi
-}
+# ensure_venv_symlink is provided by platform-utils.sh
 
 # ---------------------------------------------------------------------------
 # Resolve venv path
@@ -301,7 +280,7 @@ if [[ -d "$VENV_PATH" ]] && [[ -f "$VENV_PATH/bin/python" ]]; then
     fi
     echo ""
 
-    ensure_venv_symlink "$VENV_PATH"
+    ensure_venv_symlink "$PROJECT_ROOT" "$VENV_NAME"
     ensure_venv_jupyter_kernel "$VENV_PATH"
 
     # Activate if being sourced
@@ -383,7 +362,7 @@ if [[ "${USE_PIP_FALLBACK:-false}" == "true" ]]; then
         pip install -e . --quiet 2>/dev/null || pip install . --quiet
     fi
     echo ""
-    ensure_venv_symlink "$VENV_PATH"
+    ensure_venv_symlink "$PROJECT_ROOT" "$VENV_NAME"
     echo "Environment ready: $VENV_NAME/"
     return 0 2>/dev/null || exit 0
 fi
@@ -415,7 +394,7 @@ fi
 if [[ ! -d "$VENV_PATH" ]]; then
     echo "Creating virtual environment at $VENV_NAME..."
     ensure_uv_in_path
-    if [[ "$(uname -m)" == "arm64" ]]; then
+    if is_apple_silicon; then
         arch -arm64 uv venv "$VENV_PATH"
     else
         uv venv "$VENV_PATH"
@@ -430,7 +409,7 @@ fi
 # ---------------------------------------------------------------------------
 echo "Syncing dependencies..."
 export UV_PROJECT_ENVIRONMENT="$VENV_PATH"
-if [[ "$(uname -m)" == "arm64" ]]; then
+if is_apple_silicon; then
     arch -arm64 uv sync --all-groups
 else
     uv sync --all-groups
@@ -440,7 +419,7 @@ echo ""
 # ---------------------------------------------------------------------------
 # Step 5: Symlink, summary, and activation
 # ---------------------------------------------------------------------------
-ensure_venv_symlink "$VENV_PATH"
+ensure_venv_symlink "$PROJECT_ROOT" "$VENV_NAME"
 
 ensure_venv_jupyter_kernel "$VENV_PATH"
 

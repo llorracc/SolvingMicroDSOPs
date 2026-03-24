@@ -1,0 +1,36 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{llorracc-answer}[2024/12/20 Control answer display with AnswersTF boolean]
+
+% Required packages
+\RequirePackage{ifthen}
+
+% Boolean for answers
+\provideboolean{AnswersTF}
+\setboolean{AnswersTF}{false} % Default: answers are off
+
+% Safeguard for command-line option (e.g., \def\UseOption{Answers})
+\makeatletter
+\@ifundefined{UseOption}{%
+  % If \UseOption is not defined, default to no answers
+  \setboolean{AnswersTF}{false}%
+}{%
+  % If \UseOption is defined, check its value
+  \ifthenelse{\equal{\UseOption}{Answers}}{%
+    \setboolean{AnswersTF}{true}% Enable answers
+  }{%
+    \setboolean{AnswersTF}{false}% No answers
+  }%
+}
+\makeatother
+
+% Command for conditional answers
+\newcommand{\answer}[2]{%
+  \ifthenelse{\boolean{AnswersTF}}{%
+    \textit{Answer:}%
+    \begin{quote}%
+      #1%
+    \end{quote}%
+  }{#2}%
+}
+
+\endinput

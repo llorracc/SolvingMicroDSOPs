@@ -3,7 +3,7 @@
 **Solution Methods for Microeconomic Dynamic Stochastic Optimization Problems** — lecture notes, code, and replication for structural estimation of a life-cycle consumption-saving model.
 
 **Author**: Christopher D. Carroll  
-**Status**: [REMARK](https://github.com/econ-ark/REMARK) Tier 1 (Docker REMARK) — minimal reproducibility via containerization.
+**Status**: [REMARK](https://github.com/econ-ark/REMARK) Tier 3 (Published REMARK) — publication-ready with permanent archival and citation support.
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/econ-ark/SolvingMicroDSOPs/HEAD)
 
@@ -134,7 +134,7 @@ After running `./reproduce.sh`, **Tables/estimate_results.csv** should match the
 
 ### Dependencies
 
-Tested with **econ-ark** >= 0.17.1. For exact reproduction use `uv sync` (uses **uv.lock**).
+Tested with **econ-ark** >= 0.17.1. For exact reproduction use `uv sync --locked` (uses **uv.lock**).
 
 ---
 
@@ -161,5 +161,5 @@ Thanks to Marc Chan for help updating the text and software, Kiichi Tokuoka for 
 
 ---
 
-**REMARK Tier**: 1 (Docker REMARK)  
-**Last updated**: 2026-02-26
+**REMARK Tier**: 3 (Published REMARK)  
+**Last updated**: 2026-03-11

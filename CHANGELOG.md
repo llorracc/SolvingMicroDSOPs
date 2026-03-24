@@ -2,6 +2,15 @@
 
 ## 2.0.0 — 2026-03-01
 
+### REMARK Tier 3 and HARK 0.17 compatibility (2026-03)
+
+- **HARK 0.17 lifecycle parameters**: Estimation and solver code updated for HARK’s time-varying lifecycle handling. `Rfree` and `LivPrb` are now length-65 lists in `Calibration/EstimationParameters.py`; `parse_ssa_life_table` uses `age_max=final_age` so LivPrb has 65 entries. `StructEstimation.py` overrides `check_restrictions()` to support list-valued (and array) discount factor instead of assuming a scalar.
+- **Structural estimation**: Sanity-check expected objective updated after parameter fixes; full reproduction (Nelder-Mead, sensitivity, contour) runs successfully in Docker and locally.
+- **econark-multibib**: When `system.bib` is absent, the style now omits `system` from the `\bibliography{}` call so BibTeX does not fail in clean/Docker environments. No dummy `system.bib` required.
+- **Build and reproducibility**: `.latexmkrc` uses portable `sed` (no `sed -i ""`) for Linux/Docker. `reproduce/required_latex_packages.txt` includes `luatex85` for the Docker TeX Live image. `reproduce.sh` sets `PYTHONPATH` for estimation and uses `uv sync --locked --all-groups` so the lockfile is strictly enforced per REMARK standard.
+- **Dependencies**: `pyproject.toml` dependency ranges tightened (e.g. `econ-ark>=0.17.1,<0.18`). `uv.lock` regenerated with exact resolved versions for reproducible installs.
+- **Metadata**: `CITATION.cff` now includes `license: Apache-2.0`. `REMARK.md` frontmatter set to `tier: 3`. README status and footer updated to Tier 3 (Published REMARK).
+
 ### Notation standardization
 
 - Replaced `\Alive` with `\LivPrb` in all LaTeX source files (matches the Python identifier).

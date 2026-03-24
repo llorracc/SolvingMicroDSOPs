@@ -99,9 +99,15 @@ else
     WORKSPACE_DIR="/workspaces/${REPO_NAME}"
 fi
 
+PROJECT_ROOT="$WORKSPACE_DIR"
+
 if [ -d "$WORKSPACE_DIR" ]; then
     cd "$WORKSPACE_DIR"
     echo "✅ Working directory: $WORKSPACE_DIR"
+    # Source shared platform/architecture detection
+    if [ -f "$WORKSPACE_DIR/reproduce/platform-utils.sh" ]; then
+        source "$WORKSPACE_DIR/reproduce/platform-utils.sh"
+    fi
 else
     echo "❌ ERROR: Could not find workspace directory: $WORKSPACE_DIR"
     echo "   Script path: $SCRIPT_PATH"
@@ -421,32 +427,20 @@ else
     fi
 fi
 
-# Detect platform-specific venv
-PLATFORM=""
-ARCH=""
-case "$(uname -s)" in
-    Darwin) PLATFORM="darwin" ;;
-    Linux)  PLATFORM="linux" ;;
-esac
-if [ "$PLATFORM" = "darwin" ]; then
-    if sysctl -n hw.optional.arm64 2>/dev/null | grep -q 1; then
-        ARCH="arm64"
-    else
-        ARCH="x86_64"
-    fi
-else
-    ARCH="$(uname -m)"
-fi
-PLATFORM_VENV=".venv-${PLATFORM}-${ARCH}"
+# Detect platform-specific venv using shared library
+VENV_PATH=$(get_platform_venv_path)
+PLATFORM_VENV=$(basename "$VENV_PATH")
 
-if [ -d "$PLATFORM_VENV" ] && [ -f "$PLATFORM_VENV/bin/python" ]; then
-    VENV_PATH="$(pwd)/$PLATFORM_VENV"
+if [ -d "$VENV_PATH" ] && [ -f "$VENV_PATH/bin/python" ]; then
+    true
 elif [ -d ".venv" ] && [ -f ".venv/bin/python" ]; then
     VENV_PATH="$(pwd)/.venv"
 else
     echo "❌ Virtual environment was not created"
     exit 1
 fi
+
+ensure_venv_symlink "$PROJECT_ROOT" "$PLATFORM_VENV"
 
 echo "✅ Virtual environment verified at: $VENV_PATH"
 
@@ -455,30 +449,32 @@ echo "✅ Virtual environment verified at: $VENV_PATH"
 ACTIVATION_CODE='
 # Auto-activate SolvingMicroDSOPs virtual environment (platform and architecture-specific)
 if [ -z "${VIRTUAL_ENV:-}" ]; then
-    SOLVINGMICRODSOPS_WORKSPACE="/workspace"
-    if [ ! -d "$SOLVINGMICRODSOPS_WORKSPACE" ]; then
-        for _try_dir in "/workspace" "$HOME/workspace"; do
-            [ -d "$_try_dir" ] && SOLVINGMICRODSOPS_WORKSPACE="$_try_dir" && break
+    SMDSOP_WORKSPACE=""
+    for _try_dir in /workspaces/SolvingMicroDSOPs-Latest /workspaces/SolvingMicroDSOPs \
+                    /workspace/SolvingMicroDSOPs-Latest /workspace/SolvingMicroDSOPs; do
+        if [ -d "$_try_dir" ]; then SMDSOP_WORKSPACE="$_try_dir"; break; fi
+    done
+    if [ -z "$SMDSOP_WORKSPACE" ]; then
+        for _d in /workspaces/*/ /workspace/*/; do
+            if [ -f "${_d}pyproject.toml" ]; then SMDSOP_WORKSPACE="${_d%/}"; break; fi
         done
     fi
-    SOLVINGMICRODSOPS_VENV=""
-    SOLVINGMICRODSOPS_ARCH=$(uname -m)
-    case "$(uname -s)" in
-        Darwin)
-            if [ -f "$SOLVINGMICRODSOPS_WORKSPACE/.venv-darwin-$SOLVINGMICRODSOPS_ARCH/bin/activate" ]; then
-                SOLVINGMICRODSOPS_VENV="$SOLVINGMICRODSOPS_WORKSPACE/.venv-darwin-$SOLVINGMICRODSOPS_ARCH"
-            fi
-            ;;
-        Linux)
-            if [ -f "$SOLVINGMICRODSOPS_WORKSPACE/.venv-linux-$SOLVINGMICRODSOPS_ARCH/bin/activate" ]; then
-                SOLVINGMICRODSOPS_VENV="$SOLVINGMICRODSOPS_WORKSPACE/.venv-linux-$SOLVINGMICRODSOPS_ARCH"
-            fi
-            ;;
-    esac
-    if [ -n "$SOLVINGMICRODSOPS_VENV" ] && [ -f "$SOLVINGMICRODSOPS_VENV/bin/activate" ]; then
-        # shellcheck source=/dev/null
-        source "$SOLVINGMICRODSOPS_VENV/bin/activate"
+    if [ -n "$SMDSOP_WORKSPACE" ] && [ -f "$SMDSOP_WORKSPACE/.venv/bin/activate" ]; then
+        source "$SMDSOP_WORKSPACE/.venv/bin/activate"
+    else
+        SMDSOP_ARCH=$(uname -m)
+        case "$(uname -s)" in
+            Darwin)
+                [ -n "$SMDSOP_WORKSPACE" ] && [ -f "$SMDSOP_WORKSPACE/.venv-darwin-$SMDSOP_ARCH/bin/activate" ] && \
+                    source "$SMDSOP_WORKSPACE/.venv-darwin-$SMDSOP_ARCH/bin/activate"
+                ;;
+            Linux)
+                [ -n "$SMDSOP_WORKSPACE" ] && [ -f "$SMDSOP_WORKSPACE/.venv-linux-$SMDSOP_ARCH/bin/activate" ] && \
+                    source "$SMDSOP_WORKSPACE/.venv-linux-$SMDSOP_ARCH/bin/activate"
+                ;;
+        esac
     fi
+    unset SMDSOP_WORKSPACE SMDSOP_ARCH _try_dir _d
 fi'
 
 if [ -f "$HOME/.bashrc" ]; then

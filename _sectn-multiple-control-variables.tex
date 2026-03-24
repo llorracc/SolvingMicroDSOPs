@@ -87,6 +87,63 @@ The remainder of this section develops a general framework, building on the modu
 
 The single-{\stg}-per-{\interval} formulation from \ifthenelse{\boolean{shortVersion}}{sections~\ref{sec:the-problem}--\ref{sec:the-usual-theory}}{sections~\ref{sec:the-problem}--\ref{sec:solving-the-next}} is equivalent to a sequence of simpler {\stgs}, each with a single job.  We decompose it in that way so that adding portfolio choice later requires no change to the consumption-{\stg} code---only the stage list and the {\Cnct}s between {\stgs} change (see section~\ref{sec:notation}).  The decomposition yields the same value functions, consumption function, and Euler equation.
 
+\paragraph{Stage graphs: from lists to directed acyclic graphs.}
+The stage lists presented above---e.g.,
+$[\StgName{shocks-only},\, \CnctrComp,\, \StgName{cons-noshocks},\, \StgName{disc}]$---are
+\textit{linear}: each {\stg} has exactly one predecessor and one successor.
+More generally, the {\stgs} within a {\interval} may form a \textit{directed
+acyclic graph} (DAG), in which a single predecessor {\stg} fans out into
+multiple successor branches that later reconverge. Each branch represents a
+distinct contingency or regime that the agent may face, and the {\Arrival}
+value function of the branching {\stg} is a probability-weighted combination
+of the {\Arrival} values from the branches.
+
+\paragraph{Example: employment branches (expository).}
+Consider a consumer who, at the start of each {\interval}, is either
+\textit{employed} or \textit{temporarily unemployed}, with probabilities
+$p_{\text{emp}}$ and $1 - p_{\text{emp}}$ respectively. The two labor-market
+states imply different income processes:
+\begin{itemize}
+  \item \textbf{Employed branch.} The consumer receives ordinary labor income
+    $\tranShkEmp$, so market resources are
+    $\mNrm^{\text{emp}} = \RNrmByG\,\kNrm + \tranShkEmp$.
+  \item \textbf{Unemployed branch.} The consumer receives unemployment
+    insurance benefits $\mu$ (a fixed fraction of permanent income), so
+    market resources are
+    $\mNrm^{\text{unemp}} = \RNrmByG\,\kNrm + \mu$.
+\end{itemize}
+After the branch-specific income is realized, both branches feed into the
+\textit{same} shock-free consumption {\stg} (\StgName{cons-noshocks}),
+which chooses $\cNrm$ given $\mNrm$. The DAG for a single {\interval} is:
+
+\begin{center}
+\begin{tabular}{ccccc}
+  & & \fbox{\StgName{employed-shocks}} & & \\
+  & $\nearrow$ & & $\searrow$ & \\
+\fbox{\StgName{branch}} & & & & \fbox{\StgName{cons-noshocks}} $\to$ \fbox{\StgName{disc}} \\
+  & $\searrow$ & & $\nearrow$ & \\
+  & & \fbox{\StgName{unemployed-shocks}} & & \\
+\end{tabular}
+\end{center}
+
+\noindent The branching {\stg} has no optimization; it merely routes the
+agent into one of the two income-realization {\stgs} with the appropriate
+probability. The {\Arrival} value function at the branch point is:
+\begin{equation*}
+  \vFunc_{\text{branch},\arvl}(\kNrm)
+  \;=\;
+  p_{\text{emp}}\,\vFunc_{\text{emp},\arvl}(\kNrm)
+  \;+\;
+  (1 - p_{\text{emp}})\,\vFunc_{\text{unemp},\arvl}(\kNrm).
+\end{equation*}
+Each branch is itself a valid {\stg} (with its own {\Arrival}, {\Decision},
+and {\Continuation} {\prchs}); the only new element is the
+probability-weighted fan-out at the branch point and the fan-in (via a
+shared {\Cnct}) before the consumption {\stg}. This example is purely
+expository---no code implementation is provided---but it illustrates how the
+DAG generalization accommodates heterogeneous regimes within a single
+{\interval} without duplicating the consumption-{\stg} logic.
+
 \hypertarget{disc-stage}{}
 \subsubsection{The Discounting Stage (\StgName{disc})}\label{subsubsec:disc-stage}
 
@@ -106,6 +163,23 @@ The simplest decomposition isolates discounting into a standalone {\stg} that ap
     \parbox{\wd\disctablebox}{\footnotesize n.b.: $\bullet$ is a generic passthrough state whose type (k-type or m-type) is inherited from the predecessor {\stg}'s {\Continuation} state.  For example, when \StgName{disc} follows \StgName{cons-noshocks}, $\bullet$ stands for $\aNrm$ (k-type); when it follows \StgName{portable}, $\bullet$ stands for $\check{\mNrm}$ (m-type).}
   \end{center}
   \end{table}
+
+\begin{table}[h]
+\caption{Rosetta Stone: \StgName{disc} Stage Variables}
+\label{tab:rosetta-disc}
+\begin{center}
+\begin{tabular}{l|l|l|l}
+Math Symbol & \LaTeX{} Macro & Python Variable & Description \\
+\hline
+$\bullet$                    & ---                          & \texttt{state}       & Passthrough state (inherits type from predecessor) \\
+$\DiscFac$                   & \verb|\DiscFac|              & \texttt{DiscFac}     & Time-preference discount factor \\
+$\vFunc_{\DiscFac,\dcsn}$    & \verb|\vFunc_{\DiscFac,\dcsn}| & \texttt{vDcsn}    & Decision value: $\DiscFac \cdot \vCntn$ (no optimization) \\
+$\vFunc_{\DiscFac,\cntn}$    & \verb|\vFunc_{\DiscFac,\cntn}| & \texttt{vCntn}    & Continuation value function (value at exit) \\
+$\vFunc_{\DiscFac,\arvl}$    & \verb|\vFunc_{\DiscFac,\arvl}| & \texttt{vArvl}    & Arrival value function ($= \vDcsn$; no shocks) \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
 
 %  Now we specify the consumption {\stg} to have $\DiscFac = 1$; the \StgName{disc} {\stg} receives $\aNrm$ and the backward builder $\BkBldrPrd$ constructs $\vFunc_{\DiscFac,\dcsn} = \DiscFac \cdot \vFunc_{\DiscFac,\cntn}(\aNrm)$ and $\vArvl=\vDcsn$.
 
@@ -170,6 +244,30 @@ The {\stg}'s {\Arrival} state includes the investable capital $\kNrm$ and an opt
   \end{center}
   \end{table}
 
+\begin{table}[h]
+\caption{Rosetta Stone: \StgName{portable} Stage Variables}
+\label{tab:rosetta-portable}
+\begin{center}
+\begin{tabular}{l|l|l|l}
+Math Symbol & \LaTeX{} Macro & Python Variable & Description \\
+\hline
+$\kNrm$             & \verb|\kNrm|             & \texttt{kNrm}        & Normalized capital (arrival state, k-type) \\
+$\shr$              & \verb|\shr|              & \texttt{Shr}         & Portfolio share in risky asset (control or fixed parameter) \\
+$\bar{\shr}$        & \verb|\bar{\shr}|        & \texttt{ShrFixed}    & Prescribed portfolio share ($\bot$ = optimize) \\
+$\check{\mNrm}$     & \verb|\check{\mNrm}|     & \texttt{mNrmCheck}   & Post-shock market resources (continuation state, m-type) \\
+$\Rport$            & \verb|\Rport|            & \texttt{Rport}       & Portfolio-weighted return factor: $\Rfree + (\Risky - \Rfree)\shr$ \\
+$\Risky$            & \verb|\Risky|            & \texttt{Risky}       & Stochastic risky-asset return factor \\
+$\Rfree$            & \verb|\Rfree|            & \texttt{Rfree}       & Risk-free return factor \\
+$\tranShkEmp$       & \verb|\tranShkEmp|       & \texttt{tranShkEmp}  & Transitory income shock \\
+$\RNrmByG$          & \verb|\RNrmByG|          & \texttt{RNrmByG}     & Normalized return factor $\Rfree / \PermGroFac$ (used when $\bar{\shr}=0$) \\
+$\vFunc_{\shr,\dcsn}$ & \verb|\vFunc_{\shr,\dcsn}| & \texttt{vDcsn}  & Decision value: $\max_{\shr} \Ex[\vCntn]$ or $\Ex[\vCntn]$ if $\shr$ fixed \\
+$\vFunc_{\shr,\cntn}$ & \verb|\vFunc_{\shr,\cntn}| & \texttt{vCntn}  & Continuation value function (post-shock) \\
+$\vFunc_{\shr,\arvl}$ & \verb|\vFunc_{\shr,\arvl}| & \texttt{vArvl}  & Arrival value function ($= \vDcsn$; no pre-decision shocks) \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
 \noindent When $\bar{\shr} = \bot$, the {\Decision} value function is $\vDcsn = \max_{\shr} \Ex_{\dcsn}[\vCntn]$.  When $\bar{\shr} \in [0,1]$, it is $\vDcsn = \Ex[\vCntn]$ with $\shr$ fixed at $\bar{\shr}$.
 
 \hypertarget{argument-notation}{}
@@ -206,6 +304,26 @@ The \StgName{cons-with-shocks} {\stg} in section~\ref{subsec:prchs} combines the
     \end{tabular}
   \end{center}
   \end{table}
+
+\begin{table}[h]
+\caption{Rosetta Stone: \StgName{cons-noshocks} Stage Variables}
+\label{tab:rosetta-cons-noshocks}
+\begin{center}
+\begin{tabular}{l|l|l|l}
+Math Symbol & \LaTeX{} Macro & Python Variable & Description \\
+\hline
+$\mNrm$        & \verb|\mNrm|        & \texttt{mNrm}        & Normalized market resources (arrival state, m-type) \\
+$\cNrm$        & \verb|\cNrm|        & \texttt{cNrm}        & Normalized consumption (control variable) \\
+$\aNrm$        & \verb|\aNrm|        & \texttt{aNrm}        & Normalized end-of-stage assets (continuation state, k-type) \\
+$\vFunc_{\cFunc,\dcsn}$ & \verb|\vFunc_{\cFunc,\dcsn}| & \texttt{vDcsn} & Decision value function: $\max_{\cNrm} \uFunc(\cNrm) + \vCntn(\mNrm - \cNrm)$ \\
+$\vFunc_{\cFunc,\cntn}$ & \verb|\vFunc_{\cFunc,\cntn}| & \texttt{vCntn} & Continuation value function at stage exit \\
+$\vFunc_{\cFunc,\arvl}$ & \verb|\vFunc_{\cFunc,\arvl}| & \texttt{vArvl} & Arrival value function ($= \vDcsn$; no pre-decision shocks) \\
+$\uFunc$       & \verb|\uFunc|       & \texttt{uFunc}       & CRRA utility function \\
+$\CRRA$        & \verb|\CRRA|        & \texttt{CRRA}        & Coefficient of relative risk aversion \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
 
 The {\Decision} equation for this {\stg} defines the consumption function:
 \begin{verbatimwrite}{./Equations/vBalances.tex}

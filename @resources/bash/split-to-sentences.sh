@@ -1,66 +1,21 @@
-#!/usr/bin/env bash
-# 20241002:
-# - add '.} ' and '.) ' as sentencers
+#!/bin/sh
+# DEPRECATION WRAPPER - DO NOT EDIT
 
-add_newlines() {
-    # Read the input text
-    text="$1"
+# This is an auto-generated wrapper. Its purpose is to warn that the path
+# used to call this script is deprecated and will be removed in the future.
 
-    # Regular expression pattern to match any LaTeX environment or comment
-    pattern='(\\begin{.*?}.*?\\end{.*?}|%.*$)'
+# The real location of the scripts.
+CANONICAL_PATH="$(dirname "$0")/../scripts/split-to-sentences.sh"
 
-    # Process each line
-    while IFS= read -r line; do
-        # Skip lines that begin with '%'
-        if [[ $line =~ ^% ]]; then
-            printf "%s\n" "$line"
-            continue
-        fi
+# Print a warning message to standard error.
+echo "
+********************************************************************************
+*** DEPRECATION WARNING ***
+* You have accessed a script via the path: '@resources/bash'
+* This path is deprecated and will be removed in a future version.
+* Please update your code/configuration to use the canonical path: '@resources/scripts'
+********************************************************************************
+" >&2
 
-        # Extract LaTeX environments and comments from the line
-        matches=$(printf "%s" "$line" | sed -n "s/.*\($pattern\).*/\1/p")
-
-        # Replace LaTeX environments and comments with placeholders
-        placeholder_line=$(printf "%s" "$line" | sed "s/$pattern/__PLACEHOLDER__/g")
-
-        # Replace sentence endings with newline character
-        formatted_line=$(printf "%s" "$placeholder_line" | sed -E "s/([.!?][]?['\"]?[[:blank:]]+)/\1\n/g")
-
-        # Reinsert LaTeX environments and comments back into the formatted line
-        while read -r match; do
-            formatted_line=${formatted_line/__PLACEHOLDER__/$match}
-        done <<< "$matches"
-
-        printf "%s\n" "$formatted_line"
-    done <<< "$text"
-}
-
-# Debugging line to test the number of arguments
-echo "Number of arguments: $#"
-
-# Check if the input and output file names are provided as arguments
-if [ $# -ne 2 ]; then
-    echo "Usage: $0 <input_file> <output_file>"
-    exit 1
-fi
-
-# Get the input and output file names from the command line arguments
-input_file="$1"
-output_file="$2"
-
-# Check if the input file exists
-if [ ! -f "$input_file" ]; then
-    echo "Input file '$input_file' does not exist."
-    exit 1
-fi
-
-# Read the contents of the input file
-text=$(cat "$input_file")
-
-# Process the text
-formatted_text=$(add_newlines "$text")
-
-# Write the formatted text to the output file
-echo "$formatted_text" > "$output_file"
-
-echo "Input file '$input_file' has been processed and the formatted text has been written to '$output_file'."
+# Execute the *real* script, passing along all command-line arguments.
+exec "$CANONICAL_PATH" "$@"

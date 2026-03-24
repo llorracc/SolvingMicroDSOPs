@@ -16,7 +16,7 @@
 
   "postStartCommand": [
     "bash", "-c",
-    "export PATH=\"$HOME/.local/bin:$HOME/.cargo/bin:$PATH\"; ROOT=\"$(cat /workspace/*/.devcontainer/repo-root 2>/dev/null || cat /workspace/.devcontainer/repo-root 2>/dev/null)\"; [ -z \"$ROOT\" ] && ROOT=/workspace; ARCH=$(uname -m); VENV=\"$ROOT/.venv-linux-$ARCH\"; [ ! -f \"$VENV/bin/activate\" ] && VENV=\"$ROOT/.venv\"; if [ -f \"$VENV/bin/activate\" ]; then source \"$VENV/bin/activate\" && echo \"✅ Virtual environment: $(which python)\"; else echo \"⚠️  .venv not found - run: ./reproduce/reproduce_environment_comp_uv.sh\"; fi"
+    "export PATH=\"$HOME/.local/bin:$HOME/.cargo/bin:$PATH\"; ROOT=\"\"; for f in /workspace/*/.devcontainer/repo-root /workspace/.devcontainer/repo-root; do [ -f \"$f\" ] && ROOT=\"$(cat \"$f\")\" && break; done; [ -z \"$ROOT\" ] && for d in /workspace/*/; do [ -f \"${d}pyproject.toml\" ] && ROOT=\"${d%/}\" && break; done; [ -z \"$ROOT\" ] && ROOT=/workspace; ARCH=$(uname -m); VENV=\"$ROOT/.venv-linux-$ARCH\"; [ ! -f \"$VENV/bin/activate\" ] && VENV=\"$ROOT/.venv\"; if [ -f \"$VENV/bin/activate\" ]; then source \"$VENV/bin/activate\" && echo \"Virtual environment: $(which python)\"; else echo \"Warning: .venv not found - run: ./reproduce/reproduce_environment_comp_uv.sh\"; fi"
   ],
 
   "containerEnv": {

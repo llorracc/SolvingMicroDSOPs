@@ -1,0 +1,97 @@
+# -*- mode: perl; coding: utf-8 -*-
+#
+# .latexmkrc_for-projects-with-circular-crossrefs
+#
+# ==============================================================================
+# ==                            OVERVIEW                                      ==
+# ==============================================================================
+#
+# PURPOSE:
+#   This is a high-tolerance latexmk configuration tuned for compiling a single
+#   document that is part of a larger project with complex, and potentially
+#   circular, cross-document references (e.g., a paper and appendix that cite
+#   each other).
+#
+# KEY BEHAVIORS:
+#   1. ROBUST: Compiles through common BibTeX "Repeated entry" warnings.
+#   2. ITERATIVE: Runs pdflatex enough times to resolve deep reference graphs.
+#   3. QUIET: Suppresses verbose output to keep the console clean.
+#   4. INFORMATIVE: Provides a clear summary of unresolved references upon completion.
+#
+# LIMITATIONS:
+#   This file does NOT manage the cross-document compilation order. Latexmk is
+#   used here for what it does best: compiling a SINGLE document robustly.
+#   A separate, external script (e.g., a shell loop) must orchestrate the
+#   compilation of the entire project to resolve circular dependencies.
+#
+# ==============================================================================
+# ==                        CONFIGURATION SETTINGS                            ==
+# ==============================================================================
+
+# --- General Compilation Control ---
+$pdf_mode = 1;
+$do_cd = 1;
+$rc_report = 1;
+$force_mode = 1;          # Force compilation even with non-fatal errors.
+$warnings_as_errors = 0;
+
+# --- Bibliography (BibTeX) ---
+# Use our enhanced wrapper to handle BibTeX errors gracefully.
+do './@resources/latexmk/latexmkrc/latexmkrc_using_bibtex_wrapper';
+$bibtex_use = 2;
+$bibtex_fudge = 1;        # A legacy setting to ignore bibtex warnings. Redundant
+                          # with our wrapper but kept for maximum compatibility.
+$bibtex_silent_switch = '-terse'; # Reduce bibtex verbosity.
+
+# --- LaTeX Engine ---
+$pdflatex = 'pdflatex -interaction=nonstopmode -file-line-error %O %S';
+$pdflatex_runs = 4;       # Max runs per doc; sufficient for most reference graphs.
+$recorder = 1;            # Use .fls files for fine-grained dependency tracking.
+
+# --- Output, Logging, and Cleanup ---
+# Control output verbosity based on environment variable
+# PDFLATEX_QUIET=quiet (default): suppress verbose output, show errors/warnings
+# PDFLATEX_QUIET=verbose: show all output
+my $pdflatex_quiet = $ENV{'PDFLATEX_QUIET'} || 'quiet';
+if ($pdflatex_quiet eq 'verbose') {
+    $silent = 0;              # Show all latex output
+    $quiet = 0;               # Show latexmk's own messages
+} else {
+    $silent = 1;              # Suppress verbose latex output (package loading, etc.)
+    $quiet = 0;               # Show latexmk's own summary messages
+}
+$logfile_warning_list=1;  # Always provide a summary of warnings from the .log file
+
+$clean_ext = "bbl nav out snm dvi idv tmp 4tc 4ct aux log fls " .
+             "fdb_latexmk synctex.gz toc ps upa upb lg mk4 css cfg ent out.ps";
+
+# --- Post-Compilation Hook ---
+# After compiling, run a check for unresolved LaTeX references and print a
+# clear, final status message.
+add_cus_dep('log', 'pck', 0, 'check_log_for_undefined_refs');
+sub check_log_for_undefined_refs {
+    my $logfile = shift;
+    open my $fh, '<', $logfile or return;
+    my $found_warning = 0;
+    while (<$fh>) {
+        if (/LaTeX Warning: There were undefined references/) {
+            $found_warning = 1;
+            last;
+        }
+    }
+    close $fh;
+
+    print "\n================= LATEXMK POST-CHECK ==================\n";
+    if ($found_warning) {
+        print "STATUS: ⚠️  WARNING: Undefined references remain.\n";
+        print "          This is expected if compiling one part of a cycle.\n";
+        print "          Run the main compilation script to resolve them.\n";
+    } else {
+        print "STATUS: ✅  SUCCESS: No undefined references detected in $logfile.\n";
+    }
+    print "=====================================================\n\n";
+}
+
+# --- Sanity Check Hook ---
+# This generic configuration file does not include project-specific warnings.
+# Project-specific warnings should be added in the project's .latexmkrc file.

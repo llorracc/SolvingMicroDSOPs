@@ -106,6 +106,17 @@ class TempConsumerType(Model.IndShockConsumerType):
             "DiscFac"
         )  # estimated by Cagetti (2003), so switch from time_inv to time_vary
 
+    def check_restrictions(self):
+        # HARK 0.17+ check_restrictions() assumes scalar DiscFac, but this
+        # estimation uses an age-varying list.  Validate element-wise instead.
+        if isinstance(self.DiscFac, (list, np.ndarray)):
+            if any(d < 0 for d in self.DiscFac):
+                raise ValueError(
+                    "DiscFac has negative element(s): " + str(self.DiscFac)
+                )
+        elif self.DiscFac < 0:
+            raise ValueError("DiscFac is below zero with value: " + str(self.DiscFac))
+
     def simBirth(self, which_agents):
         """
         Alternate method for simulating initial states for simulated agents, drawing from a finite
@@ -457,9 +468,10 @@ def main(
             "--------------------------------------------------------------------------------"
         )
         test_fobj = smmObjectiveFxnReduced(initial_guess)
-        if not np.isclose(test_fobj, 319.0069645992222, rtol=0.01):
+        if not np.isclose(test_fobj, 233.84084433596098, rtol=0.01):
             raise ValueError(
                 "Objective function is not what it should be. Something changed"
+                f" Expected ~233.84, got {test_fobj}"
             )
 
         t_start_estimate = time()

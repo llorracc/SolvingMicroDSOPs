@@ -12,6 +12,10 @@ REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 cd "$REPO_ROOT"
 echo "$REPO_ROOT" > .devcontainer/repo-root 2>/dev/null || true
 
+# Shared platform/architecture detection
+PROJECT_ROOT="$REPO_ROOT"
+source "$REPO_ROOT/reproduce/platform-utils.sh"
+
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "  SolvingMicroDSOPs Devcontainer Post-Create Setup"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
@@ -40,13 +44,7 @@ echo "🐍 Setting up Python environment..."
 
 export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
 
-PLATFORM=$(uname -s | tr "[:upper:]" "[:lower:]")
-ARCH=$(uname -m)
-if [ "$PLATFORM" = "darwin" ]; then
-    VENV_PATH="$REPO_ROOT/.venv-darwin-$ARCH"
-else
-    VENV_PATH="$REPO_ROOT/.venv-linux-$ARCH"
-fi
+VENV_PATH=$(get_platform_venv_path)
 
 if [ -d "$VENV_PATH" ] && [ -f "$VENV_PATH/bin/python" ]; then
     PYTHON_VERSION=$("$VENV_PATH/bin/python" --version 2>&1)
@@ -62,25 +60,15 @@ else
         echo "     Try: uv sync --all-groups"
     fi
     # Re-detect venv path in case it was just created
-    [ -d "$REPO_ROOT/.venv-linux-$ARCH" ] && VENV_PATH="$REPO_ROOT/.venv-linux-$ARCH"
-    [ -d "$REPO_ROOT/.venv-darwin-$ARCH" ] && VENV_PATH="$REPO_ROOT/.venv-darwin-$ARCH"
+    VENV_PATH=$(get_platform_venv_path)
 fi
 
 # ============================================================================
 # 2b. Symlink .venv -> platform venv (so python.defaultInterpreterPath works)
 # ============================================================================
 if [ -d "$VENV_PATH" ] && [ -f "$VENV_PATH/bin/python" ]; then
-    if [ -L "$REPO_ROOT/.venv" ]; then
-        CURRENT=$(readlink "$REPO_ROOT/.venv")
-        if [ "$CURRENT" != "$(basename "$VENV_PATH")" ]; then
-            rm -f "$REPO_ROOT/.venv"
-            ln -s "$(basename "$VENV_PATH")" "$REPO_ROOT/.venv"
-            echo "  🔗 Updated .venv -> $(basename "$VENV_PATH")"
-        fi
-    elif [ ! -e "$REPO_ROOT/.venv" ]; then
-        ln -s "$(basename "$VENV_PATH")" "$REPO_ROOT/.venv"
-        echo "  🔗 .venv -> $(basename "$VENV_PATH") (for VS Code Python extension)"
-    fi
+    ensure_venv_symlink "$REPO_ROOT" "$(basename "$VENV_PATH")"
+    echo "  🔗 .venv -> $(basename "$VENV_PATH") (for VS Code Python extension)"
 fi
 
 # ============================================================================

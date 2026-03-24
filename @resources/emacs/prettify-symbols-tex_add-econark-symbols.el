@@ -91,7 +91,6 @@
 	 (cons "\\BegMark"         (string-to-char "≺"))
 	 (cons "\\EndMark"         (string-to-char "≻"))
 	 ;; \check{\kNrm} and \check{\mNrm} are written inline; \kNrm→k and \mNrm→m prettify the base
-	 
 	 (cons "\\labor"           (string-to-char "ℓ"))
          (cons "\\FDist"           (string-to-char "𝓕"))
          (cons "\\vartheta"        (string-to-char "ϑ"))
@@ -109,7 +108,6 @@
 (unless (fboundp 'cdc/toggle-prettify-symbols-global)
   (defvar cdc/prettify-symbols-globally-disabled nil
     "When non-nil, suppress prettify-symbols-mode activation everywhere.")
-
   (defun cdc/toggle-prettify-symbols-global ()
     "Toggle prettify-symbols-mode in all current and future buffers."
     (interactive)
@@ -129,11 +127,8 @@
             (when (derived-mode-p 'latex-mode 'LaTeX-mode 'TeX-mode)
               (prettify-symbols-mode 1))))
         (message "prettify-symbols: RE-ENABLED in TeX buffers"))))
-
   (define-advice prettify-symbols-mode (:around (orig-fn &rest args) cdc/suppress)
     "Prevent prettify-symbols-mode from activating when globally disabled."
     (unless cdc/prettify-symbols-globally-disabled
       (apply orig-fn args)))
-
   (global-set-key (kbd "C-c t p") #'cdc/toggle-prettify-symbols-global))
-

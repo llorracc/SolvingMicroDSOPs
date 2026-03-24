@@ -1,3 +1,62 @@
+% ARK command definition utility - ensures our notation takes precedence
+% Usage: \ARKcommand{\commandname}{definition}
+% Makes it easy to find all ARK command definitions with global search
+% Define \ARKcommand for backward compatibility and simple commands
+\newcommand{\ARKcommand}[2]{%
+  \providecommand{#1}{}%
+  \renewcommand{#1}{#2}%
+}
+
+% 20251004: econark-shortcuts.sty had no standard definition of kapShare
+% poached this one from handoutShortcuts.sty
+
+\providecommand{\kapShare}{\alpha}
+
+% Enhanced \ARKcommand for parameterized commands - much simpler approach!
+% Usage: \ARKcommandParam{command}{num_params}{definition}
+% Example: \ARKcommandParam{\cncl}{1}{{\cancel{#1}}}
+\makeatletter
+\newcommand{\ARKcommandParam}[3]{%
+  \@ifundefined{\expandafter\@gobble\string#1}{}{\let#1\undefined}%  % undefine if it exists
+  \newcommand{#1}[#2]{#3}%  % then define with parameters
+}
+\makeatother
+
+% Command factories for systematic notation
+\makeatletter
+
+% Factory to create level, normalized, and function commands for each letter
+\newcommand{\DefineLetterCommands}[1]{%
+  % Level variables (boldface italic)
+  \expandafter\providecommand\csname #1Lvl\endcsname{\boldsymbol{\mathit{#1}}}%
+  % Normalized variables (plain)
+  \expandafter\providecommand\csname #1Nrm\endcsname{#1}%
+  % Function variables (upright roman)
+  \expandafter\providecommand\csname #1Func\endcsname{\mathrm{#1}}%
+}
+
+% Define commands for lowercase letters
+\@for\letter:=a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z\do{%
+  \expandafter\DefineLetterCommands\expandafter{\letter}%
+}
+
+% Factory for uppercase letters (levels only, since Nrm and Func use different patterns)
+\newcommand{\DefineUpperLetterCommands}[1]{%
+  % Level variables (boldface italic)  
+  \expandafter\providecommand\csname #1Lvl\endcsname{\boldsymbol{\mathit{#1}}}%
+  % Normalized variables (plain uppercase)
+  \expandafter\providecommand\csname #1Nrm\endcsname{#1}%
+  % Function variables (upright roman)
+  \expandafter\providecommand\csname #1Func\endcsname{\mathrm{#1}}%
+}
+
+% Define commands for uppercase letters  
+\@for\letter:=A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z\do{%
+  \expandafter\DefineUpperLetterCommands\expandafter{\letter}%
+}
+
+\makeatother
+
 % variables:
 %% principles:
 %% - Levels (Lvl) are boldface italic
@@ -7,92 +66,8 @@
 %% - The combination of Ind and Agg is marked by All
 %% - If the problem has only one shock, the Ind and Agg can be omitted
 
-\providecommand{\aLvl}{\boldsymbol{\mathit{a}}}
-\providecommand{\bLvl}{\boldsymbol{\mathit{b}}}
-\providecommand{\cLvl}{\boldsymbol{\mathit{c}}}
-\providecommand{\dLvl}{\boldsymbol{\mathit{d}}}
-\providecommand{\eLvl}{\boldsymbol{\mathit{e}}}
-\providecommand{\fLvl}{\boldsymbol{\mathit{f}}}
-\providecommand{\gLvl}{\boldsymbol{\mathit{g}}}
-\providecommand{\hLvl}{\boldsymbol{\mathit{h}}}
-\providecommand{\iLvl}{\boldsymbol{\mathit{i}}}
-\providecommand{\jLvl}{\boldsymbol{\mathit{j}}}
-\providecommand{\kLvl}{\boldsymbol{\mathit{k}}}
-\providecommand{\mLvl}{\boldsymbol{\mathit{m}}}
-\providecommand{\nLvl}{\boldsymbol{\mathit{n}}}
-\providecommand{\pLvl}{\boldsymbol{\mathit{p}}}
-\providecommand{\qLvl}{\boldsymbol{\mathit{q}}}
-\providecommand{\rLvl}{\boldsymbol{\mathit{r}}}
-\providecommand{\sLvl}{\boldsymbol{\mathit{s}}}
-\providecommand{\tLvl}{\boldsymbol{\mathit{t}}}
-\providecommand{\uLvl}{\boldsymbol{\mathit{u}}}
-\providecommand{\vLvl}{\boldsymbol{\mathit{v}}}
-\providecommand{\wLvl}{\boldsymbol{\mathit{w}}}
-\providecommand{\xLvl}{\boldsymbol{\mathit{x}}}
-\providecommand{\yLvl}{\boldsymbol{\mathit{y}}}
-\providecommand{\zLvl}{\boldsymbol{\mathit{z}}}
-
-\providecommand{\ALvl}{\boldsymbol{\mathit{A}}}
-\providecommand{\BLvl}{\boldsymbol{\mathit{B}}}
-\providecommand{\CLvl}{\boldsymbol{\mathit{C}}}
-\providecommand{\DLvl}{\boldsymbol{\mathit{D}}}
-\providecommand{\ELvl}{\boldsymbol{\mathit{E}}}
-\providecommand{\FLvl}{\boldsymbol{\mathit{F}}}
-\providecommand{\GLvl}{\boldsymbol{\mathit{G}}}
-\providecommand{\HLvl}{\boldsymbol{\mathit{H}}}
-\providecommand{\ILvl}{\boldsymbol{\mathit{I}}}
-\providecommand{\JLvl}{\boldsymbol{\mathit{J}}}
-\providecommand{\KLvl}{\boldsymbol{\mathit{K}}}
-\providecommand{\LLvl}{\boldsymbol{\mathit{L}}}
-\providecommand{\MLvl}{\boldsymbol{\mathit{M}}}
-\providecommand{\NLvl}{\boldsymbol{\mathit{N}}}
-\providecommand{\OLvl}{\boldsymbol{\mathit{O}}}
-\providecommand{\PLvl}{\boldsymbol{\mathit{P}}}
-\providecommand{\QLvl}{\boldsymbol{\mathit{Q}}}
-\providecommand{\RLvl}{\boldsymbol{\mathit{R}}}
-\providecommand{\SLvl}{\boldsymbol{\mathit{S}}}
-\providecommand{\TLvl}{\boldsymbol{\mathit{T}}}
-\providecommand{\ULvl}{\boldsymbol{\mathit{U}}}
-\providecommand{\VLvl}{\boldsymbol{\mathit{V}}}
-\providecommand{\WLvl}{\boldsymbol{\mathit{W}}}
-\providecommand{\XLvl}{\boldsymbol{\mathit{X}}}
-\providecommand{\YLvl}{\boldsymbol{\mathit{Y}}}
-\providecommand{\ZLvl}{\boldsymbol{\mathit{Z}}}
-
-%%  Ratios to permanent income are normal face
-\providecommand{\aNrm}{a}
-\providecommand{\bNrm}{b}
-\providecommand{\cNrm}{c}
-\providecommand{\dNrm}{d}
-\providecommand{\eNrm}{e}
-\providecommand{\fNrm}{f}
-\providecommand{\hNrm}{h}
-\providecommand{\iNrm}{i}
-\providecommand{\jNrm}{j}
-\providecommand{\kNrm}{k}
-\providecommand{\mNrm}{m}
-\providecommand{\pNrm}{p}
-\providecommand{\sNrm}{s}
-\providecommand{\vNrm}{v}
-\providecommand{\yNrm}{y}
-\providecommand{\zNrm}{z}
-
-\providecommand{\ANrm}{A}
-\providecommand{\BNrm}{B}
-\providecommand{\CNrm}{C}
-\providecommand{\DNrm}{D}
-\providecommand{\ENrm}{E}
-\providecommand{\FNrm}{F}
-\providecommand{\HNrm}{H}
-\providecommand{\INrm}{I}
-\providecommand{\JNrm}{J}
-\providecommand{\KNrm}{K}
-\providecommand{\MNrm}{M}
-\providecommand{\PNrm}{P}
-\providecommand{\SNrm}{S}
-\providecommand{\VNrm}{V}
-\providecommand{\YNrm}{Y}
-\providecommand{\ZNrm}{Z}
+% Note: Level and normalized variables for all letters are now auto-generated above
+% Only special cases and exceptions need manual definition below
 
 %% Individual-level (idosyncratic) variables
 \providecommand{\permShkInd}{\psi}     % (purely) permanent
@@ -158,10 +133,12 @@
 \providecommand{\PermGroFacAdj}{\Min{\PermGroFac}}
 \providecommand{\PermGroFacuAdj}{\Min{\Min{\PermGroFac}}}
 \providecommand{\PermGroRte}{g}
+\providecommand{\WGroFac}{\ensuremath{\mathrm{G}}}
+\providecommand{\WGroRte}{\mathrm{g}}
 
 %% Other factors and rates 
 %%% probability of remaining \Alive is 1 - prob of dying
-\providecommand{\Alive}{\mathcal{L}}\renewcommand{\Alive}{\mathcal{L}}
+\ARKcommand{\Alive}{\mathcal{L}}
 \providecommand{\diePrb}{\mathsf{d}} % Continuous time death rate (annual)
 \providecommand{\DiePrb}{\mathsf{D}} % Discrete-time one-period death rate
 
@@ -169,7 +146,7 @@
 \providecommand{\deprRte}{\delta}  % 
 \providecommand{\DiscFac}{\beta}
 \providecommand{\DiscFacAlt}{\beth}
-\providecommand{\DiscAlt}{}\renewcommand{\DiscAlt}{\beth}
+\ARKcommand{\DiscAlt}{\beth}
 \providecommand{\DiscAltuAdj}{\Min{\Min{\beth}}}
 \providecommand{\DiscFacRaw}{\beta}
 \providecommand{\DiscFacLiv}{\Min{\DiscFacRaw}}
@@ -207,7 +184,7 @@
 \providecommand{\CRRA}{\rho}
 \providecommand{\MPC}{\kappa}
 \providecommand{\MPCFunc}{\pmb{\kappa}}
-\providecommand{\pZero}{q}
+\providecommand{\pZero}{\wp}
 
 \providecommand{\rfree}{\mathsf{r}}   % The net return rate on the safe asset
 \providecommand{\Rfree}{\mathsf{R}}   % The return factor on the safe asset 
@@ -225,9 +202,8 @@
 \providecommand{\Rport}{\mathfrak{R}}       % Portfolio -weighted return
 \providecommand{\rport}{\mathfrak{r}}
 
-\providecommand{\uδδδ}{{{\mathrm{u}^{\partial\partial\partial}}}}
-\providecommand{\uδδ}{{{\mathrm{u}^{\partial\partial}}}}
-\providecommand{\uδ}{{{\mathrm{u}^{\partial}}}}
+\providecommand{\uPP}{\mathrm{u}^{\prime\prime}}
+\providecommand{\uP}{\mathrm{u}^{\prime}}
 \providecommand{\util}{u}
 
 \providecommand{\Kap}{K}
@@ -242,9 +218,10 @@
 \providecommand{\Wage}{{\mathsf{W}}}
 \providecommand{\wage}{{\mathsf{w}}}
 
-\providecommand{\TaxLev}{T}
-\providecommand{\Tax}{}
-\providecommand{\TaxFree}{{\cancel{\Tax}}}
+\providecommand{\TaxAmt}{T}
+\providecommand{\TaxRte}{\tau}
+\providecommand{\tax}{\tau}
+\providecommand{\taxFree}{\cancel{\tax}}
 
 \providecommand{\Alt}{\grave}
 
@@ -281,7 +258,7 @@
 
 \providecommand{\aMin}{{\Min{\aNrm}}}
 
-\providecommand{\Nrml}{}\renewcommand{\Nrml}{\mathcal{N}}
+\ARKcommand{\Nrml}{\mathcal{N}}
 
 
 \newcommand{\TargetNrm}{\hat}   % Target 
@@ -289,10 +266,8 @@
 
 % pulled in from econtexShortcuts
 
-\providecommand{\cFuncAbove}{}
-\renewcommand{\cFuncAbove}{\Max{\cFunc}} 
-\providecommand{\cFuncBelow}{}
-\renewcommand{\cFuncBelow}{\Min{\cFunc}} 
+\ARKcommand{\cFuncAbove}{\Max{\cFunc}} 
+\ARKcommand{\cFuncBelow}{\Min{\cFunc}} 
 
 % Needed for cctwMoM
 
@@ -312,42 +287,33 @@
 
 % Evolving ideas:
 % - FOR GREEK CHARACTERS ONLY: Use upper and lower case for Factor vs Rate
-\providecommand{\PopGroFac}{}
-\renewcommand{\PopGroFac}{\Xi}
+\ARKcommand{\PopGroFac}{\Xi}
 
-\providecommand{\popGroRte}{}
-\renewcommand{\popGroRte}{\xi}
+\ARKcommand{\popGroRte}{\xi}
 
 % There are two exceptions: 
 % - Roman G is a Growth factor and Roman g is the rate
 % - Roman R is a Growth factor and Roman r is the rate
 
-\providecommand{\PtyGroFac}{}
-\renewcommand{\PtyGroFac}{\mathscr{G}}
+\ARKcommand{\PtyGroFac}{\mathscr{G}}
 
-\providecommand{\PtyGroRte}{}
-\renewcommand{\PtyGroRte}{\mathscr{g}}
+\ARKcommand{\PtyGroRte}{\mathscr{g}}
 
-\providecommand{\ptyGroFac}{}
-\renewcommand{\ptyGroFac}{G}
+\ARKcommand{\ptyGroFac}{G}
 
-\providecommand{\ptyGroRte}{}
-\renewcommand{\ptyGroRte}{g}
+\ARKcommand{\ptyGroRte}{g}
 
 % agg vs ind?  upper vs lower conflicts with upper vs lower for factors and rates
 
-\providecommand{\Reals}{}
-\renewcommand{\Reals}{\mathbb{R}}
+\ARKcommand{\Reals}{\mathbb{R}}
 
 % ------------------ Operators ------------------ 
 % Map between function spaces, blackboard boldface
 
-\providecommand{\TMap}{}
-\renewcommand{\TMap}{\mathbb{T}}                  % Bellman operator for normalized problem
+\ARKcommand{\TMap}{\mathbb{T}}                  % Bellman operator for normalized problem
 \providecommand{\Ex}{{\mathbb{E}}} % Expectations operator
 \providecommand{\Mean}{{\mathbb{M}}} % Mean operator
-\providecommand{\cncl}{} % cancellation
-\renewcommand\cncl[1]{{\cancel{#1}}}
+\ARKcommandParam{\cncl}{1}{{\cancel{#1}}} % cancellation
 
 
 % ------------------ Modifiers ------------------ 
@@ -357,7 +323,7 @@
 \providecommand{\Max}{\overline}
 \providecommand{\Min}{\underline}
 \providecommand{\Rnd}{\tilde}
-\providecommand{\Opt}{}\renewcommand{\Opt}{\breve}
+\ARKcommand{\Opt}{\breve}
 \providecommand{\Lvl}{\boldsymbol}
 
 
@@ -373,65 +339,15 @@
 
 % Functions
 % - Functions are Roman not italicized
-%% systematic
-\providecommand{\aFunc}{\mathrm{a}}
-\providecommand{\bFunc}{\mathrm{b}}
-\providecommand{\cFunc}{\mathrm{c}}
-\providecommand{\dFunc}{\mathrm{d}}
-\providecommand{\eFunc}{\mathrm{e}}
-\providecommand{\fFunc}{\mathrm{f}}
-\providecommand{\gFunc}{\mathrm{g}}
-\providecommand{\hFunc}{\mathrm{h}}
-\providecommand{\iFunc}{\mathrm{i}}
-\providecommand{\jFunc}{\mathrm{j}}
-\providecommand{\kFunc}{\mathrm{k}}
-\providecommand{\mFunc}{\mathrm{m}}
-\providecommand{\nFunc}{\mathrm{n}}
-\providecommand{\pFunc}{\mathrm{p}}
-\providecommand{\sFunc}{\mathrm{s}}
-\providecommand{\rFunc}{\mathrm{r}}
-\providecommand{\uFunc}{\mathrm{u}}
-\providecommand{\vFunc}{\mathrm{v}}
-\providecommand{\wFunc}{\mathrm{w}}
-\providecommand{\xFunc}{\mathrm{x}}
-\providecommand{\yFunc}{\mathrm{y}}
-\providecommand{\zFunc}{\mathrm{z}}
+% Note: Basic function commands for all letters are auto-generated above
+% Only special cases need manual definition
 
-\providecommand{\vFuncLvl}{\mathbf{v}}
-% level idiosyncratic
-\providecommand{\cFuncLvl}{}  % in case already defined 
-\renewcommand{\cFuncLvl}{\boldsymbol{\mathrm{c}}}   % consumption function 
-\renewcommand{\vFuncLvl}{\boldsymbol{\mathrm{v}}}   % value function
-
-\providecommand{\AFunc}{\mathrm{A}}
-\providecommand{\BFunc}{\mathrm{B}}
-\providecommand{\CFunc}{\mathrm{C}}
-\providecommand{\DFunc}{\mathrm{D}}
-\providecommand{\EFunc}{\mathrm{E}}
-\providecommand{\FFunc}{\mathrm{F}}
-\providecommand{\GFunc}{\mathrm{G}}
-\providecommand{\HFunc}{\mathrm{H}}
-\providecommand{\IFunc}{\mathrm{I}}
-\providecommand{\JFunc}{\mathrm{J}}
-\providecommand{\KFunc}{\mathrm{K}}
-\providecommand{\LFunc}{\mathrm{L}}
-\providecommand{\MFunc}{\mathrm{M}}
-\providecommand{\NFunc}{\mathrm{N}}
-\providecommand{\OFunc}{\mathrm{O}}
-\providecommand{\PFunc}{\mathrm{P}}
-\providecommand{\QFunc}{\mathrm{Q}}
-\providecommand{\RFunc}{\mathrm{R}}
-\providecommand{\SFunc}{\mathrm{S}}
-\providecommand{\TFunc}{\mathrm{T}}
-\providecommand{\UFunc}{\mathrm{U}}
-\providecommand{\VFunc}{\mathrm{V}}
-\providecommand{\WFunc}{\mathrm{W}}
-\providecommand{\XFunc}{\mathrm{X}}
-\providecommand{\YFunc}{\mathrm{Y}}
-\providecommand{\ZFunc}{\mathrm{Z}}
+% Level function overrides for special cases
+\providecommand{\vFuncLvl}{\boldsymbol{\mathrm{v}}}   % value function
+\providecommand{\cFuncLvl}{\boldsymbol{\mathrm{c}}}  % consumption function 
 
 %% ad-hoc
-\providecommand{\cov}{}\renewcommand{\cov}{\textup{cov}}
+\ARKcommand{\cov}{\textup{cov}}
 
 % Variables
 
@@ -444,74 +360,3 @@
 
 % Add default link for html material at github llorracc
 %\newcommand{\llorraccio}[1]{\href{https://llorracc.github.io/#1}{\texttt{#1}}}
-
-% ====== Stage/period notation (moved from local-macros.sty) ======
-
-% Time indices
-\providecommand{\prdt}{t}
-\providecommand{\prd}{\prdt}
-\providecommand{\prdT}{T}
-\providecommand{\prdNxt}{}\renewcommand{\prdNxt}{\prdt+1}
-\providecommand{\prdLst}{}\renewcommand{\prdLst}{\prdt-1}
-\providecommand{\prdNxT}{}\renewcommand{\prdNxT}{\prdT+1}
-\providecommand{\prdLsT}{}\renewcommand{\prdLsT}{\prdT-1}
-
-% Stage short-name (verbal identifier)
-\providecommand{\StgName}[1]{\textsf{#1}}
-
-% Ordering-element words
-\providecommand{\prch}{}\renewcommand{\prch}{perch}
-\providecommand{\Prch}{}\renewcommand{\Prch}{Perch}
-\providecommand{\prchs}{}\renewcommand{\prchs}{perches}
-\providecommand{\Prchs}{}\renewcommand{\Prchs}{Perches}
-\providecommand{\stg}{}\renewcommand{\stg}{stage}
-\providecommand{\Stg}{}\renewcommand{\Stg}{Stage}
-\providecommand{\stgs}{}\renewcommand{\stgs}{stages}
-\providecommand{\Stgs}{}\renewcommand{\Stgs}{Stages}
-
-% Three perches within a stage: Arrival, Decision, Continuation
-\providecommand{\Arrival}{Arrival}
-\providecommand{\arvl}{\prec}
-\providecommand{\Continuation}{Continuation}
-\providecommand{\cntn}{\succ}
-\providecommand{\Decision}{Decision}
-\providecommand{\dcsn}{\sim}
-
-% Perch-level subscript macros
-\providecommand{\Arvl}{}\renewcommand{\Arvl}{{\arvl}}
-\providecommand{\ArvlNxt}{}\renewcommand{\ArvlNxt}{{\arvl(\prdNxt)}}
-\providecommand{\Cntn}{}\renewcommand{\Cntn}{{\cntn}}
-\providecommand{\Dcsn}{}\renewcommand{\Dcsn}{{\dcsn}}
-\providecommand{\DcsnNxt}{}\renewcommand{\DcsnNxt}{{\dcsn(\prdNxt)}}
-
-% Value functions at perches
-% N.B. use \sb not _ : tex4ht drops subscripts defined with _ inside \newcommand
-\providecommand{\vArvl}{\vFunc\sb{\Arvl}}
-\providecommand{\vArvlNxt}{\vFunc\sb{\ArvlNxt}}
-\providecommand{\vDcsn}{\vFunc\sb{\Dcsn}}
-\providecommand{\vCntn}{\vFunc\sb{\Cntn}}
-
-% Expectations at perches
-\providecommand{\ExCntn}{\Ex\sb{\Cntn}}
-\providecommand{\ExDcsn}{\Ex\sb{\Dcsn}}
-\providecommand{\ExArvl}{\Ex\sb{\Arvl}}
-
-% Builders and connectors
-\providecommand{\Cnct}{Connector}
-\providecommand{\Cncts}{Connectors}
-\providecommand{\Cnctr}{\mathcal{C}}
-\providecommand{\CnctrComp}{}\renewcommand{\CnctrComp}{\mathtt{C}}
-\providecommand{\BkBldr}{}\renewcommand{\BkBldr}{\mathtt{B}\sp{\leftarrow }}
-\providecommand{\FwBldr}{}\renewcommand{\FwBldr}{\mathtt{B}\sp{\rightarrow}}
-\providecommand{\BkBldrPrd}{}\renewcommand{\BkBldrPrd}{\mathtt{B}\sp{\leftarrow }\sb{\mathrm{prd}}}
-
-% Growth-factor adjustments (on/off toggle; default=off => \null)
-\providecommand{\PermGroFacAdjV}{\null}
-\providecommand{\PermGroFacAdjMu}{\null}
-
-% Inverse value function (Lambda)
-\providecommand{\VInv}{}\renewcommand{\VInv}{{\Lambda}}
-\providecommand{\vInv}{}\renewcommand{\vInv}{{\scriptstyle \VInv \displaystyle}}
-
-% Asset-grid minimum
-\providecommand{\aVecMin}{{a}_{1}}

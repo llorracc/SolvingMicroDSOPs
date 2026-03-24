@@ -1,0 +1,177 @@
+# Econ-ARK Mathematical Notation
+# Single source of truth for LaTeX and MyST macros
+# 
+# Format:
+#   variables: Individual command definitions
+#   patterns: Algorithmic pattern-based definitions
+#   
+# Generated files:
+#   - generated/econark-shortcuts.sty (for LaTeX)
+#   - generated/econark-macros.yaml (for MyST)
+
+metadata:
+  version: "2.0"
+  description: "Econ-ARK standard mathematical notation"
+  maintainer: "econ-ark.org"
+
+# Individual variable definitions
+variables:
+  # Growth factors and rates
+  PermGroFac:
+    latex: '\mathcal{G}'
+    description: 'Permanent growth factor'
+    category: 'growth'
+  
+  PermGroRte:
+    latex: 'g'
+    description: 'Permanent growth rate'
+    category: 'growth'
+    
+  permGroFacInd:
+    latex: '\mathit{G}'
+    description: 'Individual permanent growth factor'
+    category: 'growth'
+    
+  PermGroFacAgg:
+    latex: '\mathscr{G}'
+    description: 'Aggregate permanent growth factor' 
+    category: 'growth'
+
+  # Discount factors
+  DiscFac:
+    latex: '\beta'
+    description: 'Discount factor'
+    category: 'preferences'
+    
+  DiscRte:
+    latex: '\nu'
+    description: 'Discount rate'
+    category: 'preferences'
+
+  # Shocks
+  permShkInd:
+    latex: '\psi'
+    description: 'Individual permanent shock'
+    category: 'shocks'
+    
+  PermShkAgg:
+    latex: '\Psi'
+    description: 'Aggregate permanent shock'
+    category: 'shocks'
+    
+  tranShkInd:
+    latex: '\xi'
+    description: 'Individual transitory shock'
+    category: 'shocks'
+    
+  TranShkAgg:
+    latex: '\Theta'
+    description: 'Aggregate transitory shock'
+    category: 'shocks'
+    
+  tranShkEmp:
+    latex: '\theta'
+    description: 'Transitory shock for employed'
+    category: 'shocks'
+    
+  TranShkEmp:
+    latex: '\Theta'
+    description: 'Aggregate transitory shock for employed'
+    category: 'shocks'
+
+  # Interest rates
+  Rfree:
+    latex: '\mathsf{R}'
+    description: 'Risk-free return factor'
+    category: 'returns'
+    
+  rfree:
+    latex: '\mathsf{r}'
+    description: 'Risk-free return rate'
+    category: 'returns'
+    
+  Risky:
+    latex: '\mathbf{R}'
+    description: 'Risky return factor'
+    category: 'returns'
+    
+  risky:
+    latex: '\mathbf{r}'
+    description: 'Risky return rate'
+    category: 'returns'
+
+  # Utility and preferences
+  CRRA:
+    latex: '\rho'
+    description: 'Coefficient of relative risk aversion'
+    category: 'preferences'
+    
+  CARA:
+    latex: '\alpha'
+    description: 'Coefficient of absolute risk aversion'
+    category: 'preferences'
+    
+  MPC:
+    latex: '\kappa'
+    description: 'Marginal propensity to consume'
+    category: 'behavior'
+
+  # Operators and modifiers
+  std:
+    latex: '\sigma'
+    description: 'Standard deviation operator'
+    category: 'operators'
+
+# Pattern-based definitions (factories)
+patterns:
+  # Letter-based level variables (boldface italic)
+  - name: "Letter level variables"
+    pattern: '{letter}Lvl'
+    latex: '\boldsymbol{{\mathit{{{letter}}}}}'
+    description: 'Level variable for letter {letter}'
+    letters: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    category: 'variables'
+    
+  # Letter-based normalized variables (plain)  
+  - name: "Letter normalized variables"
+    pattern: '{letter}Nrm'
+    latex: '{letter}'
+    description: 'Normalized variable for letter {letter}'
+    letters: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    category: 'variables'
+    
+  # Letter-based function variables (upright roman)
+  - name: "Letter function variables" 
+    pattern: '{letter}Func'
+    latex: '\mathrm{{{letter}}}'
+    description: 'Function variable for letter {letter}'
+    letters: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    category: 'functions'
+
+# Modifier patterns (Min/Max, Std/Var, etc.)
+modifier_patterns:
+  # Standard deviation and variance
+  - name: "Standard deviation"
+    base_vars: ['tranShkInd', 'TranShkAgg', 'PermShkAll', 'tranShkAll']
+    suffix: 'Std'
+    latex: '\std_{{{base}}}'
+    description: 'Standard deviation of {base}'
+    
+  - name: "Variance"
+    base_vars: ['tranShkInd', 'TranShkAgg', 'PermShkAll', 'tranShkAll'] 
+    suffix: 'Var'
+    latex: '\std^{{2}}_{{{base}}}'
+    description: 'Variance of {base}'
+    
+  # Min/Max modifiers
+  - name: "Minimum values"
+    base_vars: ['permShkInd', 'prstShkInd', 'tranShkEmp', 'MPC', 'PermGroFac']
+    suffix: 'Min'
+    latex: '\underline{{{base}}}'
+    description: 'Minimum value of {base}'
+    
+  - name: "Maximum values"
+    base_vars: ['permShkInd', 'prstShkInd', 'tranShkEmp', 'MPC']
+    suffix: 'Max' 
+    latex: '\overline{{{base}}}'
+    description: 'Maximum value of {base}' 
